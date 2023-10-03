@@ -18,6 +18,7 @@ public class PlayerBodyFSM : MonoBehaviour
     #region Private Variables
     private CharacterController charController;
     private Animator anim;
+    private PlayerInputHandler input;
     //probably some type of gun reference
 
     private PlayerMotionState currentMotionState;
@@ -25,6 +26,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public PlayerMotionStates currentMotionStateFlag { get; private set; }
     public PlayerActionStates currentActionStateFlag { get; private set; }
+
    
     #endregion
 
@@ -35,7 +37,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-  
+        input = GetComponent<PlayerInputHandler>();
     }
 
     /// <summary>
@@ -187,7 +189,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController);
+        return new stateParams(this, anim, charController, input);
     }
 }
 
@@ -214,14 +216,16 @@ public enum PlayerActionStates
 public struct stateParams
 {
 
-    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr)
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH)
     {
         FSM = fsm;
         anim = an;
         controller = contr;
+        inputHandler = inputH;
     }
 
     public PlayerBodyFSM FSM;
     public Animator anim;
     public CharacterController controller;
+    public PlayerInputHandler inputHandler;
 }

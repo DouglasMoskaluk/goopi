@@ -80,11 +80,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropGrenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""22567ee2-f9fa-4abf-8a3b-eea10e5f6585"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowGrenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac7f02b4-011f-461c-b2d3-6e406e82ac42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""GamepadVector"",
                     ""id"": ""b02bb8dd-476b-41b7-805e-a2a3c57f3219"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -131,6 +149,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""62baf7c8-36c6-471c-98a2-04d9bcb041de"",
                     ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""PCVector"",
+                    ""id"": ""2b1a0a3c-0975-4e29-8d1b-6cbc939ca3b3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motion"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3d9016d9-dd06-4e7a-8c71-ca9021d79ce3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ff46f986-2bd9-47b4-8b2e-fca538b839ad"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c0776e64-f35a-4ec3-a7a2-5e9fde7b8684"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8e139c96-0e51-4c80-96fc-ff140eeb6579"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -194,6 +267,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""GamepadVector"",
+                    ""id"": ""7cbcb8e1-376a-450f-95f5-21f657675dee"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""eb51f12d-7ad4-4066-b92f-bfb6bd550666"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4db46733-e915-47eb-bc2a-f4f8f8638718"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""39637794-16ad-474c-bec7-b804e965d1b6"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dd411103-07c6-4c1f-b71d-175136bc8e45"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""3ba65d11-0589-4a6a-85ca-a984d364507d"",
                     ""path"": ""<Gamepad>/buttonSouth"",
@@ -208,6 +336,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""080f8d72-4fa0-4ab7-ae0a-74bcb1d3a795"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1715bea0-7545-4d04-858b-6c935e849d10"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -236,6 +375,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SprintToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67987730-c34d-4177-9588-9527f46fb09d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f4be120-2dc1-4995-98c9-43381c263fc2"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +411,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_Reload = m_Character.FindAction("Reload", throwIfNotFound: true);
         m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
         m_Character_SprintToggle = m_Character.FindAction("SprintToggle", throwIfNotFound: true);
+        m_Character_DropGrenade = m_Character.FindAction("DropGrenade", throwIfNotFound: true);
+        m_Character_ThrowGrenade = m_Character.FindAction("ThrowGrenade", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +480,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Reload;
     private readonly InputAction m_Character_Crouch;
     private readonly InputAction m_Character_SprintToggle;
+    private readonly InputAction m_Character_DropGrenade;
+    private readonly InputAction m_Character_ThrowGrenade;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -327,6 +492,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Character_Reload;
         public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
         public InputAction @SprintToggle => m_Wrapper.m_Character_SprintToggle;
+        public InputAction @DropGrenade => m_Wrapper.m_Character_DropGrenade;
+        public InputAction @ThrowGrenade => m_Wrapper.m_Character_ThrowGrenade;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -354,6 +521,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SprintToggle.started += instance.OnSprintToggle;
             @SprintToggle.performed += instance.OnSprintToggle;
             @SprintToggle.canceled += instance.OnSprintToggle;
+            @DropGrenade.started += instance.OnDropGrenade;
+            @DropGrenade.performed += instance.OnDropGrenade;
+            @DropGrenade.canceled += instance.OnDropGrenade;
+            @ThrowGrenade.started += instance.OnThrowGrenade;
+            @ThrowGrenade.performed += instance.OnThrowGrenade;
+            @ThrowGrenade.canceled += instance.OnThrowGrenade;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -376,6 +549,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SprintToggle.started -= instance.OnSprintToggle;
             @SprintToggle.performed -= instance.OnSprintToggle;
             @SprintToggle.canceled -= instance.OnSprintToggle;
+            @DropGrenade.started -= instance.OnDropGrenade;
+            @DropGrenade.performed -= instance.OnDropGrenade;
+            @DropGrenade.canceled -= instance.OnDropGrenade;
+            @ThrowGrenade.started -= instance.OnThrowGrenade;
+            @ThrowGrenade.performed -= instance.OnThrowGrenade;
+            @ThrowGrenade.canceled -= instance.OnThrowGrenade;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -401,5 +580,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprintToggle(InputAction.CallbackContext context);
+        void OnDropGrenade(InputAction.CallbackContext context);
+        void OnThrowGrenade(InputAction.CallbackContext context);
     }
 }
