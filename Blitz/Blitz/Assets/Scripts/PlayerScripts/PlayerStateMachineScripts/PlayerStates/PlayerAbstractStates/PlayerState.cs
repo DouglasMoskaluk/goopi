@@ -64,10 +64,4 @@ public abstract class PlayerState
     }
 }
 
-/// <summary>
-/// helper struct responsible for hold references of important components 
-/// such as animator, rigidbody etc for states to receive from their FSM
-/// </summary>
-public struct stateParams {
-    public PlayerBodyFSM FSM;
-}
+

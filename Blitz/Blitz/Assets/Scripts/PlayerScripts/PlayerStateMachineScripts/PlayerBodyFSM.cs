@@ -11,11 +11,13 @@ using UnityEngine.PlayerLoop;
 public class PlayerBodyFSM : MonoBehaviour
 {
     #region Public Variables
-
+    public bool DisplayDebugMessages = false;
     #endregion
 
     #region Private Variables
     private CharacterController charController;
+    private Animator anim;
+    //probably some type of gun reference
 
     private PlayerMotionState currentMotionState;
     private PlayerActionState currentActionState;
@@ -41,7 +43,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        
+        transitionState(PlayerMotionStates.Walk);
+        transitionState(PlayerActionStates.Idle);
     }
 
     /// <summary>
@@ -50,7 +53,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        
+        currentMotionState.stateUpdate();
+        currentActionState.stateUpdate();
     }
 
     /// <summary>
@@ -59,7 +63,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        
+        currentMotionState.stateFixedUpdate();
+        currentActionState.stateFixedUpdate();
     }
 
     /// <summary>
@@ -68,73 +73,109 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void LateUpdate()
     {
-        
+        currentMotionState.stateLateUpdate();
+        currentActionState.stateLateUpdate();
+
+        //placement of this is still in the air
+        //currently placed in late update so it happens after all other updates are executed but we will see
+        currentMotionState.transitionCheck();
+        currentActionState.transitionCheck();
     }
 
     /// <summary>
-    /// called when transitioning from the current motion state to another motion state
+    /// called when transitioning from the current MOTION state to another motion state
     /// </summary>
     public void transitionState(PlayerMotionStates to)
     {
-        currentMotionState.onStateExit();
+        //guard against transitioning into the same state
+        if (to == currentMotionStateFlag) { return; }
 
+        //exit current state if exists
+        if (currentMotionState != null) { currentMotionState.onStateExit(); }
+        
+        //switch to new state
         switch (to)
         {
             case PlayerMotionStates.Walk:
-
+                currentMotionState = new PlayerWalkMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Walk;
                 break;
             case PlayerMotionStates.Crouch:
-
+                currentMotionState = new PlayerCrouchMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Crouch;
                 break;
             case PlayerMotionStates.Run:
-
+                currentMotionState = new PlayerRunMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Run;
                 break;
             case PlayerMotionStates.Slide:
-
+                currentMotionState = new PlayerSlideMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Slide;
                 break;
             case PlayerMotionStates.Fall:
-
+                currentMotionState = new PlayerFallMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Fall;
                 break;
             case PlayerMotionStates.Jump:
-
+                currentMotionState = new PlayerJumpMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Jump;
                 break;
             case PlayerMotionStates.Mantle:
-
+                currentMotionState = new PlayerMantleMotionState();
+                currentMotionStateFlag = PlayerMotionStates.Mantle;
                 break;
         }
 
+        //initialize new state
         currentMotionState.initState(getFSMInfo());
         currentMotionState.onStateEnter();
+        
+        //debug output
+        if (DisplayDebugMessages) { Debug.Log("Transitioned into " + currentMotionStateFlag); }
     }
 
     /// <summary>
-    /// called when transitioning from the current action state to another action state
+    /// called when transitioning from the current ACTION state to another action state
     /// </summary>
     public void transitionState(PlayerActionStates to)
     {
-        currentActionState.onStateExit();
+        //guard against transitioning into the same state
+        if (to == currentActionStateFlag) { return; }
 
+        //exit current state if exists
+        if (currentMotionState != null) { currentActionState.onStateExit(); }
+
+        //switch to new state
         switch (to)
         {
             case PlayerActionStates.Idle:
-
+                currentActionState = new PlayerIdleActionState();
+                currentActionStateFlag = PlayerActionStates.Idle;
                 break;
             case PlayerActionStates.Reload:
-
+                currentActionState = new PlayerReloadActionState();
+                currentActionStateFlag = PlayerActionStates.Reload;
                 break;
             case PlayerActionStates.Shoot:
-
+                currentActionState = new PlayerShootActionState();
+                currentActionStateFlag = PlayerActionStates.Shoot;
                 break;
             case PlayerActionStates.Run:
-
+                currentActionState = new PlayerRunActionState();
+                currentActionStateFlag = PlayerActionStates.Run;
                 break;
             case PlayerActionStates.Mantle:
-
+                currentActionState = new PlayerMantleActionState();
+                currentActionStateFlag = PlayerActionStates.Mantle;
                 break;
         }
 
+        //initialize new state
         currentActionState.initState(getFSMInfo());
         currentActionState.onStateEnter();
+
+        //debug output
+        if (DisplayDebugMessages) { Debug.Log("Transitioned into " + currentActionStateFlag); }
     }
 
     /// <summary>
@@ -163,4 +204,14 @@ public enum PlayerMotionStates
 public enum PlayerActionStates
 {
     Idle, Reload, Mantle, Shoot, Run//shoot might be taken out
+}
+
+/// <summary>
+/// helper struct responsible for hold references of important components 
+/// such as animator, rigidbody etc for states to receive from their FSM
+/// </summary>
+public struct stateParams
+{
+    public PlayerBodyFSM FSM;
+    public Animator anim;
 }
