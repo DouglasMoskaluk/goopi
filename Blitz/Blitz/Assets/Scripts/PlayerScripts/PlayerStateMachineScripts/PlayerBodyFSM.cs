@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -186,7 +187,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        throw new NotImplementedException();
+        return new stateParams(this, anim, charController);
     }
 }
 
@@ -212,6 +213,15 @@ public enum PlayerActionStates
 /// </summary>
 public struct stateParams
 {
+
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr)
+    {
+        FSM = fsm;
+        anim = an;
+        controller = contr;
+    }
+
     public PlayerBodyFSM FSM;
     public Animator anim;
+    public CharacterController controller;
 }

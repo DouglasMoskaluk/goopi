@@ -282,6 +282,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec62002e13a2ea349a53768e3b067e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayDebugMessages: 0
+--- !u!114 &576889363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576889359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b9052e786bf7add47889f08ebfa5ebdf,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 884a5c8e-d690-4094-bb5f-584e22c32d02
+    m_ActionName: Character/Motion
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aa7e9096-dbcd-48fe-806c-f82af554e095
+    m_ActionName: Character/Look
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d7ca68a-e7c0-4aa7-9851-88b9b5620b1a
+    m_ActionName: Character/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 71b7a199-bcfa-4d38-8e54-5f1eb6e7fe8c
+    m_ActionName: Character/Reload
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 81abaf4c-839c-421b-8796-58b9d3af9706
+    m_ActionName: Character/Crouch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4e9ab0b1-05ee-4a8a-8784-4a695ac807d0
+    m_ActionName: Character/SprintToggle
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Character
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1071964179
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +638,7 @@ Transform:
   m_GameObject: {fileID: 1402140749}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 33.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,6 +953,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 576889362}
+    - targetCorrespondingSourceObject: {fileID: 2403129680760932734, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 576889363}
   m_SourcePrefab: {fileID: 100100000, guid: 7f806ddd4b13dd646a084a487bec0f32, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
