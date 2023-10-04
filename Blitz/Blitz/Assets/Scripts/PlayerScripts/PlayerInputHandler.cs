@@ -12,7 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 motionInput { get; private set; }
     public Vector2 lookInput { get; private set; }
 
-    public Vector2 lookSense = Vector3.one;
+    [SerializeField] public Vector2 lookSense;
     #endregion
 
     #region bools
@@ -43,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(lookInput);
+        Debug.Log(lookSense);
     }
 
     /// <summary>

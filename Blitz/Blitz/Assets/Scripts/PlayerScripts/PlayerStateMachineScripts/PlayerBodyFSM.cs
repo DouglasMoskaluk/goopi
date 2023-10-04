@@ -55,7 +55,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// called within unity's update loop
     /// </summary>
     private void Update()
-    {
+    { 
+
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
     }

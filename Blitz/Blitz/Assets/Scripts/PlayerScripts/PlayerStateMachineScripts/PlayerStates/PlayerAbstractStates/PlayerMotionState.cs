@@ -27,6 +27,12 @@ public class PlayerMotionState : PlayerState
     /// <param name="gravity"> the absolute value of gravity</param>
     protected void basicMovement(Vector2 inputDir, Vector3 previousVerticalMotion, float speed, float gravity)
     {
+        ////get the direction of the camera
+        //float camXRot = camHolder.localEulerAngles.x;
+        //camHolder.localEulerAngles = new Vector3(0, camHolder.localEulerAngles.y, camHolder.localEulerAngles.z);
+        //Vector3 dir = camHolder.forward;
+        //camHolder.localEulerAngles = new Vector3(camXRot, camHolder.localEulerAngles.y, camHolder.localEulerAngles.z);
+
         //horizontal motion calc ** this chunk of code allows smooth motion over slopes as well as flat horizontal planes **
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
