@@ -27,18 +27,18 @@ public class PlayerMotionState : PlayerState
     /// <param name="gravity"> the absolute value of gravity</param>
     protected void basicMovement(Vector2 inputDir, Vector3 previousVerticalMotion, float speed, float gravity)
     {
-        //horizontal motion calc
+        //horizontal motion calc ** this chunk of code allows smooth motion over slopes as well as flat horizontal planes **
         RaycastHit hitInfo;
-        bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);
+        bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
         Vector3 horizontalMotion = new Vector3(inputDir.x, 0, inputDir.y).normalized;//calc players horizontal motion based on input and speed
         if (rayHit)
         {
-            horizontalMotion = Vector3.ProjectOnPlane(horizontalMotion, hitInfo.normal);
+            horizontalMotion = Vector3.ProjectOnPlane(horizontalMotion, hitInfo.normal);//if ray hit ground project hor movemnt onto plane
         }
-        horizontalMotion *= speed;
+        horizontalMotion *= speed;//apply player speed
         
 
-        //vertical motion calc
+        //vertical motion calc ** makes sure players vertical motion based on gravity doesnt get too high ** 
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
         previousVertMotion.y = Mathf.Max(previousVertMotion.y, MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
         if (controller.isGrounded) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
@@ -48,7 +48,7 @@ public class PlayerMotionState : PlayerState
         //consolidate vert and hor motion
         Vector3 motion = (horizontalMotion + previousVertMotion) * Time.deltaTime;//create joined vert and hor motion
 
-        if (FSM.DisplayDebugMessages)
+        if (FSM.DisplayDebugMessages)//debug ray drawing
         {
             Debug.DrawRay(playerTransform.position + controller.center, horizontalMotion / speed, Color.blue);
             Debug.DrawRay(playerTransform.position + controller.center, horizontalMotion + previousVerticalMotion, Color.red);
