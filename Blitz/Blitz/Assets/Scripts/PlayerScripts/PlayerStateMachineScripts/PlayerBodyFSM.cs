@@ -1,10 +1,6 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 /// <summary>
 /// 
@@ -19,12 +15,13 @@ public class PlayerBodyFSM : MonoBehaviour
     private CharacterController charController;
     private Animator anim;
     private PlayerInputHandler input;
+    [SerializeField] private Transform camHolder;
     //probably some type of gun reference
 
     private PlayerMotionState currentMotionState;
     private PlayerActionState currentActionState;
 
-    public PlayerMotionStates currentMotionStateFlag { get; private set; }
+    public PlayerMotionStates currentMotionStateFlag; //{ get; private set; }
     public PlayerActionStates currentActionStateFlag { get; private set; }
 
    
@@ -38,6 +35,9 @@ public class PlayerBodyFSM : MonoBehaviour
     private void Awake()
     {
         input = GetComponent<PlayerInputHandler>();
+
+        transitionState(PlayerMotionStates.Walk);
+        transitionState(PlayerActionStates.Idle);
     }
 
     /// <summary>
@@ -46,8 +46,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        transitionState(PlayerMotionStates.Walk);
-        transitionState(PlayerActionStates.Idle);
+        
     }
 
     /// <summary>
@@ -86,6 +85,7 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
     /// <summary>
+    /// MOTION |
     /// called when transitioning from the current MOTION state to another motion state
     /// </summary>
     public void transitionState(PlayerMotionStates to)
@@ -138,6 +138,7 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
     /// <summary>
+    /// ACTION |
     /// called when transitioning from the current ACTION state to another action state
     /// </summary>
     public void transitionState(PlayerActionStates to)
@@ -146,7 +147,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (to == currentActionStateFlag) { return; }
 
         //exit current state if exists
-        if (currentMotionState != null) { currentActionState.onStateExit(); }
+        if (currentActionState != null) { currentActionState.onStateExit(); }
 
         //switch to new state
         switch (to)
@@ -189,7 +190,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input);
+        return new stateParams(this, anim, charController, input, camHolder);
     }
 }
 
@@ -198,7 +199,7 @@ public class PlayerBodyFSM : MonoBehaviour
 /// </summary>
 public enum PlayerMotionStates
 {
-    Walk, Crouch, Run, Jump, Fall, Slide, Mantle
+    None, Walk, Crouch, Run, Jump, Fall, Slide, Mantle
 }
 
 /// <summary>
@@ -206,7 +207,7 @@ public enum PlayerMotionStates
 /// </summary>
 public enum PlayerActionStates
 {
-    Idle, Reload, Mantle, Shoot, Run//shoot might be taken out
+    None, Idle, Reload, Mantle, Shoot, Run//shoot might be taken out
 }
 
 /// <summary>
@@ -216,16 +217,18 @@ public enum PlayerActionStates
 public struct stateParams
 {
 
-    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH)
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold)
     {
         FSM = fsm;
         anim = an;
         controller = contr;
         inputHandler = inputH;
+        camholder = camHold;
     }
 
     public PlayerBodyFSM FSM;
     public Animator anim;
     public CharacterController controller;
     public PlayerInputHandler inputHandler;
+    public Transform camholder;
 }

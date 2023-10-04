@@ -4,16 +4,5 @@
 /// </summary>
 public abstract class PlayerBasicMotionState : PlayerMotionState
 {
-    protected void basicMovement()
-    {
-
-    }
-
-    protected void basicLook()
-    {
-
-    }
-
-
-
+    
 }

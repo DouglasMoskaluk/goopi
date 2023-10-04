@@ -1,9 +1,15 @@
+using UnityEngine;
 /// <summary>
 /// Abstract class representing the highest level of a player state
 /// handles all functionality of what happens to a state and how a state interacts within the FSM
 /// </summary>
 public abstract class PlayerState
 {
+    protected CharacterController controller;
+    protected PlayerBodyFSM FSM;
+    protected Animator anim;
+    protected PlayerInputHandler input;
+
     /// <summary>
     /// is called by FSM when the state is transitioned to
     /// </summary>
@@ -60,7 +66,10 @@ public abstract class PlayerState
     /// <param name="stateParams"> struct holding parameter references for the state to utilize </param>
     public virtual void initState(stateParams stateParams)
     {
-
+        FSM = stateParams.FSM;
+        anim = stateParams.anim;
+        controller = stateParams.controller;
+        input = stateParams.inputHandler;
     }
 }
 
