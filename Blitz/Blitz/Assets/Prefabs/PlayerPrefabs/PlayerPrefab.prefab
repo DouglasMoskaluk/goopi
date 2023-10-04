@@ -60,7 +60,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8715874472033099178
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2403129680760932734}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec62002e13a2ea349a53768e3b067e44, type: 3}
   m_Name: 
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ccdf4cc2a42bd4eaa401d8d944f07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSense: {x: 1, y: 1}
+  lookSense: {x: 1, y: 0.5}
 --- !u!114 &7842299175808868721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,14 +274,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4356163423746029317}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.036255382, y: -0, z: -0, w: 0.99934256}
+  m_LocalRotation: {x: -0.036195755, y: -0.05733322, z: -0.0020800142, w: 0.9976966}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5389985827659544198}
   m_Father: {fileID: 4184523271819297582}
-  m_LocalEulerAnglesHint: {x: -4.155, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.155, y: -6.578, z: 0}
 --- !u!1 &4821811067147155334
 GameObject:
   m_ObjectHideFlags: 0

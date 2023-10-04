@@ -35,6 +35,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private void Awake()
     {
         input = GetComponent<PlayerInputHandler>();
+        charController = GetComponent<CharacterController>();
 
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -190,7 +191,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, camHolder);
+        return new stateParams(this, anim, charController, input, camHolder, transform);
     }
 }
 
@@ -217,13 +218,14 @@ public enum PlayerActionStates
 public struct stateParams
 {
 
-    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold)
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold, Transform playerTrans)
     {
         FSM = fsm;
         anim = an;
         controller = contr;
         inputHandler = inputH;
         camholder = camHold;
+        playerTransform = playerTrans;
     }
 
     public PlayerBodyFSM FSM;
@@ -231,4 +233,5 @@ public struct stateParams
     public CharacterController controller;
     public PlayerInputHandler inputHandler;
     public Transform camholder;
+    public Transform playerTransform;
 }

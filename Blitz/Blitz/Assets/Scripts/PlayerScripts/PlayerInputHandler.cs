@@ -43,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(lookInput);
+        //Debug.Log(lookInput);
     }
 
     /// <summary>

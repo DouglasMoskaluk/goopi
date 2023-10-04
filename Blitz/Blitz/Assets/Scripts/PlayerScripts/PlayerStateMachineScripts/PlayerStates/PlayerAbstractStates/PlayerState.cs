@@ -9,6 +9,7 @@ public abstract class PlayerState
     protected PlayerBodyFSM FSM;
     protected Animator anim;
     protected PlayerInputHandler input;
+    protected Transform playerTransform;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -70,6 +71,7 @@ public abstract class PlayerState
         anim = stateParams.anim;
         controller = stateParams.controller;
         input = stateParams.inputHandler;
+        playerTransform = stateParams.playerTransform;
     }
 }
 
