@@ -268,57 +268,6 @@ Transform:
   - {fileID: 1993526206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &697517344 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4184523271819297582, guid: 7f806ddd4b13dd646a084a487bec0f32,
-    type: 3}
-  m_PrefabInstance: {fileID: 805429046502828913}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &895272590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 895272591}
-  - component: {fileID: 895272592}
-  m_Layer: 0
-  m_Name: camFacing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &895272591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895272590}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 697517344}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &895272592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895272590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f0953170169a94abcb9d5b0c1eff39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  follow: {fileID: 1510364915}
 --- !u!1 &1071964179
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,12 +807,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!4 &1510364915 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
-    type: 3}
-  m_PrefabInstance: {fileID: 805429046502828913}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1571737610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,32 +1243,32 @@ PrefabInstance:
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.94035345
       objectReference: {fileID: 0}
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.13273387
       objectReference: {fileID: 0}
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.31016183
       objectReference: {fileID: 0}
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.043780323
       objectReference: {fileID: 0}
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 16.069
       objectReference: {fileID: 0}
     - target: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 36.509
       objectReference: {fileID: 0}
     - target: {fileID: 4184523271819297582, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
@@ -1394,11 +1337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4184523271819297582, guid: 7f806ddd4b13dd646a084a487bec0f32,
-        type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 895272591}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f806ddd4b13dd646a084a487bec0f32, type: 3}
 --- !u!1660057539 &9223372036854775807

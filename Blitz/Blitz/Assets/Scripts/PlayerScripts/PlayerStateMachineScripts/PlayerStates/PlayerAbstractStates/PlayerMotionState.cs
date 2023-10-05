@@ -27,32 +27,40 @@ public class PlayerMotionState : PlayerState
     /// <param name="gravity"> the absolute value of gravity</param>
     protected void basicMovement(Vector2 inputDir, Vector3 previousVerticalMotion, float speed, float gravity)
     {
-        ////get the direction of the camera
-        //float camXRot = camHolder.localEulerAngles.x;
-        //camHolder.localEulerAngles = new Vector3(0, camHolder.localEulerAngles.y, camHolder.localEulerAngles.z);
-        //Vector3 dir = camHolder.forward;
-        //camHolder.localEulerAngles = new Vector3(camXRot, camHolder.localEulerAngles.y, camHolder.localEulerAngles.z);
+        #region Get camera relative forward direction
+        Vector3 forward = camHolder.forward;
+        forward.y = 0;
+        forward.Normalize();
+        if (FSM.DisplayDebugMessages)
+        {
+            Debug.DrawRay(playerTransform.position + controller.center, forward * 2, Color.magenta);
+        }
+        #endregion
 
-        //horizontal motion calc ** this chunk of code allows smooth motion over slopes as well as flat horizontal planes **
+        #region get horizontal motion
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
-        Vector3 horizontalMotion = new Vector3(inputDir.x, 0, inputDir.y).normalized;//calc players horizontal motion based on input and speed
+        Vector3 horizontalMotion = forward * inputDir.y + //forward component of horizontal motion
+            -Vector3.Cross(forward, Vector3.up) * inputDir.x;//right component of horizontal motio
+        horizontalMotion.Normalize();
         if (rayHit)
         {
             horizontalMotion = Vector3.ProjectOnPlane(horizontalMotion, hitInfo.normal);//if ray hit ground project hor movemnt onto plane
         }
         horizontalMotion *= speed;//apply player speed
-        
+        #endregion
 
-        //vertical motion calc ** makes sure players vertical motion based on gravity doesnt get too high ** 
+        #region Get vertical motion  
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
         previousVertMotion.y = Mathf.Max(previousVertMotion.y, MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
         if (controller.isGrounded) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
             previousVertMotion = Vector3.down * GRAVITY * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation
         }
+        #endregion
 
-        //consolidate vert and hor motion
+        #region consolidate vert and hor motion
         Vector3 motion = (horizontalMotion + previousVertMotion) * Time.deltaTime;//create joined vert and hor motion
+        #endregion
 
         if (FSM.DisplayDebugMessages)//debug ray drawing
         {
