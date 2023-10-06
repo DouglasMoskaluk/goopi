@@ -21,7 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool jumpPressed { get; private set; } = false;
     public bool shootPressed { get; private set; } = false;
-    public bool toggleSprint { get; private set; } = false;
+    public bool toggleSprint /*{ get; private set; }*/ = false;
 
     public bool crouchPressed { get; private set; } = false;
 
@@ -41,10 +41,10 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        Debug.Log(lookSense);
-    }
+    //private void Update()
+    //{
+    //    Debug.Log(lookSense);
+    //}
 
     /// <summary>
     /// 

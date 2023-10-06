@@ -21,7 +21,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private PlayerMotionState currentMotionState;
     private PlayerActionState currentActionState;
 
-    public PlayerMotionStates currentMotionStateFlag; //{ get; private set; }
+    public PlayerMotionStates currentMotionStateFlag { get; private set; }
     public PlayerActionStates currentActionStateFlag { get; private set; }
 
    
@@ -55,10 +55,13 @@ public class PlayerBodyFSM : MonoBehaviour
     /// called within unity's update loop
     /// </summary>
     private void Update()
-    { 
-
+    {
+        Debug.Log(currentMotionStateFlag);
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
+
+        currentMotionState.transitionCheck();
+        currentActionState.transitionCheck();
     }
 
     /// <summary>
@@ -82,8 +85,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         //placement of this is still in the air
         //currently placed in late update so it happens after all other updates are executed but we will see
-        currentMotionState.transitionCheck();
-        currentActionState.transitionCheck();
+
     }
 
     /// <summary>
@@ -93,7 +95,9 @@ public class PlayerBodyFSM : MonoBehaviour
     public void transitionState(PlayerMotionStates to)
     {
         //guard against transitioning into the same state
-        if (to == currentMotionStateFlag) { return; }
+        if (to == currentMotionStateFlag) {
+            Debug.Log("trying to transition into current state: aborting transition request");
+            return; }
 
         //exit current state if exists
         if (currentMotionState != null) { currentMotionState.onStateExit(); }
@@ -103,35 +107,29 @@ public class PlayerBodyFSM : MonoBehaviour
         {
             case PlayerMotionStates.Walk:
                 currentMotionState = new PlayerWalkMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Walk;
                 break;
             case PlayerMotionStates.Crouch:
                 currentMotionState = new PlayerCrouchMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Crouch;
                 break;
             case PlayerMotionStates.Run:
                 currentMotionState = new PlayerRunMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Run;
                 break;
             case PlayerMotionStates.Slide:
                 currentMotionState = new PlayerSlideMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Slide;
                 break;
             case PlayerMotionStates.Fall:
                 currentMotionState = new PlayerFallMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Fall;
                 break;
             case PlayerMotionStates.Jump:
                 currentMotionState = new PlayerJumpMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Jump;
                 break;
             case PlayerMotionStates.Mantle:
                 currentMotionState = new PlayerMantleMotionState();
-                currentMotionStateFlag = PlayerMotionStates.Mantle;
                 break;
         }
 
         //initialize new state
+        currentMotionStateFlag = to;
         currentMotionState.initState(getFSMInfo());
         currentMotionState.onStateEnter();
         
@@ -156,27 +154,23 @@ public class PlayerBodyFSM : MonoBehaviour
         {
             case PlayerActionStates.Idle:
                 currentActionState = new PlayerIdleActionState();
-                currentActionStateFlag = PlayerActionStates.Idle;
                 break;
             case PlayerActionStates.Reload:
                 currentActionState = new PlayerReloadActionState();
-                currentActionStateFlag = PlayerActionStates.Reload;
                 break;
             case PlayerActionStates.Shoot:
                 currentActionState = new PlayerShootActionState();
-                currentActionStateFlag = PlayerActionStates.Shoot;
                 break;
             case PlayerActionStates.Run:
                 currentActionState = new PlayerRunActionState();
-                currentActionStateFlag = PlayerActionStates.Run;
                 break;
             case PlayerActionStates.Mantle:
                 currentActionState = new PlayerMantleActionState();
-                currentActionStateFlag = PlayerActionStates.Mantle;
                 break;
         }
 
         //initialize new state
+        currentActionStateFlag = to;
         currentActionState.initState(getFSMInfo());
         currentActionState.onStateEnter();
 
@@ -193,6 +187,11 @@ public class PlayerBodyFSM : MonoBehaviour
     {
 
         return new stateParams(this, anim, charController, input, camHolder, transform);
+    }
+
+    public void LogMessage(string message)
+    {
+        Debug.Log("FSM Message: " + message);
     }
 }
 
