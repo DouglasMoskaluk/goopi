@@ -4,5 +4,4 @@
 /// </summary>
 public abstract class PlayerBasicMotionState : PlayerMotionState
 {
-    
 }

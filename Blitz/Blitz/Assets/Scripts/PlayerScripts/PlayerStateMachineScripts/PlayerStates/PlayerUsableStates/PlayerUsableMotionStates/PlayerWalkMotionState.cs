@@ -15,9 +15,9 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
-        //if (input.toggleSprint)
-        //{
-            FSM.transitionState(PlayerActionStates.Run);
-        //}
+        if (input.toggleSprint)
+        {
+            FSM.transitionState(PlayerMotionStates.Run);
+        }
     }
 }

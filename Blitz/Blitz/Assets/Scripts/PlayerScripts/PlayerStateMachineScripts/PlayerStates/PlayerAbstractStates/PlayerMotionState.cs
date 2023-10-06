@@ -10,7 +10,7 @@ public class PlayerMotionState : PlayerState
     private const float CAMERA_UPPER_BOUNDS = 40f;
     private const float CAMERA_LOWER_BOUNDS = 30f;
     private const float MAX_GRAVITY_VEL = -35f;
-    protected const float GRAVITY = 9.8f;
+    protected const float GRAVITY = 20f;
     protected Vector3 previousVertMotion;
 
     public override void initState(stateParams stateParams)

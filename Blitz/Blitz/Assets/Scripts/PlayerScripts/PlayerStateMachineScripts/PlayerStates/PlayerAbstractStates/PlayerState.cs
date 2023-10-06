@@ -57,7 +57,7 @@ public abstract class PlayerState
     /// </summary>
     public virtual void transitionCheck()
     {
-        FSM.LogMessage("in transition from playerstate");
+
     }
 
     /// <summary>
