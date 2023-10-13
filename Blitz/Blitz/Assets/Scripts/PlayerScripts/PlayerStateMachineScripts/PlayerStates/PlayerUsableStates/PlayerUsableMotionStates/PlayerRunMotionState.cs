@@ -1,11 +1,11 @@
-using System.Diagnostics;
+using UnityEngine;
 /// <summary>
 /// 
 /// </summary>
 
 public class PlayerRunMotionState : PlayerBasicMotionState
 {
-    private const float RUN_SPEED = 16f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
+
 
     public override void stateUpdate()
     {
@@ -15,8 +15,11 @@ public class PlayerRunMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
-        
-        if (!input.toggleSprint)
+        if (input.jumpPressed)
+        {
+            FSM.transitionState(PlayerMotionStates.Jump);
+        }
+        else if (!input.toggleSprint || input.motionInput == Vector2.zero || input.motionInput.y < 0)
         {
             FSM.transitionState(PlayerMotionStates.Walk);
         }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerWalkMotionState : PlayerBasicMotionState
 {
-    private const float WALK_SPEED = 12f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
 
     public override void stateUpdate()
     {
@@ -15,9 +14,15 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
-        if (input.toggleSprint)
+        if (input.jumpPressed && controller.isGrounded)
+        {
+            Debug.Log("transition to jump inside walk");
+            FSM.transitionState(PlayerMotionStates.Jump);
+        }
+        else if (input.toggleSprint && controller.isGrounded)
         {
             FSM.transitionState(PlayerMotionStates.Run);
         }
+
     }
 }

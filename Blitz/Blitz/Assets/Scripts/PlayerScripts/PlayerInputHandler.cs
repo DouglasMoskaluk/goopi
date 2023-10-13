@@ -19,9 +19,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     private PlayerInputActions input;
 
-    public bool jumpPressed { get; private set; } = false;
+    public bool jumpPressed /*{ get; private set; }*/ = false;
     public bool shootPressed { get; private set; } = false;
-    public bool toggleSprint /*{ get; private set; }*/ = false;
+    public bool toggleSprint { get; private set; } = false;
 
     public bool crouchPressed { get; private set; } = false;
 
@@ -41,10 +41,10 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    Debug.Log(lookSense);
-    //}
+    private void Update()
+    {
+        Debug.Log(jumpPressed);
+    }
 
     /// <summary>
     /// 
@@ -75,7 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             reloadPressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             reloadPressed = false;
         }
@@ -88,11 +88,12 @@ public class PlayerInputHandler : MonoBehaviour
     /// <param name="ctx"></param>
     public void GetJumpInput(InputAction.CallbackContext ctx)
     {
+       
         if (ctx.started)
         {
             jumpPressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             jumpPressed = false;
         }
@@ -108,7 +109,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             shootPressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             shootPressed = false;
         }
@@ -137,7 +138,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             dropGrenadePressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             dropGrenadePressed = false;
         }
@@ -153,7 +154,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             throwGrenadePressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             throwGrenadePressed = false;
         }
@@ -169,7 +170,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             optionsPressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             optionsPressed = false;
         }
@@ -185,7 +186,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
              crouchPressed = true;
         }
-        else if (ctx.performed)
+        else if (ctx.canceled)
         {
             crouchPressed = false;
         }

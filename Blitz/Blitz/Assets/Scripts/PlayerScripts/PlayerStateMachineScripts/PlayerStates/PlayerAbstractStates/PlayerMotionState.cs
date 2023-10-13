@@ -7,10 +7,16 @@ using UnityEngine;
 public class PlayerMotionState : PlayerState
 {
     protected Transform camHolder;
+
     private const float CAMERA_UPPER_BOUNDS = 40f;
     private const float CAMERA_LOWER_BOUNDS = 30f;
+
     private const float MAX_GRAVITY_VEL = -35f;
     protected const float GRAVITY = 20f;
+    protected const float IN_AIR_SPEED = 12f;//the speed the player is allowed to move horizontally when in the air
+    protected const float RUN_SPEED = 16f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
+    protected const float WALK_SPEED = 12f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
+
     protected Vector3 previousVertMotion;
 
     public override void initState(stateParams stateParams)
@@ -54,7 +60,7 @@ public class PlayerMotionState : PlayerState
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
         previousVertMotion.y = Mathf.Max(previousVertMotion.y, MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
         if (controller.isGrounded) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
-            previousVertMotion = Vector3.down * GRAVITY * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation
+            previousVertMotion = Vector3.down * gravity * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation
         }
         #endregion
 
