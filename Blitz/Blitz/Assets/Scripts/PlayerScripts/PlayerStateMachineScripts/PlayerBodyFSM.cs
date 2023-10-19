@@ -59,6 +59,14 @@ public class PlayerBodyFSM : MonoBehaviour
         Debug.Log(currentMotionStateFlag);
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LogMessage("Killing player");
+            charController.enabled = false;
+            transform.position = RespawnManager.instance.GetRespawnLocation().position;
+            charController.enabled = true;
+        }
     }
 
     /// <summary>
