@@ -46,7 +46,6 @@ public class ImpulseGrenade : MonoBehaviour
     /// </summary>
     private void explode()
     {
-        List<PlayerBodyFSM> targets = new List<PlayerBodyFSM>();
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 
         for (int i = 0; i < hitColliders.Length; i++)
