@@ -8,23 +8,25 @@ using UnityEngine;
 public class PlayerBodyFSM : MonoBehaviour
 {
     #region Public Variables
-    public bool DisplayDebugMessages = false;
+    public bool DisplayDebugMessages = false;//whether or not to display debug information
+    public PlayerMotionStates currentMotionStateFlag { get; private set; }// the players motion state indicator
+    public PlayerActionStates currentActionStateFlag { get; private set; }// the players action state indicator
     #endregion
 
     #region Private Variables
-    private CharacterController charController;
-    private Animator anim;
-    private PlayerInputHandler input;
-    [SerializeField] private Transform camHolder;
+    private CharacterController charController;//ref to character controller
+    private Animator anim;// ref to animator
+    private PlayerInputHandler input;// ref to input handler
+    [SerializeField] private Transform camHolder;// ref to the camera rotation transform
+
+    private int health = 100;// the players health
+    private const int MAX_HEALTH = 100;//the max health a player can have
     //probably some type of gun reference
 
-    private PlayerMotionState currentMotionState;
-    private PlayerActionState currentActionState;
+    private PlayerMotionState currentMotionState;// the players current motion state
+    private PlayerActionState currentActionState;// the players current action state
 
-    public PlayerMotionStates currentMotionStateFlag { get; private set; }
-    public PlayerActionStates currentActionStateFlag { get; private set; }
-
-   
+    private Vector3 knockBackVector = Vector3.zero;
     #endregion
 
 
@@ -60,11 +62,12 @@ public class PlayerBodyFSM : MonoBehaviour
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
 
+        //test respawning
         if (Input.GetKeyDown(KeyCode.K))
         {
-            LogMessage("Killing player");
+            logMessage("Killing player");
             charController.enabled = false;
-            transform.position = RespawnManager.instance.GetRespawnLocation().position;
+            transform.position = RespawnManager.instance.getRespawnLocation().position;
             charController.enabled = true;
         }
     }
@@ -195,9 +198,46 @@ public class PlayerBodyFSM : MonoBehaviour
         return new stateParams(this, anim, charController, input, camHolder, transform);
     }
 
-    public void LogMessage(string message)
+    /// <summary>
+    /// Way to have plaeyr states log messages into the console
+    /// </summary>
+    /// <param name="message"> the message to be logged </param>
+    public void logMessage(string message)
     {
         Debug.Log("FSM Message: " + message);
+    }
+
+    /// <summary>
+    /// Alters the player's health by the given value
+    /// </summary>
+    /// <param name="value"> the value health is altered by</param>
+    public void alterHealth(int value)
+    {
+        health = Mathf.Min(health += value, MAX_HEALTH);
+        health = Mathf.Max(health, 0);
+    }
+
+    /// <summary>
+    /// resets the players health back to the max
+    /// </summary>
+    public void resetHealth()
+    {
+        health = MAX_HEALTH;
+    }
+
+    public Vector3 getKnockBackVector()
+    {
+        return knockBackVector;
+    }
+
+    public void addKnockBack(Vector3 toAdd)
+    {
+        knockBackVector += toAdd;
+    }
+
+    public void setKnockBack(Vector3 newKnockBack)
+    {
+        knockBackVector = newKnockBack;
     }
 }
 

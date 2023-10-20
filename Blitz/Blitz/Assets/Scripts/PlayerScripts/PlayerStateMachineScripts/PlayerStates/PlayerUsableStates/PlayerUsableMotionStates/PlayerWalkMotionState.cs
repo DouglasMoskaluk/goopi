@@ -10,6 +10,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     {
         basicLook(input.lookInput);
         basicMovement(input.motionInput, previousVertMotion, WALK_SPEED, GRAVITY);
+        updateKnockBack();
     }
 
     public override void transitionCheck()

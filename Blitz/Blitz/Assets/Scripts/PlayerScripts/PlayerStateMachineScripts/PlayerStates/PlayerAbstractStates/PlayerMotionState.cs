@@ -74,7 +74,22 @@ public class PlayerMotionState : PlayerState
             Debug.DrawRay(playerTransform.position + controller.center, horizontalMotion + previousVerticalMotion, Color.red);
         }
 
-        controller.Move(motion);//apply motion
+        controller.Move(motion + (FSM.getKnockBackVector() * Time.deltaTime));//apply motion
+    }
+
+    protected void updateKnockBack()
+    {
+        if (controller.isGrounded)
+        {
+            FSM.setKnockBack(Vector3.zero);
+        }
+        else
+        {
+            Vector3 newKnockback = FSM.getKnockBackVector();
+            newKnockback.y -= GRAVITY * Time.deltaTime;
+            newKnockback.y = Mathf.Max(newKnockback.y, MAX_GRAVITY_VEL);
+            FSM.setKnockBack(newKnockback);
+        }
     }
 
     protected void basicLook(Vector2 lookDelta)

@@ -27,7 +27,7 @@ public class RespawnManager : MonoBehaviour
     /// Selects which of the respawn locations is to be selected from respawnLocations, based on distance algorithm
     /// </summary>
     /// <returns> the integer index of the selected respawn location based on the respawnLocations array </returns>
-    private int SelectRespawnLocation()
+    private int selectRespawnLocation()
     {
         //for now just picks a random one
         return Random.Range(0, respawnLocations.Count - 1);
@@ -37,8 +37,8 @@ public class RespawnManager : MonoBehaviour
     /// procedure for returning what respawn location a player will respawn at
     /// </summary>
     /// <returns> the respan location </returns>
-    public Transform GetRespawnLocation()
+    public Transform getRespawnLocation()
     {
-        return respawnLocations[SelectRespawnLocation()];
+        return respawnLocations[selectRespawnLocation()];
     }
 }
