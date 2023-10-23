@@ -10,6 +10,7 @@ public abstract class PlayerState
     protected Animator anim;
     protected PlayerInputHandler input;
     protected Transform playerTransform;
+    protected PlayerGrenadeThrower grenadeThrower;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -72,6 +73,7 @@ public abstract class PlayerState
         controller = stateParams.controller;
         input = stateParams.inputHandler;
         playerTransform = stateParams.playerTransform;
+        grenadeThrower = stateParams.gThrower;
     }
 }
 

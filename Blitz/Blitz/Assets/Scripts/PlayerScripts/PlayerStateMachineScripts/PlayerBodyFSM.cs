@@ -18,6 +18,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
     [SerializeField] private Transform camHolder;// ref to the camera rotation transform
+    private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -38,6 +39,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         input = GetComponent<PlayerInputHandler>();
         charController = GetComponent<CharacterController>();
+        grenadeThrower = GetComponent<PlayerGrenadeThrower>();
 
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -198,7 +200,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, camHolder, transform);
+        return new stateParams(this, anim, charController, input, camHolder, transform, grenadeThrower);
     }
 
     /// <summary>
@@ -228,16 +230,28 @@ public class PlayerBodyFSM : MonoBehaviour
         health = MAX_HEALTH;
     }
 
+    /// <summary>
+    /// returns the knock back vector of this FSM body
+    /// </summary>
+    /// <returns></returns>
     public Vector3 getKnockBackVector()
     {
         return knockBackVector;
     }
 
+    /// <summary>
+    /// adds a vector to the knock back vector of this FSM body
+    /// </summary>
+    /// <param name="toAdd"></param>
     public void addKnockBack(Vector3 toAdd)
     {
         knockBackVector += toAdd;
     }
 
+    /// <summary>
+    /// sets the knock back vector of this body to newKnockBack
+    /// </summary>
+    /// <param name="newKnockBack"></param>
     public void setKnockBack(Vector3 newKnockBack)
     {
         knockBackVector = newKnockBack;
@@ -253,7 +267,7 @@ public enum PlayerMotionStates
 }
 
 /// <summary>
-/// enum holding all the possible aciton states a player can be in
+/// enum holding all the possible action states a player can be in
 /// </summary>
 public enum PlayerActionStates
 {
@@ -267,7 +281,7 @@ public enum PlayerActionStates
 public struct stateParams
 {
 
-    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold, Transform playerTrans)
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold, Transform playerTrans, PlayerGrenadeThrower thrower)
     {
         FSM = fsm;
         anim = an;
@@ -275,6 +289,7 @@ public struct stateParams
         inputHandler = inputH;
         camholder = camHold;
         playerTransform = playerTrans;
+        gThrower = thrower;
     }
 
     public PlayerBodyFSM FSM;
@@ -283,4 +298,5 @@ public struct stateParams
     public PlayerInputHandler inputHandler;
     public Transform camholder;
     public Transform playerTransform;
+    public PlayerGrenadeThrower gThrower;
 }

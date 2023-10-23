@@ -82,4 +82,10 @@ public class ImpulseGrenade : MonoBehaviour
         }
     }
 
+    public void setDirectionAndSpeed(Vector3 dir, float speed)
+    {
+        rb.AddForce(dir * speed, ForceMode.VelocityChange);
+    }
+
+
 }

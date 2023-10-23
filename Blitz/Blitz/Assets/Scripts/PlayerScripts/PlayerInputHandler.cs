@@ -19,7 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private PlayerInputActions input;
 
-    public bool jumpPressed /*{ get; private set; }*/ = false;
+    public bool jumpPressed { get; private set; } = false;
     public bool shootPressed { get; private set; } = false;
     public bool toggleSprint { get; private set; } = false;
 

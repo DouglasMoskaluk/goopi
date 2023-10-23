@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8715874472033099178}
   - component: {fileID: 426433136885082013}
   - component: {fileID: 7842299175808868721}
+  - component: {fileID: 8300966889103240031}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -91,7 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSense: {x: 1, y: 0.5}
-  jumpPressed: 0
 --- !u!114 &7842299175808868721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +251,23 @@ MonoBehaviour:
   m_DefaultActionMap: Character
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8816912487046019891}
+--- !u!114 &8300966889103240031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403129680760932734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bea7448219ccc74a917038e003631a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: 6761383701681024761, guid: 6b428e87df2b09240b2480cef806e473,
+    type: 3}
+  heldGrenadeCount: 2
+  throwSpeed: 15
+  coolDownTimer: 1
 --- !u!1 &4200299945833072746
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +413,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3781127855851107717}
   - component: {fileID: 2604739159371715588}
-  - component: {fileID: 8682852512108677132}
   - component: {fileID: 841307436389318557}
   m_Layer: 0
   m_Name: UICamera
@@ -471,14 +487,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8682852512108677132
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4715807130165871970}
-  m_Enabled: 1
 --- !u!114 &841307436389318557
 MonoBehaviour:
   m_ObjectHideFlags: 0
