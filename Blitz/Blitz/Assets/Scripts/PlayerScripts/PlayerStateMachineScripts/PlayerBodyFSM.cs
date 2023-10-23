@@ -117,9 +117,6 @@ public class PlayerBodyFSM : MonoBehaviour
             case PlayerMotionStates.Walk:
                 currentMotionState = new PlayerWalkMotionState();
                 break;
-            case PlayerMotionStates.Crouch:
-                currentMotionState = new PlayerCrouchMotionState();
-                break;
             case PlayerMotionStates.Run:
                 currentMotionState = new PlayerRunMotionState();
                 break;
@@ -175,6 +172,12 @@ public class PlayerBodyFSM : MonoBehaviour
                 break;
             case PlayerActionStates.Mantle:
                 currentActionState = new PlayerMantleActionState();
+                break;
+            case PlayerActionStates.DropGrenade:
+                currentActionState = new PlayerDropGrenadeActionState();
+                break;
+            case PlayerActionStates.ThrowGrenade:
+                currentActionState = new PlayerThrowGrenadeActionState();
                 break;
         }
 
@@ -246,7 +249,7 @@ public class PlayerBodyFSM : MonoBehaviour
 /// </summary>
 public enum PlayerMotionStates
 {
-    None, Walk, Crouch, Run, Jump, Fall, Slide, Mantle
+    None, Walk, Run, Jump, Fall, Slide, Mantle
 }
 
 /// <summary>
@@ -254,7 +257,7 @@ public enum PlayerMotionStates
 /// </summary>
 public enum PlayerActionStates
 {
-    None, Idle, Reload, Mantle, Shoot, Run//shoot might be taken out
+    None, Idle, Reload, Mantle, Shoot, Run, DropGrenade, ThrowGrenade//shoot might be taken out
 }
 
 /// <summary>

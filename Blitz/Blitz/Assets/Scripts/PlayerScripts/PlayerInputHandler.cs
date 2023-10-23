@@ -23,8 +23,6 @@ public class PlayerInputHandler : MonoBehaviour
     public bool shootPressed { get; private set; } = false;
     public bool toggleSprint { get; private set; } = false;
 
-    public bool crouchPressed { get; private set; } = false;
-
     public bool reloadPressed { get; private set; } = false;
     public bool dropGrenadePressed { get; private set;} = false;
     public bool throwGrenadePressed { get; private set; } = false;
@@ -173,22 +171,6 @@ public class PlayerInputHandler : MonoBehaviour
         else if (ctx.canceled)
         {
             optionsPressed = false;
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="ctx"></param>
-    public void GetCrouchInput(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started)
-        {
-             crouchPressed = true;
-        }
-        else if (ctx.canceled)
-        {
-            crouchPressed = false;
         }
     }
 }
