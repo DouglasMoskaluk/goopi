@@ -10,6 +10,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     [SerializeField] private float throwSpeed = 15f;
     [SerializeField] private float coolDownTimer = 1f;
+    [SerializeField] private Transform throwFromPoint;
 
     private bool onCoolDown = false;
 
@@ -33,7 +34,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
         Debug.Log("throw grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
-        ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + dir.normalized + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
+        ImpulseGrenade grenade = Instantiate(grenadePrefab, throwFromPoint.position, Quaternion.identity).GetComponent<ImpulseGrenade>();
         grenade.setDirectionAndSpeed(dir, throwSpeed);
         heldGrenadeCount--;
         onCoolDown = true;

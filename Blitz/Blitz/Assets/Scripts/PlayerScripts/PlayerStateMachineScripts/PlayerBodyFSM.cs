@@ -19,6 +19,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private PlayerInputHandler input;// ref to input handler
     [SerializeField] private Transform camHolder;// ref to the camera rotation transform
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
+    [SerializeField] private Transform throwFrom;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -60,7 +61,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        Debug.Log(currentMotionStateFlag);
+        //Debug.Log(currentMotionStateFlag);
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
 
@@ -200,7 +201,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, camHolder, transform, grenadeThrower);
+        return new stateParams(this, anim, charController, input, camHolder, transform, grenadeThrower, throwFrom);
     }
 
     /// <summary>
@@ -281,7 +282,8 @@ public enum PlayerActionStates
 public struct stateParams
 {
 
-    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, Transform camHold, Transform playerTrans, PlayerGrenadeThrower thrower)
+    public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
+        Transform camHold, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom)
     {
         FSM = fsm;
         anim = an;
@@ -290,6 +292,7 @@ public struct stateParams
         camholder = camHold;
         playerTransform = playerTrans;
         gThrower = thrower;
+        throwGrenFrom = throwFrom;
     }
 
     public PlayerBodyFSM FSM;
@@ -299,4 +302,5 @@ public struct stateParams
     public Transform camholder;
     public Transform playerTransform;
     public PlayerGrenadeThrower gThrower;
+    public Transform throwGrenFrom;
 }

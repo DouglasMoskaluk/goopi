@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ImpulseGrenade : MonoBehaviour
@@ -17,6 +18,11 @@ public class ImpulseGrenade : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        Debug.DrawRay(transform.position, rb.velocity.normalized * 50, Color.green, 1);
     }
 
     /// <summary>
@@ -46,6 +52,7 @@ public class ImpulseGrenade : MonoBehaviour
     /// </summary>
     private void explode()
     {
+        Debug.Log("boom");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 
         for (int i = 0; i < hitColliders.Length; i++)
@@ -73,7 +80,7 @@ public class ImpulseGrenade : MonoBehaviour
 
     public void setDirectionAndSpeed(Vector3 dir, float speed)
     {
-        rb.AddForce(dir * speed, ForceMode.VelocityChange);
+        rb.AddForce(dir.normalized * speed, ForceMode.VelocityChange);
     }
 
     /// <summary>

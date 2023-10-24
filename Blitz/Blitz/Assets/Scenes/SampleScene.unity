@@ -494,21 +494,82 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7434519135526480302, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434519135526480302, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 21.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8300966889103240031, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: throwSpeed
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 8300966889103240031, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      propertyPath: throwFromPoint
+      value: 
+      objectReference: {fileID: 1528751236}
     - target: {fileID: 8300966889103240031, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: heldGrenadeCount
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8715874472033099178, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      propertyPath: throwFrom
+      value: 
+      objectReference: {fileID: 1528751236}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1528751236}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f806ddd4b13dd646a084a487bec0f32, type: 3}
+--- !u!4 &1431931299 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2765221872000936106, guid: 7f806ddd4b13dd646a084a487bec0f32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1289196630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1528751235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528751236}
+  m_Layer: 0
+  m_Name: Test_GrenadeThrowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1528751236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528751235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.01, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1431931299}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865017392
 GameObject:
   m_ObjectHideFlags: 0
