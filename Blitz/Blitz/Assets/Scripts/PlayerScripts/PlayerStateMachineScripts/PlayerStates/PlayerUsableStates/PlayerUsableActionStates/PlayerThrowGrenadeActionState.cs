@@ -4,7 +4,8 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 {
     public override void onStateEnter()
     {
-        grenadeThrower.ThrowGrenade();
+        Vector3 throwDirection = camHolder.GetChild(0).forward;
+        grenadeThrower.ThrowGrenade(throwDirection);
     }
 
     public override void transitionCheck()

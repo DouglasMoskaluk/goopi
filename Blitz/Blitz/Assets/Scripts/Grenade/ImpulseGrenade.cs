@@ -42,7 +42,7 @@ public class ImpulseGrenade : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// causes the actual explosion of the grenade
     /// </summary>
     private void explode()
     {
@@ -71,21 +71,20 @@ public class ImpulseGrenade : MonoBehaviour
         explode();
     }
 
-    /// <summary>
-    /// displays the blast radius if DEBUG DISPLAY is toggled on
-    /// </summary>
-    private void OnDrawGizmos()
-    {
-        if (DISPLAY_DEBUG_RADIUS) {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, radius);
-        }
-    }
-
     public void setDirectionAndSpeed(Vector3 dir, float speed)
     {
         rb.AddForce(dir * speed, ForceMode.VelocityChange);
     }
 
-
+    /// <summary>
+    /// displays the blast radius if DEBUG DISPLAY is toggled on
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        if (DISPLAY_DEBUG_RADIUS)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, radius);
+        }
+    }
 }

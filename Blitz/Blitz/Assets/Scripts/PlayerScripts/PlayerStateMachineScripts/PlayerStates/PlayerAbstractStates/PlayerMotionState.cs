@@ -6,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerMotionState : PlayerState
 {
-    protected Transform camHolder;
-
     private const float CAMERA_UPPER_BOUNDS = 40f;
     private const float CAMERA_LOWER_BOUNDS = 30f;
 
@@ -19,11 +17,6 @@ public class PlayerMotionState : PlayerState
 
     protected Vector3 previousVertMotion;
 
-    public override void initState(stateParams stateParams)
-    {
-        base.initState(stateParams);
-        camHolder = stateParams.camholder;
-    }
     /// <summary>
     /// 
     /// </summary>

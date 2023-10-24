@@ -28,25 +28,25 @@ public class PlayerGrenadeThrower : MonoBehaviour
         return heldGrenadeCount > 0 && !onCoolDown;
     }
 
-    public void ThrowGrenade()
+    public void ThrowGrenade(Vector3 dir)
     {
         Debug.Log("throw grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
-        ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + Vector3.forward + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
-        grenade.setDirectionAndSpeed(transform.forward, throwSpeed);
+        ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + dir.normalized + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
+        grenade.setDirectionAndSpeed(dir, throwSpeed);
         heldGrenadeCount--;
         onCoolDown = true;
         StartCoroutine(grenadeCD(coolDownTimer));
     }
 
 
-    public void DropGrenade()
+    public void DropGrenade(Vector3 dir)
     {
         Debug.Log("drop grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
-        ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + Vector3.forward + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
+        ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + dir.normalized + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
         grenade.setDirectionAndSpeed(-transform.up, 0.5f);
         heldGrenadeCount--;
         onCoolDown = true;
