@@ -9,6 +9,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
     [SerializeField] private int heldGrenadeCount;
 
     [SerializeField] private float throwSpeed = 15f;
+    [SerializeField] public float arcAngle = 0f;
     [SerializeField] private float coolDownTimer = 1f;
     [SerializeField] private Transform throwFromPoint;
 
@@ -29,7 +30,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
         return heldGrenadeCount > 0 && !onCoolDown;
     }
 
-    public void ThrowGrenade(Vector3 dir)
+    public void ThrowGrenade(Vector3 dir, float angle)
     {
         Debug.Log("throw grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
