@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayDebugMessages: 0
   camHolder: {fileID: 2765221872000936106}
+  throwFrom: {fileID: 0}
 --- !u!114 &426433136885082013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetMotionInput
+        m_MethodName: getMotionInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -138,7 +139,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetLookInput
+        m_MethodName: getLookInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -154,7 +155,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetJumpInput
+        m_MethodName: getJumpInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -170,7 +171,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetReloadInput
+        m_MethodName: getReloadInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -183,26 +184,14 @@ MonoBehaviour:
     m_ActionId: 71b7a199-bcfa-4d38-8e54-5f1eb6e7fe8c
     m_ActionName: Character/Reload
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 426433136885082013}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetCrouchInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 81abaf4c-839c-421b-8796-58b9d3af9706
     m_ActionName: Character/Crouch
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetSprintInput
+        m_MethodName: getSprintInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -218,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetDropGrenadeInput
+        m_MethodName: getDropGrenadeInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -234,7 +223,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 426433136885082013}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetThrowGrenadeInput
+        m_MethodName: getThrowGrenadeInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -268,6 +257,7 @@ MonoBehaviour:
   heldGrenadeCount: 2
   throwSpeed: 15
   coolDownTimer: 1
+  throwFromPoint: {fileID: 0}
 --- !u!1 &4200299945833072746
 GameObject:
   m_ObjectHideFlags: 0

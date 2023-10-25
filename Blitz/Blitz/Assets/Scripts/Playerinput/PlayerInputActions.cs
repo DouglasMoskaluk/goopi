@@ -64,15 +64,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""81abaf4c-839c-421b-8796-58b9d3af9706"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""SprintToggle"",
                     ""type"": ""Button"",
                     ""id"": ""4e9ab0b1-05ee-4a8a-8784-4a695ac807d0"",
@@ -268,17 +259,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c0b1381e-b518-4ee3-9ce2-16f4c37a450e"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""80d24866-693a-4898-ab42-cc50636d8475"",
                     ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
@@ -321,7 +301,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Reload = m_Character.FindAction("Reload", throwIfNotFound: true);
-        m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
         m_Character_SprintToggle = m_Character.FindAction("SprintToggle", throwIfNotFound: true);
         m_Character_DropGrenade = m_Character.FindAction("DropGrenade", throwIfNotFound: true);
         m_Character_ThrowGrenade = m_Character.FindAction("ThrowGrenade", throwIfNotFound: true);
@@ -390,7 +369,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Look;
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Reload;
-    private readonly InputAction m_Character_Crouch;
     private readonly InputAction m_Character_SprintToggle;
     private readonly InputAction m_Character_DropGrenade;
     private readonly InputAction m_Character_ThrowGrenade;
@@ -402,7 +380,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Character_Look;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Reload => m_Wrapper.m_Character_Reload;
-        public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
         public InputAction @SprintToggle => m_Wrapper.m_Character_SprintToggle;
         public InputAction @DropGrenade => m_Wrapper.m_Character_DropGrenade;
         public InputAction @ThrowGrenade => m_Wrapper.m_Character_ThrowGrenade;
@@ -427,9 +404,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
             @SprintToggle.started += instance.OnSprintToggle;
             @SprintToggle.performed += instance.OnSprintToggle;
             @SprintToggle.canceled += instance.OnSprintToggle;
@@ -455,9 +429,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
             @SprintToggle.started -= instance.OnSprintToggle;
             @SprintToggle.performed -= instance.OnSprintToggle;
             @SprintToggle.canceled -= instance.OnSprintToggle;
@@ -490,7 +461,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
         void OnSprintToggle(InputAction.CallbackContext context);
         void OnDropGrenade(InputAction.CallbackContext context);
         void OnThrowGrenade(InputAction.CallbackContext context);

@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     #region Vectors
+    public bool DisplayDebugMessages = false;
     public Vector2 motionInput { get; private set; }
     public Vector2 lookInput { get; private set; }
 
@@ -38,27 +39,25 @@ public class PlayerInputHandler : MonoBehaviour
         input = new PlayerInputActions();
     }
 
-
-    private void Update()
-    {
-        Debug.Log(jumpPressed);
-    }
-
     /// <summary>
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetLookInput(InputAction.CallbackContext ctx)
+    public void getLookInput(InputAction.CallbackContext ctx)
     {
-        lookInput = ctx.ReadValue<Vector2>().normalized;
+        lookInput = ctx.ReadValue<Vector2>();
         lookInput = new Vector2(lookInput.x * lookSense.x, lookInput.y * lookSense.y);
+        if (DisplayDebugMessages)
+        {
+            Debug.Log("look input: " + lookInput);
+        }
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetMotionInput(InputAction.CallbackContext ctx)
+    public void getMotionInput(InputAction.CallbackContext ctx)
     {
         motionInput = ctx.ReadValue<Vector2>();
     }
@@ -67,7 +66,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetReloadInput(InputAction.CallbackContext ctx)
+    public void getReloadInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
@@ -84,7 +83,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetJumpInput(InputAction.CallbackContext ctx)
+    public void getJumpInput(InputAction.CallbackContext ctx)
     {
        
         if (ctx.started)
@@ -101,7 +100,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetShootInput(InputAction.CallbackContext ctx)
+    public void getShootInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
@@ -117,7 +116,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetSprintInput(InputAction.CallbackContext ctx)
+    public void getSprintInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
@@ -130,7 +129,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetDropGrenadeInput(InputAction.CallbackContext ctx)
+    public void getDropGrenadeInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
@@ -146,7 +145,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetThrowGrenadeInput(InputAction.CallbackContext ctx)
+    public void getThrowGrenadeInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
@@ -162,7 +161,7 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetOptionsInput(InputAction.CallbackContext ctx)
+    public void getOptionsInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {

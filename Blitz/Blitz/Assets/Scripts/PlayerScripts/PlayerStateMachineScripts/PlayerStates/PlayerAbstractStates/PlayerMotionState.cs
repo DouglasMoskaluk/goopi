@@ -6,8 +6,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerMotionState : PlayerState
 {
-    private const float CAMERA_UPPER_BOUNDS = 40f;
-    private const float CAMERA_LOWER_BOUNDS = 30f;
+    private const float CAMERA_UPPER_BOUNDS = 70f;// actually the cutoff for "looking down" but actually clamps from the bottom
+    private const float CAMERA_LOWER_BOUNDS = 30f;// actually the cutoff for "looking up" but actually clamps from the top
 
     private const float MAX_GRAVITY_VEL = -35f;
     protected const float GRAVITY = 20f;
