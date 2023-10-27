@@ -89,6 +89,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d58c7f2-73d6-4648-8ccf-fc826fda8a92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,9 +234,75 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""KeyboardVector"",
+                    ""id"": ""0aac36f2-e1c8-4722-9e07-6c5e368c9408"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fe31e487-fc7a-49d2-95b2-18d4164fda5c"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d8fe4d89-2241-46d1-b21e-227623312b25"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""76c71e33-c92b-4eac-9ed7-1a00420d8d87"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""135cf21d-20ef-4269-8685-66199cfa0342"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""3ba65d11-0589-4a6a-85ca-a984d364507d"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13e51682-cc5a-45b8-ba0b-a7fc280dd139"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -311,6 +386,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ThrowGrenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21b8efec-49d9-4945-8a4c-d8e408128922"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""909bb623-4e90-4a07-83b5-cbe54572490f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -326,6 +423,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_SprintToggle = m_Character.FindAction("SprintToggle", throwIfNotFound: true);
         m_Character_DropGrenade = m_Character.FindAction("DropGrenade", throwIfNotFound: true);
         m_Character_ThrowGrenade = m_Character.FindAction("ThrowGrenade", throwIfNotFound: true);
+        m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -394,6 +492,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_SprintToggle;
     private readonly InputAction m_Character_DropGrenade;
     private readonly InputAction m_Character_ThrowGrenade;
+    private readonly InputAction m_Character_Shoot;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -405,6 +504,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @SprintToggle => m_Wrapper.m_Character_SprintToggle;
         public InputAction @DropGrenade => m_Wrapper.m_Character_DropGrenade;
         public InputAction @ThrowGrenade => m_Wrapper.m_Character_ThrowGrenade;
+        public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -435,6 +535,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ThrowGrenade.started += instance.OnThrowGrenade;
             @ThrowGrenade.performed += instance.OnThrowGrenade;
             @ThrowGrenade.canceled += instance.OnThrowGrenade;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -460,6 +563,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ThrowGrenade.started -= instance.OnThrowGrenade;
             @ThrowGrenade.performed -= instance.OnThrowGrenade;
             @ThrowGrenade.canceled -= instance.OnThrowGrenade;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -486,5 +592,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSprintToggle(InputAction.CallbackContext context);
         void OnDropGrenade(InputAction.CallbackContext context);
         void OnThrowGrenade(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
