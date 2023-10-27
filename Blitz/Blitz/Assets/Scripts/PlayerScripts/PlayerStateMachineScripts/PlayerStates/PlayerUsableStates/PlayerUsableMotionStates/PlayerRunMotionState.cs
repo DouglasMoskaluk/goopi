@@ -9,7 +9,7 @@ public class PlayerRunMotionState : PlayerBasicMotionState
 
     public override void stateUpdate()
     {
-        basicLook(input.lookInput);
+        //basicLook(input.lookInput);
         basicMovement(input.motionInput, previousVertMotion, RUN_SPEED, GRAVITY);
     }
 

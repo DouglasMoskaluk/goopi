@@ -11,7 +11,7 @@ public abstract class PlayerState
     protected PlayerInputHandler input;
     protected Transform playerTransform;
     protected PlayerGrenadeThrower grenadeThrower;
-    protected Transform camHolder;
+    protected Transform cam;
     protected Transform throwFrom;
 
     /// <summary>
@@ -76,7 +76,7 @@ public abstract class PlayerState
         input = stateParams.inputHandler;
         playerTransform = stateParams.playerTransform;
         grenadeThrower = stateParams.gThrower;
-        camHolder = stateParams.camholder;
+        cam = stateParams.cam;
         throwFrom = stateParams.throwGrenFrom;
     }
 }

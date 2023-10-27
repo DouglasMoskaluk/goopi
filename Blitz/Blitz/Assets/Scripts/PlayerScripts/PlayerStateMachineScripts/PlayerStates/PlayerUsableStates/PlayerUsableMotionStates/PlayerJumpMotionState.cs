@@ -14,7 +14,7 @@ public class PlayerJumpMotionState : PlayerBasicMotionState
 
     public override void stateUpdate()
     {
-        basicLook(input.lookInput);
+        //basicLook(input.lookInput);
         basicMovement(input.motionInput, previousVertMotion, IN_AIR_SPEED, GRAVITY);
     }
 

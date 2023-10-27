@@ -47,10 +47,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         lookInput = ctx.ReadValue<Vector2>();
         lookInput = new Vector2(lookInput.x * lookSense.x, lookInput.y * lookSense.y);
-        if (DisplayDebugMessages)
-        {
-            Debug.Log("look input: " + lookInput);
-        }
     }
 
     /// <summary>
