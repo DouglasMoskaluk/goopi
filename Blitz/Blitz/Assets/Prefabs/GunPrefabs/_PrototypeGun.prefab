@@ -47,13 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9fdf1de0cca2543827672c66d188bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunVars:
-    ammo: 
-    reloadTime: 0
+  bulletVars:
     shotDamage: 0
-    bullet: {fileID: 0}
+    speed: 5
+    lifeTime: 10
+  gunVars:
+    ammo: 0a0000000a000000
+    reloadTime: 1
+    bullet: {fileID: 6551949199387729789, guid: 3bd07bbcb7585b34ca38db7d7fbe758f,
+      type: 3}
     bulletParent: {fileID: 0}
-    bulletSpawnPoint: {fileID: 0}
+    bulletSpawnPoint: {fileID: 6212113097842508093}
 --- !u!1 &5075641972877017382
 GameObject:
   m_ObjectHideFlags: 0

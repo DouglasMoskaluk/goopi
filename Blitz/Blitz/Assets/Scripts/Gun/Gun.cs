@@ -31,6 +31,10 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("No bullet spawnpoint associated with gun " + gameObject.name);
         }
+        if (gunVars.ammo.Length < 2)
+        {
+            Debug.LogError("Not enough variables in the ammo array on gun " + gameObject.name);
+        }
     }
 
 

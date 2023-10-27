@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     BulletVars bulletVars;
+    Rigidbody rb;
 
 
     /// <summary>
@@ -23,11 +24,6 @@ public class Bullet : MonoBehaviour
     {
         bulletVars = bv;
         Destroy(gameObject, bulletVars.lifeTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //TODO Move bullet
+        rb.AddForce(transform.rotation * Vector3.zero * bulletVars.speed, ForceMode.VelocityChange);
     }
 }
