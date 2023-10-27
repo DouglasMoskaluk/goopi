@@ -50,10 +50,12 @@ public class Gun : MonoBehaviour
             return 1;
         }
         gunVars.ammo[0]--;
+
+        
         //                    Bullet Prefab         Bullet spawnpoint position        camera rotation        holder for bullets
         GameObject bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
         if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
-        else bul.GetComponent<Bullet>().Initialize(bulletVars);
+        else bul.GetComponent<Bullet>().Initialize(bulletVars, cam);
         return 0;
     }
 
