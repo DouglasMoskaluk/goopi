@@ -8,7 +8,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField]
-    internal bulletVars bulletVars;
+    internal BulletVars bulletVars;
     [SerializeField]
     internal GunVars gunVars;
 
@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
     /// <summary>
     /// Start Function. Anything All guns need to do to be set up will be done here.
     /// </summary>
-    void Start()
+    void Awake()
     {
 
         if (gunVars.bullet == null)
@@ -48,6 +48,8 @@ public class Gun : MonoBehaviour
         gunVars.ammo[0]--;
         //       Bullet Prefab         Bullet spawnpoint position            Player rotation        holder for bullets
         GameObject bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, transform.parent.rotation, gunVars.bulletParent);
+        if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
+        else bul.GetComponent<Bullet>().Initialize(bulletVars);
         return 0;
     }
 
@@ -102,7 +104,7 @@ internal class GunVars
 /// </summary>
 [System.Serializable] 
 [SerializeField]
-internal class bulletVars
+internal class BulletVars
 {
     [SerializeField]
     internal int shotDamage;
