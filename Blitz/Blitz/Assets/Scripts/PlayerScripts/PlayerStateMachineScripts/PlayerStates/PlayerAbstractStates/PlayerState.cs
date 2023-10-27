@@ -13,6 +13,7 @@ public abstract class PlayerState
     protected PlayerGrenadeThrower grenadeThrower;
     protected Transform cam;
     protected Transform throwFrom;
+    protected Gun playerGun;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -78,6 +79,7 @@ public abstract class PlayerState
         grenadeThrower = stateParams.gThrower;
         cam = stateParams.cam;
         throwFrom = stateParams.throwGrenFrom;
+        playerGun = stateParams.gun;
     }
 }
 

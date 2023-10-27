@@ -4,6 +4,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 {
     public override void onStateEnter()
     {
+        
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(cam.position, cam.forward, out hitInfo, 50f);
         Vector3 destination;
@@ -20,6 +21,8 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
         Debug.DrawRay(throwFrom.position, direction * 40f, Color.red, 1);
 
         grenadeThrower.ThrowGrenade(direction, grenadeThrower.arcAngle);
+
+       
     }
 
     public override void transitionCheck()

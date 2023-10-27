@@ -11,6 +11,8 @@ public class PlayerBodyFSM : MonoBehaviour
     public bool DisplayDebugMessages = false;//whether or not to display debug information
     public PlayerMotionStates currentMotionStateFlag { get; private set; }// the players motion state indicator
     public PlayerActionStates currentActionStateFlag { get; private set; }// the players action state indicator
+
+    public Gun playerGun;
     #endregion
 
     #region Private Variables
@@ -201,7 +203,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun);
     }
 
     /// <summary>
@@ -283,7 +285,7 @@ public struct stateParams
 {
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
-        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom)
+        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun)
     {
         FSM = fsm;
         anim = an;
@@ -293,6 +295,7 @@ public struct stateParams
         playerTransform = playerTrans;
         gThrower = thrower;
         throwGrenFrom = throwFrom;
+        gun = pGun;
     }
 
     public PlayerBodyFSM FSM;
@@ -303,4 +306,5 @@ public struct stateParams
     public Transform playerTransform;
     public PlayerGrenadeThrower gThrower;
     public Transform throwGrenFrom;
+    public Gun gun;
 }
