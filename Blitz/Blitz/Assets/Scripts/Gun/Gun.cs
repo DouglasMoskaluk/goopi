@@ -44,19 +44,35 @@ public class Gun : MonoBehaviour
     /// <returns> 0 if the gun shoots, 1 if it doesn't & must reload. </returns>
     internal int shoot(Transform cam)
     {
-        if (gunVars.ammo[0] <= 0)
+        if (gunVars.canShoot == false)
+        {
+            return 1;
+        }
+        else if (gunVars.ammo[0] <= 0)
         {
             reload();
             return 1;
         }
-        gunVars.ammo[0]--;
-
+        else
+        {
+            gunVars.ammo[0]--;
+            
+            gunVars.canShoot = false;
+            StartCoroutine(shotCooldown());
+            //                    Bullet Prefab         Bullet spawnpoint position        camera rotation        holder for bullets
+            GameObject bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
+            if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
+            else bul.GetComponent<Bullet>().Initialize(bulletVars, cam);
+            return 0;
+        }
         
-        //                    Bullet Prefab         Bullet spawnpoint position        camera rotation        holder for bullets
-        GameObject bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
-        if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
-        else bul.GetComponent<Bullet>().Initialize(bulletVars, cam);
-        return 0;
+    }
+
+    private IEnumerator shotCooldown()
+    {
+        yield return new WaitForSeconds(gunVars.shotCooldown);
+        gunVars.canShoot = true;
+        
     }
 
 
@@ -93,7 +109,9 @@ internal class GunVars
     internal int[] ammo; // [0] = current ammo count, [1] = max ammo
     [Tooltip("Seconds")]
     [SerializeField]
-    internal int reloadTime;
+    internal float reloadTime;
+    [SerializeField]
+    internal float shotCooldown;
 
     [Header("References")]
     [SerializeField]
@@ -102,6 +120,9 @@ internal class GunVars
     internal Transform bulletParent;
     [SerializeField]
     internal Transform bulletSpawnPoint;
+
+    //private vars
+    internal bool canShoot = true;
 }
 
 
