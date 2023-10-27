@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// Checks for errors
     /// </summary>
-    void Start()
+    void Awake()
     {
         
     }
@@ -22,8 +22,14 @@ public class Bullet : MonoBehaviour
     /// <param name="bv">Bullet Variables passed by gun</param>
     internal void Initialize(BulletVars bv)
     {
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("No rigidbody on bullet");
+        }
+
         bulletVars = bv;
         Destroy(gameObject, bulletVars.lifeTime);
-        rb.AddForce(transform.rotation * Vector3.zero * bulletVars.speed, ForceMode.VelocityChange);
+        rb.AddForce(transform.rotation * Vector3.one * bulletVars.speed, ForceMode.VelocityChange);
     }
 }
