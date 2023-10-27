@@ -22,7 +22,7 @@ public class ImpulseGrenade : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, rb.velocity.normalized * 50, Color.green, 1);
+        //Debug.DrawRay(transform.position, rb.velocity.normalized * 50, Color.green, 1);
     }
 
     /// <summary>
@@ -61,8 +61,6 @@ public class ImpulseGrenade : MonoBehaviour
             {
                 Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
                 hitColliders[i].GetComponent<PlayerBodyFSM>().addKnockBack(dir * blastForce);
-                //Debug.DrawRay(transform.position, dir * 3);
-                //Debug.Break();
             }
         }
         Destroy(this.gameObject);

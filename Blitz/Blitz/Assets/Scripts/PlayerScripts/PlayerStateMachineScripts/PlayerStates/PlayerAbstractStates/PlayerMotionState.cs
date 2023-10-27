@@ -27,7 +27,7 @@ public class PlayerMotionState : PlayerState
     protected void basicMovement(Vector2 inputDir, Vector3 previousVerticalMotion, float speed, float gravity)
     {
         #region Get camera relative forward direction
-        Vector3 forward = camHolder.forward;
+        Vector3 forward = cam.forward;
         forward.y = 0;
         forward.Normalize();
         if (FSM.DisplayDebugMessages)
@@ -66,6 +66,7 @@ public class PlayerMotionState : PlayerState
             Debug.DrawRay(playerTransform.position + controller.center, horizontalMotion / speed, Color.blue);
             Debug.DrawRay(playerTransform.position + controller.center, horizontalMotion + previousVerticalMotion, Color.red);
         }
+        Debug.Log(motion);
 
         controller.Move(motion + (FSM.getKnockBackVector() * Time.deltaTime));//apply motion
     }
@@ -87,9 +88,9 @@ public class PlayerMotionState : PlayerState
 
     protected void basicLook(Vector2 lookDelta)
     {
-        Vector3 newRot = camHolder.localEulerAngles + new Vector3(-lookDelta.y, lookDelta.x, 0);
+        Vector3 newRot = cam.localEulerAngles + new Vector3(-lookDelta.y, lookDelta.x, 0);
         newRot = ClampCameraXRot(newRot, CAMERA_UPPER_BOUNDS, CAMERA_LOWER_BOUNDS);
-        camHolder.rotation = Quaternion.Euler(newRot);
+        cam.rotation = Quaternion.Euler(newRot);
     }
 
     protected Vector3 ClampCameraXRot(Vector3 vec, float upperBounds, float lowerBounds)

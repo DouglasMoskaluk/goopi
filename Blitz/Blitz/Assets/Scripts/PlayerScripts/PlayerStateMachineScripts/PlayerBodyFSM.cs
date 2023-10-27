@@ -17,7 +17,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private CharacterController charController;//ref to character controller
     private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
-    [SerializeField] private Transform camHolder;// ref to the camera rotation transform
+    [SerializeField] private Transform cam;// ref to the camera rotation transform
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
     [SerializeField] private Transform throwFrom;
 
@@ -201,7 +201,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, camHolder, transform, grenadeThrower, throwFrom);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom);
     }
 
     /// <summary>
@@ -283,13 +283,13 @@ public struct stateParams
 {
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
-        Transform camHold, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom)
+        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom)
     {
         FSM = fsm;
         anim = an;
         controller = contr;
         inputHandler = inputH;
-        camholder = camHold;
+        cam = camera;
         playerTransform = playerTrans;
         gThrower = thrower;
         throwGrenFrom = throwFrom;
@@ -299,7 +299,7 @@ public struct stateParams
     public Animator anim;
     public CharacterController controller;
     public PlayerInputHandler inputHandler;
-    public Transform camholder;
+    public Transform cam;
     public Transform playerTransform;
     public PlayerGrenadeThrower gThrower;
     public Transform throwGrenFrom;

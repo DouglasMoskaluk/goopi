@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayDebugMessages: 0
-  camHolder: {fileID: 5389985827659544198}
+  cam: {fileID: 0}
   throwFrom: {fileID: 5389985827659544198}
 --- !u!114 &426433136885082013
 MonoBehaviour:
@@ -928,7 +928,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5389985827659544198}
-  - {fileID: 3781127855851107717}
   m_Father: {fileID: 4184523271819297582}
   m_LocalEulerAnglesHint: {x: -4.155, y: -6.578, z: 0}
 --- !u!1 &4715807130165871970
@@ -957,12 +956,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4715807130165871970}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.047313057, y: -0, z: -0, w: 0.99888015}
-  m_LocalPosition: {x: 0.532, y: 2.485, z: -4.334}
+  m_LocalRotation: {x: 0.19522011, y: 0.015119804, z: 0.002663493, w: 0.9806393}
+  m_LocalPosition: {x: -0.40648958, y: 1.8366692, z: 0.25776243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2765221872000936106}
+  m_Father: {fileID: 5389985827659544198}
   m_LocalEulerAnglesHint: {x: 5.424, y: 0, z: 0}
 --- !u!20 &2604739159371715588
 Camera:
@@ -997,7 +996,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1175,7 +1174,8 @@ Transform:
   m_LocalPosition: {x: 0.9252366, y: 0.6528123, z: -4.0282526}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3781127855851107717}
   m_Father: {fileID: 2765221872000936106}
   m_LocalEulerAnglesHint: {x: 5.424, y: 0, z: 0}
 --- !u!20 &8816912487046019891
