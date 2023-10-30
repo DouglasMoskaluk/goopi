@@ -510,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 2403129680760932734, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3781127855851107717, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
@@ -635,12 +635,12 @@ PrefabInstance:
     - target: {fileID: 5389985827659544198, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.015116547
+      value: -0.0151165025
       objectReference: {fileID: 0}
     - target: {fileID: 5389985827659544198, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0026817466
+      value: -0.0026817385
       objectReference: {fileID: 0}
     - target: {fileID: 7434519135526480302, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
@@ -720,12 +720,12 @@ PrefabInstance:
     - target: {fileID: 8899327012721482750, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07197616
+      value: -0.071976125
       objectReference: {fileID: 0}
     - target: {fileID: 8899327012721482750, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.01017251
+      value: -0.010172505
       objectReference: {fileID: 0}
     - target: {fileID: 8927181027239081222, guid: 7f806ddd4b13dd646a084a487bec0f32,
         type: 3}
@@ -825,13 +825,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2087396364}
   - component: {fileID: 2087396363}
+  - component: {fileID: 2087396365}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2087396363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,7 +870,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 1057547032}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 1
-  m_FixedNumberOfSplitScreens: -1
+  m_FixedNumberOfSplitScreens: 4
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0
@@ -891,6 +892,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087396365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087396362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbde5533a258a5448cc8ef8d1d504ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayers:
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 128
+  - serializedVersion: 2
+    m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 512
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

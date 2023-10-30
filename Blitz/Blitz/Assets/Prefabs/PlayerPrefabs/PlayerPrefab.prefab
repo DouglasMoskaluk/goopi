@@ -335,6 +335,7 @@ MonoBehaviour:
   DisplayDebugMessages: 0
   playerGun: {fileID: 2283796933786286697}
   cam: {fileID: 0}
+  playerBody: {fileID: 0}
   throwFrom: {fileID: 5389985827659544198}
 --- !u!114 &426433136885082013
 MonoBehaviour:
@@ -782,7 +783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1849547, y: -0.07143055, z: -0.0134802805, w: 0.980055}
+  m_LocalRotation: {x: -0.13957073, y: -0.071976125, z: -0.010172505, w: 0.98754036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1234,7 +1235,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1345,7 +1346,7 @@ GameObject:
   - component: {fileID: 6123351789982921232}
   - component: {fileID: 1543558216283690397}
   - component: {fileID: 2991374694523913683}
-  - component: {fileID: 2650057946679109023}
+  - component: {fileID: 3085030767544435252}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1521,7 +1522,7 @@ MonoBehaviour:
   m_Offset: {x: 0.5, y: 0.3, z: 0}
   m_ApplyAfter: 3
   m_PreserveComposition: 0
---- !u!114 &2650057946679109023
+--- !u!114 &3085030767544435252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1530,13 +1531,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6019566574264388004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 989cdb67a1ef0e64abf89b6e49846c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  AutoEnableInputs: 0
-  XYAxis: {fileID: -6668596146761286976, guid: b9052e786bf7add47889f08ebfa5ebdf, type: 3}
-  ZAxis: {fileID: 0}
+  horizontal:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &6363553135422697425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16714464, y: -0.07166336, z: -0.012182211, w: 0.983249}
+  m_LocalRotation: {x: -0.12163234, y: -0.072148845, z: -0.008865083, w: 0.9899099}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
