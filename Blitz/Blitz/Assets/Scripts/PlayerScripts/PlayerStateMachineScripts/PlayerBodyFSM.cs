@@ -20,6 +20,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
     [SerializeField] private Transform cam;// ref to the camera rotation transform
+    [SerializeField] private Transform playerBody;
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
     [SerializeField] private Transform throwFrom;
 
@@ -98,11 +99,6 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         currentMotionState.stateLateUpdate();
         currentActionState.stateLateUpdate();
-
-        //placement of this is still in the air
-        //currently placed in late update so it happens after all other updates are executed but we will see
-        //currentMotionState.transitionCheck();
-        //currentActionState.transitionCheck();
     }
 
     /// <summary>

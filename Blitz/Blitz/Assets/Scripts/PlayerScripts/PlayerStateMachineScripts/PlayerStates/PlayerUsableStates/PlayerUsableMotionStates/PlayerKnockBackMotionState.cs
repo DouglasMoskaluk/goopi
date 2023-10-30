@@ -19,6 +19,9 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     public override void stateUpdate()
     {
         base.stateUpdate();
+
+        //potentially some movement for in air that less strong than normal in air movement, idk yet
+
         controller.Move(FSM.getKnockBackVector() * Time.deltaTime);
         updateKnockBack();
     }
@@ -26,12 +29,17 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     private void updateKnockBack()
     {
         FSM.addKnockBack(Vector3.down * GRAVITY * Time.deltaTime);
+
     }
 
     public override void transitionCheck()
     {
         base.transitionCheck();
         if ((controller.collisionFlags & CollisionFlags.Below) != 0)//if colliding on ground
+        {
+            FSM.transitionState(PlayerMotionStates.Walk);
+        }
+        else if ((controller.collisionFlags & CollisionFlags.Sides) != 0)
         {
             FSM.transitionState(PlayerMotionStates.Walk);
         }

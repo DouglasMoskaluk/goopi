@@ -37,6 +37,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, throwFromPoint.position, Quaternion.identity).GetComponent<ImpulseGrenade>();
         grenade.setDirectionAndSpeed(dir, throwSpeed);
+        grenade.setGrenadeType(GrenadeType.Thrown);
         heldGrenadeCount--;
         onCoolDown = true;
         StartCoroutine(grenadeCD(coolDownTimer));
@@ -50,6 +51,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + dir.normalized + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();
         grenade.setDirectionAndSpeed(-transform.up, 0.5f);
+        grenade.setGrenadeType(GrenadeType.Dropped);
         heldGrenadeCount--;
         onCoolDown = true;
         StartCoroutine(grenadeCD(coolDownTimer));

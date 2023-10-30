@@ -11,6 +11,8 @@ public class ImpulseGrenade : MonoBehaviour
     [SerializeField] private float blastDelay = 0.5f;// the amount of time it takes for the blast to happen once the conditions for it are met
     [SerializeField] private float blastForce = 15f;// the amount of force the player 
 
+    public GrenadeType type = GrenadeType.Thrown;
+
     private Rigidbody rb;//this grenades rigidbody
 
     private bool active = false;// if the blast has been triggered, ie has collided with something
@@ -34,17 +36,22 @@ public class ImpulseGrenade : MonoBehaviour
     {
         if (active) { return; }
 
+        if (type == GrenadeType.Dropped && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            armGrenade();
+        }
+        else if (type == GrenadeType.Thrown)
+        {
+            armGrenade();
+        }
+
+    }
+
+    private void armGrenade()
+    {
         rb.constraints = RigidbodyConstraints.FreezePosition;
         active = true;
-        if (collision.gameObject.CompareTag("Player"))
-        {
-           explode();
-        }
-        else
-        {
-            StartCoroutine(trigger());
-        }
-       
+        explode();
     }
 
     /// <summary>
@@ -67,6 +74,7 @@ public class ImpulseGrenade : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //Depreciated
     /// <summary>
     /// timer for when the blast should happen
     /// </summary>
@@ -82,6 +90,19 @@ public class ImpulseGrenade : MonoBehaviour
         rb.AddForce(dir.normalized * speed, ForceMode.VelocityChange);
     }
 
+    public void setGrenadeType(GrenadeType newType)
+    {
+        type = newType;
+        if (type == GrenadeType.Dropped)
+        {
+
+        }
+        else if (type == GrenadeType.Thrown)
+        {
+
+        }
+    }
+
     /// <summary>
     /// displays the blast radius if DEBUG DISPLAY is toggled on
     /// </summary>
@@ -93,4 +114,9 @@ public class ImpulseGrenade : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, radius);
         }
     }
+}
+
+public enum GrenadeType
+{
+    Dropped, Thrown
 }
