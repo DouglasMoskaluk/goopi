@@ -46,6 +46,19 @@ public class ImpulseGrenade : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (active) { return; }
+
+        if (type == GrenadeType.Dropped && other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            armGrenade();
+        }
+        else if (type == GrenadeType.Thrown)
+        {
+            armGrenade();
+        }
+    }
 
     private void armGrenade()
     {
