@@ -75,6 +75,9 @@ public class PlayerBodyFSM : MonoBehaviour
             transform.position = RespawnManager.instance.getRespawnLocation().position;
             charController.enabled = true;
         }
+
+        currentMotionState.transitionCheck();
+        currentActionState.transitionCheck();
     }
 
     /// <summary>
@@ -98,8 +101,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
         //placement of this is still in the air
         //currently placed in late update so it happens after all other updates are executed but we will see
-        currentMotionState.transitionCheck();
-        currentActionState.transitionCheck();
+        //currentMotionState.transitionCheck();
+        //currentActionState.transitionCheck();
     }
 
     /// <summary>
@@ -136,6 +139,9 @@ public class PlayerBodyFSM : MonoBehaviour
                 break;
             case PlayerMotionStates.Mantle:
                 currentMotionState = new PlayerMantleMotionState();
+                break;
+            case PlayerMotionStates.KnockBack:
+                currentMotionState = new PlayerKnockBackMotionState();
                 break;
         }
 
@@ -266,7 +272,7 @@ public class PlayerBodyFSM : MonoBehaviour
 /// </summary>
 public enum PlayerMotionStates
 {
-    None, Walk, Run, Jump, Fall, Slide, Mantle
+    None, Walk, Run, Jump, Fall, Slide, Mantle, KnockBack
 }
 
 /// <summary>

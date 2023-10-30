@@ -8,7 +8,6 @@ public class PlayerFallMotionState : PlayerBasicMotionState
     {
         //basicLook(input.lookInput);
         basicMovement(input.motionInput, previousVertMotion, IN_AIR_SPEED, GRAVITY);
-        updateKnockBack();
     }
 
     public override void transitionCheck()
