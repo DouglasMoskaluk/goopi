@@ -334,9 +334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayDebugMessages: 0
   playerGun: {fileID: 2283796933786286697}
-  cam: {fileID: 0}
-  playerBody: {fileID: 0}
-  throwFrom: {fileID: 5389985827659544198}
+  cam: {fileID: 5389985827659544198}
+  playerBody: {fileID: 4363758292717308449}
+  throwFrom: {fileID: 50025177465368233}
 --- !u!114 &426433136885082013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   throwSpeed: 15
   arcAngle: 0
   coolDownTimer: 1
-  throwFromPoint: {fileID: 5389985827659544198}
+  throwFromPoint: {fileID: 50025177465368233}
 --- !u!1 &2867197997409069263
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,13 +974,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4715807130165871970}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19522011, y: 0.015119804, z: 0.002663493, w: 0.9806393}
-  m_LocalPosition: {x: -0.40648958, y: 1.8366692, z: 0.25776243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5389985827659544198}
-  m_LocalEulerAnglesHint: {x: 5.424, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2604739159371715588
 Camera:
   m_ObjectHideFlags: 0
@@ -1108,6 +1108,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1035002230173872069}
+  - {fileID: 50025177465368233}
   m_Father: {fileID: 4184523271819297582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2158366264481197265
@@ -1188,8 +1189,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10285694, y: -0.015116547, z: -0.0026817457, w: 0.9945777}
-  m_LocalPosition: {x: 0.8655031, y: 3.1209176, z: -7.7975125}
+  m_LocalRotation: {x: -0.10285694, y: -0.0151165025, z: -0.0026817385, w: 0.9945777}
+  m_LocalPosition: {x: 1.1396677, y: 0.9743606, z: -4.4728727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1534,7 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989cdb67a1ef0e64abf89b6e49846c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal:
+  lookValue:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -1697,6 +1698,37 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 954193255432260583}
+--- !u!1 &8009599906805153155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50025177465368233}
+  m_Layer: 0
+  m_Name: GrenadeThrowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &50025177465368233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009599906805153155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.859}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4363758292717308449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2407090958300894901
 PrefabInstance:
   m_ObjectHideFlags: 0

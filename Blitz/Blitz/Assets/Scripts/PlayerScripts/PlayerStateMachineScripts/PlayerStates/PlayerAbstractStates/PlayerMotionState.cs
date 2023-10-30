@@ -36,6 +36,10 @@ public class PlayerMotionState : PlayerState
         }
         #endregion
 
+        #region Rotate Body
+        playerBody.forward = forward;
+        #endregion
+
         #region get horizontal motion
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
@@ -69,7 +73,6 @@ public class PlayerMotionState : PlayerState
 
         controller.Move(motion);//apply motion
     }
-
 
     protected void basicLook(Vector2 lookDelta)
     {

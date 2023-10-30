@@ -14,6 +14,7 @@ public abstract class PlayerState
     protected Transform cam;
     protected Transform throwFrom;
     protected Gun playerGun;
+    protected Transform playerBody;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -80,6 +81,7 @@ public abstract class PlayerState
         cam = stateParams.cam;
         throwFrom = stateParams.throwGrenFrom;
         playerGun = stateParams.gun;
+        playerBody = stateParams.playerBody;
     }
 }
 

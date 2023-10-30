@@ -205,7 +205,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody);
     }
 
     /// <summary>
@@ -287,7 +287,7 @@ public struct stateParams
 {
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
-        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun)
+        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun, Transform pBody)
     {
         FSM = fsm;
         anim = an;
@@ -298,6 +298,7 @@ public struct stateParams
         gThrower = thrower;
         throwGrenFrom = throwFrom;
         gun = pGun;
+        playerBody = pBody;
     }
 
     public PlayerBodyFSM FSM;
@@ -309,4 +310,5 @@ public struct stateParams
     public PlayerGrenadeThrower gThrower;
     public Transform throwGrenFrom;
     public Gun gun;
+    public Transform playerBody;
 }
