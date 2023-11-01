@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour
         }
         if (gunVars.bulletParent == null)
         {
-            Debug.LogError("No folder to hold bullets associated with gun " + gameObject.name);
+            Debug.Log("No folder to hold bullets associated with gun " + gameObject.name);
         }
         if (gunVars.bulletSpawnPoint == null)
         {
@@ -59,8 +59,11 @@ public class Gun : MonoBehaviour
             
             gunVars.canShoot = false;
             StartCoroutine(shotCooldown());
-            //                    Bullet Prefab         Bullet spawnpoint position        camera rotation        holder for bullets
-            GameObject bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
+            GameObject bul;
+            if (gunVars.bulletParent != null)
+                //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
+                bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
+            else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
             if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
             else bul.GetComponent<Bullet>().Initialize(bulletVars, cam);
             return 0;
