@@ -37,7 +37,7 @@ public class PlayerMotionState : PlayerState
         #endregion
 
         #region Rotate Body
-        playerBody.forward = forward;
+        RotateBodyToCamera();
         #endregion
 
         #region get horizontal motion
@@ -72,6 +72,20 @@ public class PlayerMotionState : PlayerState
         }
 
         controller.Move(motion);//apply motion
+    }
+
+    protected void RotateBodyToCamera()
+    {
+        #region Get camera relative forward direction
+        Vector3 forward = cam.forward;
+        forward.y = 0;
+        forward.Normalize();
+        if (FSM.DisplayDebugMessages)
+        {
+            Debug.DrawRay(playerTransform.position + controller.center, forward * 2, Color.magenta);
+        }
+        #endregion
+        playerBody.forward = forward;
     }
 
     protected void basicLook(Vector2 lookDelta)

@@ -23,6 +23,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         //potentially some movement for in air that less strong than normal in air movement, idk yet
 
         controller.Move(FSM.getKnockBackVector() * Time.deltaTime);
+        RotateBodyToCamera();
         updateKnockBack();
     }
 

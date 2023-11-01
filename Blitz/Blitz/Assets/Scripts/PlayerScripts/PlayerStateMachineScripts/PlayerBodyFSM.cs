@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 /// <summary>
 /// 
 /// </summary>
@@ -13,6 +13,8 @@ public class PlayerBodyFSM : MonoBehaviour
     public PlayerActionStates currentActionStateFlag { get; private set; }// the players action state indicator
 
     public Gun playerGun;
+
+    public TextMeshProUGUI DEBUG_HealthDisplay;
     #endregion
 
     #region Private Variables
@@ -82,6 +84,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
         currentMotionState.transitionCheck();
         currentActionState.transitionCheck();
+
+        DEBUG_HealthDisplay.text = "" + health;
     }
 
     /// <summary>
