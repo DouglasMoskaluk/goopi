@@ -30,7 +30,7 @@ public class RespawnManager : MonoBehaviour
     private int selectRespawnLocation()
     {
         //for now just picks a random one
-        return Random.Range(0, respawnLocations.Count - 1);
+        return Random.Range(0, respawnLocations.Count);
     }
 
     /// <summary>
