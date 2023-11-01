@@ -32,6 +32,8 @@ public class PlayerBodyFSM : MonoBehaviour
     private PlayerActionState currentActionState;// the players current action state
 
     private Vector3 knockBackVector = Vector3.zero;
+
+    //private 
     #endregion
 
 
@@ -72,9 +74,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             logMessage("Killing player");
-            charController.enabled = false;
-            transform.position = RespawnManager.instance.getRespawnLocation().position;
-            charController.enabled = true;
+            death();
         }
 
         currentMotionState.transitionCheck();
@@ -224,7 +224,42 @@ public class PlayerBodyFSM : MonoBehaviour
     public void alterHealth(int value)
     {
         health = Mathf.Min(health += value, MAX_HEALTH);
-        health = Mathf.Max(health, 0);
+        //health = Mathf.Max(health, 0);
+        if (health < 0) death();
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="Attacker"></param>
+    public void damagePlayer(int value, GameObject Attacker)
+    {
+
+        Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
+        /* arr[0,0,0,0]
+         * 
+         * arr[getPlayerID(Attacker)] += value
+         *    
+         * 
+         * 
+         * */
+        if ((health -= value) <= 0) death();
+        //if dies, heal attacker
+    }
+
+
+    /// <summary>
+    /// Player dies
+    /// </summary>
+    private void death()
+    {
+        charController.enabled = false;
+        Debug.Log("Player Died!");
+        transform.position = RespawnManager.instance.getRespawnLocation().position;
+        resetHealth();
+        charController.enabled = true;
     }
 
     /// <summary>

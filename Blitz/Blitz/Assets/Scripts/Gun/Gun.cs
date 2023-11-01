@@ -35,6 +35,13 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("Not enough variables in the ammo array on gun " + gameObject.name);
         }
+        if (transform.parent.parent.tag == "Player")
+        {
+            bulletVars.owner = transform.parent.parent.gameObject;
+        } else
+        {
+            Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
+        }
     }
 
 
@@ -142,4 +149,6 @@ internal class BulletVars
     internal float speed;
     [SerializeField]
     internal float lifeTime;
+
+    internal GameObject owner;
 }
