@@ -32,6 +32,8 @@ public class PlayerBodyFSM : MonoBehaviour
     private PlayerActionState currentActionState;// the players current action state
 
     private Vector3 knockBackVector = Vector3.zero;
+
+    //private 
     #endregion
 
 
@@ -236,7 +238,14 @@ public class PlayerBodyFSM : MonoBehaviour
     {
 
         Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
-        alterHealth(-value);
+        /* arr[0,0,0,0]
+         * 
+         * arr[getPlayerID(Attacker)] += value
+         *    
+         * 
+         * 
+         * */
+        if ((health -= value) <= 0) death();
         //if dies, heal attacker
     }
 
