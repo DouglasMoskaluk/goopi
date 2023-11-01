@@ -16,6 +16,15 @@ public class Bullet : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Bullet collided with gameObject " + other.name);
+        if (other.tag == "Player")
+        {
+            Debug.Log("Damage Player!");
+        }
+    }
+
     /// <summary>
     /// Initializes the bullet
     /// </summary>
