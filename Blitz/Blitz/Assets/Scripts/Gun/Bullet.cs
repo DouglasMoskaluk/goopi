@@ -18,11 +18,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GameObject plr = other.gameObject;
         Debug.Log("Bullet collided with gameObject " + other.name);
-        if (other.tag == "Player")
+        //Debug.Log(other.attachedRigidbody.name);
+        if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
+        Debug.Log("Player is: " + plr.name);
+        if (plr.tag == "Player")
         {
-            Debug.Log("Damage Player!");
+            Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
+            plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
         }
+        Destroy(this);
     }
 
     /// <summary>
