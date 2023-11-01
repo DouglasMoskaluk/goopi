@@ -33,6 +33,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private Vector3 knockBackVector = Vector3.zero;
 
+    private float[] damagedByPlayer;
     //private 
     #endregion
 
@@ -49,6 +50,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
+
+        damagedByPlayer = new float[4];
     }
 
     /// <summary>
@@ -224,6 +227,13 @@ public class PlayerBodyFSM : MonoBehaviour
     public void alterHealth(int value)
     {
         health = Mathf.Min(health += value, MAX_HEALTH);
+        if (health == MAX_HEALTH)
+        {
+            for (int i = 0; i < damagedByPlayer.Length; i++)
+            {
+                damagedByPlayer[i] = 0;
+            }
+        }
         //health = Mathf.Max(health, 0);
         if (health < 0) death();
     }
@@ -238,15 +248,10 @@ public class PlayerBodyFSM : MonoBehaviour
     {
 
         Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
-        /* arr[0,0,0,0]
-         * 
-         * arr[getPlayerID(Attacker)] += value
-         *    
-         * 
-         * 
-         * */
+        if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
+            damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
+        else Debug.LogError("Player damaged by non-existing player!");
         if ((health -= value) <= 0) death();
-        //if dies, heal attacker
     }
 
 
@@ -258,6 +263,7 @@ public class PlayerBodyFSM : MonoBehaviour
         charController.enabled = false;
         Debug.Log("Player Died!");
         transform.position = RespawnManager.instance.getRespawnLocation().position;
+        //Heal attackers
         resetHealth();
         charController.enabled = true;
     }
@@ -267,7 +273,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     public void resetHealth()
     {
-        health = MAX_HEALTH;
+        alterHealth(MAX_HEALTH);
     }
 
     /// <summary>
