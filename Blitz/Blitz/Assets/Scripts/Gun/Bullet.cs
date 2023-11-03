@@ -63,7 +63,11 @@ public class Bullet : MonoBehaviour
         //float angleSignCorrection = (cam.forward.y < 0) ? -1 * grenadeThrower.arcAngle : grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
         //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
-
+        Vector3 offset =
+            new Vector3(Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x),
+            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y),
+            Random.Range(-bulletVars.accuracy.z, bulletVars.accuracy.z));
+        direction += offset;
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
     }
 }

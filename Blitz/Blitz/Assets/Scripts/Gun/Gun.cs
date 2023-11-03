@@ -149,6 +149,8 @@ internal class BulletVars
     internal float speed;
     [SerializeField]
     internal float lifeTime;
+    [SerializeField]
+    internal Vector3 accuracy; 
 
     internal GameObject owner;
 }
