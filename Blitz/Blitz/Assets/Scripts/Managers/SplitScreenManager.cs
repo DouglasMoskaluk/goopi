@@ -29,6 +29,7 @@ public class SplitScreenManager : MonoBehaviour
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
 
         player.transform.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
+        player.transform.gameObject.layer = layerToAdd;
         //add the layer
         player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << layerToAdd;
 

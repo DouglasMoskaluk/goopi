@@ -345,6 +345,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7a0d5a7d-775a-4d2a-aafd-2b845c430f80"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""67987730-c34d-4177-9588-9527f46fb09d"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
