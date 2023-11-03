@@ -101,6 +101,12 @@ public class Gun : MonoBehaviour
     IEnumerator reloading()
     {
         yield return new WaitForSeconds(gunVars.reloadTime);
+        instantReload();
+    }
+
+
+    internal void instantReload()
+    {
         gunVars.ammo[0] = gunVars.ammo[1];
     }
 }
@@ -150,7 +156,9 @@ internal class BulletVars
     [SerializeField]
     internal float lifeTime;
     [SerializeField]
-    internal Vector3 accuracy; 
+    internal Vector2 accuracy;
+    [SerializeField]
+    internal int bounces;
 
     internal GameObject owner;
 }
