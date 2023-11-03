@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
     BulletVars bulletVars;
     Rigidbody rb;
 
@@ -16,7 +17,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
         //Debug.Log("Bullet collided with gameObject " + other.name);
@@ -28,16 +29,7 @@ public class Bullet : MonoBehaviour
             //Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
             plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
         }
-
-        if (bulletVars.bounces <= 0)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            bulletVars.bounces--;
-        }
-    }
+    }*/
 
 
     private void LateUpdate()
@@ -45,15 +37,33 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, rb.velocity, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
+            Debug.Log(hit.ToString());
             if (hit.collider.tag == "Player")
             {
-
+                GameObject plr = hit.collider.gameObject;
+                if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
+                plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+                Bounce(hit);
             } else if (hit.collider.tag == "Map")
             {
-
+                Bounce(hit);
             }
         }
     }
+
+
+    private void Bounce(RaycastHit hit)
+    {
+        Debug.Log("Bounce!");
+        rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
+        bulletVars.bounces--;
+        if (bulletVars.bounces < 0)
+        {
+            Debug.Log("Bounce death");
+            Destroy(gameObject);
+        }
+    }
+
 
     /// <summary>
     /// Initializes the bullet
@@ -68,6 +78,7 @@ public class Bullet : MonoBehaviour
         }
 
         bulletVars = bv;
+        Debug.Log("Bullet Vars set");
         Destroy(gameObject, bulletVars.lifeTime);
 
         RaycastHit hitInfo;
