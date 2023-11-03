@@ -19,16 +19,40 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
-        Debug.Log("Bullet collided with gameObject " + other.name);
+        //Debug.Log("Bullet collided with gameObject " + other.name);
         //Debug.Log(other.attachedRigidbody.name);
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
-        Debug.Log("Player is: " + plr.name);
+        //Debug.Log("Player is: " + plr.name);
         if (plr.tag == "Player")
         {
-            Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
+            //Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
             plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
         }
-        Destroy(this);
+
+        if (bulletVars.bounces <= 0)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            bulletVars.bounces--;
+        }
+    }
+
+
+    private void LateUpdate()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, rb.velocity, out hit, rb.velocity.magnitude * Time.deltaTime))
+        {
+            if (hit.collider.tag == "Player")
+            {
+
+            } else if (hit.collider.tag == "Map")
+            {
+
+            }
+        }
     }
 
     /// <summary>
@@ -63,9 +87,10 @@ public class Bullet : MonoBehaviour
         //float angleSignCorrection = (cam.forward.y < 0) ? -1 * grenadeThrower.arcAngle : grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
         //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
-        Vector3 offset =
-            new Vector3(Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x),
-            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y));
+        Vector3 offset = new Vector3(
+            Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x),
+            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y),
+            Random.Range(0, 0));
         direction += offset;
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
     }
