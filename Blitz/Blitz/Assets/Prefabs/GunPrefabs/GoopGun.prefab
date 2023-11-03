@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVars:
-    shotDamage: 34
+    shotDamage: 26
     speed: 100
     lifeTime: 5
-    accuracy: {x: 0, y: 0}
-    bounces: 5
+    accuracy: {x: 0.01, y: 0.01}
+    bounces: 0
   gunVars:
     ammo: 6400000064000000
     reloadTime: 1
