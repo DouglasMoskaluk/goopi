@@ -86,6 +86,11 @@ public class PlayerBodyFSM : MonoBehaviour
         currentActionState.transitionCheck();
 
         DEBUG_HealthDisplay.text = "" + health;
+
+        if (transform.position.y < -10)
+        {
+            death();
+        }
     }
 
     /// <summary>
@@ -270,6 +275,8 @@ public class PlayerBodyFSM : MonoBehaviour
         //Heal attackers
         resetHealth();
         charController.enabled = true;
+        grenadeThrower.setGrenades(4);
+        playerGun.reload();
     }
 
     /// <summary>
@@ -277,7 +284,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     public void resetHealth()
     {
-        alterHealth(MAX_HEALTH);
+        alterHealth(MAX_HEALTH * 3);
     }
 
     /// <summary>

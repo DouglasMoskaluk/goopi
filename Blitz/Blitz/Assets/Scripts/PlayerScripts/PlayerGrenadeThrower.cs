@@ -43,6 +43,16 @@ public class PlayerGrenadeThrower : MonoBehaviour
         StartCoroutine(grenadeCD(coolDownTimer));
     }
 
+    public void setGrenades(int to)
+    {
+        heldGrenadeCount = to;
+    }
+
+    public void addGrenade(int amount)
+    {
+        heldGrenadeCount += amount;
+    }
+
 
     public void DropGrenade(Vector3 dir)
     {
