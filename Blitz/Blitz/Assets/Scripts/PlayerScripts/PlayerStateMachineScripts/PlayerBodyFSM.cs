@@ -276,7 +276,7 @@ public class PlayerBodyFSM : MonoBehaviour
         resetHealth();
         charController.enabled = true;
         grenadeThrower.setGrenades(4);
-        playerGun.reload();
+        playerGun.instantReload();
     }
 
     /// <summary>

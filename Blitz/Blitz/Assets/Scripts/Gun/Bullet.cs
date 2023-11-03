@@ -65,8 +65,7 @@ public class Bullet : MonoBehaviour
         direction.Normalize();//normalize direciton
         Vector3 offset =
             new Vector3(Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x),
-            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y),
-            Random.Range(-bulletVars.accuracy.z, bulletVars.accuracy.z));
+            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y));
         direction += offset;
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
     }
