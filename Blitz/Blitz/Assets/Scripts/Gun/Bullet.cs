@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
         //Debug.Log("Bullet collided with gameObject " + other.name);
@@ -30,22 +30,23 @@ public class Bullet : MonoBehaviour
             //Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
             plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
         }
-    }*/
+    }
 
 
     private void LateUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, rb.velocity, out hit, rb.velocity.magnitude * Time.deltaTime))
+        if (Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime * 1.5f))
         {
             Debug.Log(hit.ToString());
-            if (hit.collider.tag == "Player")
+            if (hit.collider.CompareTag("Player"))
             {
                 GameObject plr = hit.collider.gameObject;
                 if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
                 plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
                 Bounce(hit);
-            } else if (hit.collider.tag == "Map")
+            }
+            else if (hit.collider.CompareTag("Map"))
             {
                 Bounce(hit);
             }
