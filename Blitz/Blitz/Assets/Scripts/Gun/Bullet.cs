@@ -56,6 +56,10 @@ public class Bullet : MonoBehaviour
 
         //calculate the direction the bullet should be thrown in
         Vector3 direction = (destination - transform.position);//find direction from throw arm to raycast point
+        if (direction.magnitude < 5)
+        {
+            direction = transform.forward;
+        }
         //float angleSignCorrection = (cam.forward.y < 0) ? -1 * grenadeThrower.arcAngle : grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
         //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
