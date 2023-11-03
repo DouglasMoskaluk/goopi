@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     BulletVars bulletVars;
     Rigidbody rb;
+    int myBounces = 0;
 
 
     /// <summary>
@@ -56,8 +57,8 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("Bounce!");
         rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
-        bulletVars.bounces--;
-        if (bulletVars.bounces < 0)
+        myBounces++;
+        if (bulletVars.bounces - myBounces < 0)
         {
             Debug.Log("Bounce death");
             Destroy(gameObject);

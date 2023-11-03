@@ -159,6 +159,6 @@ internal class BulletVars
     internal Vector2 accuracy;
     [SerializeField]
     internal int bounces;
-    [SerializeField]
+
     internal GameObject owner;
 }
