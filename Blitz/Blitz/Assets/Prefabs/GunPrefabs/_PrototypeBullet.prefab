@@ -48,6 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953cbbfc33d7784fb143b022c2722c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletVars:
+    shotDamage: 0
+    speed: 0
+    lifeTime: 0
+    accuracy: {x: 0, y: 0}
+    bounces: 0
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -117,7 +123,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b9f5d822eead2d4ab5b9af7d638aaa7, type: 2}
+  - {fileID: 2100000, guid: 8d73efbc1fec14d4e90fd1b19e2a4a2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
