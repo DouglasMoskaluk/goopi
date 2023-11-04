@@ -15,11 +15,11 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
         
         //calculate the direction the grenade should be thrown in
         Vector3 direction = (destination - throwFrom.position);//find direction from throw arm to raycast point
-        float angleSignCorrection = (cam.forward.y < 0) ? -1 * grenadeThrower.arcAngle: grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
-        //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
+        float angleSignCorrection = (cam.eulerAngles.x > 7) ? 0: -grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
+        direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
-        //Debug.DrawRay(throwFrom.position, direction * 40f, Color.red, 1);
-        Debug.DrawLine(throwFrom.position, destination, Color.red, 5);
+        Debug.DrawRay(throwFrom.position, direction * grenadeThrower.throwSpeed, Color.red, 1);
+        //Debug.DrawLine(throwFrom.position, destination, Color.red, 5);
 
         grenadeThrower.ThrowGrenade(direction, grenadeThrower.arcAngle);
 

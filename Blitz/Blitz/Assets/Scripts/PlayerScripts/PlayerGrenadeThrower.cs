@@ -8,7 +8,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     [SerializeField] private int heldGrenadeCount;
 
-    [SerializeField] private float throwSpeed = 15f;
+    [SerializeField] public float throwSpeed = 15f;
     [SerializeField] public float arcAngle = 0f;
     [SerializeField] private float coolDownTimer = 1f;
     [SerializeField] private Transform throwFromPoint;
