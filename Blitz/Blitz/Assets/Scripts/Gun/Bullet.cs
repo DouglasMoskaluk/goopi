@@ -28,6 +28,12 @@ public class Bullet : MonoBehaviour
         {
             //Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
             plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+
+            onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
+        }
+        else if (other.CompareTag("Map"))
+        {
+            onMapHitEffect();
         }
     }
 
@@ -43,12 +49,25 @@ public class Bullet : MonoBehaviour
                 if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
                 plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
                 Bounce(hit);
+                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
             }
             else if (hit.collider.CompareTag("Map"))
             {
                 Bounce(hit);
+                onMapHitEffect();
             }
         }
+    }
+
+
+    private void onMapHitEffect()
+    {
+
+    }
+
+    private void onHitPlayerEffect(PlayerBodyFSM plr)
+    {
+
     }
 
 
