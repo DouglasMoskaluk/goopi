@@ -26,6 +26,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private Gun gun;
 
+    int kills = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,11 @@ public class PlayerUIHandler : MonoBehaviour
         grenadeCount.text = grenade.HeldGrenadeCount.ToString();
         health.text = player.Health.ToString();
         ammoCount.text = gun.Ammo.ToString();
+        killCount.text = kills.ToString();
+    }
+
+    internal void playerGotKill()
+    {
+        kills++;
     }
 }

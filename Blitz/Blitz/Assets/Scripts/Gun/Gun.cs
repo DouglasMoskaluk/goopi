@@ -94,6 +94,7 @@ public class Gun : MonoBehaviour
     /// </summary>
     internal void reload()
     {
+        //Tell player reloading
         StartCoroutine(reloading());
     }
 
