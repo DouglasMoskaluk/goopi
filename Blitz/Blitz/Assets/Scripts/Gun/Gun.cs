@@ -75,7 +75,7 @@ public class Gun : MonoBehaviour
                 bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
             else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
             if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
-            else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); Debug.Log("Bullet Initialized"); }
+            else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
             return 0;
         }
         
@@ -165,6 +165,9 @@ internal class BulletVars
     internal Vector2 offset;
     [SerializeField]
     internal int bounces;
+    [SerializeField]
+    internal Color tailColor;
+
 
     internal GameObject owner;
 }

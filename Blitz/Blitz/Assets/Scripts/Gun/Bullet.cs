@@ -120,5 +120,10 @@ public class Bullet : MonoBehaviour
             Random.Range(0, 0));
         direction += offset;
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
+
+        Debug.Log("Tail Renderer color");
+        GetComponent<TrailRenderer>().startColor = bulletVars.tailColor;
+        GetComponent<TrailRenderer>().endColor = bulletVars.tailColor;
+        Debug.Log("Tail Renderer color: " + GetComponent<TrailRenderer>().startColor);
     }
 }
