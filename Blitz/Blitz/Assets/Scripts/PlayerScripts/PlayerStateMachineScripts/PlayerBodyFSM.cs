@@ -262,7 +262,11 @@ public class PlayerBodyFSM : MonoBehaviour
         if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
             damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
         else Debug.LogError("Player damaged by non-existing player!");
-        if ((health -= value) <= 0) death();
+        if ((health -= value) <= 0)
+        {
+            death();
+            // update Attacker Player's scoreboard
+        }
     }
 
 

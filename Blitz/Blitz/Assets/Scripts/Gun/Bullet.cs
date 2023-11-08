@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
     BulletVars bulletVars;
     Rigidbody rb;
     int myBounces = 0;
