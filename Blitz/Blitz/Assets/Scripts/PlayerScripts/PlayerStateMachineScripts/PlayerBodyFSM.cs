@@ -15,6 +15,10 @@ public class PlayerBodyFSM : MonoBehaviour
     public Gun playerGun;
 
     public TextMeshProUGUI DEBUG_HealthDisplay;
+
+    [HideInInspector]
+    public int Health { get { return health; } }
+
     #endregion
 
     #region Private Variables

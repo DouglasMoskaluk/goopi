@@ -15,6 +15,10 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     private bool onCoolDown = false;
 
+    [HideInInspector]
+    public int HeldGrenadeCount { get { return heldGrenadeCount; } }
+    
+
     private void Awake()
     {
         

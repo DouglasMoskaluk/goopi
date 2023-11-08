@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     internal GunVars gunVars;
 
+    [HideInInspector]
+    public int Ammo { get { return gunVars.ammo[0]; } }
+
 
     /// <summary>
     /// Start Function. Anything All guns need to do to be set up will be done here.
