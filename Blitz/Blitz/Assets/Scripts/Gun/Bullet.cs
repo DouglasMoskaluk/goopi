@@ -100,8 +100,8 @@ public class Bullet : MonoBehaviour
         //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
         Vector3 offset = new Vector3(
-            Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x),
-            Random.Range(-bulletVars.accuracy.y, bulletVars.accuracy.y),
+            Random.Range(-bulletVars.accuracy.x + bulletVars.offset.x, bulletVars.accuracy.x + bulletVars.offset.x),
+            Random.Range(-bulletVars.accuracy.y + bulletVars.offset.y, bulletVars.accuracy.y + bulletVars.offset.y),
             Random.Range(0, 0));
         direction += offset;
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
