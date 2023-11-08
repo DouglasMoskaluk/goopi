@@ -16,6 +16,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public TextMeshProUGUI DEBUG_HealthDisplay;
 
+    public PlayerUIHandler playerUI;
+
     [HideInInspector]
     public int Health { get { return health; } }
 
@@ -262,7 +264,12 @@ public class PlayerBodyFSM : MonoBehaviour
         if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
             damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
         else Debug.LogError("Player damaged by non-existing player!");
-        if ((health -= value) <= 0) death();
+        if ((health -= value) <= 0)
+        {
+            death();
+            // update Attacker Player's scoreboard
+            Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
+        }
     }
 
 
