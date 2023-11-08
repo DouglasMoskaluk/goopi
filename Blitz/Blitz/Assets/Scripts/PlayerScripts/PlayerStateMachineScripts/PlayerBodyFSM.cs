@@ -89,8 +89,6 @@ public class PlayerBodyFSM : MonoBehaviour
         currentMotionState.transitionCheck();
         currentActionState.transitionCheck();
 
-        DEBUG_HealthDisplay.text = "" + health;
-
         if (transform.position.y < -10)
         {
             death();
