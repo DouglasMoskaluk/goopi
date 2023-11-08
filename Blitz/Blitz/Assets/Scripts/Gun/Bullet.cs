@@ -37,7 +37,6 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime * 1.5f))
         {
-            Debug.Log(hit.ToString());
             if (hit.collider.CompareTag("Player"))
             {
                 GameObject plr = hit.collider.gameObject;
@@ -55,12 +54,10 @@ public class Bullet : MonoBehaviour
 
     private void Bounce(RaycastHit hit)
     {
-        Debug.Log("Bounce!");
         rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
         myBounces++;
         if (bulletVars.bounces - myBounces < 0)
         {
-            Debug.Log("Bounce death");
             Destroy(gameObject);
         }
     }
@@ -79,7 +76,6 @@ public class Bullet : MonoBehaviour
         }
 
         bulletVars = bv;
-        Debug.Log("Bullet Vars set");
         Destroy(gameObject, bulletVars.lifeTime);
 
         RaycastHit hitInfo;

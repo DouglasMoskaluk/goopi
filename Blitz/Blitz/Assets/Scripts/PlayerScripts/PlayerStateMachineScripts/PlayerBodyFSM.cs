@@ -259,8 +259,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="Attacker"></param>
     public void damagePlayer(int value, GameObject Attacker)
     {
-
-        Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
+        //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
         if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
             damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
         else Debug.LogError("Player damaged by non-existing player!");
