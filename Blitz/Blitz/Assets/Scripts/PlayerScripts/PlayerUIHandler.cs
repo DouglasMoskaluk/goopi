@@ -26,12 +26,22 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private Gun gun;
 
+    [SerializeField]
+    private GameObject hitMarker;
+
+    [SerializeField]
+    private GameObject killMarker;
+
+    private IEnumerator hitMarkerCoroutine;
+
     int kills = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        hitMarkerCoroutine = ShowHitMarker();
+        hitMarker.SetActive(false);
+        killMarker.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,5 +56,29 @@ public class PlayerUIHandler : MonoBehaviour
     internal void playerGotKill()
     {
         kills++;
+        StartCoroutine("ShowKillMarker");
     }
+
+    internal void playerGotHit()
+    {
+        StopCoroutine("ShowHitMarker");
+        StartCoroutine("ShowHitMarker");
+    }
+
+    IEnumerator ShowKillMarker()
+    {
+        killMarker.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        killMarker.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowHitMarker()
+    {
+        hitMarker.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        hitMarker.SetActive(false);
+        yield return null;
+    }
+
 }

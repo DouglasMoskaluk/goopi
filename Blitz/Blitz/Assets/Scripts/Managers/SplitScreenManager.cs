@@ -40,7 +40,7 @@ public class SplitScreenManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            if (player == players[i])
+            if (player.GetComponent<PlayerInput>() == players[i])
             {
                 return i;
             }
