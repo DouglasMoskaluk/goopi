@@ -13,6 +13,8 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 motionInput { get; private set; }
     public Vector2 lookInput { get; private set; }
 
+    public Vector2 sensitivityInput { get; private set; }
+
     [SerializeField] public Vector2 lookSense;
     #endregion
 
@@ -166,6 +168,18 @@ public class PlayerInputHandler : MonoBehaviour
         else if (ctx.canceled)
         {
             optionsPressed = false;
+        }
+    }
+
+    public void getSensitivityInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            sensitivityInput = ctx.ReadValue<Vector2>();
+        }
+        else
+        {
+            sensitivityInput = new Vector2(0,0);
         }
     }
 

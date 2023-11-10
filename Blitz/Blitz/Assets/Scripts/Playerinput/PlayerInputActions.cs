@@ -98,6 +98,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeSensitivity"",
+                    ""type"": ""Value"",
+                    ""id"": ""f388ebc2-72c0-4796-8da8-d84fef89eade"",
+                    ""expectedControlType"": ""Dpad"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -419,6 +428,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""DPadAxis"",
+                    ""id"": ""4eb0ec95-e206-4f42-b7e3-1060a800b9ec"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSensitivity"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""90f4215e-25b2-4b0c-8563-171114c64513"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSensitivity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""b9753d5f-07d3-4229-b799-da5d1f4dc3b6"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSensitivity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""8a9c3087-5532-43b1-880a-3e8583bb6656"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSensitivity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""44a9e88c-3bd2-4868-bb42-3e40688764e8"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSensitivity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -435,6 +499,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_DropGrenade = m_Character.FindAction("DropGrenade", throwIfNotFound: true);
         m_Character_ThrowGrenade = m_Character.FindAction("ThrowGrenade", throwIfNotFound: true);
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
+        m_Character_ChangeSensitivity = m_Character.FindAction("ChangeSensitivity", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -504,6 +569,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_DropGrenade;
     private readonly InputAction m_Character_ThrowGrenade;
     private readonly InputAction m_Character_Shoot;
+    private readonly InputAction m_Character_ChangeSensitivity;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -516,6 +582,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @DropGrenade => m_Wrapper.m_Character_DropGrenade;
         public InputAction @ThrowGrenade => m_Wrapper.m_Character_ThrowGrenade;
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
+        public InputAction @ChangeSensitivity => m_Wrapper.m_Character_ChangeSensitivity;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -549,6 +616,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @ChangeSensitivity.started += instance.OnChangeSensitivity;
+            @ChangeSensitivity.performed += instance.OnChangeSensitivity;
+            @ChangeSensitivity.canceled += instance.OnChangeSensitivity;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -577,6 +647,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @ChangeSensitivity.started -= instance.OnChangeSensitivity;
+            @ChangeSensitivity.performed -= instance.OnChangeSensitivity;
+            @ChangeSensitivity.canceled -= instance.OnChangeSensitivity;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -604,5 +677,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnDropGrenade(InputAction.CallbackContext context);
         void OnThrowGrenade(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnChangeSensitivity(InputAction.CallbackContext context);
     }
 }

@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 426433136885082013}
   - component: {fileID: 7842299175808868721}
   - component: {fileID: 8300966889103240031}
+  - component: {fileID: 4397019112354682272}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -642,6 +643,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d58c7f2-73d6-4648-8ccf-fc826fda8a92
     m_ActionName: Character/Shoot[/DualSenseGamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 426433136885082013}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: getSensitivityInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4397019112354682272}
+        m_TargetAssemblyTypeName: SensitivityHandler, Assembly-CSharp
+        m_MethodName: ChangeSensitivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f388ebc2-72c0-4796-8da8-d84fef89eade
+    m_ActionName: Character/ChangeSensitivity[/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character
@@ -666,6 +695,18 @@ MonoBehaviour:
   arcAngle: 10
   coolDownTimer: 1
   throwFromPoint: {fileID: 7739729401533220563}
+--- !u!114 &4397019112354682272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403129680760932734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752cf0f83f117ae41bb07118c48afc1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2867197997409069263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.35628355, y: -0.067895055, z: -0.02596747, w: 0.93154603}
+  m_LocalRotation: {x: -0.27436593, y: -0.06988683, z: -0.01999696, w: 0.958874}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1590,8 +1631,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.32206368, y: -0.014137775, z: -0.005985278, w: 0.9465935}
-  m_LocalPosition: {x: 1.0403306, y: 0.82146066, z: -1.2414057}
+  m_LocalRotation: {x: -0.23897265, y: -0.014602543, z: -0.0047398796, w: 0.97090495}
+  m_LocalPosition: {x: 1.05112, y: 0.9088921, z: -1.5872419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2044,7 +2085,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.33932534, y: -0.06835496, z: -0.02473147, w: 0.93785626}
+  m_LocalRotation: {x: -0.25692543, y: -0.07023808, z: -0.018725818, w: 0.96369356}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
