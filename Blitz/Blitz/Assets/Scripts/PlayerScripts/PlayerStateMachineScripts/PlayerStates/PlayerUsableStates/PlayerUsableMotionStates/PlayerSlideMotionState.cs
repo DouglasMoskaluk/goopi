@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerSlideMotionState : PlayerBasicMotionState
 {
     private Vector3 startSlideDireciton;
+    private float speedModifier = 1.0f;
+    private float elapsedTime = 0f;
+    private float timeToSlow = 6f;
 
     public override void onStateEnter()
     {
         base.onStateEnter();
         startSlideDireciton = playerBody.forward;
-        
+
 
     }
 
@@ -26,17 +29,19 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         base.stateUpdate();
         Vector3 forwardMotion = input.motionInput;
         forwardMotion.y = 1f;
-        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -0.3f, 0.3f);
+        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -0.4f, 0.4f);
         forwardMotion.Normalize();
 
-        slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, SLIDE_SPEED, GRAVITY);
-        
+        slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, SLIDE_SPEED * speedModifier, GRAVITY);
+        elapsedTime += Time.deltaTime;
+        speedModifier = 1 - (elapsedTime / timeToSlow);
+        speedModifier = Mathf.Clamp01(speedModifier);
     }
 
     public override void transitionCheck()
     {
         base.transitionCheck();
-       
+
         if (!controller.isGrounded)
         {
             FSM.transitionState(PlayerMotionStates.Fall);
@@ -45,14 +50,15 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (!input.toggleSlide)
+        else if (!input.toggleSlide || speedModifier * SLIDE_SPEED <= WALK_SPEED)
         {
+
             FSM.transitionState(PlayerMotionStates.Walk);
         }
-       
+
     }
 
-    protected void slideMovement(Vector2 inputDir, Vector3 direction,Vector3 previousVerticalMotion, float speed, float gravity)
+    protected void slideMovement(Vector2 inputDir, Vector3 direction, Vector3 previousVerticalMotion, float speed, float gravity)
     {
         #region Get camera relative forward direction
         Vector3 forward = cam.forward;
