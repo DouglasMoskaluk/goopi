@@ -82,9 +82,9 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature {
             };
 
             normals.Init("_SceneViewSpaceNormals");
-            normalsMaterial = new Material(Shader.Find("Hidden/ViewSpaceNormals"));
+            normalsMaterial = new Material(normalsTextureSettings.viewSpaceNormals);
 
-            occludersMaterial = new Material(Shader.Find("Hidden/UnlitColor"));
+            occludersMaterial = new Material(normalsTextureSettings.unlitColor);
             occludersMaterial.SetColor("_Color", normalsTextureSettings.backgroundColor);
         }
 
@@ -131,6 +131,8 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature {
     }
 
     private class ScreenSpaceOutlinePass : ScriptableRenderPass {
+
+        private readonly ViewSpaceNormalsTextureSettings normalsTextureSettings;
 
         private readonly Material screenSpaceOutlineMaterial;
 

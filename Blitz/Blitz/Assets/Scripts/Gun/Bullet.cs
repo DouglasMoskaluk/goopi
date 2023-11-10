@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     BulletVars bulletVars;
     Rigidbody rb;
     int myBounces = 0;
+    bool collideThisFrame = false;
 
 
     /// <summary>
@@ -24,16 +25,12 @@ public class Bullet : MonoBehaviour
         //Debug.Log(other.attachedRigidbody.name);
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
         //Debug.Log("Player is: " + plr.name);
-        if (plr.tag == "Player")
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position - rb.velocity.normalized, (plr.transform.position - transform.position).normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
-            //Debug.Log("Bullet says: Damage Player " + other.name + " by " + bulletVars.owner + " for " + bulletVars.shotDamage + " damage");
-            plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-
-            onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
-        }
-        else if (other.CompareTag("Map"))
-        {
-            onMapHitEffect();
+            Debug.Log("Trigger Enter");
+            collide(hit);
+            collideThisFrame = true;
         }
     }
 
@@ -41,21 +38,29 @@ public class Bullet : MonoBehaviour
     private void LateUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime * 1.5f))
+        if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                GameObject plr = hit.collider.gameObject;
-                if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
-                plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-                Bounce(hit);
-                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
-            }
-            else if (hit.collider.CompareTag("Map"))
-            {
-                Bounce(hit);
-                onMapHitEffect();
-            }
+            Debug.Log("Late Update");
+            collide(hit);
+        }
+        collideThisFrame = false;
+    }
+
+
+    private void collide(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("Player"))
+        {
+            GameObject plr = hit.collider.gameObject;
+            if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
+            plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+            Bounce(hit);
+            onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
+        }
+        else if (hit.collider.CompareTag("Map"))
+        {
+            Bounce(hit);
+            onMapHitEffect();
         }
     }
 
