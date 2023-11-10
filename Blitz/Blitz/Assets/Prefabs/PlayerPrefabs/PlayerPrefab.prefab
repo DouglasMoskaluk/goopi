@@ -671,6 +671,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f388ebc2-72c0-4796-8da8-d84fef89eade
     m_ActionName: Character/ChangeSensitivity[/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92645691-e1c2-4a10-84be-7dbd400a3dae
+    m_ActionName: Character/Slide[/DualSenseGamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character
@@ -1198,7 +1202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.30080456, y: -0.06930644, z: -0.021923905, w: 0.95091146}
+  m_LocalRotation: {x: -0.30080456, y: -0.069306485, z: -0.02192392, w: 0.95091146}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1631,8 +1635,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.26575795, y: -0.014465702, z: -0.0051422804, w: 0.96391755}
-  m_LocalPosition: {x: 1.0603118, y: 0.6506741, z: -1.906043}
+  m_LocalRotation: {x: -0.26575795, y: -0.014465754, z: -0.005142297, w: 0.96391755}
+  m_LocalPosition: {x: 1.0603118, y: 0.6506741, z: -1.9060429}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2085,7 +2089,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.28350416, y: -0.069692776, z: -0.020662984, w: 0.95621204}
+  m_LocalRotation: {x: -0.28350416, y: -0.06969282, z: -0.020662997, w: 0.956212}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2497,11 +2501,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 769255587207355759}
     m_Modifications:
-    - target: {fileID: 917513278716991994, guid: 157ef449d7a403948be4b0df3768b255,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.75
-      objectReference: {fileID: 0}
     - target: {fileID: 3403214378698570096, guid: 157ef449d7a403948be4b0df3768b255,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2556,26 +2555,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GoopGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184342343527520835, guid: 157ef449d7a403948be4b0df3768b255,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184342343527520835, guid: 157ef449d7a403948be4b0df3768b255,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184342343527520835, guid: 157ef449d7a403948be4b0df3768b255,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0013
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184342343527520835, guid: 157ef449d7a403948be4b0df3768b255,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

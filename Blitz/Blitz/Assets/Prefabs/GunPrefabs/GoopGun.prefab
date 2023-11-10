@@ -50,10 +50,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletVars:
     shotDamage: 26
-    speed: 20
+    speed: 30
     lifeTime: 5
     accuracy: {x: 0.01, y: 0.01}
-    offset: {x: 0, y: 0.5}
+    offset: {x: 0, y: 0.1}
     bounces: 3
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
   gunVars:
@@ -323,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GoopGun2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437286053172533435, guid: f35e5d23348889642ad49bcfced9a8a2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
