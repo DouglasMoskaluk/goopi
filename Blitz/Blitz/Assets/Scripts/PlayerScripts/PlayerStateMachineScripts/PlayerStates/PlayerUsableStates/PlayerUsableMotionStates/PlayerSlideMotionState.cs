@@ -21,7 +21,10 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     public override void stateUpdate()
     {
         base.stateUpdate();
-        basicMovement(input.motionInput, previousVertMotion, SLIDE_SPEED, GRAVITY);
+        Vector3 forwardMotion = input.motionInput;
+        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -0.5f, 0.5f);
+
+        basicMovement(forwardMotion, previousVertMotion, SLIDE_SPEED, GRAVITY);
     }
 
     public override void transitionCheck()
