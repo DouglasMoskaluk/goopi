@@ -38,6 +38,8 @@ public class Bullet : MonoBehaviour
     private void LateUpdate()
     {
         RaycastHit hit;
+
+        //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
             Debug.Log("Late Update");
@@ -119,11 +121,15 @@ public class Bullet : MonoBehaviour
         //float angleSignCorrection = (cam.forward.y < 0) ? -1 * grenadeThrower.arcAngle : grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
         //direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
-        Vector3 offset = new Vector3(
+        direction = Quaternion.AngleAxis(Random.Range(-bulletVars.accuracy.x, bulletVars.accuracy.x) + bulletVars.offset.x, Vector3.up) * direction;
+        direction = Quaternion.AngleAxis(Random.Range(bulletVars.accuracy.y, bulletVars.accuracy.y) - bulletVars.offset.y, Vector3.right) * direction;
+
+        /*Vector3 offset = new Vector3(
             Random.Range(-bulletVars.accuracy.x + bulletVars.offset.x, bulletVars.accuracy.x + bulletVars.offset.x),
             Random.Range(-bulletVars.accuracy.y + bulletVars.offset.y, bulletVars.accuracy.y + bulletVars.offset.y),
             Random.Range(0, 0));
-        direction += offset;
+        Debug.Log("Offset: " + offset + ", Direction: " + direction);
+        direction += offset;*/
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
 
         Debug.Log("Tail Renderer color");

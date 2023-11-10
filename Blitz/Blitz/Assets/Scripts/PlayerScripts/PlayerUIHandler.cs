@@ -34,6 +34,13 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator hitMarkerCoroutine;
 
+    private IEnumerator gotHitCoroutine;
+
+    private GameObject lowHealthUI;
+
+    private GameObject damagedUI;
+
+
     int kills = 0;
 
     // Start is called before the first frame update
@@ -42,6 +49,10 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarkerCoroutine = ShowHitMarker();
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
+        lowHealthUI = transform.GetChild(1).gameObject;
+        damagedUI = transform.GetChild(2).gameObject;
+        lowHealthUI.SetActive(false);
+        damagedUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -65,6 +76,28 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ShowHitMarker");
     }
 
+    internal void playerGotdamaged()
+    {
+        StopCoroutine("ShowDamageEffect");
+        StartCoroutine("ShowDamageEffect");
+    }
+
+    internal void StopDamagedCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
+    internal void ShowLowHealth()
+    {
+        lowHealthUI.SetActive(true);
+    }
+
+    internal void HideLowHealth()
+    {
+        lowHealthUI.SetActive(false);
+        damagedUI.SetActive(false);
+    }
+
     IEnumerator ShowKillMarker()
     {
         killMarker.SetActive(true);
@@ -78,6 +111,14 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowDamageEffect()
+    {
+        damagedUI.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        damagedUI.SetActive(false);
         yield return null;
     }
 

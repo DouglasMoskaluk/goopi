@@ -261,6 +261,9 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         Debug.Log(SplitScreenManager.instance.getPlayerID(Attacker));
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
+
+        playerUI.playerGotdamaged();
+
         if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
         {
             damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
@@ -272,6 +275,10 @@ public class PlayerBodyFSM : MonoBehaviour
             death();
             // update Attacker Player's scoreboard
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
+        }
+        if(health <= 30)
+        {
+            playerUI.ShowLowHealth();
         }
     }
 
@@ -285,6 +292,8 @@ public class PlayerBodyFSM : MonoBehaviour
         Debug.Log("Player Died!");
         transform.position = RespawnManager.instance.getRespawnLocation().position;
         //Heal attackers
+        playerUI.StopDamagedCoroutine();
+        playerUI.HideLowHealth();
         resetHealth();
         charController.enabled = true;
         grenadeThrower.setGrenades(4);

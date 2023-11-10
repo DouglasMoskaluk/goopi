@@ -162,6 +162,7 @@ internal class BulletVars
     [SerializeField]
     internal Vector2 accuracy;
     [SerializeField]
+    [Tooltip("In degrees")]
     internal Vector2 offset;
     [SerializeField]
     internal int bounces;
