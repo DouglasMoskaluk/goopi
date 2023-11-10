@@ -30,6 +30,7 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature {
         public float steepAngleThreshold = 0.2f;
         [Range(0.0f, 500.0f)]
         public float steepAngleMultiplier = 25.0f;
+        
 
     }
 
@@ -46,6 +47,12 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature {
         public PerObjectData perObjectData;
         public bool enableDynamicBatching;
         public bool enableInstancing;
+
+        public Shader viewSpaceNormals;
+
+        public Shader unlitColor;
+
+        public Shader outlines;
 
     }
 
