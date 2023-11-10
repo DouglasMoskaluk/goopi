@@ -9,7 +9,7 @@ public class PlayerMotionState : PlayerState
     private const float CAMERA_UPPER_BOUNDS = 70f;// actually the cutoff for "looking down" but actually clamps from the bottom
     private const float CAMERA_LOWER_BOUNDS = 30f;// actually the cutoff for "looking up" but actually clamps from the top
 
-    private const float MAX_GRAVITY_VEL = -35f;
+    protected const float MAX_GRAVITY_VEL = -35f;
     protected const float GRAVITY = 30f;
     protected const float IN_AIR_SPEED = 12f;//the speed the player is allowed to move horizontally when in the air
     protected const float SLIDE_SPEED = 24f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20

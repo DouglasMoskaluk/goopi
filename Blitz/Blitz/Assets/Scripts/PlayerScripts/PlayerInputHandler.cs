@@ -197,6 +197,9 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-
+    public void resetSlide()
+    {
+        toggleSlide = false;
+    }
 
 }
