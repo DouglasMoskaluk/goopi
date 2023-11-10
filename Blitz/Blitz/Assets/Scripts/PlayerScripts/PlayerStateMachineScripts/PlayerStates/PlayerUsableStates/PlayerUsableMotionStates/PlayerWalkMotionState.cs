@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
 /// 
@@ -19,7 +20,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (input.toggleSlide && controller.isGrounded)
+        else if (input.toggleSlide && controller.isGrounded && input.motionInput.y > 0)
         {
             FSM.transitionState(PlayerMotionStates.Slide);
         }

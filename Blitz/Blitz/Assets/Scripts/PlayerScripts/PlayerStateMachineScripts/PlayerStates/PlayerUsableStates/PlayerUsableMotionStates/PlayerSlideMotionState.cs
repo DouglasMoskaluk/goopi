@@ -7,7 +7,8 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     private Vector3 startSlideDireciton;
     private float speedModifier = 1.0f;
     private float elapsedTime = 0f;
-    private float timeToSlow = 6f;
+    private float timeToSlow = 3f;
+    private float slideStrafeMax = 0.2f;
 
     public override void onStateEnter()
     {
@@ -29,7 +30,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         base.stateUpdate();
         Vector3 forwardMotion = input.motionInput;
         forwardMotion.y = 1f;
-        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -0.4f, 0.4f);
+        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -slideStrafeMax, slideStrafeMax);
         forwardMotion.Normalize();
 
         slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, SLIDE_SPEED * speedModifier, GRAVITY);
