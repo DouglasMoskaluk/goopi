@@ -38,6 +38,8 @@ public class Bullet : MonoBehaviour
     private void LateUpdate()
     {
         RaycastHit hit;
+
+        //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
             Debug.Log("Late Update");
