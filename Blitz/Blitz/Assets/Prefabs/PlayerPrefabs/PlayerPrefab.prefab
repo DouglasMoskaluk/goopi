@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec62002e13a2ea349a53768e3b067e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayDebugMessages: 0
+  DisplayDebugMessages: 1
   playerGun: {fileID: 4880465178734415562}
   DEBUG_HealthDisplay: {fileID: 0}
   playerUI: {fileID: 2787196210716927257}
@@ -673,7 +673,19 @@ MonoBehaviour:
     m_ActionId: f388ebc2-72c0-4796-8da8-d84fef89eade
     m_ActionName: Character/ChangeSensitivity[/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 426433136885082013}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: slideToggle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 92645691-e1c2-4a10-84be-7dbd400a3dae
     m_ActionName: Character/Slide[/DualSenseGamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1203,7 +1215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.30080456, y: -0.06930644, z: -0.021923905, w: 0.95091146}
+  m_LocalRotation: {x: -0.30080456, y: -0.069306485, z: -0.02192392, w: 0.95091146}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1636,7 +1648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.26575795, y: -0.014465709, z: -0.005142282, w: 0.96391755}
+  m_LocalRotation: {x: -0.26575795, y: -0.0144657465, z: -0.0051422953, w: 0.96391755}
   m_LocalPosition: {x: 1.0603118, y: 0.6506741, z: -1.9060429}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2090,7 +2102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.28350416, y: -0.06969282, z: -0.020662997, w: 0.956212}
+  m_LocalRotation: {x: -0.28350416, y: -0.069692776, z: -0.020662984, w: 0.95621204}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
