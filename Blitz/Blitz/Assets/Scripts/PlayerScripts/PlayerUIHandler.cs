@@ -34,6 +34,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator hitMarkerCoroutine;
 
+    private IEnumerator gotHitCoroutine;
+
     private GameObject lowHealthUI;
 
     private GameObject damagedUI;
@@ -74,6 +76,17 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ShowHitMarker");
     }
 
+    internal void playerGotdamaged()
+    {
+        StopCoroutine("ShowDamageEffect");
+        StartCoroutine("ShowDamageEffect");
+    }
+
+    internal void StopDamagedCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
     internal void ShowLowHealth()
     {
         lowHealthUI.SetActive(true);
@@ -82,6 +95,7 @@ public class PlayerUIHandler : MonoBehaviour
     internal void HideLowHealth()
     {
         lowHealthUI.SetActive(false);
+        damagedUI.SetActive(false);
     }
 
     IEnumerator ShowKillMarker()
@@ -97,6 +111,14 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowDamageEffect()
+    {
+        damagedUI.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        damagedUI.SetActive(false);
         yield return null;
     }
 
