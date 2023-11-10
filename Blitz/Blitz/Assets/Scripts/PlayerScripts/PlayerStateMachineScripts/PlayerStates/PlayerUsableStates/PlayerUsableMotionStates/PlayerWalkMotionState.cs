@@ -10,6 +10,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     {
         //basicLook(input.lookInput);
         basicMovement(input.motionInput, previousVertMotion, WALK_SPEED, GRAVITY);
+        RotateBodyToCamera();
     }
 
     public override void transitionCheck()
@@ -17,10 +18,6 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         if (input.jumpPressed && controller.isGrounded)
         {
             FSM.transitionState(PlayerMotionStates.Jump);
-        }
-        else if (input.toggleSprint && controller.isGrounded)
-        {
-            FSM.transitionState(PlayerMotionStates.Run);
         }
 
     }

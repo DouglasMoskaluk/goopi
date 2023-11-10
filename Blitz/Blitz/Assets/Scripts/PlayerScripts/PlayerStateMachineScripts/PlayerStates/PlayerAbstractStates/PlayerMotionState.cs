@@ -12,7 +12,7 @@ public class PlayerMotionState : PlayerState
     private const float MAX_GRAVITY_VEL = -35f;
     protected const float GRAVITY = 30f;
     protected const float IN_AIR_SPEED = 12f;//the speed the player is allowed to move horizontally when in the air
-    protected const float RUN_SPEED = 16f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
+    protected const float SLIDE_SPEED = 16f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
     protected const float WALK_SPEED = 12f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
 
     protected Vector3 previousVertMotion;
@@ -34,10 +34,6 @@ public class PlayerMotionState : PlayerState
         {
             Debug.DrawRay(playerTransform.position + controller.center, forward * 2, Color.magenta);
         }
-        #endregion
-
-        #region Rotate Body
-        RotateBodyToCamera();
         #endregion
 
         #region get horizontal motion
