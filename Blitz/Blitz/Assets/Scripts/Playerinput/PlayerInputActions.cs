@@ -107,6 +107,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Slide"",
+                    ""type"": ""Button"",
+                    ""id"": ""92645691-e1c2-4a10-84be-7dbd400a3dae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -483,6 +492,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeSensitivity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc27d51a-db21-4a68-b451-3a5b6dd587be"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -500,6 +520,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_ThrowGrenade = m_Character.FindAction("ThrowGrenade", throwIfNotFound: true);
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
         m_Character_ChangeSensitivity = m_Character.FindAction("ChangeSensitivity", throwIfNotFound: true);
+        m_Character_Slide = m_Character.FindAction("Slide", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -570,6 +591,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ThrowGrenade;
     private readonly InputAction m_Character_Shoot;
     private readonly InputAction m_Character_ChangeSensitivity;
+    private readonly InputAction m_Character_Slide;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -583,6 +605,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ThrowGrenade => m_Wrapper.m_Character_ThrowGrenade;
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputAction @ChangeSensitivity => m_Wrapper.m_Character_ChangeSensitivity;
+        public InputAction @Slide => m_Wrapper.m_Character_Slide;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -619,6 +642,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ChangeSensitivity.started += instance.OnChangeSensitivity;
             @ChangeSensitivity.performed += instance.OnChangeSensitivity;
             @ChangeSensitivity.canceled += instance.OnChangeSensitivity;
+            @Slide.started += instance.OnSlide;
+            @Slide.performed += instance.OnSlide;
+            @Slide.canceled += instance.OnSlide;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -650,6 +676,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ChangeSensitivity.started -= instance.OnChangeSensitivity;
             @ChangeSensitivity.performed -= instance.OnChangeSensitivity;
             @ChangeSensitivity.canceled -= instance.OnChangeSensitivity;
+            @Slide.started -= instance.OnSlide;
+            @Slide.performed -= instance.OnSlide;
+            @Slide.canceled -= instance.OnSlide;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -678,5 +707,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnThrowGrenade(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnChangeSensitivity(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
     }
 }

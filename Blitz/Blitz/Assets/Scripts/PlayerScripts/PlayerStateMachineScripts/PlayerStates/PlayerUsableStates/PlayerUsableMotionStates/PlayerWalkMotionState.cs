@@ -19,6 +19,10 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
+        else if (input.toggleSlide && controller.isGrounded)
+        {
+            FSM.transitionState(PlayerMotionStates.Slide);
+        }
 
     }
 }

@@ -26,6 +26,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool shootPressed { get; private set; } = false;
     public bool toggleSprint { get; private set; } = false;
 
+    public bool toggleSlide { get; private set; } = false;
+
     public bool reloadPressed { get; private set; } = false;
     public bool dropGrenadePressed { get; private set;} = false;
     public bool throwGrenadePressed { get; private set; } = false;
@@ -159,6 +161,18 @@ public class PlayerInputHandler : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="ctx"></param>
+    public void slideToggle(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            toggleSlide = !toggleSlide;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ctx"></param>
     public void getOptionsInput(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -182,5 +196,7 @@ public class PlayerInputHandler : MonoBehaviour
             sensitivityInput = new Vector2(0,0);
         }
     }
+
+
 
 }
