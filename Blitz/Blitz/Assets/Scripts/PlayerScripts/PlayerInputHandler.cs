@@ -163,10 +163,21 @@ public class PlayerInputHandler : MonoBehaviour
     /// <param name="ctx"></param>
     public void slideToggle(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (toggleSlide)
         {
-            toggleSlide = !toggleSlide;
+            if (ctx.started)
+            {
+                toggleSlide = !toggleSlide;
+            }
         }
+        else
+        {
+            if (ctx.started && motionInput.y > 0)
+            {
+                toggleSlide = !toggleSlide;
+            }
+        }
+        
     }
 
     /// <summary>
