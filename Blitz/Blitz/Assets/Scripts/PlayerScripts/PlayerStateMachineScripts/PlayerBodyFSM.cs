@@ -91,7 +91,7 @@ public class PlayerBodyFSM : MonoBehaviour
         currentMotionState.transitionCheck();
         currentActionState.transitionCheck();
 
-        if (transform.position.y < -10)
+        if (transform.position.y < -40)
         {
             death();
         }
