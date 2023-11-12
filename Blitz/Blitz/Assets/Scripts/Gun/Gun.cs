@@ -168,6 +168,8 @@ internal class BulletVars
     internal int bounces;
     [SerializeField]
     internal Color tailColor;
+    [SerializeField]
+    internal GameObject spawnOnContact;
 
 
     internal GameObject owner;

@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position - rb.velocity.normalized, (plr.transform.position - transform.position).normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
-            Debug.Log("Trigger Enter");
+            //Debug.Log("Trigger Enter");
             collide(hit);
             collideThisFrame = true;
         }
@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
         //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
-            Debug.Log("Late Update");
+            //Debug.Log("Late Update");
             collide(hit);
         }
         collideThisFrame = false;
@@ -69,7 +69,10 @@ public class Bullet : MonoBehaviour
 
     private void onMapHitEffect()
     {
-
+        if (bulletVars.spawnOnContact != null)
+        {
+            Instantiate(bulletVars.spawnOnContact, transform.position, Quaternion.identity);
+        }
     }
 
     private void onHitPlayerEffect(PlayerBodyFSM plr)
