@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     internal BulletVars bulletVars;
     [SerializeField]
     internal GunVars gunVars;
+    private bool canReload = true;
 
     [HideInInspector]
     public int Ammo { get { return gunVars.ammo[0]; } }
@@ -45,6 +46,7 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
         }
+        bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
     }
 
 
@@ -95,7 +97,12 @@ public class Gun : MonoBehaviour
     internal void reload()
     {
         //Tell player reloading
-        StartCoroutine(reloading());
+        if (canReload)
+        {
+            canReload = false;
+            StartCoroutine(reloading());
+
+        }
     }
 
 
@@ -112,6 +119,7 @@ public class Gun : MonoBehaviour
     internal void instantReload()
     {
         gunVars.ammo[0] = gunVars.ammo[1];
+        canReload = true;
     }
 }
 
