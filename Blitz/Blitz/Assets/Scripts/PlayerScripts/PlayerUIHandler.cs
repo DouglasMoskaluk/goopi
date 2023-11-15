@@ -58,16 +58,21 @@ public class PlayerUIHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         grenadeCount.text = grenade.HeldGrenadeCount.ToString();
         health.text = player.Health.ToString();
         ammoCount.text = gun.Ammo.ToString();
         killCount.text = kills.ToString();
+        UpdateRoundTimer();
+    }
+
+    internal void UpdateRoundTimer()
+    {
         float time = (int)RoundManager.instance.GetRoundTime();
-        Debug.Log("TIme" + time);
         string minutes = (time >= 60) ? "1" : "0";
         string seconds = (time >= 60) ? ((int)(time - 60)).ToString() : ((int)time).ToString();
+        if (seconds.Length < 2) seconds = "0" + seconds;
         roundTimerText.text = minutes + ":" + seconds;
     }
 
