@@ -11,6 +11,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private float roundLength = 90f;
     [SerializeField] private int[] playerKillCounts = new int[4];
 
+    public bool shouldCountDown = true;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -41,11 +43,15 @@ public class RoundManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime >= roundLength)
+        if (shouldCountDown)
         {
-            EndRound();
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= roundLength)
+            {
+                EndRound();
+            }
         }
+        
     }
 
     public float GetRoundTime()
