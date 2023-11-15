@@ -42,8 +42,9 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI roundTimerText;
 
-
     int kills = 0;
+
+    public int playerID;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class PlayerUIHandler : MonoBehaviour
         grenadeCount.text = grenade.HeldGrenadeCount.ToString();
         health.text = player.Health.ToString();
         ammoCount.text = gun.Ammo.ToString();
-        killCount.text = kills.ToString();
+        killCount.text = RoundManager.instance.GetKillCount(playerID).ToString();
         UpdateRoundTimer();
     }
 

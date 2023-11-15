@@ -56,6 +56,12 @@ public class RoundManager : MonoBehaviour
     public void UpdateKillCount(int playerNum)
     {
         playerKillCounts[playerNum]++;
+        
+    }
+
+    public int GetKillCount(int playerNum)
+    {
+        return playerKillCounts[playerNum];
     }
 
     private List<int> SelectRoundWinner()
