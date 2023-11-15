@@ -31,6 +31,8 @@ public class SplitScreenManager : MonoBehaviour
         player.transform.position = RespawnManager.instance.getSpecificLocation(players.Count - 1).position;
         Debug.Log("player spanw " + player.transform.position);
 
+        player.transform.GetComponent<PlayerBodyFSM>().playerID = players.Count - 1;
+
         player.transform.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         player.transform.gameObject.layer = layerToAdd;
         //add the layer

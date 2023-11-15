@@ -21,6 +21,8 @@ public class PlayerBodyFSM : MonoBehaviour
     [HideInInspector]
     public int Health { get { return health; } }
 
+    public int playerID;
+
     #endregion
 
     #region Private Variables
@@ -60,6 +62,7 @@ public class PlayerBodyFSM : MonoBehaviour
         transitionState(PlayerActionStates.Idle);
 
         damagedByPlayer = new float[4];
+        playerUI.playerID = playerID;
     }
 
     /// <summary>
