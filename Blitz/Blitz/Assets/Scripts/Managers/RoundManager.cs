@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
+    public static RoundManager instance;
+
     [SerializeField] private int roundNum = 0;
     [SerializeField] private float elapsedTime = 0.0f;
     [SerializeField] private float roundLength = 90f;
     [SerializeField] private int[] playerKillCounts = new int[4];
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
 
     public void StartRound()
     {
@@ -32,13 +39,18 @@ public class RoundManager : MonoBehaviour
         StartRound();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= roundLength)
         {
             EndRound();
         }
+    }
+
+    public float GetRoundTime()
+    {
+        return roundLength - elapsedTime;
     }
 
     private List<int> SelectRoundWinner()
