@@ -53,6 +53,11 @@ public class RoundManager : MonoBehaviour
         return roundLength - elapsedTime;
     }
 
+    public void UpdateKillCount(int playerNum)
+    {
+        playerKillCounts[playerNum]++;
+    }
+
     private List<int> SelectRoundWinner()
     {
         List<int> result = new List<int>();
@@ -73,4 +78,5 @@ public class RoundManager : MonoBehaviour
 
         return result;
     }
+
 }

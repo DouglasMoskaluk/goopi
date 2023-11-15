@@ -41,4 +41,9 @@ public class RespawnManager : MonoBehaviour
     {
         return respawnLocations[selectRespawnLocation()];
     }
+
+    public Transform getSpecificLocation(int num)
+    {
+        return respawnLocations[num];
+    }
 }

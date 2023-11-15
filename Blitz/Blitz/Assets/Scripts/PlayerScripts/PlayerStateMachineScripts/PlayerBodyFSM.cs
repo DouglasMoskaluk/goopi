@@ -273,8 +273,10 @@ public class PlayerBodyFSM : MonoBehaviour
         if ((health -= value) <= 0)
         {
             death();
-            // update Attacker Player's scoreboard
+            //player gets kill marker
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
+            //update kill count
+            RoundManager.instance.UpdateKillCount(SplitScreenManager.instance.getPlayerID(Attacker));
         }
         if(health <= 30)
         {
