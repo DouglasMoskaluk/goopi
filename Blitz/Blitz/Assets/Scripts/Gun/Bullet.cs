@@ -35,6 +35,13 @@ public class Bullet : MonoBehaviour
     }
 
 
+    //
+    private void FixedUpdate()
+    {
+        rb.AddForce(bulletVars.forceApplied);
+    }
+
+
     private void LateUpdate()
     {
         RaycastHit hit;

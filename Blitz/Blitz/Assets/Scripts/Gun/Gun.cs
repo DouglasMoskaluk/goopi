@@ -178,6 +178,8 @@ internal class BulletVars
     internal Color tailColor;
     [SerializeField]
     internal GameObject spawnOnContact;
+    [SerializeField]
+    internal Vector3 forceApplied;
 
 
     internal GameObject owner;
