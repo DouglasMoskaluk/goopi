@@ -53,10 +53,11 @@ MonoBehaviour:
     speed: 25
     lifeTime: 5
     accuracy: {x: 0.05, y: 0.05}
-    offset: {x: 0, y: 15}
+    offset: {x: 0, y: 10}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
     spawnOnContact: {fileID: 0}
+    forceApplied: {x: 0, y: -9.81, z: 0}
   gunVars:
     ammo: 1000000010000000
     reloadTime: 1
