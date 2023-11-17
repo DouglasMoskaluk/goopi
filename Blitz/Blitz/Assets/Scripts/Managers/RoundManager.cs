@@ -91,4 +91,8 @@ public class RoundManager : MonoBehaviour
         return result;
     }
 
+    public int GetRoundNum()
+    {
+        return roundNum;
+    }
 }
