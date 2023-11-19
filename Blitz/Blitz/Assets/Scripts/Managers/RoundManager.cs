@@ -10,6 +10,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private float elapsedTime = 0.0f;
     [SerializeField] private float roundLength = 90f;
     [SerializeField] private int[] playerKillCounts = new int[4];
+    [SerializeField] private float endRoundTextShownLength = 4f;
 
     public bool shouldCountDown = true;
 
@@ -25,20 +26,31 @@ public class RoundManager : MonoBehaviour
             playerKillCounts[i] = 0;
         }
 
-        elapsedTime = 0f;
         roundNum++;
+        shouldCountDown = true;
     }
 
-    public void EndRound()
+    /// <summary>
+    /// procedure for what happens when a round ends/is won
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator EndRound()
     {
-        List<int> winners = SelectRoundWinner();
-        string winnerString = "Winners are PLayers: ";
+        //figure out who won
+        List<int> winners = SelectRoundWinner();//create list of round winners
+
+        //create text string to say who won
+        string winnerString = "Winners are Players: ";
         foreach (int w in winners)
         {
             winnerString += w.ToString() + ", ";
         }
-        Debug.Log(winnerString);
-        StartRound();
+
+        //display who won for a couple seconds
+        yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayRoundEndUI(endRoundTextShownLength, winnerString));
+
+        //cascade round information up to the game manager and let it decide what should be done next
+        GameManager.instance.RoundWon(winners, playerKillCounts);
     }
 
     private void LateUpdate()
@@ -48,7 +60,9 @@ public class RoundManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= roundLength)
             {
-                EndRound();
+                StartCoroutine(EndRound());
+                elapsedTime = 0f;
+                shouldCountDown = false;
             }
         }
         
