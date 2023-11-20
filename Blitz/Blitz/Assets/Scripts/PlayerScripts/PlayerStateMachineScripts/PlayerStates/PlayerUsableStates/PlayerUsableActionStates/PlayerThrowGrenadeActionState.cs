@@ -20,7 +20,6 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
         float angleSignCorrection = (cam.eulerAngles.x > 7) ? -grenadeThrower.arcAngle: grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
         direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
-        Debug.DrawRay(throwFrom.position, direction * grenadeThrower.throwSpeed, Color.red, 1);
 
         grenadeThrower.ThrowGrenade(direction, grenadeThrower.arcAngle);
     }
