@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerThrowGrenadeActionState : PlayerActionState
 {
-    public override void onStateEnter()
+    float chargeTime = 0.0f;
+
+    public override void onStateExit()
     {
         
         RaycastHit hitInfo;
@@ -23,11 +25,20 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 
         grenadeThrower.ThrowGrenade(direction, grenadeThrower.arcAngle);
 
-       
+        FSM.logMessage("Grenade button held for " + chargeTime.ToString() + " seconds.");
+    }
+
+    public override void stateUpdate()
+    {
+        base.stateUpdate();
+        chargeTime += Time.deltaTime;
     }
 
     public override void transitionCheck()
     {
-        FSM.transitionState(PlayerActionStates.Idle);
+        if (!input.throwGrenadePressed)
+        {
+            FSM.transitionState(PlayerActionStates.Idle);
+        }
     }
 }
