@@ -44,6 +44,7 @@ public class ImpulseGrenade : MonoBehaviour
         {
             armGrenade();
         }
+        Debug.Break();
 
     }
     private void OnTriggerEnter(Collider other)
@@ -106,14 +107,6 @@ public class ImpulseGrenade : MonoBehaviour
     public void setGrenadeType(GrenadeType newType)
     {
         type = newType;
-        if (type == GrenadeType.Dropped)
-        {
-
-        }
-        else if (type == GrenadeType.Thrown)
-        {
-
-        }
     }
 
     /// <summary>

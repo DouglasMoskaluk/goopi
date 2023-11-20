@@ -11,6 +11,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
     [SerializeField] public float throwSpeed = 15f;
     [SerializeField] public float arcAngle = 0f;
     [SerializeField] private float coolDownTimer = 1f;
+    [SerializeField, Range(0f, 1f)] private float dropVsThrowThreshold = 0.1f;// below is drop, above is throw
     [SerializeField] private Transform throwFromPoint;
 
     private bool onCoolDown = false;
@@ -34,14 +35,22 @@ public class PlayerGrenadeThrower : MonoBehaviour
         return heldGrenadeCount > 0 && !onCoolDown;
     }
 
-    public void ThrowGrenade(Vector3 dir, float angle)
+    public void ThrowGrenade(Vector3 dir, float chargeModifier)
     {
         Debug.Log("throw grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, throwFromPoint.position, Quaternion.identity).GetComponent<ImpulseGrenade>();
-        grenade.setDirectionAndSpeed(dir, throwSpeed);
-        grenade.setGrenadeType(GrenadeType.Thrown);
+        grenade.setDirectionAndSpeed(dir, throwSpeed * chargeModifier);
+        if (chargeModifier >= dropVsThrowThreshold)
+        {
+            grenade.setGrenadeType(GrenadeType.Thrown);
+        }
+        else
+        {
+            grenade.setGrenadeType(GrenadeType.Dropped);
+        }
+        
         heldGrenadeCount--;
         onCoolDown = true;
         StartCoroutine(grenadeCD(coolDownTimer));
