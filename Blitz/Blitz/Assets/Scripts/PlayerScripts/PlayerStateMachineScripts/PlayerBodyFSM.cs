@@ -14,8 +14,6 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public Gun playerGun;
 
-    public TextMeshProUGUI DEBUG_HealthDisplay;
-
     public PlayerUIHandler playerUI;
 
     [HideInInspector]
