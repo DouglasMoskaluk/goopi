@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RespawnManager : MonoBehaviour
 {
@@ -31,6 +32,19 @@ public class RespawnManager : MonoBehaviour
     {
         //for now just picks a random one
         return Random.Range(0, respawnLocations.Count);
+    }
+
+    public void RespawnAllPlayers()
+    {
+        int index = 0;
+        foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        {
+            CharacterController cc = player.transform.GetComponent<CharacterController>();
+            cc.enabled = false;
+            player.transform.SetPositionAndRotation(respawnLocations[index].position, respawnLocations[index].rotation);
+            cc.enabled = true;
+            index++;
+        }
     }
 
     /// <summary>

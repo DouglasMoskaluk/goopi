@@ -28,8 +28,12 @@ public class SplitScreenManager : MonoBehaviour
  
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
 
-        player.transform.position = RespawnManager.instance.getSpecificLocation(players.Count - 1).position;
-        Debug.Log("player spanw " + player.transform.position);
+        if (players.Count >= 4)
+        {
+            RespawnManager.instance.RespawnAllPlayers();
+        }
+        //player.transform.position = RespawnManager.instance.getSpecificLocation(players.Count - 1).position;
+        //Debug.Log("player spanw " + player.transform.position);
 
         player.transform.GetComponent<PlayerBodyFSM>().playerID = players.Count - 1;
 
@@ -51,5 +55,10 @@ public class SplitScreenManager : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public List<PlayerInput> GetPlayers()
+    {
+        return players;
     }
 }

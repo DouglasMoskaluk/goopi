@@ -21,6 +21,8 @@ public class RoundManager : MonoBehaviour
 
     public void StartRound()
     {
+        RespawnManager.instance.RespawnAllPlayers();
+
         for (int i = 0; i < playerKillCounts.Length; i++)
         {
             playerKillCounts[i] = 0;
