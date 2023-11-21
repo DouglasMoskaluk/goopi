@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.spawnOnContact != null)
         {
-            Instantiate(bulletVars.spawnOnContact, transform.position, Quaternion.identity);
+            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
     }
 
