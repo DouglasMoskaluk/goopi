@@ -7,8 +7,6 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     private Vector3 startSlideDireciton;
     private float speedModifier = 1.0f;
     private float elapsedTime = 0f;
-    private float timeToSlow = 3f;
-    private float slideStrafeMax = 0.2f;
 
     public override void onStateEnter()
     {
@@ -30,12 +28,12 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         base.stateUpdate();
         Vector3 forwardMotion = input.motionInput;
         forwardMotion.y = 1f;
-        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -slideStrafeMax, slideStrafeMax);
+        forwardMotion.x = Mathf.Clamp(forwardMotion.x, -stateVariableHolder.slideStrafeMax, stateVariableHolder.slideStrafeMax);
         forwardMotion.Normalize();
 
-        slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, SLIDE_SPEED * speedModifier, GRAVITY);
+        slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, stateVariableHolder.SLIDE_SPEED * speedModifier, stateVariableHolder.GRAVITY);
         elapsedTime += Time.deltaTime;
-        speedModifier = 1 - (elapsedTime / timeToSlow);
+        speedModifier = 1 - (elapsedTime / stateVariableHolder.timeToSlow);
         speedModifier = Mathf.Clamp01(speedModifier);
     }
 
@@ -51,7 +49,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (!input.toggleSlide || speedModifier * SLIDE_SPEED <= WALK_SPEED)
+        else if (!input.toggleSlide || speedModifier * stateVariableHolder.SLIDE_SPEED <= stateVariableHolder.WALK_SPEED)
         {
 
             FSM.transitionState(PlayerMotionStates.Walk);
@@ -88,7 +86,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
 
         #region Get vertical motion  
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
-        previousVertMotion.y = Mathf.Max(previousVertMotion.y, MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
+        previousVertMotion.y = Mathf.Max(previousVertMotion.y, stateVariableHolder.MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
         if (controller.isGrounded)
         { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
             previousVertMotion = Vector3.down * gravity * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation

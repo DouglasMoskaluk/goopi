@@ -31,6 +31,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private Transform playerBody;
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
     [SerializeField] private Transform throwFrom;
+    private FSMVariableHolder variableHolder;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -55,6 +56,7 @@ public class PlayerBodyFSM : MonoBehaviour
         input = GetComponent<PlayerInputHandler>();
         charController = GetComponent<CharacterController>();
         grenadeThrower = GetComponent<PlayerGrenadeThrower>();
+        variableHolder = GetComponent<FSMVariableHolder>();
 
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -222,7 +224,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder);
     }
 
     /// <summary>
@@ -363,7 +365,7 @@ public struct stateParams
 {
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
-        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun, Transform pBody)
+        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun, Transform pBody, FSMVariableHolder vHolder)
     {
         FSM = fsm;
         anim = an;
@@ -375,6 +377,7 @@ public struct stateParams
         throwGrenFrom = throwFrom;
         gun = pGun;
         playerBody = pBody;
+        variableHolder = vHolder;
     }
 
     public PlayerBodyFSM FSM;
@@ -387,4 +390,5 @@ public struct stateParams
     public Transform throwGrenFrom;
     public Gun gun;
     public Transform playerBody;
+    public FSMVariableHolder variableHolder;
 }

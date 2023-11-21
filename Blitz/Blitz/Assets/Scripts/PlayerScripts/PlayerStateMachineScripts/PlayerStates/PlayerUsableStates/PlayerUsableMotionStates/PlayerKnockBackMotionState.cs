@@ -29,7 +29,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
 
     private void updateKnockBack()
     {
-        FSM.addKnockBack(Vector3.down * GRAVITY * Time.deltaTime);
+        FSM.addKnockBack(Vector3.down * stateVariableHolder.GRAVITY * Time.deltaTime);
 
     }
 

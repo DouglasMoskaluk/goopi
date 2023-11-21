@@ -7,6 +7,7 @@ public abstract class PlayerState
 {
     protected CharacterController controller;
     protected PlayerBodyFSM FSM;
+    protected FSMVariableHolder stateVariableHolder;
     protected Animator anim;
     protected PlayerInputHandler input;
     protected Transform playerTransform;
@@ -82,6 +83,7 @@ public abstract class PlayerState
         throwFrom = stateParams.throwGrenFrom;
         playerGun = stateParams.gun;
         playerBody = stateParams.playerBody;
+        stateVariableHolder = stateParams.variableHolder;
     }
 }
 

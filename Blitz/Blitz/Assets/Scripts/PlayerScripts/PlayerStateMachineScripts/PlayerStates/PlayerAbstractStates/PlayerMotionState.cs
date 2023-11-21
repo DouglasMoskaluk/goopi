@@ -6,15 +6,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerMotionState : PlayerState
 {
-    private const float CAMERA_UPPER_BOUNDS = 70f;// actually the cutoff for "looking down" but actually clamps from the bottom
-    private const float CAMERA_LOWER_BOUNDS = 30f;// actually the cutoff for "looking up" but actually clamps from the top
-
-    protected const float MAX_GRAVITY_VEL = -35f;
-    protected const float GRAVITY = 30f;
-    protected const float IN_AIR_SPEED = 12f;//the speed the player is allowed to move horizontally when in the air
-    protected const float SLIDE_SPEED = 24f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
-    protected const float WALK_SPEED = 12f;//12 for regular walk, 16 for run, 6 for crouch, sliding 18-20
-
     protected Vector3 previousVertMotion;
 
     /// <summary>
@@ -51,7 +42,7 @@ public class PlayerMotionState : PlayerState
 
         #region Get vertical motion  
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
-        previousVertMotion.y = Mathf.Max(previousVertMotion.y, MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
+        previousVertMotion.y = Mathf.Max(previousVertMotion.y, stateVariableHolder.MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
         if (controller.isGrounded) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
             previousVertMotion = Vector3.down * gravity * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation
         }
@@ -82,13 +73,6 @@ public class PlayerMotionState : PlayerState
         }
         #endregion
         playerBody.forward = forward;
-    }
-
-    protected void basicLook(Vector2 lookDelta)
-    {
-        Vector3 newRot = cam.localEulerAngles + new Vector3(-lookDelta.y, lookDelta.x, 0);
-        newRot = ClampCameraXRot(newRot, CAMERA_UPPER_BOUNDS, CAMERA_LOWER_BOUNDS);
-        cam.rotation = Quaternion.Euler(newRot);
     }
 
     protected Vector3 ClampCameraXRot(Vector3 vec, float upperBounds, float lowerBounds)

@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerThrowGrenadeActionState : PlayerActionState
 {
     float chargeTime = 0.0f;
-    float maxChargeTime = 1.0f;
 
     public override void onStateExit()
     {
@@ -22,13 +21,13 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
         direction = Quaternion.AngleAxis(angleSignCorrection, cam.right) * direction;//calculate direction
         direction.Normalize();//normalize direciton
 
-        grenadeThrower.ThrowGrenade(direction, chargeTime / maxChargeTime);
+        grenadeThrower.ThrowGrenade(direction, chargeTime / stateVariableHolder.maxChargeTime);
     }
 
     public override void stateUpdate()
     {
         base.stateUpdate();
-        chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime, 0, maxChargeTime);
+        chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime, 0, stateVariableHolder.maxChargeTime);
     }
 
     public override void transitionCheck()

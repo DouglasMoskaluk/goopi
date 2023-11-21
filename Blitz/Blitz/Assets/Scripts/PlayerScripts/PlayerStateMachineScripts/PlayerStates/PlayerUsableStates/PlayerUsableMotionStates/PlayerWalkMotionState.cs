@@ -9,8 +9,8 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
 
     public override void stateUpdate()
     {
-        //basicLook(input.lookInput);
-        basicMovement(input.motionInput, previousVertMotion, WALK_SPEED, GRAVITY);
+        
+        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
     }
 

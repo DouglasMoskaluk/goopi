@@ -8,14 +8,14 @@ public class PlayerJumpMotionState : PlayerBasicMotionState
 
     public override void onStateEnter()
     {
-        previousVertMotion = Vector3.up * JUMP_FORCE;
+        previousVertMotion = Vector3.up * stateVariableHolder.JUMP_FORCE;
         controller.Move(Vector3.up * Time.deltaTime);//make the player not on the ground so that basic move works well with is grounded and wanting to jump
     }
 
     public override void stateUpdate()
     {
         //basicLook(input.lookInput);
-        basicMovement(input.motionInput, previousVertMotion, IN_AIR_SPEED, GRAVITY);
+        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.IN_AIR_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
     }
 
