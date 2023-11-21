@@ -56,9 +56,11 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
+    spawnOnContact: {fileID: 0}
+    forceApplied: {x: 0, y: 0, z: 0}
   gunVars:
     ammo: 0300000003000000
-    reloadTime: 1
+    reloadTime: -1
     shotCooldown: 0.3
     bullet: {fileID: 6551949199387729789, guid: 3bd07bbcb7585b34ca38db7d7fbe758f,
       type: 3}

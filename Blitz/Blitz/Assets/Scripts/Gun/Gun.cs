@@ -97,7 +97,7 @@ public class Gun : MonoBehaviour
     internal void reload()
     {
         //Tell player reloading
-        if (canReload)
+        if (canReload && gunVars.reloadTime >= 0)
         {
             canReload = false;
             StartCoroutine(reloading());
