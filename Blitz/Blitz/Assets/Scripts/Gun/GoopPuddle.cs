@@ -28,7 +28,7 @@ public class GoopPuddle : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBetweenTriggers);
             if (plrBdy.Health - damage < 0) notDead = false;
-            plrBdy.damagePlayer(-damage, owner);
+            plrBdy.damagePlayer(damage, owner);
         }
     }
 
