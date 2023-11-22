@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenTriggers: 0.05
   damage: 10
+  lifeTime: 3
 --- !u!65 &3635272177811545604
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -189,7 +190,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   - {fileID: 2100000, guid: 82851426f7ae34b47aeed793935271a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

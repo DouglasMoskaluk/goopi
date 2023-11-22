@@ -180,6 +180,8 @@ internal class BulletVars
     internal GameObject spawnOnContact;
     [SerializeField]
     internal Vector3 forceApplied;
+    [SerializeField]
+    bool spawnEveryContact = true;
 
 
     internal GameObject owner;

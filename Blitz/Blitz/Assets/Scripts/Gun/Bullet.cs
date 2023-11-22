@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     int myBounces = 0;
     bool collideThisFrame = false;
+    float spawnTime = 0.3f;
 
 
     /// <summary>
@@ -40,6 +41,7 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(bulletVars.forceApplied);
+        spawnTime -= Time.fixedDeltaTime;
     }
 
 
@@ -59,26 +61,28 @@ public class Bullet : MonoBehaviour
 
     private void collide(RaycastHit hit)
     {
-
-        if (hit.collider.CompareTag("Player"))
+        if (spawnTime < 0)
         {
-            GameObject plr = hit.collider.gameObject;
-            if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
-            plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-            Bounce(hit);
-            onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
-        }
-        else if (hit.collider.CompareTag("Map"))
-        {
-            Bounce(hit);
-            onMapHitEffect();
+            if (hit.collider.CompareTag("Player"))
+            {
+                GameObject plr = hit.collider.gameObject;
+                if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
+                plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+                Bounce(hit);
+                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
+            }
+            else if (hit.collider.CompareTag("Map"))
+            {
+                onMapHitEffect();
+                Bounce(hit);
+            }
         }
     }
 
 
     private void onMapHitEffect()
     {
-        if (bulletVars.spawnOnContact != null)
+        if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
         {
             Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
