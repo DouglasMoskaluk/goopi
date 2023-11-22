@@ -44,7 +44,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         //{
         //    FSM.transitionState(PlayerMotionStates.Fall);
         //}
-        if (input.jumpPressed)
+        if (input.jumpPressed && controller.isGrounded)
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }

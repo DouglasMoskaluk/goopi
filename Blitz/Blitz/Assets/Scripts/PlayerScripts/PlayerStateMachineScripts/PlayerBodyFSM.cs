@@ -28,7 +28,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
     [SerializeField] private Transform cam;// ref to the camera rotation transform
-    [SerializeField] private Transform playerBody;
+    [SerializeField] internal Transform playerBody;
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
     [SerializeField] private Transform throwFrom;
     private FSMVariableHolder variableHolder;

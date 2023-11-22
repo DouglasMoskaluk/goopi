@@ -10,13 +10,16 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        anim.CrossFadeInFixedTime("Idle", 0.1f, 0);
+        anim.CrossFadeInFixedTime("Walk", 0.1f, 0);
+        
     }
 
     public override void stateUpdate()
     {
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
+        anim.SetFloat("MotionX", input.motionInput.x);
+        anim.SetFloat("MotionY", input.motionInput.y);
     }
 
     public override void transitionCheck()
