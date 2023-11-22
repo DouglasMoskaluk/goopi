@@ -27,8 +27,9 @@ public class Bullet : MonoBehaviour
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
         //Debug.Log("Player is: " + plr.name);
         RaycastHit hit;
-        Debug.DrawRay(transform.position - rb.velocity.normalized, other.transform.position - transform.position + (rb.velocity * Time.deltaTime * 2f), Color.yellow, 1);
-        if (Physics.Raycast(transform.position - rb.velocity.normalized, other.transform.position - transform.position + (rb.velocity * Time.deltaTime * 2f), out hit, (other.transform.position - transform.position + (rb.velocity * Time.deltaTime * 2f)).magnitude))
+
+        Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 1);
+        if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
         {
             //Debug.Log("Trigger Enter");
             collide(hit);
@@ -49,7 +50,7 @@ public class Bullet : MonoBehaviour
     {
         RaycastHit hit;
 
-        //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
+        Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         {
             Debug.Log("Late Update hit");
