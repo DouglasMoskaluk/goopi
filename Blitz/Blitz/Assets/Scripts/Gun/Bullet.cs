@@ -70,15 +70,15 @@ public class Bullet : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Map"))
         {
-            Bounce(hit);
             onMapHitEffect();
+            Bounce(hit);
         }
     }
 
 
     private void onMapHitEffect()
     {
-        if (bulletVars.spawnOnContact != null)
+        if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
         {
             Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
