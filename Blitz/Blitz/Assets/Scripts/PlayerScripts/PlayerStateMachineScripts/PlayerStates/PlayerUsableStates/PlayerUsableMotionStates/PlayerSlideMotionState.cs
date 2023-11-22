@@ -40,18 +40,25 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     {
         base.transitionCheck();
 
-        if (!controller.isGrounded)
-        {
-            FSM.transitionState(PlayerMotionStates.Fall);
-        }
-        else if (input.jumpPressed)
+        //if (!controller.isGrounded)
+        //{
+        //    FSM.transitionState(PlayerMotionStates.Fall);
+        //}
+        if (input.jumpPressed)
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
         else if (!input.toggleSlide || speedModifier * stateVariableHolder.SLIDE_SPEED <= stateVariableHolder.WALK_SPEED)
         {
-
-            FSM.transitionState(PlayerMotionStates.Walk);
+            if (!controller.isGrounded)
+            {
+                FSM.transitionState(PlayerMotionStates.Walk);
+            }
+            else
+            {
+                FSM.transitionState(PlayerMotionStates.Fall);
+            }
+            
         }
 
     }
