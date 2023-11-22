@@ -8,8 +8,8 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     int myBounces = 0;
     bool collideThisFrame = false;
-    float spawnTime = 0.1f;
-    float bulletIFrames = 0.1f;
+    float spawnTime = 0.05f;
+    float bulletIFrames = 0.05f;
 
 
     /// <summary>
@@ -76,6 +76,7 @@ public class Bullet : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Map"))
             {
+                spawnTime = bulletIFrames;
                 onMapHitEffect();
                 Bounce(hit);
             }
@@ -87,13 +88,20 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
         {
-            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            GameObject go = Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+            if (go.GetComponent<GoopPuddle>() != null)
+            {
+                go.GetComponent<GoopPuddle>().owner = bulletVars.owner;
+            }
         }
     }
 
     private void onHitPlayerEffect(PlayerBodyFSM plr)
     {
-
+        if (bulletVars.spawnOnContact != null && !bulletVars.spawnOnContact && bulletVars.bounces - myBounces < 0)
+        {
+            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+        }
     }
 
 
