@@ -11,11 +11,15 @@ public class PlayerIdleActionState : PlayerActionState
     public override void stateUpdate()
     {
         base.stateUpdate();
-        if (input.shootPressed) playerGun.shoot(cam);
-        else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
+        if (playerGun != null)
         {
-            playerGun.reload();
+            if (input.shootPressed) playerGun.shoot(cam);
+            else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
+            {
+                playerGun.reload();
+            }
         }
+        
     }
 
     public override void onStateExit()

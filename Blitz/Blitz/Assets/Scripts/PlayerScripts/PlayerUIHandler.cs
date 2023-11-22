@@ -63,7 +63,7 @@ public class PlayerUIHandler : MonoBehaviour
     {
         grenadeCount.text = grenade.HeldGrenadeCount.ToString();
         health.text = player.Health.ToString();
-        ammoCount.text = gun.Ammo.ToString();
+        if (gun != null) ammoCount.text = gun.Ammo.ToString();
         killCount.text = RoundManager.instance.GetKillCount(playerID).ToString();
         UpdateRoundTimer();
     }
