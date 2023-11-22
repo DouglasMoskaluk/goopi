@@ -88,7 +88,11 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
         {
-            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+            GameObject go = Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+            if (go.GetComponent<GoopPuddle>() != null)
+            {
+                go.GetComponent<GoopPuddle>().owner = bulletVars.owner;
+            }
         }
     }
 
