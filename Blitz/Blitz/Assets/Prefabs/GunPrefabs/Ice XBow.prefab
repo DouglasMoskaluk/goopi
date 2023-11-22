@@ -56,6 +56,9 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
+    spawnOnContact: {fileID: 0}
+    forceApplied: {x: 0, y: 0, z: 0}
+    spawnEveryContact: 1
   gunVars:
     ammo: 3c0000003c000000
     reloadTime: 1.75
@@ -319,6 +322,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -2573818245377611819, guid: f35e5d23348889642ad49bcfced9a8a2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce990e721c0d70e4dab6abb81d5f6910, type: 2}
     - target: {fileID: 919132149155446097, guid: f35e5d23348889642ad49bcfced9a8a2,
         type: 3}
       propertyPath: m_Name
