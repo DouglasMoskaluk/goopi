@@ -22,6 +22,6 @@ public class GunManager : MonoBehaviour
     {
         Transform plr = SplitScreenManager.instance.GetPlayers()[Player].transform;
         GameObject gun = Instantiate(guns[gunUsed], new Vector3(0.3f, 1, 0), plr.rotation, plr.GetChild(1));
-        plr.GetComponent<PlayerBodyFSM>().playerGun = gun.GetComponent<Gun>();
+        plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
     }
 }
