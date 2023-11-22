@@ -7,7 +7,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        anim.CrossFade("Jump", 0.2f, 0);
+        anim.CrossFadeInFixedTime("Jump", 0.1f, 0);
     }
 
     public override void onStateExit()
