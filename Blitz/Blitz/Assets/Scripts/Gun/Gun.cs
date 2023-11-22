@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
 
     [HideInInspector]
     public int Ammo { get { return gunVars.ammo[0]; } }
+    public int MaxAmmo { get { return gunVars.ammo[1]; } }//added by jordan
 
 
     /// <summary>
