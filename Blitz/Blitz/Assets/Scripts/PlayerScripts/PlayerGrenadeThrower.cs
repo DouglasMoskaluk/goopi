@@ -45,10 +45,12 @@ public class PlayerGrenadeThrower : MonoBehaviour
         if (chargeModifier >= dropVsThrowThreshold)
         {
             grenade.setGrenadeType(GrenadeType.Thrown);
+            grenade.setDirectionAndSpeed(dir, throwSpeed * chargeModifier);
         }
         else
         {
             grenade.setGrenadeType(GrenadeType.Dropped);
+            grenade.setDirectionAndSpeed(Vector3.down, 5f);
         }
         
         heldGrenadeCount--;
