@@ -3,6 +3,11 @@
 /// </summary>
 public class PlayerFallMotionState : PlayerBasicMotionState
 {
+    public override void onStateEnter()
+    {
+        base.onStateEnter();
+        anim.CrossFade("Jump", 0.2f, 0);
+    }
 
     public override void stateUpdate()
     {

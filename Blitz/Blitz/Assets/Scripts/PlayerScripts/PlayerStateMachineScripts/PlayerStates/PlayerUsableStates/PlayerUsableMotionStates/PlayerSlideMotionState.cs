@@ -12,8 +12,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     {
         base.onStateEnter();
         startSlideDireciton = playerBody.forward;
-
-
+        anim.CrossFade("Slide", 0.2f, 0);
     }
 
     public override void onStateExit()

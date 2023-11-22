@@ -7,9 +7,14 @@ using UnityEngine;
 public class PlayerWalkMotionState : PlayerBasicMotionState
 {
 
+    public override void onStateEnter()
+    {
+        base.onStateEnter();
+        anim.CrossFade("Idle", 0.2f, 0);
+    }
+
     public override void stateUpdate()
     {
-        
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
     }

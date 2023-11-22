@@ -25,7 +25,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     #region Private Variables
     private CharacterController charController;//ref to character controller
-    private Animator anim;// ref to animator
+    [SerializeField] private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
     [SerializeField] private Transform cam;// ref to the camera rotation transform
     [SerializeField] private Transform playerBody;

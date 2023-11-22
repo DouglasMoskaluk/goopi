@@ -7,7 +7,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        FSM.logMessage("inside knock back state");
+        anim.CrossFade("Jump", 0.2f, 0);
     }
 
     public override void onStateExit()
