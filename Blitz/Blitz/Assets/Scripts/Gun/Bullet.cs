@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     int myBounces = 0;
     bool collideThisFrame = false;
     float spawnTime = 0.1f;
+    float bulletIFrames = 0.1f;
 
 
     /// <summary>
@@ -66,11 +67,12 @@ public class Bullet : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
+                spawnTime = bulletIFrames;
                 GameObject plr = hit.collider.gameObject;
                 if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
                 plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-                Bounce(hit);
                 onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
+                Bounce(hit);
             }
             else if (hit.collider.CompareTag("Map"))
             {
@@ -101,8 +103,14 @@ public class Bullet : MonoBehaviour
         myBounces++;
         if (bulletVars.bounces - myBounces < 0)
         {
-            Destroy(gameObject);
+            removeBullet(0);
         }
+    }
+
+    internal IEnumerator removeBullet(float lifeTime)
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 
 
@@ -119,7 +127,7 @@ public class Bullet : MonoBehaviour
         }
 
         bulletVars = bv;
-        Destroy(gameObject, bulletVars.lifeTime);
+        removeBullet(bulletVars.lifeTime);
 
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(cam.position, cam.forward, out hitInfo, 50f);
