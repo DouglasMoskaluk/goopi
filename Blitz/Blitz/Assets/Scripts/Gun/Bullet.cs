@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     int myBounces = 0;
     bool collideThisFrame = false;
-    float spawnTime = 0.3f;
+    float spawnTime = 0.1f;
 
 
     /// <summary>

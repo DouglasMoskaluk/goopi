@@ -314,6 +314,15 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets references for the gun
+    /// </summary>
+    public void assignGun(GameObject myGun)
+    {
+        playerGun = myGun.GetComponent<Gun>();
+        playerUI.gun = playerGun;
+    }
+
+    /// <summary>
     /// returns the knock back vector of this FSM body
     /// </summary>
     /// <returns></returns>

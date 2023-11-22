@@ -24,7 +24,7 @@ public class PlayerUIHandler : MonoBehaviour
     private PlayerBodyFSM player;
 
     [SerializeField]
-    private Gun gun;
+    internal Gun gun;
 
     [SerializeField]
     private GameObject hitMarker;
