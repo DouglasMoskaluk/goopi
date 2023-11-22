@@ -25,7 +25,9 @@ public class SplitScreenManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
- 
+
+        //GunManager.instance.assignGun(players.Count - 1);
+
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
 
         if (players.Count >= 4)
@@ -60,5 +62,10 @@ public class SplitScreenManager : MonoBehaviour
     public List<PlayerInput> GetPlayers()
     {
         return players;
+    }
+
+    public PlayerBodyFSM GetPlayers(int i)
+    {
+        return players[i].GetComponent<PlayerBodyFSM>();
     }
 }
