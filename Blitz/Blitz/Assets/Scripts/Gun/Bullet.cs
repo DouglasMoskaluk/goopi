@@ -76,6 +76,7 @@ public class Bullet : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Map"))
             {
+                spawnTime = bulletIFrames;
                 onMapHitEffect();
                 Bounce(hit);
             }
@@ -87,13 +88,16 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
         {
-            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
         }
     }
 
     private void onHitPlayerEffect(PlayerBodyFSM plr)
     {
-
+        if (bulletVars.spawnOnContact != null && !bulletVars.spawnOnContact && bulletVars.bounces - myBounces < 0)
+        {
+            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+        }
     }
 
 
