@@ -114,6 +114,27 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(false);
     }
 
+    internal void Dead()
+    {
+        lowHealthUI.SetActive(false);
+        damagedUI.SetActive(false);
+        killMarker.SetActive(false);
+        hitMarker.SetActive(false);
+        ammoCount.gameObject.SetActive(false);
+        grenadeCount.gameObject.SetActive(false);
+        killCount.gameObject.SetActive(false);
+        health.gameObject.SetActive(false);
+
+
+    }
+
+    internal void Alive()
+    {
+        ammoCount.gameObject.SetActive(true);
+        grenadeCount.gameObject.SetActive(true);
+        killCount.gameObject.SetActive(true);
+        health.gameObject.SetActive(true);
+    }
     IEnumerator ShowKillMarker()
     {
         killMarker.SetActive(true);

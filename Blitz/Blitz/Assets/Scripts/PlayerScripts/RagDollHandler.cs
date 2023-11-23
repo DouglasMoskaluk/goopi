@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RagDollHandler : MonoBehaviour
 {
@@ -9,11 +10,19 @@ public class RagDollHandler : MonoBehaviour
 
     private Animator anim;
 
+    private CinemachineFreeLook freeLook;
+
+    [SerializeField]
+    private Transform ragDollRotatePoint;
+
+    [SerializeField]
+    private Transform gameplayRotatePoint;
     //public bool testRagdoll = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        freeLook = GetComponentInChildren<CinemachineFreeLook>();
         colliders = GetComponentsInChildren<Collider>();
         rigidBodies = GetComponentsInChildren<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
@@ -23,7 +32,7 @@ public class RagDollHandler : MonoBehaviour
 
     // Update is called once per frame
 
-    private void DisableRagdoll()
+    public void DisableRagdoll()
     {
         foreach(var rigidBody in rigidBodies)
         {
@@ -35,9 +44,13 @@ public class RagDollHandler : MonoBehaviour
         }
         colliders[0].enabled = true;
         anim.enabled = true;
+
+        freeLook.m_Follow = gameplayRotatePoint;
+        freeLook.m_LookAt = gameplayRotatePoint;
+
     }
 
-    private void EnableRagdoll()
+    public void EnableRagdoll()
     {
         foreach(var collider in colliders)
         {
@@ -48,6 +61,10 @@ public class RagDollHandler : MonoBehaviour
             rigidBody.isKinematic = false;
         }
         anim.enabled = false;
+
+        freeLook.m_Follow = ragDollRotatePoint;
+        freeLook.m_LookAt = ragDollRotatePoint;
+
     }
 
     void Update()
