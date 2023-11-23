@@ -98,6 +98,7 @@ public class PlayerUIHandler : MonoBehaviour
     internal void StopDamagedCoroutine()
     {
         StopAllCoroutines();
+
     }
 
     internal void ShowLowHealth()
@@ -109,6 +110,8 @@ public class PlayerUIHandler : MonoBehaviour
     {
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
+        killMarker.SetActive(false);
+        hitMarker.SetActive(false);
     }
 
     IEnumerator ShowKillMarker()

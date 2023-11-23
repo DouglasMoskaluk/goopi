@@ -57,5 +57,9 @@ public class RagDollHandler : MonoBehaviour
         {
             EnableRagdoll();
         }
+        else if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            DisableRagdoll();
+        }
     }
 }
