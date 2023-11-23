@@ -55,7 +55,7 @@ public class GunManager : MonoBehaviour
         Transform plr = SplitScreenManager.instance.GetPlayers()[Player].transform;
         PlayerBodyFSM FSM = plr.GetComponent<PlayerBodyFSM>();
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
-        GameObject gun = Instantiate(guns[gunUsed], plr.transform.position + new Vector3(0, 1, 0), FSM.playerBody.rotation, plr.GetChild(1));
+        GameObject gun = Instantiate(guns[gunUsed], plr.transform.position + new Vector3(0.35f, 1, 0), FSM.playerBody.rotation, plr.GetChild(1));
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
     }
