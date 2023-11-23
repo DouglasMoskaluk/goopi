@@ -12,7 +12,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int[] playerKillCounts = new int[4];
     [SerializeField] private float endRoundTextShownLength = 4f;
 
-    public bool shouldCountDown = true;
+    [HideInInspector] public bool shouldCountDown = true;
 
     private void Awake()
     {
