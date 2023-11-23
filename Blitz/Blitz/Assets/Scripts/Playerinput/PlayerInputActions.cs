@@ -116,15 +116,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeGuns"",
-                    ""type"": ""Button"",
-                    ""id"": ""8b45c696-8a6c-415a-9a85-c109e0e6c3ca"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -523,17 +514,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bcb664fa-3baf-4828-8cc4-4d44b40b6041"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeGuns"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -552,7 +532,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
         m_Character_ChangeSensitivity = m_Character.FindAction("ChangeSensitivity", throwIfNotFound: true);
         m_Character_Slide = m_Character.FindAction("Slide", throwIfNotFound: true);
-        m_Character_ChangeGuns = m_Character.FindAction("ChangeGuns", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -624,7 +603,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Shoot;
     private readonly InputAction m_Character_ChangeSensitivity;
     private readonly InputAction m_Character_Slide;
-    private readonly InputAction m_Character_ChangeGuns;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -639,7 +617,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputAction @ChangeSensitivity => m_Wrapper.m_Character_ChangeSensitivity;
         public InputAction @Slide => m_Wrapper.m_Character_Slide;
-        public InputAction @ChangeGuns => m_Wrapper.m_Character_ChangeGuns;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -679,9 +656,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started += instance.OnSlide;
             @Slide.performed += instance.OnSlide;
             @Slide.canceled += instance.OnSlide;
-            @ChangeGuns.started += instance.OnChangeGuns;
-            @ChangeGuns.performed += instance.OnChangeGuns;
-            @ChangeGuns.canceled += instance.OnChangeGuns;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -716,9 +690,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started -= instance.OnSlide;
             @Slide.performed -= instance.OnSlide;
             @Slide.canceled -= instance.OnSlide;
-            @ChangeGuns.started -= instance.OnChangeGuns;
-            @ChangeGuns.performed -= instance.OnChangeGuns;
-            @ChangeGuns.canceled -= instance.OnChangeGuns;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -748,6 +719,5 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnChangeSensitivity(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
-        void OnChangeGuns(InputAction.CallbackContext context);
     }
 }

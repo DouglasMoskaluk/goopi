@@ -25,6 +25,14 @@ public class GunManager : MonoBehaviour
         changeGuns();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            nextGun();
+        }
+    }
+
     public void destroyParentedWorldObjects()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
@@ -38,7 +46,7 @@ public class GunManager : MonoBehaviour
         gunUsed = Random.Range(0, guns.Length - 1);
         for (int i=0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
         {
-            assignGun(gunUsed);
+            assignGun(i);
         }
     }
 
@@ -47,7 +55,7 @@ public class GunManager : MonoBehaviour
         Transform plr = SplitScreenManager.instance.GetPlayers()[Player].transform;
         PlayerBodyFSM FSM = plr.GetComponent<PlayerBodyFSM>();
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
-        GameObject gun = Instantiate(guns[gunUsed], new Vector3(0.3f, 1, 0), FSM.playerBody.rotation, plr.GetChild(1));
+        GameObject gun = Instantiate(guns[gunUsed], plr.transform.position + new Vector3(0.3f, 1, 0), FSM.playerBody.rotation, plr.GetChild(1));
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
     }
