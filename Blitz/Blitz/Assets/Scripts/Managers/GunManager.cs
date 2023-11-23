@@ -41,4 +41,13 @@ public class GunManager : MonoBehaviour
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
     }
+
+    internal void nextGun()
+    {
+        gunUsed = (gunUsed++) % guns.Length;
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
+        {
+            assignGun(gunUsed);
+        }
+    }
 }

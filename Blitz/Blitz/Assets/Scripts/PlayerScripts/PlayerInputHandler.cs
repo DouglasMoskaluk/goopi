@@ -213,4 +213,11 @@ public class PlayerInputHandler : MonoBehaviour
         toggleSlide = false;
     }
 
+    public void changeGuns(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            GunManager.instance.nextGun();
+        }
+    }
 }
