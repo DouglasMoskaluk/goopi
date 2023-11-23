@@ -22,6 +22,7 @@ public class RespawnManager : MonoBehaviour
         {
             respawnLocations.Add(child);
         }
+        RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
     }
 
     /// <summary>
@@ -34,7 +35,7 @@ public class RespawnManager : MonoBehaviour
         return Random.Range(0, respawnLocations.Count);
     }
 
-    public void RespawnAllPlayers()
+    public void respawnAllPlayers()
     {
         int index = 0;
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())

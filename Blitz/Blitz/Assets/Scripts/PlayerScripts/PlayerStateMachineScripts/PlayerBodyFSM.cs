@@ -71,7 +71,16 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        
+        RoundManager.instance.onRoundReset.AddListener(resetFSM);
+    }
+
+    public void resetFSM()
+    {
+        resetHealth();
+        transitionState(PlayerMotionStates.Walk);
+        transitionState(PlayerActionStates.Idle);
+        knockBackVector = Vector3.zero;
+        if (playerGun != null) playerGun.instantReload();
     }
 
     /// <summary>
@@ -279,7 +288,7 @@ public class PlayerBodyFSM : MonoBehaviour
             //player gets kill marker
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
             //update kill count
-            RoundManager.instance.UpdateKillCount(SplitScreenManager.instance.getPlayerID(Attacker));
+            RoundManager.instance.updateKillCount(SplitScreenManager.instance.getPlayerID(Attacker));
         }
         if(health <= 30)
         {

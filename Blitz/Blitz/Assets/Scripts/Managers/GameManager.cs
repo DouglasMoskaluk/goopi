@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        RoundManager.instance.StartRound();
+        RoundManager.instance.startRound();
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="playerWonID"></param>
     /// <param name="kills"></param>
-    public void RoundWon(List<int> playerWonID, int[] kills)
+    public void roundWon(List<int> playerWonID, int[] kills)
     {
         //add which players won the round to the rounds won tacker
         foreach (int i in playerWonID)
@@ -38,13 +38,13 @@ public class GameManager : MonoBehaviour
         UpdateTotalKills(kills);
 
         //determine if another round should be played, or if should end the game
-        if (RoundManager.instance.GetRoundNum() >= maxRoundsPlayed)
+        if (RoundManager.instance.getRoundNum() >= maxRoundsPlayed)
         {
             StartCoroutine(EndGame());//end the game
         }
         else
         {
-            RoundManager.instance.StartRound();//start another round
+            RoundManager.instance.startRound();//start another round
         }
     }
 

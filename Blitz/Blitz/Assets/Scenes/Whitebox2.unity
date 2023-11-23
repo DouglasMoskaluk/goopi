@@ -769,9 +769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439f92c7cf339bc4ea76e63c6186d51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRoundReset:
+    m_PersistentCalls:
+      m_Calls: []
   roundNum: 0
   elapsedTime: 0
-  roundLength: 90
+  roundLength: 20
   playerKillCounts: 00000000000000000000000000000000
   endRoundTextShownLength: 4
   shouldCountDown: 1

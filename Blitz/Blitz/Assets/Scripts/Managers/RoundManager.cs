@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager instance;
+
+    public UnityEvent onRoundReset;
 
     [SerializeField] private int roundNum = 0;
     [SerializeField] private float elapsedTime = 0.0f;
@@ -19,9 +22,11 @@ public class RoundManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public void StartRound()
+    public void startRound()
     {
-        RespawnManager.instance.RespawnAllPlayers();
+
+        onRoundReset.Invoke();
+        //RespawnManager.instance.RespawnAllPlayers();
 
         for (int i = 0; i < playerKillCounts.Length; i++)
         {
@@ -36,10 +41,10 @@ public class RoundManager : MonoBehaviour
     /// procedure for what happens when a round ends/is won
     /// </summary>
     /// <returns></returns>
-    public IEnumerator EndRound()
+    public IEnumerator endRound()
     {
         //figure out who won
-        List<int> winners = SelectRoundWinner();//create list of round winners
+        List<int> winners = selectRoundWinner();//create list of round winners
 
         //create text string to say who won
         string winnerString = "Winners are Players: ";
@@ -52,7 +57,7 @@ public class RoundManager : MonoBehaviour
         yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayRoundEndUI(endRoundTextShownLength, winnerString));
 
         //cascade round information up to the game manager and let it decide what should be done next
-        GameManager.instance.RoundWon(winners, playerKillCounts);
+        GameManager.instance.roundWon(winners, playerKillCounts);
     }
 
     private void LateUpdate()
@@ -62,7 +67,7 @@ public class RoundManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= roundLength)
             {
-                StartCoroutine(EndRound());
+                StartCoroutine(endRound());
                 elapsedTime = 0f;
                 shouldCountDown = false;
             }
@@ -70,23 +75,23 @@ public class RoundManager : MonoBehaviour
         
     }
 
-    public float GetRoundTime()
+    public float getRoundTime()
     {
         return roundLength - elapsedTime;
     }
 
-    public void UpdateKillCount(int playerNum)
+    public void updateKillCount(int playerNum)
     {
         playerKillCounts[playerNum]++;
         
     }
 
-    public int GetKillCount(int playerNum)
+    public int getKillCount(int playerNum)
     {
         return playerKillCounts[playerNum];
     }
 
-    private List<int> SelectRoundWinner()
+    private List<int> selectRoundWinner()
     {
         List<int> result = new List<int>();
 
@@ -107,7 +112,7 @@ public class RoundManager : MonoBehaviour
         return result;
     }
 
-    public int GetRoundNum()
+    public int getRoundNum()
     {
         return roundNum;
     }
