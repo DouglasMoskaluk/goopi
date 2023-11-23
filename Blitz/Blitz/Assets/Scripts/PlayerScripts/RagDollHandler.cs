@@ -7,10 +7,9 @@ public class RagDollHandler : MonoBehaviour
     private Rigidbody[] rigidBodies;
     private Collider[] colliders;
 
-    [SerializeField]
     private Animator anim;
 
-    public bool testRagdoll = false;
+    //public bool testRagdoll = false;
 
     // Start is called before the first frame update
     void Start()
