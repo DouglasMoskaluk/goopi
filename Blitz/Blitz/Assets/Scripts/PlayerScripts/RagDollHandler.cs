@@ -62,7 +62,7 @@ public class RagDollHandler : MonoBehaviour
         }
         colliders[0].enabled = true;
         anim.enabled = true;
-        fsm.enabled = true;
+        //fsm.enabled = true;
         //gunObject.SetActive(true);
 
         freeLook.m_Follow = gameplayRotatePoint;
@@ -81,7 +81,7 @@ public class RagDollHandler : MonoBehaviour
             rigidBody.isKinematic = false;
         }
         anim.enabled = false;
-        fsm.enabled = false;
+        //fsm.enabled = false;
         //gunObject.SetActive(false);
 
         freeLook.m_Follow = ragDollRotatePoint;
@@ -99,7 +99,10 @@ public class RagDollHandler : MonoBehaviour
         EnableRagdoll();
         yield return new WaitForSeconds(0.5f);
         DisableRagdoll();
+        //fsm.enabled = true;
+        //transform.position = RespawnManager.instance.getRespawnLocation().position;
         fsm.ragdollDeathEnd();
+        //transform.position = RespawnManager.instance.getRespawnLocation().position;
         yield return null;
     }
 

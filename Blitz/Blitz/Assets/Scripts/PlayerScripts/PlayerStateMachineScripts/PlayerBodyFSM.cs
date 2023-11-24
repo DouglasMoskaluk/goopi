@@ -44,6 +44,8 @@ public class PlayerBodyFSM : MonoBehaviour
     private Vector3 knockBackVector = Vector3.zero;
 
     private float[] damagedByPlayer;
+
+    private bool deathCheck = false;
     //private 
     #endregion
 
@@ -305,19 +307,44 @@ public class PlayerBodyFSM : MonoBehaviour
     private void death()
     {
 
-        ragdollDeathStart();
+        //ragdollDeathStart();
+        //if (!deathCheck)
+        //{
+        //    deathCheck = true;
+        //    StartCoroutine("ragdollTest");
+        //}
 
-        //charController.enabled = false;
-        //Debug.Log("Player Died!");
+        charController.enabled = false;
+        Debug.Log("Player Died!");
+        transform.position = RespawnManager.instance.getRespawnLocation().position;
+        //Heal attackers
+        playerUI.StopDamagedCoroutine();
+        playerUI.HideLowHealth();
+        resetHealth();
+        charController.enabled = true;
+        grenadeThrower.setGrenades(4);
+        playerGun.instantReload();
+
+    }
+
+    IEnumerator ragdollTest()
+    {
+        charController.enabled = false;
+        Debug.Log("Player Died!");
+        //Heal attackers
+        ragdoll.EnableRagdoll();
+        playerUI.StopDamagedCoroutine();
+        playerUI.HideLowHealth();
+        yield return new WaitForSeconds(1.0f);
+        ragdoll.DisableRagdoll();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
-        ////Heal attackers
-        //playerUI.StopDamagedCoroutine();
-        //playerUI.HideLowHealth();
-        //resetHealth();
-        //charController.enabled = true;
-        //grenadeThrower.setGrenades(4);
-        //playerGun.instantReload();
-
+        resetHealth();
+        charController.enabled = true;
+        transform.position = RespawnManager.instance.getRespawnLocation().position;
+        grenadeThrower.setGrenades(4);
+        playerGun.instantReload();
+        deathCheck = false;
+        yield return null;
     }
 
     //STOP USING AFTER INDUSTRY SHOWCASE
@@ -334,7 +361,7 @@ public class PlayerBodyFSM : MonoBehaviour
     //STOP USING AFTER INDUSTRY SHOW
     public void ragdollDeathEnd()
     {
-        transform.position = RespawnManager.instance.getRespawnLocation().position;
+        //transform.position = RespawnManager.instance.getRespawnLocation().position;
 
         resetHealth();
         charController.enabled = true;
