@@ -27,6 +27,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private CharacterController charController;//ref to character controller
     [SerializeField] private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
+    private RagDollHandler ragdoll;// ref to ragdoll handler
     [SerializeField] private Transform cam;// ref to the camera rotation transform
     [SerializeField] internal Transform playerBody;
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
@@ -53,6 +54,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        ragdoll = GetComponent<RagDollHandler>();
         input = GetComponent<PlayerInputHandler>();
         charController = GetComponent<CharacterController>();
         grenadeThrower = GetComponent<PlayerGrenadeThrower>();
@@ -302,12 +304,38 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void death()
     {
+
+        ragdollDeathStart();
+
+        //charController.enabled = false;
+        //Debug.Log("Player Died!");
+        //transform.position = RespawnManager.instance.getRespawnLocation().position;
+        ////Heal attackers
+        //playerUI.StopDamagedCoroutine();
+        //playerUI.HideLowHealth();
+        //resetHealth();
+        //charController.enabled = true;
+        //grenadeThrower.setGrenades(4);
+        //playerGun.instantReload();
+
+    }
+
+    //STOP USING AFTER INDUSTRY SHOWCASE
+    private void ragdollDeathStart()
+    {
         charController.enabled = false;
         Debug.Log("Player Died!");
-        transform.position = RespawnManager.instance.getRespawnLocation().position;
         //Heal attackers
         playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
+        ragdoll.RagDollDeath();
+
+    }
+    //STOP USING AFTER INDUSTRY SHOW
+    public void ragdollDeathEnd()
+    {
+        transform.position = RespawnManager.instance.getRespawnLocation().position;
+
         resetHealth();
         charController.enabled = true;
         grenadeThrower.setGrenades(4);

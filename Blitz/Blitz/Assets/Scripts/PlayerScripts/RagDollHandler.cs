@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class RagDollHandler : MonoBehaviour
 {
+
     private Rigidbody[] rigidBodies;
     private Collider[] colliders;
 
@@ -19,13 +20,30 @@ public class RagDollHandler : MonoBehaviour
     private Transform gameplayRotatePoint;
     //public bool testRagdoll = false;
 
+    [SerializeField]
+    private GameObject[] testObjectArray;
+
+    private PlayerBodyFSM fsm;
+
+    [SerializeField]
+    private GameObject gunObject;
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         freeLook = GetComponentInChildren<CinemachineFreeLook>();
         colliders = GetComponentsInChildren<Collider>();
         rigidBodies = GetComponentsInChildren<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        fsm = GetComponentInChildren<PlayerBodyFSM>();
+
+        foreach(var GameObject in testObjectArray)
+        {
+            GameObject.layer = gameObject.layer;
+        }
+
 
         DisableRagdoll();
     }
@@ -44,6 +62,8 @@ public class RagDollHandler : MonoBehaviour
         }
         colliders[0].enabled = true;
         anim.enabled = true;
+        fsm.enabled = true;
+        //gunObject.SetActive(true);
 
         freeLook.m_Follow = gameplayRotatePoint;
         freeLook.m_LookAt = gameplayRotatePoint;
@@ -61,10 +81,26 @@ public class RagDollHandler : MonoBehaviour
             rigidBody.isKinematic = false;
         }
         anim.enabled = false;
+        fsm.enabled = false;
+        //gunObject.SetActive(false);
 
         freeLook.m_Follow = ragDollRotatePoint;
         freeLook.m_LookAt = ragDollRotatePoint;
 
+    }
+
+    public void RagDollDeath()
+    {
+        StartCoroutine("RagDollDeathCoRo");
+    }
+
+    IEnumerator RagDollDeathCoRo()
+    {
+        EnableRagdoll();
+        yield return new WaitForSeconds(0.5f);
+        DisableRagdoll();
+        fsm.ragdollDeathEnd();
+        yield return null;
     }
 
     void Update()

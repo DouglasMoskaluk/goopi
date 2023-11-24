@@ -44,6 +44,10 @@ public class SplitScreenManager : MonoBehaviour
 
         player.transform.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         player.transform.gameObject.layer = layerToAdd;
+        foreach (Transform child in player.transform)
+        {
+            child.gameObject.layer = layerToAdd;
+        }
         //add the layer
         player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << layerToAdd;
 
