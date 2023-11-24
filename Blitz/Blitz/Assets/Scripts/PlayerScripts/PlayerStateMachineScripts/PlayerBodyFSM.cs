@@ -393,6 +393,8 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         playerGun = myGun.GetComponent<Gun>();
         playerUI.gun = playerGun;
+        if (currentActionState != null) currentActionState.initState(getFSMInfo()); 
+        if (currentMotionState != null) currentMotionState.initState(getFSMInfo());
     }
 
     /// <summary>

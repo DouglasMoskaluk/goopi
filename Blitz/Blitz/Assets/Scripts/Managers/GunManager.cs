@@ -43,7 +43,7 @@ public class GunManager : MonoBehaviour
 
     internal void changeGuns()
     {
-        gunUsed = Random.Range(0, guns.Length - 1);
+        gunUsed = Random.Range(0, guns.Length);
         for (int i=0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
         {
             assignGun(i);

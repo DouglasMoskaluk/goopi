@@ -26,7 +26,6 @@ public class RoundManager : MonoBehaviour
     {
 
         onRoundReset.Invoke();
-        //RespawnManager.instance.RespawnAllPlayers();
 
         for (int i = 0; i < playerKillCounts.Length; i++)
         {

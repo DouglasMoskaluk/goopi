@@ -1,3 +1,4 @@
+using System.Diagnostics;
 /// <summary>
 /// 
 /// </summary>
@@ -13,7 +14,11 @@ public class PlayerIdleActionState : PlayerActionState
         base.stateUpdate();
         if (playerGun != null)
         {
-            if (input.shootPressed) playerGun.shoot(cam);
+            if (input.shootPressed)
+            {
+                FSM.logMessage("Tried to shoot");
+                playerGun.shoot(cam);
+            }
             else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
             {
                 playerGun.reload();
