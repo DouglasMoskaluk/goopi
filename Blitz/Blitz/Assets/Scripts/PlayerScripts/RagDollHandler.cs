@@ -39,7 +39,7 @@ public class RagDollHandler : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         fsm = GetComponentInChildren<PlayerBodyFSM>();
 
-        foreach(var GameObject in testObjectArray)
+        foreach (var GameObject in testObjectArray)
         {
             GameObject.layer = gameObject.layer;
         }
@@ -52,7 +52,7 @@ public class RagDollHandler : MonoBehaviour
 
     public void DisableRagdoll()
     {
-        foreach(var rigidBody in rigidBodies)
+        foreach (var rigidBody in rigidBodies)
         {
             rigidBody.isKinematic = true;
         }
@@ -72,7 +72,7 @@ public class RagDollHandler : MonoBehaviour
 
     public void EnableRagdoll()
     {
-        foreach(var collider in colliders)
+        foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
@@ -106,15 +106,6 @@ public class RagDollHandler : MonoBehaviour
         yield return null;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            EnableRagdoll();
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            DisableRagdoll();
-        }
-    }
 }
+
+

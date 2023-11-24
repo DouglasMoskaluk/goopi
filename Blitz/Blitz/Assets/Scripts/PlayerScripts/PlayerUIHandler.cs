@@ -128,7 +128,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     internal void Dead()
     {
-        lowHealthUI.SetActive(false);
+        lowHealthUI.SetActive(true);
         damagedUI.SetActive(false);
         killMarker.SetActive(false);
         hitMarker.SetActive(false);
@@ -142,6 +142,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     internal void Alive()
     {
+        lowHealthUI.SetActive(false);
         ammoCount.gameObject.SetActive(true);
         grenadeCount.gameObject.SetActive(true);
         killCount.gameObject.SetActive(true);

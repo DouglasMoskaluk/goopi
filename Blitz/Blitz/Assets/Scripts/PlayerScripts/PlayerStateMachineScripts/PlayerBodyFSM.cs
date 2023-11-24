@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 /// <summary>
 /// 
 /// </summary>
@@ -308,22 +309,22 @@ public class PlayerBodyFSM : MonoBehaviour
     {
 
         //ragdollDeathStart();
-        //if (!deathCheck)
-        //{
-        //    deathCheck = true;
-        //    StartCoroutine("ragdollTest");
-        //}
+        if (!deathCheck)
+        {
+            deathCheck = true;
+            StartCoroutine("ragdollTest");
+        }
 
-        charController.enabled = false;
-        Debug.Log("Player Died!");
-        transform.position = RespawnManager.instance.getRespawnLocation().position;
-        //Heal attackers
-        playerUI.StopDamagedCoroutine();
-        playerUI.HideLowHealth();
-        resetHealth();
-        charController.enabled = true;
-        grenadeThrower.setGrenades(4);
-        playerGun.instantReload();
+        //charController.enabled = false;
+        //Debug.Log("Player Died!");
+        //transform.position = RespawnManager.instance.getRespawnLocation().position;
+        ////Heal attackers
+        //playerUI.StopDamagedCoroutine();
+        //playerUI.HideLowHealth();
+        //resetHealth();
+        //charController.enabled = true;
+        //grenadeThrower.setGrenades(4);
+        //playerGun.instantReload();
 
     }
 
@@ -332,18 +333,26 @@ public class PlayerBodyFSM : MonoBehaviour
         charController.enabled = false;
         Debug.Log("Player Died!");
         //Heal attackers
-        ragdoll.EnableRagdoll();
+        resetHealth();
         playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
+        playerUI.Dead();
+        ragdoll.EnableRagdoll();
         yield return new WaitForSeconds(1.0f);
         ragdoll.DisableRagdoll();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
-        resetHealth();
+        Transform newPos = RespawnManager.instance.getRespawnLocation();
+        float dist = Vector3.Distance(transform.position, newPos.position);
+        transform.position = newPos.position;
+        Physics.SyncTransforms();
+
+        //resetHealth();
+        playerUI.Alive();
         charController.enabled = true;
-        transform.position = RespawnManager.instance.getRespawnLocation().position;
         grenadeThrower.setGrenades(4);
         playerGun.instantReload();
         deathCheck = false;
+
         yield return null;
     }
 
