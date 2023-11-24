@@ -64,7 +64,7 @@ public class GunManager : MonoBehaviour
 
     internal void nextGun()
     {
-        gunUsed = (gunUsed++) % guns.Length;
+        gunUsed = (gunUsed+1) % guns.Length;
         for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
         {
             assignGun(i);
