@@ -32,8 +32,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
 
         slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, stateVariableHolder.SLIDE_SPEED * speedModifier, stateVariableHolder.GRAVITY);
         elapsedTime += Time.deltaTime;
-        speedModifier = 1 - (elapsedTime / stateVariableHolder.timeToSlow);
-        speedModifier = Mathf.Clamp01(speedModifier);
+        speedModifier = Mathf.MoveTowards(speedModifier, 0, stateVariableHolder.slideMoveTowardsValue * Time.deltaTime);
     }
 
     public override void transitionCheck()
@@ -48,7 +47,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (!input.toggleSlide || speedModifier * stateVariableHolder.SLIDE_SPEED <= stateVariableHolder.WALK_SPEED)
+        else if (!input.toggleSlide || speedModifier * stateVariableHolder.SLIDE_SPEED <= 12)//stateVariableHolder.WALK_SPEED
         {
             if (!controller.isGrounded)
             {
