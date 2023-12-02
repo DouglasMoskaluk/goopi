@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.Animations;
+using UnityEngine.Animations.Rigging;
 /// <summary>
 /// 
 /// </summary>
@@ -35,6 +37,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private Transform throwFrom;
     private FSMVariableHolder variableHolder;
     [SerializeField] private PlayerRigHolder rigHolder;
+    [SerializeField] private RigBuilder rigBuilder;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -409,6 +412,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="gunPrefab"></param>
     private void setUpGunRig(GameObject gunPrefab)
     {
+        rigBuilder.enabled = false;
         rigHolder.leftArmIKTarget = gunPrefab.transform.Find("LeftTarget");
         rigHolder.leftArmIKHint = gunPrefab.transform.Find("LeftHint");
         rigHolder.leftArmConstraint.data.target = rigHolder.leftArmIKTarget;
@@ -418,7 +422,7 @@ public class PlayerBodyFSM : MonoBehaviour
         rigHolder.rightArmIKHint = gunPrefab.transform.Find("RightHint");
         rigHolder.rightArmConstraint.data.target = rigHolder.rightArmIKTarget;
         rigHolder.rightArmConstraint.data.hint = rigHolder.rightArmIKHint;
-
+        rigBuilder.enabled = true;
     }
 
     /// <summary>
