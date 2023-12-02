@@ -38,7 +38,6 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
-    //probably some type of gun reference
 
     private PlayerMotionState currentMotionState;// the players current motion state
     private PlayerActionState currentActionState;// the players current action state
@@ -50,7 +49,6 @@ public class PlayerBodyFSM : MonoBehaviour
     private bool deathCheck = false;
     //private 
     #endregion
-
 
     /// <summary>
     /// standard unity awake
@@ -275,7 +273,6 @@ public class PlayerBodyFSM : MonoBehaviour
         if (health < 0) death();
     }
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -307,7 +304,6 @@ public class PlayerBodyFSM : MonoBehaviour
             playerUI.ShowLowHealth();
         }
     }
-
 
     /// <summary>
     /// Player dies
@@ -404,6 +400,25 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.gun = playerGun;
         if (currentActionState != null) currentActionState.initState(getFSMInfo()); 
         if (currentMotionState != null) currentMotionState.initState(getFSMInfo());
+        setUpGunRig(myGun);
+    }
+
+    /// <summary>
+    /// retargets ik constraints to proper positions and rotations for new gun gunPrefab
+    /// </summary>
+    /// <param name="gunPrefab"></param>
+    private void setUpGunRig(GameObject gunPrefab)
+    {
+        rigHolder.leftArmIKTarget = gunPrefab.transform.Find("LeftTarget");
+        rigHolder.leftArmIKHint = gunPrefab.transform.Find("LeftHint");
+        rigHolder.leftArmConstraint.data.target = rigHolder.leftArmIKTarget;
+        rigHolder.leftArmConstraint.data.hint = rigHolder.leftArmIKHint;
+
+        rigHolder.rightArmIKTarget = gunPrefab.transform.Find("RightTarget");
+        rigHolder.rightArmIKHint = gunPrefab.transform.Find("RightHint");
+        rigHolder.rightArmConstraint.data.target = rigHolder.rightArmIKTarget;
+        rigHolder.rightArmConstraint.data.hint = rigHolder.rightArmIKHint;
+
     }
 
     /// <summary>
