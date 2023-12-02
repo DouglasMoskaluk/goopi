@@ -172,6 +172,9 @@ public class PlayerBodyFSM : MonoBehaviour
             case PlayerMotionStates.KnockBack:
                 currentMotionState = new PlayerKnockBackMotionState();
                 break;
+            case PlayerMotionStates.Death:
+                currentMotionState = new PlayerDeathMotionState();
+                break;
         }
 
         //initialize new state
@@ -218,6 +221,9 @@ public class PlayerBodyFSM : MonoBehaviour
                 break;
             case PlayerActionStates.ThrowGrenade:
                 currentActionState = new PlayerThrowGrenadeActionState();
+                break;
+            case PlayerActionStates.Death:
+                currentActionState = new PlayerDeathActionState();
                 break;
         }
 
@@ -430,7 +436,7 @@ public class PlayerBodyFSM : MonoBehaviour
 /// </summary>
 public enum PlayerMotionStates
 {
-    None, Walk, Run, Jump, Fall, Slide, Mantle, KnockBack
+    None, Walk, Run, Jump, Fall, Slide, Mantle, KnockBack, Death
 }
 
 /// <summary>
@@ -438,7 +444,7 @@ public enum PlayerMotionStates
 /// </summary>
 public enum PlayerActionStates
 {
-    None, Idle, Reload, Mantle, Shoot, Run, DropGrenade, ThrowGrenade//shoot might be taken out
+    None, Idle, Reload, Mantle, Shoot, Run, DropGrenade, ThrowGrenade, Death
 }
 
 /// <summary>
