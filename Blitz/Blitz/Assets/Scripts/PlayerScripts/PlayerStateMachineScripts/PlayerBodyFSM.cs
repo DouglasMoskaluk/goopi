@@ -34,6 +34,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
     [SerializeField] private Transform throwFrom;
     private FSMVariableHolder variableHolder;
+    [SerializeField] private PlayerRigHolder rigHolder;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -244,7 +245,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder, rigHolder);
     }
 
     /// <summary>
@@ -318,6 +319,8 @@ public class PlayerBodyFSM : MonoBehaviour
         if (!deathCheck)
         {
             deathCheck = true;
+            transitionState(PlayerActionStates.Death);
+            transitionState(PlayerMotionStates.Death);
             StartCoroutine("ragdollTest");
         }
 
@@ -455,7 +458,8 @@ public struct stateParams
 {
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
-        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun, Transform pBody, FSMVariableHolder vHolder)
+        Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun,
+        Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder)
     {
         FSM = fsm;
         anim = an;
@@ -468,6 +472,7 @@ public struct stateParams
         gun = pGun;
         playerBody = pBody;
         variableHolder = vHolder;
+        rigHolder = rHolder;
     }
 
     public PlayerBodyFSM FSM;
@@ -481,4 +486,5 @@ public struct stateParams
     public Gun gun;
     public Transform playerBody;
     public FSMVariableHolder variableHolder;
+    public PlayerRigHolder rigHolder;
 }
