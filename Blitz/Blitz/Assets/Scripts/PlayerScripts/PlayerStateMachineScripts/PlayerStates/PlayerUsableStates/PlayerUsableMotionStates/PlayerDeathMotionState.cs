@@ -18,4 +18,9 @@ public class PlayerDeathMotionState : PlayerBasicMotionState
     {
         base.onStateEnter();
     }
+
+    public override void transitionCheck()
+    {
+        base.transitionCheck();
+    }
 }
