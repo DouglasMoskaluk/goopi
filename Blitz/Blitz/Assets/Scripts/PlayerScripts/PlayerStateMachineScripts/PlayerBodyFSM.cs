@@ -360,6 +360,8 @@ public class PlayerBodyFSM : MonoBehaviour
         grenadeThrower.setGrenades(4);
         playerGun.instantReload();
         deathCheck = false;
+        transitionState(PlayerMotionStates.Walk);
+        transitionState(PlayerActionStates.Idle);
 
         yield return null;
     }
