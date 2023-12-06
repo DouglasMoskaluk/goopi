@@ -7,6 +7,11 @@ public class RespawnManager : MonoBehaviour
 {
     public static RespawnManager instance;
 
+    public bool DISPLAY_DEBUG_MESSAGES = true;
+
+    [Tooltip("The distance threshold for deeming a respawn location as eligible for selection by the respawn algorithm")]
+    public float respawnThreshold = 120f;
+
     private List<Transform> respawnLocations;
 
     private void Awake()
@@ -23,16 +28,6 @@ public class RespawnManager : MonoBehaviour
             respawnLocations.Add(child);
         }
         RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
-    }
-
-    /// <summary>
-    /// Selects which of the respawn locations is to be selected from respawnLocations, based on distance algorithm
-    /// </summary>
-    /// <returns> the integer index of the selected respawn location based on the respawnLocations array </returns>
-    private int selectRespawnLocation()
-    {
-        //for now just picks a random one
-        return Random.Range(0, respawnLocations.Count);
     }
 
     public void respawnAllPlayers()
@@ -54,7 +49,41 @@ public class RespawnManager : MonoBehaviour
     /// <returns> the respan location </returns>
     public Transform getRespawnLocation()
     {
-        return respawnLocations[selectRespawnLocation()];
+        float[] scores = new float[respawnLocations.Count];//list of scores
+
+        int index = 0;
+        foreach (Transform location in respawnLocations)// go through each respawn, and sum the distances to each player
+        {
+            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+            {
+                scores[index] += Vector3.Distance(location.position, player.transform.position);
+            }
+            index++;
+        }
+
+        List<Transform> elibibleLocations = new List<Transform>();//list of possible respawns
+        for (int i = 0; i < scores.Length; i++)//add respawn point to eligible if score is greater or equal to threshold
+        {
+            if (scores[i] >= respawnThreshold)
+            {
+                elibibleLocations.Add(respawnLocations[i]);
+            }
+        }
+
+        if (elibibleLocations.Count < 1)//if no spawns are eligible, select random
+        {
+            return respawnLocations[Random.Range(0, respawnLocations.Count)];
+        }
+
+        int selected = Random.Range(0, elibibleLocations.Count);//selected a respawn
+
+        if (DISPLAY_DEBUG_MESSAGES)
+        {
+            Debug.Log("RESPAWN MANAGER: " + elibibleLocations.Count + " eligible respawn locations were found.");
+            Debug.Log("RESPAWN MANAGER: respawn at position " + elibibleLocations[selected].position + " was selected for respawn");
+        }
+
+        return elibibleLocations[selected];//return selected respawn
     }
 
     public Transform getSpecificLocation(int num)
