@@ -20,12 +20,6 @@ public class PingPong : MonoBehaviour
         StartCoroutine("PointToPoint");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator PointToPoint()
     {
 
