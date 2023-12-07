@@ -56,6 +56,7 @@ public class RespawnManager : MonoBehaviour
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
+                if (player.transform.GetComponent<PlayerBodyFSM>().Health <= 0) { continue; }
                 scores[index] += Vector3.Distance(location.position, player.transform.position);
             }
             index++;
