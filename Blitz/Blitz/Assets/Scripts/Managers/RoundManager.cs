@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        roundLength += 0.99f;//so that it stays on the desired start number for 1 second instead of instantly going down
     }
 
     public void startRound()

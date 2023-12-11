@@ -250,7 +250,7 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
     /// <summary>
-    /// Way to have plaeyr states log messages into the console
+    /// Way to have player states log messages into the console
     /// </summary>
     /// <param name="message"> the message to be logged </param>
     public void logMessage(string message)

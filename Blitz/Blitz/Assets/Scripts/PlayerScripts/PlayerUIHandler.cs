@@ -40,8 +40,6 @@ public class PlayerUIHandler : MonoBehaviour
 
     private GameObject damagedUI;
 
-    [SerializeField] private TextMeshProUGUI roundTimerText;
-
     int kills = 0;
 
     public int playerID;
@@ -71,7 +69,6 @@ public class PlayerUIHandler : MonoBehaviour
         health.text = player.Health.ToString();
         if (gun != null) ammoCount.text = gun.Ammo.ToString();
         killCount.text = RoundManager.instance.getKillCount(playerID).ToString();
-        updateRoundTimer();
     }
 
     public void resetPlayerUI()
@@ -80,14 +77,15 @@ public class PlayerUIHandler : MonoBehaviour
         Initialize();
     }
 
-    internal void updateRoundTimer()
+    //depreciated
+    /*internal void updateRoundTimer()
     {
         float time = (int)RoundManager.instance.getRoundTime();
         string minutes = (time >= 60) ? "1" : "0";
         string seconds = (time >= 60) ? ((int)(time - 60)).ToString() : ((int)time).ToString();
         if (seconds.Length < 2) seconds = "0" + seconds;
         roundTimerText.text = minutes + ":" + seconds;
-    }
+    }*/
 
     internal void playerGotKill()
     {
