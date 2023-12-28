@@ -27,12 +27,13 @@ public class RespawnManager : MonoBehaviour
         {
             respawnLocations.Add(child);
         }
-        RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
-        //EventManager.instance.AddListener(Events.onRoundStart, respawnAllPlayers);
+        //RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
+        EventManager.instance.addListener(Events.onRoundStart, respawnAllPlayers);
     }
 
     public void respawnAllPlayers()
     {
+        Debug.Log("respawning all players");
         int index = 0;
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {

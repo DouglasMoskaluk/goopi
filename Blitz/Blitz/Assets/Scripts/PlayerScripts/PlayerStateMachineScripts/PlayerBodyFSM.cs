@@ -78,8 +78,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        RoundManager.instance.onRoundReset.AddListener(resetFSM);
-        //EventManager.instance.AddListener(Events.onRoundStart, resetFSM);
+        //RoundManager.instance.onRoundReset.AddListener(resetFSM);
+        EventManager.instance.addListener(Events.onRoundStart, resetFSM);
     }
 
 

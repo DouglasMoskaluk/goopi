@@ -9,8 +9,8 @@ public class EventManager : MonoBehaviour
 
     
     // NOTICE because these events are private they must be initialized in awake, otherwise they produce a nulref error
-    private UnityEvent onRoundStartEarly;
-    private UnityEvent onRoundStart;
+    public UnityEvent onRoundStartEarly;
+    public UnityEvent onRoundStart;
     private UnityEvent onRoundStartLate;
 
     private UnityEvent onRoundEndEarly;
@@ -70,6 +70,7 @@ public class EventManager : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log("active listeners " + onRoundStart.GetPersistentEventCount());
     }
 
     /// <summary>
@@ -119,11 +120,12 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the event which is to be invoked </param>
     public void invokeEvent(Events eventType)
     {
+        Debug.Log("Invoking event " + eventType);
         switch (eventType)
         {
             case Events.onRoundStart:
                 onRoundStartEarly.Invoke();
-                onRoundStartLate.Invoke();
+                onRoundStart.Invoke();
                 onRoundStartLate.Invoke();
                 break;
             case Events.onRoundEnd:
