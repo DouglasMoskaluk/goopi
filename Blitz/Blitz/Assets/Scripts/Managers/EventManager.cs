@@ -7,6 +7,8 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
 
+    
+    // NOTICE because these events are private they must be initialized in awake, otherwise they produce a nulref error
     private UnityEvent onRoundStartEarly;
     private UnityEvent onRoundStart;
     private UnityEvent onRoundStartLate;
@@ -18,7 +20,15 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null) instance = this;
+
+        onRoundEndEarly = new UnityEvent();
+        onRoundEnd = new UnityEvent();
+        onRoundEndLate = new UnityEvent();
+
+        onRoundStartEarly = new UnityEvent();
+        onRoundStart = new UnityEvent();
+        onRoundStartLate = new UnityEvent();
     }
 
     /// <summary>
@@ -27,7 +37,7 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the type of event that is to be added to </param>
     /// <param name="eventPriority"> which priority of the event that is being added to, 0 -> early, 1 -> regular, 2 -> late </param>
     /// <param name="action"> the action that is being added, the function being called from the invoking of the event </param>
-    public void AddListener(Events eventType, int eventPriority, UnityAction action)
+    public void addListener(Events eventType, UnityAction action, int eventPriority = 1)
     {
         switch(eventType)
         {
@@ -68,7 +78,7 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the type of event that is to be removed from </param>
     /// <param name="eventPriority">  which priority of the event that is being removed, 0 -> early, 1 -> regular, 2 -> late  </param>
     /// <param name="action"> the action that is being removed, the function being removed from the invoking of the event </param>
-    public void RemoveListener(Events eventType, int eventPriority, UnityAction action)
+    public void removeListener(Events eventType, UnityAction action, int eventPriority = 1)
     {
         switch (eventType)
         {
@@ -107,7 +117,7 @@ public class EventManager : MonoBehaviour
     /// invokes the specified event
     /// </summary>
     /// <param name="eventType"> the event which is to be invoked </param>
-    public void InvokeEvent(Events eventType)
+    public void invokeEvent(Events eventType)
     {
         switch (eventType)
         {

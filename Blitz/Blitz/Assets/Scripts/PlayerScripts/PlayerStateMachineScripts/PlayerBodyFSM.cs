@@ -79,7 +79,9 @@ public class PlayerBodyFSM : MonoBehaviour
     private void Start()
     {
         RoundManager.instance.onRoundReset.AddListener(resetFSM);
+        //EventManager.instance.AddListener(Events.onRoundStart, resetFSM);
     }
+
 
     public void resetFSM()
     {
@@ -103,7 +105,7 @@ public class PlayerBodyFSM : MonoBehaviour
         //test respawning
         if (Input.GetKeyDown(KeyCode.K))
         {
-            logMessage("Killing player");
+            logMessage("Killing players");
             death();
         }
 

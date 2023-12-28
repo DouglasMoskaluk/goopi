@@ -27,6 +27,7 @@ public class RoundManager : MonoBehaviour
     {
 
         onRoundReset.Invoke();
+        //EventManager.instance.InvokeEvent(Events.onRoundStart);
 
         for (int i = 0; i < playerKillCounts.Length; i++)
         {

@@ -22,6 +22,10 @@ public class GunManager : MonoBehaviour
     {
         RoundManager.instance.onRoundReset.AddListener(destroyParentedWorldObjects);
         RoundManager.instance.onRoundReset.AddListener(changeGuns);
+
+        //EventManager.instance.AddListener(Events.onRoundStart, destroyParentedWorldObjects);
+        //EventManager.instance.AddListener(Events.onRoundStart, changeGuns);
+
         changeGuns();
     }
 

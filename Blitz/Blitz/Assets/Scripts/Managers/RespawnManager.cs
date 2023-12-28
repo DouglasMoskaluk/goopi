@@ -28,6 +28,7 @@ public class RespawnManager : MonoBehaviour
             respawnLocations.Add(child);
         }
         RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
+        //EventManager.instance.AddListener(Events.onRoundStart, respawnAllPlayers);
     }
 
     public void respawnAllPlayers()

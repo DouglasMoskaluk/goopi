@@ -48,6 +48,7 @@ public class PlayerUIHandler : MonoBehaviour
     void Start()
     {
         RoundManager.instance.onRoundReset.AddListener(resetPlayerUI);
+        //EventManager.instance.AddListener(Events.onRoundStart, resetPlayerUI);
         lowHealthUI = transform.GetChild(1).gameObject;
         damagedUI = transform.GetChild(2).gameObject;
         Initialize();
