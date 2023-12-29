@@ -7,10 +7,10 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
 
-    
+
     // NOTICE because these events are private they must be initialized in awake, otherwise they produce a nulref error
-    public UnityEvent onRoundStartEarly;
-    public UnityEvent onRoundStart;
+    private UnityEvent onRoundStartEarly;
+    private UnityEvent onRoundStart;
     private UnityEvent onRoundStartLate;
 
     private UnityEvent onRoundEndEarly;
