@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    private void Start()
+    public void StartGame()
     {
-        //RoundManager.instance.startRound();
+        RoundManager.instance.startRound();
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     /// procedure for when the game starts, game being the actual shooting part
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StartGame()
+    private IEnumerator startGameCoro()
     {
         yield return null;
     }

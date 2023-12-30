@@ -66,6 +66,8 @@ public class SplitScreenManager : MonoBehaviour
         player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << layerToAdd;
 
         player.transform.GetComponentInChildren<PlayerCamInput>().lookValue = player.actions.FindAction("Look");
+
+        LockerRoomManager.instance.DisableJoinText(players.Count - 1);
     }
 
     public int getPlayerID(GameObject player)

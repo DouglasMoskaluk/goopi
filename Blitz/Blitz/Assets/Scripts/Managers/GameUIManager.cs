@@ -9,15 +9,32 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI roundEndText;
     [SerializeField] private TextMeshProUGUI roundTimer;
+    [SerializeField] private GameObject roundTimerGO;
 
     private void Awake()
     {
         if (instance == null) instance = this; 
     }
 
+    private void Start()
+    {
+        EventManager.instance.addListener(Events.onRoundStart, ShowRoundTimer);
+        EventManager.instance.addListener(Events.onRoundEnd, HideRoundTimer);
+    }
+
     private void Update()
     {
         UpdateRoundTimer();
+    }
+
+    public void ShowRoundTimer()
+    {
+        roundTimerGO.SetActive(true);
+    }
+
+    public void HideRoundTimer()
+    {
+        roundTimerGO.SetActive(false);
     }
 
     private void UpdateRoundTimer()

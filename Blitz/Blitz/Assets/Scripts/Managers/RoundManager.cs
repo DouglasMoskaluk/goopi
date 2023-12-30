@@ -44,6 +44,7 @@ public class RoundManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator endRound()
     {
+        EventManager.instance.invokeEvent(Events.onRoundEnd);
         shouldCountDown = false;
         //figure out who won
         List<int> winners = selectRoundWinner();//create list of round winners
