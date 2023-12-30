@@ -14,6 +14,8 @@ public class RespawnManager : MonoBehaviour
 
     private List<Transform> respawnLocations;
 
+    private List<Transform> lockerRespawnLocaitons;//locations to spawn players in the locker room
+
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -22,11 +24,18 @@ public class RespawnManager : MonoBehaviour
     private void Start()
     {
         respawnLocations = new List<Transform>(4);
+        lockerRespawnLocaitons = new List<Transform>(4);
         //goes through all children
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(0))
         {
             respawnLocations.Add(child);
         }
+
+        foreach (Transform child in transform.GetChild(1))
+        {
+            lockerRespawnLocaitons.Add(child);
+        }
+
         //RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
         EventManager.instance.addListener(Events.onRoundStart, respawnAllPlayers);
     }
@@ -87,6 +96,11 @@ public class RespawnManager : MonoBehaviour
         }
 
         return elibibleLocations[selected];//return selected respawn
+    }
+
+    public Transform getLockerRoomRespawnLocation(int playerID)
+    {
+        return lockerRespawnLocaitons[playerID];
     }
 
     public Transform getSpecificLocation(int num)

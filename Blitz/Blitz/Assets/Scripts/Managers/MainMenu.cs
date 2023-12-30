@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject lobbyMenu;
 
     [SerializeField] private EventSystem eventSys;
 
@@ -28,8 +27,8 @@ public class MainMenu : MonoBehaviour
 
     public void onOMPlayClicked()
     {
-        optionsMenu.SetActive(false);
-        lobbyMenu.SetActive(true);
+        optionsMenu.SetActive(false);//might be irrelevant cuz youre unloading scene in next line
+        SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
     }
 
     public void onOPCancelClicked()

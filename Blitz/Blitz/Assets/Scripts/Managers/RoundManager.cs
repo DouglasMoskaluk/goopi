@@ -7,7 +7,7 @@ public class RoundManager : MonoBehaviour
 {
     public static RoundManager instance;
 
-    public UnityEvent onRoundReset;
+    //public UnityEvent onRoundReset;
 
     [SerializeField] private int roundNum = 0;
     [SerializeField] private float elapsedTime = 0.0f;
@@ -15,7 +15,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int[] playerKillCounts = new int[4];
     [SerializeField] private float endRoundTextShownLength = 4f;
 
-    [HideInInspector] public bool shouldCountDown = true;
+    public bool shouldCountDown = false;
 
     private void Awake()
     {
@@ -44,6 +44,7 @@ public class RoundManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator endRound()
     {
+        shouldCountDown = false;
         //figure out who won
         List<int> winners = selectRoundWinner();//create list of round winners
 

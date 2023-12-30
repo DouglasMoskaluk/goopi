@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        RoundManager.instance.startRound();
+        //RoundManager.instance.startRound();
     }
 
     /// <summary>

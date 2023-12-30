@@ -22,6 +22,16 @@ public class SplitScreenManager : MonoBehaviour
         inputManager.onPlayerJoined += AddPlayer;
     }
 
+    public void AllowJoining()
+    {
+        inputManager.EnableJoining();
+    }
+
+    public void DisableJoining()
+    {
+        inputManager.DisableJoining();
+    }
+
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
@@ -36,9 +46,13 @@ public class SplitScreenManager : MonoBehaviour
         //}
         CharacterController cController = player.transform.GetComponent<CharacterController>();
         cController.enabled = false;
-        player.transform.position = RespawnManager.instance.getSpecificLocation(players.Count - 1).position;
+
+        Transform spawnPoint = RespawnManager.instance.getLockerRoomRespawnLocation(players.Count - 1);//spawn players at locker room locations because they will all join inside the locker room
+
+        player.transform.position = spawnPoint.position;
+        player.transform.rotation = spawnPoint.rotation;
+
         cController.enabled = true;
-        //Debug.Log("player spanw " + player.transform.position);
 
         player.transform.GetComponent<PlayerBodyFSM>().playerID = players.Count - 1;
 

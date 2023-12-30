@@ -70,7 +70,6 @@ public class EventManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("active listeners " + onRoundStart.GetPersistentEventCount());
     }
 
     /// <summary>
