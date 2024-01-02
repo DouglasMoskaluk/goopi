@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoopPuddle : MonoBehaviour
+public class GoopPuddle : SpawnableObject
 {
     [SerializeField]
     private float timeBetweenTriggers = 1f;
@@ -11,7 +11,6 @@ public class GoopPuddle : MonoBehaviour
     [SerializeField]
     private float lifeTime = 3f;
     IEnumerator[] damageTrackers;
-    internal GameObject owner;
 
     private void Start()
     {
@@ -28,7 +27,7 @@ public class GoopPuddle : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBetweenTriggers);
             if (plrBdy.Health - damage < 0) notDead = false;
-            plrBdy.damagePlayer(damage, owner);
+            plrBdy.damagePlayer(damage, Owner);
         }
     }
 

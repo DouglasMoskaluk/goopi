@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
     BulletVars bulletVars;
     Rigidbody rb;
+    [SerializeField]
     int myBounces = 0;
     bool collideThisFrame = false;
     float spawnTime = 0.05f;
@@ -29,7 +31,7 @@ public class Bullet : MonoBehaviour
         //Debug.Log("Player is: " + plr.name);
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 1);
+        Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 10);
         if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
         {
             //Debug.Log("Trigger Enter");
@@ -52,7 +54,13 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
 
         Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
-        if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
+        //if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
+        if (!collideThisFrame && Physics.SphereCast(
+                transform.position, 
+                GetComponent<SphereCollider>().radius, 
+                rb.velocity.normalized, 
+                out hit, 
+                rb.velocity.magnitude * Time.deltaTime))
         {
             Debug.Log("Late Update hit");
             collide(hit);
@@ -86,21 +94,25 @@ public class Bullet : MonoBehaviour
 
     private void onMapHitEffect()
     {
-        if (bulletVars.spawnOnContact != null && (bulletVars.spawnOnContact || bulletVars.bounces - myBounces < 0)) 
+        if (bulletVars.spawnOnContact != null && bulletVars.spawnEveryContact) 
         {
-            GameObject go = Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-            if (go.GetComponent<GoopPuddle>() != null)
+            for (int i=0; i< bulletVars.spawnOnContact.Length; i++)
             {
-                go.GetComponent<GoopPuddle>().owner = bulletVars.owner;
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
             }
         }
     }
 
     private void onHitPlayerEffect(PlayerBodyFSM plr)
     {
-        if (bulletVars.spawnOnContact != null && !bulletVars.spawnOnContact && bulletVars.bounces - myBounces < 0)
+        if (bulletVars.spawnOnContact != null && bulletVars.spawnEveryContact)
         {
-            Instantiate(bulletVars.spawnOnContact, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+            for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
+            {
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
+            }
         }
     }
 
@@ -109,15 +121,24 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
         myBounces++;
-        if (bulletVars.bounces - myBounces < 0)
+        if (!bulletVars.bounces)
         {
-            removeBullet(0);
+            StartCoroutine(removeBullet(0));
         }
     }
 
     internal IEnumerator removeBullet(float lifeTime)
     {
         yield return new WaitForSeconds(lifeTime);
+        if (bulletVars.spawnOnDeath && bulletVars.spawnOnContact != null &&
+            (!bulletVars.spawnEveryContact || (bulletVars.spawnEveryContact && bulletIFrames <= 0))) // edgecase catch
+        {
+            for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
+            {
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
+            }
+        }
         Destroy(gameObject);
     }
 
@@ -135,7 +156,7 @@ public class Bullet : MonoBehaviour
         }
 
         bulletVars = bv;
-        removeBullet(bulletVars.lifeTime);
+        StartCoroutine(removeBullet(bulletVars.lifeTime));
 
         RaycastHit hitInfo;
         bool rayHit = Physics.Raycast(cam.position, cam.forward, out hitInfo, 50f);

@@ -61,14 +61,17 @@ MonoBehaviour:
     offset: {x: 0, y: 10}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
-    spawnOnContact: {fileID: 1841602102963905187, guid: 43f653413ae55884ca823593ee716ba8,
-      type: 3}
+    spawnOnContact:
+    - {fileID: 4256358020650378377, guid: 72808d208971dec41bde8d88670e107e, type: 3}
+    - {fileID: 1841602102963905187, guid: 43f653413ae55884ca823593ee716ba8, type: 3}
     forceApplied: {x: 0, y: -11, z: 0}
     spawnEveryContact: 1
+    spawnOnDeath: 0
   gunVars:
     ammo: 1000000010000000
     reloadTime: 1
     shotCooldown: 0.35
+    type: 1
     bullet: {fileID: 6551949199387729789, guid: dac9d3e42ef504a4ca88f0c09b9ab006,
       type: 3}
     bulletParent: {fileID: 0}

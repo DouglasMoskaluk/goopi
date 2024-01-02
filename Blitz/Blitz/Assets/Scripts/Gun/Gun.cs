@@ -13,9 +13,12 @@ public class Gun : MonoBehaviour
     internal GunVars gunVars;
     private bool canReload = true;
 
+    internal enum GunType { NONE, GOOP, NERF };
+
+
     [HideInInspector]
     public int Ammo { get { return gunVars.ammo[0]; } }
-    public int MaxAmmo { get { return gunVars.ammo[1]; } }//added by jordan
+    public int MaxAmmo { get { return gunVars.ammo[1]; } }
 
 
     /// <summary>
@@ -144,6 +147,8 @@ internal class GunVars
 
     [Header("References")]
     [SerializeField]
+    internal Gun.GunType type;
+    [SerializeField]
     internal GameObject bullet;
     [SerializeField]
     internal Transform bulletParent;
@@ -174,15 +179,17 @@ internal class BulletVars
     [Tooltip("In degrees")]
     internal Vector2 offset;
     [SerializeField]
-    internal int bounces;
+    internal bool bounces;
     [SerializeField]
     internal Color tailColor;
     [SerializeField]
-    internal GameObject spawnOnContact;
+    internal GameObject[] spawnOnContact;
     [SerializeField]
     internal Vector3 forceApplied;
     [SerializeField]
-    bool spawnEveryContact = true;
+    internal bool spawnEveryContact = true;
+    [SerializeField]
+    internal bool spawnOnDeath = false;
 
 
     internal GameObject owner;
