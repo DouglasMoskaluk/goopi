@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundEndText;
     [SerializeField] private TextMeshProUGUI roundTimer;
     [SerializeField] private GameObject roundTimerGO;
+    [SerializeField] private Image fadePanel;
+
+    public bool fading { get; private set; } = false;
 
     private void Awake()
     {
@@ -74,5 +78,54 @@ public class GameUIManager : MonoBehaviour
         roundEndText.gameObject.SetActive(true);
         yield return new WaitForSeconds(length);
         roundEndText.gameObject.SetActive(false);
+    }
+
+    public Coroutine FadeIn(float duration)
+    {
+        if (fading) return null;
+
+        fading = true;
+        return StartCoroutine(FadeInCoroutine(duration));
+    }
+
+    public Coroutine FadeOut(float duration)
+    {
+        if (fading) return null;
+
+        fading = true;
+        return StartCoroutine(FadeOutCoroutine(duration));
+    }
+
+    public IEnumerator FadeInCoroutine(float duration)
+    {
+        if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
+
+        float timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            //Debug.Log(timeElapsed);
+            fadePanel.color = new Color(0, 0, 0, Mathf.Clamp01(timeElapsed / duration));
+            yield return null;
+        }
+
+        fading = false;
+    }
+
+    public IEnumerator FadeOutCoroutine(float duration)
+    {
+
+        if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
+
+        float timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            //Debug.Log(timeElapsed);
+            fadePanel.color = new Color(0, 0, 0, 1 - Mathf.Clamp01(timeElapsed / duration));
+            yield return null;
+        }
+
+        fading = false;
     }
 }

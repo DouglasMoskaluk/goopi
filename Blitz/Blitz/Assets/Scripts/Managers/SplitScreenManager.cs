@@ -91,4 +91,35 @@ public class SplitScreenManager : MonoBehaviour
     {
         return players[i].GetComponent<PlayerBodyFSM>();
     }
+
+    public void DisablePlayers()
+    {
+        for (int i = 0;i < players.Count; i++)
+        {
+            players[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void EnablePlayers()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void RemoveAllPlayers()
+    {
+        for (int i = players.Count - 1; i >= 0; i--)
+        {
+            Destroy(players[i].gameObject);
+            players.RemoveAt(i);
+        }
+    }
+
+    public void RemovePlayer(int index)
+    {
+        Destroy(players[index].gameObject);
+        players.RemoveAt(index);
+    }
 }

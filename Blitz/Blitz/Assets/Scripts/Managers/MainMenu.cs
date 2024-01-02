@@ -27,7 +27,6 @@ public class MainMenu : MonoBehaviour
 
     public void onOMPlayClicked()
     {
-        optionsMenu.SetActive(false);//might be irrelevant cuz youre unloading scene in next line
         SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
     }
 

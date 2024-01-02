@@ -63,14 +63,30 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EndGame()
     {
+        
         List<int> playerGameWinID = SelectGameWinners();
         string winnersString = "Players ";
         foreach (int i in playerGameWinID)
         {
-            winnersString += i.ToString() + " ";
+            winnersString += (i + 1).ToString() + " ";
         }
         winnersString += "won the game!";
-        yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayGameEndUI(displayEndTextLength, winnersString));
+        //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayGameEndUI(displayEndTextLength, winnersString));
+        //yield return SceneTransitionManager.instance.switchScene(Scenes.Podium);
+
+        yield return GameUIManager.instance.FadeIn(0.5f);
+
+        yield return SceneTransitionManager.instance.unloadScene();
+        yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
+
+        GunManager.instance.destroyParentedWorldObjects();
+        SplitScreenManager.instance.DisableJoining();
+        SplitScreenManager.instance.RemoveAllPlayers();
+        PodiumManager.instance.SetScores(playersRoundsWonCount);
+        PodiumManager.instance.SetWinnerText(winnersString);
+
+        yield return GameUIManager.instance.FadeOut(0.5f);
+
     }
 
     public void UpdateTotalKills(int[] kills)
@@ -130,5 +146,4 @@ public class GameManager : MonoBehaviour
 
         return result;
     }
-
 }

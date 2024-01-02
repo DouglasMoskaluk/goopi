@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.XPath;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class SceneTransitionManager : MonoBehaviour
     //private Coroutine currentAction;
     public bool isLoading { get; private set; } = false;
 
+    [SerializeField] private float FadeOutDuration;
+    [SerializeField] private float FadeInDuration;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -23,46 +27,93 @@ public class SceneTransitionManager : MonoBehaviour
         loadScene(Scenes.MainMenu);
     }
 
+    ///// <summary>
+    ///// attemps to switch from the current scene to the given scene, returns true if process was able to start false otherwise
+    ///// </summary>
+    ///// <param name="scene"></param>
+    ///// <returns></returns>
+    //public bool switchScene(Scenes scene)
+    //{
+    //    if (isLoading) return false;
+
+    //    isLoading = true;
+    //    StartCoroutine(switchSceneCoro(scene));
+    //    return true;
+    //}
+
+    ///// <summary>
+    ///// attemps to unload the current, returns true if process was able to start false otherwise
+    ///// </summary>
+    ///// <param name="scene"></param>
+    ///// <returns></returns>
+    //public bool unloadScene(Scenes scene)
+    //{
+    //    if (isLoading) return false;
+
+    //    isLoading = true;
+    //    StartCoroutine(UnloadScene(scene));
+    //    return true;
+    //}
+
+    ///// <summary>
+    ///// attemps to load the given scene, returns true if process was able to start false otherwise
+    ///// </summary>
+    ///// <param name="scene"></param>
+    ///// <returns></returns>
+    //public bool loadScene(Scenes scene)
+    //{
+    //    if (isLoading) return false;
+
+    //    isLoading = true;
+    //    StartCoroutine(LoadScene(scene));
+    //    return true;
+    //}
+
     /// <summary>
-    /// attemps to switch from the current scene to the given scene, returns true if process was able to start false otherwise
+    /// attemps to switch from the current scene to the given scene, returns created coroutine
     /// </summary>
     /// <param name="scene"></param>
     /// <returns></returns>
-    public bool switchScene(Scenes scene)
+    public Coroutine switchScene(Scenes scene)
     {
-        if (isLoading) return false;
+        if (isLoading) return null;
 
         isLoading = true;
-        StartCoroutine(switchSceneCoro(scene));
-        return true;
+        return StartCoroutine(switchSceneCoro(scene));
     }
 
     /// <summary>
-    /// attemps to unload the current, returns true if process was able to start false otherwise
+    /// attemps to unload the current, returns true if process was able to start false otherwise, also fills out a Coroutine reference
     /// </summary>
     /// <param name="scene"></param>
     /// <returns></returns>
-    public bool unloadScene(Scenes scene)
+    public Coroutine unloadScene(Scenes scene)
     {
-        if (isLoading) return false;
+        if (isLoading) return null;
 
         isLoading = true;
-        StartCoroutine(UnloadScene(scene));
-        return true;
+        return StartCoroutine(UnloadScene(scene));
+    }
+
+    public Coroutine unloadScene()
+    {
+        if (isLoading) return null;
+
+        isLoading = true;
+        return StartCoroutine(UnloadScene(currentScene));
     }
 
     /// <summary>
-    /// attemps to load the given scene, returns true if process was able to start false otherwise
+    /// attemps to load the given scene, returns true if process was able to start false otherwise, also fills out a Coroutine reference
     /// </summary>
     /// <param name="scene"></param>
     /// <returns></returns>
-    public bool loadScene(Scenes scene)
+    public Coroutine loadScene(Scenes scene)
     {
-        if (isLoading) return false;
+        if (isLoading) return null;
 
         isLoading = true;
-        StartCoroutine(LoadScene(scene));
-        return true;
+        return StartCoroutine(LoadScene(scene));
     }
 
     /// <summary>
@@ -108,27 +159,22 @@ public class SceneTransitionManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator switchSceneCoro(Scenes scene)
     {
-        AsyncOperation load = SceneManager.LoadSceneAsync(sceneNames[(int)scene], LoadSceneMode.Additive);
+        yield return GameUIManager.instance.FadeIn(FadeInDuration);
+        //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.FadeInCoroutine(FadeInDuration));
 
-        while (!load.isDone)
-        {
-            yield return null;
-        }
+        yield return StartCoroutine(UnloadScene(currentScene));
 
-        AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneNames[(int)currentScene]);
+        yield return StartCoroutine(LoadScene(scene));
 
-        while (!unload.isDone)
-        {
-            yield return null;
-        }
+        yield return GameUIManager.instance.FadeOut(FadeOutDuration);
+        //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.FadeOutCoroutine(FadeOutDuration));
 
-        currentScene = scene;
         isLoading = false;
     }
 
 }
 
 public enum Scenes { 
-    MainMenu, LockerRoom, Arena
+    MainMenu, LockerRoom, Arena, Podium
 }
 
