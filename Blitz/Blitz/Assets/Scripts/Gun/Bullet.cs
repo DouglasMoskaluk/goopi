@@ -112,6 +112,10 @@ public class Bullet : MonoBehaviour
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
                 go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
+                if (bulletVars.attachPlayer)
+                {
+                    go.transform.parent = plr.transform;
+                } 
             }
         }
     }

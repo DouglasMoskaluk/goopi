@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVars:
-    shotDamage: 35
+    shotDamage: 15
     speed: 50
     lifeTime: 5
     accuracy: {x: 3, y: 3}
@@ -61,11 +61,12 @@ MonoBehaviour:
     forceApplied: {x: 0, y: 0, z: 0}
     spawnEveryContact: 1
     spawnOnDeath: 0
+    attachPlayer: 1
   gunVars:
-    ammo: 3c0000003c000000
-    reloadTime: 1.75
-    shotCooldown: 0.5
-    type: 0
+    ammo: 0a0000000a000000
+    reloadTime: 0.75
+    shotCooldown: 0.2
+    type: 3
     bullet: {fileID: 6551949199387729789, guid: 3bd07bbcb7585b34ca38db7d7fbe758f,
       type: 3}
     bulletParent: {fileID: 0}

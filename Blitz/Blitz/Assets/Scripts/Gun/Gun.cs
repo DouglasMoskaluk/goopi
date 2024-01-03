@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
     internal GunVars gunVars;
     private bool canReload = true;
 
-    internal enum GunType { NONE, GOOP, NERF };
+    internal enum GunType { NONE, GOOP, NERF, ICE_XBOW };
 
 
     [HideInInspector]
@@ -190,6 +190,8 @@ internal class BulletVars
     internal bool spawnEveryContact = true;
     [SerializeField]
     internal bool spawnOnDeath = false;
+    [SerializeField]
+    internal bool attachPlayer = false;
 
 
     internal GameObject owner;
