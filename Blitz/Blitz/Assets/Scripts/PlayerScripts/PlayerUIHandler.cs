@@ -32,6 +32,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject killMarker;
 
+    [SerializeField]
+    private GameObject characterChoice;
+
     private IEnumerator hitMarkerCoroutine;
 
     private IEnumerator gotHitCoroutine;
@@ -77,6 +80,16 @@ public class PlayerUIHandler : MonoBehaviour
     {
         StopAllCoroutines();
         Initialize();
+    }
+
+    /// <summary>
+    /// called on button press in character choice
+    /// </summary>
+    public void PickCharacter()
+    {
+        Debug.Log("CHAR CHOICE");
+        player.enabled = true;
+        characterChoice.SetActive(false);
     }
 
     //depreciated
@@ -139,6 +152,8 @@ public class PlayerUIHandler : MonoBehaviour
 
 
     }
+
+
 
     internal void Alive()
     {
