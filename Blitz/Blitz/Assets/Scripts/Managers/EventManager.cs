@@ -9,33 +9,33 @@ public class EventManager : MonoBehaviour
 
 
     // NOTICE because these events are private they must be initialized in awake, otherwise they produce a nulref error
-    private UnityEvent onRoundStartEarly;
-    private UnityEvent onRoundStart;
-    private UnityEvent onRoundStartLate;
+    private UnityEvent<EventParams> onRoundStartEarly;
+    private UnityEvent<EventParams> onRoundStart;
+    private UnityEvent<EventParams> onRoundStartLate;
 
-    private UnityEvent onRoundEndEarly;
-    private UnityEvent onRoundEnd;
-    private UnityEvent onRoundEndLate;
+    private UnityEvent<EventParams> onRoundEndEarly;
+    private UnityEvent<EventParams> onRoundEnd;
+    private UnityEvent<EventParams> onRoundEndLate;
 
-    private UnityEvent onPlayerDeathEarly;
-    private UnityEvent onPlayerDeath;
-    private UnityEvent onPlayerDeathLate;
+    private UnityEvent<EventParams> onPlayerDeathEarly;
+    private UnityEvent<EventParams> onPlayerDeath;
+    private UnityEvent<EventParams> onPlayerDeathLate;
 
     private void Awake()
     {
         if (instance == null) instance = this;
 
-        onRoundEndEarly = new UnityEvent();
-        onRoundEnd = new UnityEvent();
-        onRoundEndLate = new UnityEvent();
+        onRoundEndEarly = new UnityEvent<EventParams>();
+        onRoundEnd = new UnityEvent<EventParams>();
+        onRoundEndLate = new UnityEvent<EventParams>();
 
-        onRoundStartEarly = new UnityEvent();
-        onRoundStart = new UnityEvent();
-        onRoundStartLate = new UnityEvent();
+        onRoundStartEarly = new UnityEvent<EventParams>();
+        onRoundStart = new UnityEvent<EventParams>();
+        onRoundStartLate = new UnityEvent<EventParams>();
 
-        onPlayerDeathEarly = new UnityEvent();
-        onPlayerDeath = new UnityEvent();
-        onPlayerDeathLate = new UnityEvent();
+        onPlayerDeathEarly = new UnityEvent<EventParams>();
+        onPlayerDeath = new UnityEvent<EventParams>();
+        onPlayerDeathLate = new UnityEvent<EventParams>();
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the type of event that is to be added to </param>
     /// <param name="eventPriority"> which priority of the event that is being added to, 0 -> early, 1 -> regular, 2 -> late </param>
     /// <param name="action"> the action that is being added, the function being called from the invoking of the event </param>
-    public void addListener(Events eventType, UnityAction action, int eventPriority = 1)
+    public void addListener(Events eventType, UnityAction<EventParams> action, int eventPriority = 1)
     {
         switch(eventType)
         {
@@ -80,13 +80,13 @@ public class EventManager : MonoBehaviour
                 switch (eventPriority)
                 {
                     case 0:
-                        onRoundEndEarly.AddListener(action);
+                        onPlayerDeathEarly.AddListener(action);
                         break;
                     case 1:
-                        onRoundEnd.AddListener(action);
+                        onPlayerDeath.AddListener(action);
                         break;
                     case 2:
-                        onRoundEndLate.AddListener(action);
+                        onPlayerDeathLate.AddListener(action);
                         break;
                 }
                 break;
@@ -99,7 +99,7 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the type of event that is to be removed from </param>
     /// <param name="eventPriority">  which priority of the event that is being removed, 0 -> early, 1 -> regular, 2 -> late  </param>
     /// <param name="action"> the action that is being removed, the function being removed from the invoking of the event </param>
-    public void removeListener(Events eventType, UnityAction action, int eventPriority = 1)
+    public void removeListener(Events eventType, UnityAction<EventParams> action, int eventPriority = 1)
     {
         switch (eventType)
         {
@@ -144,19 +144,19 @@ public class EventManager : MonoBehaviour
         switch (eventType)
         {
             case Events.onRoundStart:
-                onRoundStartEarly.Invoke();
-                onRoundStart.Invoke();
-                onRoundStartLate.Invoke();
+                onRoundStartEarly.Invoke(param);
+                onRoundStart.Invoke(param);
+                onRoundStartLate.Invoke(param);
                 break;
             case Events.onRoundEnd:
-                onRoundEndEarly.Invoke();
-                onRoundEnd.Invoke();
-                onRoundEndLate.Invoke();
+                onRoundEndEarly.Invoke(param);
+                onRoundEnd.Invoke(param);
+                onRoundEndLate.Invoke(param);
                 break;
             case Events.onPlayerDeath:
-                onPlayerDeathEarly.Invoke();
-                onPlayerDeath.Invoke();
-                onPlayerDeathLate.Invoke();
+                onPlayerDeathEarly.Invoke(param);
+                onPlayerDeath.Invoke(param);
+                onPlayerDeathLate.Invoke(param);
                 break;
         }
     }
