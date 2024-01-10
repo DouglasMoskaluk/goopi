@@ -30,6 +30,9 @@ public class GrenadePickUp : MonoBehaviour
         canPickUp = false;
         grenadeVisual.SetActive(false);
 
+        StartCoroutine(Respawn());
+
+
     }
 
     private IEnumerator Respawn()
