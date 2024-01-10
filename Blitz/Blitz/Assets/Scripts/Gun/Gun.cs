@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// The gun class. All guns expand on this base class.
@@ -75,6 +76,7 @@ public class Gun : MonoBehaviour
             
             gunVars.canShoot = false;
             StartCoroutine(shotCooldown());
+            StartCoroutine(gunRumble());
             GameObject bul;
             if (gunVars.bulletParent != null)
                 //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
@@ -125,6 +127,17 @@ public class Gun : MonoBehaviour
         gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
     }
+
+    /// <summary>
+    /// coroutine to rumble on shoot
+    /// </summary>
+    IEnumerator gunRumble()
+    {
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.005f);
+        yield return new WaitForSeconds(0.02f);
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
+    }
+
 }
 
 
