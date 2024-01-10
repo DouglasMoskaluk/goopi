@@ -40,7 +40,7 @@ public class RespawnManager : MonoBehaviour
         EventManager.instance.addListener(Events.onRoundStart, respawnAllPlayers);
     }
 
-    public void respawnAllPlayers()
+    public void respawnAllPlayers(EventParams param = new EventParams())
     {
         Debug.Log("respawning all players");
         int index = 0;

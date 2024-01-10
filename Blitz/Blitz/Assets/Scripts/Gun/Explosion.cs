@@ -50,7 +50,7 @@ public class Explosion : SpawnableObject
     }
 
 
-    internal void newRound()
+    internal void newRound(EventParams param = new EventParams())
     {
         EventManager.instance.removeListener(Events.onRoundEnd, newRound);
         StopCoroutine(explosionCoroutine);

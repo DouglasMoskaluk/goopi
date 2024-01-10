@@ -31,12 +31,12 @@ public class GameUIManager : MonoBehaviour
         UpdateRoundTimer();
     }
 
-    public void ShowRoundTimer()
+    public void ShowRoundTimer(EventParams param = new EventParams())
     {
         roundTimerGO.SetActive(true);
     }
 
-    public void HideRoundTimer()
+    public void HideRoundTimer(EventParams param = new EventParams())
     {
         roundTimerGO.SetActive(false);
     }

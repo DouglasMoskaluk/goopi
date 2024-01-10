@@ -83,7 +83,7 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
 
-    public void resetFSM()
+    public void resetFSM(EventParams param = new EventParams())
     {
         resetHealth();
         transitionState(PlayerMotionStates.Walk);

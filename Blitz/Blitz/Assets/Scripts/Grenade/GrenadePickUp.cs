@@ -42,7 +42,7 @@ public class GrenadePickUp : MonoBehaviour
 
     }
 
-    public void ResetGrenade()
+    public void ResetGrenade(EventParams param = new EventParams())
     {
         canPickUp = true;
         grenadeVisual.SetActive(true);

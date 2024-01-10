@@ -37,7 +37,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    public void destroyParentedWorldObjects()
+    public void destroyParentedWorldObjects(EventParams param = new EventParams())
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
@@ -45,7 +45,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    internal void changeGuns()
+    internal void changeGuns(EventParams param = new EventParams())
     {
         gunUsed = Random.Range(0, guns.Length);
         for (int i=0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
