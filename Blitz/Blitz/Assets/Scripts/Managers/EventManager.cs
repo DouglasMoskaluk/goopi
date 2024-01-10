@@ -17,6 +17,9 @@ public class EventManager : MonoBehaviour
     private UnityEvent onRoundEnd;
     private UnityEvent onRoundEndLate;
 
+    private UnityEvent onPlayerDeathEarly;
+    private UnityEvent onPlayerDeath;
+    private UnityEvent onPlayerDeathLate;
 
     private void Awake()
     {
@@ -29,6 +32,10 @@ public class EventManager : MonoBehaviour
         onRoundStartEarly = new UnityEvent();
         onRoundStart = new UnityEvent();
         onRoundStartLate = new UnityEvent();
+
+        onPlayerDeathEarly = new UnityEvent();
+        onPlayerDeath = new UnityEvent();
+        onPlayerDeathLate = new UnityEvent();
     }
 
     /// <summary>
@@ -56,6 +63,20 @@ public class EventManager : MonoBehaviour
                 }
                 break;
             case Events.onRoundEnd:
+                switch (eventPriority)
+                {
+                    case 0:
+                        onRoundEndEarly.AddListener(action);
+                        break;
+                    case 1:
+                        onRoundEnd.AddListener(action);
+                        break;
+                    case 2:
+                        onRoundEndLate.AddListener(action);
+                        break;
+                }
+                break;
+            case Events.onPlayerDeath:
                 switch (eventPriority)
                 {
                     case 0:
@@ -100,13 +121,13 @@ public class EventManager : MonoBehaviour
                 switch (eventPriority)
                 {
                     case 0:
-                        onRoundEndEarly.RemoveListener(action);
+                        onPlayerDeathEarly.RemoveListener(action);
                         break;
                     case 1:
-                        onRoundEnd.RemoveListener(action);
+                        onPlayerDeath.RemoveListener(action);
                         break;
                     case 2:
-                        onRoundEndLate.RemoveListener(action);
+                        onPlayerDeathLate.RemoveListener(action);
                         break;
                 }
                 break;
@@ -117,7 +138,7 @@ public class EventManager : MonoBehaviour
     /// invokes the specified event
     /// </summary>
     /// <param name="eventType"> the event which is to be invoked </param>
-    public void invokeEvent(Events eventType)
+    public void invokeEvent(Events eventType, EventParams param = new EventParams())
     {
         Debug.Log("Invoking event " + eventType);
         switch (eventType)
@@ -132,6 +153,11 @@ public class EventManager : MonoBehaviour
                 onRoundEnd.Invoke();
                 onRoundEndLate.Invoke();
                 break;
+            case Events.onPlayerDeath:
+                onPlayerDeathEarly.Invoke();
+                onPlayerDeath.Invoke();
+                onPlayerDeathLate.Invoke();
+                break;
         }
     }
 
@@ -142,5 +168,10 @@ public class EventManager : MonoBehaviour
 /// </summary>
 public enum Events
 {
-    onRoundStart, onRoundEnd
+    onRoundStart, onRoundEnd, onPlayerDeath
+}
+
+public struct EventParams
+{
+
 }
