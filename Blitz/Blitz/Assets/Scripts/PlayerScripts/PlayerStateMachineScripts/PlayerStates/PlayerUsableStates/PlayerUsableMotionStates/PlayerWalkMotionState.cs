@@ -18,8 +18,11 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     {
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
-        anim.SetFloat("MotionX", input.motionInput.x);
-        anim.SetFloat("MotionY", input.motionInput.y);
+
+        Vector3 motionInput = input.motionInput.normalized;
+
+        anim.SetFloat("MotionX", motionInput.x);
+        anim.SetFloat("MotionY", motionInput.y);
     }
 
     public override void transitionCheck()
