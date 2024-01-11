@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,11 +24,17 @@ public class RoundManager : MonoBehaviour
         roundLength += 0.99f;//so that it stays on the desired start number for 1 second instead of instantly going down
     }
 
-    public void startRound()
+    public Coroutine startRound()
+    {
+        return StartCoroutine(startRoundCoro());
+    }
+
+    private IEnumerator startRoundCoro()
     {
 
-        //onRoundReset.Invoke();
         EventManager.instance.invokeEvent(Events.onRoundStart);
+
+        if (roundNum > 0) yield return GameUIManager.instance.FadeOut(0.25f);//if this is not the first round
 
         for (int i = 0; i < playerKillCounts.Length; i++)
         {
@@ -38,12 +45,10 @@ public class RoundManager : MonoBehaviour
         shouldCountDown = true;
     }
 
-    /// <summary>
-    /// procedure for what happens when a round ends/is won
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator endRound()
+    private IEnumerator endRoundCoro()
     {
+        yield return GameUIManager.instance.FadeIn(0.25f);
+
         EventManager.instance.invokeEvent(Events.onRoundEnd);
         shouldCountDown = false;
         //figure out who won
@@ -63,6 +68,15 @@ public class RoundManager : MonoBehaviour
         GameManager.instance.roundWon(winners, playerKillCounts);
     }
 
+    /// <summary>
+    /// procedure for what happens when a round ends/is won
+    /// </summary>
+    /// <returns></returns>
+    public Coroutine endRound()
+    {
+        return StartCoroutine(endRoundCoro());
+    }
+
     private void LateUpdate()
     {
         if (shouldCountDown)
@@ -70,7 +84,7 @@ public class RoundManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= roundLength)
             {
-                StartCoroutine(endRound());
+                endRound();
                 elapsedTime = 0f;
                 shouldCountDown = false;
             }

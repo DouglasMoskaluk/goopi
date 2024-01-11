@@ -80,6 +80,11 @@ public class GameUIManager : MonoBehaviour
         roundEndText.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     public Coroutine FadeIn(float duration)
     {
         if (fading) return null;
@@ -88,6 +93,11 @@ public class GameUIManager : MonoBehaviour
         return StartCoroutine(FadeInCoroutine(duration));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     public Coroutine FadeOut(float duration)
     {
         if (fading) return null;
