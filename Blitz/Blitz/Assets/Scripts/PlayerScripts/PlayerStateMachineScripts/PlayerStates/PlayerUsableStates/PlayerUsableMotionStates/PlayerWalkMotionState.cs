@@ -10,7 +10,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        anim.CrossFadeInFixedTime("Walk", 0.3f, 0);
+        anim.CrossFadeInFixedTime("Walk", 0.1f, 0);
         
     }
 
