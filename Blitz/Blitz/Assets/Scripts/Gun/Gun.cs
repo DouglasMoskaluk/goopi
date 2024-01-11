@@ -55,6 +55,12 @@ public class Gun : MonoBehaviour
     }
 
 
+    internal void RicochetEvent()
+    {
+        bulletVars.bounces = true;
+    }
+
+
     /// <summary>
     /// Shoot function. Shoots the gun.
     /// </summary>

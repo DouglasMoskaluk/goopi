@@ -66,6 +66,11 @@ public class GunManager : MonoBehaviour
         gun.transform.localPosition = new Vector3(0f, 1f, 0f);
         gun.transform.forward = FSM.playerBody.forward;
 
+        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
+        {
+            gun.GetComponent<Gun>().RicochetEvent();
+        }
+
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
     }
