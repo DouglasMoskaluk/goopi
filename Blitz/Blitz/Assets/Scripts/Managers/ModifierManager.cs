@@ -27,7 +27,7 @@ public class ModifierManager : MonoBehaviour
 
     void initEvents(EventParams param = new EventParams())
     {
-        if (RoundManager.instance.getRoundNum() == 0)
+        if (RoundManager.instance.getRoundNum() == 1)
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
         }
@@ -38,7 +38,7 @@ public class ModifierManager : MonoBehaviour
         }
 
         //Selects an event
-        int round = RoundManager.instance.getRoundNum();
+        int round = RoundManager.instance.getRoundNum() - 1;
         for (int i=0; i< modifiers[round]; i++)
         {
             int chosenEvent = Random.Range(0, ActiveEvents.Length);
