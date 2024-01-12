@@ -51,11 +51,21 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator endRoundCoro()
     {
-        Time.timeScale = 0.5f;
+
+        //const slow speed, start st = 0.5, slow for 2s then fade over 0.5s
+
+        float elapsedTime = 0f;
+        float targetTime = 0.5f;
+        GameUIManager.instance.FadeIn(targetTime);
+        Time.timeScale = 0.6f;
+        while (elapsedTime <= targetTime)
+        {
+            Time.timeScale = Mathf.Clamp(1 - (elapsedTime / targetTime), 0.25f, 1);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
         SplitScreenManager.instance.DisablePlayerControls();
-
-        yield return GameUIManager.instance.FadeIn(0.25f);
 
         EventManager.instance.invokeEvent(Events.onRoundEnd);
         shouldCountDown = false;

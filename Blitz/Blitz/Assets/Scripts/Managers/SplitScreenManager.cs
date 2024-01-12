@@ -112,7 +112,8 @@ public class SplitScreenManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].enabled = true;
+            players[i].ActivateInput();
+            
         }
     }
 
@@ -120,7 +121,7 @@ public class SplitScreenManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].enabled = false;
+            players[i].DeactivateInput();
         }
     }
 
