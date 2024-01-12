@@ -294,7 +294,6 @@ public class PlayerBodyFSM : MonoBehaviour
         {
             damagedByPlayer[attackerId] += value;
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotHit();
-            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, attackerId));
         }
         else Debug.LogError("Player damaged by non-existing player!");
         if ((health -= value) <= 0)
@@ -304,6 +303,7 @@ public class PlayerBodyFSM : MonoBehaviour
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
             //update kill count
             RoundManager.instance.updateKillCount(attackerId);
+            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, attackerId));
         }
         if(health <= 30)
         {
