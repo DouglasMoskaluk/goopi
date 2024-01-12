@@ -101,7 +101,7 @@ public class RagDollHandler : MonoBehaviour
         DisableRagdoll();
         //fsm.enabled = true;
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
-        fsm.ragdollDeathEnd();
+        //fsm.ragdollDeathEnd();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
         yield return null;
     }
