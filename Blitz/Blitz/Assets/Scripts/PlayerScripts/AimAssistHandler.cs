@@ -66,18 +66,59 @@ public class AimAssistHandler : MonoBehaviour
                     //}
 
                     //Debug.Log(input.motionInput);
-                    if (hit.transform.CompareTag("Player") && hit.distance > 4 && !Physics.Linecast(castPoint.position, hit.transform.position))
+
+
+                    if (hit.transform.CompareTag("Player") && hit.distance > 4)
                     {
-
-                        //if (Physics.Linecast(castPoint.position, hit.transform.position)
-                        //{
-
-                        //}
-
-                        camInput.aimAssistSlowdown = aimSensitivity;
-
+                        
 
                         Transform enemyPos = hit.transform.GetChild(3).transform;
+
+                        RaycastHit lineHit;
+
+                        if (Physics.Linecast(castPoint.position, enemyPos.position, out lineHit) && lineHit.transform.CompareTag("Player"))
+                        {
+
+                            camInput.aimAssistSlowdown = aimSensitivity;
+
+                            if (transform.InverseTransformPoint(hit.point).x > transform.InverseTransformPoint(enemyPos.position).x)
+                            {
+                                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
+                                if (absolute < 0.05f)
+                                {
+                                    freeLook.m_XAxis.Value -= 0.025f;
+                                }
+                                else
+                                {
+                                    freeLook.m_XAxis.Value -= 0.35f;
+                                }
+                            }
+                            //less than turn right
+                            else if (transform.InverseTransformPoint(hit.point).x < transform.InverseTransformPoint(enemyPos.position).x)
+                            {
+                                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
+
+                                if (absolute < 0.05f)
+                                {
+                                    freeLook.m_XAxis.Value += 0.025f;
+                                }
+                                else
+                                {
+                                    freeLook.m_XAxis.Value += 0.35f;
+                                }
+                            }
+
+                        }
+
+
+                            //if (Physics.Linecast(castPoint.position, hit.transform.position)
+                            //{
+
+                            //}
+
+
+
+                        //Transform enemyPos = hit.transform.GetChild(3).transform;
                         //Debug.Log(hit.point + "   enemy point:" + enemyPos.position);
                         Debug.Log(transform.InverseTransformPoint(hit.point) + "   enemy point:" + transform.InverseTransformPoint(enemyPos.position));
                         //freeLook.m_XAxis.m_MaxSpeed = sensitivityHandler.XSensitivity * 0.8f;
@@ -90,32 +131,7 @@ public class AimAssistHandler : MonoBehaviour
                         //rotate cinemachine camera by X based on distance
                         //greater turn left
 
-                        if (transform.InverseTransformPoint(hit.point).x > transform.InverseTransformPoint(enemyPos.position).x)
-                        {
-                            float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
-                            if (absolute < 0.05f)
-                            {
-                                freeLook.m_XAxis.Value -= 0.025f;
-                            }
-                            else
-                            {
-                                freeLook.m_XAxis.Value -= 0.35f;
-                            }
-                        }
-                        //less than turn right
-                        else if (transform.InverseTransformPoint(hit.point).x < transform.InverseTransformPoint(enemyPos.position).x)
-                        {
-                            float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
 
-                            if (absolute < 0.05f)
-                            {
-                                freeLook.m_XAxis.Value += 0.025f;
-                            }
-                            else
-                            {
-                                freeLook.m_XAxis.Value += 0.35f;
-                            }
-                        }
 
 
                     }
