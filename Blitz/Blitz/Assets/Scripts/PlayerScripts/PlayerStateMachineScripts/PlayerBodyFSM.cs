@@ -284,7 +284,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (attackerId != -1)
         {
             PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
-            mostRecentAttacker = attackerId;
+            if (attackerId != playerID) mostRecentAttacker = attackerId;
             Attacker.playerUI.playerGotHit();
         }
         //else Debug.LogError("Player damaged by non-existing player!");
