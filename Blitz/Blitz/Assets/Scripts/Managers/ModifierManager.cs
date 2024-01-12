@@ -27,6 +27,11 @@ public class ModifierManager : MonoBehaviour
 
     void initEvents(EventParams param = new EventParams())
     {
+        if (RoundManager.instance.getRoundNum() == 0)
+        {
+            startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
+        }
+
         for (int i=0; i<ActiveEvents.Length; i++)
         {
             ActiveEvents[i] = false;
@@ -46,7 +51,7 @@ public class ModifierManager : MonoBehaviour
             }
         }
 
-
+        //Low gravity event
         if (ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
@@ -82,8 +87,8 @@ public class ModifierManager : MonoBehaviour
             ActiveEvents[i] = false;
         }
 
-        EventManager.instance.addListener(Events.onRoundStart, initEvents, 0);
-        startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
+        
+        EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
     }
 
 
