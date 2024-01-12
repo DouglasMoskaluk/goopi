@@ -270,6 +270,15 @@ public class PlayerBodyFSM : MonoBehaviour
         if (health < 0) death();
     }
 
+
+    public void newAttacker(int attackerId)
+    {
+        if (attackerId != -1)
+        {
+            if (attackerId != playerID) mostRecentAttacker = attackerId;
+        }
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -280,11 +289,11 @@ public class PlayerBodyFSM : MonoBehaviour
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
 
         playerUI.playerGotdamaged();
+        newAttacker(attackerId);
 
         if (attackerId != -1)
         {
             PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
-            if (attackerId != playerID) mostRecentAttacker = attackerId;
             Attacker.playerUI.playerGotHit();
         }
         //else Debug.LogError("Player damaged by non-existing player!");

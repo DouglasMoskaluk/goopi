@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ImpulseGrenade : MonoBehaviour
+public class ImpulseGrenade : SpawnableObject
 {
     [SerializeField] private bool DISPLAY_DEBUG_RADIUS = false;
 
@@ -83,6 +83,7 @@ public class ImpulseGrenade : MonoBehaviour
                 PlayerBodyFSM fsm = hitColliders[i].GetComponent<PlayerBodyFSM>();
                 fsm.addKnockBack(dir * blastForce);
                 fsm.transitionState(PlayerMotionStates.KnockBack);
+                fsm.newAttacker(Owner);
             }
         }
         Destroy(this.gameObject);
