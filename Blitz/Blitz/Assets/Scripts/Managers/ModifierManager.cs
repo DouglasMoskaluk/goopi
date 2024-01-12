@@ -86,6 +86,11 @@ public class ModifierManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ActiveEvents = new bool[(int)RoundModifierList.LENGTH];
+        for (int i = 0; i < ActiveEvents.Length; i++)
+        {
+            ActiveEvents[i] = false;
+        }
     }
 
 
@@ -95,18 +100,11 @@ public class ModifierManager : MonoBehaviour
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
             int[] temp = new int[GameManager.instance.maxRoundsPlayed];
-            for (int i=0; i< modifiers.Length; i++)
+            for (int i = 0; i < modifiers.Length; i++)
             {
                 temp[i] = modifiers[i];
             }
         }
-        ActiveEvents = new bool[(int)RoundModifierList.LENGTH];
-        for (int i=0; i<ActiveEvents.Length; i++)
-        {
-            ActiveEvents[i] = false;
-        }
-
-        
         EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
     }
 
