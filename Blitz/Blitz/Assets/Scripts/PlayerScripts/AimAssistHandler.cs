@@ -28,6 +28,15 @@ public class AimAssistHandler : MonoBehaviour
     [SerializeField]
     private float aimSensitivity = 0.75f;
 
+    [SerializeField]
+    private float startDistance = 2f;
+
+    [SerializeField]
+    private float endDistance = 30;
+
+    [SerializeField]
+    private float stickyness = 0.35f;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -51,7 +60,7 @@ public class AimAssistHandler : MonoBehaviour
 
             RaycastHit[] hits;
 
-            hits = Physics.SphereCastAll(castPoint.position, sphereSize, castPoint.forward, 30.0f);
+            hits = Physics.SphereCastAll(castPoint.position, sphereSize, castPoint.forward, endDistance);
 
             for(int i = 0; i < hits.Length; i++)
             {
@@ -68,7 +77,7 @@ public class AimAssistHandler : MonoBehaviour
                     //Debug.Log(input.motionInput);
 
 
-                    if (hit.transform.CompareTag("Player") && hit.distance > 2)
+                    if (hit.transform.CompareTag("Player") && hit.distance > startDistance)
                     {
                         
 
@@ -90,7 +99,7 @@ public class AimAssistHandler : MonoBehaviour
                                 }
                                 else
                                 {
-                                    freeLook.m_XAxis.Value -= 0.35f;
+                                    freeLook.m_XAxis.Value -= stickyness;
                                 }
                             }
                             //less than turn right
@@ -104,7 +113,7 @@ public class AimAssistHandler : MonoBehaviour
                                 }
                                 else
                                 {
-                                    freeLook.m_XAxis.Value += 0.35f;
+                                    freeLook.m_XAxis.Value += stickyness;
                                 }
                             }
 
