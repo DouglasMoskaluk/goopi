@@ -36,6 +36,8 @@ public class RoundManager : MonoBehaviour
 
         if (roundNum > 0) yield return GameUIManager.instance.FadeOut(0.25f);//if this is not the first round
 
+        Time.timeScale = 1.0f;
+
         for (int i = 0; i < playerKillCounts.Length; i++)
         {
             playerKillCounts[i] = 0;
@@ -43,10 +45,16 @@ public class RoundManager : MonoBehaviour
 
         roundNum++;
         shouldCountDown = true;
+
+        SplitScreenManager.instance.EnablePlayerControls();
     }
 
     private IEnumerator endRoundCoro()
     {
+        Time.timeScale = 0.5f;
+
+        SplitScreenManager.instance.DisablePlayerControls();
+
         yield return GameUIManager.instance.FadeIn(0.25f);
 
         EventManager.instance.invokeEvent(Events.onRoundEnd);

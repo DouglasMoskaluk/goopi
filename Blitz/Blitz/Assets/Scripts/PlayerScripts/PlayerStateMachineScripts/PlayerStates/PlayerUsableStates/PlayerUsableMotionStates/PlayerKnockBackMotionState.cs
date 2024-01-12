@@ -49,7 +49,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         }
         
 
-        controller.Move( (FSM.getKnockBackVector() + inputMotion) * Time.deltaTime );
+        controller.Move( (FSM.getKnockBackVector()) * Time.deltaTime );
        
         RotateBodyToCamera();
         updateKnockBack();

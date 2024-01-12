@@ -108,6 +108,22 @@ public class SplitScreenManager : MonoBehaviour
         }
     }
 
+    public void EnablePlayerControls()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].enabled = true;
+        }
+    }
+
+    public void DisablePlayerControls()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].enabled = false;
+        }
+    }
+
     public void RemoveAllPlayers()
     {
         for (int i = players.Count - 1; i >= 0; i--)
