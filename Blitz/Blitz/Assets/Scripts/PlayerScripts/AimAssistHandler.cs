@@ -68,7 +68,7 @@ public class AimAssistHandler : MonoBehaviour
                     //Debug.Log(input.motionInput);
 
 
-                    if (hit.transform.CompareTag("Player") && hit.distance > 4)
+                    if (hit.transform.CompareTag("Player") && hit.distance > 2)
                     {
                         
 
