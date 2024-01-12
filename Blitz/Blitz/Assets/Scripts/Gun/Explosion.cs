@@ -24,6 +24,8 @@ public class Explosion : SpawnableObject
         explosionCoroutine = Explode();
         StartCoroutine(explosionCoroutine);
         EventManager.instance.addListener(Events.onRoundEnd, newRound);
+
+        EventManager.instance.addListener(Events.onPlayerDeath, onPlayerDeath);
     }
 
     private IEnumerator Explode()
@@ -38,6 +40,7 @@ public class Explosion : SpawnableObject
             yield return null;
         }
         EventManager.instance.removeListener(Events.onRoundEnd, newRound);
+        EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
         Destroy(gameObject);
     }
 
@@ -53,15 +56,16 @@ public class Explosion : SpawnableObject
     internal void newRound(EventParams param = new EventParams())
     {
         EventManager.instance.removeListener(Events.onRoundEnd, newRound);
+        EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
         StopCoroutine(explosionCoroutine);
         Destroy(gameObject);
     }
 
 
     //TODO: This needs to subscribe to the "OnPlayerDeath" event when we make it
-    internal void onPlayerDeath(PlayerBodyFSM playerDied)
+    internal void onPlayerDeath(EventParams param = new EventParams())
     {
-        if (playerDied.gameObject == transform.parent)
+        if (transform.parent.GetComponent<PlayerBodyFSM>() != null && param.killed == transform.parent.GetComponent<PlayerBodyFSM>().playerID)
         {
             newRound();
         }
