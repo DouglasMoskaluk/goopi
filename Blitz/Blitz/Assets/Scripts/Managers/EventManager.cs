@@ -121,6 +121,20 @@ public class EventManager : MonoBehaviour
                 switch (eventPriority)
                 {
                     case 0:
+                        onRoundEndEarly.RemoveListener(action);
+                        break;
+                    case 1:
+                        onRoundEnd.RemoveListener(action);
+                        break;
+                    case 2:
+                        onRoundEndLate.RemoveListener(action);
+                        break;
+                }
+                break;
+            case Events.onPlayerDeath:
+                switch (eventPriority)
+                {
+                    case 0:
                         onPlayerDeathEarly.RemoveListener(action);
                         break;
                     case 1:
