@@ -45,7 +45,7 @@ public class ModifierManager : MonoBehaviour
         int round = RoundManager.instance.getRoundNum() - 1;
         for (int i=0; i< modifiers[round]; i++)
         {
-            int chosenEvent = 2 + i % 3;//Random.Range(0, ActiveEvents.Length);
+            int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH);
             if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
             {
                 ActiveEvents[chosenEvent] = true;
@@ -83,26 +83,28 @@ public class ModifierManager : MonoBehaviour
         GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
     }
 
-
-
-        private void Start()
+    private void Awake()
     {
         instance = this;
+        ActiveEvents = new bool[(int)RoundModifierList.LENGTH];
+        for (int i = 0; i < ActiveEvents.Length; i++)
+        {
+            ActiveEvents[i] = false;
+        }
+    }
+
+
+
+    private void Start()
+    {
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
             int[] temp = new int[GameManager.instance.maxRoundsPlayed];
-            for (int i=0; i< modifiers.Length; i++)
+            for (int i = 0; i < modifiers.Length; i++)
             {
                 temp[i] = modifiers[i];
             }
         }
-        ActiveEvents = new bool[(int)RoundModifierList.LENGTH];
-        for (int i=0; i<ActiveEvents.Length; i++)
-        {
-            ActiveEvents[i] = false;
-        }
-
-        
         EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
     }
 
