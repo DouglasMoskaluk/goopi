@@ -45,7 +45,7 @@ public class ModifierManager : MonoBehaviour
         int round = RoundManager.instance.getRoundNum() - 1;
         for (int i=0; i< modifiers[round]; i++)
         {
-            int chosenEvent = 2 + i % 3;//Random.Range(0, ActiveEvents.Length);
+            int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH);
             if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
             {
                 ActiveEvents[chosenEvent] = true;
