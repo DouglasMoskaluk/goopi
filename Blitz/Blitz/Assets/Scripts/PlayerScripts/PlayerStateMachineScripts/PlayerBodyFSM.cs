@@ -47,9 +47,9 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private Vector3 knockBackVector = Vector3.zero;
 
-    private float[] damagedByPlayer;
-
     private bool deathCheck = false;
+
+    private int mostRecentAttacker = -1;
     //private 
     #endregion
 
@@ -68,7 +68,6 @@ public class PlayerBodyFSM : MonoBehaviour
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
 
-        damagedByPlayer = new float[4];
         playerUI.playerID = playerID;
     }
 
@@ -114,7 +113,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         if (transform.position.y < -40)
         {
-            death();
+            damagePlayer(100, -1);
         }
     }
 
@@ -267,13 +266,6 @@ public class PlayerBodyFSM : MonoBehaviour
     public void alterHealth(int value)
     {
         health = Mathf.Min(health += value, MAX_HEALTH);
-        if (health == MAX_HEALTH)
-        {
-            for (int i = 0; i < damagedByPlayer.Length; i++)
-            {
-                damagedByPlayer[i] = 0;
-            }
-        }
         //health = Mathf.Max(health, 0);
         if (health < 0) death();
     }
@@ -283,27 +275,27 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     /// <param name="value"></param>
     /// <param name="Attacker"></param>
-    public void damagePlayer(int value, GameObject Attacker)
+    public void damagePlayer(int value, int attackerId)
     {
-        int attackerId = SplitScreenManager.instance.getPlayerID(Attacker);
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
 
         playerUI.playerGotdamaged();
 
         if (attackerId != -1)
         {
-            damagedByPlayer[attackerId] += value;
-            Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotHit();
+            PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
+            mostRecentAttacker = attackerId;
+            Attacker.playerUI.playerGotHit();
         }
-        else Debug.LogError("Player damaged by non-existing player!");
+        //else Debug.LogError("Player damaged by non-existing player!");
         if ((health -= value) <= 0)
         {
             death();
             //player gets kill marker
-            Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
             //update kill count
-            RoundManager.instance.updateKillCount(attackerId);
-            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, attackerId));
+            if (mostRecentAttacker != -1) RoundManager.instance.updateKillCount(mostRecentAttacker);
+            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
+            mostRecentAttacker = -1;
         }
         if(health <= 30)
         {
@@ -357,7 +349,7 @@ public class PlayerBodyFSM : MonoBehaviour
         transform.position = newPos.position;
         Physics.SyncTransforms();
 
-        //resetHealth();
+        resetHealth();
         playerUI.Alive();
         charController.enabled = true;
         grenadeThrower.setGrenades(4);
@@ -396,7 +388,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     public void resetHealth()
     {
-        alterHealth(MAX_HEALTH * 3);
+        health = MAX_HEALTH;
     }
 
     /// <summary>

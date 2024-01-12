@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
         }
         if (transform.parent.parent.tag == "Player")
         {
-            bulletVars.owner = transform.parent.parent.gameObject;
+            bulletVars.owner = transform.parent.parent.GetComponent<PlayerBodyFSM>().playerID;
         } else
         {
             Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
@@ -213,5 +213,5 @@ internal class BulletVars
     internal bool attachPlayer = false;
 
 
-    internal GameObject owner;
+    internal int owner;
 }

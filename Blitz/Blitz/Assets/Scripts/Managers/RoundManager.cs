@@ -118,7 +118,7 @@ public class RoundManager : MonoBehaviour
     public void updateKillCount(int playerNum)
     {
         playerKillCounts[playerNum]++;
-        
+        SplitScreenManager.instance.GetPlayers(playerNum).playerUI.playerGotKill();
     }
 
     public int getKillCount(int playerNum)

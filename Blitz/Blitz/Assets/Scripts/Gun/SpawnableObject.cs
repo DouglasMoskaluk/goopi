@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnableObject : MonoBehaviour
 {
-    internal GameObject Owner;
+    internal int Owner;
 
-    internal void init(GameObject owner)
+    internal void init(int owner)
     {
         Owner = owner;
     }
