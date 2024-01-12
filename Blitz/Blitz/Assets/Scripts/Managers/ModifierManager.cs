@@ -27,6 +27,11 @@ public class ModifierManager : MonoBehaviour
 
     void initEvents(EventParams param = new EventParams())
     {
+        for (int i=0; i<ActiveEvents.Length; i++)
+        {
+            ActiveEvents[i] = false;
+        }
+
         //Selects an event
         int round = RoundManager.instance.getRoundNum();
         for (int i=0; i< modifiers[round]; i++)
