@@ -83,11 +83,15 @@ public class ModifierManager : MonoBehaviour
         GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
     }
 
-
-
-        private void Start()
+    private void Awake()
     {
         instance = this;
+    }
+
+
+
+    private void Start()
+    {
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
             int[] temp = new int[GameManager.instance.maxRoundsPlayed];
