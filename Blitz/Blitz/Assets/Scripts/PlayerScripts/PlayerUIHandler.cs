@@ -76,7 +76,7 @@ public class PlayerUIHandler : MonoBehaviour
         killCount.text = RoundManager.instance.getKillCount(playerID).ToString();
     }
 
-    public void resetPlayerUI()
+    public void resetPlayerUI(EventParams param = new EventParams())
     {
         StopAllCoroutines();
         Initialize();

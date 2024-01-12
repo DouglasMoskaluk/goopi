@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerGrenadeThrower : MonoBehaviour
 {
+    
     [SerializeField] private GameObject grenadePrefab;
 
     [SerializeField] private int heldGrenadeCount;
@@ -18,7 +20,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     [HideInInspector]
     public int HeldGrenadeCount { get { return heldGrenadeCount; } }
-    
+    public int MaxHeldGrenades = 4;
 
     private void Awake()
     {

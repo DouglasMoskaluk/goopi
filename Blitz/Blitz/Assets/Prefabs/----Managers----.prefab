@@ -811,6 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777662643554544861}
   - component: {fileID: 1992372918753346917}
+  - component: {fileID: 7876766353781915237}
   m_Layer: 0
   m_Name: RoundManager
   m_TagString: Untagged
@@ -847,10 +848,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundNum: 0
   elapsedTime: 0
-  roundLength: 20
+  roundLength: 90
   playerKillCounts: 00000000000000000000000000000000
   endRoundTextShownLength: 4
   shouldCountDown: 0
+--- !u!114 &7876766353781915237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721102031347508183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9276eca92f5c3cd4a86baf23ca6665af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifiers: 0100000001000000010000000100000001000000
+  GravityEventGravity: 10
 --- !u!1 &5310983964793565392
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,15 +49,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// procedure for when the game starts, game being the actual shooting part
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator startGameCoro()
-    {
-        yield return null;
-    }
-
-    /// <summary>
     /// Procedure for what happens when the game ends
     /// </summary>
     /// <returns></returns>

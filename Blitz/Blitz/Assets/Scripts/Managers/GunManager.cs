@@ -37,7 +37,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    public void destroyParentedWorldObjects()
+    public void destroyParentedWorldObjects(EventParams param = new EventParams())
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
@@ -45,7 +45,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    internal void changeGuns()
+    internal void changeGuns(EventParams param = new EventParams())
     {
         gunUsed = Random.Range(0, guns.Length);
         for (int i=0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
@@ -65,6 +65,11 @@ public class GunManager : MonoBehaviour
 
         gun.transform.localPosition = new Vector3(0f, 1f, 0f);
         gun.transform.forward = FSM.playerBody.forward;
+
+        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
+        {
+            gun.GetComponent<Gun>().RicochetEvent();
+        }
 
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         plr.GetComponent<PlayerBodyFSM>().assignGun(gun);

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerWalkMotionState : PlayerBasicMotionState
 {
+    float animLerpAmount = 0.05f;
 
     public override void onStateEnter()
     {
@@ -18,8 +19,18 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     {
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
-        anim.SetFloat("MotionX", input.motionInput.x);
-        anim.SetFloat("MotionY", input.motionInput.y);
+
+        Vector3 motionInput = input.motionInput.normalized;
+        
+        anim.SetFloat("MotionX", Mathf.Lerp(motionInput.x, anim.GetFloat("MotionX"), animLerpAmount * Time.deltaTime));
+        anim.SetFloat("MotionY", Mathf.Lerp(motionInput.y, anim.GetFloat("MotionY"), animLerpAmount * Time.deltaTime));
+    }
+
+    public override void onStateExit()
+    {
+        base.onStateExit();
+        anim.SetFloat("MotionX", 0);
+        anim.SetFloat("MotionY", 0);
     }
 
     public override void transitionCheck()

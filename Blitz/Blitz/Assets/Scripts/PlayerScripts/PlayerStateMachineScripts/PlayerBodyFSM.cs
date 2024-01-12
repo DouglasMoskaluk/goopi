@@ -83,7 +83,7 @@ public class PlayerBodyFSM : MonoBehaviour
     }
 
 
-    public void resetFSM()
+    public void resetFSM(EventParams param = new EventParams())
     {
         resetHealth();
         transitionState(PlayerMotionStates.Walk);
@@ -347,9 +347,9 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
         playerUI.Dead();
-        ragdoll.EnableRagdoll();
+        //ragdoll.EnableRagdoll();
         yield return new WaitForSeconds(1.0f);
-        ragdoll.DisableRagdoll();
+        //ragdoll.DisableRagdoll();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
         Transform newPos = RespawnManager.instance.getRespawnLocation();
         float dist = Vector3.Distance(transform.position, newPos.position);
@@ -368,27 +368,27 @@ public class PlayerBodyFSM : MonoBehaviour
         yield return null;
     }
 
-    //STOP USING AFTER INDUSTRY SHOWCASE
-    private void ragdollDeathStart()
-    {
-        charController.enabled = false;
-        Debug.Log("Player Died!");
-        //Heal attackers
-        playerUI.StopDamagedCoroutine();
-        playerUI.HideLowHealth();
-        ragdoll.RagDollDeath();
+    ////STOP USING AFTER INDUSTRY SHOWCASE
+    //private void ragdollDeathStart()
+    //{
+    //    charController.enabled = false;
+    //    Debug.Log("Player Died!");
+    //    //Heal attackers
+    //    playerUI.StopDamagedCoroutine();
+    //    playerUI.HideLowHealth();
+    //    ragdoll.RagDollDeath();
 
-    }
-    //STOP USING AFTER INDUSTRY SHOW
-    public void ragdollDeathEnd()
-    {
-        //transform.position = RespawnManager.instance.getRespawnLocation().position;
+    //}
+    ////STOP USING AFTER INDUSTRY SHOW
+    //public void ragdollDeathEnd()
+    //{
+    //    //transform.position = RespawnManager.instance.getRespawnLocation().position;
 
-        resetHealth();
-        charController.enabled = true;
-        grenadeThrower.setGrenades(4);
-        playerGun.instantReload();
-    }
+    //    resetHealth();
+    //    charController.enabled = true;
+    //    grenadeThrower.setGrenades(4);
+    //    playerGun.instantReload();
+    //}
 
     /// <summary>
     /// resets the players health back to the max
