@@ -14,7 +14,7 @@ public class ModifierManager : MonoBehaviour
         LOW_GRAVITY,
         //BOMB,
         //FLOOR_IS_LAVA,
-        //RANDOM_GUNS,
+        RANDOM_GUNS,
         LENGTH
     }
 
@@ -27,11 +27,15 @@ public class ModifierManager : MonoBehaviour
 
     void initEvents(EventParams param = new EventParams())
     {
+        //Resetting events
         if (RoundManager.instance.getRoundNum() == 1)
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
         }
-
+        if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
+        {
+            EventManager.instance.removeListener(Events.onPlayerDeath, RandomGunPlayerDeath);
+        }
         for (int i=0; i<ActiveEvents.Length; i++)
         {
             ActiveEvents[i] = false;
@@ -41,7 +45,7 @@ public class ModifierManager : MonoBehaviour
         int round = RoundManager.instance.getRoundNum() - 1;
         for (int i=0; i< modifiers[round]; i++)
         {
-            int chosenEvent = Random.Range(0, ActiveEvents.Length);
+            int chosenEvent = 2 + i % 3;//Random.Range(0, ActiveEvents.Length);
             if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
             {
                 ActiveEvents[chosenEvent] = true;
@@ -66,11 +70,22 @@ public class ModifierManager : MonoBehaviour
             }
         }
 
+        if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
+        {
+            EventManager.instance.addListener(Events.onPlayerDeath, RandomGunPlayerDeath);
+        }
+
+    }
+
+
+    void RandomGunPlayerDeath(EventParams param = new EventParams())
+    {
+        GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
     }
 
 
 
-    private void Start()
+        private void Start()
     {
         instance = this;
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)

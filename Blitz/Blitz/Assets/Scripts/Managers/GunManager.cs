@@ -45,23 +45,42 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    internal int pickGun()
+    {
+        return Random.Range(0, guns.Length); 
+    }
+
     internal void changeGuns(EventParams param = new EventParams())
     {
-        gunUsed = Random.Range(0, guns.Length);
-        for (int i=0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
+        if (!ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
         {
-            assignGun(i);
+            gunUsed = pickGun();
+            for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
+            {
+                assignGun(i);
+            }
+        } else
+        {
+            for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
+            {
+                assignGun(i, pickGun());
+            }
         }
     }
 
     internal void assignGun(int Player)
+    {
+        assignGun(Player, gunUsed);
+    }
+
+    internal void assignGun(int Player, int gunNumber)
     {
         Transform plr = SplitScreenManager.instance.GetPlayers()[Player].transform;
         PlayerBodyFSM FSM = plr.GetComponent<PlayerBodyFSM>();
 
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
 
-        GameObject gun = Instantiate(guns[gunUsed], plr.GetChild(1));
+        GameObject gun = Instantiate(guns[gunNumber], plr.GetChild(1));
 
         gun.transform.localPosition = new Vector3(0f, 1f, 0f);
         gun.transform.forward = FSM.playerBody.forward;

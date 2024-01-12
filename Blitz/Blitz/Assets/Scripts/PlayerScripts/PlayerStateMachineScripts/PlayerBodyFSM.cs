@@ -285,15 +285,16 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="Attacker"></param>
     public void damagePlayer(int value, GameObject Attacker)
     {
-        Debug.Log(SplitScreenManager.instance.getPlayerID(Attacker));
+        int attackerId = SplitScreenManager.instance.getPlayerID(Attacker);
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
 
         playerUI.playerGotdamaged();
 
-        if (SplitScreenManager.instance.getPlayerID(Attacker) != -1)
+        if (attackerId != -1)
         {
-            damagedByPlayer[SplitScreenManager.instance.getPlayerID(Attacker)] += value;
+            damagedByPlayer[attackerId] += value;
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotHit();
+            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, attackerId));
         }
         else Debug.LogError("Player damaged by non-existing player!");
         if ((health -= value) <= 0)
@@ -302,7 +303,7 @@ public class PlayerBodyFSM : MonoBehaviour
             //player gets kill marker
             Attacker.GetComponent<PlayerBodyFSM>().playerUI.playerGotKill();
             //update kill count
-            RoundManager.instance.updateKillCount(SplitScreenManager.instance.getPlayerID(Attacker));
+            RoundManager.instance.updateKillCount(attackerId);
         }
         if(health <= 30)
         {

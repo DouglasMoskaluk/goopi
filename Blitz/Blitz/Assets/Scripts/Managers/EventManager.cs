@@ -187,5 +187,12 @@ public enum Events
 
 public struct EventParams
 {
+    internal int killer;
+    internal int killed;
 
+    internal EventParams(int Killed, int Killer)
+    {
+        killed = Killed;
+        killer = Killer;
+    }
 }
