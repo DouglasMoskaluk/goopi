@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerWalkMotionState : PlayerBasicMotionState
 {
-    float animLerpAmount = 0.05f;
+    float animLerpAmount = 0.07f;
+    float animLerpRestingAmount = 0.12f;
 
     public override void onStateEnter()
     {
@@ -21,9 +22,17 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         RotateBodyToCamera();
 
         Vector3 motionInput = input.motionInput.normalized;
-        
-        anim.SetFloat("MotionX", Mathf.Lerp(motionInput.x, anim.GetFloat("MotionX"), animLerpAmount * Time.deltaTime));
-        anim.SetFloat("MotionY", Mathf.Lerp(motionInput.y, anim.GetFloat("MotionY"), animLerpAmount * Time.deltaTime));
+
+        //anim.SetFloat("MotionX", Mathf.Lerp(input.motionInput.x, anim.GetFloat("MotionX"), 0.0001f));
+        //anim.SetFloat("MotionY", Mathf.Lerp(input.motionInput.y, anim.GetFloat("MotionY"), 0.0001f));
+
+        float lerpAmountX = (input.motionInput.x == 0) ? animLerpRestingAmount : animLerpAmount;
+        float animXValue = Mathf.Lerp(anim.GetFloat("MotionX"), input.motionInput.x, lerpAmountX);
+        anim.SetFloat("MotionX", animXValue);
+
+        float lerpAmountY = (input.motionInput.x == 0) ? animLerpRestingAmount : animLerpAmount;
+        float animYValue = Mathf.Lerp(anim.GetFloat("MotionY"), input.motionInput.y, lerpAmountY);
+        anim.SetFloat("MotionY", animYValue);
     }
 
     public override void onStateExit()
