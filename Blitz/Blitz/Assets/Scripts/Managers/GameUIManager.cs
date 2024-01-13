@@ -110,12 +110,12 @@ public class GameUIManager : MonoBehaviour
     {
         if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
 
-        float timeElapsed = 0;
+        float timeElapsed = fadePanel.color.a;
+        float curFadePercent = fadePanel.color.a;
         while (timeElapsed < duration)
         {
             timeElapsed += Time.deltaTime;
-            //Debug.Log(timeElapsed);
-            fadePanel.color = new Color(0, 0, 0, Mathf.Clamp01(timeElapsed / duration));
+            fadePanel.color = new Color(0, 0, 0, Mathf.Lerp(curFadePercent, 1, timeElapsed / duration));
             yield return null;
         }
 
@@ -128,14 +128,22 @@ public class GameUIManager : MonoBehaviour
         if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
 
         float timeElapsed = 0;
+        float curFadePercent = fadePanel.color.a;
         while (timeElapsed < duration)
         {
             timeElapsed += Time.deltaTime;
-            //Debug.Log(timeElapsed);
-            fadePanel.color = new Color(0, 0, 0, 1 - Mathf.Clamp01(timeElapsed / duration));
+            fadePanel.color = new Color(0, 0, 0, Mathf.Lerp(curFadePercent, 0, timeElapsed / duration));
             yield return null;
         }
 
         fading = false;
+    }
+
+    public void SetFadePanelAlpha(float alpha)
+    {
+        alpha = Mathf.Clamp01(alpha);
+        Color newColor = fadePanel.color;
+        newColor.a = alpha;
+        fadePanel.color = newColor;
     }
 }
