@@ -4,6 +4,13 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 {
     float chargeTime = 0.0f;
 
+    public override void onStateEnter()
+    {
+        base.onStateEnter();
+        anim.CrossFadeInFixedTime("Throw", 0.1f, 0);
+        //anim.CrossFadeInFixedTime("Throw", 0.1f, 1);
+    }
+
     public override void onStateExit()
     {
         

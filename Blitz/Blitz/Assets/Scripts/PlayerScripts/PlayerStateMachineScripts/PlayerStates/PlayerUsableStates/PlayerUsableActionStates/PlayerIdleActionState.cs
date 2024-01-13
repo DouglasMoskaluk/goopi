@@ -6,7 +6,7 @@ public class PlayerIdleActionState : PlayerActionState
 {
     public override void onStateEnter()
     {
-        
+        //anim.CrossFadeInFixedTime("Idle", 0.1f, 1);
     }
 
     public override void stateUpdate()
