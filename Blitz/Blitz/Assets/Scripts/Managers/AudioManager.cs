@@ -32,7 +32,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance = null) instance = this;
+        instance = this;
+        //if (instance = null) instance = this;
         sources = new AudioSource[numberAudioPlayers];
         for (int i=0; i<numberAudioPlayers; i++)
         {

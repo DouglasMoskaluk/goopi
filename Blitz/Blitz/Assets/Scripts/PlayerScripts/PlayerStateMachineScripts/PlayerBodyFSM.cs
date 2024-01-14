@@ -290,6 +290,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         playerUI.playerGotdamaged();
         newAttacker(attackerId);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_HURT);
 
         if (attackerId != -1)
         {

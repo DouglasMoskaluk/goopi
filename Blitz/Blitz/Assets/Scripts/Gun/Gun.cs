@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
     internal GunVars gunVars;
     private bool canReload = true;
 
-    internal enum GunType { NONE, GOOP, NERF, ICE_XBOW };
+    internal enum GunType { NONE, GOOP, NERF, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
 
 
     [HideInInspector]
@@ -101,6 +101,16 @@ public class Gun : MonoBehaviour
                 case GunType.NERF:
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_SHOOT);
                     break;
+
+                case GunType.PLUNGER:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_SHOOT);
+                    break;
+                case GunType.FISH:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_SHOOT);
+                    break;
+                case GunType.BOOMSTICK:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_SHOOT);
+                    break;
             }
             return 0;
         }
@@ -135,13 +145,6 @@ public class Gun : MonoBehaviour
     /// </summary>
     IEnumerator reloading()
     {
-        yield return new WaitForSeconds(gunVars.reloadTime);
-        instantReload();
-    }
-
-
-    internal void instantReload()
-    {
         switch (gunVars.type)
         {
             case GunType.GOOP:
@@ -153,7 +156,23 @@ public class Gun : MonoBehaviour
             case GunType.NERF:
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_RELOAD);
                 break;
+            case GunType.PLUNGER:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_RELOAD);
+                break;
+            case GunType.FISH:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_RELOAD);
+                break;
+            case GunType.BOOMSTICK:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_RELOAD);
+                break;
         }
+        yield return new WaitForSeconds(gunVars.reloadTime);
+        instantReload();
+    }
+
+
+    internal void instantReload()
+    {
         gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
     }
