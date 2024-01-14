@@ -90,6 +90,18 @@ public class Gun : MonoBehaviour
             else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
             if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
             else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
+            switch (gunVars.type)
+            {
+                case GunType.GOOP:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_SHOOT);
+                    break;
+                case GunType.ICE_XBOW:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_SHOOT);
+                    break;
+                case GunType.NERF:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_SHOOT);
+                    break;
+            }
             return 0;
         }
         
@@ -130,6 +142,18 @@ public class Gun : MonoBehaviour
 
     internal void instantReload()
     {
+        switch (gunVars.type)
+        {
+            case GunType.GOOP:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_RELOAD);
+                break;
+            case GunType.ICE_XBOW:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_RELOAD);
+                break;
+            case GunType.NERF:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_RELOAD);
+                break;
+        }
         gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
     }
