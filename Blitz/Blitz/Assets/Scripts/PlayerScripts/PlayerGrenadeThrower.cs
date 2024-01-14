@@ -7,6 +7,8 @@ public class PlayerGrenadeThrower : MonoBehaviour
 {
     
     [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private Transform grenadeVisualsParent;
+    private Transform[] grenadeVisuals;
 
     [SerializeField] private int heldGrenadeCount;
 
@@ -24,12 +26,18 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     private void Awake()
     {
-        
+        grenadeVisuals = new Transform[MaxHeldGrenades];
+        int index = 0;
+        foreach (Transform child in grenadeVisualsParent)
+        {
+            grenadeVisuals[index] = child;
+            index++;
+        }
     }
 
     private void Start()
     {
-        
+        EventManager.instance.addListener(Events.onRoundStart, ResetGrenades);
     }
 
     public bool hasGrenade()
@@ -54,8 +62,8 @@ public class PlayerGrenadeThrower : MonoBehaviour
             grenade.setGrenadeType(GrenadeType.Dropped);
             grenade.setDirectionAndSpeed(Vector3.down, 5f);
         }
-        
-        heldGrenadeCount--;
+
+        RemoveGrenade(1);
         onCoolDown = true;
         StartCoroutine(grenadeCD(coolDownTimer));
     }
@@ -63,13 +71,34 @@ public class PlayerGrenadeThrower : MonoBehaviour
     public void setGrenades(int to)
     {
         heldGrenadeCount = to;
+        UpdateGrenadeVisual();
+    }
+
+    public void RemoveGrenade(int amount)
+    {
+        heldGrenadeCount = Mathf.Max(heldGrenadeCount - amount, 0);
+        UpdateGrenadeVisual();
     }
 
     public void addGrenade(int amount)
     {
-        heldGrenadeCount += amount;
+        heldGrenadeCount = Mathf.Min(heldGrenadeCount + amount, MaxHeldGrenades);
+        UpdateGrenadeVisual();
     }
 
+    private void UpdateGrenadeVisual()
+    {
+        for (int i = 0; i < grenadeVisuals.Length; i++)
+        {
+            if (i < heldGrenadeCount) { grenadeVisuals[i].gameObject.SetActive(true); }
+            else { grenadeVisuals[i].gameObject.SetActive(false); }
+        }
+    }
+
+    public void ResetGrenades(EventParams param = new EventParams())
+    {
+        setGrenades(MaxHeldGrenades);
+    }
 
     public void DropGrenade(Vector3 dir)
     {

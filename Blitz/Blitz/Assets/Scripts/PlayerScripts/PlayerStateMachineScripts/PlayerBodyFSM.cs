@@ -361,7 +361,7 @@ public class PlayerBodyFSM : MonoBehaviour
         resetHealth();
         playerUI.Alive();
         charController.enabled = true;
-        grenadeThrower.setGrenades(4);
+        grenadeThrower.setGrenades(grenadeThrower.MaxHeldGrenades);
         playerGun.instantReload();
         deathCheck = false;
         transitionState(PlayerMotionStates.Walk);
