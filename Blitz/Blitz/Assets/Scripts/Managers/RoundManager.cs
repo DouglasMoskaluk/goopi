@@ -31,10 +31,10 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startRoundCoro()
     {
-
+        Debug.Log("start Round co");
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
-        if (roundNum > 0) yield return GameUIManager.instance.FadeOut(0.25f);//if this is not the first round
+        yield return GameUIManager.instance.FadeOut(0.5f);
 
         Time.timeScale = 1.0f;
 

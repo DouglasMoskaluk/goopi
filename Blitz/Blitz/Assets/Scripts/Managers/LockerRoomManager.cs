@@ -10,10 +10,12 @@ public class LockerRoomManager : MonoBehaviour
     [SerializeField] private GameObject[] joinTexts;
 
     private bool[] readyFlags;
+    private bool readied = false;
 
     private void Awake()
     {
         if (instance == null) instance = this;
+        readyFlags = new bool[4];
         SplitScreenManager.instance.AllowJoining();
     }
 
@@ -38,25 +40,46 @@ public class LockerRoomManager : MonoBehaviour
 
     public void ReadyUpPlayer(int playerID)
     {
+        Debug.Log("Player " + playerID + " has readied up.");
         readyFlags[playerID] = true;
-        if (CheckReadyStatus())
+        if (!readied && CheckReadyStatus())
         {
+            readied = true;
             SendReadySignal();
+            //SceneTransitionManager.instance.loadScene(Scenes.Arena);
         }
     }
 
     private void SendReadySignal()
     {
-        SceneTransitionManager.instance.switchScene(Scenes.Arena);
+        StartCoroutine(ReadySignal());
+    }
+
+    private IEnumerator ReadySignal()
+    {
+
+        Debug.Log("inside ready singal");
+        SplitScreenManager.instance.DisablePlayerControls();
+
+        yield return GameUIManager.instance.FadeIn(0.5f);
+        Debug.Log("after fade");
+
+        // ## why does this not execute after the other has finished ##
+        //SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
+        Debug.Log("after unload");
+
+        SceneTransitionManager.instance.loadScene(Scenes.Arena);
+        Debug.Log("after load ");
+
         GameManager.instance.StartGame();
     }
 
     private bool CheckReadyStatus()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            if (!readyFlags[i]) return false;
-        }
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    if (readyFlags[i] == false) return false;
+        //}
         return true;
     }
 

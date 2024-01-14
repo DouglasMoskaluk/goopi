@@ -6,7 +6,7 @@ public class PlayerFallMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        anim.CrossFadeInFixedTime("Fall", 0.1f, 0);
+        anim.CrossFadeInFixedTime("Fall", 0.2f, 0);
     }
 
     public override void stateUpdate()

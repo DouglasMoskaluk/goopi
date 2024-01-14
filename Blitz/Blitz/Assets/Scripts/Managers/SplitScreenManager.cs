@@ -20,6 +20,7 @@ public class SplitScreenManager : MonoBehaviour
         if (instance == null) instance = this; 
         inputManager = FindObjectOfType<PlayerInputManager>();
         inputManager.onPlayerJoined += AddPlayer;
+
     }
 
     public void AllowJoining()
