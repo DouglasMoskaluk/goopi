@@ -7,8 +7,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
     public override void onStateEnter()
     {
         base.onStateEnter();
-        anim.CrossFadeInFixedTime("Throw", 0.1f, 0);
-        //anim.CrossFadeInFixedTime("Throw", 0.1f, 1);
+        anim.CrossFadeInFixedTime("Throw", 0.1f, 1);
     }
 
     public override void onStateExit()
