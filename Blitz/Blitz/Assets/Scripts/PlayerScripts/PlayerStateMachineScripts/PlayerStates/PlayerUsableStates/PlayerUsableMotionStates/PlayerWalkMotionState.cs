@@ -52,6 +52,10 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Slide);
         }
+        else if (!controller.isGrounded)
+        {
+            FSM.transitionState(PlayerMotionStates.Fall);
+        }
 
     }
 }

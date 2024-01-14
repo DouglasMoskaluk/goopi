@@ -14,7 +14,7 @@ public class GrenadePickUp : MonoBehaviour
         EventManager.instance.addListener(Events.onRoundStart, ResetGrenade);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
 
         if (!other.transform.CompareTag("Player") || !canPickUp) return;
