@@ -13,6 +13,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         base.onStateEnter();
         startSlideDireciton = playerBody.forward;
         anim.CrossFadeInFixedTime("Slide", 0.1f, 0);
+        anim.SetLayerWeight(1, 0);
     }
 
     public override void onStateExit()
@@ -20,6 +21,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         base.onStateExit();
         RotateBodyToCamera();
         input.resetSlide();
+        anim.SetLayerWeight(1, 1);
     }
 
     public override void stateUpdate()
