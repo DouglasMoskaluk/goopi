@@ -38,6 +38,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private FSMVariableHolder variableHolder;
     [SerializeField] private PlayerRigHolder rigHolder;
     [SerializeField] private RigBuilder rigBuilder;
+    [SerializeField] private GameObject healthPack;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -325,7 +326,7 @@ public class PlayerBodyFSM : MonoBehaviour
             deathCheck = true;
             transitionState(PlayerActionStates.Death);
             transitionState(PlayerMotionStates.Death);
-            StartCoroutine("ragdollTest");
+            StartCoroutine("deathCoro");
         }
 
         //charController.enabled = false;
@@ -341,7 +342,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     }
 
-    IEnumerator ragdollTest()
+    IEnumerator deathCoro()
     {
         charController.enabled = false;
         Debug.Log("Player Died!");
@@ -350,6 +351,8 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
         playerUI.Dead();
+        yield return new WaitForEndOfFrame();
+        Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
         yield return new WaitForSeconds(1.0f);
         //ragdoll.DisableRagdoll();
@@ -392,6 +395,15 @@ public class PlayerBodyFSM : MonoBehaviour
     //    grenadeThrower.setGrenades(4);
     //    playerGun.instantReload();
     //}
+
+    /// <summary>
+    /// refills player health when they hit a health pack
+    /// </summary>
+    public void refillHealth()
+    {
+        playerUI.HideLowHealth();
+        health = MAX_HEALTH;
+    }
 
     /// <summary>
     /// resets the players health back to the max
