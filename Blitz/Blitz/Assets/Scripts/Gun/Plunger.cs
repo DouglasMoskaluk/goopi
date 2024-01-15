@@ -19,6 +19,7 @@ public class Plunger : SpawnableObject
             Debug.Log("I've been hit!!! " + hit.name);
             StartCoroutine(pull(hit));
         }
+        else StartCoroutine(destruction(5f));
     }
 
     private IEnumerator pull(PlayerBodyFSM hit)
@@ -30,6 +31,12 @@ public class Plunger : SpawnableObject
         pullDirection.y += 5;
         hit.addKnockBack(pullDirection * pullPower);
         hit.transitionState(PlayerMotionStates.KnockBack);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator destruction(float timer)
+    {
+        yield return new WaitForSeconds(timer);
         Destroy(gameObject);
     }
 }
