@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour
@@ -13,14 +15,26 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private float maxThrowVelocity;
     private GameObject lastTeleported;
 
+    //math for varying arc angles
+    //Vector3 vec = Vector3.Cross(-Vector3.Cross(transform.up, direction.normalized), direction.normalized);
+    //Vector3 dir = Quaternion.Euler(vec * arc / 2) * direction.normalized;
+
 
     private void OnDrawGizmosSelected()
     {
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawLine(transform.position, transform.position + direction.normalized * lineLength, lineThickness);
+        Handles.color = Color.red;
+        Handles.DrawLine(transform.position, transform.position + direction.normalized * lineLength, lineThickness);
 
-        UnityEditor.Handles.color = Color.green;
-        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, Quaternion.Euler(0, -arc / 2, 0) * direction.normalized, arc, lineLength, lineThickness) ;
+        Handles.color = Color.green;
+        Handles.DrawWireArc(transform.position, Vector3.up, Quaternion.Euler(0, -arc / 2, 0) * direction.normalized, arc, lineLength, lineThickness) ;
+    }
+
+    private void Update()
+    {
+        Vector3 dir = Vector3.Cross(direction.normalized, transform.right);
+        Debug.DrawRay(transform.position, dir, Color.magenta, 0.1f);
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +53,9 @@ public class Teleporter : MonoBehaviour
         target.transform.position = transform.position;
         targetController.enabled = true;
         float throwSpeed = Random.Range(minThrowVelocity, maxThrowVelocity);
+
+        Vector3 throwDirection = direction;
+
         FSM.setKnockBack(direction * throwSpeed);
         FSM.transitionState(PlayerMotionStates.KnockBack);
         lastTeleported = target;
