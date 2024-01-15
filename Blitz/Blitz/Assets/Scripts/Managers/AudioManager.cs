@@ -31,6 +31,16 @@ public class AudioManager : MonoBehaviour
     private int currentSource = 0;
     private AudioSource[] sources;
 
+    [SerializeField]
+    [Range(0, 1)]
+    float masterVolume = 0.5f;
+    [SerializeField]
+    [Range(0, 1)]
+    float musicVolume = 0.5f;
+    [SerializeField]
+    [Range(0, 1)]
+    float sfxVolume = 0.5f;
+
 
 
 
@@ -64,6 +74,8 @@ public class AudioManager : MonoBehaviour
         MusicSource = go.GetComponent<AudioSource>();
         MusicSource.loop = true;
         MusicSource.clip = music[0].clip;
+        MusicSource.pitch = music[0].pitch;
+        MusicSource.volume = music[0].volume * musicVolume * masterVolume;
         MusicSource.Play();
     }
 
@@ -87,13 +99,16 @@ public class AudioManager : MonoBehaviour
         AudioSource newSource = go.GetComponent<AudioSource>();
         newSource.loop = true;
         newSource.volume = 0;
+        int trackNum = 0;
 
         for (int i=0; i<music.Length; i++)
         {
             if (name == music[i].trackName)
             {
                 newSource.clip = music[i].clip;
+                newSource.pitch = music[i].pitch;
                 newSource.Play();
+                trackNum = i;
                 break;
             }
         }
@@ -112,6 +127,10 @@ public class AudioManager : MonoBehaviour
             MusicSource.volume -= Time.deltaTime / transitionTime;
             if (MusicSource.volume < 0) MusicSource.volume = 0;
             newSource.volume += Time.deltaTime / transitionTime;
+            if (newSource.volume > music[trackNum].volume * musicVolume * masterVolume)
+            {
+                newSource.volume = music[trackNum].volume * musicVolume * masterVolume;
+            }
         }
         go = MusicSource.gameObject;
         MusicSource = newSource;
@@ -144,7 +163,7 @@ public class AudioManager : MonoBehaviour
             }
 
             sources[usedSource].clip = s.clip;
-            sources[usedSource].volume = s.volume;
+            sources[usedSource].volume = s.volume * sfxVolume * masterVolume;
             sources[usedSource].pitch = s.pitch;
 
             sources[usedSource].Play();
@@ -223,4 +242,10 @@ internal struct Track
     internal string trackName;
     [SerializeField]
     internal AudioClip clip;
+    [SerializeField]
+    [Range(0, 1)]
+    internal float volume;
+    [SerializeField]
+    [Range(0.1f, 3)]
+    internal float pitch;
 }
