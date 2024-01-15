@@ -99,7 +99,7 @@ public class Bullet : MonoBehaviour
             for (int i=0; i< bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
+                go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
     }
@@ -111,11 +111,11 @@ public class Bullet : MonoBehaviour
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
                 if (bulletVars.attachPlayer)
                 {
                     go.transform.parent = plr.transform;
-                } 
+                }
+                go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
     }
@@ -140,7 +140,7 @@ public class Bullet : MonoBehaviour
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                go.GetComponent<SpawnableObject>().Owner = bulletVars.owner;
+                go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
         Destroy(gameObject);

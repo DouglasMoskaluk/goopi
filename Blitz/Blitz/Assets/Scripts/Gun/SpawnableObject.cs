@@ -6,7 +6,7 @@ public class SpawnableObject : MonoBehaviour
 {
     internal int Owner;
 
-    internal void init(int owner)
+    internal virtual void init(int owner)
     {
         Owner = owner;
     }
