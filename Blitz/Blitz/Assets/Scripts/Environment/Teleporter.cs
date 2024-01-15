@@ -9,6 +9,10 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private float lineLength = 1;
     [SerializeField] private Vector3 direction; // the base direction direction the player is shot out from
     [SerializeField] private float arc; // how much deviation from the base direction the player could have
+    [SerializeField] private float minThrowVelocity;
+    [SerializeField] private float maxThrowVelocity;
+    private GameObject lastTeleported;
+
 
     private void OnDrawGizmosSelected()
     {
@@ -21,7 +25,7 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other.gameObject != lastTeleported)
         {
             teleportingTo.TeleportTarget(other.gameObject);
         }
@@ -29,7 +33,22 @@ public class Teleporter : MonoBehaviour
 
     public void TeleportTarget(GameObject target)
     {
+        CharacterController targetController = target.GetComponent<CharacterController>();
+        PlayerBodyFSM FSM = targetController.GetComponent<PlayerBodyFSM>();
+        targetController.enabled = false;
+        target.transform.position = transform.position;
+        targetController.enabled = true;
+        float throwSpeed = Random.Range(minThrowVelocity, maxThrowVelocity);
+        FSM.setKnockBack(direction * throwSpeed);
+        FSM.transitionState(PlayerMotionStates.KnockBack);
+        lastTeleported = target;
+        StartCoroutine(ResetTarget());
+    }
 
+    private IEnumerator ResetTarget()
+    {
+        yield return new WaitForSeconds(0.2f);
+        lastTeleported = null;
     }
 
 }
