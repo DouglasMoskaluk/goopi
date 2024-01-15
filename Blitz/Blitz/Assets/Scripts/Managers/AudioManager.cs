@@ -86,6 +86,7 @@ public class AudioManager : MonoBehaviour
         go.AddComponent<AudioSource>();
         AudioSource newSource = go.GetComponent<AudioSource>();
         newSource.loop = true;
+        newSource.volume = 0;
 
         for (int i=0; i<music.Length; i++)
         {
