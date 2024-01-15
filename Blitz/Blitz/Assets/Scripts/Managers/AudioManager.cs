@@ -21,6 +21,10 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private Sound[] GameSounds;
+    [SerializeField]
+    private Track[] music;
+    private AudioSource MusicSource;
+    IEnumerator trackSwitching;
 
     private SoundList[] soundDirectory;
 
@@ -32,13 +36,12 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        //if (instance = null) instance = this;
+        if (instance == null) instance = this;
         sources = new AudioSource[numberAudioPlayers];
+        GameObject go;
         for (int i=0; i<numberAudioPlayers; i++)
         {
-            GameObject go = new GameObject();
-            //go = Instantiate(go, transform);
+            go = new GameObject();
             go.transform.parent = transform;
             go.AddComponent<AudioSource>();
             sources[i] = go.GetComponent<AudioSource>();
@@ -54,6 +57,65 @@ public class AudioManager : MonoBehaviour
         {
             soundDirectory[(int)GameSounds[i].queue].AddSound(i);
         }
+
+        go = new GameObject();
+        go.transform.parent = transform;
+        go.AddComponent<AudioSource>();
+        MusicSource = go.GetComponent<AudioSource>();
+        MusicSource.loop = true;
+        MusicSource.clip = music[0].clip;
+        MusicSource.Play();
+    }
+
+
+    internal void TransitionTrack(string name)
+    {
+        if (trackSwitching == null)
+        {
+            trackSwitching = Transitions(name);
+            StartCoroutine(trackSwitching);
+        }
+        
+    }
+
+
+    private IEnumerator Transitions(string name)
+    {
+        GameObject go = new GameObject();
+        go.transform.parent = transform;
+        go.AddComponent<AudioSource>();
+        AudioSource newSource = go.GetComponent<AudioSource>();
+        newSource.loop = true;
+
+        for (int i=0; i<music.Length; i++)
+        {
+            if (name == music[i].trackName)
+            {
+                newSource.clip = music[i].clip;
+                newSource.Play();
+                break;
+            }
+        }
+        if (newSource.clip == null)
+        {
+            Destroy(go);
+            Debug.LogWarning("A music track with the name "+name+" doesn't exist.");
+            StopCoroutine(trackSwitching);
+            Debug.LogError("Something went wrong. Aidan thought that the music transition couldn't get here.");
+        }
+
+        while (MusicSource.volume > 0)
+        {
+            yield return null;
+            float transitionTime = 2;
+            MusicSource.volume -= Time.deltaTime / transitionTime;
+            if (MusicSource.volume < 0) MusicSource.volume = 0;
+            newSource.volume += Time.deltaTime / transitionTime;
+        }
+        go = MusicSource.gameObject;
+        MusicSource = newSource;
+        Destroy(go);
+        trackSwitching = null;
     }
 
 
@@ -94,13 +156,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Z))
-        {
-            PlaySound(AudioQueue.BUTTON_CLICK);
-        }*/
-    }
 
 
     private Sound getSound(AudioQueue queue)
@@ -158,4 +213,13 @@ internal struct Sound
     [SerializeField]
     [Range(0.1f, 3)]
     internal float pitch;
+}
+
+[System.Serializable]
+internal struct Track
+{
+    [SerializeField]
+    internal string trackName;
+    [SerializeField]
+    internal AudioClip clip;
 }
