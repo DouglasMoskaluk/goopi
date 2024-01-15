@@ -52,14 +52,17 @@ public class Teleporter : MonoBehaviour
         targetController.enabled = false;
         target.transform.position = transform.position;
         targetController.enabled = true;
-        float throwSpeed = Random.Range(minThrowVelocity, maxThrowVelocity);
-
-        Vector3 throwDirection = direction;
-
-        FSM.setKnockBack(direction * throwSpeed);
+        FSM.setKnockBack(CalcDirection() * Random.Range(minThrowVelocity, maxThrowVelocity));
         FSM.transitionState(PlayerMotionStates.KnockBack);
         lastTeleported = target;
         StartCoroutine(ResetTarget());
+    }
+
+    private Vector3 CalcDirection()
+    {
+        float rand = Random.Range(- arc / 2, arc / 2);
+        Vector3 vec = Vector3.Cross(-Vector3.Cross(transform.up, direction.normalized), direction.normalized);
+        return Quaternion.Euler(vec * rand) * direction.normalized;
     }
 
     private IEnumerator ResetTarget()
