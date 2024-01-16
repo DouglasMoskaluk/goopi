@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class PlayerModelChanger : MonoBehaviour
 {
-    public Mesh playerMesh;
+    [SerializeField]
+    private SkinnedMeshRenderer playerSkin;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void SetModel()
+    public void SetModel(Mesh newMesh, Material newMaterial)
     {
-
+        playerSkin.sharedMesh = newMesh;
+        playerSkin.sharedMaterial = newMaterial;
     }
 
     // Update is called once per frame
