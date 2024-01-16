@@ -41,8 +41,6 @@ public class Teleporter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && other.gameObject != lastTeleported)
         {
-
-
             GetTeleportTo().TeleportTarget(other.gameObject);
         }
     }

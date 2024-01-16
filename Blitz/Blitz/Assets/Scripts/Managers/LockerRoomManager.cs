@@ -65,10 +65,10 @@ public class LockerRoomManager : MonoBehaviour
         Debug.Log("after fade");
 
         // ## why does this not execute after the other has finished ##
-        //SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
+        yield return SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
         Debug.Log("after unload");
 
-        SceneTransitionManager.instance.loadScene(Scenes.Arena);
+        yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
         Debug.Log("after load ");
 
         GameManager.instance.StartGame();
