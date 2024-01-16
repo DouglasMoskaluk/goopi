@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    [SerializeField] private Teleporter teleportingTo; //reference to where this teleporter teleports to
+    [SerializeField] private List<Teleporter> teleportingTo; //reference to where this teleporter teleports to
     [SerializeField] private float lineThickness = 1; // how thick to draw the guide lines for where the player is shot out
     [SerializeField] private float lineLength = 1;
     [SerializeField] private Vector3 direction; // the base direction direction the player is shot out from
@@ -41,8 +41,16 @@ public class Teleporter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && other.gameObject != lastTeleported)
         {
-            teleportingTo.TeleportTarget(other.gameObject);
+
+
+            GetTeleportTo().TeleportTarget(other.gameObject);
         }
+    }
+
+
+    private Teleporter GetTeleportTo()
+    {
+        return teleportingTo[Random.Range(0, teleportingTo.Count - 1)];
     }
 
     public void TeleportTarget(GameObject target)
