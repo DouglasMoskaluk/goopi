@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba090ef2d1d3643980eaa72b1a1aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMesh: {fileID: 0}
+  playerSkin: {fileID: 6388956392442052961}
 --- !u!1 &2722540419875821719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0052237906, y: -0.072690435, z: 0.0003807321, w: 0.9973408}
+  m_LocalRotation: {x: 0.005223788, y: -0.072690435, z: 0.0003807319, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2877,7 +2877,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Animal 2
+  m_text: Fox
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4216,7 +4216,7 @@ GameObject:
   - component: {fileID: 3993184051790124582}
   - component: {fileID: 6024104229236707790}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: FoxButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4380,7 +4380,7 @@ GameObject:
   - component: {fileID: 2155097344710279177}
   - component: {fileID: 4726450125617299496}
   m_Layer: 5
-  m_Name: Button
+  m_Name: OtterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6269,6 +6269,12 @@ Transform:
 --- !u!4 &6106117071332066353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1158931717137717053, guid: 93a0b91c03b1c414ba20748a1bf65a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4276146550274583794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6388956392442052961 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7205140776170859923, guid: 93a0b91c03b1c414ba20748a1bf65a2f,
     type: 3}
   m_PrefabInstance: {fileID: 4276146550274583794}
   m_PrefabAsset: {fileID: 0}
