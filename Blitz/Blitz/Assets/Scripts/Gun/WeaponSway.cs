@@ -8,40 +8,51 @@ public class WeaponSway : MonoBehaviour
     [SerializeField] private bool shouldSway = true;
 
     [SerializeField] private float posYOffset = 0.025f;
-    [SerializeField] private float negYOffset = 0.01f;
+    [SerializeField] private float negYOffset = -0.01f;
     [SerializeField] private float lerpModifier = 1;
-    private Vector3 startPoint;
+    
     private int direction = 1;
 
-    private float timeSinceLastDirectionChange = 0;
+    private Vector3 startPoint;
+
+    private Vector3 top;
+    private Vector3 bottom;
+
+    [Tooltip("-1 -> bottom, 1 -> top")] private int target = 1;
 
     private void Start()
     {
         startPoint = transform.localPosition;
-        ChangeDirection();
+        top = startPoint + Vector3.up * posYOffset;
+        bottom = startPoint + Vector3.up * negYOffset;
+        
     }
 
     public void Update()
     {
         if (shouldSway)
         {
-            float offsetValue = (direction >= 0) ? posYOffset : negYOffset;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + Vector3.up * offsetValue, lerpModifier * Time.deltaTime);
+            moveWeapon();
 
-            if (transform.localPosition.y >= startPoint.y + posYOffset || transform.localPosition.y <= startPoint.y - negYOffset)
-            {
-                ChangeDirection();
-            }
+            checkDirection();
         }
     }
 
-    public void ChangeDirection()
+    private void moveWeapon()
     {
-
-        direction *= -1;
+        Vector3 target = (direction == 1) ? top : bottom;
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, lerpModifier * Time.deltaTime);
     }
 
-    public void SetStartPoint(Vector3 newStart)
+    private void checkDirection()
+    {
+        if ((direction == 1 && transform.localPosition.Equals(top)) || (direction == -1 && transform.localPosition.Equals(bottom)))
+        {
+            direction *= -1;
+        }
+    }
+
+    public void setStartPoint(Vector3 newStart)
     {
         startPoint = newStart;
         transform.localPosition = startPoint;
