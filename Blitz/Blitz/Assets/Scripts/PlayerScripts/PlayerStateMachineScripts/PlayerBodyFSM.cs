@@ -274,7 +274,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void newAttacker(int attackerId)
     {
-        if (attackerId != -1)
+        if (attackerId != -1 && !deathCheck)
         {
             if (attackerId != playerID) mostRecentAttacker = attackerId;
         }
@@ -304,9 +304,10 @@ public class PlayerBodyFSM : MonoBehaviour
             death();
             //player gets kill marker
             //update kill count
-            if (mostRecentAttacker != -1) RoundManager.instance.updateKillCount(mostRecentAttacker);
-            EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
-            mostRecentAttacker = -1;
+            if (mostRecentAttacker != -1)
+            {
+                RoundManager.instance.updateKillCount(mostRecentAttacker);
+            }
         }
         if(health <= 30)
         {
@@ -360,6 +361,8 @@ public class PlayerBodyFSM : MonoBehaviour
         Transform newPos = RespawnManager.instance.getRespawnLocation();
         float dist = Vector3.Distance(transform.position, newPos.position);
         transform.position = newPos.position;
+        EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
+        mostRecentAttacker = -1;
         Physics.SyncTransforms();
 
         resetHealth();
