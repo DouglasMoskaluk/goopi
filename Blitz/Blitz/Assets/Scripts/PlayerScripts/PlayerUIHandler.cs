@@ -39,9 +39,16 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator gotHitCoroutine;
 
+    [SerializeField]
     private GameObject lowHealthUI;
 
+    [SerializeField]
     private GameObject damagedUI;
+
+    private GameObject scaleObject;
+
+    [SerializeField]
+    private Vector3[] UILocations;
 
     int kills = 0;
 
@@ -53,19 +60,25 @@ public class PlayerUIHandler : MonoBehaviour
         //RoundManager.instance.onRoundReset.AddListener(resetPlayerUI);
         EventManager.instance.addListener(Events.onRoundStart, resetPlayerUI);
 
-        lowHealthUI = transform.GetChild(1).gameObject;
-        damagedUI = transform.GetChild(2).gameObject;
+        //lowHealthUI = transform.GetChild(1).gameObject;
+        //damagedUI = transform.GetChild(2).gameObject;
+
+        scaleObject = transform.GetChild(0).gameObject;
+
         Initialize();
     }
 
     private void Initialize()
     {
+        scaleObject.transform.localPosition = UILocations[playerID];
         hitMarkerCoroutine = ShowHitMarker();
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
     }
+
+
 
     // Update is called once per frame
     void LateUpdate()

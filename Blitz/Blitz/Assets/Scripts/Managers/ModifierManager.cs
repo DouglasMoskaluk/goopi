@@ -43,16 +43,23 @@ public class ModifierManager : MonoBehaviour
 
         //Selects an event
         int round = RoundManager.instance.getRoundNum() - 1;
-        for (int i=0; i< modifiers[round]; i++)
+        if (modifiers[round] != -1)
         {
-            int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH);
-            if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
+            for (int i = 0; i < modifiers[round]; i++)
             {
-                ActiveEvents[chosenEvent] = true;
-            } else if (ActiveEvents[chosenEvent])
-            {
-                i--;
+                int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH -1);
+                if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
+                {
+                    ActiveEvents[chosenEvent] = true;
+                }
+                else if (ActiveEvents[chosenEvent])
+                {
+                    i--;
+                }
             }
+        } else
+        {
+            ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
         }
 
         //Low gravity event
