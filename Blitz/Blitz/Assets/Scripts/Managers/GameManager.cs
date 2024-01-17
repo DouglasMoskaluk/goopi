@@ -137,4 +137,27 @@ public class GameManager : MonoBehaviour
 
         return result;
     }
+
+    public void ReadyArena()
+    {
+        StartCoroutine(LockerRoomToArenaTransition());
+    }
+
+    private IEnumerator LockerRoomToArenaTransition()
+    {
+        Debug.Log("inside ready singal");
+        SplitScreenManager.instance.DisablePlayerControls();
+
+        yield return GameUIManager.instance.FadeIn(0.5f);
+        Debug.Log("after fade");
+
+        // ## why does this not execute after the other has finished ##
+        yield return SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
+        Debug.Log("after unload");
+
+        yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
+        Debug.Log("after load ");
+
+        StartGame();
+    }
 }

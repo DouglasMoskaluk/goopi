@@ -52,34 +52,15 @@ public class LockerRoomManager : MonoBehaviour
 
     private void SendReadySignal()
     {
-        StartCoroutine(ReadySignal());
-    }
-
-    private IEnumerator ReadySignal()
-    {
-
-        Debug.Log("inside ready singal");
-        SplitScreenManager.instance.DisablePlayerControls();
-
-        yield return GameUIManager.instance.FadeIn(0.5f);
-        Debug.Log("after fade");
-
-        // ## why does this not execute after the other has finished ##
-        //yield return SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
-        Debug.Log("after unload");
-
-        yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
-        Debug.Log("after load ");
-
-        GameManager.instance.StartGame();
+        GameManager.instance.ReadyArena();
     }
 
     private bool CheckReadyStatus()
     {
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    if (readyFlags[i] == false) return false;
-        //}
+        for (int i = 0; i < 4; i++)
+        {
+            if (readyFlags[i] == false) return false;
+        }
         return true;
     }
 

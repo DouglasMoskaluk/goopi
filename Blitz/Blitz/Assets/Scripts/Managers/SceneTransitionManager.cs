@@ -147,8 +147,11 @@ public class SceneTransitionManager : MonoBehaviour
 
         while (!unload.isDone)
         {
+            
             yield return null;
+            Debug.Log("not done");
         }
+        Debug.Log("unload is done");
 
         isLoading = false;
     }
