@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     bool collideThisFrame = false;
     float spawnTime = 0.05f;
     float bulletIFrames = 0.05f;
+    float bulletStraightShotDistance = 5;
 
 
     /// <summary>
@@ -172,7 +173,7 @@ public class Bullet : MonoBehaviour
 
         //calculate the direction the bullet should be thrown in
         Vector3 direction = (destination - transform.position);//find direction from throw arm to raycast point
-        if (direction.magnitude < 5)
+        if (direction.magnitude < bulletStraightShotDistance)
         {
             direction = transform.forward;
         }

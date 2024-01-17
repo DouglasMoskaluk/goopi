@@ -16,7 +16,7 @@ public class Plunger : SpawnableObject
         PlayerBodyFSM hit = transform.parent.GetComponent<PlayerBodyFSM>();
         if (hit != null)
         {
-            Debug.Log("I've been hit!!! " + hit.name);
+            //Debug.Log("I've been hit!!! " + hit.name);
             StartCoroutine(pull(hit));
         }
         else StartCoroutine(destruction(5f));
