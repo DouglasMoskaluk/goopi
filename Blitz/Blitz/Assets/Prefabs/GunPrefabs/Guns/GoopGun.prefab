@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3403214378698570096}
   - component: {fileID: 4527834303381466332}
   - component: {fileID: 3877965180559298240}
+  - component: {fileID: 7334701831327915076}
   m_Layer: 0
   m_Name: GoopGun
   m_TagString: Untagged
@@ -67,6 +68,7 @@ MonoBehaviour:
     forceApplied: {x: 0, y: -11, z: 0}
     spawnEveryContact: 1
     spawnOnDeath: 0
+    attachPlayer: 0
   gunVars:
     ammo: 1000000010000000
     reloadTime: 1
@@ -88,6 +90,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7334701831327915076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479398194430589949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e12d6c86c5a5af409865751436ca8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldSway: 1
+  posYoffset: 0.05
+  negYOffset: -0.01
+  lerpModifier: 0.75
 --- !u!1 &4125413533553180022
 GameObject:
   m_ObjectHideFlags: 0

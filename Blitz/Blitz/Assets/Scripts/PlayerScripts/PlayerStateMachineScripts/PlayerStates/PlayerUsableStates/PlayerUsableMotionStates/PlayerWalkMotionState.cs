@@ -27,11 +27,15 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         //anim.SetFloat("MotionY", Mathf.Lerp(input.motionInput.y, anim.GetFloat("MotionY"), 0.0001f));
 
         float lerpAmountX = (input.motionInput.x == 0) ? animLerpRestingAmount : animLerpAmount;
-        float animXValue = Mathf.Lerp(anim.GetFloat("MotionX"), input.motionInput.x, lerpAmountX);
+        float lerpToX = (input.motionInput.x > 0) ? 1 : -1;
+        if (input.motionInput.x == 0) lerpToX = 0;
+        float animXValue = Mathf.Lerp(anim.GetFloat("MotionX"), lerpToX, lerpAmountX);
         anim.SetFloat("MotionX", animXValue);
 
         float lerpAmountY = (input.motionInput.x == 0) ? animLerpRestingAmount : animLerpAmount;
-        float animYValue = Mathf.Lerp(anim.GetFloat("MotionY"), input.motionInput.y, lerpAmountY);
+        float lerpToY = (input.motionInput.y > 0) ? 1 : -1;
+        if (input.motionInput.y == 0) lerpToY = 0;
+        float animYValue = Mathf.Lerp(anim.GetFloat("MotionY"), lerpToY, lerpAmountY);
         anim.SetFloat("MotionY", animYValue);
     }
 

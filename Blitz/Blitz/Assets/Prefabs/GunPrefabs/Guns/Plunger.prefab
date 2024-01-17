@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3403214378698570096}
   - component: {fileID: 4527834303381466332}
+  - component: {fileID: 7839275205750806149}
+  - component: {fileID: 5341955123833692320}
   m_Layer: 0
   m_Name: Plunger
   m_TagString: Untagged
@@ -75,6 +77,34 @@ MonoBehaviour:
       type: 3}
     bulletParent: {fileID: 0}
     bulletSpawnPoint: {fileID: 6212113097842508093}
+--- !u!114 &7839275205750806149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479398194430589949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e12d6c86c5a5af409865751436ca8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldSway: 1
+  posYoffset: 0.05
+  negYOffset: -0.01
+  lerpModifier: 0.75
+--- !u!114 &5341955123833692320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479398194430589949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3991412675544986062
 GameObject:
   m_ObjectHideFlags: 0

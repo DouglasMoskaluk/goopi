@@ -14,6 +14,9 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
 
     float timeForControl = 0.5f;
     float elapsedTime = 0f;
+
+    //player input rotates knockback vector towards input after time delay
+
     public override void onStateEnter()
     {
         base.onStateEnter();
