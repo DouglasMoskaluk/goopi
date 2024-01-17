@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     [SerializeField]
     internal GunVars gunVars;
     private bool canReload = true;
+    private RumbleHandler rumble;
 
     internal enum GunType { NONE, GOOP, NERF, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
 
@@ -52,6 +53,9 @@ public class Gun : MonoBehaviour
             Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
         }
         bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
+
+        rumble = transform.root.GetComponent<RumbleHandler>();
+
     }
 
 
@@ -82,7 +86,7 @@ public class Gun : MonoBehaviour
             
             gunVars.canShoot = false;
             StartCoroutine(shotCooldown());
-            StartCoroutine(gunRumble());
+            rumble.ShootRumble((int)gunVars.type);
             GameObject bul;
             if (gunVars.bulletParent != null)
                 //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
@@ -175,16 +179,6 @@ public class Gun : MonoBehaviour
     {
         gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
-    }
-
-    /// <summary>
-    /// coroutine to rumble on shoot
-    /// </summary>
-    IEnumerator gunRumble()
-    {
-        Gamepad.current.SetMotorSpeeds(0.0f, 0.005f);
-        yield return new WaitForSeconds(0.02f);
-        Gamepad.current.SetMotorSpeeds(0f, 0f);
     }
 
 }
