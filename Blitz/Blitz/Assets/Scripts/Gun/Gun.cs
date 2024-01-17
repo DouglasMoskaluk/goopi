@@ -94,6 +94,7 @@ public class Gun : MonoBehaviour
             else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
             if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
             else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
+            gunVars.gunRecoil.applyRecoil();
             switch (gunVars.type)
             {
                 case GunType.GOOP:
@@ -210,6 +211,8 @@ internal class GunVars
     internal Transform bulletParent;
     [SerializeField]
     internal Transform bulletSpawnPoint;
+    [SerializeField]
+    internal Recoil gunRecoil;
 
     //private vars
     internal bool canShoot = true;
