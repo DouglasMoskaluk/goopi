@@ -228,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6588575227790957618}
   - component: {fileID: 5008964132880722411}
+  - component: {fileID: 6737105310924831486}
   m_Layer: 0
   m_Name: Recoil
   m_TagString: Untagged
@@ -271,6 +272,18 @@ MonoBehaviour:
   recoil: 0.1
   maxRecoil: 0.25
   returnSpeed: 0.1
+--- !u!114 &6737105310924831486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228721217246358431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7609334606277348108
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,10 +29,10 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
     public override void stateUpdate()
     {
         base.stateUpdate();
-        //controller.height = Mathf.MoveTowards(controller.height, 1.7f, 0.05f);
-        //Vector2 center = controller.center;
-        //center.y = Mathf.MoveTowards(center.y, 0.8f, 0.025f);
-        //controller.center = center;
+        controller.height = Mathf.MoveTowards(controller.height, 1.7f, 0.05f);
+        Vector2 center = controller.center;
+        center.y = Mathf.MoveTowards(center.y, 0.8f, 0.025f);
+        controller.center = center;
 
         Vector3 forwardMotion = input.motionInput;
         forwardMotion.y = 1f;

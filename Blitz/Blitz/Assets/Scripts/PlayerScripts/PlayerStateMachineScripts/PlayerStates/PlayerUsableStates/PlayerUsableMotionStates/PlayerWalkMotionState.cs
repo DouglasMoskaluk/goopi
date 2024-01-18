@@ -21,10 +21,10 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
 
     public override void stateUpdate()
     {
-        //controller.height = Mathf.MoveTowards(controller.height, 2, 0.05f);
-        //Vector2 center = controller.center;
-        //center.y = Mathf.MoveTowards(center.y, 0.95f, 0.025f);
-        //controller.center = center;
+        controller.height = Mathf.MoveTowards(controller.height, 2, 0.05f);
+        Vector2 center = controller.center;
+        center.y = Mathf.MoveTowards(center.y, 0.95f, 0.025f);
+        controller.center = center;
 
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
