@@ -48,6 +48,11 @@ public class RagDollHandler : MonoBehaviour
         DisableRagdoll();
     }
 
+    public void InitializeRagdoll(int playerId)
+    {
+
+    }
+
     // Update is called once per frame
 
     public void DisableRagdoll()
@@ -92,6 +97,12 @@ public class RagDollHandler : MonoBehaviour
     public void RagDollDeath()
     {
         StartCoroutine("RagDollDeathCoRo");
+    }
+
+    IEnumerator DeathTimer()
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
     }
 
     IEnumerator RagDollDeathCoRo()

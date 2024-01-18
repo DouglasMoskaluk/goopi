@@ -7,11 +7,18 @@ public class HealthPickup : MonoBehaviour
     [SerializeField]
     private float lifetime;
 
+    [SerializeField]
+    private float rotationSpeed;
 
     private void Start()
     {
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(0.0f, rotationSpeed, 0.0f);
     }
 
     private void OnTriggerStay(Collider other)
