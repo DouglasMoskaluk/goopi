@@ -11,7 +11,7 @@ public class WeaponSway : MonoBehaviour
     [SerializeField] private float negYOffset = -0.01f;
     [SerializeField] private float lerpModifier = 1;
     
-    private int direction = 1;
+    public int direction = 1;
 
     private Vector3 startPoint;
 
