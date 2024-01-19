@@ -12,12 +12,14 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundTimer;
     [SerializeField] private GameObject roundTimerGO;
     [SerializeField] private Image fadePanel;
+    [SerializeField] private GameObject roundTransObjs;
+    [SerializeField] private WeaponSlotMachine slotSelectionUI;
 
     public bool fading { get; private set; } = false;
 
     private void Awake()
     {
-        if (instance == null) instance = this; 
+        if (instance == null) instance = this;
     }
 
     private void Start()
@@ -146,5 +148,20 @@ public class GameUIManager : MonoBehaviour
         Color newColor = fadePanel.color;
         newColor.a = alpha;
         fadePanel.color = newColor;
+    }
+
+    public void showRoundTransition() 
+    {
+        roundTransObjs.SetActive(true); 
+    }
+
+    public void hideRoundTransition()
+    {
+        roundTransObjs.SetActive(false);
+    }
+
+    public Coroutine spinGunSelection(int gunSelected)
+    {
+        return slotSelectionUI.StartSelection(gunSelected);
     }
 }
