@@ -78,20 +78,20 @@ public class Bullet : MonoBehaviour
                 GameObject plr = hit.collider.gameObject;
                 if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
                 plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>());
+                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
                 Bounce(hit);
             }
             else if (hit.collider.CompareTag("Map"))
             {
                 spawnTime = bulletIFrames;
-                onMapHitEffect();
+                onMapHitEffect(hit);
                 Bounce(hit);
             }
         }
     }
 
 
-    private void onMapHitEffect()
+    private void onMapHitEffect(RaycastHit hit)
     {
         if (bulletVars.spawnOnContact != null && bulletVars.spawnEveryContact) 
         {
@@ -99,11 +99,16 @@ public class Bullet : MonoBehaviour
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
+                if (bulletVars.attachPlayer)
+                {
+                    //Snapping
+                    go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                }
             }
         }
     }
 
-    private void onHitPlayerEffect(PlayerBodyFSM plr)
+    private void onHitPlayerEffect(PlayerBodyFSM plr, RaycastHit hit)
     {
         if (bulletVars.spawnOnContact != null && bulletVars.spawnEveryContact)
         {
@@ -112,7 +117,10 @@ public class Bullet : MonoBehaviour
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 if (bulletVars.attachPlayer)
                 {
+                    //Snapping
                     go.transform.parent = plr.transform;
+                    go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                    go.transform.position = hit.point;
                 }
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
