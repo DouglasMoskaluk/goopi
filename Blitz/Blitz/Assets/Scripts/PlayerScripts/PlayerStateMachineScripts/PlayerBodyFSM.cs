@@ -330,6 +330,7 @@ public class PlayerBodyFSM : MonoBehaviour
             deathCheck = true;
             transitionState(PlayerActionStates.Death);
             transitionState(PlayerMotionStates.Death);
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;

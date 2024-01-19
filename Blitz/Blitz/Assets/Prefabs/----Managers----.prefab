@@ -257,7 +257,7 @@ MonoBehaviour:
   - {fileID: 3479398194430589949, guid: 1e8c4ebc25753074cb3d9752b0bcab11, type: 3}
   - {fileID: 3479398194430589949, guid: 157ef449d7a403948be4b0df3768b255, type: 3}
   - {fileID: 3479398194430589949, guid: b40403fe9ea905248b8c6adc9056791a, type: 3}
-  - {fileID: 3479398194430589949, guid: 5976ed07d56000e4cbf7f8052ad9da7b, type: 3}
+  - {fileID: 3479398194430589949, guid: 8e17903e55f3f814b818cc233e88a0c1, type: 3}
 --- !u!1 &1264724660483054540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,44 +2392,116 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberAudioPlayers: 5
   GameSounds:
-  - queue: 1
-    clip: {fileID: 8300000, guid: ffdb2ebfd68923346a90b29e1abedce8, type: 3}
-    volume: 0.5
-    pitch: 1
-  - queue: 0
-    clip: {fileID: 8300000, guid: 12b2ef1c7cb837c4494abc5358e9514c, type: 3}
-    volume: 0.5
-    pitch: 1
-  - queue: 8
+  - queue: 11
     clip: {fileID: 8300000, guid: 79f6ad765c8668b45a613d1328db8447, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 2
+  - queue: 5
     clip: {fileID: 8300000, guid: f03c42393c0e68b4d88875b324e0301e, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 10
+  - queue: 13
     clip: {fileID: 8300000, guid: 252cc8840b7169e4eb47ad2022e33669, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 4
+  - queue: 7
     clip: {fileID: 8300000, guid: adb9968348b92984bba9b5aff0ae7c06, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 9
+  - queue: 12
     clip: {fileID: 8300000, guid: 546908846b01c9748a9c505085447985, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 3
+  - queue: 6
     clip: {fileID: 8300000, guid: 7e113bf78f4bb90488a5bf1201568482, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 15
+  - queue: 18
     clip: {fileID: 8300000, guid: b63f4de577fb17a41b11dd5363badb22, type: 3}
     volume: 0.5
     pitch: 1
-  - queue: 15
+  - queue: 18
     clip: {fileID: 8300000, guid: 3453b8c7f635c3a4c8bf9d1e3e236ec6, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 19
+    clip: {fileID: 8300000, guid: 3418727194c166441aa76760399c2f4d, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 3
+    clip: {fileID: 8300000, guid: 32af2fd080d949f4f8a095f73a36dc2f, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 24
+    clip: {fileID: 8300000, guid: 82fe611220027194988a8730cdf2f3cc, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 5
+    clip: {fileID: 8300000, guid: 9ea34b76fdda791469ce55bb86e09810, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 7
+    clip: {fileID: 8300000, guid: f3625329c73910d4c867b27a4bbf0de2, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 28
+    clip: {fileID: 8300000, guid: 35a6c4afe8c20b340ab9cef4e508d24c, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 20
+    clip: {fileID: 8300000, guid: 9e3bd02fa38041745bcc91c01da39d3f, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 23
+    clip: {fileID: 8300000, guid: 9fb6e50c1c546364eaeba0faae02e619, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 10
+    clip: {fileID: 8300000, guid: 95396b53f06690d4f8fcd6aa91d957d6, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 16
+    clip: {fileID: 8300000, guid: 1098430ad539c794782cddc879adf06f, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 6
+    clip: {fileID: 8300000, guid: f51d589cf09d82340b819dc8c98dd090, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 15
+    clip: {fileID: 8300000, guid: 3a868a08b6b2edc4cad9225cdc03ce2d, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 9
+    clip: {fileID: 8300000, guid: c1c79749dce367d4d9b634ca665aab92, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 9
+    clip: {fileID: 8300000, guid: e355517d1234d624188ca6768325934a, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 26
+    clip: {fileID: 8300000, guid: 203816bac2cead94d977f8138aa1fc22, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 22
+    clip: {fileID: 8300000, guid: 5cb4974d6a361214480c7428fd68dd35, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 27
+    clip: {fileID: 8300000, guid: bff796e63dc9aa04aa0b651268e05e78, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 2
+    clip: {fileID: 8300000, guid: d9b02d6a19af4ad40970139f9960c465, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 21
+    clip: {fileID: 8300000, guid: 3bf4df7e6ebce744ca3dc7cc6215046e, type: 3}
+    volume: 0.5
+    pitch: 1
+  - queue: 4
+    clip: {fileID: 8300000, guid: 11a71e82f9793734796ed3d49ef7bd05, type: 3}
     volume: 0.5
     pitch: 1
   music:

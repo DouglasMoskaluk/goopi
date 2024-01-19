@@ -60,7 +60,7 @@ public class RoundManager : MonoBehaviour
 
         Time.timeScale = 0.25f;
         //GameUIManager.instance.SetFadePanelAlpha(0.5f); //<- might want to have it fade to like 0.25 or 0.3 tp indicate the slowmo more
-
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
         yield return new WaitForSecondsRealtime(0.75f);
 
         yield return GameUIManager.instance.FadeIn(0.5f);
