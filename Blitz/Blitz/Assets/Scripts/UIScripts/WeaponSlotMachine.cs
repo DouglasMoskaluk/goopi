@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,13 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private Transform bottomPoint;
 
     [SerializeField] private float spinDuration = 10f;
-    [SerializeField] private float speed = 1;
+
+    [SerializeField] private float speed = 1f;
+
+    [SerializeField] private float slowedDownFinalSpeed = 750f;
+    [SerializeField] private float slowDownSpeedAmount = 150f;
+
+    public float usedSpeed;
 
     private Vector3 Image1BottomVisible;
 
@@ -19,9 +26,9 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private void Start()
     {
+        usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
-        Debug.Log(Image1BottomVisible);
-        StartSelection(1);
+        StartSelection(2);
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -39,10 +46,10 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private IEnumerator SpinWheel(int selectedGun)
     {
-        Debug.Log(selectedGun);
+        //Debug.Log(selectedGun);
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible + (-Vector3.up * 256 * selectedGun);
-        Debug.Log(finalImagePos);
+        //Debug.Log(finalImagePos);
 
         // spin until the end of the specified spinning duration
         while (elapsedTime < spinDuration)
@@ -51,14 +58,14 @@ public class WeaponSlotMachine : MonoBehaviour
 
             foreach (RectTransform child in wheel)
             {
-                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, speed * Time.deltaTime);
+                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
                 if (child.localPosition == bottomPoint.localPosition) child.localPosition = topPoint.localPosition;
             }
 
             yield return null;
         }
 
-        Debug.Log("finished elapsed time");
+        //Debug.Log("finished elapsed time");
 
         //spin until the first child is on the very top
         bool getOut = false;
@@ -67,7 +74,7 @@ public class WeaponSlotMachine : MonoBehaviour
 
             foreach (RectTransform child in wheel)
             {
-                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, speed * Time.deltaTime);
+                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
                 if (child.localPosition == bottomPoint.localPosition)
                 {
                     child.localPosition = topPoint.localPosition;
@@ -84,15 +91,20 @@ public class WeaponSlotMachine : MonoBehaviour
         }
 
 
+        float maxDist = Vector3.Distance(topPoint.position, finalImagePos);
+        Transform child1 = wheel.GetChild(0);
         while (true)
         {
+
+            usedSpeed = Mathf.MoveTowards(usedSpeed, slowedDownFinalSpeed, Time.deltaTime * slowDownSpeedAmount);
+
             foreach (RectTransform child in wheel)
             {
-                if (child == wheel.GetChild(0)) child.localPosition = Vector3.MoveTowards(child.localPosition, finalImagePos, speed * Time.deltaTime);
-                else child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, speed * Time.deltaTime);
+                if (child == child1) child.localPosition = Vector3.MoveTowards(child.localPosition, finalImagePos, usedSpeed * Time.deltaTime);
+                else child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
             }
 
-            if (wheel.GetChild(0).localPosition == finalImagePos) { Debug.Log(wheel.GetChild(0).localPosition); break; }
+            if (wheel.GetChild(0).localPosition == finalImagePos) { break; }
 
             yield return null;
         }
