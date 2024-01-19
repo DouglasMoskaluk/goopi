@@ -103,6 +103,7 @@ public class Bullet : MonoBehaviour
                 {
                     //Snapping
                     go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                    go.transform.position = hit.point;
                 }
             }
         }
