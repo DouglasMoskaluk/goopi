@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
 
         yield return SceneTransitionManager.instance.unloadScene();
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.WINNER);
 
         GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.DisableJoining();
