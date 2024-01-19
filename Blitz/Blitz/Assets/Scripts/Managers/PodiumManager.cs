@@ -33,6 +33,7 @@ public class PodiumManager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
+        AudioManager.instance.TransitionTrack("MainMenu");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
     }
 }
