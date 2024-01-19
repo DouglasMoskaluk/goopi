@@ -81,6 +81,27 @@ public class ModifierManager : MonoBehaviour
         {
             EventManager.instance.addListener(Events.onPlayerDeath, RandomGunPlayerDeath);
         }
+        /*
+        int playedEventAudio = 0;
+        for (int i = 0; i < ModifierManager.instance.ActiveEvents.Length; i++)
+        {
+            if (ModifierManager.instance.ActiveEvents[i])
+            {
+                if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_RICOCHET, playedEventAudio * 2);
+                }
+                else if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.LOW_GRAVITY])
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LOWGRAV, playedEventAudio * 2);
+                }
+                else if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_MEGA, playedEventAudio * 2);
+                }
+                playedEventAudio++;
+            }
+        }*/
 
     }
 

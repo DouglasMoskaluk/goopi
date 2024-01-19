@@ -143,7 +143,7 @@ public class AudioManager : MonoBehaviour
 
     internal void PlaySound(AudioQueue queue, float delay)
     {
-
+        StartCoroutine(sfxDelay(queue, delay));
     }
 
     internal IEnumerator sfxDelay(AudioQueue queue, float delay)
