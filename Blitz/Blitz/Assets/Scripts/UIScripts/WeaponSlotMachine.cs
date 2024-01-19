@@ -28,7 +28,6 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
-        StartSelection(2);
     }
 
     public Coroutine StartSelection(int selectedGun)
