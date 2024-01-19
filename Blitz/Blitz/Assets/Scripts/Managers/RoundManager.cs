@@ -34,6 +34,10 @@ public class RoundManager : MonoBehaviour
         Debug.Log("start Round co");
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
+        //round ui stuff
+        GameUIManager.instance.showRoundTransition();
+        yield return GameUIManager.instance.spinGunSelection();
+
         yield return GameUIManager.instance.FadeOut(0.5f);
 
         Time.timeScale = 1.0f;
