@@ -304,13 +304,13 @@ public class PlayerBodyFSM : MonoBehaviour
         //else Debug.LogError("Player damaged by non-existing player!");
         if ((health -= value) <= 0)
         {
-            death();
             //player gets kill marker
             //update kill count
-            if (mostRecentAttacker != -1)
+            if (mostRecentAttacker != -1 && !deathCheck)
             {
                 RoundManager.instance.updateKillCount(mostRecentAttacker);
             }
+            death();
         }
         if(health <= 30)
         {
@@ -323,7 +323,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void death()
     {
-
+        //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();
         if (!deathCheck)
         {
