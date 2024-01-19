@@ -48,6 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953cbbfc33d7784fb143b022c2722c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletVars:
+    shotDamage: 0
+    speed: 0
+    lifeTime: 0
+    accuracy: {x: 0, y: 0}
+    offset: {x: 0, y: 0}
+    bounces: 0
+    tailColor: {r: 0, g: 0, b: 0, a: 0}
+    spawnOnContact: []
+    forceApplied: {x: 0, y: 0, z: 0}
+    spawnEveryContact: 1
+    spawnOnDeath: 0
+    attachPlayer: 0
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -261,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: f704b8c35110ec54a908b72bafa0d0c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
