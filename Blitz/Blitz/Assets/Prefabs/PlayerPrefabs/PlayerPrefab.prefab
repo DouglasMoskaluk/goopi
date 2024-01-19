@@ -973,7 +973,6 @@ GameObject:
   - component: {fileID: 4397019112354682272}
   - component: {fileID: 7842299175808868721}
   - component: {fileID: 485820720588201134}
-  - component: {fileID: 6700521471204997534}
   - component: {fileID: 8407183801998086149}
   - component: {fileID: 5974148538316643733}
   m_Layer: 0
@@ -1040,6 +1039,7 @@ MonoBehaviour:
   playerGun: {fileID: 4880465178734415562}
   playerUI: {fileID: 2787196210716927257}
   playerID: 0
+  modelID: 0
   anim: {fileID: 2549991410556056928}
   cam: {fileID: 5389985827659544198}
   playerBody: {fileID: 4385756019102157593}
@@ -1047,6 +1047,8 @@ MonoBehaviour:
   rigHolder: {fileID: 6489616362255736411}
   rigBuilder: {fileID: 3301285684150700310}
   healthPack: {fileID: 5177247947472947255, guid: deee725324d4eb045a0f02ac195690cf,
+    type: 3}
+  ragdollBody: {fileID: 2403129680760932734, guid: e9dcb607d06719f44bb397d37b7b8e28,
     type: 3}
 --- !u!114 &426433136885082013
 MonoBehaviour:
@@ -1327,31 +1329,6 @@ CharacterController:
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
---- !u!114 &6700521471204997534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2403129680760932734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f39ae4e4e3e4b45afc97f82744ffe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ragDollRotatePoint: {fileID: 4385756019102157593}
-  gameplayRotatePoint: {fileID: 4363758292717308449}
-  testObjectArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  gunObject: {fileID: 6684685525626985990}
 --- !u!114 &8407183801998086149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2764,7 +2741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0052237874, y: -0.072690435, z: 0.00038073186, w: 0.9973408}
+  m_LocalRotation: {x: 0.0052237893, y: -0.072690435, z: 0.000380732, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7698,12 +7675,6 @@ MonoBehaviour:
 --- !u!4 &5933027439718816614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3403214378698570096, guid: 157ef449d7a403948be4b0df3768b255,
-    type: 3}
-  m_PrefabInstance: {fileID: 9037876143809733142}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6684685525626985990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2425252610676145168, guid: 157ef449d7a403948be4b0df3768b255,
     type: 3}
   m_PrefabInstance: {fileID: 9037876143809733142}
   m_PrefabAsset: {fileID: 0}

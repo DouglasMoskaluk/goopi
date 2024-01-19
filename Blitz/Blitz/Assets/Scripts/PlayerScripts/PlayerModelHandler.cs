@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerModelChanger : MonoBehaviour
+public class PlayerModelHandler : MonoBehaviour
 {
     [SerializeField]
     private SkinnedMeshRenderer playerSkin;
@@ -28,7 +28,13 @@ public class PlayerModelChanger : MonoBehaviour
 
         for(int i = 0; i < headFeatures.Length; i++)
         {
-            if(featureNum == i)
+
+            if (transform.GetComponent<PlayerBodyFSM>())
+            {
+                transform.GetComponent<PlayerBodyFSM>().modelID = featureNum;
+            }
+
+            if (featureNum == i)
             {
                 headFeatures[i].SetActive(true);
                 playerSkin.sharedMesh = characterMesh[i];

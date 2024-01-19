@@ -24,6 +24,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public int playerID;
 
+    public int modelID; //ID for what character model is being used
+
     #endregion
 
     #region Private Variables
@@ -39,6 +41,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private PlayerRigHolder rigHolder;
     [SerializeField] private RigBuilder rigBuilder;
     [SerializeField] private GameObject healthPack;
+    [SerializeField] private GameObject ragdollBody;
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
@@ -327,6 +330,10 @@ public class PlayerBodyFSM : MonoBehaviour
             deathCheck = true;
             transitionState(PlayerActionStates.Death);
             transitionState(PlayerMotionStates.Death);
+            GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
+            Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
+            Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
+            newRagdollBody.transform.GetComponent<RagDollHandler>().InitializeRagdoll(modelID, boneList, playerVelocity);
             StartCoroutine("deathCoro");
         }
 
@@ -345,6 +352,11 @@ public class PlayerBodyFSM : MonoBehaviour
 
     IEnumerator deathCoro()
     {
+        for(int i = 0;i < 5;i++)
+        {
+            transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+        }
+
         charController.enabled = false;
         Debug.Log("Player Died!");
         //Heal attackers
@@ -371,6 +383,12 @@ public class PlayerBodyFSM : MonoBehaviour
         grenadeThrower.setGrenades(grenadeThrower.MaxHeldGrenades);
         playerGun.instantReload();
         deathCheck = false;
+
+        for (int i = 0; i < 5; i++)
+        {
+            transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+        }
+
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
 
