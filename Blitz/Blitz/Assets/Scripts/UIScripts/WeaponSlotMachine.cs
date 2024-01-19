@@ -24,11 +24,11 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private bool isSpinning = false;
 
-    private void Start()
+    private void Awake()
     {
         usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
-        //StartSelection(1);
+        Debug.Log("image1bottom " + Image1BottomVisible);
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -48,8 +48,8 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         //Debug.Log(selectedGun);
         float elapsedTime = 0;
-        Vector3 finalImagePos = Image1BottomVisible + (-Vector3.up * 256 * selectedGun);
-        //Debug.Log(finalImagePos);
+        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 256 * (4 - selectedGun));
+        Debug.Log(Image1BottomVisible);
 
         // spin until the end of the specified spinning duration
         while (elapsedTime < spinDuration)
@@ -65,7 +65,7 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
-        //Debug.Log("finished elapsed time");
+        Debug.Log("finished elapsed time");
 
         //spin until the first child is on the very top
         bool getOut = false;
@@ -90,9 +90,10 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log("Finished get to top");
 
-        float maxDist = Vector3.Distance(topPoint.position, finalImagePos);
         Transform child1 = wheel.GetChild(0);
+        Debug.Log("Final image pos " + finalImagePos);
         while (true)
         {
 
@@ -109,5 +110,6 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log("finished final pos");
     }
 }

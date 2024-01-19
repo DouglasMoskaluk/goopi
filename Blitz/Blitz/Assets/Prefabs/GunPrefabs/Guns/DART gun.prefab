@@ -95,7 +95,7 @@ MonoBehaviour:
     shotDamage: 100
     speed: 40
     lifeTime: 5
-    accuracy: {x: 3, y: 3}
+    accuracy: {x: 0.1, y: 0.1}
     offset: {x: 0, y: 0}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
@@ -106,7 +106,7 @@ MonoBehaviour:
     spawnOnDeath: 1
     attachPlayer: 0
   gunVars:
-    ammo: 0600000006000000
+    ammo: 0a0000000a000000
     reloadTime: -1
     shotCooldown: 0.3
     type: 2
