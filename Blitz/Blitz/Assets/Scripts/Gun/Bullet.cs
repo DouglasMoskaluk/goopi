@@ -97,7 +97,7 @@ public class Bullet : MonoBehaviour
         {
             for (int i=0; i< bulletVars.spawnOnContact.Length; i++)
             {
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
                 if (bulletVars.attachPlayer)
                 {
@@ -115,7 +115,7 @@ public class Bullet : MonoBehaviour
         {
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
                 if (bulletVars.attachPlayer)
                 {
                     //Snapping
