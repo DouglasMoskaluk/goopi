@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     BulletVars bulletVars;
     Rigidbody rb;
-    [SerializeField]
-    int myBounces = 0;
     bool collideThisFrame = false;
     float spawnTime = 0.05f;
     float bulletIFrames = 0.05f;
@@ -99,7 +97,7 @@ public class Bullet : MonoBehaviour
         {
             for (int i=0; i< bulletVars.spawnOnContact.Length; i++)
             {
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
@@ -111,7 +109,7 @@ public class Bullet : MonoBehaviour
         {
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 if (bulletVars.attachPlayer)
                 {
                     go.transform.parent = plr.transform;
@@ -125,7 +123,6 @@ public class Bullet : MonoBehaviour
     private void Bounce(RaycastHit hit)
     {
         rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
-        myBounces++;
         if (!bulletVars.bounces)
         {
             StartCoroutine(removeBullet(0));
