@@ -28,6 +28,7 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
+        //StartSelection(1);
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -53,11 +54,11 @@ public class WeaponSlotMachine : MonoBehaviour
         // spin until the end of the specified spinning duration
         while (elapsedTime < spinDuration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
 
             foreach (RectTransform child in wheel)
             {
-                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
+                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.unscaledDeltaTime);
                 if (child.localPosition == bottomPoint.localPosition) child.localPosition = topPoint.localPosition;
             }
 
@@ -73,7 +74,7 @@ public class WeaponSlotMachine : MonoBehaviour
 
             foreach (RectTransform child in wheel)
             {
-                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
+                child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.unscaledDeltaTime);
                 if (child.localPosition == bottomPoint.localPosition)
                 {
                     child.localPosition = topPoint.localPosition;
@@ -99,8 +100,8 @@ public class WeaponSlotMachine : MonoBehaviour
 
             foreach (RectTransform child in wheel)
             {
-                if (child == child1) child.localPosition = Vector3.MoveTowards(child.localPosition, finalImagePos, usedSpeed * Time.deltaTime);
-                else child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.deltaTime);
+                if (child == child1) child.localPosition = Vector3.MoveTowards(child.localPosition, finalImagePos, usedSpeed * Time.unscaledDeltaTime);
+                else child.localPosition = Vector3.MoveTowards(child.localPosition, bottomPoint.localPosition, usedSpeed * Time.unscaledDeltaTime);
             }
 
             if (wheel.GetChild(0).localPosition == finalImagePos) { break; }
