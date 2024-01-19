@@ -24,7 +24,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (instance == null) instance = this;
 
-        //loadScene(Scenes.MainMenu);
+        loadScene(Scenes.MainMenu);
     }
 
     ///// <summary>
