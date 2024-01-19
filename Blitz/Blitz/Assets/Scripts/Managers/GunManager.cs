@@ -9,6 +9,7 @@ public class GunManager : MonoBehaviour
     [SerializeField]
     private GameObject[] guns;
     int gunUsed;
+    internal int GunUsed { get { return gunUsed; } }
 
 
     // Start is called before the first frame update
