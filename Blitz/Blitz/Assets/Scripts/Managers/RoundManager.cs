@@ -36,13 +36,14 @@ public class RoundManager : MonoBehaviour
 
         //round ui stuff
         GameUIManager.instance.showRoundTransition();
-        Debug.Log("used gun" + GunManager.instance.GunUsed);
+
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
         yield return new WaitForSecondsRealtime(1.5f);
+
         GameUIManager.instance.hideRoundTransition();
 
         
-        yield return GameUIManager.instance.FadeOut(0.5f);
+        yield return GameUIManager.instance.FadeOut(0.75f);
 
         Time.timeScale = 1.0f;
 
@@ -89,6 +90,7 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.75f);
 
         yield return GameUIManager.instance.FadeIn(0.5f);
+        yield return new WaitForSecondsRealtime(0.25f);
 
         SplitScreenManager.instance.DisablePlayerControls();
         Time.timeScale = 1f;
@@ -106,7 +108,7 @@ public class RoundManager : MonoBehaviour
         }
 
         //display who won for a couple seconds
-        yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayRoundEndUI(endRoundTextShownLength, winnerString));
+        //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayRoundEndUI(endRoundTextShownLength, winnerString));
 
         //cascade round information up to the game manager and let it decide what should be done next
         GameManager.instance.roundWon(winners, playerKillCounts);

@@ -24,10 +24,15 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private bool isSpinning = false;
 
+    private Vector3 resetChild0;
+    private Vector3 resetChild1;
+
     private void Awake()
     {
         usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
+        resetChild0 = wheel.GetChild(0).localPosition;
+        resetChild1 = wheel.GetChild(1).localPosition;
         Debug.Log("image1bottom " + Image1BottomVisible);
     }
 
@@ -36,12 +41,15 @@ public class WeaponSlotMachine : MonoBehaviour
         if (isSpinning) return null;
 
         isSpinning = true;
+        ResetSpinner();
         return StartCoroutine(SpinWheel(selectedGun));
     }
 
     public void ResetSpinner()
     {
-        
+        usedSpeed = speed;
+        wheel.GetChild(0).localPosition = resetChild0;
+        wheel.GetChild(1).localPosition = resetChild1;
     }
 
     private IEnumerator SpinWheel(int selectedGun)
@@ -111,5 +119,6 @@ public class WeaponSlotMachine : MonoBehaviour
         }
 
         Debug.Log("finished final pos");
+        isSpinning = false;
     }
 }
