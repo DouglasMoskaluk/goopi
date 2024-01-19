@@ -141,6 +141,18 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    internal void PlaySound(AudioQueue queue, float delay)
+    {
+
+    }
+
+    internal IEnumerator sfxDelay(AudioQueue queue, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlaySound(queue);
+    }
+
+
     /// <summary>
     /// Attempts to play a sound based on the given Audio queue
     /// </summary>
