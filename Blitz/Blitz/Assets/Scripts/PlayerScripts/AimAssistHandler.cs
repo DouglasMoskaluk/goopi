@@ -129,7 +129,7 @@ public class AimAssistHandler : MonoBehaviour
 
                         //Transform enemyPos = hit.transform.GetChild(3).transform;
                         //Debug.Log(hit.point + "   enemy point:" + enemyPos.position);
-                        Debug.Log(transform.InverseTransformPoint(hit.point) + "   enemy point:" + transform.InverseTransformPoint(enemyPos.position));
+                        //Debug.Log(transform.InverseTransformPoint(hit.point) + "   enemy point:" + transform.InverseTransformPoint(enemyPos.position));
                         //freeLook.m_XAxis.m_MaxSpeed = sensitivityHandler.XSensitivity * 0.8f;
                         //freeLook.m_YAxis.m_MaxSpeed = sensitivityHandler.YSensitivity * 0.8f;
                         //lower sensitivity
