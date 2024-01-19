@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     //List of every audio queue we have in the game.
     internal enum AudioQueue { 
-        BG_MUSIC, BUTTON_CLICK, TIMER_TICK, ROUND_END,
+        BG_MUSIC, BUTTON_CLICK, TIMER_TICK, ROUND_END, WINNER,
         GOOP_SHOOT,  NERF_SHOOT,  ICE_SHOOT,  FISH_SHOOT,  PLUNGER_SHOOT,  MEGA_SHOOT,
         GOOP_RELOAD, NERF_RELOAD, ICE_RELOAD, FISH_RELOAD, PLUNGER_RELOAD, MEGA_RELOAD,
         PLAYER_FALL, PLAYER_HURT, PLAYER_DEATH, PLAYER_LAND, PLAYER_STEP,
