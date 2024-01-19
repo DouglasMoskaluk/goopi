@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
         eventSys.SetSelectedGameObject(omPlayButton);
-        AudioManager.instance.TransitionTrack("Track2");
+        AudioManager.instance.TransitionTrack("InGame");
     }
 
     public void onMMQuitClicked()
