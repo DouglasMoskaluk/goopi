@@ -36,8 +36,8 @@ public class RoundManager : MonoBehaviour
 
         //round ui stuff
         GameUIManager.instance.showRoundTransition();
-        yield return GameUIManager.instance.spinGunSelection();
-
+        yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
+        GameUIManager.instance.hideRoundTransition();
         yield return GameUIManager.instance.FadeOut(0.5f);
 
         Time.timeScale = 1.0f;
