@@ -2,102 +2,86 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Animations.Rigging;
 
 public class RagDollHandler : MonoBehaviour
 {
 
-    private Rigidbody[] rigidBodies;
-    private Collider[] colliders;
-
-    private Animator anim;
-
-    private CinemachineFreeLook freeLook;
-
     [SerializeField]
-    private Transform ragDollRotatePoint;
-
-    [SerializeField]
-    private Transform gameplayRotatePoint;
-    //public bool testRagdoll = false;
-
-    [SerializeField]
-    private GameObject[] testObjectArray;
-
-    private PlayerBodyFSM fsm;
-
-    [SerializeField]
-    private GameObject gunObject;
+    private float lifetime;
 
     // Start is called before the first frame update
     void Start()
     {
-
-
-        freeLook = GetComponentInChildren<CinemachineFreeLook>();
-        colliders = GetComponentsInChildren<Collider>();
-        rigidBodies = GetComponentsInChildren<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
-        fsm = GetComponentInChildren<PlayerBodyFSM>();
-
-        foreach (var GameObject in testObjectArray)
-        {
-            GameObject.layer = gameObject.layer;
-        }
-
-
-        DisableRagdoll();
+        EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
+        StartCoroutine("Countdown");
     }
 
-    public void InitializeRagdoll(int playerId)
+    public void InitializeRagdoll(int modelId, Transform[]  bones, Vector3 playerVelocity)
     {
+        transform.GetComponent<PlayerModelHandler>().SetModel(modelId);
+        Transform[] bonelist = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+
+        for(int i = 0;i< bonelist.Length; i++)
+        {
+            if (bonelist[i].GetComponent<Rigidbody>())
+            {
+                bonelist[i].GetComponent<Rigidbody>().velocity = playerVelocity;
+            }
+
+            bonelist[i].localPosition = bones[i].localPosition;
+            bonelist[i].localRotation = bones[i].localRotation;
+            bonelist[i].localScale = bones[i].localScale;
+
+        }
 
     }
 
     // Update is called once per frame
 
-    public void DisableRagdoll()
-    {
-        foreach (var rigidBody in rigidBodies)
-        {
-            rigidBody.isKinematic = true;
-        }
-        foreach (var collider in colliders)
-        {
-            collider.enabled = false;
-        }
-        colliders[0].enabled = true;
-        anim.enabled = true;
-        //fsm.enabled = true;
-        //gunObject.SetActive(true);
+    //public void DisableRagdoll()
+    //{
+    //    foreach (var rigidBody in rigidBodies)
+    //    {
+    //        rigidBody.isKinematic = true;
+    //    }
+    //    foreach (var collider in colliders)
+    //    {
+    //        collider.enabled = false;
+    //    }
+    //    colliders[0].enabled = true;
+    //    anim.enabled = true;
+    //    //fsm.enabled = true;
+    //    //gunObject.SetActive(true);
 
-        freeLook.m_Follow = gameplayRotatePoint;
-        freeLook.m_LookAt = gameplayRotatePoint;
+    //    freeLook.m_Follow = gameplayRotatePoint;
+    //    freeLook.m_LookAt = gameplayRotatePoint;
 
-    }
+    //}
 
-    public void EnableRagdoll()
-    {
-        foreach (var collider in colliders)
-        {
-            collider.enabled = true;
-        }
-        foreach (var rigidBody in rigidBodies)
-        {
-            rigidBody.isKinematic = false;
-        }
-        anim.enabled = false;
-        //fsm.enabled = false;
-        //gunObject.SetActive(false);
+    //public void EnableRagdoll()
+    //{
+    //    foreach (var collider in colliders)
+    //    {
+    //        collider.enabled = true;
+    //    }
+    //    foreach (var rigidBody in rigidBodies)
+    //    {
+    //        rigidBody.isKinematic = false;
+    //    }
+    //    anim.enabled = false;
+    //    //fsm.enabled = false;
+    //    //gunObject.SetActive(false);
 
-        freeLook.m_Follow = ragDollRotatePoint;
-        freeLook.m_LookAt = ragDollRotatePoint;
+    //    freeLook.m_Follow = ragDollRotatePoint;
+    //    freeLook.m_LookAt = ragDollRotatePoint;
 
-    }
+    //}
 
-    public void RagDollDeath()
-    {
-        StartCoroutine("RagDollDeathCoRo");
-    }
+    //public void RagDollDeath()
+    //{
+    //    StartCoroutine("RagDollDeathCoRo");
+    //}
 
     IEnumerator DeathTimer()
     {
@@ -105,17 +89,28 @@ public class RagDollHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator RagDollDeathCoRo()
+    public void RemoveSelf(EventParams param = new EventParams())
     {
-        EnableRagdoll();
-        yield return new WaitForSeconds(0.5f);
-        DisableRagdoll();
-        //fsm.enabled = true;
-        //transform.position = RespawnManager.instance.getRespawnLocation().position;
-        //fsm.ragdollDeathEnd();
-        //transform.position = RespawnManager.instance.getRespawnLocation().position;
-        yield return null;
+        Destroy(gameObject);
     }
+
+    IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Destroy(gameObject);
+    }
+
+    //IEnumerator RagDollDeathCoRo()
+    //{
+    //    EnableRagdoll();
+    //    yield return new WaitForSeconds(0.5f);
+    //    DisableRagdoll();
+    //    //fsm.enabled = true;
+    //    //transform.position = RespawnManager.instance.getRespawnLocation().position;
+    //    //fsm.ragdollDeathEnd();
+    //    //transform.position = RespawnManager.instance.getRespawnLocation().position;
+    //    yield return null;
+    //}
 
 }
 
