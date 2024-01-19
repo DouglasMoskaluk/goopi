@@ -74,7 +74,7 @@ public class ImpulseGrenade : SpawnableObject
     private void explode()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i].CompareTag("Player"))

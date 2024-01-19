@@ -31,6 +31,7 @@ public class Explosion : SpawnableObject
     private IEnumerator Explode()
     {
         yield return new WaitForSeconds(delay);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
         collider.enabled = true;
         float startRad = collider.radius;
         while (time < explosionTime)
