@@ -31,15 +31,30 @@ public class RespawnManager : MonoBehaviour
     {
         respawnLocations = new List<Transform>(4);
         lockerRespawnLocations = new List<Transform>(4);
+        initialRespawnLocations = new List<Transform>(4);
+        lavaEventRespawnLocations = new List<Transform>(4);
+
         //goes through all children
         foreach (Transform child in transform.GetChild(0))
         {
-            respawnLocations.Add(child);
+            lockerRespawnLocations.Add(child);
+            
         }
 
         foreach (Transform child in transform.GetChild(1))
         {
-            lockerRespawnLocations.Add(child);
+            initialRespawnLocations.Add(child);
+        }
+
+        foreach (Transform child in transform.GetChild(2))
+        {
+            
+            respawnLocations.Add(child);
+        }
+
+        foreach (Transform child in transform.GetChild(3))
+        {
+            lavaEventRespawnLocations.Add(child);
         }
 
         //RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
