@@ -12,9 +12,15 @@ public class RespawnManager : MonoBehaviour
     [Tooltip("The distance threshold for deeming a respawn location as eligible for selection by the respawn algorithm")]
     public float respawnThreshold = 120f;
 
-    private List<Transform> respawnLocations;
+    [Tooltip("Locations to respawn players in the arena")] private List<Transform> respawnLocations;
 
-    private List<Transform> lockerRespawnLocaitons;//locations to spawn players in the locker room
+    [Tooltip("Locations to initially spawn players in the arena")] private List<Transform> initialRespawnLocations;
+
+    [Tooltip("Locations to spawn players in the locker room")] private List<Transform> lockerRespawnLocations;
+
+    [Tooltip("locations to respawn playes in the lava event")] private List<Transform> lavaEventRespawnLocations;
+
+
 
     private void Awake()
     {
@@ -24,7 +30,7 @@ public class RespawnManager : MonoBehaviour
     private void Start()
     {
         respawnLocations = new List<Transform>(4);
-        lockerRespawnLocaitons = new List<Transform>(4);
+        lockerRespawnLocations = new List<Transform>(4);
         //goes through all children
         foreach (Transform child in transform.GetChild(0))
         {
@@ -33,7 +39,7 @@ public class RespawnManager : MonoBehaviour
 
         foreach (Transform child in transform.GetChild(1))
         {
-            lockerRespawnLocaitons.Add(child);
+            lockerRespawnLocations.Add(child);
         }
 
         //RoundManager.instance.onRoundReset.AddListener(respawnAllPlayers);
@@ -98,13 +104,58 @@ public class RespawnManager : MonoBehaviour
         return elibibleLocations[selected];//return selected respawn
     }
 
+    public Transform getInitialSpawnLocation(int spawnIndex)
+    {
+        return initialRespawnLocations[spawnIndex];
+    }
+
     public Transform getLockerRoomRespawnLocation(int playerID)
     {
-        return lockerRespawnLocaitons[playerID];
+        return lockerRespawnLocations[playerID];
     }
 
     public Transform getSpecificLocation(int num)
     {
         return respawnLocations[num];
+    }
+
+    public Transform getLavaSpawnLocation()
+    {
+        float[] scores = new float[lavaEventRespawnLocations.Count];//list of scores
+
+        int index = 0;
+        foreach (Transform location in lavaEventRespawnLocations)// go through each respawn, and sum the distances to each player
+        {
+            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+            {
+                if (player.transform.GetComponent<PlayerBodyFSM>().Health <= 0) { continue; }
+                scores[index] += Vector3.Distance(location.position, player.transform.position);
+            }
+            index++;
+        }
+
+        List<Transform> elibibleLocations = new List<Transform>();//list of possible respawns
+        for (int i = 0; i < scores.Length; i++)//add respawn point to eligible if score is greater or equal to threshold
+        {
+            if (scores[i] >= respawnThreshold)
+            {
+                elibibleLocations.Add(lavaEventRespawnLocations[i]);
+            }
+        }
+
+        if (elibibleLocations.Count < 1)//if no spawns are eligible, select random
+        {
+            return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
+        }
+
+        int selected = Random.Range(0, elibibleLocations.Count);//selected a respawn
+
+        if (DISPLAY_DEBUG_MESSAGES)
+        {
+            Debug.Log("RESPAWN MANAGER: " + elibibleLocations.Count + " eligible respawn locations were found.");
+            Debug.Log("RESPAWN MANAGER: respawn at position " + elibibleLocations[selected].position + " was selected for respawn");
+        }
+
+        return elibibleLocations[selected];//return selected respawn
     }
 }
