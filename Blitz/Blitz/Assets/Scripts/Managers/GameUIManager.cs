@@ -14,6 +14,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Image fadePanel;
     [SerializeField] private GameObject roundTransObjs;
     [SerializeField] private WeaponSlotMachine slotSelectionUI;
+    [SerializeField] private PlayerScore[] roundTransScores;
 
     public bool fading { get; private set; } = false;
 
@@ -163,5 +164,19 @@ public class GameUIManager : MonoBehaviour
     public Coroutine spinGunSelection(int gunSelected)
     {
         return slotSelectionUI.StartSelection(gunSelected);
+    }
+
+    public void UpdateRoundTransScores()
+    {
+        int[]  roundsWon = GameManager.instance.GetRoundsWon();
+        for (int i = 0; i < roundTransScores.Length; i++)
+        {
+            roundTransScores[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            roundTransScores[i].gameObject.SetActive(true);
+            roundTransScores[i].SetWins(roundsWon[i]);
+        }
     }
 }

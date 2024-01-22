@@ -161,4 +161,9 @@ public class GameManager : MonoBehaviour
 
         StartGame();
     }
+
+    public int[] GetRoundsWon()
+    {
+        return playersRoundsWonCount;
+    }
 }

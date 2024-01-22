@@ -35,6 +35,7 @@ public class RoundManager : MonoBehaviour
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
         //round ui stuff
+        GameUIManager.instance.UpdateRoundTransScores();
         GameUIManager.instance.showRoundTransition();
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);

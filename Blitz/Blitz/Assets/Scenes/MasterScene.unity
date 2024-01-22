@@ -251,6 +251,11 @@ PrefabInstance:
       propertyPath: GameSounds.Array.data[25].clip
       value: 
       objectReference: {fileID: 8300000, guid: e26e1011b284ca14880769af5b29879c, type: 3}
+    - target: {fileID: 1828950073361892873, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1992372918753346917, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: roundLength
@@ -261,6 +266,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransScores.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransScores.Array.data[0]
+      value: 
+      objectReference: {fileID: 644969831}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransScores.Array.data[1]
+      value: 
+      objectReference: {fileID: 644969830}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransScores.Array.data[2]
+      value: 
+      objectReference: {fileID: 644969829}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransScores.Array.data[3]
+      value: 
+      objectReference: {fileID: 644969828}
     - target: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
@@ -270,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ----Managers----
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568472119485288392, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6079392102038196844, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
@@ -326,6 +361,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6829adfba33a97f4abf18ac8b107588e, type: 3}
+--- !u!114 &644969828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3013718197613524156, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405f0e27b7817345ab573c690412264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &644969829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9125976812807185903, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405f0e27b7817345ab573c690412264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &644969830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 437233838689790517, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405f0e27b7817345ab573c690412264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &644969831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2312203180470559732, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405f0e27b7817345ab573c690412264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

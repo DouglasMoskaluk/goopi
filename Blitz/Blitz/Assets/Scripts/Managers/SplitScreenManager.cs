@@ -23,6 +23,11 @@ public class SplitScreenManager : MonoBehaviour
 
     }
 
+    public int GetPlayerCount()
+    {
+        return players.Count;
+    }
+
     public void AllowJoining()
     {
         inputManager.EnableJoining();
