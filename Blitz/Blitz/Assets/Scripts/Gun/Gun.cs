@@ -185,6 +185,7 @@ public class Gun : MonoBehaviour
     {
         gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
+        gunVars.canShoot = true;
     }
 
 }

@@ -277,9 +277,9 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void newAttacker(int attackerId)
     {
-        if (attackerId != -1 && !deathCheck)
+        if (attackerId != -1 && !deathCheck && attackerId != playerID)
         {
-            if (attackerId != playerID) mostRecentAttacker = attackerId;
+            mostRecentAttacker = attackerId;
         }
     }
 
@@ -296,7 +296,7 @@ public class PlayerBodyFSM : MonoBehaviour
         newAttacker(attackerId);
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_HURT);
 
-        if (attackerId != -1)
+        if (attackerId != -1 && attackerId != playerID)
         {
             PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
             Attacker.playerUI.playerGotHit();
