@@ -110,7 +110,7 @@ public class GameUIManager : MonoBehaviour
         return StartCoroutine(FadeOutCoroutine(duration));
     }
 
-    public IEnumerator FadeInCoroutine(float duration)
+    private IEnumerator FadeInCoroutine(float duration)
     {
         if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
 
@@ -118,7 +118,7 @@ public class GameUIManager : MonoBehaviour
         float curFadePercent = fadePanel.color.a;
         while (timeElapsed < duration)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             fadePanel.color = new Color(0, 0, 0, Mathf.Lerp(curFadePercent, 1, timeElapsed / duration));
             yield return null;
         }
@@ -126,7 +126,7 @@ public class GameUIManager : MonoBehaviour
         fading = false;
     }
 
-    public IEnumerator FadeOutCoroutine(float duration)
+    private IEnumerator FadeOutCoroutine(float duration)
     {
 
         if (duration < 0) { Debug.LogError("Trying to fade with negative number"); yield break; }
@@ -135,7 +135,7 @@ public class GameUIManager : MonoBehaviour
         float curFadePercent = fadePanel.color.a;
         while (timeElapsed < duration)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             fadePanel.color = new Color(0, 0, 0, Mathf.Lerp(curFadePercent, 0, timeElapsed / duration));
             yield return null;
         }

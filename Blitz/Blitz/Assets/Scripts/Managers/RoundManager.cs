@@ -31,7 +31,7 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startRoundCoro()
     {
-        Debug.Log("start Round co");
+        
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
         //round ui stuff
@@ -78,10 +78,14 @@ public class RoundManager : MonoBehaviour
                 playedEventAudio++;
             }
         }
+
+        Debug.Log("start Round co ends");
     }
 
     private IEnumerator endRoundCoro()
     {
+
+        Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
 
