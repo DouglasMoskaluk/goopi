@@ -47,7 +47,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     public void ThrowGrenade(Vector3 dir, float chargeModifier)
     {
-        Debug.Log("throw grenade");
+        //Debug.Log("throw grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, throwFromPoint.position, Quaternion.identity, GunManager.instance.transform).GetComponent<ImpulseGrenade>();
@@ -102,7 +102,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
 
     public void DropGrenade(Vector3 dir)
     {
-        Debug.Log("drop grenade");
+        //Debug.Log("drop grenade");
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, transform.position + dir.normalized + Vector3.up, Quaternion.identity).GetComponent<ImpulseGrenade>();

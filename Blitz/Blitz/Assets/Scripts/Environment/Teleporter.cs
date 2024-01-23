@@ -29,13 +29,13 @@ public class Teleporter : MonoBehaviour
         Handles.DrawWireArc(transform.position, Vector3.up, Quaternion.Euler(0, -arc / 2, 0) * direction.normalized, arc, lineLength, lineThickness) ;
     }
 
-    private void Update()
-    {
-        Vector3 dir = Vector3.Cross(direction.normalized, transform.right);
-        Debug.DrawRay(transform.position, dir, Color.magenta, 0.1f);
+    //private void Update()
+    //{
+    //    Vector3 dir = Vector3.Cross(direction.normalized, transform.right);
+    //    Debug.DrawRay(transform.position, dir, Color.magenta, 0.1f);
 
         
-    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

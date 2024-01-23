@@ -63,7 +63,7 @@ public class RespawnManager : MonoBehaviour
 
     public void respawnAllPlayers(EventParams param = new EventParams())
     {
-        Debug.Log("respawning all players");
+        //Debug.Log("respawning all players");
         int index = 0;
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {

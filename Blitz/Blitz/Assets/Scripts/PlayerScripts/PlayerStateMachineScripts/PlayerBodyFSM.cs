@@ -149,7 +149,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         //guard against transitioning into the same state
         if (to == currentMotionStateFlag) {
-            Debug.Log("trying to transition into current state: aborting transition request");
+            //Debug.Log("trying to transition into current state: aborting transition request");
             return; }
 
         //exit current state if exists
@@ -260,7 +260,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="message"> the message to be logged </param>
     public void logMessage(string message)
     {
-        Debug.Log("FSM Message: " + message);
+        //Debug.Log("FSM Message: " + message);
     }
 
     /// <summary>
@@ -359,7 +359,7 @@ public class PlayerBodyFSM : MonoBehaviour
         }
 
         charController.enabled = false;
-        Debug.Log("Player Died!");
+        //Debug.Log("Player Died!");
         //Heal attackers
         resetHealth();
         playerUI.StopDamagedCoroutine();

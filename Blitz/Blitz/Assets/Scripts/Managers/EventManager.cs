@@ -154,7 +154,7 @@ public class EventManager : MonoBehaviour
     /// <param name="eventType"> the event which is to be invoked </param>
     public void invokeEvent(Events eventType, EventParams param = new EventParams())
     {
-        Debug.Log("Invoking event " + eventType);
+        //Debug.Log("Invoking event " + eventType);
         switch (eventType)
         {
             case Events.onRoundStart:

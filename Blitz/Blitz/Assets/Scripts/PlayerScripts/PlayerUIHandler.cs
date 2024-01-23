@@ -100,7 +100,7 @@ public class PlayerUIHandler : MonoBehaviour
     /// </summary>
     public void PickCharacter()
     {
-        Debug.Log("CHAR CHOICE");
+        //Debug.Log("CHAR CHOICE");
         player.enabled = true;
         characterChoice.SetActive(false);
     }

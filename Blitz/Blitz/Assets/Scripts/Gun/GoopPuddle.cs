@@ -37,7 +37,7 @@ public class GoopPuddle : SpawnableObject
         if (other.tag == "Player")
         {
             int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
-            Debug.Log("Starting damage over time for player " + id);
+            //Debug.Log("Starting damage over time for player " + id);
             damageTrackers[id] = damageOverTime(id);
             StartCoroutine(damageTrackers[id]);
         }
@@ -48,7 +48,7 @@ public class GoopPuddle : SpawnableObject
         if (other.tag == "Player")
         {
             int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
-            Debug.Log("Stopping damage over time for player " + id);
+            //Debug.Log("Stopping damage over time for player " + id);
             if (damageTrackers[id] != null) StopCoroutine(damageTrackers[id]);
         }
     }

@@ -18,7 +18,7 @@ public class RumbleHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("KEYBOARD OR MOUSE");
+            //Debug.Log("KEYBOARD OR MOUSE");
             playerGamepad = null;
         }
     }

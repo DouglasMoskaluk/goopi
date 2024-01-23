@@ -24,13 +24,13 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
-        Debug.Log("Bullet collided with gameObject " + other.name);
+        //Debug.Log("Bullet collided with gameObject " + other.name);
         //Debug.Log(other.attachedRigidbody.name);
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
         //Debug.Log("Player is: " + plr.name);
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 10);
+        //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 10);
         if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
         {
             //Debug.Log("Trigger Enter");
@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour
     {
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
+        //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         //if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
         if (!collideThisFrame && Physics.SphereCast(
                 transform.position, 
@@ -61,7 +61,7 @@ public class Bullet : MonoBehaviour
                 out hit, 
                 rb.velocity.magnitude * Time.deltaTime))
         {
-            Debug.Log("Late Update hit");
+            //Debug.Log("Late Update hit");
             collide(hit);
         }
         collideThisFrame = false;
@@ -164,7 +164,7 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
-            Debug.LogError("No rigidbody on bullet");
+            //Debug.LogError("No rigidbody on bullet");
         }
 
         bulletVars = bv;
@@ -194,11 +194,11 @@ public class Bullet : MonoBehaviour
             Random.Range(-bulletVars.accuracy.x + bulletVars.offset.x, bulletVars.accuracy.x + bulletVars.offset.x),
             Random.Range(-bulletVars.accuracy.y + bulletVars.offset.y, bulletVars.accuracy.y + bulletVars.offset.y),
             Random.Range(0, 0));
-        Debug.Log("Offset: " + offset + ", Direction: " + direction);
+        //Debug.Log("Offset: " + offset + ", Direction: " + direction);
         direction += offset;*/
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
 
-        Debug.Log("Tail Renderer color");
+        //Debug.Log("Tail Renderer color");
         GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", bulletVars.tailColor);
     }
 }

@@ -44,7 +44,7 @@ public class ImpulseGrenade : SpawnableObject
         {
             armGrenade();
         }
-        Debug.Break();
+        //Debug.Break();
 
     }
     private void OnTriggerEnter(Collider other)

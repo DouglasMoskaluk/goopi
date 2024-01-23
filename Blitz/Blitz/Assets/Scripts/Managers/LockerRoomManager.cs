@@ -40,7 +40,7 @@ public class LockerRoomManager : MonoBehaviour
 
     public void ReadyUpPlayer(int playerID)
     {
-        Debug.Log("Player " + playerID + " has readied up.");
+        //Debug.Log("Player " + playerID + " has readied up.");
         readyFlags[playerID] = true;
         if (!readied && CheckReadyStatus())
         {

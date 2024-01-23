@@ -142,16 +142,16 @@ public class SceneTransitionManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator UnloadScene(Scenes scene)
     {
-        Debug.Log("unloading scene " + sceneNames[(int)scene]);
+        //Debug.Log("unloading scene " + sceneNames[(int)scene]);
         AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneNames[(int)scene]);
 
         while (!unload.isDone)
         {
             
             yield return null;
-            Debug.Log("not done");
+            //Debug.Log("not done");
         }
-        Debug.Log("unload is done");
+        //Debug.Log("unload is done");
 
         isLoading = false;
     }
