@@ -96,7 +96,6 @@ public class Gun : MonoBehaviour
                 else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
                 if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
                 else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
-                Debug.Log("Bullet " + i + " of " + gunVars.bulletsShot + " has been shot!");
             }
 
             switch (gunVars.type)
