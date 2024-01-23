@@ -82,19 +82,23 @@ public class Gun : MonoBehaviour
         }
         else
         {
-            gunVars.ammo[0]--;
             
-            gunVars.canShoot = false;
-            StartCoroutine(shotCooldown());
-            rumble.ShootRumble((int)gunVars.type);
-            GameObject bul;
-            if (gunVars.bulletParent != null)
-                //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
-                bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
-            else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
-            if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
-            else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
-            gunVars.gunRecoil.applyRecoil();
+            for (int i=0; i<gunVars.bulletsShot; i++) {
+                if (gunVars.ammo[0] <= 0) break;
+                gunVars.ammo[0]--;
+                gunVars.canShoot = false;
+                StartCoroutine(shotCooldown());
+                rumble.ShootRumble((int)gunVars.type);
+                GameObject bul;
+                if (gunVars.bulletParent != null)
+                    //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
+                    bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
+                else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
+                if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
+                else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
+                Debug.Log("Bullet " + i + " of " + gunVars.bulletsShot + " has been shot!");
+            }
+
             switch (gunVars.type)
             {
                 case GunType.GOOP:
@@ -117,7 +121,9 @@ public class Gun : MonoBehaviour
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_SHOOT);
                     break;
             }
+            gunVars.gunRecoil.applyRecoil();
             return 0;
+
         }
         
     }
@@ -201,6 +207,8 @@ internal class GunVars
     internal float reloadTime;
     [SerializeField]
     internal float shotCooldown;
+    [SerializeField]
+    internal int bulletsShot = 1;
 
     [Header("References")]
     [SerializeField]
