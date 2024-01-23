@@ -48,7 +48,7 @@ public class GunManager : MonoBehaviour
 
     internal int pickGun()
     {
-        return Random.Range(0, guns.Length); 
+        return Random.Range(0, guns.Length-1); 
     }
 
     internal void changeGuns(EventParams param = new EventParams())

@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     private bool canReload = true;
     private RumbleHandler rumble;
 
-    internal enum GunType { NONE, GOOP, NERF, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
+    internal enum GunType { NONE, NERF, GOOP, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
 
 
     [HideInInspector]
