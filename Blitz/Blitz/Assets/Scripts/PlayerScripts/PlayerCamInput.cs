@@ -15,7 +15,7 @@
             switch (axis)
             {
                 case 0: return lookValue.ReadValue<Vector2>().x * aimAssistSlowdown;
-                case 1: return lookValue.ReadValue<Vector2>().y * aimAssistSlowdown;
+                case 1: return lookValue.ReadValue<Vector2>().y;// * aimAssistSlowdown;
             }
 
             return 0;

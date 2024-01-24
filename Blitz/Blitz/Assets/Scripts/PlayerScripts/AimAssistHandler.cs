@@ -198,7 +198,7 @@ public class AimAssistHandler : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.0025f);
         }
 
     }
