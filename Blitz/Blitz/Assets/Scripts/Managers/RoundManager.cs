@@ -24,6 +24,21 @@ public class RoundManager : MonoBehaviour
         roundLength += 0.99f;//so that it stays on the desired start number for 1 second instead of instantly going down
     }
 
+    public void Start()
+    {
+        EventManager.instance.addListener(Events.onGameEnd ,ResetManager);
+    }
+
+    public void ResetManager(EventParams par = new EventParams())
+    {
+        roundNum = 0;
+        for (int i = 0; i < playerKillCounts.Length; i++)
+        {
+            playerKillCounts[i] = 0;
+        }
+        shouldCountDown = false;
+    }
+
     public Coroutine startRound()
     {
         return StartCoroutine(startRoundCoro());

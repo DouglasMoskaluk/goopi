@@ -19,10 +19,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        RoundManager.instance.startRound();
+
+        //RoundManager.instance.startRound();
+        EventManager.instance.addListener(Events.onGameEnd, ResetManager);
     }
 
-    
+    public void ResetManager(EventParams par = new EventParams())
+    {
+        for (int i = 0; i < playersRoundsWonCount.Length; i++)
+        {
+            playersRoundsWonCount[i] = 0;
+        }
+        for (int i = 0; i < playersTotalKillCount.Length; i++)
+        {
+            playersTotalKillCount[i] = 0;
+        }
+    }
 
     /// <summary>
     /// procedure for when a round is won/ends on the game manager side
@@ -81,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         yield return GameUIManager.instance.FadeOut(0.5f);
 
+        EventManager.instance.invokeEvent(Events.onGameEnd);
     }
 
     public void UpdateTotalKills(int[] kills)
