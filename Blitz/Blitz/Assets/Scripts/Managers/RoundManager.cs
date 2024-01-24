@@ -84,7 +84,7 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator endRoundCoro()
     {
-
+        //total time of round transition -> 3.75
         Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
@@ -111,9 +111,6 @@ public class RoundManager : MonoBehaviour
         {
             winnerString += w.ToString() + ", ";
         }
-
-        //display who won for a couple seconds
-        //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayRoundEndUI(endRoundTextShownLength, winnerString));
 
         //cascade round information up to the game manager and let it decide what should be done next
         GameManager.instance.roundWon(winners, playerKillCounts);

@@ -109,6 +109,7 @@ MonoBehaviour:
     ammo: 0a0000000a000000
     reloadTime: 0.75
     shotCooldown: 0.2
+    bulletsShot: 1
     type: 3
     bullet: {fileID: 6551949199387729789, guid: 33b68b042ddcd224283c27f30fa35a9b,
       type: 3}
@@ -272,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recoil: 0.1
   maxRecoil: 0.25
-  returnSpeed: 0.1
+  returnSpeed: 0.25
 --- !u!114 &6737105310924831486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 7924901436678417539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.051599994, y: 0.0184, z: 0.3088}
+  m_LocalPosition: {x: -0.081, y: 0.0184, z: 0.337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -83,6 +83,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         //RoundManager.instance.onRoundReset.AddListener(resetFSM);
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
+        rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
     }
 
 

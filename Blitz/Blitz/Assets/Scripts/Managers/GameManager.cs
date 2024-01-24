@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
         RoundManager.instance.startRound();
     }
 
+    
+
     /// <summary>
     /// procedure for when a round is won/ends on the game manager side
     /// </summary>
@@ -142,6 +144,23 @@ public class GameManager : MonoBehaviour
     public void ReadyArena()
     {
         StartCoroutine(LockerRoomToArenaTransition());
+    }
+
+    public void ReadyLockerRoom()
+    {
+        StartCoroutine(MMToLockerRoom());
+    }
+
+    private IEnumerator MMToLockerRoom()
+    {
+        AudioManager.instance.TransitionTrack("InGame");
+
+        yield return GameUIManager.instance.FadeIn(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
+
+        yield return GameUIManager.instance.FadeOut(0.5f);
     }
 
     private IEnumerator LockerRoomToArenaTransition()

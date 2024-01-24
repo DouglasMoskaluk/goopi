@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -15,11 +16,11 @@ public class MainMenu : MonoBehaviour
 
     public void onMMPlayClicked()
     {
-        mainMenu.SetActive(false);
-        optionsMenu.SetActive(true);
-        eventSys.SetSelectedGameObject(omPlayButton);
-        AudioManager.instance.TransitionTrack("InGame");
+        mmPlayButton.GetComponent<Button>().interactable = false;
+        GameManager.instance.ReadyLockerRoom();
     }
+
+    
 
     public void onMMQuitClicked()
     {
