@@ -34,6 +34,8 @@ public class RoundManager : MonoBehaviour
         
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
+        yield return new WaitForSecondsRealtime(0.5f);
+
         //round ui stuff
         GameUIManager.instance.UpdateRoundTransScores();
         GameUIManager.instance.showRoundTransition();
@@ -95,7 +97,7 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.75f);
 
         yield return GameUIManager.instance.FadeIn(0.5f);
-        yield return new WaitForSecondsRealtime(0.25f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         SplitScreenManager.instance.DisablePlayerControls();
         Time.timeScale = 1f;

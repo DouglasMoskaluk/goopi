@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
         }
         if (gunVars.bulletParent == null)
         {
-            Debug.Log("No folder to hold bullets associated with gun " + gameObject.name);
+            //Debug.Log("No folder to hold bullets associated with gun " + gameObject.name);
         }
         if (gunVars.bulletSpawnPoint == null)
         {
