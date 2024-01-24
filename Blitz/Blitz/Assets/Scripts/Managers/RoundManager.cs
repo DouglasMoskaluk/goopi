@@ -86,7 +86,6 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator endRoundCoro()
     {
-        //total time of round transition -> 3.75
         Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
