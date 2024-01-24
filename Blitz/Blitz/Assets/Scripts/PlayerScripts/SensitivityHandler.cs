@@ -33,7 +33,7 @@ public class SensitivityHandler : MonoBehaviour
         if(inputValues.sensitivityInput != new Vector2(0,0))
         {
             //Debug.Log("INPUT VALUES: " +  inputValues.sensitivityInput);
-            XSensitivity = Mathf.Clamp(XSensitivity + (inputValues.sensitivityInput.x*100), 100, 800);
+            XSensitivity = Mathf.Clamp(XSensitivity + (inputValues.sensitivityInput.x*50), 100, 800);
             YSensitivity = Mathf.Clamp(YSensitivity + (inputValues.sensitivityInput.y * 0.5f), 1, 6);
             freeLook.m_XAxis.m_MaxSpeed = XSensitivity;
             freeLook.m_YAxis.m_MaxSpeed = YSensitivity;

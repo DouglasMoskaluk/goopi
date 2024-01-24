@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752cf0f83f117ae41bb07118c48afc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XSensitivity: 300
+  XSensitivity: 150
   YSensitivity: 2
 --- !u!114 &7842299175808868721
 MonoBehaviour:
@@ -2741,7 +2741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005223791, y: -0.072690435, z: 0.00038073212, w: 0.9973408}
+  m_LocalRotation: {x: 0.0052237893, y: -0.072690435, z: 0.000380732, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3792,7 +3792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castPoint: {fileID: 5389985827659544198}
-  sphereSize: 1.5
+  sphereSize: 1.75
   freeLook: {fileID: 6123351789982921232}
   sensitivityHandler: {fileID: 4397019112354682272}
   input: {fileID: 426433136885082013}
@@ -3800,8 +3800,8 @@ MonoBehaviour:
   aimSensitivity: 0.2
   startDistance: 2
   endDistance: 30
-  stickyness: 0.5
-  deadzone: 0.4
+  stickyness: 0.3
+  deadzone: 0.5
   aimAssistVersion: 0
 --- !u!114 &2782069162948022255
 MonoBehaviour:
