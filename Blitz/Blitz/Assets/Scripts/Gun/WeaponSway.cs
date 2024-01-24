@@ -18,8 +18,6 @@ public class WeaponSway : MonoBehaviour
     private Vector3 top;
     private Vector3 bottom;
 
-    [Tooltip("-1 -> bottom, 1 -> top")] private int target = 1;
-
     private void Start()
     {
         startPoint = transform.localPosition;
