@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     bool collideThisFrame = false;
     float spawnTime = 0.05f;
     float bulletIFrames = 0.05f;
-    float bulletStraightShotDistance = 5;
+    float bulletStraightShotDistance = 3;
 
 
     /// <summary>
