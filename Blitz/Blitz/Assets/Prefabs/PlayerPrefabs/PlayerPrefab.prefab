@@ -2741,7 +2741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0052237906, y: -0.072690435, z: 0.0003807321, w: 0.9973408}
+  m_LocalRotation: {x: 0.005223791, y: -0.072690435, z: 0.00038073212, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3642,8 +3642,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02331615, y: -0.07267153, z: 0.0016993793, w: 0.99708194}
-  m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
+  m_LocalRotation: {x: 0.02331615, y: -0.0726716, z: 0.0016993809, w: 0.99708194}
+  m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.7638435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3791,16 +3791,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009ad5decc06f2748917140cb3b7987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castPoint: {fileID: 3842868777544232220}
-  sphereSize: 1.25
+  castPoint: {fileID: 5389985827659544198}
+  sphereSize: 1.5
   freeLook: {fileID: 6123351789982921232}
   sensitivityHandler: {fileID: 4397019112354682272}
   input: {fileID: 426433136885082013}
   camInput: {fileID: 3085030767544435252}
-  aimSensitivity: 0.45
+  aimSensitivity: 0.25
   startDistance: 2
   endDistance: 30
-  stickyness: 0.25
+  stickyness: 0.35
+  deadzone: 0.35
+  aimAssistVersion: 0
 --- !u!114 &2782069162948022255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,7 +4602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

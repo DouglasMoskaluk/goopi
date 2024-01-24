@@ -37,6 +37,20 @@ public class AimAssistHandler : MonoBehaviour
     [SerializeField]
     private float stickyness = 0.35f;
 
+    [SerializeField]
+    private float deadzone = 0.25f;
+
+    private Transform lastFramePoint;
+
+    private Vector3 lastframePos;
+
+    private bool enterRaycast= false;
+
+    enum AAType {VersionOne, VersionTwo }
+
+    [SerializeField]
+    private AAType aimAssistVersion;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -77,147 +91,112 @@ public class AimAssistHandler : MonoBehaviour
                     //Debug.Log(input.motionInput);
 
 
-                    if (hit.transform.CompareTag("Player") && hit.distance > startDistance)
+                    if (hit.transform.CompareTag("Player") && hit.distance > startDistance && hit.transform.gameObject != this.transform.root.gameObject)
                     {
-                        
-
+                        //get point of nearest player
                         Transform enemyPos = hit.transform.GetChild(3).transform;
 
                         RaycastHit lineHit;
 
+                        //if player is visible (not behind cover) start AA
                         if (Physics.Linecast(castPoint.position, enemyPos.position, out lineHit) && lineHit.transform.CompareTag("Player"))
                         {
 
                             camInput.aimAssistSlowdown = aimSensitivity;
 
-                            if (transform.InverseTransformPoint(hit.point).x > transform.InverseTransformPoint(enemyPos.position).x)
+                            //VERSION 1
+
+                            if(aimAssistVersion == AAType.VersionOne)
                             {
-                                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
-                                if (absolute < 0.05f)
+                                if (transform.InverseTransformPoint(hit.point).x > transform.InverseTransformPoint(enemyPos.position).x)
                                 {
-                                    freeLook.m_XAxis.Value -= 0.025f;
+                                    float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
+                                    if (absolute > deadzone)
+                                    {
+                                        freeLook.m_XAxis.Value -= stickyness;
+                                    }
+                                    //else
+                                    //{
+                                    //    freeLook.m_XAxis.Value -= stickyness;
+                                    //}
                                 }
-                                else
+                                //less than turn right
+                                else if (transform.InverseTransformPoint(hit.point).x < transform.InverseTransformPoint(enemyPos.position).x)
                                 {
-                                    freeLook.m_XAxis.Value -= stickyness;
+                                    float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
+
+                                    if (absolute > deadzone)
+                                    {
+                                        freeLook.m_XAxis.Value += stickyness;
+                                    }
+                                    //else
+                                    //{
+                                    //    freeLook.m_XAxis.Value += stickyness;
+                                    //}
                                 }
                             }
-                            //less than turn right
-                            else if (transform.InverseTransformPoint(hit.point).x < transform.InverseTransformPoint(enemyPos.position).x)
-                            {
-                                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
 
-                                if (absolute < 0.05f)
+                            //VERSION TWO
+
+                            else if(aimAssistVersion == AAType.VersionTwo)
+                            {
+                                if(enterRaycast == true) //first frame in AA - set up reference point for next frame
                                 {
-                                    freeLook.m_XAxis.Value += 0.025f;
+                                    //lastFramePoint = enemyPos.position;
+                                    enterRaycast = false;
+                                    lastFramePoint = enemyPos;
+                                    lastframePos = transform.InverseTransformPoint(lastFramePoint.position);
                                 }
                                 else
                                 {
-                                    freeLook.m_XAxis.Value += stickyness;
+                                    //now we gotta do math
+                                    //Debug.Log("OLD POINT: " + lastframePos + " NEW POINT: " + transform.InverseTransformPoint(enemyPos.position));
+                                    Vector3 oldDirection = lastframePos; // - castPoint.position;
+                                    Vector3 newDirection = transform.InverseTransformPoint(enemyPos.position); // - castPoint.position;
+                                    float angle = Vector3.Angle(newDirection, oldDirection);
+
+                                    //test
+
+                                    Vector2 old2D = new Vector2(lastframePos.x, lastframePos.z); //- new Vector2(castPoint.position.x, castPoint.position.z);//   lastframePos - castPoint.position;
+                                    Vector2 new2D = new Vector2(newDirection.x, newDirection.z);
+                                    Debug.Log("OLD POINT: " + old2D + " NEW POINT: " + new2D);
+                                    float angle2D = Vector2.Angle(old2D, new2D);
+
+                                    Debug.Log(angle2D);
+
+                                    if (new2D.x < old2D.x)
+                                    {
+                                        freeLook.m_XAxis.Value -= angle2D * 0.9f;
+                                    }
+                                    else if (new2D.x > old2D.x)
+                                    {
+                                        freeLook.m_XAxis.Value += angle2D * 0.9f;
+                                    }
+
+                                    lastFramePoint = enemyPos;
+                                    lastframePos = transform.InverseTransformPoint(lastFramePoint.position);
+
+
                                 }
                             }
 
                         }
-
-
-                            //if (Physics.Linecast(castPoint.position, hit.transform.position)
-                            //{
-
-                            //}
-
-
-
-                        //Transform enemyPos = hit.transform.GetChild(3).transform;
-                        //Debug.Log(hit.point + "   enemy point:" + enemyPos.position);
-                        //Debug.Log(transform.InverseTransformPoint(hit.point) + "   enemy point:" + transform.InverseTransformPoint(enemyPos.position));
-                        //freeLook.m_XAxis.m_MaxSpeed = sensitivityHandler.XSensitivity * 0.8f;
-                        //freeLook.m_YAxis.m_MaxSpeed = sensitivityHandler.YSensitivity * 0.8f;
-                        //lower sensitivity
-
-                        //freeLook.m_XAxis.
-
-                        //get position of playerbody
-                        //rotate cinemachine camera by X based on distance
-                        //greater turn left
-
-
+                        else //player isnt visible AA turns off and stuff reset
+                        {
+                            camInput.aimAssistSlowdown = 1f;
+                            enterRaycast = false;
+                        }
 
 
                     }
-                    else
+                    else //no player in raycast so no AA - reset stuff
                     {
                         camInput.aimAssistSlowdown = 1f;
+                        enterRaycast = false;
                     }
                 }
             }
 
-
-
-
-            //if (Physics.SphereCast(castPoint.position, sphereSize, castPoint.forward, out hit, 30)) ;
-            //{
-            //    if (hit.collider != null && (input.motionInput != Vector2.zero || input.lookInput != Vector2.zero))
-            //    {   
-            //        //if(input.motionInput == Vector2.zero && input.lookInput == Vector2.zero)
-            //        //{
-            //        //    Debug.Log("NOT MOVING");
-            //        //}
-
-            //        //Debug.Log(input.motionInput);
-            //        if (hit.transform.CompareTag("Player") && hit.distance > 4)
-            //        {
-
-            //            camInput.aimAssistSlowdown = aimSensitivity;
-
-
-            //            Transform enemyPos = hit.transform.GetChild(3).transform;
-            //            //Debug.Log(hit.point + "   enemy point:" + enemyPos.position);
-            //            Debug.Log(transform.InverseTransformPoint(hit.point) + "   enemy point:" + transform.InverseTransformPoint(enemyPos.position));
-            //            //freeLook.m_XAxis.m_MaxSpeed = sensitivityHandler.XSensitivity * 0.8f;
-            //            //freeLook.m_YAxis.m_MaxSpeed = sensitivityHandler.YSensitivity * 0.8f;
-            //            //lower sensitivity
-
-            //            //freeLook.m_XAxis.
-
-            //            //get position of playerbody
-            //            //rotate cinemachine camera by X based on distance
-            //            //greater turn left
-
-            //            if (transform.InverseTransformPoint(hit.point).x > transform.InverseTransformPoint(enemyPos.position).x)
-            //            {
-            //                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
-            //                if (absolute < 0.05f)
-            //                {
-            //                    freeLook.m_XAxis.Value -= 0.025f;
-            //                }
-            //                else
-            //                {
-            //                    freeLook.m_XAxis.Value -= 0.35f;
-            //                }
-            //            }
-            //            //less than turn right
-            //            else if (transform.InverseTransformPoint(hit.point).x < transform.InverseTransformPoint(enemyPos.position).x)
-            //            {
-            //                float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
-
-            //                if (absolute < 0.05f)
-            //                {
-            //                    freeLook.m_XAxis.Value += 0.025f;
-            //                }
-            //                else
-            //                {
-            //                    freeLook.m_XAxis.Value += 0.35f;
-            //                }
-            //            }
-
-
-            //        }
-            //        else
-            //        {
-            //            camInput.aimAssistSlowdown = 1f;
-            //        }
-            //    }
-            //}
 
             yield return new WaitForSeconds(0.005f);
         }
