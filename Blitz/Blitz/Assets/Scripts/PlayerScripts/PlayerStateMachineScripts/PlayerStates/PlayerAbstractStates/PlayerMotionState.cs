@@ -72,7 +72,7 @@ public class PlayerMotionState : PlayerState
             Debug.DrawRay(playerTransform.position + controller.center, forward * 2, Color.magenta);
         }
         #endregion
-        playerBody.forward = forward;
+        playerBody.forward = Vector3.Slerp(playerBody.forward, forward, 0.04f);
     }
 
     protected Vector3 ClampCameraXRot(Vector3 vec, float upperBounds, float lowerBounds)
