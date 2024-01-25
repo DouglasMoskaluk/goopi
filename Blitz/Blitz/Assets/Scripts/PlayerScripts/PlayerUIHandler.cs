@@ -50,6 +50,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private Vector3[] UILocations;
 
+    [SerializeField]
+    private PlayerCamInput playerCam;
+
     int kills = 0;
 
     public int playerID;
