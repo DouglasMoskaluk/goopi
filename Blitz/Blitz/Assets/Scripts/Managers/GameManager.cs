@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
-        //RoundManager.instance.startRound();
         EventManager.instance.addListener(Events.onGameEnd, ResetManager);
+        RoundManager.instance.startRound();
+        
     }
 
     public void ResetManager(EventParams par = new EventParams())
