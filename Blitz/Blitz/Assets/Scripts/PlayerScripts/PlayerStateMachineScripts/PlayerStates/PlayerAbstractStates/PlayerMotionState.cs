@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// abstract motion state that holds functionality for basic movement controls 
@@ -17,6 +18,8 @@ public class PlayerMotionState : PlayerState
     /// <param name="gravity"> the absolute value of gravity</param>
     protected void basicMovement(Vector2 inputDir, Vector3 previousVerticalMotion, float speed, float gravity)
     {
+        GroundRayCast groRay = FSM.GetGroundRayCastInfo();
+
         #region Get camera relative forward direction
         Vector3 forward = cam.forward;
         forward.y = 0;
@@ -28,14 +31,15 @@ public class PlayerMotionState : PlayerState
         #endregion
 
         #region get horizontal motion
-        RaycastHit hitInfo;
-        bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
+       // RaycastHit hitInfo;
+        //bool rayHit = Physics.Raycast(playerTransform.position + Vector3.up * 0.1f, Vector3.down, out hitInfo, 0.12f);//raycat to ground
+
         Vector3 horizontalMotion = forward * inputDir.y + //forward component of horizontal motion
             -Vector3.Cross(forward, Vector3.up) * inputDir.x;//right component of horizontal motio
         horizontalMotion.Normalize();
-        if (rayHit)
+        if (groRay.rayHit)
         {
-            horizontalMotion = Vector3.ProjectOnPlane(horizontalMotion, hitInfo.normal);//if ray hit ground project hor movemnt onto plane
+            horizontalMotion = Vector3.ProjectOnPlane(horizontalMotion, groRay.rayHitResult.normal);//if ray hit ground project hor movemnt onto plane
         }
         horizontalMotion *= speed;//apply player speed
         #endregion
@@ -43,7 +47,7 @@ public class PlayerMotionState : PlayerState
         #region Get vertical motion  
         previousVertMotion = previousVerticalMotion + Vector3.down * gravity * Time.deltaTime;//calc players vertical motion based on previous vertical motion and gravity
         previousVertMotion.y = Mathf.Max(previousVertMotion.y, stateVariableHolder.MAX_GRAVITY_VEL);//makes sure player doesnt fall faster than max fall speed
-        if (controller.isGrounded) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
+        if (groRay.rayHit) { //alter vert motion when grounded so player isnt "falling super fast" when theyre on the ground
             previousVertMotion = Vector3.down * gravity * 0.15f;//change vertical motion to %15 of gravity so that it stays on the ground over slight height variation
         }
         #endregion

@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerWalkMotionState : PlayerBasicMotionState
 {
     float animLerpAmount = 0.07f;
-    float animLerpRestingAmount = 0.12f;
+    float animLerpRestingAmount = 0.2f;
 
     public override void onStateEnter()
     {
@@ -56,15 +56,16 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
-        if (input.jumpPressed && controller.isGrounded)
+        GroundRayCast groRay = FSM.GetGroundRayCastInfo();
+        if (input.jumpPressed && groRay.rayHit)
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (input.toggleSlide && controller.isGrounded && input.motionInput.y > 0)
+        else if (input.toggleSlide && groRay.rayHit && input.motionInput.y > 0)
         {
             FSM.transitionState(PlayerMotionStates.Slide);
         }
-        else if (!controller.isGrounded)
+        else if (!groRay.rayHit)
         {
             FSM.transitionState(PlayerMotionStates.Fall);
         }

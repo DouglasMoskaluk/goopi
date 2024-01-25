@@ -54,6 +54,10 @@ public class PlayerBodyFSM : MonoBehaviour
     private bool deathCheck = false;
 
     private int mostRecentAttacker = -1;
+
+    GroundRayCast rayInfo;
+    private float rayCastRadius = 0.2f;
+
     //private 
     #endregion
 
@@ -102,7 +106,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //Debug.Log(currentMotionStateFlag);
+        rayInfo.rayHit = Physics.SphereCast(transform.position + charController.center, rayCastRadius, Vector3.down, out rayInfo.rayHitResult , charController.center.y);
+
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();
 
@@ -242,6 +247,11 @@ public class PlayerBodyFSM : MonoBehaviour
 
         //debug output
         if (DisplayDebugMessages) { Debug.Log("Transitioned into " + currentActionStateFlag); }
+    }
+
+    public GroundRayCast GetGroundRayCastInfo()
+    {
+        return rayInfo;
     }
 
     /// <summary>
@@ -548,4 +558,17 @@ public struct stateParams
     public Transform playerBody;
     public FSMVariableHolder variableHolder;
     public PlayerRigHolder rigHolder;
+}
+
+public struct GroundRayCast
+{
+
+    public GroundRayCast(bool rayHitBool, RaycastHit rayHitInfoResult)
+    {
+        rayHit = rayHitBool;
+        rayHitResult = rayHitInfoResult;
+    }
+
+    public bool rayHit;
+    public RaycastHit rayHitResult;
 }

@@ -1,3 +1,4 @@
+using System;
 /// <summary>
 /// 
 /// </summary>
@@ -18,8 +19,9 @@ public class PlayerFallMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
+        GroundRayCast groRay = FSM.GetGroundRayCastInfo();
 
-        if (controller.isGrounded)
+        if (groRay.rayHit)
         {
             FSM.transitionState(PlayerMotionStates.Walk);
         }

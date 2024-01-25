@@ -22,7 +22,8 @@ public class PlayerJumpMotionState : PlayerBasicMotionState
 
     public override void transitionCheck()
     {
-        if (controller.isGrounded)
+        GroundRayCast groRay = FSM.GetGroundRayCastInfo();
+        if (groRay.rayHit)
         {
             FSM.transitionState(PlayerMotionStates.Walk);
         }
