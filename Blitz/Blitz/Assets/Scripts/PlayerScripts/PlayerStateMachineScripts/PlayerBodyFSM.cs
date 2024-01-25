@@ -57,6 +57,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     GroundRayCast rayInfo;
     private float rayCastRadius = 0.2f;
+    public float groundRayCastOffset = -0.8f;
 
     //private 
     #endregion
@@ -106,7 +107,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        rayInfo.rayHit = Physics.SphereCast(transform.position + charController.center, rayCastRadius, Vector3.down, out rayInfo.rayHitResult , charController.center.y);
+        rayInfo.rayHit = Physics.SphereCast(transform.position + charController.center, rayCastRadius, Vector3.down, out rayInfo.rayHitResult , charController.center.y + groundRayCastOffset);
 
         currentMotionState.stateUpdate();
         currentActionState.stateUpdate();

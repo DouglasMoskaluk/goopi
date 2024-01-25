@@ -10,7 +10,7 @@ public class PlayerJumpMotionState : PlayerBasicMotionState
     {
         anim.CrossFadeInFixedTime("Jump", 0.1f, 0);
         previousVertMotion = Vector3.up * stateVariableHolder.JUMP_FORCE;
-        controller.Move(Vector3.up * Time.deltaTime);//make the player not on the ground so that basic move works well with is grounded and wanting to jump
+        controller.Move(Vector3.up * Time.deltaTime  * stateVariableHolder.JUMP_FORCE);//make the player not on the ground so that basic move works well with is grounded and wanting to jump
     }
 
     public override void stateUpdate()

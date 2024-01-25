@@ -1050,7 +1050,7 @@ MonoBehaviour:
     type: 3}
   ragdollBody: {fileID: 2403129680760932734, guid: e9dcb607d06719f44bb397d37b7b8e28,
     type: 3}
-  groundRaycastOffset: -0.08
+  groundRayCastOffset: -0.08
 --- !u!114 &426433136885082013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2716,6 +2716,7 @@ MonoBehaviour:
   - {x: 480, y: 270, z: 0}
   - {x: -480, y: -270, z: 0}
   - {x: 480, y: -270, z: 0}
+  playerCam: {fileID: 0}
   playerID: 0
 --- !u!1 &4288513474485805609
 GameObject:
@@ -2742,7 +2743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005223789, y: -0.072690435, z: 0.00038073194, w: 0.9973408}
+  m_LocalRotation: {x: 0.005223788, y: -0.072690435, z: 0.0003807319, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3643,8 +3644,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02331615, y: -0.0726716, z: 0.0016993809, w: 0.99708194}
-  m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.7638435}
+  m_LocalRotation: {x: 0.02331615, y: -0.07267153, z: 0.0016993793, w: 0.99708194}
+  m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4114,6 +4115,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   aimAssistSlowdown: 1
+  charSelect: 1
 --- !u!1 &6163283849540983694
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,7 +4605,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
