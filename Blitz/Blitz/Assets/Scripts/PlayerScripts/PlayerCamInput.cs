@@ -8,16 +8,28 @@
         public InputAction lookValue;
 
         [HideInInspector]
-        public float aimAssistSlowdown = 1;   
+        public float aimAssistSlowdown = 1;
 
-    public float GetAxisValue(int axis)
+        public float charSelect = 1;
+
+        private CinemachineFreeLook cam;
+
+        private void Start()
         {
-            switch (axis)
-            {
-                case 0: return lookValue.ReadValue<Vector2>().x * aimAssistSlowdown;
-                case 1: return lookValue.ReadValue<Vector2>().y;// * aimAssistSlowdown;
-            }
-
-            return 0;
+            cam = GetComponent<CinemachineFreeLook>();
+            cam.m_XAxis.Value = 90;
+            cam.m_YAxis.Value = 0.44f;
+            charSelect = 1;
         }
-    }
+
+        public float GetAxisValue(int axis)
+            {
+                switch (axis)
+                {
+                    case 0: return lookValue.ReadValue<Vector2>().x * aimAssistSlowdown * charSelect;
+                    case 1: return lookValue.ReadValue<Vector2>().y * charSelect;
+                }
+
+                return 0;
+            }
+        }
