@@ -101,7 +101,7 @@ public class AimAssistHandler : MonoBehaviour
                         //if player is visible (not behind cover) start AA
                         if (Physics.Linecast(castPoint.position, enemyPos.position, out lineHit) && lineHit.transform.CompareTag("Player"))
                         {
-
+                            //Debug.Log("HIT PLAYER");
                             camInput.aimAssistSlowdown = aimSensitivity;
 
                             //VERSION 1
@@ -113,7 +113,7 @@ public class AimAssistHandler : MonoBehaviour
                                     float absolute = Mathf.Abs(transform.InverseTransformPoint(hit.point).x - transform.InverseTransformPoint(enemyPos.position).x);
                                     if (absolute > deadzone)
                                     {
-                                        freeLook.m_XAxis.Value -= stickyness;
+                                        freeLook.m_XAxis.Value -= stickyness * Time.deltaTime;
                                     }
                                     //else
                                     //{
@@ -127,13 +127,14 @@ public class AimAssistHandler : MonoBehaviour
 
                                     if (absolute > deadzone)
                                     {
-                                        freeLook.m_XAxis.Value += stickyness;
+                                        freeLook.m_XAxis.Value += stickyness * Time.deltaTime;
                                     }
                                     //else
                                     //{
                                     //    freeLook.m_XAxis.Value += stickyness;
                                     //}
                                 }
+                                break;
                             }
 
                             //VERSION TWO
@@ -183,14 +184,16 @@ public class AimAssistHandler : MonoBehaviour
                         }
                         else //player isnt visible AA turns off and stuff reset
                         {
+                            //Debug.Log("NOT ON TAREGT");
                             camInput.aimAssistSlowdown = 1f;
                             enterRaycast = false;
                         }
 
-
                     }
                     else //no player in raycast so no AA - reset stuff
                     {
+                        //Debug.Log("NOT ON TAREGT2");
+
                         camInput.aimAssistSlowdown = 1f;
                         enterRaycast = false;
                     }
@@ -198,7 +201,7 @@ public class AimAssistHandler : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(0.0025f);
+            yield return null;
         }
 
     }
