@@ -2202,7 +2202,7 @@ PrefabInstance:
     - target: {fileID: 7869136963814070461, guid: 7b7bbfdb78a000541a0952a9144f3583,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 7869136963814070461, guid: 7b7bbfdb78a000541a0952a9144f3583,
         type: 3}
@@ -2228,6 +2228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181174534239706940, guid: 7b7bbfdb78a000541a0952a9144f3583,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8185733337167566276, guid: 7b7bbfdb78a000541a0952a9144f3583,
         type: 3}
@@ -2333,10 +2338,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PistonObject: {fileID: 7609560954777076553}
-  StartPoint: {x: 8.4338, y: 7.95, z: 0}
-  EndPoint: {x: 0, y: 0, z: 0}
-  fallTime: 1
-  raiseTime: 4
+  StartPoint: {x: 8.43, y: 7.8, z: 41.7}
+  EndPoint: {x: 8.43, y: 2.93, z: 41.7}
+  fallTime: 0.1
+  raiseTime: 1.5
+  waitTime: 0.35
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
