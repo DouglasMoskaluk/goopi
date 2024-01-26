@@ -56,7 +56,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private int mostRecentAttacker = -1;
 
     GroundRayCast rayInfo;
-    private float rayCastRadius = 0.2f;
+    private float rayCastRadius = 0.5f;
     public float groundRayCastOffset = -0.8f;
 
     //private 
