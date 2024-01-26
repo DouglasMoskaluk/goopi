@@ -23,6 +23,8 @@ public class ModifierManager : MonoBehaviour
     float startGravity;
     [SerializeField]
     float GravityEventGravity = 10;
+    [SerializeField]
+    GameObject MegaGunPickupPrefab;
 
 
     void initEvents(EventParams param = new EventParams())
@@ -77,6 +79,7 @@ public class ModifierManager : MonoBehaviour
             }
         }
 
+        // Random Gun event
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
             EventManager.instance.addListener(Events.onPlayerDeath, RandomGunPlayerDeath);
@@ -108,8 +111,14 @@ public class ModifierManager : MonoBehaviour
 
     void RandomGunPlayerDeath(EventParams param = new EventParams())
     {
+        PlayerBodyFSM died = SplitScreenManager.instance.GetPlayers(param.killed);
+        if (died.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
+        {
+            Instantiate(MegaGunPickupPrefab, died.transform.position, Quaternion.identity, GunManager.instance.transform);
+        }
         GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
     }
+
 
     private void Awake()
     {
