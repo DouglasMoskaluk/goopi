@@ -8,6 +8,8 @@ public class PlayerBomb : MonoBehaviour
     private float timerStart = 10;
     private float timer = 10;
     [SerializeField]
+    private float killTime = 5;
+    [SerializeField]
     private int damage = 200;
 
     int plrID;
@@ -20,7 +22,7 @@ public class PlayerBomb : MonoBehaviour
         }
         timer = timerStart;
         plrID = transform.parent.GetComponent<PlayerBodyFSM>().playerID;
-        EventManager.instance.addListener(Events.onPlayerRespawn, resetTimer);
+        EventManager.instance.addListener(Events.onPlayerRespawn, playerDeath);
     }
 
     private void Start()
@@ -38,9 +40,12 @@ public class PlayerBomb : MonoBehaviour
         }
     }
 
-    private void resetTimer(EventParams param = new EventParams())
+    private void playerDeath(EventParams param = new EventParams())
     {
         if (plrID == param.killed) timer = timerStart;
+        else if (plrID == param.killer) {
+            timer += killTime;
+        }
     }
 
     private void roundEnd(EventParams param = new EventParams())

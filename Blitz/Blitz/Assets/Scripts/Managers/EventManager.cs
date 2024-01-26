@@ -279,7 +279,7 @@ public struct EventParams
     internal EventParams(int Killed)
     {
         killed = Killed;
-        killer = 0;
+        killer = -1;
     }
 
     internal EventParams(int Killed, int Killer)
