@@ -70,6 +70,6 @@ public class PingPong : MonoBehaviour
     internal void resetCoroutine()
     {
         StopCoroutine("PointToPoint");
-        StopCoroutine("PointToPoint");
+        StartCoroutine("PointToPoint");
     }
 }

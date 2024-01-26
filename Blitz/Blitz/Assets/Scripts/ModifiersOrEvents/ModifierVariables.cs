@@ -20,8 +20,11 @@ public class ModifierVariables : MonoBehaviour
         foreach (GameObject go in BonusPlatformsLavaEvent)
         {
             go.SetActive(enabled);
-            PingPong ping = go.GetComponent<PingPong>();
-            if (ping != null) ping.resetCoroutine();
+            if (go.transform.childCount > 0 && enabled)
+            {
+                PingPong ping = go.transform.GetChild(0).GetComponent<PingPong>();
+                if (ping != null) ping.resetCoroutine();
+            }
         }
     }
 
