@@ -377,6 +377,8 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
         playerUI.Dead();
+        EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
+        mostRecentAttacker = -1;
         yield return new WaitForEndOfFrame();
         Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
@@ -386,8 +388,6 @@ public class PlayerBodyFSM : MonoBehaviour
         Transform newPos = RespawnManager.instance.getRespawnLocation();
         float dist = Vector3.Distance(transform.position, newPos.position);
         transform.position = newPos.position;
-        EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
-        mostRecentAttacker = -1;
         Physics.SyncTransforms();
 
         resetHealth();
