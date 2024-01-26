@@ -403,6 +403,7 @@ public class PlayerBodyFSM : MonoBehaviour
         grenadeThrower.setGrenades(grenadeThrower.MaxHeldGrenades);
         playerGun.instantReload();
         deathCheck = false;
+        EventManager.instance.invokeEvent(Events.onPlayerRespawn, new EventParams(playerID));
 
         for (int i = 0; i < 5; i++)
         {

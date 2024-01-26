@@ -12,7 +12,7 @@ public class ModifierManager : MonoBehaviour
     {
         RICOCHET,
         LOW_GRAVITY,
-        //BOMB,
+        BOMB,
         FLOOR_IS_LAVA,
         RANDOM_GUNS,
         LENGTH
@@ -25,6 +25,7 @@ public class ModifierManager : MonoBehaviour
     float GravityEventGravity = 10;
     [SerializeField]
     GameObject MegaGunPickupPrefab;
+    GameObject BombPrefab;
     internal ModifierVariables vars;
 
 
