@@ -22,7 +22,8 @@ public class PlayerBomb : MonoBehaviour
         }
         timer = timerStart;
         plrID = transform.parent.GetComponent<PlayerBodyFSM>().playerID;
-        EventManager.instance.addListener(Events.onPlayerRespawn, playerDeath);
+        EventManager.instance.addListener(Events.onPlayerRespawn, ownerDied);
+        EventManager.instance.addListener(Events.onPlayerDeath, playerDied);
     }
 
     private void Start()
@@ -40,10 +41,15 @@ public class PlayerBomb : MonoBehaviour
         }
     }
 
-    private void playerDeath(EventParams param = new EventParams())
+    private void ownerDied(EventParams param = new EventParams())
     {
         if (plrID == param.killed) timer = timerStart;
-        else if (plrID == param.killer) {
+    }
+
+    private void playerDied(EventParams param = new EventParams())
+    {
+        if (plrID == param.killer && plrID != param.killed)
+        {
             timer += killTime;
         }
     }
