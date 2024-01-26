@@ -16,6 +16,7 @@ public class GoopPuddle : SpawnableObject
     {
         Destroy(gameObject, lifeTime);
         damageTrackers = new IEnumerator[4];
+        EventManager.instance.addListener(Events.onPlayerDeath, playerDied, 0);
     }
 
 
