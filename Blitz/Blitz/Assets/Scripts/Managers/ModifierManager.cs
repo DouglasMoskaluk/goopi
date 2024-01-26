@@ -25,6 +25,7 @@ public class ModifierManager : MonoBehaviour
     float GravityEventGravity = 10;
     [SerializeField]
     GameObject MegaGunPickupPrefab;
+    [SerializeField]
     GameObject BombPrefab;
     internal ModifierVariables vars;
 
@@ -98,27 +99,15 @@ public class ModifierManager : MonoBehaviour
         {
             if (vars != null) vars.toggleLava(true);
         }
-        /*
-        int playedEventAudio = 0;
-        for (int i = 0; i < ModifierManager.instance.ActiveEvents.Length; i++)
+
+        if (ActiveEvents[(int)RoundModifierList.BOMB])
         {
-            if (ModifierManager.instance.ActiveEvents[i])
+            for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
             {
-                if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_RICOCHET, playedEventAudio * 2);
-                }
-                else if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.LOW_GRAVITY])
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LOWGRAV, playedEventAudio * 2);
-                }
-                else if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_MEGA, playedEventAudio * 2);
-                }
-                playedEventAudio++;
+                PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(i);
+                Instantiate(BombPrefab, plr.transform.position, plr.transform.rotation, plr.transform);
             }
-        }*/
+        }
 
     }
 

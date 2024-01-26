@@ -416,28 +416,6 @@ public class PlayerBodyFSM : MonoBehaviour
         yield return null;
     }
 
-    ////STOP USING AFTER INDUSTRY SHOWCASE
-    //private void ragdollDeathStart()
-    //{
-    //    charController.enabled = false;
-    //    Debug.Log("Player Died!");
-    //    //Heal attackers
-    //    playerUI.StopDamagedCoroutine();
-    //    playerUI.HideLowHealth();
-    //    ragdoll.RagDollDeath();
-
-    //}
-    ////STOP USING AFTER INDUSTRY SHOW
-    //public void ragdollDeathEnd()
-    //{
-    //    //transform.position = RespawnManager.instance.getRespawnLocation().position;
-
-    //    resetHealth();
-    //    charController.enabled = true;
-    //    grenadeThrower.setGrenades(4);
-    //    playerGun.instantReload();
-    //}
-
     /// <summary>
     /// refills player health when they hit a health pack
     /// </summary>

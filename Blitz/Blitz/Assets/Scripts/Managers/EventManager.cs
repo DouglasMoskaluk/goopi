@@ -276,6 +276,12 @@ public struct EventParams
     internal int killer;
     internal int killed;
 
+    internal EventParams(int Killed)
+    {
+        killed = Killed;
+        killer = 0;
+    }
+
     internal EventParams(int Killed, int Killer)
     {
         killed = Killed;
