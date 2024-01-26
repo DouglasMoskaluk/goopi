@@ -32,6 +32,13 @@ public class GoopPuddle : SpawnableObject
     }
 
 
+    private void playerDied(EventParams param = new EventParams())
+    {
+        if (damageTrackers[param.killed] != null) StopCoroutine(damageTrackers[param.killed]);
+        damageTrackers[param.killed] = null;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -50,6 +57,7 @@ public class GoopPuddle : SpawnableObject
             int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
             //Debug.Log("Stopping damage over time for player " + id);
             if (damageTrackers[id] != null) StopCoroutine(damageTrackers[id]);
+            damageTrackers[id] = null;
         }
     }
 }

@@ -16,7 +16,7 @@ public class PingPong : MonoBehaviour
 
     void Start()
     {
-        transform.position = startPoint.position;
+        
         StartCoroutine("PointToPoint");
     }
 
@@ -24,6 +24,8 @@ public class PingPong : MonoBehaviour
     {
 
         float Time = timeInSeconds * 100;
+
+        transform.position = startPoint.position;
 
         Transform newStartPoint = startPoint;
         Transform newEndPoint = endPoint;
@@ -63,4 +65,11 @@ public class PingPong : MonoBehaviour
         }
     }
 
+
+
+    internal void resetCoroutine()
+    {
+        StopCoroutine("PointToPoint");
+        StopCoroutine("PointToPoint");
+    }
 }
