@@ -28,9 +28,10 @@ public class RotateSpineWithCamera : MonoBehaviour
         Debug.Log(camXRotDiff);
         foreach (var rotBone in RotationBones)
         {
-            float dirMod = (camXRotDiff < 0) ? 360 : 0;
-            rotBone.bone.localRotation = rotBone.initRot * Quaternion.Euler(dirMod - (camXRotDiff * rotBone.weight), 0, 0);
-            //rotBone.bone.localRotation = ClampAngleOnAxis(rotBone.bone.localRotation, (int)ClampAxis.X, minRotateValue, maxRotateValue);
+            rotBone.bone.localRotation = rotBone.initRot * Quaternion.Euler((camXRotDiff * rotBone.weight), 0, 0);
+            if (rotBone.bone.localEulerAngles.x < 0) { 
+                
+            }
         }
     }
 
