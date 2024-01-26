@@ -13,7 +13,7 @@ public class ModifierManager : MonoBehaviour
         RICOCHET,
         LOW_GRAVITY,
         //BOMB,
-        //FLOOR_IS_LAVA,
+        FLOOR_IS_LAVA,
         RANDOM_GUNS,
         LENGTH
     }
@@ -25,6 +25,7 @@ public class ModifierManager : MonoBehaviour
     float GravityEventGravity = 10;
     [SerializeField]
     GameObject MegaGunPickupPrefab;
+    internal ModifierVariables vars;
 
 
     void initEvents(EventParams param = new EventParams())
@@ -37,6 +38,11 @@ public class ModifierManager : MonoBehaviour
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
             EventManager.instance.removeListener(Events.onPlayerDeath, RandomGunPlayerDeath);
+            if (vars != null) vars.toggleMegaGun(false);
+        }
+        if (ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA])
+        {
+            if (vars != null) vars.toggleLava(false);
         }
         for (int i=0; i<ActiveEvents.Length; i++)
         {
@@ -83,6 +89,13 @@ public class ModifierManager : MonoBehaviour
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
             EventManager.instance.addListener(Events.onPlayerDeath, RandomGunPlayerDeath);
+            if (vars != null) vars.toggleMegaGun(true);
+        }
+
+        //Lava rising event
+        if (ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA])
+        {
+            if (vars != null) vars.toggleLava(true);
         }
         /*
         int playedEventAudio = 0;
