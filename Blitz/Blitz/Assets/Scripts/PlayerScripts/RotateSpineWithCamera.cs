@@ -1,26 +1,21 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 5 11 9 10 -> anim only affects these bones
 public class RotateSpineWithCamera : MonoBehaviour
 {
-    [SerializeField] private Transform cam;
     [SerializeField] private Transform rotBone;
-    [SerializeField] private Transform forwardDirectionTransform;
     [SerializeField] private Animator anim;
+    [SerializeField] private CinemachineFreeLook freeLook;
 
-    private Vector3 initCamRot;
-    [Range(0,1)] public float angleTest = 0.5f;
 
-    private void Awake()
-    {
-        initCamRot = cam.localEulerAngles;
-    }
 
-    private void LateUpdate() { 
-    
-        anim.Play("SpineRotate", 2, angleTest);
+    private void LateUpdate() {
+        float angle = 1 - freeLook.m_YAxis.Value;
+        anim.Play("SpineRotate", 2, angle);
     }
 }
 
@@ -32,3 +27,4 @@ public class WeightedBones
     internal Quaternion initRot;
 
 }
+
