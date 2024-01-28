@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129818690040824689}
   - component: {fileID: 6228229062950993477}
+  - component: {fileID: 5145440766549991128}
   m_Layer: 0
   m_Name: WeaponSway
   m_TagString: Untagged
@@ -50,6 +51,18 @@ MonoBehaviour:
   negYOffset: -0.01
   lerpModifier: 0.01
   direction: 1
+--- !u!114 &5145440766549991128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949178903915103108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2963547914914330934
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6700289849180037453}
+  - component: {fileID: 1029970568322528665}
   m_Layer: 0
   m_Name: GunStancePlacement
   m_TagString: Untagged
@@ -82,6 +96,18 @@ Transform:
   - {fileID: 129818690040824689}
   m_Father: {fileID: 3403214378698570096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029970568322528665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963547914914330934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3479398194430589949
 GameObject:
   m_ObjectHideFlags: 0
