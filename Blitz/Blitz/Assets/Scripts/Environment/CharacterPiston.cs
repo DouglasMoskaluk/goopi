@@ -61,7 +61,8 @@ public class CharacterPiston : MonoBehaviour
 
     public void LowerPiston()
     {
-       // Start
+       StopAllCoroutines();
+        StartCoroutine(PistonFall());
     }
 
     IEnumerator PistonFall()

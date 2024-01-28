@@ -91,7 +91,7 @@ public class Gun : MonoBehaviour
                 gunVars.canShoot = false;
                 StartCoroutine(shotCooldown());
                 rumble.ShootRumble((int)gunVars.type);
-                shake.ShakeCamera(0.25f, 0.1f);
+                //shake.ShakeCamera(0.25f, 0.1f);
                 GameObject bul;
                 if (gunVars.bulletParent != null)
                     //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets

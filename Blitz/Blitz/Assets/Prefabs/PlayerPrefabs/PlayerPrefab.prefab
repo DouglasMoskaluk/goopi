@@ -341,8 +341,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 2787196210716927257}
+          m_TargetAssemblyTypeName: PlayerUIHandler, Assembly-CSharp
+          m_MethodName: CharacterButtonSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 8407183801998086149}
-          m_TargetAssemblyTypeName: PlayerModelChanger, Assembly-CSharp
+          m_TargetAssemblyTypeName: PlayerModelHandler, Assembly-CSharp
           m_MethodName: SetModel
           m_Mode: 3
           m_Arguments:
@@ -1432,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5382e4ad731284bb0b8b1d8699aabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  willShake: 0
+  willShake: 1
 --- !u!1 &2528489590404040382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,8 +2296,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 2787196210716927257}
+          m_TargetAssemblyTypeName: PlayerUIHandler, Assembly-CSharp
+          m_MethodName: CharacterButtonSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 8407183801998086149}
-          m_TargetAssemblyTypeName: PlayerModelChanger, Assembly-CSharp
+          m_TargetAssemblyTypeName: PlayerModelHandler, Assembly-CSharp
           m_MethodName: SetModel
           m_Mode: 3
           m_Arguments:
@@ -2822,7 +2846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.32495892, y: -0.068724774, z: -0.023684382, w: 0.9429304}
+  m_LocalRotation: {x: -0.3249589, y: -0.06872479, z: -0.023684388, w: 0.9429304}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3692,8 +3716,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.32495892, y: -0.068724774, z: -0.023684382, w: 0.9429304}
-  m_LocalPosition: {x: 1.2590779, y: 0.47260892, z: -1.6949984}
+  m_LocalRotation: {x: -0.3249589, y: -0.06872479, z: -0.023684388, w: 0.9429304}
+  m_LocalPosition: {x: 1.2590779, y: 0.47260895, z: -1.6949984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4560,7 +4584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.30779925, y: -0.0691431, z: -0.022433704, w: 0.9486705}
+  m_LocalRotation: {x: -0.30779928, y: -0.06914312, z: -0.022433715, w: 0.94867045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4827,8 +4851,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 2787196210716927257}
+          m_TargetAssemblyTypeName: PlayerUIHandler, Assembly-CSharp
+          m_MethodName: CharacterButtonSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 8407183801998086149}
-          m_TargetAssemblyTypeName: PlayerModelChanger, Assembly-CSharp
+          m_TargetAssemblyTypeName: PlayerModelHandler, Assembly-CSharp
           m_MethodName: SetModel
           m_Mode: 3
           m_Arguments:
@@ -5033,8 +5069,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 2787196210716927257}
+          m_TargetAssemblyTypeName: PlayerUIHandler, Assembly-CSharp
+          m_MethodName: CharacterButtonSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 8407183801998086149}
-          m_TargetAssemblyTypeName: PlayerModelChanger, Assembly-CSharp
+          m_TargetAssemblyTypeName: PlayerModelHandler, Assembly-CSharp
           m_MethodName: SetModel
           m_Mode: 3
           m_Arguments:

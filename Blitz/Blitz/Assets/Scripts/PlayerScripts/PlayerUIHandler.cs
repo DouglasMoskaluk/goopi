@@ -98,6 +98,12 @@ public class PlayerUIHandler : MonoBehaviour
         Initialize();
     }
 
+    public void CharacterButtonSelected()
+    {
+        Debug.Log("pistondown");
+        LockerRoomManager.instance.roomPistons[playerID].LowerPiston();
+    }
+
     /// <summary>
     /// called on button press in character choice
     /// </summary>
