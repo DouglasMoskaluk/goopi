@@ -14,6 +14,7 @@ public class Gun : MonoBehaviour
     internal GunVars gunVars;
     private bool canReload = true;
     private RumbleHandler rumble;
+    private CameraShake shake;
 
     internal enum GunType { NONE, NERF, GOOP, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
 
@@ -55,6 +56,7 @@ public class Gun : MonoBehaviour
         bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
 
         rumble = transform.root.GetComponent<RumbleHandler>();
+        shake = transform.root.GetComponent<CameraShake>();
 
     }
 
@@ -89,6 +91,7 @@ public class Gun : MonoBehaviour
                 gunVars.canShoot = false;
                 StartCoroutine(shotCooldown());
                 rumble.ShootRumble((int)gunVars.type);
+                shake.ShakeCamera(0.25f, 0.1f);
                 GameObject bul;
                 if (gunVars.bulletParent != null)
                     //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
