@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.LowLevel;
 
 public class PlayerThrowGrenadeActionState : PlayerActionState
 {
@@ -51,7 +52,6 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
             {
                 grenadeThrower.ThrowGrenade(direction, chargeTime / stateVariableHolder.maxChargeTime);
                 leaveState = true;
-                Debug.Break();
             }
         }
         else if (!input.throwGrenadePressed && hasThrown == false)//not charging but the grenade hasnt thrown yet
