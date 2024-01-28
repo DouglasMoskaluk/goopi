@@ -12,6 +12,9 @@ public class CameraShake : MonoBehaviour
 
     private CinemachineFreeLook freelook;
 
+    [SerializeField]
+    private bool willShake = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,23 +38,29 @@ public class CameraShake : MonoBehaviour
 
     IEnumerator cameraShake(float strength, float length)
     {
-        float timetracker = 0;
 
-        for (int i = 0; i < cams.Length; i++)
+        if(willShake)
         {
-            perlins[i].m_AmplitudeGain = strength;
+            float timetracker = 0;
+
+            for (int i = 0; i < cams.Length; i++)
+            {
+                perlins[i].m_AmplitudeGain = strength;
+            }
+
+            while (timetracker <= length)
+            {
+                timetracker += Time.deltaTime;
+                yield return null;
+            }
+
+            for (int i = 0; i < cams.Length; i++)
+            {
+                perlins[i].m_AmplitudeGain = 0;
+            }
         }
 
-        while (timetracker <= length)
-        {
-            timetracker += Time.deltaTime;
-            yield return null;
-        }
 
-        for (int i = 0; i < cams.Length; i++)
-        {
-            perlins[i].m_AmplitudeGain = 0;
-        }
 
         yield return null;
     }
