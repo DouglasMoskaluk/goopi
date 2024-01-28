@@ -9,14 +9,32 @@ public class LockerRoomManager : MonoBehaviour
 
     [SerializeField] private GameObject[] joinTexts;
 
+    public CharacterPiston[] roomPistons;
+
     private bool[] readyFlags;
     private bool readied = false;
+
+    [SerializeField]
+    private float shakeStrength;
+
+    [SerializeField]
+    private float shakeLength;
 
     private void Awake()
     {
         if (instance == null) instance = this;
         readyFlags = new bool[4];
         SplitScreenManager.instance.AllowJoining();
+    }
+
+    private void Start()
+    {
+        for(int i = 0; i < roomPistons.Length; i++)
+        {
+            roomPistons[i].shakeStrength = shakeStrength;
+            roomPistons[i].shakeLength = shakeLength;
+
+        }
     }
 
     private void Update()
@@ -36,6 +54,11 @@ public class LockerRoomManager : MonoBehaviour
     public void DisableJoinText(int index)
     {
         joinTexts[index].SetActive(false);
+    }
+
+    public void InitializePlayerRoom(int index, CameraShake camShake)
+    {
+        roomPistons[index].getPlayerCameraShake(camShake);
     }
 
     public void ReadyUpPlayer(int playerID)

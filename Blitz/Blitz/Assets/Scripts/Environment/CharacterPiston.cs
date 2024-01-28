@@ -5,6 +5,10 @@ using UnityEngine;
 public class CharacterPiston : MonoBehaviour
 {
 
+    public float shakeStrength;
+
+    public float shakeLength;
+
     [SerializeField]
     private GameObject PistonObject;
 
@@ -31,6 +35,9 @@ public class CharacterPiston : MonoBehaviour
 
     private IEnumerator raiseCoRo;
 
+    
+    public CameraShake playerCamShake;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -45,6 +52,16 @@ public class CharacterPiston : MonoBehaviour
         {
             StartCoroutine(PistonFall());
         }
+    }
+
+    public void getPlayerCameraShake(CameraShake newPlayerCamShake)
+    {
+        playerCamShake = newPlayerCamShake;
+    }
+
+    public void LowerPiston()
+    {
+
     }
 
     IEnumerator PistonFall()
@@ -77,6 +94,9 @@ public class CharacterPiston : MonoBehaviour
 
             //wait fraction of second
             fallPercentage = 1;
+
+            playerCamShake.ShakeCamera(shakeStrength, shakeLength);
+
             yield return new WaitForSeconds(waitTime);
             inFall = false;
             raiseCoRo = PistonRaise();

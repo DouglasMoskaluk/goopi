@@ -848,6 +848,10 @@ MonoBehaviour:
   - {fileID: 622478306}
   - {fileID: 1268836996}
   - {fileID: 928541740}
+  roomPistons:
+  - {fileID: 7609560954777076554}
+  shakeStrength: 3
+  shakeLength: 0.1
 --- !u!1 &1254269883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,12 +2341,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d970d30cbc4746349a15c15a8adb82ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeStrength: 0
+  shakeLength: 0
   PistonObject: {fileID: 7609560954777076553}
   StartPoint: {x: 8.43, y: 7.8, z: 41.7}
   EndPoint: {x: 8.43, y: 2.93, z: 41.7}
-  fallTime: 0.1
-  raiseTime: 1.5
-  waitTime: 0.35
+  fallTime: 0.075
+  raiseTime: 0.75
+  waitTime: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -74,6 +74,8 @@ public class SplitScreenManager : MonoBehaviour
         player.transform.GetComponentInChildren<PlayerCamInput>().lookValue = player.actions.FindAction("Look");
 
         LockerRoomManager.instance.DisableJoinText(players.Count - 1);
+        LockerRoomManager.instance.InitializePlayerRoom(players.Count - 1, player.transform.GetComponent<CameraShake>());
+
     }
 
     public int getPlayerID(GameObject player)
