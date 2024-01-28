@@ -365,7 +365,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     IEnumerator deathCoro()
     {
-        for(int i = 0;i < 5;i++)
+        for(int i = 0;i < transform.GetChild(1).childCount; i++)
         {
             transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
         }
@@ -405,7 +405,7 @@ public class PlayerBodyFSM : MonoBehaviour
         deathCheck = false;
         EventManager.instance.invokeEvent(Events.onPlayerRespawn, new EventParams(playerID));
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < transform.GetChild(1).childCount; i++)
         {
             transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
         }
