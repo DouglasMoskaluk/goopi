@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4111647248793678851}
   - component: {fileID: 3550092502007074065}
+  - component: {fileID: 2502182536124164068}
   m_Layer: 0
   m_Name: WeaponSway
   m_TagString: Untagged
@@ -133,6 +134,18 @@ MonoBehaviour:
   negYOffset: -0.01
   lerpModifier: 0.01
   direction: 1
+--- !u!114 &2502182536124164068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068239380285945173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3479398194430589949
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 3991412675544986062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24319996, y: 0.0349, z: -0.018599996}
+  m_LocalPosition: {x: 0.2432, y: -0.0392, z: -0.1153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,13 +298,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056013505449894834}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.51985687, y: 0.37605813, z: -0.6856189, w: 0.34388366}
-  m_LocalPosition: {x: 0.16019997, y: -0.06329999, z: 0.33989993}
+  m_LocalRotation: {x: 0.12554593, y: -0.26065934, z: -0.59987634, w: 0.74595124}
+  m_LocalPosition: {x: 0.1602, y: -0.0875, z: 0.3332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 633058378101673209}
-  m_LocalEulerAnglesHint: {x: 60.833, y: -68.747, z: -170.486}
+  m_LocalEulerAnglesHint: {x: -7.205, y: -32.942, z: -75.478}
 --- !u!114 &3925516385337017236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,13 +373,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5931348752179250873}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6236751, y: -0.29960272, z: -0.59202677, w: -0.41324568}
-  m_LocalPosition: {x: 0.30219996, y: -0.0171, z: 0.043199997}
+  m_LocalRotation: {x: -0.5203942, y: -0.41206256, z: -0.4524324, w: -0.5955664}
+  m_LocalPosition: {x: 0.3022, y: -0.0567, z: 0.0241}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 633058378101673209}
-  m_LocalEulerAnglesHint: {x: 9.248, y: -272.47, z: 119.028}
+  m_LocalEulerAnglesHint: {x: 14.3, y: -277.04102, z: 87.102}
 --- !u!114 &7334672804754706432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1185989258674360572}
+  - component: {fileID: 275776921097315337}
   m_Layer: 0
   m_Name: GunStancePlacement
   m_TagString: Untagged
@@ -404,13 +418,25 @@ Transform:
   m_GameObject: {fileID: 7595181066379722050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0551, y: 0.143, z: 0.0179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4111647248793678851}
   m_Father: {fileID: 3403214378698570096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &275776921097315337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7595181066379722050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8590582284580918724
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +463,7 @@ Transform:
   m_GameObject: {fileID: 8590582284580918724}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.051599994, y: 0.0184, z: 0.3088}
+  m_LocalPosition: {x: 0.051599994, y: -0.071, z: 0.3088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
