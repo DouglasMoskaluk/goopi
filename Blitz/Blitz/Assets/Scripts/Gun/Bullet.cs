@@ -12,6 +12,16 @@ public class Bullet : MonoBehaviour
     float bulletIFrames = 0.05f;
     float bulletStraightShotDistance = 3;
 
+    [Header("Bullet Curving Variables")]
+    [SerializeField]
+    float viewRadius = 5;
+    [SerializeField]
+    float viewDistance = 20;
+    [SerializeField]
+    float coneAngle = 30;
+    [SerializeField]
+    float rotationAngle = 10;
+
 
     /// <summary>
     /// Checks for errors
@@ -77,8 +87,11 @@ public class Bullet : MonoBehaviour
                 spawnTime = bulletIFrames;
                 GameObject plr = hit.collider.gameObject;
                 if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
-                plr.GetComponent<PlayerBodyFSM>().damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
+                PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
+                if (plrFSM != null) {
+                    plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+                    onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
+                }
                 Bounce(hit);
             }
             else if (hit.collider.CompareTag("Map"))
@@ -155,6 +168,31 @@ public class Bullet : MonoBehaviour
     }
 
 
+    internal IEnumerator BulletCurve()
+    {
+        while (true)
+        {
+            yield return null;
+            Physics physics = new Physics();
+            RaycastHit[] coneHits = physics.ConeCastAll(transform.position, viewRadius, transform.forward, viewDistance, coneAngle);
+            Transform playerPos;
+            foreach (RaycastHit hit in coneHits)
+            {
+                if (hit.collider.tag == "Player")
+                {
+                    playerPos = hit.collider.transform;
+                    Rigidbody rb = GetComponent<Rigidbody>();
+                    Vector3 velocity = Vector3.RotateTowards(rb.velocity, playerPos.position - transform.position, Mathf.Deg2Rad * rotationAngle * Time.deltaTime, 1).normalized * rb.velocity.magnitude;
+                    //Debug.DrawRay(transform.position, velocity, Color.green, 1f);
+                    rb.velocity = velocity;
+                    break;
+                }
+                //hit.collider.GetComponent<Renderer>().material.color = new Color(0, 0, 1f);
+            }
+        }
+    }
+
+
     /// <summary>
     /// Initializes the bullet
     /// </summary>
@@ -200,5 +238,6 @@ public class Bullet : MonoBehaviour
 
         //Debug.Log("Tail Renderer color");
         GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", bulletVars.tailColor);
+        StartCoroutine("BulletCurve");
     }
 }
