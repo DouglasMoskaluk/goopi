@@ -35,6 +35,8 @@ public class CharacterPiston : MonoBehaviour
 
     private IEnumerator raiseCoRo;
 
+    private IEnumerator fallCoro;
+
     
     public CameraShake playerCamShake;
 
@@ -43,15 +45,7 @@ public class CharacterPiston : MonoBehaviour
     {
         PistonObject.transform.position = StartPoint;
         raiseCoRo = PistonRaise();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("l"))
-        {
-            StartCoroutine(PistonFall());
-        }
+        fallCoro = PistonFall();
     }
 
     public void getPlayerCameraShake(CameraShake newPlayerCamShake)
@@ -61,8 +55,12 @@ public class CharacterPiston : MonoBehaviour
 
     public void LowerPiston()
     {
-       StopAllCoroutines();
-        StartCoroutine(PistonFall());
+       StopCoroutine(fallCoro);
+        inFall = false;
+
+        fallCoro = PistonFall();    
+
+       StartCoroutine(fallCoro);
     }
 
     IEnumerator PistonFall()
@@ -70,7 +68,7 @@ public class CharacterPiston : MonoBehaviour
         if(!inFall)
         {
             inFall = true;
-            Debug.Log("FALL");
+            //Debug.Log("FALL");
             StopCoroutine(raiseCoRo);
 
             float fallTracker = 0;
@@ -79,8 +77,9 @@ public class CharacterPiston : MonoBehaviour
             while (ratio < 1.0f)
             {
                 fallTracker += Time.deltaTime;
-                Debug.Log(fallTracker);
+                //Debug.Log(fallTracker);
                 ratio = fallPercentage + (fallTracker / fallTime);
+                fallPercentage = ratio;
                 PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, ratio);
                 //Debug.Log(ratio);
                 yield return null;
@@ -98,7 +97,7 @@ public class CharacterPiston : MonoBehaviour
 
             playerCamShake.ShakeCamera(shakeStrength, shakeLength);
 
-            yield return new WaitForSeconds(waitTime);
+            //yield return new WaitForSeconds(waitTime);
             inFall = false;
             raiseCoRo = PistonRaise();
             StartCoroutine(raiseCoRo);

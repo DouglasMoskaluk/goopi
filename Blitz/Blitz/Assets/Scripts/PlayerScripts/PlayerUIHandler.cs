@@ -100,7 +100,6 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void CharacterButtonSelected()
     {
-        Debug.Log("pistondown");
         LockerRoomManager.instance.roomPistons[playerID].LowerPiston();
     }
 
