@@ -125,7 +125,7 @@ public class CharacterPiston : MonoBehaviour
         while(fallPercentage >= 0)
         {
             raiseTracker -= Time.deltaTime;
-            Debug.Log(raiseTracker);
+            //Debug.Log(raiseTracker);
             fallPercentage = raiseTracker / raiseTime;
             PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, fallPercentage);
             yield return null;

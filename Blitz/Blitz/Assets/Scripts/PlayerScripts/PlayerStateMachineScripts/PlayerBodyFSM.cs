@@ -452,7 +452,6 @@ public class PlayerBodyFSM : MonoBehaviour
     private void setUpGunRig(GameObject gunPrefab)
     {
         rigBuilder.enabled = false;
-        Debug.Log(gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/LeftTarget").name);
         rigHolder.leftArmIKTarget = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/LeftTarget");
         rigHolder.leftArmIKHint = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/LeftHint");
         rigHolder.leftArmConstraint.data.target = rigHolder.leftArmIKTarget;
