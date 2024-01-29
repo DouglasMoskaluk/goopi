@@ -246,7 +246,6 @@ internal class BulletVars
     [SerializeField]
     internal Vector2 accuracy;
     [SerializeField]
-    [Tooltip("In degrees")]
     internal Vector2 offset;
     [SerializeField]
     internal bool bounces;
@@ -262,6 +261,8 @@ internal class BulletVars
     internal bool spawnOnDeath = false;
     [SerializeField]
     internal bool attachPlayer = false;
+    [SerializeField]
+    internal bool snap = false;
 
 
     internal int owner;

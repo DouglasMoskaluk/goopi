@@ -8,8 +8,7 @@ public class Bullet : MonoBehaviour
     BulletVars bulletVars;
     Rigidbody rb;
     bool collideThisFrame = false;
-    float spawnTime = 0.05f;
-    float bulletIFrames = 0.05f;
+    bool bounced = false;
     float bulletStraightShotDistance = 3;
 
     [Header("Bullet Curving Variables")]
@@ -34,12 +33,8 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
-        //Debug.Log("Bullet collided with gameObject " + other.name);
-        //Debug.Log(other.attachedRigidbody.name);
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
-        //Debug.Log("Player is: " + plr.name);
         RaycastHit hit;
-
         //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 10);
         if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
         {
@@ -54,7 +49,6 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(bulletVars.forceApplied);
-        spawnTime -= Time.fixedDeltaTime;
     }
 
 
@@ -80,26 +74,22 @@ public class Bullet : MonoBehaviour
 
     private void collide(RaycastHit hit)
     {
-        if (spawnTime < 0)
+       
+        if (hit.collider.CompareTag("Player") && (hit.collider.GetComponent<PlayerBodyFSM>().playerID != bulletVars.owner || bounced))
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                spawnTime = bulletIFrames;
-                GameObject plr = hit.collider.gameObject;
-                if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
-                PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
-                if (plrFSM != null) {
-                    plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner);
-                    onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
-                }
-                Bounce(hit);
+            GameObject plr = hit.collider.gameObject;
+            if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
+            PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
+            if (plrFSM != null) {
+                plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner);
+                onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
             }
-            else if (hit.collider.CompareTag("Map"))
-            {
-                spawnTime = bulletIFrames;
-                onMapHitEffect(hit);
-                Bounce(hit);
-            }
+            Bounce(hit);
+        }
+        else if (hit.collider.CompareTag("Map"))
+        {
+            onMapHitEffect(hit);
+            Bounce(hit);
         }
     }
 
@@ -114,10 +104,14 @@ public class Bullet : MonoBehaviour
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 Debug.Log(go.name);
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
-                if (bulletVars.attachPlayer)
+                if (bulletVars.snap)
                 {
                     //Snapping
                     go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                    go.transform.position = hit.point;
+                } 
+                if (bulletVars.attachPlayer)
+                {
                     go.transform.position = hit.point;
                 }
             }
@@ -131,13 +125,17 @@ public class Bullet : MonoBehaviour
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                if (bulletVars.attachPlayer)
+                if (bulletVars.snap)
                 {
                     //Snapping
-                    go.transform.parent = plr.transform;
                     go.transform.rotation = Quaternion.LookRotation(-hit.normal);
                     go.transform.position = hit.point;
-                }
+                } 
+                if (bulletVars.attachPlayer)
+                {
+                    go.transform.parent = plr.transform;
+                    go.transform.position = hit.point;
+                } 
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
@@ -147,6 +145,7 @@ public class Bullet : MonoBehaviour
     private void Bounce(RaycastHit hit)
     {
         rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
+        bounced = true;
         if (!bulletVars.bounces)
         {
             StartCoroutine(removeBullet(0));
@@ -157,7 +156,7 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(lifeTime);
         if (bulletVars.spawnOnDeath && bulletVars.spawnOnContact != null &&
-            (!bulletVars.spawnEveryContact || (bulletVars.spawnEveryContact && bulletIFrames <= 0))) // edgecase catch
+            (!bulletVars.spawnEveryContact || (bulletVars.spawnEveryContact))) // edgecase catch
         {
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
