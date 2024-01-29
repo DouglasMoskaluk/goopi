@@ -47,18 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVars:
-    shotDamage: 0
+    shotDamage: 30
     speed: 30
     lifeTime: 5
     accuracy: {x: 0, y: 0}
-    offset: {x: 0, y: 10}
+    offset: {x: 0, y: 0}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
-    spawnOnContact:
-    - {fileID: 4256358020650378377, guid: 72808d208971dec41bde8d88670e107e, type: 3}
-    - {fileID: 1841602102963905187, guid: 43f653413ae55884ca823593ee716ba8, type: 3}
-    forceApplied: {x: 0, y: -11, z: 0}
-    spawnEveryContact: 1
+    spawnOnContact: []
+    forceApplied: {x: 0, y: 0, z: 0}
+    spawnEveryContact: 0
     spawnOnDeath: 0
     attachPlayer: 0
   gunVars:
@@ -67,7 +65,7 @@ MonoBehaviour:
     shotCooldown: 0.35
     bulletsShot: 1
     type: 5
-    bullet: {fileID: 6551949199387729789, guid: dac9d3e42ef504a4ca88f0c09b9ab006,
+    bullet: {fileID: 6551949199387729789, guid: 2dfd0a746ffba0a49beac2216e5a4755,
       type: 3}
     bulletParent: {fileID: 0}
     bulletSpawnPoint: {fileID: 6212113097842508093}
