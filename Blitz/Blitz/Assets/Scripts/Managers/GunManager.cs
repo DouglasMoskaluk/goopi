@@ -82,8 +82,9 @@ public class GunManager : MonoBehaviour
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
 
         GameObject gun = Instantiate(guns[gunNumber], plr.GetChild(1));
+        gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11"), true);
 
-        gun.transform.localPosition = new Vector3(0f, 1f, 0f);
+        gun.transform.localPosition = new Vector3(0f, 0f, 0f);
         gun.transform.forward = FSM.playerBody.forward;
 
         if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
@@ -92,7 +93,7 @@ public class GunManager : MonoBehaviour
         }
 
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
-        plr.GetComponent<PlayerBodyFSM>().assignGun(gun);
+        FSM.assignGun(gun);
     }
 
     internal void nextGun()
