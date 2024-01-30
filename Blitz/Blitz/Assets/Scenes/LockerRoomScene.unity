@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35773308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1354acf561a5c7f4e80bfc629928360d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1368277249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &320108162
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeStrength: 0
   shakeLength: 0
-  PistonObject: {fileID: 605853097}
+  PistonObject: {fileID: 1028735426}
   StartPoint: {x: 8.43, y: 7.8, z: -13.7}
   EndPoint: {x: 8.43, y: 2.93, z: -13.7}
   fallTime: 0.075
@@ -1174,6 +1180,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.044737022, y: 0.044120725, z: 0.006612139}
   m_Center: {x: -0.00010649204, y: -0.00029940606, z: 0.00031229973}
+--- !u!1 &912876184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1354acf561a5c7f4e80bfc629928360d,
+    type: 3}
+  m_PrefabInstance: {fileID: 630424843}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918493554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1589,12 @@ MonoBehaviour:
   - {fileID: 1323839214}
   shakeStrength: 2
   shakeLength: 0.05
+--- !u!1 &1028735426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1354acf561a5c7f4e80bfc629928360d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1768737539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1089799558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2347,7 +2365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeStrength: 0
   shakeLength: 0
-  PistonObject: {fileID: 1294101770}
+  PistonObject: {fileID: 912876184}
   StartPoint: {x: 8.43, y: 7.8, z: -42.8}
   EndPoint: {x: 8.43, y: 2.93, z: -42.8}
   fallTime: 0.075
@@ -3359,7 +3377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeStrength: 0
   shakeLength: 0
-  PistonObject: {fileID: 918493554}
+  PistonObject: {fileID: 35773308}
   StartPoint: {x: 8.43, y: 7.8, z: 15.7}
   EndPoint: {x: 8.43, y: 2.93, z: 15.7}
   fallTime: 0.075

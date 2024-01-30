@@ -11,6 +11,9 @@ public class SplitScreenManager : MonoBehaviour
     [SerializeField]
     private List<LayerMask> playerLayers;
 
+    [SerializeField]
+    private List<LayerMask> playerDotLayers;
+
     private PlayerInputManager inputManager;
 
     public static SplitScreenManager instance;
@@ -68,6 +71,21 @@ public class SplitScreenManager : MonoBehaviour
         {
             child.gameObject.layer = layerToAdd;
         }
+
+        for (int i = 0; i < playerDotLayers.Count; i++)
+        {
+            int playerDotLayerToAdd = (int)Mathf.Log(playerDotLayers[i].value, 2);
+
+            if (i == players.Count - 1)
+            {
+                player.transform.GetChild(1).GetChild(1).GetChild(0).gameObject.layer = playerDotLayerToAdd;
+            }
+            else
+            {
+                player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << playerDotLayerToAdd;
+            }
+        }
+
         //add the layer
         player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << layerToAdd;
 
