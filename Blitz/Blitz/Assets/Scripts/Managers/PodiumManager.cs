@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,16 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private Slider[] playerScores;
     [SerializeField] private TextMeshProUGUI[] playerScoreText;
     [SerializeField] private TextMeshProUGUI winnerText;
+    [SerializeField] private Transform podiumLocations;
 
     private void Awake()
     {
         if (instance == null) instance = this;
+    }
+
+    public void SetUpPodium(int[] placementIndices)
+    {
+
     }
 
     public void SetScores(int[] scores)
@@ -23,6 +30,14 @@ public class PodiumManager : MonoBehaviour
         {
             playerScores[i].value = scores[i];
             playerScoreText[i].text = scores[i].ToString();
+        }
+    }
+
+    public void PlacePlayers()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+
         }
     }
 

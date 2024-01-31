@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        GetPlayerPodiumPositions();
     }
 
     public void StartGame()
@@ -83,6 +85,8 @@ public class GameManager : MonoBehaviour
 
         yield return SceneTransitionManager.instance.unloadScene();
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
+        PodiumManager.instance.SetUpPodium(GetPlayerPodiumPositions());
+
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.WINNER);
 
         GunManager.instance.destroyParentedWorldObjects();
@@ -154,6 +158,27 @@ public class GameManager : MonoBehaviour
         return result;
     }
 
+    private int[] GetPlayerPodiumPositions()
+    {
+
+        List<PlayerWinsData> resultData = new List<PlayerWinsData>();
+
+        resultData.Add(new PlayerWinsData(0, 4, 7));
+        resultData.Add(new PlayerWinsData(1, 4, 13));
+        resultData.Add(new PlayerWinsData(2, 1, 3));
+        resultData.Add(new PlayerWinsData(3, 1, 9));
+
+        resultData.Sort(new PlayerWInsDataKillsComparator());
+        resultData.Sort(new PlayerWinsDataWinsComparator());
+
+        foreach (PlayerWinsData data in resultData) 
+        {
+            Debug.Log("data: " + data.id + "," + data.roundWins + "," + data.totalKills);
+        }
+
+        return null;
+    }
+
     public void ReadyArena()
     {
         StartCoroutine(LockerRoomToArenaTransition());
@@ -197,5 +222,65 @@ public class GameManager : MonoBehaviour
     public int[] GetRoundsWon()
     {
         return playersRoundsWonCount;
+    }
+}
+
+class PlayerWinsData
+{
+
+    public int id;
+    public int roundWins;
+    public int totalKills;
+    public PlayerWinsData()
+    {
+
+    }
+
+    public PlayerWinsData(int id, int roundWins, int totalKills)
+    {
+        this.id = id;
+        this.roundWins = roundWins;
+        this.totalKills = totalKills;
+    }
+
+}
+
+//higher better
+class PlayerWinsDataWinsComparator : IComparer<PlayerWinsData>
+{
+    public int Compare(PlayerWinsData x, PlayerWinsData y)
+    {
+        if (x.roundWins == y.roundWins)// the same
+        {
+            return 0;
+        }
+        else if (x.roundWins > y.roundWins)
+        {
+            return -1;
+        }
+        else
+        {
+            return 1;
+        }
+
+    }
+}
+
+class PlayerWInsDataKillsComparator : IComparer<PlayerWinsData>
+{
+    public int Compare(PlayerWinsData x, PlayerWinsData y)
+    {
+        if (x.totalKills == y.totalKills)// the same
+        {
+            return 0;
+        }
+        else if (x.totalKills > y.totalKills)
+        {
+            return -1;
+        }
+        else
+        {
+            return 1;
+        }
     }
 }
