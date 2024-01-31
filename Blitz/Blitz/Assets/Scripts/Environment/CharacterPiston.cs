@@ -138,4 +138,10 @@ public class CharacterPiston : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator CameraRotate()
+    {
+        yield return null;
+    }
+
+
 }
