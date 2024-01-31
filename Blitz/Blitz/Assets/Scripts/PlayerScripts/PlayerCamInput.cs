@@ -10,6 +10,7 @@
         [HideInInspector]
         public float aimAssistSlowdown = 1;
 
+        [HideInInspector]
         public float charSelect = 1;
 
         private CinemachineFreeLook cam;
@@ -19,7 +20,7 @@
             cam = GetComponent<CinemachineFreeLook>();
             cam.m_XAxis.Value = 90;
             cam.m_YAxis.Value = 0.44f;
-            charSelect = 1;
+            charSelect = 0;
         }
 
         public float GetAxisValue(int axis)
