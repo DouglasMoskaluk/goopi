@@ -15,6 +15,8 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     float timeForControl = 0.5f;
     float elapsedTime = 0f;
 
+    float lerpAmount = 1f;
+
     //player input rotates knockback vector towards input after time delay
 
     public override void onStateEnter()
@@ -37,25 +39,45 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
 
         //potentially some movement for in air that less strong than normal in air movement, idk yet
 
-        Vector3 inputMotion = Vector3.zero;
-        Vector3 lateralMotion = Vector3.zero;
-        Vector3 forwardMotion = Vector3.zero;
-        if (elapsedTime >= timeForControl)
-        {
-            lateralMotion = (playerBody.right * input.motionInput.x);
-            forwardMotion = (playerBody.forward * input.motionInput.y);
+        Vector3 lateralMotion = (playerBody.right * input.motionInput.x);
+        Vector3 forwardMotion = (playerBody.forward * input.motionInput.y);
 
-            lateralMotion = (input.motionInput.x < 0) ? lateralMotion * lateralRightSpeed : lateralMotion * lateralLeftSpeed;
-            forwardMotion = (input.motionInput.y < 0) ? forwardMotion * forwardSpeed : forwardMotion * backwardSpeed;
+        lateralMotion = (input.motionInput.x < 0) ? lateralMotion * lateralRightSpeed : lateralMotion * lateralLeftSpeed;
+        forwardMotion = (input.motionInput.y < 0) ? forwardMotion * forwardSpeed : forwardMotion * backwardSpeed;
 
-            inputMotion = forwardMotion + lateralMotion;
-        }
-        
+        Vector3 inputMotion = forwardMotion + lateralMotion;
+
+        //Debug.DrawRay(playerTransform.position + Vector3.up, FSM.getKnockBackVector(), Color.red, 0.1f);
+
+        AlterKnockbackBasedOnInput(inputMotion);
+
+        //Debug.DrawRay(playerTransform.position + Vector3.up, FSM.getKnockBackVector(), Color.blue, 0.1f);
 
         controller.Move( (FSM.getKnockBackVector()) * Time.deltaTime );
-       
+
+        //Debug.DrawRay(playerTransform.position + Vector3.up, inputMotion.normalized, Color.yellow, 0.1f);
+
         RotateBodyToCamera();
         updateKnockBack();
+        //Debug.Break();
+    }
+
+    private void AlterKnockbackBasedOnInput(Vector3 plrInput)
+    {
+        //if (plrInput.magnitude == 0) return;
+
+        //Vector3 newKnockBack = FSM.getKnockBackVector();
+        //Debug.DrawRay(playerTransform.position + Vector3.up, newKnockBack, Color.yellow, 0.1f);
+        //float knockBackVertical = newKnockBack.y;
+        //newKnockBack.y = 0;
+        //Debug.DrawRay(playerTransform.position + Vector3.up, newKnockBack.normalized, Color.red, 0.1f);
+        //Debug.DrawRay(playerTransform.position + Vector3.up, plrInput.normalized, Color.magenta, 0.1f);
+
+        //Vector3 finalDir = Vector3.Slerp(newKnockBack.normalized, plrInput.normalized, lerpAmount * Time.deltaTime);
+        //Debug.DrawRay(playerTransform.position + Vector3.up, finalDir.normalized, Color.green, 0.1f);
+        //finalDir.y = knockBackVertical;
+        //Debug.DrawRay(playerTransform.position + Vector3.up, finalDir, Color.cyan, 0.1f);
+        //FSM.setKnockBack(finalDir);
     }
 
     private void updateKnockBack()
@@ -77,4 +99,9 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         }
     }
 
+    public void OnDrawGizmos()
+    {
+        //UnityEditor.Handles.color = Color.white;
+        UnityEditor.Handles.DrawWireDisc(playerTransform.position, Vector3.up, 1);
+    }
 }
