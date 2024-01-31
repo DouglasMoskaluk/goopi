@@ -15,11 +15,14 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     float viewRadius = 5;
     [SerializeField]
-    float viewDistance = 20;
+    float viewDistance = 25;
     [SerializeField]
     float coneAngle = 30;
     [SerializeField]
     float rotationAngle = 10;
+
+    float timeCurveChecks = 0;
+    float RaycastDelay = 0.2f;
 
 
     /// <summary>
@@ -172,7 +175,8 @@ public class Bullet : MonoBehaviour
     {
         while (true)
         {
-            yield return null;
+            timeCurveChecks = 0;
+            yield return new WaitForSeconds(RaycastDelay);
             Physics physics = new Physics();
             RaycastHit[] coneHits = physics.ConeCastAll(transform.position, viewRadius, transform.forward, viewDistance, coneAngle);
             Transform playerPos;
@@ -182,7 +186,7 @@ public class Bullet : MonoBehaviour
                 {
                     playerPos = hit.collider.transform;
                     Rigidbody rb = GetComponent<Rigidbody>();
-                    Vector3 velocity = Vector3.RotateTowards(rb.velocity, playerPos.position - transform.position, Mathf.Deg2Rad * rotationAngle * Time.deltaTime, 1).normalized * rb.velocity.magnitude;
+                    Vector3 velocity = Vector3.RotateTowards(rb.velocity, playerPos.position - transform.position, Mathf.Deg2Rad * rotationAngle * timeCurveChecks, 1).normalized * rb.velocity.magnitude;
                     //Debug.DrawRay(transform.position, velocity, Color.green, 1f);
                     rb.velocity = velocity;
                     break;
@@ -190,6 +194,12 @@ public class Bullet : MonoBehaviour
                 //hit.collider.GetComponent<Renderer>().material.color = new Color(0, 0, 1f);
             }
         }
+    }
+
+
+    private void Update()
+    {
+        timeCurveChecks += Time.deltaTime;
     }
 
 
