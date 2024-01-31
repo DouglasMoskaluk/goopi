@@ -25,11 +25,12 @@ public class Explosion : SpawnableObject
         StartCoroutine(explosionCoroutine);
         EventManager.instance.addListener(Events.onRoundEnd, newRound);
 
-        EventManager.instance.addListener(Events.onPlayerDeath, onPlayerDeath);
+        EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
     }
 
     private IEnumerator Explode()
     {
+
         yield return new WaitForSeconds(delay);
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
         collider.enabled = true;
