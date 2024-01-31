@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Unity.VisualScripting;
 
 public class CameraShake : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class CameraShake : MonoBehaviour
 
     private PlayerCamInput camInput;
 
+    private CinemachineCameraOffset offset;
+
     private PlayerBodyFSM player;
 
     private SensitivityHandler senseChanger;
@@ -26,10 +27,12 @@ public class CameraShake : MonoBehaviour
     void Start()
     {
         freelook = transform.GetChild(2).GetComponent<CinemachineFreeLook>();
+        offset = transform.GetChild(2).GetComponent<CinemachineCameraOffset>();
         camInput = transform.GetChild(2).GetComponent<PlayerCamInput>();
         player = transform.GetComponent<PlayerBodyFSM>();
         senseChanger = transform.GetComponent<SensitivityHandler>();
         senseChanger.enabled = false;
+        offset.m_Offset = new Vector3(0, 0, 0);
         cams = new CinemachineVirtualCamera[3];
         perlins = new CinemachineBasicMultiChannelPerlin[3];
 
@@ -84,6 +87,8 @@ public class CameraShake : MonoBehaviour
     IEnumerator CharCameraRotate(float strength)
     {
 
+        
+
         while(freelook.m_XAxis.Value >= -90)
         {
             freelook.m_XAxis.Value -= strength * Time.deltaTime;
@@ -91,6 +96,15 @@ public class CameraShake : MonoBehaviour
         }
 
         freelook.m_XAxis.Value = -90;
+
+        while(offset.m_Offset.x < 0.5f)
+        {
+            offset.m_Offset.x += Time.deltaTime * 2.0f;
+            offset.m_Offset.y += Time.deltaTime * 1.4f;
+            yield return null;
+        }
+
+        offset.m_Offset = new Vector3(0.5f, 0.3f, 0);
 
         camInput.charSelect = 1;
 

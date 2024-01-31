@@ -53,6 +53,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private PlayerCamInput playerCam;
 
+    [SerializeField]
+    private GameObject crossHair;
+
     int kills = 0;
 
     public int playerID;
@@ -75,6 +78,7 @@ public class PlayerUIHandler : MonoBehaviour
     {
         scaleObject.transform.localPosition = UILocations[playerID];
         hitMarkerCoroutine = ShowHitMarker();
+        crossHair.SetActive(false);
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
         lowHealthUI.SetActive(false);
@@ -100,6 +104,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void CharacterButtonSelected()
     {
+        crossHair.SetActive(true);
         LockerRoomManager.instance.roomPistons[playerID].LowerPiston();
     }
 
