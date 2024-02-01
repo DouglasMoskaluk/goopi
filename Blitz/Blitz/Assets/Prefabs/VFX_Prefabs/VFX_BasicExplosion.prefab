@@ -53,7 +53,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 5
+      - m_Value: 0.35
         m_Name: Lifetime
         m_Overridden: 1
       - m_Value: 5
@@ -64,7 +64,10 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.1115191, y: 1, z: 0, w: 0.3254902}
+        m_Name: DefaultColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -131,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07be15acbbf02154498c89721f082114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDelay: 0.7
+  timeDelay: 0.4
 --- !u!114 &-4390179207152245210
 MonoBehaviour:
   m_ObjectHideFlags: 0
