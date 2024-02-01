@@ -5,6 +5,7 @@ using TMPro;
 using System.Linq;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
+using Cinemachine;
 /// <summary>
 /// 
 /// </summary>
@@ -43,6 +44,9 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
 
+    private CinemachineFreeLook freelookCam; //freelook brain reference
+    private Transform camRotatePoint;
+
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
 
@@ -73,6 +77,7 @@ public class PlayerBodyFSM : MonoBehaviour
         charController = GetComponent<CharacterController>();
         grenadeThrower = GetComponent<PlayerGrenadeThrower>();
         variableHolder = GetComponent<FSMVariableHolder>();
+        freelookCam = transform.GetChild(2).GetComponent<CinemachineFreeLook>();
 
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -89,6 +94,7 @@ public class PlayerBodyFSM : MonoBehaviour
         //RoundManager.instance.onRoundReset.AddListener(resetFSM);
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
+        camRotatePoint = transform.GetChild(3);
     }
 
 
@@ -344,9 +350,15 @@ public class PlayerBodyFSM : MonoBehaviour
             transitionState(PlayerMotionStates.Death);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
+
+            RagDollHandler newRagDollHandler = newRagdollBody.transform.GetComponent<RagDollHandler>();
+
+            freelookCam.m_LookAt = newRagDollHandler.camRotatePoint;
+            freelookCam.m_Follow = newRagDollHandler.camRotatePoint;
+
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
-            newRagdollBody.transform.GetComponent<RagDollHandler>().InitializeRagdoll(modelID, boneList, playerVelocity);
+            newRagDollHandler.InitializeRagdoll(modelID, boneList, playerVelocity);
             StartCoroutine("deathCoro");
         }
 
@@ -382,7 +394,13 @@ public class PlayerBodyFSM : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
+
+        freelookCam.m_LookAt = camRotatePoint;
+        freelookCam.m_Follow = camRotatePoint;
+
+
+
         //ragdoll.DisableRagdoll();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
         Transform newPos;

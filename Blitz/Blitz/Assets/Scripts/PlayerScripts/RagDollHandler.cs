@@ -10,6 +10,9 @@ public class RagDollHandler : MonoBehaviour
     [SerializeField]
     private float lifetime;
 
+    [SerializeField]
+    public Transform camRotatePoint;
+
     // Start is called before the first frame update
     void Start()
     {
