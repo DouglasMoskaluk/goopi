@@ -77,7 +77,28 @@ public class Bullet : MonoBehaviour
 
     private void collide(RaycastHit hit)
     {
-       
+        //switch (SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerGun.gunVars.type)
+        //{
+        //    case GunType.GOOP:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_IMPACT);
+        //        break;
+        //    case GunType.ICE_XBOW:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_IMPACT);
+        //        break;
+        //    case GunType.NERF:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_IMPACT);
+        //        break;
+
+        //    case GunType.PLUNGER:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_IMPACT);
+        //        break;
+        //    case GunType.FISH:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_IMPACT);
+        //        break;
+        //    case GunType.BOOMSTICK:
+        //        AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_IMPACT);
+        //        break;
+        //}
         if (hit.collider.CompareTag("Player") && (hit.collider.GetComponent<PlayerBodyFSM>().playerID != bulletVars.owner || bounced))
         {
             GameObject plr = hit.collider.gameObject;
