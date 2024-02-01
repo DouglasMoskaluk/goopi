@@ -71,14 +71,19 @@ public class PlayerUIHandler : MonoBehaviour
 
         scaleObject = transform.GetChild(0).gameObject;
 
-        Initialize();
+        scaleObject.transform.localPosition = UILocations[playerID];
+        hitMarkerCoroutine = ShowHitMarker();
+        hitMarker.SetActive(false);
+        killMarker.SetActive(false);
+        lowHealthUI.SetActive(false);
+        damagedUI.SetActive(false);
+        crossHair.SetActive(false);
     }
 
     private void Initialize()
     {
         scaleObject.transform.localPosition = UILocations[playerID];
         hitMarkerCoroutine = ShowHitMarker();
-        crossHair.SetActive(false);
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
         lowHealthUI.SetActive(false);
