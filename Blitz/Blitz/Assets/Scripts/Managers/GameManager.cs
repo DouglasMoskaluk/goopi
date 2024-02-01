@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        GetPlayerPodiumPositions();
     }
 
     public void StartGame()
@@ -85,7 +84,8 @@ public class GameManager : MonoBehaviour
 
         yield return SceneTransitionManager.instance.unloadScene();
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
-        PodiumManager.instance.SetUpPodium(GetPlayerPodiumPositions());
+
+        //PodiumManager.instance.SetUpPodium(GetFinalGameData());
 
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.WINNER);
 
@@ -158,25 +158,23 @@ public class GameManager : MonoBehaviour
         return result;
     }
 
-    private int[] GetPlayerPodiumPositions()
+    private List<PlayerWinsData> GetFinalGameData()
     {
 
         List<PlayerWinsData> resultData = new List<PlayerWinsData>();
 
-        resultData.Add(new PlayerWinsData(0, 4, 7));
-        resultData.Add(new PlayerWinsData(1, 4, 13));
-        resultData.Add(new PlayerWinsData(2, 1, 3));
-        resultData.Add(new PlayerWinsData(3, 1, 9));
-
-        resultData.Sort(new PlayerWInsDataKillsComparator());
-        resultData.Sort(new PlayerWinsDataWinsComparator());
-
-        foreach (PlayerWinsData data in resultData) 
+        for (int i = 0; i < 4; i++)
         {
-            Debug.Log("data: " + data.id + "," + data.roundWins + "," + data.totalKills);
+            resultData.Add
+                (
+                    new PlayerWinsData(i, playersRoundsWonCount[i], playersTotalKillCount[i])
+                );
         }
 
-        return null;
+        resultData.Sort(new PlayerWinsDataKillsComparator());
+        resultData.Sort(new PlayerWinsDataWinsComparator());
+
+        return resultData;
     }
 
     public void ReadyArena()
@@ -225,12 +223,13 @@ public class GameManager : MonoBehaviour
     }
 }
 
-class PlayerWinsData
+public class PlayerWinsData
 {
 
     public int id;
     public int roundWins;
     public int totalKills;
+    public int rank;
     public PlayerWinsData()
     {
 
@@ -266,7 +265,7 @@ class PlayerWinsDataWinsComparator : IComparer<PlayerWinsData>
     }
 }
 
-class PlayerWInsDataKillsComparator : IComparer<PlayerWinsData>
+class PlayerWinsDataKillsComparator : IComparer<PlayerWinsData>
 {
     public int Compare(PlayerWinsData x, PlayerWinsData y)
     {
