@@ -31,17 +31,34 @@ public class Bullet : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         GameObject plr = other.gameObject;
         if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
         RaycastHit hit;
-        //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position /*+ (rb.velocity * Time.deltaTime * 2f)*/, Color.yellow, 10);
+        //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position , Color.yellow, 10);
         if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
         {
             //Debug.Log("Trigger Enter");
             collide(hit);
             collideThisFrame = true;
+        }
+    }*/
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (Vector3.Distance(transform.position, other.ClosestPointOnBounds(transform.position)) < GetComponent<SphereCollider>().radius)
+        {
+            GameObject plr = other.gameObject;
+            if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
+            RaycastHit hit;
+            //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position , Color.yellow, 10);
+            if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
+            {
+                //Debug.Log("Trigger Enter");
+                collide(hit);
+                collideThisFrame = true;
+            }
         }
     }
 
@@ -50,6 +67,7 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(bulletVars.forceApplied);
+        rb.velocity = rb.velocity * (bulletVars.speedModifier);
     }
 
 
