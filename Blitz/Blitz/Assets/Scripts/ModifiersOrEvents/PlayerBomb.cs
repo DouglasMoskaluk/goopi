@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerBomb : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerBomb : MonoBehaviour
     private float killTime = 5;
     [SerializeField]
     private int damage = 200;
+
+    [SerializeField]
+    TMP_Text countdownTimer;
 
     int plrID;
 
@@ -34,6 +38,7 @@ public class PlayerBomb : MonoBehaviour
 
     private void Update()
     {
+        if (timer >= -1) countdownTimer.text = "" + (int)Mathf.Floor(timer+1);
         timer -= Time.deltaTime;
         if (timer < 0 && transform.parent.GetComponent<CharacterController>().enabled == true)
         {
