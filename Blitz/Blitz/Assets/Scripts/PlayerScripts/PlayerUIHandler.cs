@@ -135,9 +135,9 @@ public class PlayerUIHandler : MonoBehaviour
         Debug.Log("pressedbutton");
         crossHair.SetActive(true);
 
-        eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
+        //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
 
-        //characterChoice.SetActive(false);
+        characterChoice.SetActive(false);
     }
 
     //depreciated
