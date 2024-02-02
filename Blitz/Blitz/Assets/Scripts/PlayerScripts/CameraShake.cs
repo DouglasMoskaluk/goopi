@@ -32,7 +32,7 @@ public class CameraShake : MonoBehaviour
         player = transform.GetComponent<PlayerBodyFSM>();
         senseChanger = transform.GetComponent<SensitivityHandler>();
         senseChanger.enabled = false;
-        offset.m_Offset = new Vector3(0, 0, 0);
+        offset.m_Offset = new Vector3(0.5f, 0.3f, 0);
         cams = new CinemachineVirtualCamera[3];
         perlins = new CinemachineBasicMultiChannelPerlin[3];
 
@@ -97,14 +97,14 @@ public class CameraShake : MonoBehaviour
 
         freelook.m_XAxis.Value = -90;
 
-        while(offset.m_Offset.x < 0.5f)
-        {
-            offset.m_Offset.x += Time.deltaTime * 2.0f;
-            offset.m_Offset.y += Time.deltaTime * 1.4f;
-            yield return null;
-        }
+        //while(offset.m_Offset.x < 0.5f)
+        //{
+        //    offset.m_Offset.x += Time.deltaTime * 2.0f;
+        //    offset.m_Offset.y += Time.deltaTime * 1.4f;
+        //    yield return null;
+        //}
 
-        offset.m_Offset = new Vector3(0.5f, 0.3f, 0);
+        //offset.m_Offset = new Vector3(0.5f, 0.3f, 0);
 
         camInput.charSelect = 1;
 

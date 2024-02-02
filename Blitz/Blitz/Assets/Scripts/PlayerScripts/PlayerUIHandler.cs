@@ -74,6 +74,7 @@ public class PlayerUIHandler : MonoBehaviour
     void Start()
     {
         eventhandler = transform.GetChild(1).GetComponent<MultiplayerEventSystem>();
+
         //RoundManager.instance.onRoundReset.AddListener(resetPlayerUI);
         EventManager.instance.addListener(Events.onRoundStart, resetPlayerUI);
 
@@ -89,6 +90,7 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
+
 
 
         StartCoroutine(setCharButton());
@@ -123,7 +125,6 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void CharacterButtonSelected()
     {
-        crossHair.SetActive(true);
         LockerRoomManager.instance.roomPistons[playerID].LowerPiston();
     }
 
@@ -238,7 +239,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     IEnumerator setCharButton()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.2f);
 
         characterChoice.SetActive(true);
         eventhandler.SetSelectedGameObject(charButtons[playerID]);
