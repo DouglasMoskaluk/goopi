@@ -175,16 +175,31 @@ public class Bullet : MonoBehaviour
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                if (bulletVars.snap)
-                {
-                    //Snapping
-                    go.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                    go.transform.position = hit.point;
-                } 
                 if (bulletVars.attachPlayer)
                 {
                     go.transform.parent = plr.transform;
                     go.transform.position = hit.point;
+                    go.transform.rotation = transform.rotation;
+                    if (bulletVars.snap)
+                    {
+                        go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        go.transform.position = hit.point;
+                    }
+                } else if (bulletVars.snap)
+                {
+                    RaycastHit floor;
+                    if (Physics.Raycast(transform.position, Vector3.down, out floor, 5f))
+                    {
+                        //Snapping
+                        go.transform.rotation = Quaternion.LookRotation(-floor.normal);
+                        go.transform.position = floor.point;
+                    } else
+                    {
+                        //Snapping
+                        go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        go.transform.position = hit.point;
+                    }
+                    
                 } 
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
