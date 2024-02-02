@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnableObject : MonoBehaviour
 {
     [SerializeField]
-    internal int Owner;
+    internal int Owner = -1;
 
     internal virtual void init(int owner)
     {
