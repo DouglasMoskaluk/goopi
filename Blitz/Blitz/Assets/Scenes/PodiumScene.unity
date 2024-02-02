@@ -2420,6 +2420,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045122728}
   m_CullTransparentMesh: 1
+--- !u!1 &1081101405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081101406}
+  m_Layer: 0
+  m_Name: PodiumLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1081101406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081101405}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.31, z: -34.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105179197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4366,7 +4397,7 @@ MonoBehaviour:
   - {fileID: 1781449580}
   winnerText: {fileID: 2051707947}
   podiumLocations: {fileID: 385289971}
-  camTransform: {fileID: 1105179200}
+  podiumLookTransform: {fileID: 1081101406}
 --- !u!1 &2051707945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,3 +4543,4 @@ SceneRoots:
   - {fileID: 344907806}
   - {fileID: 1902798834}
   - {fileID: 385289971}
+  - {fileID: 1081101406}
