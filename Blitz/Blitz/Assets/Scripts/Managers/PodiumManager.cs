@@ -17,11 +17,13 @@ public class PodiumManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        //SetUpPodium(new List<PlayerWinsData>()); //testing
+        SetUpPodium(new List<PlayerWinsData>()); //testing
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
+        
+
         //testing
         //gameData.Clear();
         //gameData.Add(new PlayerWinsData(0, 4, 16));
@@ -29,12 +31,20 @@ public class PodiumManager : MonoBehaviour
         //gameData.Add(new PlayerWinsData(3, 2, 4));
         //gameData.Add(new PlayerWinsData(2, 0, 7));
 
+        FindPlayerRanks(ref gameData);
+
+        PlacePlayers(gameData);
+
+    }
+
+    private void FindPlayerRanks(ref List<PlayerWinsData> gameData)
+    {
         int nextRank = 0;
         for (int i = 0; i < 4; i++)
         {
             if (i == 3) { gameData[i].rank = nextRank; break; }
-            
-            if (gameData[i].roundWins == gameData[i+1].roundWins)
+
+            if (gameData[i].roundWins == gameData[i + 1].roundWins)
             {
                 gameData[i].rank = nextRank;
             }
@@ -43,11 +53,6 @@ public class PodiumManager : MonoBehaviour
                 gameData[i].rank = nextRank++;
             }
         }
-
-        //foreach (PlayerWinsData data in gameData)
-        //{
-        //    Debug.Log("Data: " + data.id + ", " + data.roundWins + ", " + data.totalKills + ", " + data.rank);
-        //}
     }
 
     public void SetScores(int[] scores)
@@ -59,7 +64,7 @@ public class PodiumManager : MonoBehaviour
         }
     }
 
-    public void PlacePlayers()
+    public void PlacePlayers(List<PlayerWinsData> gameData)
     {
         for (int i = 0; i < 4; i++)
         {

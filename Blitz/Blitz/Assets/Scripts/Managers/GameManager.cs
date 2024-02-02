@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -240,6 +241,11 @@ public class PlayerWinsData
         this.id = id;
         this.roundWins = roundWins;
         this.totalKills = totalKills;
+    }
+
+    public override string ToString()
+    {
+        return "Data: " + id + ", " + roundWins + ", " + totalKills + ", " + rank;
     }
 
 }
