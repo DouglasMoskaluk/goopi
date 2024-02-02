@@ -66,6 +66,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     int kills = 0;
 
+    [HideInInspector]
     public int playerID;
 
     // Start is called before the first frame update
