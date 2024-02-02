@@ -32,7 +32,24 @@ public class Explosion : SpawnableObject
     {
 
         yield return new WaitForSeconds(delay);
-        AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
+
+        switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
+        {
+            case Gun.GunType.GOOP:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_EXPLOSION);
+                break;
+            case Gun.GunType.ICE_XBOW:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_EXPLOSION);
+                break;
+            case Gun.GunType.FISH:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_EXPLOSION);
+                break;
+            case Gun.GunType.BOOMSTICK:
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_EXPLOSION);
+                break;
+        }
+
+        //AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
         collider.enabled = true;
         float startRad = collider.radius;
         while (time < explosionTime)
