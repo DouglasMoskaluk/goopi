@@ -83,10 +83,14 @@ public class GameManager : MonoBehaviour
 
         yield return GameUIManager.instance.FadeIn(0.5f);
 
-        yield return SceneTransitionManager.instance.unloadScene();
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
 
-        //PodiumManager.instance.SetUpPodium(GetFinalGameData());
+        EventManager.instance.invokeEvent(Events.onGameEnd);
+
+        yield return SceneTransitionManager.instance.unloadScene(Scenes.Arena);
+        
+
+        PodiumManager.instance.SetUpPodium(GetFinalGameData());
 
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.WINNER);
 
@@ -98,7 +102,7 @@ public class GameManager : MonoBehaviour
 
         yield return GameUIManager.instance.FadeOut(0.5f);
 
-        EventManager.instance.invokeEvent(Events.onGameEnd);
+        
     }
 
     public void UpdateTotalKills(int[] kills)

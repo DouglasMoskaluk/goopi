@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PodiumManager : MonoBehaviour
@@ -13,16 +14,22 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] playerScoreText;
     [SerializeField] private TextMeshProUGUI winnerText;
     [SerializeField] private Transform podiumLocations;
+    private List<Transform> podiumPositions;
 
     private void Awake()
     {
         if (instance == null) instance = this;
-        SetUpPodium(new List<PlayerWinsData>()); //testing
+        podiumPositions = new List<Transform>(4);
+        foreach (Transform child in podiumLocations)
+        {
+            podiumPositions.Add(child); 
+        }
+        //SetUpPodium(new List<PlayerWinsData>()); //testing
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
-        
+
 
         //testing
         //gameData.Clear();
@@ -33,14 +40,14 @@ public class PodiumManager : MonoBehaviour
 
         FindPlayerRanks(ref gameData);
 
-        PlacePlayers(gameData);
+        PlacePlayersOnPodium(gameData);
 
     }
 
     private void FindPlayerRanks(ref List<PlayerWinsData> gameData)
     {
         int nextRank = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < gameData.Count; i++)
         {
             if (i == 3) { gameData[i].rank = nextRank; break; }
 
@@ -64,11 +71,13 @@ public class PodiumManager : MonoBehaviour
         }
     }
 
-    public void PlacePlayers(List<PlayerWinsData> gameData)
+    public void PlacePlayersOnPodium(List<PlayerWinsData> gameData)
     {
-        for (int i = 0; i < 4; i++)
-        {
+        List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
+        for (int i = 0; i < gameData.Count; i++)
+        {
+            players[gameData[i].id].transform.position = podiumPositions[i].position;
         }
     }
 
