@@ -44,6 +44,7 @@ public class PlayerBomb : MonoBehaviour
         {
             transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1);
         }
+        transform.GetChild(0).transform.rotation = transform.parent.GetComponentInChildren<Camera>().transform.rotation;
     }
 
     private void ownerDied(EventParams param = new EventParams())
