@@ -118,6 +118,11 @@ public class PlayerBodyFSM : MonoBehaviour
         currentMotionState.RotateBodyToCamera();
     }
 
+    public void SetPlayerSpineValue(float value)
+    {
+        freelookCam.m_YAxis.Value = value;
+    }
+
     public void resetFSM(EventParams param = new EventParams())
     {
         resetHealth();

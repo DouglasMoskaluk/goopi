@@ -93,8 +93,7 @@ public class PodiumManager : MonoBehaviour
             FSM.DisablePlayerCamera();
             FSM.transitionState(PlayerMotionStates.Walk);
             FSM.transitionState(PlayerActionStates.Idle);
-
-
+            FSM.SetPlayerSpineValue(0.5f);
 
             chara.enabled = true;
 
