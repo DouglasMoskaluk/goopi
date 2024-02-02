@@ -88,8 +88,8 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
-        characterChoice.SetActive(true);
-        eventhandler.SetSelectedGameObject(charButtons[playerID]);
+
+        StartCoroutine(setCharButtons());
     }
 
     private void Initialize()
@@ -228,6 +228,13 @@ public class PlayerUIHandler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         damagedUI.SetActive(false);
         yield return null;
+    }
+
+    IEnumerator setCharButtons()
+    {
+        yield return new WaitForEndOfFrame();
+        characterChoice.SetActive(true);
+        eventhandler.SetSelectedGameObject(charButtons[playerID]);
     }
 
 }
