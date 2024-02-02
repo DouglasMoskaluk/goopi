@@ -115,6 +115,12 @@ public class Bullet : MonoBehaviour
             onMapHitEffect(hit);
             Bounce(hit);
         }
+        else if (hit.collider.CompareTag("Target"))
+        {
+            hit.transform.gameObject.GetComponent<Target>().BulletHit();
+            onMapHitEffect(hit);
+            Bounce(hit);
+        }
     }
 
 

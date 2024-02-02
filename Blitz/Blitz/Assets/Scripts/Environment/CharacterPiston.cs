@@ -118,10 +118,10 @@ public class CharacterPiston : MonoBehaviour
 
     IEnumerator PistonRaise()
     {
-        Debug.Log("RAISE");
+        //Debug.Log("RAISE");
         float raiseTracker = raiseTime;
         fallPercentage = raiseTracker / raiseTime;
-        Debug.Log(fallPercentage);
+        //Debug.Log(fallPercentage);
         while(fallPercentage >= 0)
         {
             raiseTracker -= Time.deltaTime;
