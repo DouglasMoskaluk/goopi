@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 public class PlayerUIHandler : MonoBehaviour
 {
+
+    private MultiplayerEventSystem eventhandler;
+
     [SerializeField]
     private TextMeshProUGUI ammoCount;
 
@@ -56,6 +61,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject crossHair;
 
+    [SerializeField]
+    private GameObject[] charButtons;
+
     int kills = 0;
 
     public int playerID;
@@ -63,6 +71,7 @@ public class PlayerUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        eventhandler = transform.GetChild(1).GetComponent<MultiplayerEventSystem>();
         //RoundManager.instance.onRoundReset.AddListener(resetPlayerUI);
         EventManager.instance.addListener(Events.onRoundStart, resetPlayerUI);
 
@@ -78,6 +87,8 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
+        characterChoice.SetActive(true);
+        eventhandler.SetSelectedGameObject(charButtons[playerID]);
     }
 
     private void Initialize()
