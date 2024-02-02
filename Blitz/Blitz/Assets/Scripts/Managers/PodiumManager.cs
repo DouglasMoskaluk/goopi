@@ -95,6 +95,8 @@ public class PodiumManager : MonoBehaviour
             FSM.SetCameraPosition(new Vector2(-179f, 0.5f));
             FSM.SetBodyRotToCamera();
             FSM.DisablePlayerCamera();
+            FSM.transitionState(PlayerMotionStates.Walk);
+            FSM.transitionState(PlayerActionStates.Idle);
             chara.enabled = true;
 
         }
