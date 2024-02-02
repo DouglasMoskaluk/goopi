@@ -90,7 +90,11 @@ public class PlayerUIHandler : MonoBehaviour
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
 
-        StartCoroutine(setCharButtons());
+        characterChoice.SetActive(true);
+        eventhandler.SetSelectedGameObject(charButtons[playerID]);
+
+
+        //StartCoroutine(setCharButtons());
     }
 
     private void Initialize()
@@ -233,13 +237,6 @@ public class PlayerUIHandler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         damagedUI.SetActive(false);
         yield return null;
-    }
-
-    IEnumerator setCharButtons()
-    {
-        yield return new WaitForSeconds(1.0f);
-        characterChoice.SetActive(true);
-        eventhandler.SetSelectedGameObject(charButtons[playerID]);
     }
 
 }
