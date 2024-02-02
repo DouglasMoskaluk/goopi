@@ -14,12 +14,10 @@ public class Bullet : MonoBehaviour
     [Header("Bullet Curving Variables")]
     [SerializeField]
     float viewRadius = 5;
-    [SerializeField]
     float viewDistance = 25;
     [SerializeField]
     float coneAngle = 30;
-    [SerializeField]
-    float rotationAngle = 10;
+    float rotationAngle = 15;
 
     float timeCurveChecks = 0;
     float RaycastDelay = 0.2f;
