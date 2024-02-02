@@ -28,6 +28,10 @@ public class HealthPickup : MonoBehaviour
         {
             PlayerBodyFSM player = other.transform.GetComponent<PlayerBodyFSM>();
             player.refillHealth();
+            if (player.playerGun.gunVars.type == Gun.GunType.NERF)
+            {
+                player.playerGun.instantReload();
+            }
             Destroy(gameObject);
         }
 
