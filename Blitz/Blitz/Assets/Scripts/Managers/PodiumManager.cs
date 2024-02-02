@@ -98,7 +98,6 @@ public class PodiumManager : MonoBehaviour
             chara.enabled = true;
 
         }
-        Debug.Break();
     }
 
     public void SetWinnerText(string text)
