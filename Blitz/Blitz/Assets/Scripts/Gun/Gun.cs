@@ -256,6 +256,8 @@ internal class BulletVars
     [SerializeField]
     internal Vector3 forceApplied;
     [SerializeField]
+    internal float speedModifier = 1;
+    [SerializeField]
     internal bool spawnEveryContact = true;
     [SerializeField]
     internal bool spawnOnDeath = false;
