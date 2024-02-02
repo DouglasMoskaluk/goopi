@@ -5,9 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    BulletVars bulletVars;
-    Rigidbody rb;
-    bool collideThisFrame = false;
+    internal BulletVars bulletVars;
+    protected Rigidbody rb;
+    protected bool collideThisFrame = false;
     bool bounced = false;
     float bulletStraightShotDistance = 3;
 
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         }
     }*/
 
-    private void OnTriggerStay(Collider other)
+    protected void OnTriggerStay(Collider other)
     {
         if (Vector3.Distance(transform.position, other.ClosestPointOnBounds(transform.position)) < GetComponent<SphereCollider>().radius)
         {
@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void collide(RaycastHit hit)
+    protected void collide(RaycastHit hit)
     {
         switch (SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerGun.gunVars.type)
         {
