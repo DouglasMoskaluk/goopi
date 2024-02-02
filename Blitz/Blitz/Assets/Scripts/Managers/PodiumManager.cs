@@ -92,9 +92,11 @@ public class PodiumManager : MonoBehaviour
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
 
             
-            FSM.SetCameraPosition(new Vector2(-179f, 0.5f));
+            FSM.SetCameraPosition(new Vector2(-188f, 0.5f));
             FSM.SetBodyRotToCamera();
             FSM.DisablePlayerCamera();
+            FSM.transitionState(PlayerMotionStates.Walk);
+            FSM.transitionState(PlayerActionStates.Idle);
             chara.enabled = true;
 
         }
