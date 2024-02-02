@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 
 public class PlayerUIHandler : MonoBehaviour
 {
@@ -133,6 +134,9 @@ public class PlayerUIHandler : MonoBehaviour
         //player.enabled = true;
         Debug.Log("pressedbutton");
         crossHair.SetActive(true);
+
+        //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
+
         characterChoice.SetActive(false);
     }
 
