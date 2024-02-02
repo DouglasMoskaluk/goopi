@@ -242,6 +242,8 @@ internal class BulletVars
     [SerializeField]
     internal float speed;
     [SerializeField]
+    internal float minSpeed = 1;
+    [SerializeField]
     internal float lifeTime;
     [SerializeField]
     internal Vector2 accuracy;

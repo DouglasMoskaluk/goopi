@@ -68,6 +68,10 @@ public class Bullet : MonoBehaviour
     {
         rb.AddForce(bulletVars.forceApplied);
         rb.velocity = rb.velocity * (bulletVars.speedModifier);
+        if (rb.velocity.magnitude < bulletVars.minSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * bulletVars.minSpeed;
+        }
     }
 
 

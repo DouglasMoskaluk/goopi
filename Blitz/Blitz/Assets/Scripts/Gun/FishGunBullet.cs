@@ -11,7 +11,7 @@ public class FishGunBullet : Bullet
 
     float time = 0;
 
-    private void OnTriggerStay(Collider other)
+    private new void OnTriggerStay(Collider other)
     {
         if (Vector3.Distance(transform.position, other.ClosestPointOnBounds(transform.position)) < GetComponent<SphereCollider>().radius)
         {
