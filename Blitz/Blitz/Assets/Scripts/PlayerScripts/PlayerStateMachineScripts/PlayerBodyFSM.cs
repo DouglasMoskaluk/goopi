@@ -108,13 +108,6 @@ public class PlayerBodyFSM : MonoBehaviour
         cam.GetComponent<Camera>().enabled = false;
     }
 
-    public void SetCameraPosition(Vector2 lookAxis)
-    {
-        freelookCam.m_XAxis.Value = lookAxis.x;
-        freelookCam.m_YAxis.Value = lookAxis.y;
-        
-    }
-
     public void SetCameraLookAt(Transform at)
     {
         freelookCam.LookAt = at;
