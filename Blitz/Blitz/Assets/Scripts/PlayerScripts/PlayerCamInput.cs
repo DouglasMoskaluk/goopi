@@ -19,7 +19,7 @@
         {
             cam = GetComponent<CinemachineFreeLook>();
             cam.m_XAxis.Value = 90;
-            cam.m_YAxis.Value = 0.44f;
+            //cam.m_YAxis.Value = 0.44f;
             charSelect = 0;
         }
 
