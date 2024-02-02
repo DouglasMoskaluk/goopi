@@ -28,6 +28,53 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     GameObject BombPrefab;
     internal ModifierVariables vars;
+    [SerializeField]
+    Transform modifierUI;
+
+    internal int getNumEvents(int r)
+    {
+        return modifiers[r];
+    } 
+
+
+    internal IEnumerator showModifierUI()
+    {
+        if (modifiers[RoundManager.instance.getRoundNum()] >= 1)
+        {
+            int shownUI = 0;
+            Transform[] uiElements = new Transform[2];
+            int elemPlaced = 0;
+            for (int i=0; i<ActiveEvents.Length; i++)
+            {
+                if (ActiveEvents[i])
+                {
+                    uiElements[elemPlaced] = modifierUI.GetChild(i).GetChild(shownUI);
+                    elemPlaced++;
+                    shownUI++;
+                    if (shownUI > 1)
+                    {
+                        break;
+                    } else if (shownUI == 1 && modifiers[RoundManager.instance.getRoundNum()-2] == 1)
+                    {
+                        uiElements[elemPlaced] = modifierUI.GetChild(i).GetChild(shownUI);
+                        break;
+                    }
+                }
+            }
+            modifierUI.gameObject.SetActive(true);
+            for (int i = 0; i < uiElements.Length; i++)
+            {
+                if (uiElements[i] != null) uiElements[i].gameObject.SetActive(true);
+            }
+            yield return new WaitForSeconds(0.5f);
+            for (int i = 0; i < uiElements.Length; i++)
+            {
+                if (uiElements[i] != null) uiElements[i].gameObject.SetActive(false);
+            }
+            modifierUI.gameObject.SetActive(false);
+        }
+
+    }
 
 
     void initEvents(EventParams param = new EventParams())

@@ -100,9 +100,19 @@ public class RoundManager : MonoBehaviour
                 {
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_MEGA, playedEventAudio * 2);
                 }
+                else if (i == (int)ModifierManager.RoundModifierList.FLOOR_IS_LAVA)
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LAVA, playedEventAudio * 2);
+                }
+                else if (i == (int)ModifierManager.RoundModifierList.BOMB)
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_BOMB, playedEventAudio * 2);
+                }
                 playedEventAudio++;
             }
         }
+
+        yield return ModifierManager.instance.showModifierUI();
 
         Debug.Log("start Round co ends");
     }
