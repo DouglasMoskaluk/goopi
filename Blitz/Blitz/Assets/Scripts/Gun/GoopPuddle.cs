@@ -10,55 +10,23 @@ public class GoopPuddle : SpawnableObject
     private int damage;
     [SerializeField]
     private float lifeTime = 3f;
-    IEnumerator[] damageTrackers;
+    float[] lifetimeDmgTracker;
 
     private void Start()
     {
-        Destroy(gameObject, lifeTime);
-        damageTrackers = new IEnumerator[4];
-        EventManager.instance.addListener(Events.onPlayerDeath, playerDied, 0);
+        lifetimeDmgTracker = new float[4];
     }
 
-
-    IEnumerator damageOverTime(int playerID)
+    private void OnTriggerStay(Collider other)
     {
-        PlayerBodyFSM plrBdy = SplitScreenManager.instance.GetPlayers()[playerID].GetComponent<PlayerBodyFSM>();
-        bool notDead = true;
-        while (notDead)
-        {
-            yield return new WaitForSeconds(timeBetweenTriggers);
-            if (plrBdy.Health - damage < 0) notDead = false;
-            plrBdy.damagePlayer(damage, Owner);
-        }
-    }
-
-
-    private void playerDied(EventParams param = new EventParams())
-    {
-        if (damageTrackers[param.killed] != null) StopCoroutine(damageTrackers[param.killed]);
-        damageTrackers[param.killed] = null;
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
+        if (other.tag == "Player") {
             int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
-            //Debug.Log("Starting damage over time for player " + id);
-            damageTrackers[id] = damageOverTime(id);
-            StartCoroutine(damageTrackers[id]);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
-            //Debug.Log("Stopping damage over time for player " + id);
-            if (damageTrackers[id] != null) StopCoroutine(damageTrackers[id]);
-            damageTrackers[id] = null;
+            lifetimeDmgTracker[id] += Time.deltaTime;
+            if (lifetimeDmgTracker[id] > timeBetweenTriggers)
+            {
+                other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner);
+                lifetimeDmgTracker[id] = 0;
+            }
         }
     }
 }
