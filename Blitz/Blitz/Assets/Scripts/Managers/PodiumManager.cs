@@ -46,6 +46,8 @@ public class PodiumManager : MonoBehaviour
 
         PlacePlayersOnPodium(gameData);
 
+        
+
     }
 
     private List<PlayerWinsData> FindPlayerRanks(List<PlayerWinsData> gameData)
@@ -86,8 +88,9 @@ public class PodiumManager : MonoBehaviour
             CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
             chara.enabled = false;
             players[gameData[i].id].transform.position = podiumPositions[i].position;
-            chara.enabled = true;
-            
+            players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
+            //chara.enabled = true;
+
         }
         Debug.Break();
     }

@@ -97,6 +97,15 @@ public class PlayerBodyFSM : MonoBehaviour
         camRotatePoint = transform.GetChild(3);
     }
 
+    public void EnablePlayerCamera()
+    {
+        cam.GetComponent<Camera>().enabled = enabled;
+    }
+
+    public void DisablePlayerCamera()
+    {
+        cam.GetComponent<Camera>().enabled = false;
+    }
 
     public void resetFSM(EventParams param = new EventParams())
     {
