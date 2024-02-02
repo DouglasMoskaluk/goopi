@@ -18,6 +18,11 @@ public class RotateSpineWithCamera : MonoBehaviour
         FSM = GetComponent<PlayerBodyFSM>();
     }
 
+    private void Start()
+    {
+        EventManager.instance.addListener(Events.onPlayerRespawn, ResetSpine);
+    }
+
     private void LateUpdate() {
         float angle = 1 - freeLook.m_YAxis.Value;
         if (FSM.currentMotionStateFlag == PlayerMotionStates.Slide)
@@ -31,14 +36,12 @@ public class RotateSpineWithCamera : MonoBehaviour
             
         }
     }
-}
 
-[Serializable]
-public class WeightedBones
-{
-    public float weight = 0;
-    public Transform bone;
-    internal Quaternion initRot;
+    public void ResetSpine(EventParams param = new EventParams())
+    {
+        anim.Play("SpineRotate", 2, 0.5f);
+        freeLook.m_YAxis.Value = 0.5f;
+    }
 
 }
 
