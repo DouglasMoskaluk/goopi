@@ -138,6 +138,14 @@ public class CharacterPiston : MonoBehaviour
         yield return null;
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("enter player select");
+        }
+    }
+
     IEnumerator CameraRotate()
     {
         yield return null;
