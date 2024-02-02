@@ -237,7 +237,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     IEnumerator setCharButtons()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1.0f);
         characterChoice.SetActive(true);
         eventhandler.SetSelectedGameObject(charButtons[playerID]);
     }
