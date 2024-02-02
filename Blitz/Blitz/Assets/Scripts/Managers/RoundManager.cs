@@ -29,6 +29,14 @@ public class RoundManager : MonoBehaviour
         EventManager.instance.addListener(Events.onGameEnd ,ResetManager);
     }
 
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.M))
+        {
+            roundNum = 5;
+        }
+    }
+
     public void ResetManager(EventParams par = new EventParams())
     {
         roundNum = 0;

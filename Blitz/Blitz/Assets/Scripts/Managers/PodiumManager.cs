@@ -38,13 +38,17 @@ public class PodiumManager : MonoBehaviour
         //gameData.Add(new PlayerWinsData(3, 2, 4));
         //gameData.Add(new PlayerWinsData(2, 0, 7));
 
-        FindPlayerRanks(ref gameData);
+        Debug.Log(gameData[0].rank);
+
+        gameData = FindPlayerRanks(gameData);
+
+        Debug.Log(gameData[0].rank);
 
         PlacePlayersOnPodium(gameData);
 
     }
 
-    private void FindPlayerRanks(ref List<PlayerWinsData> gameData)
+    private List<PlayerWinsData> FindPlayerRanks(List<PlayerWinsData> gameData)
     {
         int nextRank = 0;
         for (int i = 0; i < gameData.Count; i++)
@@ -60,6 +64,7 @@ public class PodiumManager : MonoBehaviour
                 gameData[i].rank = nextRank++;
             }
         }
+        return gameData;
     }
 
     public void SetScores(int[] scores)
@@ -77,8 +82,14 @@ public class PodiumManager : MonoBehaviour
 
         for (int i = 0; i < gameData.Count; i++)
         {
+            
+            CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
+            chara.enabled = false;
             players[gameData[i].id].transform.position = podiumPositions[i].position;
+            chara.enabled = true;
+            
         }
+        Debug.Break();
     }
 
     public void SetWinnerText(string text)

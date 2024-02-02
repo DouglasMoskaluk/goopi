@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
         GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.DisableJoining();
-        SplitScreenManager.instance.RemoveAllPlayers();
+        
         PodiumManager.instance.SetScores(playersRoundsWonCount);
         PodiumManager.instance.SetWinnerText(winnersString);
 
