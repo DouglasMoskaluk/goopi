@@ -65,7 +65,7 @@ public class PlayerMotionState : PlayerState
         controller.Move(motion);//apply motion
     }
 
-    protected void RotateBodyToCamera()
+    public void RotateBodyToCamera()
     {
         #region Get camera relative forward direction
         Vector3 forward = cam.forward;
