@@ -43,6 +43,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private RigBuilder rigBuilder;
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
+   
 
     private CinemachineFreeLook freelookCam; //freelook brain reference
     private Transform camRotatePoint;
@@ -105,6 +106,17 @@ public class PlayerBodyFSM : MonoBehaviour
     public void DisablePlayerCamera()
     {
         cam.GetComponent<Camera>().enabled = false;
+    }
+
+    public void SetCameraPosition(Vector2 lookAxis)
+    {
+        freelookCam.m_XAxis.Value = lookAxis.x;
+        freelookCam.m_YAxis.Value = lookAxis.y;
+    }
+
+    public void SetBodyRotToCamera()
+    {
+        currentMotionState.RotateBodyToCamera();
     }
 
     public void resetFSM(EventParams param = new EventParams())

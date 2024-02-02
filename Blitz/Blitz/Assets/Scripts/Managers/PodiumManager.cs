@@ -86,10 +86,16 @@ public class PodiumManager : MonoBehaviour
         {
             
             CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
+            PlayerBodyFSM FSM = players[gameData[i].id].transform.GetComponent<PlayerBodyFSM>();
             chara.enabled = false;
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
-            //chara.enabled = true;
+
+            
+            FSM.SetCameraPosition(new Vector2(-8.337178f, 0.5f));
+            FSM.SetBodyRotToCamera();
+            FSM.DisablePlayerCamera();
+            chara.enabled = true;
 
         }
         Debug.Break();
