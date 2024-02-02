@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6937376105277845922}
   - component: {fileID: 5217014557411906404}
   - component: {fileID: 5822190254041567198}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GrenadeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 3832756217770932942}
   - component: {fileID: 8934506044358584726}
   - component: {fileID: 4173082833427986627}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,6 +235,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grenade_improved
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b50dfd7a0053094e848a3fc5f9a5be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
