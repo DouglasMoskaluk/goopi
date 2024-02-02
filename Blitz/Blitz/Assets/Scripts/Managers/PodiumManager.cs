@@ -15,6 +15,7 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerText;
     [SerializeField] private Transform podiumLocations;
     private List<Transform> podiumPositions;
+    [SerializeField] private Transform camTransform;
 
     private void Awake()
     {
@@ -91,8 +92,9 @@ public class PodiumManager : MonoBehaviour
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
 
-            
-            FSM.SetCameraPosition(new Vector2(-188f, 0.5f));
+
+            //FSM.SetCameraPosition(new Vector2(-188f, 0.5f));
+            FSM.SetCameraLookAt(camTransform);
             FSM.SetBodyRotToCamera();
             FSM.DisablePlayerCamera();
             FSM.transitionState(PlayerMotionStates.Walk);
