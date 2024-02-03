@@ -39,7 +39,7 @@ public class ModifierManager : MonoBehaviour
 
     internal IEnumerator showModifierUI()
     {
-        if (modifiers[RoundManager.instance.getRoundNum()] >= 1)
+        if (RoundManager.instance.getRoundNum() < modifiers.Length && modifiers[RoundManager.instance.getRoundNum()] >= 1)
         {
             int shownUI = 0;
             Transform[] uiElements = new Transform[2];
@@ -87,7 +87,6 @@ public class ModifierManager : MonoBehaviour
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
             EventManager.instance.removeListener(Events.onPlayerDeath, RandomGunPlayerDeath);
-            if (vars != null) vars.toggleMegaGun(false);
         }
         if (ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA])
         {

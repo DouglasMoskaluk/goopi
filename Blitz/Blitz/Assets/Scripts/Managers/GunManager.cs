@@ -55,7 +55,12 @@ public class GunManager : MonoBehaviour
     {
         if (!ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
         {
-            gunUsed = pickGun();
+            int thisRoundGun;
+            do
+            {
+                thisRoundGun = pickGun();
+            } while (thisRoundGun == gunUsed);
+            gunUsed = thisRoundGun;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 assignGun(i);
