@@ -201,6 +201,8 @@ public class GameManager : MonoBehaviour
         yield return GameUIManager.instance.FadeIn(0.5f);
         yield return new WaitForSecondsRealtime(0.5f);
 
+        GunManager.instance.SetLockerroomGuns();
+
         SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
 
         yield return GameUIManager.instance.FadeOut(0.5f);

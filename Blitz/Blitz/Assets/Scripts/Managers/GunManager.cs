@@ -26,8 +26,6 @@ public class GunManager : MonoBehaviour
 
         EventManager.instance.addListener(Events.onRoundStart, destroyParentedWorldObjects);
         EventManager.instance.addListener(Events.onRoundStart, changeGuns);
-
-        changeGuns();
     }
 
     private void Update()
@@ -44,6 +42,11 @@ public class GunManager : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
+    }
+
+    internal void SetLockerroomGuns()
+    {
+        gunUsed = (int)Gun.GunType.NERF - 1;
     }
 
     internal int pickGun()
