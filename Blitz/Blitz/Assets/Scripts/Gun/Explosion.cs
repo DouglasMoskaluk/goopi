@@ -16,7 +16,7 @@ public class Explosion : SpawnableObject
 
     IEnumerator explosionCoroutine;
 
-    SphereCollider collider;
+    new SphereCollider collider;
 
     private void Start()
     {
