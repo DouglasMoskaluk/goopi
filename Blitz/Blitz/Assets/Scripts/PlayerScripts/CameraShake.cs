@@ -23,6 +23,8 @@ public class CameraShake : MonoBehaviour
     [SerializeField]
     private bool willShake = true;
 
+    IEnumerator shakeCoRo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,8 @@ public class CameraShake : MonoBehaviour
         cams = new CinemachineVirtualCamera[3];
         perlins = new CinemachineBasicMultiChannelPerlin[3];
 
+        shakeCoRo = cameraShake(0,0);
+
         for(int i = 0; i < cams.Length; i++)
         {
             cams[i] = freelook.GetRig(i);
@@ -46,8 +50,13 @@ public class CameraShake : MonoBehaviour
 
     public void ShakeCamera(float strength, float length)
     {
-        StopAllCoroutines();
-        StartCoroutine(cameraShake(strength, length));
+        //StopAllCoroutines();
+
+        StopCoroutine(shakeCoRo);
+
+        shakeCoRo = cameraShake(strength, length);
+
+        StartCoroutine(shakeCoRo);
     }
 
     public void CharSelectRotateCamera(float strength)
