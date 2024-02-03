@@ -88,6 +88,7 @@ public class Bullet : MonoBehaviour
                 out hit, 
                 rb.velocity.magnitude * Time.deltaTime))
         {
+            collideThisFrame = true;
             //Debug.Log("Late Update hit");
             collide(hit);
         }
@@ -213,7 +214,8 @@ public class Bullet : MonoBehaviour
         bounced = true;
         if (!bulletVars.bounces)
         {
-            StartCoroutine(removeBullet(0));
+            //StartCoroutine(removeBullet(0));
+            Destroy(gameObject);
         }
     }
 
@@ -221,7 +223,7 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(lifeTime);
         if (bulletVars.spawnOnDeath && bulletVars.spawnOnContact != null &&
-            (!bulletVars.spawnEveryContact || (bulletVars.spawnEveryContact))) // edgecase catch
+            (!bulletVars.spawnEveryContact || (bulletVars.spawnEveryContact && !collideThisFrame))) // edgecase catch
         {
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
