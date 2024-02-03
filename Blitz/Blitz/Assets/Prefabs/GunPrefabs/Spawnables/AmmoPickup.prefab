@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 869441356255820264}
   - component: {fileID: 632865947292418309}
   - component: {fileID: -2689158181560197944}
+  - component: {fileID: 5370527560812927880}
   m_Layer: 0
   m_Name: AmmoPickup
   m_TagString: Untagged
@@ -78,7 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940a13129821d544ba81b26d2b3cfa2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathBarrier: 0
+  Owner: -1
+  deathBarrier: -10
 --- !u!54 &-2689158181560197944
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,6 +108,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &5370527560812927880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830211038625254893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.1, z: 0.25}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!1 &4385675064361300822
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,17 +273,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e3d155c42fe19b74f9795f1fc551d7cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.214
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e3d155c42fe19b74f9795f1fc551d7cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.043
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e3d155c42fe19b74f9795f1fc551d7cf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.002
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e3d155c42fe19b74f9795f1fc551d7cf,
         type: 3}
@@ -315,11 +338,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e3d155c42fe19b74f9795f1fc551d7cf,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3720032460443227410}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d155c42fe19b74f9795f1fc551d7cf, type: 3}
 --- !u!4 &2673470332456544474 stripped
 Transform:
@@ -327,30 +346,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2490677954185744177}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3337663988819194464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e3d155c42fe19b74f9795f1fc551d7cf,
-    type: 3}
-  m_PrefabInstance: {fileID: 2490677954185744177}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &3720032460443227410
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3337663988819194464}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: -0.55, z: 0}
