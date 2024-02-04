@@ -138,7 +138,7 @@ public class Bullet : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Target"))
         {
-            hit.transform.gameObject.GetComponent<Target>().BulletHit(bulletVars.owner);
+            hit.transform.gameObject.GetComponent<Target>().BulletHit();
             onMapHitEffect(hit);
             Bounce(hit);
         }

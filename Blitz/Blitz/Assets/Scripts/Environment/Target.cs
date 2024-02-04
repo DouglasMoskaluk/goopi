@@ -8,17 +8,17 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField]
-    UnityEvent<int> newEvent;
+    UnityEvent newEvent;
 
     void Start()
     {
         
     }
 
-    public void BulletHit(int killerID)
+    public void BulletHit()
     {
         Debug.Log("hit target");
-        newEvent.Invoke(killerID);
+        newEvent.Invoke();
 
     }
 

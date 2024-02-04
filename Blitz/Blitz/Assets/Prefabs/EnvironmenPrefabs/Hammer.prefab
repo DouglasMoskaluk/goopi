@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 039d7e89a990cfc41acf14367d1e68c2, type: 2}
+  - {fileID: -876546973899608171, guid: fbb843add42908b49ad5cacae470728e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5974548072042132980}
   - component: {fileID: 6985340438279548774}
-  - component: {fileID: 9121985164454508978}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -129,34 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895f88ef099070a42ad763866e74977b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammerHead: {fileID: 4441242813593581551}
---- !u!54 &9121985164454508978
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8630616678199873871}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &9149493371824693952
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +161,7 @@ Transform:
   - {fileID: 2574818379714510190}
   - {fileID: 4441242813593581551}
   m_Father: {fileID: 5974548072042132980}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -88.695}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.413315}
 --- !u!111 &9082521108071187760
 Animation:
   m_ObjectHideFlags: 0
@@ -285,11 +256,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cr8
       objectReference: {fileID: 0}
-    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 898da68615f18e84395ee411c635bece, type: 2}
     - target: {fileID: 8303474739537787282, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
         type: 3}
       propertyPath: m_Size.x
@@ -319,11 +285,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 3.439702e-13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8303474739537787282, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
