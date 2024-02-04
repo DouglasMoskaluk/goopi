@@ -45,7 +45,7 @@ public class SplitScreenManager : MonoBehaviour
     {
         players.Add(player);
 
-        GunManager.instance.assignGun(players.Count - 1);
+        //GunManager.instance.assignGun(players.Count - 1);
 
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
 
