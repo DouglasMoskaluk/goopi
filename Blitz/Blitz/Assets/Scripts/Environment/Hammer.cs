@@ -59,7 +59,6 @@ public class Hammer : MonoBehaviour
         {
             Debug.Log(direction);
             other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 40, ForceMode.Impulse);
-            Debug.Log(other.gameObject.name);
             //other.gameObject.GetComponent<RagDollHandler>().MoveRagdoll(direction);
         }
 
