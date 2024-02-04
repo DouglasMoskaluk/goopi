@@ -46,11 +46,12 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("Not enough variables in the ammo array on gun " + gameObject.name);
         }
-        if (transform.parent.parent.tag == "Player")
+        if (transform.root.tag == "Player")
         {
-            bulletVars.owner = transform.parent.parent.GetComponent<PlayerBodyFSM>().playerID;
+            bulletVars.owner = transform.root.GetComponent<PlayerBodyFSM>().playerID;
         } else
         {
+            //Debug.Log(transform.root.name);
             Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
         }
         bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
