@@ -13,6 +13,9 @@ public class RagDollHandler : MonoBehaviour
     [SerializeField]
     public Transform camRotatePoint;
 
+    [SerializeField]
+    public Rigidbody impulseBody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,11 @@ public class RagDollHandler : MonoBehaviour
 
         }
 
+    }
+
+    public void MoveRagdoll(Vector3 direction)
+    {
+        impulseBody.AddForce(direction, ForceMode.Impulse);
     }
 
     // Update is called once per frame
