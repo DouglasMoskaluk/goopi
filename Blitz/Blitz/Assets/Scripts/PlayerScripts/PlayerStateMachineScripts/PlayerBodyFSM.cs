@@ -153,7 +153,7 @@ public class PlayerBodyFSM : MonoBehaviour
         currentMotionState.transitionCheck();
         currentActionState.transitionCheck();
 
-        if (transform.position.y < -40)
+        if (transform.position.y < -10)
         {
             damagePlayer(100, -1);
         }
