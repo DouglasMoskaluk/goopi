@@ -16,10 +16,11 @@ public class PickUpGun : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GunManager.instance.assignGun(SplitScreenManager.instance.getPlayerID(other.gameObject), (int)gunPickup-1);
+            int id = SplitScreenManager.instance.getPlayerID(other.gameObject);
+            GunManager.instance.assignGun(id, (int)gunPickup-1);
             if (gunPickup == Gun.GunType.BOOMSTICK)
             {
-                Instantiate(megaGunSkybeam, other.transform.position, other.transform.rotation, other.transform);
+                Instantiate(megaGunSkybeam, other.transform.position, other.transform.rotation, other.transform).GetComponent<PlayerAttachedDeletion>().init(id);
             }
             Destroy(transform.parent.gameObject);
         }
