@@ -16,6 +16,7 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private Transform podiumLocations;
     private List<Transform> podiumPositions;
     [SerializeField] private Transform podiumLookTransform;
+    [SerializeField] private TextMeshProUGUI[] podiumRankNumbers;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class PodiumManager : MonoBehaviour
         int nextRank = 0;
         for (int i = 0; i < gameData.Count; i++)
         {
-            if (i == 3) { gameData[i].rank = nextRank; break; }
+            if (i == gameData.Count-1) { gameData[i].rank = nextRank; break; }
 
             if (gameData[i].roundWins == gameData[i + 1].roundWins)
             {
@@ -87,6 +88,8 @@ public class PodiumManager : MonoBehaviour
             chara.enabled = false;
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
+
+            podiumRankNumbers[i].text = gameData[i].rank.ToString();
 
             FSM.SetCameraLookAt(podiumLookTransform);
             FSM.SetPlayerSpineValue(0.5f);

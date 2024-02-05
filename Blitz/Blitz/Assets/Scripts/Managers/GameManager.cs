@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.DisableJoining();
         
-        PodiumManager.instance.SetScores(playersRoundsWonCount);
+        //PodiumManager.instance.SetScores(playersRoundsWonCount);
         PodiumManager.instance.SetWinnerText(winnersString);
 
         yield return GameUIManager.instance.FadeOut(0.5f);
