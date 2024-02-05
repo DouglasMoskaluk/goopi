@@ -23,7 +23,7 @@ public class RotateSpineWithCamera : MonoBehaviour
         EventManager.instance.addListener(Events.onPlayerRespawn, ResetSpine);
     }
 
-    private void LateUpdate() {
+    public void LateUpdate() {
         float angle = 1 - freeLook.m_YAxis.Value;
         if (FSM.currentMotionStateFlag == PlayerMotionStates.Slide)
         {
