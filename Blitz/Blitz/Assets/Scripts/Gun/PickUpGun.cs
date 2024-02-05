@@ -9,12 +9,18 @@ public class PickUpGun : MonoBehaviour
     [SerializeField]
     private float returnHeight = 0;
     private static Vector3 startPos = Vector3.zero;
+    [SerializeField]
+    GameObject megaGunSkybeam;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             GunManager.instance.assignGun(SplitScreenManager.instance.getPlayerID(other.gameObject), (int)gunPickup-1);
+            if (gunPickup == Gun.GunType.BOOMSTICK)
+            {
+                Instantiate(megaGunSkybeam, other.transform.position, other.transform.rotation, other.transform);
+            }
             Destroy(transform.parent.gameObject);
         }
     }

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPickup: 6
   returnHeight: -4.16
+  megaGunSkybeam: {fileID: 4548672085973063395, guid: 00e107d4e38244f45beac3a39d7f125d,
+    type: 3}
 --- !u!135 &4788107000091207901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -135,6 +137,7 @@ GameObject:
   - component: {fileID: 5479940634776988573}
   - component: {fileID: 9081065582697874735}
   - component: {fileID: 565689254744975492}
+  - component: {fileID: 3239263495558918161}
   m_Layer: 0
   m_Name: Skybeam
   m_TagString: Untagged
@@ -207,6 +210,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3239263495558918161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026774881463624301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1b4a89487756c4c873e4a2cce45665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6764627242553520778
 PrefabInstance:
   m_ObjectHideFlags: 0
