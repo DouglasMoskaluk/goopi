@@ -106,9 +106,11 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         }
     }
 
+#if UNITY_EDITOR
     public void OnDrawGizmos()
     {
         //UnityEditor.Handles.color = Color.white;
         UnityEditor.Handles.DrawWireDisc(playerTransform.position, Vector3.up, 1);
     }
+#endif
 }

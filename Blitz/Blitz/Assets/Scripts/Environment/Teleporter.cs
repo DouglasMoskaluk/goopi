@@ -19,7 +19,7 @@ public class Teleporter : MonoBehaviour
     //Vector3 vec = Vector3.Cross(-Vector3.Cross(transform.up, direction.normalized), direction.normalized);
     //Vector3 dir = Quaternion.Euler(vec * arc / 2) * direction.normalized;
 
-
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Handles.color = Color.red;
@@ -28,13 +28,14 @@ public class Teleporter : MonoBehaviour
         Handles.color = Color.green;
         Handles.DrawWireArc(transform.position, Vector3.up, Quaternion.Euler(0, -arc / 2, 0) * direction.normalized, arc, lineLength, lineThickness) ;
     }
+#endif
 
     //private void Update()
     //{
     //    Vector3 dir = Vector3.Cross(direction.normalized, transform.right);
     //    Debug.DrawRay(transform.position, dir, Color.magenta, 0.1f);
 
-        
+
     //}
 
     private void OnTriggerEnter(Collider other)
