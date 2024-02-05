@@ -97,6 +97,10 @@ public class PodiumManager : MonoBehaviour
             FSM.DisablePlayerCamera();
             FSM.transitionState(PlayerMotionStates.Walk);
             FSM.transitionState(PlayerActionStates.Idle);
+            FSM.DisablePlayerUI();
+            FSM.DisableGun();
+            FSM.AllowWinAnimation();
+            FSM.SetWinAnimNumber(i);
             
 
             chara.enabled = true;
@@ -111,6 +115,7 @@ public class PodiumManager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
+        SplitScreenManager.instance.RemoveAllPlayers();
         AudioManager.instance.TransitionTrack("MainMenu");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
     }

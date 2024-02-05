@@ -43,6 +43,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private RigBuilder rigBuilder;
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
+    [SerializeField] private PlayerUIHandler uiHandler;
    
 
     private CinemachineFreeLook freelookCam; //freelook brain reference
@@ -106,6 +107,30 @@ public class PlayerBodyFSM : MonoBehaviour
     public void DisablePlayerCamera()
     {
         cam.GetComponent<Camera>().enabled = false;
+    }
+
+    public void DisablePlayerUI()
+    {
+        uiHandler.gameObject.SetActive(false);
+    }
+
+    public void DisableGun()
+    {
+        playerGun.gameObject.SetActive(false);
+        //rigBuilder.layers.ForEach(layer => layer.rig.weight = 0f);
+    }
+
+    public void AllowWinAnimation()
+    {
+        anim.SetLayerWeight(0, 0);
+        anim.SetLayerWeight(1, 0);
+        anim.SetLayerWeight(2, 0);
+        anim.SetLayerWeight(3, 0);
+        anim.SetLayerWeight(4, 1);
+    }
+    public void SetWinAnimNumber(int num)
+    {
+        anim.SetInteger("DanceType", num);
     }
 
     public void SetCameraLookAt(Transform at)

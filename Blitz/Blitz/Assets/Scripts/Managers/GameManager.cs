@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
 
-        SplitScreenManager.instance.DisablePlayerControls();
+        //SplitScreenManager.instance.DisablePlayerControls();
 
         EventManager.instance.invokeEvent(Events.onGameEnd);
 
