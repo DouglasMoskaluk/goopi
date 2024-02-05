@@ -42,7 +42,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
 
         Vector3 lateralMotion = (playerBody.right * input.motionInput.x);
         Vector3 forwardMotion = (playerBody.forward * input.motionInput.y);
-        Debug.Log("for " + forwardMotion);
+        //Debug.Log("for " + forwardMotion);
 
         Vector3 soleInput = forwardMotion + lateralMotion;
 

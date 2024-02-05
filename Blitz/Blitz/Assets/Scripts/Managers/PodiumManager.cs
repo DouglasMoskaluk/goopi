@@ -89,7 +89,7 @@ public class PodiumManager : MonoBehaviour
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
 
-            podiumRankNumbers[i].text = gameData[i].rank.ToString();
+            podiumRankNumbers[i].text = (gameData[i].rank + 1).ToString();
 
             FSM.SetCameraLookAt(podiumLookTransform);
             FSM.SetPlayerSpineValue(0.5f);

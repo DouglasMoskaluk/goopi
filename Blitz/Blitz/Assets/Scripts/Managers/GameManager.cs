@@ -21,9 +21,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        EventManager.instance.addListener(Events.onGameEnd, ResetManager);
+        //EventManager.instance.addListener(Events.onGameEnd, ResetManager);
         RoundManager.instance.startRound();
         
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("Player kills");
+            for (int i = 0; i < playersTotalKillCount.Length; i++)
+            {
+                Debug.Log(playersTotalKillCount[i]);
+            }
+            Debug.Log("");
+        }
     }
 
     public void ResetManager(EventParams par = new EventParams())
@@ -101,6 +114,7 @@ public class GameManager : MonoBehaviour
         
         //PodiumManager.instance.SetScores(playersRoundsWonCount);
         PodiumManager.instance.SetWinnerText(winnersString);
+        ResetManager();
 
         yield return GameUIManager.instance.FadeOut(0.5f);
 
