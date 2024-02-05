@@ -25,21 +25,9 @@ public class PlayerAttachedDeletion : MonoBehaviour
         plr = id;
         EventManager.instance.addListener(Events.onPlayerDeath, deathCheck);
         EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
-        //GetComponent<Renderer>().renderingLayerMask = (uint)layers[plr];
-        /*switch (plr)
-        {
-            case 0:
-                GetComponent<Renderer>().renderingLayerMask = layers[];
-                break;
-            case 1:
-                GetComponent<Renderer>().renderingLayerMask = (uint)LayerMask.NameToLayer("PlayerDotTwo");
-                break;
-            case 2:
-                GetComponent<Renderer>().renderingLayerMask = (uint)LayerMask.NameToLayer("PlayerDotThree");
-                break;
-            case 3:
-                GetComponent<Renderer>().renderingLayerMask = (uint)LayerMask.NameToLayer("PlayerDotFour");
-                break;
-        }*/
+        //int bitmask = (1 << (11 + plr));
+        //gameObject.layer = bitmask;
+
+
     }
 }
