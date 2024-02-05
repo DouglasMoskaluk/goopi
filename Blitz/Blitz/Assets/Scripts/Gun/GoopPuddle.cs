@@ -15,6 +15,13 @@ public class GoopPuddle : SpawnableObject
     private void Start()
     {
         lifetimeDmgTracker = new float[4];
+        StartCoroutine(selfDestruct());
+    }
+
+    IEnumerator selfDestruct()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider other)
