@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private int[] playersRoundsWonCount = new int[4];
-    private int[] playersTotalKillCount = new int[4];
+    [SerializeField] private int[] playersRoundsWonCount = new int[4];
+    [SerializeField] private int[] playersTotalKillCount = new int[4];
     public int maxRoundsPlayed = 5;
     [SerializeField] private float displayEndTextLength = 3f;
 
