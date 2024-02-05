@@ -26,6 +26,12 @@ public class SplitScreenManager : MonoBehaviour
 
     }
 
+
+    private void Start()
+    {
+        EventManager.instance.addListener(Events.onRoundStart, ResetCrowns);    
+    }
+
     public int GetPlayerCount()
     {
         return players.Count;
@@ -165,5 +171,24 @@ public class SplitScreenManager : MonoBehaviour
     {
         Destroy(players[index].gameObject);
         players.RemoveAt(index);
+    }
+
+    public void SetCrowns()//again ik this is not the correct spot to do it but i dont have time to rework the events enough to do it with them rn
+    {
+        List<int> highestRoundKills = RoundManager.instance.GetHighestRoundKills();
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerBodyFSM FSM = players[i].GetComponent<PlayerBodyFSM>();
+            FSM.SetCrownVisibility(highestRoundKills.Contains(FSM.playerID));
+        }
+    }
+
+    public void ResetCrowns(EventParams param = new EventParams()) // same thing with above
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GetComponent<PlayerBodyFSM>().SetCrownVisibility(false); ;
+        }
     }
 }

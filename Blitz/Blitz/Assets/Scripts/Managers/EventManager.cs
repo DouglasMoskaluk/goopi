@@ -25,13 +25,13 @@ public class EventManager : MonoBehaviour
     private UnityEvent<EventParams> onPlayerRespawn;
     private UnityEvent<EventParams> onPlayerRespawnLate;
 
-    public UnityEvent<EventParams> onGameStartEarly;
-    public UnityEvent<EventParams> onGameStart;
-    public UnityEvent<EventParams> onGameStartLate;
+    private UnityEvent<EventParams> onGameStartEarly;
+    private UnityEvent<EventParams> onGameStart;
+    private UnityEvent<EventParams> onGameStartLate;
 
-    public UnityEvent<EventParams> onGameEndEarly;
-    public UnityEvent<EventParams> onGameEnd;
-    public UnityEvent<EventParams> onGameEndLate;
+    private UnityEvent<EventParams> onGameEndEarly;
+    private UnityEvent<EventParams> onGameEnd;
+    private UnityEvent<EventParams> onGameEndLate;
 
     private void Awake()
     {

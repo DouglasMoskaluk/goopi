@@ -44,6 +44,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
     [SerializeField] private PlayerUIHandler uiHandler;
+    [SerializeField] private GameObject playerCrown;
    
 
     private CinemachineFreeLook freelookCam; //freelook brain reference
@@ -156,6 +157,11 @@ public class PlayerBodyFSM : MonoBehaviour
         transitionState(PlayerActionStates.Idle);
         knockBackVector = Vector3.zero;
         if (playerGun != null) playerGun.instantReload();
+    }
+
+    public void SetCrownVisibility(bool isVisible)
+    {
+        playerCrown.SetActive(isVisible);
     }
 
     /// <summary>
@@ -441,6 +447,7 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.HideLowHealth();
         playerUI.Dead();
         EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
+        SplitScreenManager.instance.SetCrowns();// <- ik this is a weird way to do it and using in on the ondeath event is better ut i think that would require some reworking of the events which we should do but i dont have enough time rn
         mostRecentAttacker = -1;
         yield return new WaitForEndOfFrame();
         Instantiate(healthPack, transform.position, Quaternion.identity);
