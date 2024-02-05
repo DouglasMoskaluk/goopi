@@ -311,7 +311,7 @@ public class Bullet : MonoBehaviour
         rb.AddForce(direction.normalized * bulletVars.speed, ForceMode.VelocityChange);
 
         //Debug.Log("Tail Renderer color");
-        GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", bulletVars.tailColor);
+        if (GetComponent<TrailRenderer>() != null) GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", bulletVars.tailColor);
         StartCoroutine("BulletCurve");
     }
 }
