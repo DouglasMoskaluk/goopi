@@ -85,11 +85,15 @@ public class ImpulseGrenade : SpawnableObject
                 fsm.transitionState(PlayerMotionStates.KnockBack);
                 fsm.newAttacker(Owner);
             }
-            if (hitColliders[i].CompareTag("Ragdoll"))
+            else if (hitColliders[i].CompareTag("Ragdoll"))
             {
                 Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
                 hitColliders[i].gameObject.GetComponent<Rigidbody>().AddForce(dir * 15, ForceMode.Impulse);
 
+            }
+            else if (hitColliders[i].CompareTag("Spinner"))
+            {
+                hitColliders[i].transform.GetComponent<Spinner>().FastSpin();
             }
         }
         Destroy(this.gameObject);
