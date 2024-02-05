@@ -16,6 +16,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private WeaponSlotMachine slotSelectionUI;
     [SerializeField] private PlayerScore[] roundTransScores;
 
+    private float timerTickDelay = 0;
+
     public bool fading { get; private set; } = false;
 
     private void Awake()
@@ -53,7 +55,11 @@ public class GameUIManager : MonoBehaviour
         string seconds = (time >= 60) ? ((int)(time - 60)).ToString() : ((int)time).ToString();
         if (seconds.Length < 2) seconds = "0" + seconds;
         roundTimer.text = minutes + ":" + seconds;
-        if (time <=5) { AudioManager.instance.PlaySound(AudioManager.AudioQueue.TIMER_TICK); }
+        timerTickDelay += Time.deltaTime;
+        if (time <=5 && timerTickDelay > 1) { 
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.TIMER_TICK);
+            timerTickDelay = 0;
+        }
     }
 
     /// <summary>
