@@ -157,6 +157,7 @@ MonoBehaviour:
   bulletVars:
     shotDamage: 0
     speed: 45
+    minSpeed: 1
     lifeTime: 5
     accuracy: {x: 0, y: 0}
     offset: {x: 0, y: 1}
@@ -176,12 +177,11 @@ MonoBehaviour:
     ammo: 1000000010000000
     reloadTime: 1
     shotCooldown: 0.35
-    bulletsShot: 1
     type: 2
     bullet: {fileID: 6551949199387729789, guid: dac9d3e42ef504a4ca88f0c09b9ab006,
       type: 3}
-    bulletParent: {fileID: 0}
-    bulletSpawnPoint: {fileID: 6212113097842508093}
+    bulletSpawnPoint:
+    - {fileID: 6212113097842508093}
     gunRecoil: {fileID: 3024702770011869617}
 --- !u!114 &3877965180559298240
 MonoBehaviour:

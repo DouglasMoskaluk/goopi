@@ -44,7 +44,8 @@ public class PlayerBomb : MonoBehaviour
         {
             transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1);
         }
-        transform.GetChild(0).transform.rotation = transform.parent.GetComponentInChildren<Camera>().transform.rotation;
+        //transform.GetChild(0).transform.rotation = transform.parent.GetComponentInChildren<Camera>().transform.rotation;
+        transform.GetChild(0).transform.rotation = Quaternion.Euler(0, transform.parent.GetComponentInChildren<Camera>().transform.eulerAngles.y, 0);
     }
 
     private void ownerDied(EventParams param = new EventParams())
