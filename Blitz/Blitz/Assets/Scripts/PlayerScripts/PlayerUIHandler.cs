@@ -210,8 +210,8 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         ammoCount.gameObject.SetActive(true);
         grenadeCount.gameObject.SetActive(true);
-        killCount.gameObject.SetActive(true);
-        health.gameObject.SetActive(true);
+        //killCount.gameObject.SetActive(true);
+        //health.gameObject.SetActive(true);
     }
     IEnumerator ShowKillMarker()
     {
