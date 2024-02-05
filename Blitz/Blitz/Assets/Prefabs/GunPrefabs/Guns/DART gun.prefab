@@ -138,6 +138,7 @@ MonoBehaviour:
   bulletVars:
     shotDamage: 100
     speed: 60
+    minSpeed: 1
     lifeTime: 5
     accuracy: {x: 0.1, y: 0.1}
     offset: {x: 0, y: 0}
@@ -155,12 +156,12 @@ MonoBehaviour:
     ammo: 0a0000000a000000
     reloadTime: -1
     shotCooldown: 0.3
-    bulletsShot: 1
     type: 1
     bullet: {fileID: 6551949199387729789, guid: 3bd07bbcb7585b34ca38db7d7fbe758f,
       type: 3}
     bulletParent: {fileID: 0}
-    bulletSpawnPoint: {fileID: 6212113097842508093}
+    bulletSpawnPoint:
+    - {fileID: 6212113097842508093}
     gunRecoil: {fileID: 2258292851271164938}
 --- !u!114 &8937095674967479524
 MonoBehaviour:
@@ -199,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 5075641972877017382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.305, y: 0.179, z: 0.598}
+  m_LocalPosition: {x: 0.305, y: 0.259, z: 0.547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

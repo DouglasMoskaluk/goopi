@@ -34,10 +34,6 @@ public class Gun : MonoBehaviour
         {
             Debug.LogError("No bullet associated with gun " + gameObject.name);
         }
-        if (gunVars.bulletParent == null)
-        {
-            //Debug.Log("No folder to hold bullets associated with gun " + gameObject.name);
-        }
         if (gunVars.bulletSpawnPoint == null)
         {
             Debug.LogError("No bullet spawnpoint associated with gun " + gameObject.name);
@@ -86,7 +82,7 @@ public class Gun : MonoBehaviour
         else
         {
             
-            for (int i=0; i<gunVars.bulletsShot; i++) {
+            for (int i=0; i<gunVars.bulletSpawnPoint.Length; i++) {
                 if (gunVars.ammo[0] <= 0) break;
                 gunVars.ammo[0]--;
                 gunVars.canShoot = false;
@@ -96,8 +92,8 @@ public class Gun : MonoBehaviour
                 GameObject bul;
                 if (gunVars.bulletParent != null)
                     //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
-                    bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation, gunVars.bulletParent);
-                else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint.position, cam.rotation);
+                    bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation, gunVars.bulletParent);
+                else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation);
                 if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
                 else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
             }
@@ -211,18 +207,18 @@ internal class GunVars
     internal float reloadTime;
     [SerializeField]
     internal float shotCooldown;
-    [SerializeField]
-    internal int bulletsShot = 1;
+    //[SerializeField]
+    //internal int bulletsShot = 1;
 
     [Header("References")]
     [SerializeField]
     internal Gun.GunType type;
     [SerializeField]
     internal GameObject bullet;
-    [SerializeField]
+    //[SerializeField]
     internal Transform bulletParent;
     [SerializeField]
-    internal Transform bulletSpawnPoint;
+    internal Transform[] bulletSpawnPoint;
     [SerializeField]
     internal Recoil gunRecoil;
 
