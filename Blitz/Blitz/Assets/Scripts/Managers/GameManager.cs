@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private int[] playersRoundsWonCount = new int[4];
-    [SerializeField] private int[] playersTotalKillCount = new int[4];
+    private int[] playersRoundsWonCount = new int[4];
+    private int[] playersTotalKillCount = new int[4];
     public int maxRoundsPlayed = 5;
     [SerializeField] private float displayEndTextLength = 3f;
 
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         
         List<int> playerGameWinID = SelectGameWinners();
-        string winnersString = "Players ";
+        string winnersString = "Player(s) ";
         foreach (int i in playerGameWinID)
         {
             winnersString += (i + 1).ToString() + " ";
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
 
         List<PlayerWinsData> resultData = new List<PlayerWinsData>();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             resultData.Add
                 (
