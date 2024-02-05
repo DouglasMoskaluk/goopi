@@ -147,8 +147,8 @@ public class SplitScreenManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].DeactivateInput();
-            //players[i].currentActionMap.Disable();
+            //players[i].DeactivateInput();
+            players[i].currentActionMap.Disable();
         }
     }
 
