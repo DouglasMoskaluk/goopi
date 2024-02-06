@@ -26,7 +26,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         center.y = Mathf.MoveTowards(center.y, 0.95f, 0.025f);
         controller.center = center;
 
-        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED, stateVariableHolder.GRAVITY);
+        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED * Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f), stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
 
         Vector3 motionInput = input.motionInput.normalized;
@@ -45,6 +45,8 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         if (input.motionInput.y == 0) lerpToY = 0;
         float animYValue = Mathf.Lerp(anim.GetFloat("MotionY"), lerpToY, lerpAmountY);
         anim.SetFloat("MotionY", animYValue);
+
+        anim.SetFloat("WalkAnimSpeedMultiplier", Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f));
     }
 
     public override void onStateExit()
