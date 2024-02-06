@@ -15,8 +15,8 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerText;
     [SerializeField] private Transform podiumLocations;
     private List<Transform> podiumPositions;
-    [SerializeField] private Transform podiumLookTransform;
     [SerializeField] private TextMeshProUGUI[] podiumRankNumbers;
+    [SerializeField] private Transform[] playerLookAtPositions;
 
     private void Awake()
     {
@@ -91,7 +91,7 @@ public class PodiumManager : MonoBehaviour
 
             podiumRankNumbers[i].text = (gameData[i].rank + 1).ToString();
 
-            FSM.SetCameraLookAt(podiumLookTransform);
+            FSM.SetCameraLookAt(playerLookAtPositions[i]);
             FSM.SetPlayerSpineValue(0.5f);
             FSM.SetBodyRotToCamera();
             FSM.DisablePlayerCamera();
@@ -115,6 +115,7 @@ public class PodiumManager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
+        GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.RemoveAllPlayers();
         AudioManager.instance.TransitionTrack("MainMenu");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
