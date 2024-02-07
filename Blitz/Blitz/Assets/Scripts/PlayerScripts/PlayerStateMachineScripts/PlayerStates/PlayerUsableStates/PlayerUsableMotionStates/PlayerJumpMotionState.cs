@@ -16,7 +16,7 @@ public class PlayerJumpMotionState : PlayerBasicMotionState
     public override void stateUpdate()
     {
         //basicLook(input.lookInput);
-        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.IN_AIR_SPEED, stateVariableHolder.GRAVITY);
+        basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.IN_AIR_SPEED * Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f), stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
     }
 
