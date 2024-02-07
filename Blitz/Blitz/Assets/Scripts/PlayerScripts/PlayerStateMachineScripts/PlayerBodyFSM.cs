@@ -100,6 +100,10 @@ public class PlayerBodyFSM : MonoBehaviour
         camRotatePoint = transform.GetChild(3);
     }
 
+    public void ForceAnimatorUpdate()
+    {
+        anim.Update(0);
+    }
     public void EnablePlayerCamera()
     {
         cam.GetComponent<Camera>().enabled = enabled;

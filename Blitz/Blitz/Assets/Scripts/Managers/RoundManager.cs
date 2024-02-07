@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class RoundManager : MonoBehaviour
 {
@@ -26,14 +27,14 @@ public class RoundManager : MonoBehaviour
 
     public void Start()
     {
-        EventManager.instance.addListener(Events.onGameEnd ,ResetManager);
+        EventManager.instance.addListener(Events.onGameEnd, ResetManager);
     }
 
     public void Update()
     {
         if (Input.GetKey(KeyCode.M))
         {
-            roundNum = 5;
+            roundNum = 4;
         }
     }
 
@@ -55,6 +56,14 @@ public class RoundManager : MonoBehaviour
     private IEnumerator startRoundCoro()
     {
         
+        foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        {
+            PlayerBodyFSM FSM = player.GetComponent<PlayerBodyFSM>();
+            FSM.SetPlayerSpineValue(0.5f);
+            FSM.ForceAnimatorUpdate();
+            
+        }
+
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
         yield return new WaitForSecondsRealtime(0.5f);
