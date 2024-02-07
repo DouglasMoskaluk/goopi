@@ -65,7 +65,7 @@ public class Explosion : SpawnableObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.GetComponent<PlayerBodyFSM>().playerID != Owner)
         {
             other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner);
         }

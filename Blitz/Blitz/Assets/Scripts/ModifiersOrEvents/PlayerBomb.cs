@@ -58,6 +58,7 @@ public class PlayerBomb : MonoBehaviour
         if (plrID == param.killer && plrID != param.killed)
         {
             timer += killTime;
+            if (timer > timerStart) timer = timerStart;
         }
     }
 
