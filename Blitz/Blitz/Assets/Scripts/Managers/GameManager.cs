@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         PodiumManager.instance.SetWinnerText(winnersString);
         ResetManager();
 
-        yield return GameUIManager.instance.FadeOut(0.5f);
+        yield return GameUIManager.instance.FadeOut(0.25f);
 
         
     }
