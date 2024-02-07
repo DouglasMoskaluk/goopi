@@ -105,9 +105,15 @@ public class PlayerBodyFSM : MonoBehaviour
         cam.GetComponent<Camera>().enabled = enabled;
     }
 
-    public void DisablePlayerCamera()
+    public void DisablePlayerCamera(bool disableVCamToo = false)
     {
         cam.GetComponent<Camera>().enabled = false;
+        freelookCam.enabled = !disableVCamToo;
+    }
+
+    public void RotateBody(Quaternion rotateTo)
+    {
+        playerBody.rotation = rotateTo;
     }
 
     public void DisablePlayerUI()

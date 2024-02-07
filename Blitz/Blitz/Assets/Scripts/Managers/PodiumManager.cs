@@ -91,17 +91,20 @@ public class PodiumManager : MonoBehaviour
 
             podiumRankNumbers[i].text = (gameData[i].rank + 1).ToString();
 
-            FSM.SetCameraLookAt(playerLookAtPositions[i]);
+            
             FSM.SetPlayerSpineValue(0.5f);
-            FSM.SetBodyRotToCamera();
-            FSM.DisablePlayerCamera();
+            //FSM.SetCameraLookAt(playerLookAtPositions[i]);
+            //FSM.SetBodyRotToCamera();
+
+            FSM.DisablePlayerCamera(true);
+            FSM.RotateBody(Quaternion.LookRotation(-Vector3.forward));
             FSM.transitionState(PlayerMotionStates.Walk);
             FSM.transitionState(PlayerActionStates.Idle);
             FSM.DisablePlayerUI();
             FSM.DisableGun();
             FSM.AllowWinAnimation();
             FSM.SetWinAnimNumber(i);
-            
+            FSM.enabled = false;
 
             chara.enabled = true;
 
