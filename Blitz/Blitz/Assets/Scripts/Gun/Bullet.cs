@@ -131,7 +131,7 @@ public class Bullet : MonoBehaviour
             }
             Bounce(hit);
         }
-        else if (hit.collider.CompareTag("Map"))
+        else if (hit.collider.CompareTag("Map") || hit.collider.CompareTag("Crate"))
         {
             onMapHitEffect(hit);
             Bounce(hit);
@@ -154,6 +154,10 @@ public class Bullet : MonoBehaviour
                 transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 //Debug.Log(go.name);
+                if (go.CompareTag("Crate"))
+                {
+                    go.transform.parent = hit.transform;
+                }
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
                 if (bulletVars.snap)
                 {

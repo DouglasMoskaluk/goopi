@@ -10,10 +10,18 @@ public class Crate : MonoBehaviour
     [SerializeField]
     internal float velocityThreshold = 3;
     internal int lastImpulse = -1;
+    Vector3 startingPos;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startingPos = transform.position;
+        EventManager.instance.addListener(Events.onRoundEnd, resetPos); 
+    }
+
+    private void resetPos(EventParams param = new EventParams())
+    {
+        transform.position = startingPos;
     }
 
     private void OnCollisionEnter(Collision collision)
