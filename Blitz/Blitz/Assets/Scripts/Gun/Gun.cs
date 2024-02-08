@@ -264,6 +264,8 @@ internal class BulletVars
     internal bool attachPlayer = false;
     [SerializeField]
     internal bool snap = false;
+    [SerializeField]
+    internal bool destroyPlayerHit = true;
 
 
     internal int owner;

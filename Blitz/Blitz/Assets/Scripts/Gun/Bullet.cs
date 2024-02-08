@@ -210,9 +210,12 @@ public class Bullet : MonoBehaviour
 
     private void Bounce(RaycastHit hit)
     {
-        rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
-        bounced = true;
-        if (!bulletVars.bounces)
+        if (bulletVars.bounces)
+        {
+            rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
+            bounced = true;
+        }
+        if (!bulletVars.bounces && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player"))
         {
             //StartCoroutine(removeBullet(0));
             Destroy(gameObject);

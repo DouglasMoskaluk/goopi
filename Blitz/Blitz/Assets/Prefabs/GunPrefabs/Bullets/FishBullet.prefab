@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 799449995848728959}
   - component: {fileID: 1166534866949857153}
   - component: {fileID: 2362587856085086204}
-  - component: {fileID: 3098820705621961810}
+  - component: {fileID: 6572663768669710599}
   m_Layer: 0
   m_Name: AOERadius
   m_TagString: Untagged
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3098820705621961810
+--- !u!114 &6572663768669710599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 544589109738104491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569faf2c2a305f449a4f7192078d0ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b264797d97432b48a2319bdd65477e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: -1
   timeBetweenTriggers: 0.2
-  damage: 5
+  damage: 10
   lifeTime: 900000
 --- !u!1 &6551949199387729789
 GameObject:
@@ -175,6 +176,7 @@ MonoBehaviour:
   bulletVars:
     shotDamage: 0
     speed: 0
+    minSpeed: 1
     lifeTime: 0
     accuracy: {x: 0, y: 0}
     offset: {x: 0, y: 0}
@@ -187,8 +189,7 @@ MonoBehaviour:
     spawnOnDeath: 0
     attachPlayer: 0
     snap: 0
-  viewRadius: 5
-  coneAngle: 30
+    destroyPlayerHit: 1
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0

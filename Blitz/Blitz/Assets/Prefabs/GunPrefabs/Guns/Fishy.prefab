@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVars:
-    shotDamage: 30
+    shotDamage: 0
     speed: 35
     minSpeed: 10
     lifeTime: 5
@@ -62,6 +62,7 @@ MonoBehaviour:
     spawnOnDeath: 0
     attachPlayer: 0
     snap: 0
+    destroyPlayerHit: 0
   gunVars:
     ammo: 1000000010000000
     reloadTime: 1
@@ -69,7 +70,6 @@ MonoBehaviour:
     type: 5
     bullet: {fileID: 6551949199387729789, guid: 2dfd0a746ffba0a49beac2216e5a4755,
       type: 3}
-    bulletParent: {fileID: 0}
     bulletSpawnPoint:
     - {fileID: 6212113097842508093}
     gunRecoil: {fileID: 3024702770011869617}
