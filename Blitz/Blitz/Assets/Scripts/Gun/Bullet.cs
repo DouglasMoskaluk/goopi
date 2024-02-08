@@ -12,15 +12,15 @@ public class Bullet : MonoBehaviour
     float bulletStraightShotDistance = 3;
 
     [Header("Bullet Curving Variables")]
-    [SerializeField]
-    float viewRadius = 5;
-    float viewDistance = 25;
-    [SerializeField]
-    float coneAngle = 30;
-    float rotationAngle = 15;
+    //[SerializeField]
+    float viewRadius = 10;
+    float viewDistance = 30;
+    //[SerializeField]
+    float coneAngle = 10;
+    float rotationAngle = 55;
 
     float timeCurveChecks = 0;
-    float RaycastDelay = 0.2f;
+    float RaycastDelay = 0.05f;
 
 
     /// <summary>
@@ -250,7 +250,7 @@ public class Bullet : MonoBehaviour
                 {
                     playerPos = hit.collider.transform;
                     Rigidbody rb = GetComponent<Rigidbody>();
-                    Vector3 velocity = Vector3.RotateTowards(rb.velocity, playerPos.position - transform.position, Mathf.Deg2Rad * rotationAngle * timeCurveChecks, 1).normalized * rb.velocity.magnitude;
+                    Vector3 velocity = Vector3.RotateTowards(rb.velocity, playerPos.position - transform.position + Vector3.up, Mathf.Deg2Rad * rotationAngle * timeCurveChecks, 1).normalized * rb.velocity.magnitude;
                     //Debug.DrawRay(transform.position, velocity, Color.green, 1f);
                     rb.velocity = velocity;
                     break;

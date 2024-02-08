@@ -2078,7 +2078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundNum: 0
   elapsedTime: 0
-  roundLength: 60
+  roundLength: 60.99
   playerKillCounts: 00000000000000000000000000000000
   endRoundTextShownLength: 4
   shouldCountDown: 0
@@ -2101,6 +2101,7 @@ MonoBehaviour:
   BombPrefab: {fileID: 7810103714597020081, guid: c90e1a138c402b940b8b8ee359cc0d78,
     type: 3}
   modifierUI: {fileID: 5382014835740937767}
+  uiTimer: 2
 --- !u!1 &5012733210897322843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,24 +2562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447d8bd42757c5144b3ee7d985a8e64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGameStartEarly:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameStartLate:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameEndEarly:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameEndLate:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5916995001013290778
 GameObject:
   m_ObjectHideFlags: 0
