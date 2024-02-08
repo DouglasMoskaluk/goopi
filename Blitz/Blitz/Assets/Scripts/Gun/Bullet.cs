@@ -249,7 +249,7 @@ public class Bullet : MonoBehaviour
             Transform playerPos;
             foreach (RaycastHit hit in coneHits)
             {
-                if (hit.collider.tag == "Player")
+                if (hit.collider.tag == "Player" || hit.collider.GetComponent<Target>() != null)
                 {
                     playerPos = hit.collider.transform;
                     Rigidbody rb = GetComponent<Rigidbody>();
