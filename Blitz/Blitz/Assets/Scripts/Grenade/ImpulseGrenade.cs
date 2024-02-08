@@ -98,6 +98,7 @@ public class ImpulseGrenade : SpawnableObject
             {
                 Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized * 100;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
                 hitColliders[i].GetComponent<Rigidbody>().AddForce(dir);
+                hitColliders[i].transform.GetComponent<Crate>().lastImpulse = Owner;
             }
         }
         Destroy(this.gameObject);
