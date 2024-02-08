@@ -13,6 +13,7 @@ public class Plunger : SpawnableObject
     {
         //Debug.Log("I'm in the plunger!!!");
         base.init(owner);
+        transform.GetComponentInChildren<PlungerCord>().init(Owner);
         PlayerBodyFSM hit = transform.parent.GetComponent<PlayerBodyFSM>();
         if (hit != null)
         {

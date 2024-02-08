@@ -8,13 +8,27 @@ public class PlungerCord : MonoBehaviour
     Transform target;
     [SerializeField]
     private List<LayerMask> renderLayers;
+    internal int owner;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = SplitScreenManager.instance.GetPlayers(transform.parent.GetComponent<Bullet>().bulletVars.owner).playerGun.gunVars.bulletSpawnPoint[0];
+        if (transform.parent.GetComponent<Bullet>() != null)
+        {
+            owner = transform.parent.GetComponent<Bullet>().bulletVars.owner;
+            target = SplitScreenManager.instance.GetPlayers(owner).playerGun.gunVars.bulletSpawnPoint[0];
+            lineRenderer = GetComponent<LineRenderer>();
+            int layerToAdd = (int)Mathf.Log(renderLayers[owner].value, 2);
+            transform.gameObject.layer = layerToAdd;
+        }
+    }
+
+    internal void init(int Owner)
+    {
+        owner = Owner;
+        target = SplitScreenManager.instance.GetPlayers(owner).playerGun.gunVars.bulletSpawnPoint[0];
         lineRenderer = GetComponent<LineRenderer>();
-        int layerToAdd = (int)Mathf.Log(renderLayers[transform.parent.GetComponent<Bullet>().bulletVars.owner].value, 2);
+        int layerToAdd = (int)Mathf.Log(renderLayers[owner].value, 2);
         transform.gameObject.layer = layerToAdd;
     }
 
