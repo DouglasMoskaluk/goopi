@@ -51,14 +51,20 @@ public class PlayerModelHandler : MonoBehaviour
         
     }
 
-    public void GetSkinNum()
+    public void SetRagdollSkin(int newSkin)
     {
+        skinNum = newSkin;
+    }
 
+    public void SetSkinNum(int newNum)
+    {
+        transform.GetComponent<PlayerBodyFSM>().skinID = newNum;
     }
 
     public void SetModelID(int featureNum)
     {
         transform.GetComponent<PlayerBodyFSM>().modelID = featureNum;
+
     }
 
     public void SetModel(int featureNum)

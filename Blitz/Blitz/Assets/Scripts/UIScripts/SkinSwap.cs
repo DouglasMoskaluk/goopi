@@ -39,11 +39,6 @@ public class SkinSwap : MonoBehaviour
         icons = transform.GetChild(0).GetComponent<RectTransform>();
     }
 
-    public void SetSkinNum()
-    {
-        modelHandler.skinNum = SkinNum;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -99,6 +94,8 @@ public class SkinSwap : MonoBehaviour
         }
 
         modelHandler.skinNum = SkinNum;
+
+        modelHandler.SetSkinNum(SkinNum);
 
         modelHandler.SetModel(player.modelID);
 

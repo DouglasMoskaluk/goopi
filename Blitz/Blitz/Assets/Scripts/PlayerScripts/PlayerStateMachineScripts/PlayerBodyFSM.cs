@@ -27,6 +27,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public int modelID; //ID for what character model is being used
 
+    public int skinID;
+
     #endregion
 
     #region Private Variables
@@ -425,7 +427,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
-            newRagDollHandler.InitializeRagdoll(modelID, boneList, playerVelocity);
+            newRagDollHandler.InitializeRagdoll(modelID, skinID, boneList, playerVelocity);
             StartCoroutine("deathCoro");
         }
 

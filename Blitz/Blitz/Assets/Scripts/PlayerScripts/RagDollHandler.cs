@@ -20,8 +20,9 @@ public class RagDollHandler : MonoBehaviour
         StartCoroutine("Countdown");
     }
 
-    public void InitializeRagdoll(int modelId, Transform[]  bones, Vector3 playerVelocity)
+    public void InitializeRagdoll(int modelId, int skinNum, Transform[]  bones, Vector3 playerVelocity)
     {
+        transform.GetComponent<PlayerModelHandler>().SetRagdollSkin(skinNum);
         transform.GetComponent<PlayerModelHandler>().SetModel(modelId);
         Transform[] bonelist = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
 
