@@ -15,6 +15,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     public Vector2 sensitivityInput { get; private set; }
 
+    public Vector2 UIMoveInput { get; private set; }
+
+
     [SerializeField] public Vector2 lookSense;
     #endregion
 
@@ -206,6 +209,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             sensitivityInput = new Vector2(0,0);
         }
+    }
+
+    public void getUIInput(InputAction.CallbackContext ctx)
+    {
+        UIMoveInput = ctx.ReadValue<Vector2>();
     }
 
     public void resetSlide()
