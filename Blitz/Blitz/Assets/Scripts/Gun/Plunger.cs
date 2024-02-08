@@ -17,12 +17,15 @@ public class Plunger : SpawnableObject
         if (hit != null)
         {
             //Debug.Log("I've been hit!!! " + hit.name);
-            StartCoroutine(pull(hit));
+            StartCoroutine(pullPlayer(hit));
+        } else if (transform.parent.tag == "Crate")
+        {
+            StartCoroutine(pullCrate());
         }
         else StartCoroutine(destruction(5f));
     }
 
-    private IEnumerator pull(PlayerBodyFSM hit)
+    private IEnumerator pullPlayer(PlayerBodyFSM hit)
     {
         yield return new WaitForSeconds(pullDelay);
         hit.newAttacker(Owner);
@@ -31,6 +34,16 @@ public class Plunger : SpawnableObject
         pullDirection.y += 5;
         hit.addKnockBack(pullDirection * pullPower);
         hit.transitionState(PlayerMotionStates.KnockBack);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator pullCrate()
+    {
+        yield return new WaitForSeconds(pullDelay);
+        PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
+        Vector3 pullDirection = plr.transform.position - transform.parent.position;
+        pullDirection.y += 5;
+        transform.parent.GetComponent<Rigidbody>().AddForce(pullDirection.normalized * 100);
         Destroy(gameObject);
     }
 

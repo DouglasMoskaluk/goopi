@@ -23,8 +23,7 @@ public class Explosion : SpawnableObject
         collider = GetComponent<SphereCollider>();
         explosionCoroutine = Explode();
         StartCoroutine(explosionCoroutine);
-        EventManager.instance.addListener(Events.onRoundEnd, newRound);
-
+        //EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
     }
 
@@ -58,7 +57,7 @@ public class Explosion : SpawnableObject
             collider.radius = Mathf.Lerp(startRad, radius, time/explosionTime);
             yield return null;
         }
-        EventManager.instance.removeListener(Events.onRoundEnd, newRound);
+        EventManager.instance.removeListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
         Destroy(gameObject);
     }
@@ -72,12 +71,12 @@ public class Explosion : SpawnableObject
     }
 
 
-    internal void newRound(EventParams param = new EventParams())
+    internal override void roundEnd(EventParams param = new EventParams())
     {
-        EventManager.instance.removeListener(Events.onRoundEnd, newRound);
+        //EventManager.instance.removeListener(Events.onRoundEnd, newRound);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
         StopCoroutine(explosionCoroutine);
-        Destroy(gameObject);
+        base.roundEnd();
     }
 
 
@@ -86,7 +85,7 @@ public class Explosion : SpawnableObject
     {
         if (transform.parent.GetComponent<PlayerBodyFSM>() != null && param.killed == transform.parent.GetComponent<PlayerBodyFSM>().playerID)
         {
-            newRound();
+            roundEnd();
         }
     }
 
