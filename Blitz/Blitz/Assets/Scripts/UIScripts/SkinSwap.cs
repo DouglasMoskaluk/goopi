@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 
 public class SkinSwap : MonoBehaviour
 {
@@ -13,7 +14,14 @@ public class SkinSwap : MonoBehaviour
     private PlayerInputHandler inputValues;
 
     [SerializeField]
+    private MultiplayerEventSystem playerUIEvents;
+
+    [SerializeField]
     private float speed = 50;
+
+    [SerializeField]
+    private float spacing = 200;
+
 
     private bool isMoving = false;
 
@@ -35,7 +43,7 @@ public class SkinSwap : MonoBehaviour
 
     public void IconMove(float direction)
     {
-        if (!isMoving && Mathf.Abs(direction) > 0.5)
+        if (!isMoving && Mathf.Abs(direction) > 0.5 && playerUIEvents.currentSelectedGameObject == transform.gameObject)
         {
             isMoving = true;
             Debug.Log("UI MOVE");
@@ -56,17 +64,17 @@ public class SkinSwap : MonoBehaviour
 
         if(direction > 0)
         {
-            newPos = icons.anchoredPosition + new Vector2(200f, 0f);
+            newPos = icons.anchoredPosition + new Vector2(spacing, 0f);
             direction = 1;
 
         }
         else
         {
-            newPos = icons.anchoredPosition - new Vector2(200f,0f);
+            newPos = icons.anchoredPosition - new Vector2(spacing,0f);
             direction = -1;
         }
 
-        while (Mathf.Abs(ratio) <= 200.0f)
+        while (Mathf.Abs(ratio) <= spacing)
         {
             //Debug.Log(ratio);
             ratio += Time.deltaTime * direction * speed;
@@ -80,11 +88,11 @@ public class SkinSwap : MonoBehaviour
 
         icons.anchoredPosition = newPos;
 
-        if (newPos.x == 200f)
+        if (newPos.x == spacing)
         {
             icons.anchoredPosition = new Vector2(-600, 0);
         }
-        else if(newPos.x == -800f)
+        else if(newPos.x == -(spacing * 4))
         {
             icons.anchoredPosition = new Vector2(0, 0);
         }

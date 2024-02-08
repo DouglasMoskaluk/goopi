@@ -17,6 +17,11 @@ public class PlayerModelHandler : MonoBehaviour
     [SerializeField]
     private Material[] characterMaterial;
 
+    [SerializeField]
+    private Material[] OtterMaterials;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
