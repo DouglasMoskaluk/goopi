@@ -94,6 +94,10 @@ public class ImpulseGrenade : SpawnableObject
             else if (hitColliders[i].CompareTag("Spinner"))
             {
                 hitColliders[i].transform.GetComponent<Spinner>().FastSpin();
+            } else if (hitColliders[i].transform.CompareTag("Crate"))
+            {
+                Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized * 100;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
+                hitColliders[i].GetComponent<Rigidbody>().AddForce(dir);
             }
         }
         Destroy(this.gameObject);
