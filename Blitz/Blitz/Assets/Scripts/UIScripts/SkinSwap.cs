@@ -22,6 +22,14 @@ public class SkinSwap : MonoBehaviour
     [SerializeField]
     private float spacing = 200;
 
+    public int ModelNum = 0;
+    public int SkinNum = 0;
+
+    [SerializeField]
+    private PlayerModelHandler modelHandler;
+
+    [SerializeField]
+    private PlayerBodyFSM player;
 
     private bool isMoving = false;
 
@@ -31,10 +39,15 @@ public class SkinSwap : MonoBehaviour
         icons = transform.GetChild(0).GetComponent<RectTransform>();
     }
 
+    public void SetSkinNum()
+    {
+        modelHandler.skinNum = SkinNum;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(inputValues.UIMoveInput.x != 0)
+        if(inputValues.UIMoveInput.x != 0 && playerUIEvents.currentSelectedGameObject == transform.gameObject)
         {
             //Debug.Log(inputValues.UIMoveInput.x);
             IconMove(-inputValues.UIMoveInput.x);
@@ -43,7 +56,7 @@ public class SkinSwap : MonoBehaviour
 
     public void IconMove(float direction)
     {
-        if (!isMoving && Mathf.Abs(direction) > 0.5 && playerUIEvents.currentSelectedGameObject == transform.gameObject)
+        if (!isMoving && Mathf.Abs(direction) > 0.5)
         {
             isMoving = true;
             Debug.Log("UI MOVE");
@@ -64,15 +77,31 @@ public class SkinSwap : MonoBehaviour
 
         if(direction > 0)
         {
+            SkinNum--;
             newPos = icons.anchoredPosition + new Vector2(spacing, 0f);
             direction = 1;
 
         }
         else
         {
+            SkinNum++;
             newPos = icons.anchoredPosition - new Vector2(spacing,0f);
             direction = -1;
         }
+
+        if(SkinNum < 0)
+        {
+            SkinNum = 3;
+        }
+        else if(SkinNum > 3)
+        {
+            SkinNum = 0;
+        }
+
+        modelHandler.skinNum = SkinNum;
+
+        modelHandler.SetModel(player.modelID);
+
 
         while (Mathf.Abs(ratio) <= spacing)
         {
@@ -90,7 +119,7 @@ public class SkinSwap : MonoBehaviour
 
         if (newPos.x == spacing)
         {
-            icons.anchoredPosition = new Vector2(-600, 0);
+            icons.anchoredPosition = new Vector2(-spacing * 4, 0);
         }
         else if(newPos.x == -(spacing * 4))
         {
