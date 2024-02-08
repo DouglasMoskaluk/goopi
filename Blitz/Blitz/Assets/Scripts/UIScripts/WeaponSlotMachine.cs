@@ -56,7 +56,7 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         //Debug.Log(selectedGun);
         float elapsedTime = 0;
-        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 265 * (4 - selectedGun));
+        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 260 * (4 - selectedGun));
         //Debug.Log(Image1BottomVisible);
 
         // spin until the end of the specified spinning duration
