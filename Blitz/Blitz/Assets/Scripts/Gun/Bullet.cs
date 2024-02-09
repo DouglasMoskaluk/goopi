@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     float timeCurveChecks = 0;
     float RaycastDelay = 0.05f;
 
+    float RaycastCamDistance = 3;
 
     /// <summary>
     /// Checks for errors
@@ -290,7 +291,7 @@ public class Bullet : MonoBehaviour
         StartCoroutine(removeBullet(bulletVars.lifeTime));
 
         RaycastHit hitInfo;
-        bool rayHit = Physics.Raycast(cam.position, cam.forward, out hitInfo, 50f);
+        bool rayHit = Physics.Raycast(cam.position + cam.forward * RaycastCamDistance, cam.forward, out hitInfo, 50f);
         Vector3 destination;
         if (rayHit)
             destination = hitInfo.point;
