@@ -158,7 +158,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Attempts to play a sound based on the given Audio queue
     /// </summary>
-    internal void PlaySound(AudioQueue queue)
+    internal AudioSource PlaySound(AudioQueue queue)
     {
         bool soundPlayed = false;
         for (int i=0; i<numberAudioPlayers; i++)
@@ -175,7 +175,7 @@ public class AudioManager : MonoBehaviour
             if (s.clip == null)
             {
                 Debug.LogWarning("Attempting to play sound " + queue + " but there are no sounds for it.");
-                break;
+                return null;
             }
 
             sources[usedSource].clip = s.clip;
@@ -183,12 +183,13 @@ public class AudioManager : MonoBehaviour
             sources[usedSource].pitch = s.pitch;
 
             sources[usedSource].Play();
-            break;
+            return sources[usedSource];
         }
         if (!soundPlayed)
         {
             Debug.LogWarning("Attemped to play a sound, but all AudioSources were in use.");
         }
+        return null;
     }
 
 
