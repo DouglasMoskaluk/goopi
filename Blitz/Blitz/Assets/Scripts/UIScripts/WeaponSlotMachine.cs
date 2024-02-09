@@ -7,7 +7,6 @@ using UnityEngine.Video;
 public class WeaponSlotMachine : MonoBehaviour
 {
     [SerializeField] private RectTransform wheel;
-    [SerializeField] private RectTransform selectedWheel;
 
     [SerializeField] private Transform topPoint;
     [SerializeField] private Transform bottomPoint;
@@ -59,7 +58,7 @@ public class WeaponSlotMachine : MonoBehaviour
         //second 3.59, frame 14 | seconds 6.84, frame 20, 
 
         float elapsedTime = 0;
-        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 341 * (5 - selectedGun));
+        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
         Debug.Log(finalImagePos);
         vidPlayer.Play();
 
