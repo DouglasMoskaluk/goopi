@@ -93,7 +93,7 @@ public class WeaponSlotMachine : MonoBehaviour
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
         //vidPlayer.Play();
 
-        yield return new WaitForSecondsRealtime(3.7f - fadeTime);
+        yield return new WaitForSecondsRealtime(3.71f - fadeTime);
 
         vidPlayer.Pause();
         //vidPlayer.frame = 20;
