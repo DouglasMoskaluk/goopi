@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     float timeCurveChecks = 0;
     float RaycastDelay = 0.05f;
 
-    float RaycastCamDistance = 3;
+    float RaycastCamDistance = 6;
 
     /// <summary>
     /// Checks for errors
@@ -53,12 +53,15 @@ public class Bullet : MonoBehaviour
             GameObject plr = other.gameObject;
             if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
             RaycastHit hit;
-            //Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position , Color.yellow, 10);
+            Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position , Color.yellow, 10);
             if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
             {
-                //Debug.Log("Trigger Enter");
-                collide(hit);
-                collideThisFrame = true;
+                if ((hit.collider.CompareTag("Map") || hit.collider.CompareTag("Target") || hit.collider.CompareTag("Crate") || hit.collider.CompareTag("Player")))
+                {
+                    Debug.Log("Staying trigger");//May need debug.logs...
+                    collide(hit);
+                    collideThisFrame = true;
+                }
             }
         }
     }
@@ -78,21 +81,28 @@ public class Bullet : MonoBehaviour
 
     private void LateUpdate()
     {
-        RaycastHit hit;
+        RaycastHit[] hit = Physics.SphereCastAll(
+                transform.position,
+                GetComponent<SphereCollider>().radius,
+                rb.velocity.normalized,
+                rb.velocity.magnitude * Time.fixedDeltaTime);
+        for (int i=0; i<hit.Length; i++)
+        {
+            if (!collideThisFrame && hit[i].collider.gameObject != gameObject/*(hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player"))*/)
+            {
+                Debug.Log("Genral late update collision");
+                if ((hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player")))
+                {
+                    collideThisFrame = true;
+                    Debug.Log("Late Update hit ");//May need debug.logs...
+                    collide(hit[i]);
+                    break;
+                }
+            }
+        }
 
         //Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         //if (!collideThisFrame && Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.deltaTime))
-        if (!collideThisFrame && Physics.SphereCast(
-                transform.position, 
-                GetComponent<SphereCollider>().radius, 
-                rb.velocity.normalized, 
-                out hit, 
-                rb.velocity.magnitude * Time.deltaTime))
-        {
-            collideThisFrame = true;
-            //Debug.Log("Late Update hit");
-            collide(hit);
-        }
         collideThisFrame = false;
     }
 
@@ -134,6 +144,7 @@ public class Bullet : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Map") || hit.collider.CompareTag("Crate"))
         {
+            Debug.Log("I hit a map object!");//May need debug.logs...
             onMapHitEffect(hit);
             Bounce(hit);
         }
@@ -154,7 +165,7 @@ public class Bullet : MonoBehaviour
             {
                 transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
-                //Debug.Log(go.name);
+                Debug.Log(go.name);
                 if (hit.transform.CompareTag("Crate"))
                 {
                     go.transform.parent = hit.transform;
@@ -291,6 +302,7 @@ public class Bullet : MonoBehaviour
         StartCoroutine(removeBullet(bulletVars.lifeTime));
 
         RaycastHit hitInfo;
+        Debug.DrawRay(cam.position + cam.forward * RaycastCamDistance, cam.forward * 50f, Color.blue, 3);
         bool rayHit = Physics.Raycast(cam.position + cam.forward * RaycastCamDistance, cam.forward, out hitInfo, 50f);
         Vector3 destination;
         if (rayHit)
