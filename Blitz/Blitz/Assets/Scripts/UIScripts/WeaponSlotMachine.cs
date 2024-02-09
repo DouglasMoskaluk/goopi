@@ -37,6 +37,10 @@ public class WeaponSlotMachine : MonoBehaviour
     private Vector3 resetChild0;
     private Vector3 resetChild1;
 
+    private float stampInitScale;
+    [SerializeField] private float finalStampSize;
+    [SerializeField] private float stampDuration = 1;
+
     private void Awake()
     {
         usedSpeed = speed;
@@ -44,6 +48,8 @@ public class WeaponSlotMachine : MonoBehaviour
         resetChild0 = wheel.GetChild(0).localPosition;
         resetChild1 = wheel.GetChild(1).localPosition;
         cGroup = GetComponent<CanvasGroup>();
+        stampInitScale = stampImage.transform.localScale.x;
+
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -152,6 +158,15 @@ public class WeaponSlotMachine : MonoBehaviour
 
         if (selectedGun < 5) stampImage.sprite = stamps[selectedGun];
         stampImage.gameObject.SetActive(true);
+        float stampElapsedTime = 0;
+        while (stampElapsedTime < stampDuration)
+        {
+            stampElapsedTime += Time.unscaledDeltaTime;
+
+            stampImage.transform.localScale = Vector3.Lerp(stampImage.transform.localScale, Vector3.one * finalStampSize, stampElapsedTime / stampDuration);
+
+            yield return null;
+        }
 
         vidPlayer.Play();
         yield return new WaitForSecondsRealtime(2.0f);

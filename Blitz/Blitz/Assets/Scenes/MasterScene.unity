@@ -334,6 +334,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2252396143289066300, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
+      propertyPath: stampDuration
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252396143289066300, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: finalStampSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252396143289066300, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
       propertyPath: stamps.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -390,7 +400,7 @@ PrefabInstance:
     - target: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3767074682711002976, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
@@ -745,7 +755,7 @@ RectTransform:
   m_GameObject: {fileID: 1748467519}
   m_LocalRotation: {x: -0, y: -0, z: -0.13871658, w: 0.9903321}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 644969828}
