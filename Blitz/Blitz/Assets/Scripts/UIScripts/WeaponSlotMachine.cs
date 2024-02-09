@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class WeaponSlotMachine : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private float slowedDownFinalSpeed = 750f;
     [SerializeField] private float slowDownSpeedAmount = 150f;
 
+    [SerializeField] private VideoPlayer vidPlayer;
+
     public float usedSpeed;
 
     private Vector3 Image1BottomVisible;
@@ -33,7 +36,6 @@ public class WeaponSlotMachine : MonoBehaviour
         Image1BottomVisible = wheel.GetChild(0).localPosition;
         resetChild0 = wheel.GetChild(0).localPosition;
         resetChild1 = wheel.GetChild(1).localPosition;
-        //Debug.Log("image1bottom " + Image1BottomVisible);
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -54,10 +56,16 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private IEnumerator SpinWheel(int selectedGun)
     {
-        //Debug.Log(selectedGun);
+        //second 3.59, frame 14 | seconds 6.84, frame 20, 
+
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 260 * (4 - selectedGun));
-        //Debug.Log(Image1BottomVisible);
+        vidPlayer.Play();
+
+        yield return new WaitForSecondsRealtime(3.6f);
+
+        vidPlayer.Pause();
+        //vidPlayer.frame = 20;
 
         // spin until the end of the specified spinning duration
         while (elapsedTime < spinDuration)
@@ -72,8 +80,6 @@ public class WeaponSlotMachine : MonoBehaviour
 
             yield return null;
         }
-
-        //Debug.Log("finished elapsed time");
 
         //spin until the first child is on the very top
         bool getOut = false;
@@ -98,10 +104,8 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
-        //Debug.Log("Finished get to top");
-
+        //spin until selected gun is visible
         Transform child1 = wheel.GetChild(0);
-        //Debug.Log("Final image pos " + finalImagePos);
         while (true)
         {
 
@@ -117,6 +121,9 @@ public class WeaponSlotMachine : MonoBehaviour
 
             yield return null;
         }
+
+        vidPlayer.Play();
+        yield return new WaitForSecondsRealtime(0.5f);
 
         //Debug.Log("finished final pos");
         isSpinning = false;

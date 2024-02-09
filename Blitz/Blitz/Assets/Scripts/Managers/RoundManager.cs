@@ -69,11 +69,10 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         //round ui stuff
-        //GameUIManager.instance.UpdateRoundTransScores();
         GameUIManager.instance.showRoundTransition();
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(10f);
 
         GameUIManager.instance.hideRoundTransition();
 
