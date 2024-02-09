@@ -62,7 +62,7 @@ public class WeaponSlotMachine : MonoBehaviour
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 260 * (4 - selectedGun));
         vidPlayer.Play();
 
-        yield return new WaitForSecondsRealtime(3.6f);
+        yield return new WaitForSecondsRealtime(3.7f);
 
         vidPlayer.Pause();
         //vidPlayer.frame = 20;
@@ -122,6 +122,7 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSecondsRealtime(0.25f);
         vidPlayer.Play();
         yield return new WaitForSecondsRealtime(0.5f);
 
