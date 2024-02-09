@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundNum: 0
   elapsedTime: 0
-  roundLength: 60.99
+  roundLength: 60.59
   playerKillCounts: 00000000000000000000000000000000
   endRoundTextShownLength: 4
   shouldCountDown: 0
@@ -2234,7 +2234,12 @@ MonoBehaviour:
   slowedDownFinalSpeed: 750
   slowDownSpeedAmount: 2000
   vidPlayer: {fileID: 2277221357272962334}
-  usedSpeed: 0
+  fadeTime: 1
+  fadeOutTime: 1.5
+  stamps: []
+  stampImage: {fileID: 0}
+  finalStampSize: 0
+  stampDuration: 1
 --- !u!222 &2180961092529728295
 CanvasRenderer:
   m_ObjectHideFlags: 0
