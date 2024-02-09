@@ -45,6 +45,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private RigBuilder rigBuilder;
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
+    [SerializeField] private GameObject gunRagdollBody;
     [SerializeField] private PlayerUIHandler uiHandler;
     [SerializeField] private GameObject playerCrown;
    
@@ -419,8 +420,10 @@ public class PlayerBodyFSM : MonoBehaviour
             transitionState(PlayerMotionStates.Death);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
+            GameObject newGunRagdoll = Instantiate(gunRagdollBody, transform.position, Quaternion.identity);
 
             RagDollHandler newRagDollHandler = newRagdollBody.transform.GetComponent<RagDollHandler>();
+            newGunRagdoll.transform.GetComponent<GunRagdoll>().InitializeGunRagdoll((int)playerGun.gunVars.type -1);
 
             freelookCam.m_LookAt = newRagDollHandler.camRotatePoint;
             freelookCam.m_Follow = newRagDollHandler.camRotatePoint;
