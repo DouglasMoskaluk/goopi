@@ -70,6 +70,7 @@ public class GunManager : MonoBehaviour
             }
         } else
         {
+            gunUsed = 5;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 assignGun(i, pickGun());
