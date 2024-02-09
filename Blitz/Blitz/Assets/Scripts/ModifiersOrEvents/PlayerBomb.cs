@@ -16,6 +16,8 @@ public class PlayerBomb : MonoBehaviour
 
     [SerializeField]
     TMP_Text countdownTimer;
+    [SerializeField]
+    GameObject explodeVFX;
 
     int plrID;
 
@@ -44,6 +46,7 @@ public class PlayerBomb : MonoBehaviour
         if (timer < 0 && transform.parent.GetComponent<CharacterController>().enabled == true)
         {
             transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1);
+            Instantiate(explodeVFX, transform.position, transform.rotation);
         }
         //transform.GetChild(0).transform.rotation = transform.parent.GetComponentInChildren<Camera>().transform.rotation;
         transform.GetChild(0).transform.rotation = Quaternion.Euler(0, transform.parent.GetComponentInChildren<Camera>().transform.eulerAngles.y, 0);
