@@ -72,7 +72,7 @@ public class RoundManager : MonoBehaviour
         GameUIManager.instance.showRoundTransition();
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
-        yield return new WaitForSecondsRealtime(10f);
+        //yield return new WaitForSecondsRealtime(1.5f);
 
         GameUIManager.instance.hideRoundTransition();
 
