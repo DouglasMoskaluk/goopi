@@ -166,6 +166,8 @@ public class ModifierManager : MonoBehaviour
         if (died.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
         {
             Instantiate(MegaGunPickupPrefab, died.transform.position, Quaternion.identity, GunManager.instance.transform);
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_DROP);
+            // play guitar riff sound
         }
         GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
     }
