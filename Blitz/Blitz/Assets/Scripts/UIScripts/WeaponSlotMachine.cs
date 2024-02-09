@@ -124,7 +124,7 @@ public class WeaponSlotMachine : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.25f);
         vidPlayer.Play();
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(2.5f);
 
         //Debug.Log("finished final pos");
         isSpinning = false;
