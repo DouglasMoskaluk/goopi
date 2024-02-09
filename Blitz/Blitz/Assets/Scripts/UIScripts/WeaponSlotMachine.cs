@@ -150,8 +150,9 @@ public class WeaponSlotMachine : MonoBehaviour
         vidPlayer.Pause();
         yield return new WaitForSecondsRealtime(1.5f);
 
-
+        if (selectedGun < 5) stampImage.sprite = stamps[selectedGun];
         stampImage.gameObject.SetActive(true);
+
         vidPlayer.Play();
         yield return new WaitForSecondsRealtime(2.0f);
 
