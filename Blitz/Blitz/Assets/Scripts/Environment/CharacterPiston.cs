@@ -13,10 +13,10 @@ public class CharacterPiston : MonoBehaviour
     private GameObject PistonObject;
 
     [SerializeField]
-    private Vector3 StartPoint;
+    private Transform StartPoint;
 
     [SerializeField]
-    private Vector3 EndPoint;
+    private Transform EndPoint;
 
     [SerializeField]
     private float fallTime = 0.5f;
@@ -43,7 +43,7 @@ public class CharacterPiston : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        PistonObject.transform.position = StartPoint;
+        PistonObject.transform.position = StartPoint.position;
         raiseCoRo = PistonRaise();
         fallCoro = PistonFall();
     }
@@ -80,12 +80,12 @@ public class CharacterPiston : MonoBehaviour
                 //Debug.Log(fallTracker);
                 ratio = fallPercentage + (fallTracker / fallTime);
                 fallPercentage = ratio;
-                PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, ratio);
+                PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, ratio);
                 //Debug.Log(ratio);
                 yield return null;
             }
 
-            PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, 1);
+            PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, 1);
 
 
             //play sound effect
@@ -127,11 +127,11 @@ public class CharacterPiston : MonoBehaviour
             raiseTracker -= Time.deltaTime;
             //Debug.Log(raiseTracker);
             fallPercentage = raiseTracker / raiseTime;
-            PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, fallPercentage);
+            PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, fallPercentage);
             yield return null;
         }
 
-        PistonObject.transform.position = Vector3.Lerp(StartPoint, EndPoint, 0);
+        PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, 0);
 
 
 
