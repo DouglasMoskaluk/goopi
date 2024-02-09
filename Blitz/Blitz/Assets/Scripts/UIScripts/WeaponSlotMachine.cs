@@ -59,7 +59,8 @@ public class WeaponSlotMachine : MonoBehaviour
         //second 3.59, frame 14 | seconds 6.84, frame 20, 
 
         float elapsedTime = 0;
-        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 260 * (4 - selectedGun));
+        Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 341 * (5 - selectedGun));
+        Debug.Log(finalImagePos);
         vidPlayer.Play();
 
         yield return new WaitForSecondsRealtime(3.7f);
@@ -124,9 +125,8 @@ public class WeaponSlotMachine : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.25f);
         vidPlayer.Play();
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(2.5f);
 
-        //Debug.Log("finished final pos");
         isSpinning = false;
     }
 }
