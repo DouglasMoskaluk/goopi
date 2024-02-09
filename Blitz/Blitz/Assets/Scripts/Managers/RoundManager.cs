@@ -132,6 +132,15 @@ public class RoundManager : MonoBehaviour
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
 
+        float averageKills = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            averageKills += playerKillCounts[i];
+        }
+        averageKills /= 4;
+
+        Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
+
         Time.timeScale = 0.25f;
         //GameUIManager.instance.SetFadePanelAlpha(0.5f); //<- might want to have it fade to like 0.25 or 0.3 tp indicate the slowmo more
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
