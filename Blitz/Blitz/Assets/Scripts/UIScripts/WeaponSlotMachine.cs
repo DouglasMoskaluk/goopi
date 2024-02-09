@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class WeaponSlotMachine : MonoBehaviour
@@ -21,6 +22,10 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private VideoPlayer vidPlayer;
     [SerializeField] private float fadeTime = 1f;
     [SerializeField] private float fadeOutTime = 1.5f;
+
+    [SerializeField] private Sprite[] stamps;
+    [SerializeField] private Image stampImage;
+
     private CanvasGroup cGroup;
 
     private float usedSpeed;
@@ -55,6 +60,8 @@ public class WeaponSlotMachine : MonoBehaviour
         usedSpeed = speed;
         wheel.GetChild(0).localPosition = resetChild0;
         wheel.GetChild(1).localPosition = resetChild1;
+        stampImage.gameObject.SetActive(false);
+        vidPlayer.frame = 0;
     }
 
     private IEnumerator SpinWheel(int selectedGun)
@@ -143,6 +150,8 @@ public class WeaponSlotMachine : MonoBehaviour
         vidPlayer.Pause();
         yield return new WaitForSecondsRealtime(1.5f);
 
+
+        stampImage.gameObject.SetActive(true);
         vidPlayer.Play();
         yield return new WaitForSecondsRealtime(2.0f);
 
