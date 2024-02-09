@@ -19,11 +19,16 @@ public class Plunger : SpawnableObject
         {
             //Debug.Log("I've been hit!!! " + hit.name);
             StartCoroutine(pullPlayer(hit));
-        } else if (transform.parent.tag == "Crate")
+        }
+        else if (transform.parent.tag == "Crate")
         {
             StartCoroutine(pullCrate());
         }
-        else StartCoroutine(destruction(5f));
+        else
+        {
+            StartCoroutine(destruction(5f));
+            transform.GetComponentInChildren<LineRenderer>().gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator pullPlayer(PlayerBodyFSM hit)
