@@ -60,6 +60,7 @@ public class WeaponSlotMachine : MonoBehaviour
 
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 341 * (5 - selectedGun));
+        Debug.Log(finalImagePos);
         vidPlayer.Play();
 
         yield return new WaitForSecondsRealtime(3.7f);
@@ -126,7 +127,6 @@ public class WeaponSlotMachine : MonoBehaviour
         vidPlayer.Play();
         yield return new WaitForSecondsRealtime(2.5f);
 
-        //Debug.Log("finished final pos");
         isSpinning = false;
     }
 }
