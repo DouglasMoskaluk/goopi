@@ -65,6 +65,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject[] charButtons;
 
+    [SerializeField]
+    private GameObject victoryText;
+
     int kills = 0;
 
     [HideInInspector]
@@ -90,6 +93,7 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
+        victoryText.SetActive(false);
 
 
 
@@ -104,6 +108,7 @@ public class PlayerUIHandler : MonoBehaviour
         killMarker.SetActive(false);
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
+        //victoryText.SetActive(false);
     }
 
 
@@ -176,6 +181,12 @@ public class PlayerUIHandler : MonoBehaviour
 
     }
 
+    internal void showVictoryText()
+    {
+        StopCoroutine(ShowVixtoryText());
+        StartCoroutine(ShowVixtoryText());
+    }
+
     internal void ShowLowHealth()
     {
         lowHealthUI.SetActive(true);
@@ -227,6 +238,14 @@ public class PlayerUIHandler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
         yield return null;
+    }
+
+    IEnumerator ShowVixtoryText()
+    {
+        victoryText.SetActive(true);
+        yield return new WaitForSeconds(1);
+        victoryText.SetActive(false);
+
     }
 
     IEnumerator ShowDamageEffect()

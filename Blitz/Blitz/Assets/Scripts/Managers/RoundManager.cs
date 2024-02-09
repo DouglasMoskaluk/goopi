@@ -139,6 +139,8 @@ public class RoundManager : MonoBehaviour
         }
         averageKills /= 4;
 
+        List<int> winners = selectRoundWinner();//create list of round winners
+
         Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
 
         Time.timeScale = 0.25f;
@@ -155,7 +157,6 @@ public class RoundManager : MonoBehaviour
         EventManager.instance.invokeEvent(Events.onRoundEnd);
         shouldCountDown = false;
         //figure out who won
-        List<int> winners = selectRoundWinner();//create list of round winners
 
         //create text string to say who won
         string winnerString = "Winners are Players: ";
@@ -226,6 +227,10 @@ public class RoundManager : MonoBehaviour
             if (playerKillCounts[i] >= highest) { result.Add(i); }
         }
 
+        for (int i=0; i<result.Count; i++)
+        {
+            SplitScreenManager.instance.GetPlayers(result[i]).playerUI.showVictoryText();
+        }
         return result;
     }
 
