@@ -530,6 +530,7 @@ public class PlayerBodyFSM : MonoBehaviour
     public void assignGun(GameObject myGun)
     {
         playerGun = myGun.GetComponent<Gun>();
+        anim.SetInteger("HeldGun", ((int)playerGun.gunVars.type) - 1);
         playerUI.gun = playerGun;
         if (currentActionState != null) currentActionState.initState(getFSMInfo()); 
         if (currentMotionState != null) currentMotionState.initState(getFSMInfo());
