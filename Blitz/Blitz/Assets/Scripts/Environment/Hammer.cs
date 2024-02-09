@@ -46,6 +46,7 @@ public class Hammer : MonoBehaviour
 
         if(other.CompareTag("Player"))
         {
+            Debug.Log("hit player");
             GameObject plr = other.gameObject;
             if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
