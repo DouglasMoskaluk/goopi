@@ -19,8 +19,11 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private float slowDownSpeedAmount = 150f;
 
     [SerializeField] private VideoPlayer vidPlayer;
+    [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private float fadeOutTime = 1.5f;
+    private CanvasGroup cGroup;
 
-    public float usedSpeed;
+    private float usedSpeed;
 
     private Vector3 Image1BottomVisible;
 
@@ -35,6 +38,7 @@ public class WeaponSlotMachine : MonoBehaviour
         Image1BottomVisible = wheel.GetChild(0).localPosition;
         resetChild0 = wheel.GetChild(0).localPosition;
         resetChild1 = wheel.GetChild(1).localPosition;
+        cGroup = GetComponent<CanvasGroup>();
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -57,12 +61,26 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         //second 3.59, frame 14 | seconds 6.84, frame 20, 
 
+        vidPlayer.frame = 0;
+        vidPlayer.Play();
+        //yield return null;
+        //vidPlayer.Pause();
+
+        //fade slot machine in
+        float timeElapsedFade = 0;
+        while (timeElapsedFade < fadeTime)
+        {
+            timeElapsedFade += Time.unscaledDeltaTime;
+
+            cGroup.alpha = (timeElapsedFade / fadeTime);
+            yield return null;
+        }
+
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
-        Debug.Log(finalImagePos);
-        vidPlayer.Play();
+        //vidPlayer.Play();
 
-        yield return new WaitForSecondsRealtime(3.7f);
+        yield return new WaitForSecondsRealtime(3.7f - fadeTime);
 
         vidPlayer.Pause();
         //vidPlayer.frame = 20;
@@ -122,9 +140,21 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(0.25f);
+        vidPlayer.Pause();
+        yield return new WaitForSecondsRealtime(1.5f);
+
         vidPlayer.Play();
-        yield return new WaitForSecondsRealtime(2.5f);
+        yield return new WaitForSecondsRealtime(2.0f);
+
+        float timeElapsedFadeOut = 0;
+        while (timeElapsedFadeOut < fadeOutTime)
+        {
+            timeElapsedFadeOut += Time.unscaledDeltaTime;
+
+            cGroup.alpha = 1 - (timeElapsedFadeOut / fadeOutTime);
+            yield return null;
+        }
+        yield return new WaitForSecondsRealtime(0.2f);
 
         isSpinning = false;
     }
