@@ -41,7 +41,7 @@ public class ModifierManager : MonoBehaviour
 
     internal IEnumerator showModifierUI()
     {
-        if ((RoundManager.instance.getRoundNum()-1 < modifiers.Length && RoundManager.instance.getRoundNum() - 1 >= 0) && (modifiers[RoundManager.instance.getRoundNum()-1] >= 0  || modifiers[RoundManager.instance.getRoundNum() - 1] == -1))
+        if ((RoundManager.instance.getRoundNum()-2 < modifiers.Length && RoundManager.instance.getRoundNum() - 2 >= 0) && (modifiers[RoundManager.instance.getRoundNum()-2] >= 1  || modifiers[RoundManager.instance.getRoundNum() - 2] == -1))
         {
             int shownUI = 0;
             Transform[] uiElements = new Transform[2];
@@ -82,7 +82,7 @@ public class ModifierManager : MonoBehaviour
     void initEvents(EventParams param = new EventParams())
     {
         //Resetting events
-        if (RoundManager.instance.getRoundNum() == 0)
+        if (RoundManager.instance.getRoundNum() == 1)
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
         }
@@ -100,7 +100,7 @@ public class ModifierManager : MonoBehaviour
         }
 
         //Selects an event
-        int round = RoundManager.instance.getRoundNum();
+        int round = RoundManager.instance.getRoundNum() - 1;
         if (modifiers[round] != -1)
         {
             for (int i = 0; i < modifiers[round]; i++)
@@ -193,7 +193,7 @@ public class ModifierManager : MonoBehaviour
                 temp[i] = modifiers[i];
             }
         }
-        EventManager.instance.addListener(Events.onRoundStart, initEvents, 0);
+        EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
     }
 
 
