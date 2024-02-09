@@ -7,7 +7,8 @@ public class PlayerBomb : MonoBehaviour
 {
     [SerializeField]
     private float timerStart = 10;
-    private float timer = 10;
+    [SerializeField]
+    private float timer = 29;
     [SerializeField]
     private float killTime = 5;
     [SerializeField]
@@ -24,7 +25,7 @@ public class PlayerBomb : MonoBehaviour
         {
             Destroy(this);
         }
-        timer = timerStart;
+        //timer = timerStart;
         plrID = transform.parent.GetComponent<PlayerBodyFSM>().playerID;
         EventManager.instance.addListener(Events.onPlayerRespawn, ownerDied);
         EventManager.instance.addListener(Events.onPlayerDeath, playerDied);
