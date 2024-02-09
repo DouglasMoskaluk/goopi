@@ -68,6 +68,7 @@ public class WeaponSlotMachine : MonoBehaviour
         wheel.GetChild(1).localPosition = resetChild1;
         stampImage.gameObject.SetActive(false);
         vidPlayer.frame = 0;
+        stampImage.transform.localScale = Vector3.one * stampInitScale;
     }
 
     private IEnumerator SpinWheel(int selectedGun)
