@@ -11,6 +11,9 @@ public class ImpulseGrenade : SpawnableObject
     [SerializeField] private float blastDelay = 0.5f;// the amount of time it takes for the blast to happen once the conditions for it are met
     [SerializeField] private float blastForce = 15f;// the amount of force the player 
 
+    [SerializeField]
+    GameObject explodeVFX;
+
     public GrenadeType type = GrenadeType.Thrown;
 
     private Rigidbody rb;//this grenades rigidbody
@@ -75,6 +78,7 @@ public class ImpulseGrenade : SpawnableObject
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
+        Instantiate(explodeVFX, transform.position, transform.rotation);
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i].CompareTag("Player"))
