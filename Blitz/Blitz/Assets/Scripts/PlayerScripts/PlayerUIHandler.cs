@@ -243,7 +243,7 @@ public class PlayerUIHandler : MonoBehaviour
     IEnumerator ShowVixtoryText()
     {
         victoryText.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
         victoryText.SetActive(false);
 
     }

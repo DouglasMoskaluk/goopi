@@ -132,14 +132,14 @@ public class RoundManager : MonoBehaviour
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
 
+        List<int> winners = selectRoundWinner();//create list of round winners
+
         float averageKills = 0;
         for (int i = 0; i < 4; i++)
         {
             averageKills += playerKillCounts[i];
         }
         averageKills /= 4;
-
-        List<int> winners = selectRoundWinner();//create list of round winners
 
         Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
 
