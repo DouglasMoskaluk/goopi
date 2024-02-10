@@ -380,7 +380,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
 
-        playerUI.playerGotdamaged();
+        playerUI.playerGotDamaged();
         newAttacker(attackerId);
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_HURT);
 
@@ -513,6 +513,7 @@ public class PlayerBodyFSM : MonoBehaviour
     public void refillHealth()
     {
         playerUI.HideLowHealth();
+        playerUI.playerGotHealed();
         health = MAX_HEALTH;
     }
 

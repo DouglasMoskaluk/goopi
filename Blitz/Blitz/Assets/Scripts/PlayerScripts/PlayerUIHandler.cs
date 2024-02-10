@@ -51,6 +51,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject damagedUI;
 
+    [SerializeField]
+    private GameObject healingUI;
+
     private GameObject scaleObject;
 
     [SerializeField]
@@ -108,7 +111,7 @@ public class PlayerUIHandler : MonoBehaviour
         killMarker.SetActive(false);
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
-        //victoryText.SetActive(false);
+        victoryText.SetActive(false);
     }
 
 
@@ -169,10 +172,16 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ShowHitMarker");
     }
 
-    internal void playerGotdamaged()
+    internal void playerGotDamaged()
     {
         StopCoroutine("ShowDamageEffect");
         StartCoroutine("ShowDamageEffect");
+    }
+
+    internal void playerGotHealed()
+    {
+        StopCoroutine("ShowHealEffect");
+        StartCoroutine("ShowHealEffect");
     }
 
     internal void StopDamagedCoroutine()
@@ -183,8 +192,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     internal void showVictoryText()
     {
-        StopCoroutine(ShowVixtoryText());
-        StartCoroutine(ShowVixtoryText());
+        victoryText.SetActive(true);
     }
 
     internal void setCrosshair(Sprite crosshair)
@@ -245,19 +253,19 @@ public class PlayerUIHandler : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator ShowVixtoryText()
-    {
-        victoryText.SetActive(true);
-        yield return new WaitForSeconds(0.75f);
-        victoryText.SetActive(false);
-
-    }
-
     IEnumerator ShowDamageEffect()
     {
         damagedUI.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         damagedUI.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowHealEffect()
+    {
+        healingUI.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        healingUI.SetActive(false);
         yield return null;
     }
 
