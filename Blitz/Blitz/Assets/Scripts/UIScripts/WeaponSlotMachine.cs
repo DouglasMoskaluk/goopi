@@ -94,10 +94,11 @@ public class WeaponSlotMachine : MonoBehaviour
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
         //vidPlayer.Play();
 
-        yield return new WaitForSecondsRealtime(3.72f - fadeTime);
+        yield return new WaitForSecondsRealtime(3.73f - fadeTime);
 
+        //vidPlayer.frame = 18;
         vidPlayer.Pause();
-        //vidPlayer.frame = 20;
+        
 
         // spin until the end of the specified spinning duration
         while (elapsedTime < spinDuration)

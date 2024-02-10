@@ -17,9 +17,13 @@ public class PodiumManager : MonoBehaviour
     private List<Transform> podiumPositions;
     [SerializeField] private TextMeshProUGUI[] podiumRankNumbers;
     [SerializeField] private Transform[] playerLookAtPositions;
+
+    [SerializeField] private Button exitButton;
+
     [SerializeField] private GameObject tiePlayerPrefab;
     [SerializeField] private GameObject tieCanvas;
-    private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];  
+    private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];
+    [SerializeField] private Animator anim;
 
     private void Awake()
     {
@@ -29,7 +33,15 @@ public class PodiumManager : MonoBehaviour
         {
             podiumPositions.Add(child); 
         }
-        SetUpTieBreaker(new List<PlayerWinsData>());//testing
+        //SetUpTieBreaker(new List<PlayerWinsData>());//testing
+        StartCoroutine(EnableExitButton());
+        StartCoroutine(PodiumSequence());
+    }
+
+    private IEnumerator EnableExitButton()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        exitButton.interactable = true;
     }
 
     public void StartPodiumSequence()
@@ -39,9 +51,9 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator PodiumSequence()
     {
+        yield return new WaitForSecondsRealtime(0.5f);
 
-
-        yield return null;
+        anim.Play("CurtainsOpen", 0);
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
