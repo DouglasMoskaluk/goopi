@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// The gun class. All guns expand on this base class.
@@ -54,6 +55,7 @@ public class Gun : MonoBehaviour
 
         rumble = transform.root.GetComponent<RumbleHandler>();
         shake = transform.root.GetComponent<CameraShake>();
+        if (gunVars.crosshair != null) SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerUI.setCrosshair(gunVars.crosshair);
 
     }
 
@@ -221,6 +223,8 @@ internal class GunVars
     internal Transform[] bulletSpawnPoint;
     [SerializeField]
     internal Recoil gunRecoil;
+    [SerializeField]
+    internal Sprite crosshair;
 
     //private vars
     internal bool canShoot = true;

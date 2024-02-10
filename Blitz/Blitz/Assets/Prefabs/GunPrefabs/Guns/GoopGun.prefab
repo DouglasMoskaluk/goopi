@@ -173,6 +173,7 @@ MonoBehaviour:
     spawnOnDeath: 0
     attachPlayer: 0
     snap: 1
+    destroyPlayerHit: 1
   gunVars:
     ammo: 1000000010000000
     reloadTime: 1
@@ -183,6 +184,7 @@ MonoBehaviour:
     bulletSpawnPoint:
     - {fileID: 6212113097842508093}
     gunRecoil: {fileID: 3024702770011869617}
+    crosshair: {fileID: 21300000, guid: f70fea71f1ebd144a86d794f270bbcde, type: 3}
 --- !u!114 &3877965180559298240
 MonoBehaviour:
   m_ObjectHideFlags: 0

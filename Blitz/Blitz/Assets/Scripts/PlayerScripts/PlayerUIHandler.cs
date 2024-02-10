@@ -187,6 +187,11 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine(ShowVixtoryText());
     }
 
+    internal void setCrosshair(Sprite crosshair)
+    {
+        crossHair.GetComponent<Image>().overrideSprite = crosshair;
+    }
+
     internal void ShowLowHealth()
     {
         lowHealthUI.SetActive(true);
