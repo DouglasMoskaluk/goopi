@@ -227,7 +227,7 @@ public class RoundManager : MonoBehaviour
             if (playerKillCounts[i] >= highest) { result.Add(i); }
         }
 
-        for (int i=0; i<result.Count; i++)
+        for (int i=0; i<result.Count && i < SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             SplitScreenManager.instance.GetPlayers(result[i]).playerUI.showVictoryText();
         }
