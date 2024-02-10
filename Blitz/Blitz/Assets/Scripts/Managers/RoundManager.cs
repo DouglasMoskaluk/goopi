@@ -134,6 +134,8 @@ public class RoundManager : MonoBehaviour
 
         List<int> winners = selectRoundWinner();//create list of round winners
 
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_VICTORY);
+
         float averageKills = 0;
         for (int i = 0; i < 4; i++)
         {
