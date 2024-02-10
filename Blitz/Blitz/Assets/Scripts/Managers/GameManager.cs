@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
 
         yield return GameUIManager.instance.FadeOut(0.25f);
 
-        
+        PodiumManager.instance.StartPodiumSequence();
     }
 
     public void UpdateTotalKills(int[] kills)
@@ -266,6 +266,14 @@ public class PlayerWinsData
         this.id = id;
         this.roundWins = roundWins;
         this.totalKills = totalKills;
+    }
+
+    public PlayerWinsData(int id, int roundWins, int totalKills, int rank)
+    {
+        this.id = id;
+        this.roundWins = roundWins;
+        this.totalKills = totalKills;
+        this.rank = rank;
     }
 
     public override string ToString()

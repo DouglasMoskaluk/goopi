@@ -17,6 +17,9 @@ public class PodiumManager : MonoBehaviour
     private List<Transform> podiumPositions;
     [SerializeField] private TextMeshProUGUI[] podiumRankNumbers;
     [SerializeField] private Transform[] playerLookAtPositions;
+    [SerializeField] private GameObject tiePlayerPrefab;
+    [SerializeField] private GameObject tieCanvas;
+    private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];  
 
     private void Awake()
     {
@@ -26,25 +29,70 @@ public class PodiumManager : MonoBehaviour
         {
             podiumPositions.Add(child); 
         }
-        //SetUpPodium(new List<PlayerWinsData>()); //testing
+        SetUpTieBreaker(new List<PlayerWinsData>());//testing
+    }
+
+    public void StartPodiumSequence()
+    {
+        StartCoroutine(PodiumSequence());
+    }
+
+    private IEnumerator PodiumSequence()
+    {
+
+
+        yield return null;
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
 
-
-        //testing
-        //gameData.Clear();
-        //gameData.Add(new PlayerWinsData(0, 4, 16));
-        //gameData.Add(new PlayerWinsData(1, 4, 13));
-        //gameData.Add(new PlayerWinsData(3, 2, 4));
-        //gameData.Add(new PlayerWinsData(2, 0, 7));
-
         gameData = FindPlayerRanks(gameData);
 
         PlacePlayersOnPodium(gameData);
 
-        
+        SetUpTieBreaker(gameData);
+
+    }
+
+    private void SetUpTieBreaker(List<PlayerWinsData> gameData)
+    {
+        //testing
+        //gameData.Clear();
+        //gameData.Add(new PlayerWinsData(0, 4, 16, 0));
+        //gameData.Add(new PlayerWinsData(1, 4, 13, 0));
+        //gameData.Add(new PlayerWinsData(3, 2, 4, 0));
+        //gameData.Add(new PlayerWinsData(2, 0, 7, 1));
+
+        int numPlayerTies = 0;
+        foreach (PlayerWinsData player in gameData)
+        {
+            if (player.rank != 0)
+            {
+                break;
+            }
+            else
+            {
+                numPlayerTies++;
+            }
+        }
+
+        int maxKills = 0;
+        foreach (PlayerWinsData player in gameData)
+        {
+            maxKills = Mathf.Max(maxKills, player.totalKills);
+        }
+
+        float xAreaToPlace = 10;
+        float offset = ((xAreaToPlace / numPlayerTies) * (numPlayerTies - 1)) / 2;
+        for (int i = 0; i < numPlayerTies; i++)
+        {
+            float xPlacement = ((xAreaToPlace / numPlayerTies) * i) - offset;
+            Transform instance = Instantiate(tiePlayerPrefab, tieCanvas.transform).transform;
+            instance.position = instance.position + Vector3.right * xPlacement;
+            tieIndicators[i] = instance.GetComponent<PlayerTieKillsIndicator>();
+            tieIndicators[i].SetKillsMax(maxKills);
+        }
 
     }
 
