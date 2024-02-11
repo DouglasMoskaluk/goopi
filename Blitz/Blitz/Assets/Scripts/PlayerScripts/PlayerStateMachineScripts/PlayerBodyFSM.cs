@@ -71,6 +71,8 @@ public class PlayerBodyFSM : MonoBehaviour
     private float rayCastRadius = 0.5f;
     public float groundRayCastOffset = -0.8f;
 
+    private int winDanceNum = -1;
+
     //private 
     #endregion
 
@@ -144,10 +146,11 @@ public class PlayerBodyFSM : MonoBehaviour
         anim.SetLayerWeight(2, 0);
         anim.SetLayerWeight(3, 0);
         anim.SetLayerWeight(4, 1);
+        anim.SetInteger("DanceType", winDanceNum);
     }
     public void SetWinAnimNumber(int num)
     {
-        anim.SetInteger("DanceType", num);
+        winDanceNum = num;
     }
 
     public void SetCameraLookAt(Transform at)

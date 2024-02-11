@@ -71,6 +71,11 @@ public class PodiumManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
 
         anim.Play("podiumCamPan");
+        
+        foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        {
+            player.GetComponent<PlayerBodyFSM>().AllowWinAnimation();
+        }
 
         yield return new WaitForSecondsRealtime(0.1f);
 
@@ -249,7 +254,7 @@ public class PodiumManager : MonoBehaviour
             FSM.transitionState(PlayerActionStates.Idle);
             FSM.DisablePlayerUI();
             FSM.DisableGun();
-            FSM.AllowWinAnimation();
+            //FSM.AllowWinAnimation();
             FSM.SetWinAnimNumber(i);
             FSM.enabled = false;
 
