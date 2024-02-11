@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5681381909261828949}
   - component: {fileID: 879639065333406229}
   - component: {fileID: 2420030908873964023}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: CrownRagdoll
-  m_TagString: Untagged
+  m_TagString: Ragdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,8 +163,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b4314e0f70f689445b71ef50ef82e0f4,
         type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4314e0f70f689445b71ef50ef82e0f4,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4314e0f70f689445b71ef50ef82e0f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ragdoll
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b4314e0f70f689445b71ef50ef82e0f4,
         type: 3}
