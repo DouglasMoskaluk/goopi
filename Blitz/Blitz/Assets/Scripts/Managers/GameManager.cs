@@ -229,6 +229,7 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("inside ready singal");
         SplitScreenManager.instance.DisablePlayerControls();
+        SplitScreenManager.instance.DisableJoining();
 
         yield return GameUIManager.instance.FadeIn(0.5f);
         //Debug.Log("after fade");

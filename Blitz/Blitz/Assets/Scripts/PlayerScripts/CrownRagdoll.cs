@@ -9,16 +9,16 @@ public class CrownRagdoll : MonoBehaviour
 
     private Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
     }
 
-    public void InitializeRagdoll(Vector3 gunVelocity)
+    public void InitializeRagdoll(Vector3 playerVelocity)
     {
-        rb.velocity = gunVelocity;
+        rb.velocity = playerVelocity;
     }
 
     public void RemoveSelf(EventParams param = new EventParams())
