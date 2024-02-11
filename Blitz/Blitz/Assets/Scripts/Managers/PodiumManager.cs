@@ -25,7 +25,11 @@ public class PodiumManager : MonoBehaviour
     private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];
     [SerializeField] private Animator anim;
 
-    private bool isTieBreaker = false;
+    [SerializeField] private float durationOfTimeBreakerCount = 1.5f;
+
+    public bool isTieBreaker = false;
+    private int tieLowerKills = 0;
+    private int tieMaxKills = 0;
 
     private void Awake()
     {
@@ -35,9 +39,7 @@ public class PodiumManager : MonoBehaviour
         {
             podiumPositions.Add(child); 
         }
-        //SetUpTieBreaker(new List<PlayerWinsData>());//testing
         StartCoroutine(EnableExitButton());
-        StartCoroutine(PodiumSequence());
     }
 
     private IEnumerator EnableExitButton()
@@ -61,7 +63,10 @@ public class PodiumManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
 
-        if (isTieBreaker) yield return StartCoroutine(TieBreakerSequence());
+        if (isTieBreaker) { 
+            yield return StartCoroutine(TieBreakerSequence());
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
 
         yield return new WaitForSecondsRealtime(1.0f);
 
@@ -71,28 +76,68 @@ public class PodiumManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
 
+        ShowWinnerText();
+
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
+        //testing
+        gameData.Clear();
+        gameData.Add(new PlayerWinsData(0, 4, 16, 0));
+        gameData.Add(new PlayerWinsData(1, 4, 13, 1));
+
 
         gameData = FindPlayerRanks(gameData);
 
         PlacePlayersOnPodium(gameData);
 
-        SetUpTieBreaker(gameData);
-
         isTieBreaker = CheckTieBreaker(gameData);
+
+        if (isTieBreaker) SetUpTieBreaker(gameData);
     }
 
     private bool CheckTieBreaker(List<PlayerWinsData> gameData)
     {
-        return false;
+        return gameData[1].rank == 0;
     }
 
     private IEnumerator TieBreakerSequence()
     {
-        yield return null;
+        //0 - min kills
+        float firstPlaceDisplayedScore = 0;
+        float secondPlaceDisplayedScore = 0;
+        while (secondPlaceDisplayedScore < tieLowerKills)
+        {
+            firstPlaceDisplayedScore += Time.unscaledDeltaTime * durationOfTimeBreakerCount;
+            secondPlaceDisplayedScore += Time.unscaledDeltaTime * durationOfTimeBreakerCount;
+
+            tieIndicators[0].ChangeKillsDisplay(Mathf.FloorToInt(firstPlaceDisplayedScore));
+            tieIndicators[1].ChangeKillsDisplay(Mathf.FloorToInt(secondPlaceDisplayedScore));
+
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        //min kills - max kills
+        while (firstPlaceDisplayedScore < tieMaxKills)
+        {
+            firstPlaceDisplayedScore += Time.unscaledDeltaTime * durationOfTimeBreakerCount;
+
+            tieIndicators[0].ChangeKillsDisplay(Mathf.FloorToInt(firstPlaceDisplayedScore));
+
+            yield return null;
+        }
+
+        //final
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        ShowWinnerText();
+
+        yield return new WaitForSecondsRealtime(1.0f);
+
+
     }
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
@@ -104,6 +149,20 @@ public class PodiumManager : MonoBehaviour
         //gameData.Add(new PlayerWinsData(3, 2, 4, 0));
         //gameData.Add(new PlayerWinsData(2, 0, 7, 1));
 
+        tieLowerKills = gameData[1].totalKills;
+        tieMaxKills = Mathf.Max(gameData[0].totalKills, gameData[1].totalKills);
+        float xAreaToPlace = 10;
+        float offset = xAreaToPlace / 4;
+        for (int i = 0; i < 2; i++)
+        {
+            float xPlacement = ((xAreaToPlace / 2) * i) - offset;
+            Transform instance = Instantiate(tiePlayerPrefab, tieCanvas.transform).transform;
+            instance.position = instance.position + Vector3.right * xPlacement;
+            tieIndicators[i] = instance.GetComponent<PlayerTieKillsIndicator>();
+            tieIndicators[i].SetKillsMax(tieMaxKills);
+        }
+
+        /*WORKS BUT WE DONT NEED FUNCTIONALITY FOR MORE THAN 2 PLAYERS TO TIE
         int numPlayerTies = 0;
         foreach (PlayerWinsData player in gameData)
         {
@@ -132,7 +191,7 @@ public class PodiumManager : MonoBehaviour
             instance.position = instance.position + Vector3.right * xPlacement;
             tieIndicators[i] = instance.GetComponent<PlayerTieKillsIndicator>();
             tieIndicators[i].SetKillsMax(maxKills);
-        }
+        }*/
 
     }
 
@@ -202,6 +261,11 @@ public class PodiumManager : MonoBehaviour
     public void SetWinnerText(string text)
     {
         winnerText.text = text;
+    }
+
+    private void ShowWinnerText()
+    {
+        winnerText.gameObject.SetActive(true);
     }
 
     public void OnExitButtonPressed()
