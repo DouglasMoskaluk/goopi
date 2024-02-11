@@ -142,7 +142,7 @@ public class CharacterPiston : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("enter player select");
+            LowerPiston();
         }
     }
 

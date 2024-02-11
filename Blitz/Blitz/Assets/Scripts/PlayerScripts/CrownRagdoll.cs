@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class CrownRagdoll : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private float lifetime = 10.0f;
+
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
+        StartCoroutine("Countdown");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitializeRagdoll(Vector3 gunVelocity)
     {
-        
+        rb.velocity = gunVelocity;
+    }
+
+    public void RemoveSelf(EventParams param = new EventParams())
+    {
+        Destroy(gameObject);
+    }
+
+    IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Destroy(gameObject);
     }
 }

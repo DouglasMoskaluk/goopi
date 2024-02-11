@@ -177,6 +177,8 @@ public class SplitScreenManager : MonoBehaviour
     {
         List<int> highestRoundKills = RoundManager.instance.GetHighestRoundKills();
 
+        Debug.Log("SET CROWNS");
+
         for (int i = 0; i < players.Count; i++)
         {
             PlayerBodyFSM FSM = players[i].GetComponent<PlayerBodyFSM>();

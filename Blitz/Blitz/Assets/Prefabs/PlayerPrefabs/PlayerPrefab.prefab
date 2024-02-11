@@ -2648,6 +2648,8 @@ MonoBehaviour:
     type: 3}
   gunRagdollBody: {fileID: 8016671668399953589, guid: 19c06ea6168f50443a37177c5d92a5ed,
     type: 3}
+  crownRagdollBody: {fileID: 6676750431713122467, guid: e4ceeead695e5fd4eae39b464e5349d8,
+    type: 3}
   uiHandler: {fileID: 2787196210716927257}
   playerCrown: {fileID: 1247832346727306838}
   groundRayCastOffset: -0.35
@@ -5434,7 +5436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005223789, y: -0.072690435, z: 0.00038073194, w: 0.9973408}
+  m_LocalRotation: {x: 0.005223791, y: -0.072690435, z: 0.00038073212, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7334,7 +7336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316149, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
   m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7489,11 +7491,11 @@ MonoBehaviour:
   sensitivityHandler: {fileID: 4397019112354682272}
   input: {fileID: 426433136885082013}
   camInput: {fileID: 3085030767544435252}
-  aimSensitivity: 0.25
+  aimSensitivity: 0.35
   startDistance: 2
   endDistance: 30
-  stickyness: 60
-  deadzone: 0.4
+  stickyness: 20
+  deadzone: 0.3
   aimAssistVersion: 0
 --- !u!114 &2782069162948022255
 MonoBehaviour:

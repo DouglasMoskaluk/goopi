@@ -14,13 +14,16 @@ public class GunRagdoll : MonoBehaviour
     [SerializeField]
     private GameObject[] gunModels;
 
-    void Start()
+    private Rigidbody rb;
+
+    void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
     }
 
-    public void InitializeGunRagdoll(int playerGun)
+    public void InitializeGunRagdoll(int playerGun, Vector3 gunVelocity)
     {
         for(int i = 0; i < gunModels.Length; i++)
         {
@@ -30,6 +33,9 @@ public class GunRagdoll : MonoBehaviour
                 break;
             }
         }
+
+        rb.velocity = gunVelocity;
+
     }
 
     public void RemoveSelf(EventParams param = new EventParams())
@@ -41,11 +47,5 @@ public class GunRagdoll : MonoBehaviour
     {
         yield return new WaitForSeconds(lifetime);
         Destroy(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

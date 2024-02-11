@@ -360,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8185733337167566276}
   - component: {fileID: 8289874960514344229}
+  - component: {fileID: 7558532921948064843}
   m_Layer: 0
   m_Name: LockerRoom
   m_TagString: Untagged
@@ -411,9 +412,30 @@ MonoBehaviour:
   StartPoint: {fileID: 7132353989617985248}
   EndPoint: {fileID: 7200125341241167587}
   fallTime: 0.25
-  raiseTime: 0.5
+  raiseTime: 0.25
   waitTime: 0.25
   playerCamShake: {fileID: 0}
+--- !u!65 &7558532921948064843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020251434987607977}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.962784, y: 3.8324032, z: 4.188716}
+  m_Center: {x: 8.135491, y: 3.053862, z: -0.07285607}
 --- !u!1 &1182395246915297275
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,11 +46,6 @@ public class PlayerModelHandler : MonoBehaviour
 
     public int skinNum = 0;
 
-    private void Update()
-    {
-        
-    }
-
     public void SetRagdollSkin(int newSkin)
     {
         skinNum = newSkin;

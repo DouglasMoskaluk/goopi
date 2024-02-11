@@ -35,7 +35,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private CharacterController charController;//ref to character controller
     [SerializeField] private Animator anim;// ref to animator
     private PlayerInputHandler input;// ref to input handler
-    private RagDollHandler ragdoll;// ref to ragdoll handler
+    //private RagDollHandler ragdoll;// ref to ragdoll handler
     [SerializeField] private Transform cam;// ref to the camera rotation transform
     [SerializeField] internal Transform playerBody;
     private PlayerGrenadeThrower grenadeThrower;// ref to the players grenade thrower component
@@ -46,8 +46,10 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private GameObject healthPack;
     [SerializeField] private GameObject ragdollBody;
     [SerializeField] private GameObject gunRagdollBody;
+    [SerializeField] private GameObject crownRagdollBody;
     [SerializeField] private PlayerUIHandler uiHandler;
     [SerializeField] private GameObject playerCrown;
+    private Transform gunPositionRef;
    
 
     private CinemachineFreeLook freelookCam; //freelook brain reference
@@ -78,7 +80,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        ragdoll = GetComponent<RagDollHandler>();
+        //ragdoll = GetComponent<RagDollHandler>();
         input = GetComponent<PlayerInputHandler>();
         charController = GetComponent<CharacterController>();
         grenadeThrower = GetComponent<PlayerGrenadeThrower>();
@@ -101,6 +103,7 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
+        gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
     }
 
     public void ForceAnimatorUpdate()
@@ -174,6 +177,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void SetCrownVisibility(bool isVisible)
     {
+        Debug.Log("crown method" + isVisible);
         playerCrown.SetActive(isVisible);
     }
 
@@ -420,16 +424,24 @@ public class PlayerBodyFSM : MonoBehaviour
             transitionState(PlayerMotionStates.Death);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
-            GameObject newGunRagdoll = Instantiate(gunRagdollBody, transform.position, Quaternion.identity);
+            GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.rotation);
+
+            Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
 
             RagDollHandler newRagDollHandler = newRagdollBody.transform.GetComponent<RagDollHandler>();
-            newGunRagdoll.transform.GetComponent<GunRagdoll>().InitializeGunRagdoll((int)playerGun.gunVars.type -1);
+            newGunRagdoll.transform.GetComponent<GunRagdoll>().InitializeGunRagdoll((int)playerGun.gunVars.type -1, playerVelocity);
 
             freelookCam.m_LookAt = newRagDollHandler.camRotatePoint;
             freelookCam.m_Follow = newRagDollHandler.camRotatePoint;
 
+            if(playerCrown.activeInHierarchy)
+            {
+                GameObject crownRagdoll = Instantiate(crownRagdollBody, playerCrown.transform.position, playerCrown.transform.rotation);
+                crownRagdoll.transform.GetComponent<CrownRagdoll>().InitializeRagdoll(playerVelocity);
+            }
+
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
-            Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
+            //Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
             newRagDollHandler.InitializeRagdoll(modelID, skinID, boneList, playerVelocity);
             StartCoroutine("deathCoro");
         }
