@@ -25,6 +25,8 @@ public class PodiumManager : MonoBehaviour
     private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];
     [SerializeField] private Animator anim;
 
+    private bool isTieBreaker = false;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -54,6 +56,21 @@ public class PodiumManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         anim.Play("openCurtains");
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
+
+        if (isTieBreaker) yield return StartCoroutine(TieBreakerSequence());
+
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        anim.Play("podiumCamPan");
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
+
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
@@ -65,6 +82,17 @@ public class PodiumManager : MonoBehaviour
 
         SetUpTieBreaker(gameData);
 
+        isTieBreaker = CheckTieBreaker(gameData);
+    }
+
+    private bool CheckTieBreaker(List<PlayerWinsData> gameData)
+    {
+        return false;
+    }
+
+    private IEnumerator TieBreakerSequence()
+    {
+        yield return null;
     }
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
