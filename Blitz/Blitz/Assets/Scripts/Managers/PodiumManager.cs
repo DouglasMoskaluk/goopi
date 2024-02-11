@@ -88,9 +88,9 @@ public class PodiumManager : MonoBehaviour
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
         //testing
-        gameData.Clear();
-        gameData.Add(new PlayerWinsData(0, 4, 16, 0));
-        gameData.Add(new PlayerWinsData(1, 4, 13, 1));
+        //gameData.Clear();
+        //gameData.Add(new PlayerWinsData(0, 4, 16, 0));
+        //gameData.Add(new PlayerWinsData(1, 4, 13, 1));
 
 
         gameData = FindPlayerRanks(gameData);
