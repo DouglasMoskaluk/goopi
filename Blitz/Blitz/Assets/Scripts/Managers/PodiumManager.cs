@@ -53,7 +53,7 @@ public class PodiumManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.5f);
 
-        anim.Play("CurtainsOpen", 0);
+        anim.Play("openCurtains");
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CurtainsOpen
+  m_Name: openCurtains
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -20,16 +20,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -2.66, y: 14.974, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: -2.4203973, y: 14.9227, z: -10.6708}
+        inSlope: {x: -4.1930966, y: 0, z: 0}
+        outSlope: {x: -4.1930966, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.13288945, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 1.5
+        value: {x: -5.420397, y: 14.9227, z: -10.6708}
+        inSlope: {x: -0.82144415, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.113407694, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.6666667
-        value: {x: -5.66, y: 14.974, z: 0}
+        time: 1.5166667
+        value: {x: -5.420397, y: 14.9227, z: -10.6708}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -39,32 +48,41 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Curtains/GP_Layer
+    path: CurtainL
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 3.13, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: 2.5176659, y: 0.4199, z: -10.6708}
+        inSlope: {x: 5.0989423, y: 0, z: 0}
+        outSlope: {x: 5.0989423, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.14137176, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 1.5
+        value: {x: 5.5117216, y: 0.4199, z: -10.6708}
+        inSlope: {x: 0.35837176, y: 0, z: 0}
+        outSlope: {x: 0.35837176, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.6666667
-        value: {x: 6.13, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        time: 1.5166667
+        value: {x: 5.517666, y: 0.4199, z: -10.6708}
+        inSlope: {x: 0.355083, y: 0, z: 0}
+        outSlope: {x: 0.355083, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        inWeight: {x: 0.10999769, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Curtains/GP_Layer.001
+    path: CurtianR
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -76,7 +94,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 91360342
+      path: 1984963701
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -85,7 +103,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1095078569
+      path: 1207459905
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -99,12 +117,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 1.5166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -121,27 +139,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -2.66
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        value: -2.4203973
+        inSlope: -4.1930966
+        outSlope: -4.1930966
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.13288945
       - serializedVersion: 3
-        time: 0.6666667
-        value: -5.66
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        time: 1.5
+        value: -5.420397
+        inSlope: -0.82144415
+        outSlope: -0.82144415
+        tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0.113407694
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Curtains/GP_Layer
+    path: CurtainL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -151,7 +169,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 14.974
+        value: 14.9227
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -159,8 +177,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: 14.974
+        time: 1.5166667
+        value: 14.9227
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -171,7 +189,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Curtains/GP_Layer
+    path: CurtainL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -181,7 +199,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -10.6708
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -189,8 +207,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: 0
+        time: 1.5166667
+        value: -10.6708
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -201,7 +219,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Curtains/GP_Layer
+    path: CurtainL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -211,27 +229,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 3.13
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        value: 2.5176659
+        inSlope: 5.0989423
+        outSlope: 5.0989423
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.14137176
       - serializedVersion: 3
-        time: 0.6666667
-        value: 6.13
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        time: 1.5166667
+        value: 5.517666
+        inSlope: 0.355083
+        outSlope: 0.355083
+        tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0.10999769
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Curtains/GP_Layer.001
+    path: CurtianR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -241,7 +259,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.4199
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -249,8 +267,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: 0
+        time: 1.5
+        value: 0.4199
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -261,7 +279,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Curtains/GP_Layer.001
+    path: CurtianR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -271,7 +289,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -10.6708
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -279,8 +297,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: 0
+        time: 1.5166667
+        value: -10.6708
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -291,7 +309,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Curtains/GP_Layer.001
+    path: CurtianR
     classID: 4
     script: {fileID: 0}
     flags: 0
