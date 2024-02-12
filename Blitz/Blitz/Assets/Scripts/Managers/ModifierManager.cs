@@ -30,23 +30,23 @@ public class ModifierManager : MonoBehaviour
     internal ModifierVariables vars;
     [SerializeField]
     Transform modifierUI;
-    [SerializeField]
-    private float uiTimer = 2f;
 
     internal int getNumEvents(int r)
     {
+        if (r < 0) return 0;
         return modifiers[r];
-    } 
+    }
 
 
-    internal IEnumerator showModifierUI()
+    internal void showModifierUI()
     {
-        if ((RoundManager.instance.getRoundNum()-2 < modifiers.Length && RoundManager.instance.getRoundNum() - 2 >= 0) && (modifiers[RoundManager.instance.getRoundNum()-2] >= 1  || modifiers[RoundManager.instance.getRoundNum() - 2] == -1))
+        //if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) && RoundManager.instance.getRoundNum() - 1 >= 0) Debug.Log((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) + " && " + (RoundManager.instance.getRoundNum() - 1 >= 0) + " && (" + (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1) + " || " + (modifiers[RoundManager.instance.getRoundNum() - 1] == -1) + ")");
+        if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length && RoundManager.instance.getRoundNum() - 1 >= 0) && (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1 || modifiers[RoundManager.instance.getRoundNum() - 1] == -1))
         {
             int shownUI = 0;
             Transform[] uiElements = new Transform[2];
             int elemPlaced = 0;
-            for (int i=0; i<ActiveEvents.Length; i++)
+            for (int i = 0; i < ActiveEvents.Length; i++)
             {
                 if (ActiveEvents[i])
                 {
@@ -56,9 +56,10 @@ public class ModifierManager : MonoBehaviour
                     if (shownUI > 1)
                     {
                         break;
-                    } else if (shownUI == 1 && (modifiers[RoundManager.instance.getRoundNum()-2] == 1 || modifiers[RoundManager.instance.getRoundNum() - 2] == -1))
+                    }
+                    else if (shownUI == 1 && (modifiers[RoundManager.instance.getRoundNum() - 1] == 1 || modifiers[RoundManager.instance.getRoundNum() - 1] == -1))
                     {
-                        uiElements[elemPlaced] = modifierUI.GetChild(i).GetChild(shownUI);
+                        uiElements[0] = modifierUI.GetChild(i).GetChild(2);
                         break;
                     }
                 }
@@ -68,14 +69,18 @@ public class ModifierManager : MonoBehaviour
             {
                 if (uiElements[i] != null) uiElements[i].gameObject.SetActive(true);
             }
-            yield return new WaitForSeconds(uiTimer);
-            for (int i = 0; i < uiElements.Length; i++)
-            {
-                if (uiElements[i] != null) uiElements[i].gameObject.SetActive(false);
-            }
-            modifierUI.gameObject.SetActive(false);
         }
+    }
 
+
+    internal void hideModifierUI()
+    {
+        for (int i=0; i< ActiveEvents.Length; i++)
+        {
+            modifierUI.GetChild(i).GetChild(0).gameObject.SetActive(false);
+            modifierUI.GetChild(i).GetChild(1).gameObject.SetActive(false);
+            modifierUI.GetChild(i).GetChild(2).gameObject.SetActive(false);
+        }
     }
 
 

@@ -75,22 +75,8 @@ public class RoundManager : MonoBehaviour
 
         //yield return new WaitForSecondsRealtime(1.5f);
 
+
         GameUIManager.instance.hideRoundTransition();
-
-        
-        yield return GameUIManager.instance.FadeOut(0.75f);
-
-        Time.timeScale = 1.0f;
-
-        for (int i = 0; i < playerKillCounts.Length; i++)
-        {
-            playerKillCounts[i] = 0;
-        }
-
-        roundNum++;
-        shouldCountDown = true;
-
-        SplitScreenManager.instance.EnablePlayerControls();
 
         int playedEventAudio = 0;
         for (int i = 0; i < ModifierManager.instance.ActiveEvents.Length; i++)
@@ -101,7 +87,7 @@ public class RoundManager : MonoBehaviour
                 {
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_RICOCHET, playedEventAudio * 2);
                 }
-                else if (i==(int)ModifierManager.RoundModifierList.LOW_GRAVITY)
+                else if (i == (int)ModifierManager.RoundModifierList.LOW_GRAVITY)
                 {
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LOWGRAV, playedEventAudio * 2);
                 }
@@ -120,8 +106,25 @@ public class RoundManager : MonoBehaviour
                 playedEventAudio++;
             }
         }
+        ModifierManager.instance.showModifierUI();
 
-        yield return ModifierManager.instance.showModifierUI();
+        yield return GameUIManager.instance.FadeOut(0.75f);
+        Time.timeScale = 1.0f;
+
+        //Turn camera here @Patrick
+        if (ModifierManager.instance.getNumEvents(RoundManager.instance.roundNum - 1) > 0) yield return new WaitForSeconds(5f);
+
+        ModifierManager.instance.hideModifierUI();
+
+        for (int i = 0; i < playerKillCounts.Length; i++)
+        {
+            playerKillCounts[i] = 0;
+        }
+
+        roundNum++;
+        shouldCountDown = true;
+
+        SplitScreenManager.instance.EnablePlayerControls();
 
         Debug.Log("start Round co ends");
     }
