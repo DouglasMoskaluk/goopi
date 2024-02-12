@@ -49,6 +49,12 @@ public class SkinSwap : MonoBehaviour
         }
     }
 
+    public void SetSkinNum()
+    {
+        modelHandler.skinNum = SkinNum;
+        modelHandler.SetSkinNum(SkinNum);
+    }
+
     public void IconMove(float direction)
     {
         if (!isMoving && Mathf.Abs(direction) > 0.5)
