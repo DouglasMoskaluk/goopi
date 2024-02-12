@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AcidPuddle
-  m_Shader: {fileID: -6465566751694194690, guid: bc70e69549a50aa49b813aeaf34d5f80,
+  m_Name: InsideAcidSplash
+  m_Shader: {fileID: -6465566751694194690, guid: 9b30dd7aba346224c9dc9fbdf1b490b4,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -76,24 +76,24 @@ Material:
     m_Ints: []
     m_Floats:
     - _Metallic: 0.1
-    - _NormalsAgitation: 0.01
+    - _NormalsAgitation: 0.3
     - _NormalsStrength: 7.55
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.5
     - _Tansparency: 0
-    - _TranspancyMask: 0.25
-    - _VoronoiAgitation: 0.01
+    - _TranspancyMask: 0
+    - _VoronoiAgitation: 0.3
     - _VoronoiPower: 5
-    - _VoronoiScale: 0.5
+    - _VoronoiScale: 1
     - _WobbleAmount: 0.05
-    - _WobbleFrequency: 5
-    - _WobbleHeight: 1
-    - _WobbleSpeed: 5
+    - _WobbleFrequency: 10
+    - _WobbleHeight: 2
+    - _WobbleSpeed: 1
     m_Colors:
-    - _BaseColour: {r: 0.007342457, g: 0.5188679, b: 0.027600884, a: 1}
+    - _BaseColour: {r: 0, g: 0.5, b: 0.03289473, a: 1}
     - _NormalsSpeed: {r: 0, g: 0.05, b: 0, a: 0}
-    - _VoronoiColour: {r: 0, g: 1, b: 0.02352953, a: 1}
-    - _VoronoiSpeed: {r: 0, g: 0.02, b: 0, a: 0}
-    - _VoronoiTiling: {r: 2, g: 0.5, b: 0, a: 0}
+    - _VoronoiColour: {r: 0, g: 1, b: 0.024154663, a: 1}
+    - _VoronoiSpeed: {r: 0, g: 0.05, b: 0, a: 0}
+    - _VoronoiTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
