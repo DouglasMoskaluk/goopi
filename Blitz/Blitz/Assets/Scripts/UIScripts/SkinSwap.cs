@@ -122,7 +122,7 @@ public class SkinSwap : MonoBehaviour
 
         if (newPos.x == spacing)
         {
-            icons.anchoredPosition = new Vector2(-spacing * 4, 0);
+            icons.anchoredPosition = new Vector2(-spacing * 3, 0);
         }
         else if(newPos.x == -(spacing * 4))
         {
