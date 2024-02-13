@@ -49,6 +49,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private GameObject crownRagdollBody;
     [SerializeField] private PlayerUIHandler uiHandler;
     [SerializeField] private GameObject playerCrown;
+    [SerializeField] private PlayerGrenadeArcRenderer grenadeArcRenderer;
     private Transform gunPositionRef;
    
 
@@ -346,7 +347,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder, rigHolder);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder, rigHolder, grenadeArcRenderer);
     }
 
     /// <summary>
@@ -625,7 +626,7 @@ public struct stateParams
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
         Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun,
-        Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder)
+        Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder, PlayerGrenadeArcRenderer arc)
     {
         FSM = fsm;
         anim = an;
@@ -639,6 +640,7 @@ public struct stateParams
         playerBody = pBody;
         variableHolder = vHolder;
         rigHolder = rHolder;
+        arcRender = arc;
     }
 
     public PlayerBodyFSM FSM;
@@ -653,6 +655,7 @@ public struct stateParams
     public Transform playerBody;
     public FSMVariableHolder variableHolder;
     public PlayerRigHolder rigHolder;
+    public PlayerGrenadeArcRenderer arcRender;
 }
 
 public struct GroundRayCast

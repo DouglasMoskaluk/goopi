@@ -14,26 +14,12 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
     {
         base.onStateEnter();
         anim.CrossFadeInFixedTime("ThrowStart", 0.1f, 1);
+        arcRenderer.EnableRendering();
     }
 
     public override void onStateExit()
     {
-        
-        //RaycastHit hitInfo;
-        //bool rayHit = Physics.Raycast(cam.position, cam.forward, out hitInfo, 50f);
-        //Vector3 destination;
-        //if (rayHit)
-        //    destination = hitInfo.point;
-        //else
-        //    destination = cam.position + (cam.forward * 50f);
-
-        ////calculate the direction the grenade should be thrown in
-        //Vector3 direction = (destination - throwFrom.position);//find direction from throw arm to raycast point
-        ////float angleSignCorrection = (cam.eulerAngles.x > 7) ? -grenadeThrower.arcAngle: grenadeThrower.arcAngle;//change sign of throw angle if player is looking downwards
-        //direction = Quaternion.AngleAxis(-grenadeThrower.arcAngle, cam.right) * direction;//calculate direction
-        //direction.Normalize();//normalize direciton
-
-        //grenadeThrower.ThrowGrenade(direction, chargeTime / stateVariableHolder.maxChargeTime);
+        arcRenderer.DisableRendering();
     }
 
     public override void stateUpdate()
