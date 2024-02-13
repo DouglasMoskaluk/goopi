@@ -43,6 +43,11 @@ public class PlayerBomb : MonoBehaviour
     {
         if (timer >= -1) countdownTimer.text = "" + (int)Mathf.Floor(timer+1);
         timer -= Time.deltaTime;
+        if (timer < 4)
+        {
+            countdownTimer.color = Color.red;
+        }
+        else countdownTimer.color = Color.white;
         if (timer < 0 && transform.parent.GetComponent<CharacterController>().enabled == true)
         {
             transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1);
