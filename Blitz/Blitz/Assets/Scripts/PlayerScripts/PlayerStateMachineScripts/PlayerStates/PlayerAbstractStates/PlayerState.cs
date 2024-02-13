@@ -16,6 +16,7 @@ public abstract class PlayerState
     protected Transform throwFrom;
     protected Gun playerGun;
     protected Transform playerBody;
+    protected PlayerGrenadeArcRenderer arcRenderer;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -84,6 +85,7 @@ public abstract class PlayerState
         playerGun = stateParams.gun;
         playerBody = stateParams.playerBody;
         stateVariableHolder = stateParams.variableHolder;
+        arcRenderer = stateParams.arcRender;
     }
 }
 
