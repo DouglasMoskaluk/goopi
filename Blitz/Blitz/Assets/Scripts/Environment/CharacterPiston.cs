@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class CharacterPiston : MonoBehaviour
@@ -37,8 +38,16 @@ public class CharacterPiston : MonoBehaviour
 
     private IEnumerator fallCoro;
 
-    
+    [HideInInspector]
+    public GameObject player;
+
+    [HideInInspector]
+    public PlayerBodyFSM playerFSM;
+
+    [HideInInspector]
     public CameraShake playerCamShake;
+
+    private bool firstEntry = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -48,9 +57,11 @@ public class CharacterPiston : MonoBehaviour
         fallCoro = PistonFall();
     }
 
-    public void getPlayerCameraShake(CameraShake newPlayerCamShake)
+    public void getPlayer(GameObject newPlayer)
     {
-        playerCamShake = newPlayerCamShake;
+        player = newPlayer;
+        playerCamShake = player.GetComponent<CameraShake>();
+        playerFSM = player.GetComponent<PlayerBodyFSM>();
     }
 
     public void LowerPiston()
@@ -142,8 +153,34 @@ public class CharacterPiston : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            LowerPiston();
+            if(firstEntry)
+            {
+                firstEntry = false;
+                LowerPiston();
+            }
+            else
+            {
+                StartCoroutine(CharReEntry());
+            }
         }
+    }
+
+    IEnumerator CharReEntry()
+    {
+        //turn off HUD
+        
+        //turn off playerFSM
+        
+        //turn off camera control
+
+        //same loop
+        //move player to center of piston
+        //rotate camera to face player
+
+        //turn on char select UI
+
+
+        yield return null;
     }
 
     IEnumerator CameraRotate()

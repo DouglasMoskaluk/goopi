@@ -56,9 +56,9 @@ public class LockerRoomManager : MonoBehaviour
         joinTexts[index].SetActive(false);
     }
 
-    public void InitializePlayerRoom(int index, CameraShake camShake)
+    public void InitializePlayerRoom(int index, GameObject player)
     {
-        roomPistons[index].getPlayerCameraShake(camShake);
+        roomPistons[index].getPlayer(player);
     }
 
     public void ReadyUpPlayer(int playerID)
