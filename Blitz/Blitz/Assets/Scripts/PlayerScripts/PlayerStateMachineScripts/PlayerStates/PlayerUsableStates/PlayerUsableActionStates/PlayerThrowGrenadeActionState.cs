@@ -19,7 +19,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 
     public override void onStateExit()
     {
-        arcRenderer.DisableRendering();
+        
     }
 
     public override void stateUpdate()
@@ -37,6 +37,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
             if (elapsedTime >= 0.2f && leaveState == false)//grenade gets thrown
             {
                 grenadeThrower.ThrowGrenade(direction, stateVariableHolder.maxChargeTime);
+                arcRenderer.DisableRendering();
                 leaveState = true;
             }
         }
