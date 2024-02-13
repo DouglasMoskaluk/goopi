@@ -59,7 +59,7 @@ public class Hammer : MonoBehaviour
         else if(other.CompareTag("Ragdoll"))
         {
             Debug.Log(direction);
-            other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 40, ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 35, ForceMode.Impulse);
             //other.gameObject.GetComponent<RagDollHandler>().MoveRagdoll(direction);
         }
 
