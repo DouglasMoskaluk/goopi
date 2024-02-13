@@ -35,7 +35,6 @@ public class LockerRoomManager : MonoBehaviour
         {
             roomPistons[i].shakeStrength = shakeStrength;
             roomPistons[i].shakeLength = shakeLength;
-
         }
     }
 
