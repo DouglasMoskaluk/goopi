@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7134601552432997334}
   - component: {fileID: 3033585320906995747}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Ice_trail_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5317289961411927661}
   - component: {fileID: 4403646384917954047}
   - component: {fileID: 2799734229536330738}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: IceTrailParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2395449587629169411}
   - component: {fileID: 7159271941851814525}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Ice_trail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 835420672527296293}
   - component: {fileID: 8280519173941270583}
   - component: {fileID: 8325370958108757200}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Ice Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,8 +461,7 @@ MonoBehaviour:
     spawnOnDeath: 0
     attachPlayer: 0
     snap: 0
-  viewRadius: 5
-  coneAngle: 30
+    destroyPlayerHit: 1
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -473,7 +472,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -593,6 +592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ice_bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57a99dbbae007c44ba01825bdf323c93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

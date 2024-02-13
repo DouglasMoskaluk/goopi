@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
             Debug.DrawRay(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position)- transform.position , Color.yellow, 10);
             if (Physics.Raycast(transform.position - rb.velocity.normalized, other.ClosestPointOnBounds(transform.position) - transform.position, out hit, (other.ClosestPointOnBounds(transform.position) - transform.position * 1.1f).magnitude))
             {
-                if ((hit.collider.CompareTag("Map") || hit.collider.CompareTag("Target") || hit.collider.CompareTag("Crate") || hit.collider.CompareTag("Player")))
+                if ((hit.collider.CompareTag("Map") || hit.collider.CompareTag("Target") || hit.collider.CompareTag("Crate") || hit.collider.CompareTag("Player") || hit.collider.CompareTag("Dome")))
                 {
                     Debug.Log("Staying trigger");//May need debug.logs...
                     collide(hit);
@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour
             if (!collideThisFrame && hit[i].collider.gameObject != gameObject/*(hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player"))*/)
             {
                 Debug.Log("Genral late update collision");
-                if ((hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player")))
+                if ((hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player") || hit[i].collider.CompareTag("Dome")))
                 {
                     collideThisFrame = true;
                     Debug.Log("Late Update hit ");//May need debug.logs...
@@ -146,6 +146,9 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("I hit a map object!");//May need debug.logs...
             onMapHitEffect(hit);
+            Bounce(hit);
+        } else if (hit.collider.CompareTag("Dome"))
+        {
             Bounce(hit);
         }
         else if (hit.collider.CompareTag("Target"))
@@ -265,7 +268,7 @@ public class Bullet : MonoBehaviour
             Transform playerPos;
             foreach (RaycastHit hit in coneHits)
             {
-                if (hit.collider.tag == "Player" || hit.collider.GetComponent<Target>() != null)
+                if (hit.collider.tag == "Player" /*|| hit.collider.GetComponent<Target>() != null*/)
                 {
                     playerPos = hit.collider.transform;
                     Rigidbody rb = GetComponent<Rigidbody>();
