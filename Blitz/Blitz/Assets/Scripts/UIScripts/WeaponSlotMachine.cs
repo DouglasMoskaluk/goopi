@@ -158,16 +158,19 @@ public class WeaponSlotMachine : MonoBehaviour
         vidPlayer.Pause();
         yield return new WaitForSecondsRealtime(1.5f);
 
-        if (selectedGun < 5) stampImage.sprite = stamps[selectedGun];
-        stampImage.gameObject.SetActive(true);
-        float stampElapsedTime = 0;
-        while (stampElapsedTime < stampDuration)
+        if (selectedGun < 5)
         {
-            stampElapsedTime += Time.unscaledDeltaTime;
+            stampImage.sprite = stamps[selectedGun];
+            stampImage.gameObject.SetActive(true);
+            float stampElapsedTime = 0;
+            while (stampElapsedTime < stampDuration)
+            {
+                stampElapsedTime += Time.unscaledDeltaTime;
 
-            stampImage.transform.localScale = Vector3.Lerp(stampImage.transform.localScale, Vector3.one * finalStampSize, stampElapsedTime / stampDuration);
+                stampImage.transform.localScale = Vector3.Lerp(stampImage.transform.localScale, Vector3.one * finalStampSize, stampElapsedTime / stampDuration);
 
-            yield return null;
+                yield return null;
+            }
         }
 
         vidPlayer.Play();
