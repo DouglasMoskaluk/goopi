@@ -36,7 +36,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
         {
             if (elapsedTime >= 0.2f && leaveState == false)//grenade gets thrown
             {
-                grenadeThrower.ThrowGrenade(direction, chargeTime / stateVariableHolder.maxChargeTime);
+                grenadeThrower.ThrowGrenade(direction, stateVariableHolder.maxChargeTime);
                 leaveState = true;
             }
         }
