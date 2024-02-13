@@ -20,6 +20,8 @@ public class LockerRoomManager : MonoBehaviour
     [SerializeField]
     private float shakeLength;
 
+    private GameObject[] players;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -59,6 +61,7 @@ public class LockerRoomManager : MonoBehaviour
     public void InitializePlayerRoom(int index, GameObject player)
     {
         roomPistons[index].getPlayer(player);
+        //players[index] = player;
     }
 
     public void ReadyUpPlayer(int playerID)
