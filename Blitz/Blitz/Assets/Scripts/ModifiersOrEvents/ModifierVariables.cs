@@ -10,9 +10,17 @@ public class ModifierVariables : MonoBehaviour
     [SerializeField]
     GameObject StartingMegaGunPickup;
 
+
+    [SerializeField]
+    internal moveOnEvent[] eventMovables;
+
     private void Start()
     {
         ModifierManager.instance.vars = this;
+        foreach (moveOnEvent move in eventMovables)
+        {
+            move.Start();
+        }
     }
 
     internal void toggleLava(bool enabled)
@@ -31,5 +39,27 @@ public class ModifierVariables : MonoBehaviour
     internal void toggleMegaGun(bool enabled)
     {
         StartingMegaGunPickup.SetActive(enabled);
+    }
+}
+
+
+[System.Serializable]
+class moveOnEvent
+{
+    [SerializeField]
+    internal ModifierManager.RoundModifierList eventThisMovesIn;
+    [SerializeField]
+    internal float height;
+    internal float currentTime = 0;
+    [SerializeField]
+    internal float timeTaken;
+    [SerializeField]
+    internal Transform objectMoving;
+    internal Vector3 startPos;
+    internal void Start() { startPos = objectMoving.position; }
+
+    internal void Reset()
+    {
+        objectMoving.position = startPos;
     }
 }

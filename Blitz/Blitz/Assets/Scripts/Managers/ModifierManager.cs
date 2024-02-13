@@ -31,6 +31,7 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     Transform modifierUI;
 
+
     internal int getNumEvents(int r)
     {
         if (r < 0) return 0;
@@ -103,6 +104,10 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[i] = false;
         }
+        foreach (moveOnEvent move in vars.eventMovables)
+        {
+            move.Reset();
+        }
 
         //Selects an event
         int round = RoundManager.instance.getRoundNum() - 1;
@@ -162,6 +167,24 @@ public class ModifierManager : MonoBehaviour
             }
         }
 
+        //Event Movables
+        for (int i=0; i< vars.eventMovables.Length; i++)
+        {
+            if (ActiveEvents[(int)vars.eventMovables[i].eventThisMovesIn])
+            {
+                StartCoroutine(moveEvents(vars.eventMovables[i]));
+            }
+        }
+    }
+
+    IEnumerator moveEvents(moveOnEvent move)
+    {
+        while(move.currentTime < move.timeTaken)
+        {
+            yield return null;
+            move.currentTime += Time.deltaTime;
+            move.objectMoving.position = move.startPos + Vector3.up * Mathf.Lerp(0, move.height, (float)move.currentTime / move.timeTaken);
+        }
     }
 
 
@@ -202,9 +225,5 @@ public class ModifierManager : MonoBehaviour
         }
         EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
     }
-
-
-
-
 
 }
