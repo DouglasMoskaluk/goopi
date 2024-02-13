@@ -37,8 +37,11 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
             if (elapsedTime >= 0.2f && leaveState == false)//grenade gets thrown
             {
                 grenadeThrower.ThrowGrenade(direction, stateVariableHolder.maxChargeTime);
-                arcRenderer.DisableRendering();
+                //arcRenderer.DisableRendering();
                 leaveState = true;
+
+                //Debug.DrawRay(throwFrom.position, direction * 2, Color.red, 0.1f);
+                //Debug.Break();
             }
         }
         else if (!input.throwGrenadePressed && hasThrown == false)//not charging but the grenade hasnt thrown yet

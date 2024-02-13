@@ -10,6 +10,7 @@ public class PlayerGrenadeArcRenderer : MonoBehaviour
     [SerializeField] private Transform cam;
     [SerializeField] private int amountOfPoints = 20;
     [SerializeField] private float timeBetweenPoints = 0.1f;
+    [SerializeField] private float xOffset = 0.02f;
 
     private RaycastHit hitInfo;
     private bool render = false;
@@ -34,6 +35,7 @@ public class PlayerGrenadeArcRenderer : MonoBehaviour
             i++;
             Vector3 point = startPos + t * startVel;
             point.y = startPos.y + startVel.y * t + (Physics.gravity.y / 2f * t * t);
+            //point += transform.right * xOffset * i;
             lr.SetPosition(i, point);
             Vector3 lastPos = lr.GetPosition(i - 1);
 
