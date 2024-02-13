@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8280519173941270583}
   - component: {fileID: 8325370958108757200}
   - component: {fileID: 4570533750465552267}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: -PrototypeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953cbbfc33d7784fb143b022c2722c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletVars:
+    shotDamage: 0
+    speed: 0
+    minSpeed: 1
+    lifeTime: 0
+    accuracy: {x: 0, y: 0}
+    offset: {x: 0, y: 0}
+    bounces: 0
+    tailColor: {r: 0, g: 0, b: 0, a: 0}
+    spawnOnContact: []
+    forceApplied: {x: 0, y: 0, z: 0}
+    speedModifier: 1
+    spawnEveryContact: 1
+    spawnOnDeath: 0
+    attachPlayer: 0
+    snap: 0
+    destroyPlayerHit: 1
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58,7 +75,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -211,7 +228,7 @@ GameObject:
   - component: {fileID: 8768027748877131521}
   - component: {fileID: 7488967842795918940}
   - component: {fileID: 3413552712755694630}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
