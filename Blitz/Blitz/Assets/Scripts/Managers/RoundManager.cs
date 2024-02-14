@@ -246,7 +246,7 @@ public class RoundManager : MonoBehaviour
 
     public List<int> GetHighestRoundKills()
     {
-        List<int> result = new List<int>(4); 
+        List<int> result = new List<int>(); 
         int highest = 0;
         for (int i = 0; i < playerKillCounts.Length; i++)
         {

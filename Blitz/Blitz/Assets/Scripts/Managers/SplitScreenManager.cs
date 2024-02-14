@@ -29,7 +29,8 @@ public class SplitScreenManager : MonoBehaviour
 
     private void Start()
     {
-        EventManager.instance.addListener(Events.onRoundStart, ResetCrowns);    
+        EventManager.instance.addListener(Events.onRoundStart, ResetCrowns);
+        //EventManager.instance.addListener(Events.onPlayerDeath, SetCrownsEventUsage, 3);
     }
 
     public int GetPlayerCount()
@@ -175,15 +176,26 @@ public class SplitScreenManager : MonoBehaviour
 
     public void SetCrowns()//again ik this is not the correct spot to do it but i dont have time to rework the events enough to do it with them rn
     {
+        Debug.Log("Set Crowns called");
+
         List<int> highestRoundKills = RoundManager.instance.GetHighestRoundKills();
 
-        Debug.Log("SET CROWNS");
+        foreach (int i in highestRoundKills)
+        {
+            Debug.Log(i);
+        }
 
         for (int i = 0; i < players.Count; i++)
         {
             PlayerBodyFSM FSM = players[i].GetComponent<PlayerBodyFSM>();
-            FSM.SetCrownVisibility(highestRoundKills.Contains(FSM.playerID));
+            //bool shouldBeVisible = highestRoundKills.Contains(i);
+            FSM.SetCrownVisibility(highestRoundKills.Contains(i));
         }
+    }
+
+    public void SetCrownsEventUsage(EventParams param = new EventParams())
+    {
+        SetCrowns();
     }
 
     public void ResetCrowns(EventParams param = new EventParams()) // same thing with above

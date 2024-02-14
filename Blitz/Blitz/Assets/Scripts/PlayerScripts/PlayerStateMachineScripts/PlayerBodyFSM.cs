@@ -181,7 +181,6 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void SetCrownVisibility(bool isVisible)
     {
-        Debug.Log("crown method" + isVisible);
         playerCrown.SetActive(isVisible);
     }
 
@@ -423,6 +422,7 @@ public class PlayerBodyFSM : MonoBehaviour
         //ragdollDeathStart();
         if (!deathCheck)
         {
+            SplitScreenManager.instance.SetCrowns();// <- ik this is a weird way to do it and using in on the ondeath event is better ut i think that would require some reworking of the events which we should do but i dont have enough time rn
             deathCheck = true;
             transitionState(PlayerActionStates.Death);
             transitionState(PlayerMotionStates.Death);
@@ -447,7 +447,7 @@ public class PlayerBodyFSM : MonoBehaviour
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
             //Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
             newRagDollHandler.InitializeRagdoll(modelID, skinID, boneList, playerVelocity);
-            StartCoroutine("deathCoro");
+            StartCoroutine(deathCoro());
         }
 
         //charController.enabled = false;
@@ -478,7 +478,6 @@ public class PlayerBodyFSM : MonoBehaviour
         playerUI.HideLowHealth();
         playerUI.Dead();
         EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
-        SplitScreenManager.instance.SetCrowns();// <- ik this is a weird way to do it and using in on the ondeath event is better ut i think that would require some reworking of the events which we should do but i dont have enough time rn
         mostRecentAttacker = -1;
         yield return new WaitForEndOfFrame();
         Instantiate(healthPack, transform.position, Quaternion.identity);
