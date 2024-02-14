@@ -8,6 +8,7 @@ public class PlayerTieKillsIndicator : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI killText;
+    [SerializeField] private Image animalHead;
 
     public void ChangeKillsDisplay(int kills)
     {
@@ -18,5 +19,10 @@ public class PlayerTieKillsIndicator : MonoBehaviour
     public void SetKillsMax(int to)
     {
         slider.maxValue = to;
+    }
+
+    public void SetAnimalSprite(Sprite s)
+    {
+        animalHead.sprite = s;
     }
 }

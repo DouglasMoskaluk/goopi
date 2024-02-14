@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using TMPro.EditorUtilities;
 
 public class SplitScreenManager : MonoBehaviour
 {
@@ -172,6 +173,11 @@ public class SplitScreenManager : MonoBehaviour
     {
         Destroy(players[index].gameObject);
         players.RemoveAt(index);
+    }
+
+    public PlayerInput GetPlayerByID(int id)
+    {
+        return players[id];
     }
 
     public void SetCrowns()//again ik this is not the correct spot to do it but i dont have time to rework the events enough to do it with them rn

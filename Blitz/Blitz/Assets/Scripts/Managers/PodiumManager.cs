@@ -166,6 +166,7 @@ public class PodiumManager : MonoBehaviour
             instance.position = instance.position + Vector3.right * xPlacement;
             tieIndicators[i] = instance.GetComponent<PlayerTieKillsIndicator>();
             tieIndicators[i].SetKillsMax(tieMaxKills);
+            tieIndicators[i].SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(i).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         }
 
         /*WORKS BUT WE DONT NEED FUNCTIONALITY FOR MORE THAN 2 PLAYERS TO TIE
