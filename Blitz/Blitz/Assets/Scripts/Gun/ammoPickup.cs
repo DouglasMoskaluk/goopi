@@ -9,6 +9,9 @@ public class ammoPickup : SpawnableObject
     private float deathCheck = 1;
     [SerializeField]
     private float radius;
+    [SerializeField]
+    float lifetime = 3;
+    float timer = 0;
 
     private void Start()
     {
@@ -17,9 +20,10 @@ public class ammoPickup : SpawnableObject
 
     private IEnumerator VoidCheck()
     {
-        while(true) 
+        while(timer < lifetime) 
         {
             yield return new WaitForSeconds(deathCheck);
+            timer += deathCheck;
             if (transform.position.y < deathBarrier)
             {
                 float x;
@@ -32,6 +36,7 @@ public class ammoPickup : SpawnableObject
                 transform.position = ModifierManager.instance.vars.centralLocation.position + new Vector3(x, 0, y);//RespawnManager.instance.getRespawnLocation().position;
             }
         }
+        Destroy(gameObject);
 
     }
 

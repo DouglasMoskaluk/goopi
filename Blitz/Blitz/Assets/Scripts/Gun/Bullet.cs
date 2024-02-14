@@ -12,11 +12,13 @@ public class Bullet : MonoBehaviour
     float bulletStraightShotDistance = 3;
 
     [Header("Bullet Curving Variables")]
-    //[SerializeField]
+    [SerializeField]
     float viewRadius = 10;
+    [SerializeField]
     float viewDistance = 30;
-    //[SerializeField]
+    [SerializeField]
     float coneAngle = 10;
+    [SerializeField]
     float rotationAngle = 55;
 
     float timeCurveChecks = 0;
