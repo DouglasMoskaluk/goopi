@@ -53,7 +53,19 @@ public class PlayerInputHandler : MonoBehaviour
     public void getLookInput(InputAction.CallbackContext ctx)
     {
         lookInput = ctx.ReadValue<Vector2>();
-        lookInput = new Vector2(lookInput.x * lookSense.x, lookInput.y * lookSense.y);
+        Vector2 newLookInput = new Vector2(Mathf.Pow((lookInput.x * lookSense.x), 2), Mathf.Pow((lookInput.y * lookSense.y), 2));
+
+
+        if (lookInput.x < 0)
+        {
+            newLookInput.x *= -1;
+        }
+        if (lookInput.y < 0)
+        {
+            newLookInput.y *= -1;
+        }
+
+        lookInput = newLookInput;
     }
 
     /// <summary>
@@ -63,6 +75,19 @@ public class PlayerInputHandler : MonoBehaviour
     public void getMotionInput(InputAction.CallbackContext ctx)
     {
         motionInput = ctx.ReadValue<Vector2>();
+        Vector2 newMotion = new Vector2(Mathf.Pow(motionInput.x, 2f), Mathf.Pow(motionInput.y, 2f));
+
+        if (motionInput.x < 0)
+        {
+            newMotion.x *= -1;
+        }
+        if (motionInput.y < 0)
+        {
+            newMotion.y *= -1;
+        }
+
+        motionInput = newMotion;
+
     }
 
     /// <summary>

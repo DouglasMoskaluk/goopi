@@ -157,7 +157,7 @@ public class LockerRoomManager : MonoBehaviour
 
         readyTexts[playerID - 1].SetActive(true);
 
-        readyFlags[playerID] = true;
+        readyFlags[playerID-1] = true;
         if (!readied && CheckReadyStatus())
         {
             readied = true;
