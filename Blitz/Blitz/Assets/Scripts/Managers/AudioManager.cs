@@ -36,7 +36,12 @@ public class AudioManager : MonoBehaviour
 
     private int currentSource = 0;
     private AudioSource[] sources;
+    [SerializeField]
+    private AudioCool[] AudioCooldown;
+    [SerializeField]
+    float[] audioCooldownTimer;
 
+    [Header("Volumes")]
     [SerializeField]
     [Range(0, 1)]
     float masterVolume = 0.5f;
@@ -83,6 +88,25 @@ public class AudioManager : MonoBehaviour
         MusicSource.pitch = music[0].pitch;
         MusicSource.volume = music[0].volume * musicVolume * masterVolume;
         MusicSource.Play();
+        audioCooldownTimer = new float[(int)AudioQueue.LENGTH];
+    }
+
+    private void Update()
+    {
+        for (int i=0; i<(int)audioCooldownTimer.Length; i++)
+        {
+            audioCooldownTimer[i] += Time.deltaTime;
+        }
+    }
+
+    private bool doneCooldown(AudioQueue queue)
+    {
+        foreach (AudioCool cooldown in AudioCooldown)
+        {
+            if (cooldown.queue != queue) continue;
+            if (cooldown.cooldown > audioCooldownTimer[(int)queue]) return false;
+        }
+        return true;
     }
 
 
@@ -162,6 +186,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     internal AudioSource PlaySound(AudioQueue queue)
     {
+        if (!doneCooldown(queue)) return null;
+        audioCooldownTimer[(int)queue] = 0;
         bool soundPlayed = false;
         for (int i=0; i<numberAudioPlayers; i++)
         {
@@ -183,6 +209,7 @@ public class AudioManager : MonoBehaviour
             sources[usedSource].clip = s.clip;
             sources[usedSource].volume = s.volume * sfxVolume * masterVolume;
             sources[usedSource].pitch = s.pitch;
+            sources[usedSource].outputAudioMixerGroup = s.mixer;
 
             sources[usedSource].Play();
             return sources[usedSource];
@@ -252,6 +279,17 @@ internal struct Sound
     [SerializeField]
     [Range(0.1f, 3)]
     internal float pitch;
+    [SerializeField]
+    internal AudioMixerGroup mixer;
+}
+
+[System.Serializable]
+internal struct AudioCool
+{
+    [SerializeField]
+    internal AudioManager.AudioQueue queue;
+    [SerializeField]
+    internal float cooldown;
 }
 
 [System.Serializable]
