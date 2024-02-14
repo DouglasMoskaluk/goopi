@@ -39,6 +39,9 @@ public class LockerRoomManager : MonoBehaviour
     [SerializeField]
     private GameObject blackScreen;
 
+    [SerializeField]
+    private GameObject[] joinCameras;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -78,6 +81,8 @@ public class LockerRoomManager : MonoBehaviour
     public void DisableJoinText(int index)
     {
         joinTexts[index].SetActive(false);
+        Destroy(joinTexts[index]);
+        Destroy(joinCameras[index]);
     }
 
     public void InitializePlayerRoom(int index, GameObject player)
