@@ -88,11 +88,11 @@ public class PodiumManager : MonoBehaviour
     public void SetUpPodium(List<PlayerWinsData> gameData)
     {
         //FORCES A TIE BETWEEN player 1 AND 2
-        gameData.Clear();
+        /*gameData.Clear();
         gameData.Add(new PlayerWinsData(0, 4, 16, 0));
         gameData.Add(new PlayerWinsData(1, 4, 13, 1));
         gameData.Add(new PlayerWinsData(2, 2, 5, 1));
-        gameData.Add(new PlayerWinsData(3, 1, 2, 1));
+        gameData.Add(new PlayerWinsData(3, 1, 2, 1));*/
 
 
         gameData = FindPlayerRanks(gameData);
