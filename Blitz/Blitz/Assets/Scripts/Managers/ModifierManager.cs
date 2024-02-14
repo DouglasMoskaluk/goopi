@@ -85,6 +85,15 @@ public class ModifierManager : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            initEvents();
+        }
+    }
+
+
     void initEvents(EventParams param = new EventParams())
     {
         //Resetting events
@@ -129,6 +138,8 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
         }
+
+        Debug.Log("Events have been changed: Ricochet:" + ActiveEvents[0] + ", Low Grave:" + ActiveEvents[1] + ", bomb:" + ActiveEvents[2] + ", lava:" + ActiveEvents[3] + ", mega:" + ActiveEvents[4]);
 
         //Low gravity event
         if (ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])

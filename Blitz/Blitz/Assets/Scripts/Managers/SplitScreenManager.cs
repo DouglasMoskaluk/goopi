@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+#if UNITY_EDITOR
 using TMPro.EditorUtilities;
+#endif
 
 public class SplitScreenManager : MonoBehaviour
 {

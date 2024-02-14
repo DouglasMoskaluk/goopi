@@ -38,7 +38,7 @@ public class ModifierVariables : MonoBehaviour
 
     internal void toggleMegaGun(bool enabled)
     {
-        StartingMegaGunPickup.SetActive(enabled);
+        if (StartingMegaGunPickup != null) StartingMegaGunPickup.SetActive(enabled);
     }
 }
 

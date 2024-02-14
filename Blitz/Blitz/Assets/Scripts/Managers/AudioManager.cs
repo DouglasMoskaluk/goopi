@@ -38,7 +38,6 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] sources;
     [SerializeField]
     private AudioCool[] AudioCooldown;
-    [SerializeField]
     float[] audioCooldownTimer;
 
     [Header("Volumes")]
