@@ -171,7 +171,7 @@ public class Bullet : MonoBehaviour
                 transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
                 Debug.Log(go.name);
-                if (hit.transform.CompareTag("Crate"))
+                if (hit.transform.CompareTag("Crate") && !bulletVars.snap)
                 {
                     go.transform.parent = hit.transform;
                 }
