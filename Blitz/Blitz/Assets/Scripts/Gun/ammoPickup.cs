@@ -7,6 +7,8 @@ public class ammoPickup : SpawnableObject
     [SerializeField]
     private float deathBarrier = 0;
     private float deathCheck = 1;
+    [SerializeField]
+    private float radius;
 
     private void Start()
     {
@@ -20,7 +22,14 @@ public class ammoPickup : SpawnableObject
             yield return new WaitForSeconds(deathCheck);
             if (transform.position.y < deathBarrier)
             {
-                transform.position = RespawnManager.instance.getRespawnLocation().position;
+                float x;
+                float y;
+                do
+                {
+                    x = Random.Range(-radius, radius);
+                    y = Random.Range(-radius, radius);
+                } while (Mathf.Abs(x)+Mathf.Abs(y) < radius);
+                transform.position = ModifierManager.instance.vars.centralLocation.position + new Vector3(x, 0, y);//RespawnManager.instance.getRespawnLocation().position;
             }
         }
 

@@ -8,7 +8,7 @@ public class ModifierVariables : MonoBehaviour
     [SerializeField]
     GameObject[] BonusPlatformsLavaEvent;
     [SerializeField]
-    GameObject StartingMegaGunPickup;
+    internal Transform centralLocation;
 
 
     [SerializeField]
@@ -38,7 +38,10 @@ public class ModifierVariables : MonoBehaviour
 
     internal void toggleMegaGun(bool enabled)
     {
-        if (StartingMegaGunPickup != null) StartingMegaGunPickup.SetActive(enabled);
+        if (enabled)
+        {
+            Instantiate(ModifierManager.instance.MegaGunPickupPrefab, centralLocation.position, centralLocation.rotation, GunManager.instance.transform);
+        }
     }
 }
 

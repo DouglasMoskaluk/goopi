@@ -24,7 +24,7 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     float GravityEventGravity = 10;
     [SerializeField]
-    GameObject MegaGunPickupPrefab;
+    internal GameObject MegaGunPickupPrefab;
     [SerializeField]
     GameObject BombPrefab;
     internal ModifierVariables vars;
