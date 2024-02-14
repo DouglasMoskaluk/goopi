@@ -8,6 +8,9 @@ public class ReadyUpZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LockerRoomManager.instance.ReadyUpPlayer(zoneID);
+        if (other.CompareTag("Player"))
+        {
+            LockerRoomManager.instance.ReadyUpPlayer(zoneID);
+        }
     }
 }

@@ -10,11 +10,17 @@ public class CameraShake : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin[] perlins;
 
-    private CinemachineFreeLook freelook;
+    [HideInInspector]
+    public CinemachineFreeLook freelook;
 
-    private PlayerCamInput camInput;
+    [HideInInspector]
+    public PlayerCamInput camInput;
 
-    private CinemachineCameraOffset offset;
+    [HideInInspector]
+    public CinemachineCollider camCollider;
+
+    [HideInInspector]
+    public CinemachineCameraOffset offset;
 
     private PlayerBodyFSM player;
 
@@ -31,6 +37,7 @@ public class CameraShake : MonoBehaviour
         freelook = transform.GetChild(2).GetComponent<CinemachineFreeLook>();
         offset = transform.GetChild(2).GetComponent<CinemachineCameraOffset>();
         camInput = transform.GetChild(2).GetComponent<PlayerCamInput>();
+        camCollider = transform.GetChild(2).GetComponent<CinemachineCollider>();
         player = transform.GetComponent<PlayerBodyFSM>();
         senseChanger = transform.GetComponent<SensitivityHandler>();
         senseChanger.enabled = false;
@@ -57,6 +64,11 @@ public class CameraShake : MonoBehaviour
         shakeCoRo = cameraShake(strength, length);
 
         StartCoroutine(shakeCoRo);
+    }
+
+    public void ResetOffset()
+    {
+        offset.m_Offset = new Vector3(0.5f, 0.3f, 0f);
     }
 
     public void CharSelectRotateCamera(float strength)
@@ -91,7 +103,7 @@ public class CameraShake : MonoBehaviour
 
 
         yield return null;
-    }
+    } 
 
     IEnumerator CharCameraRotate(float strength)
     {

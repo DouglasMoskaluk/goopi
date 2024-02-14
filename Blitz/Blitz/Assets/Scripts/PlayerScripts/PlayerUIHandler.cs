@@ -45,8 +45,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator gotHitCoroutine;
 
-    [SerializeField]
-    private GameObject lowHealthUI;
+    public GameObject lowHealthUI;
 
     [SerializeField]
     private GameObject damagedUI;
@@ -114,6 +113,10 @@ public class PlayerUIHandler : MonoBehaviour
         victoryText.SetActive(false);
     }
 
+    public void ReEnablePlayerUI()
+    {
+
+    }
 
 
     // Update is called once per frame
@@ -144,6 +147,8 @@ public class PlayerUIHandler : MonoBehaviour
         //player.enabled = true;
         Debug.Log("pressedbutton");
         crossHair.SetActive(true);
+
+        Alive();
 
         //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
 
@@ -228,7 +233,7 @@ public class PlayerUIHandler : MonoBehaviour
         grenadeCount.gameObject.SetActive(false);
         killCount.gameObject.SetActive(false);
         health.gameObject.SetActive(false);
-
+        crossHair.SetActive(false);
 
     }
 
@@ -239,6 +244,7 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         ammoCount.gameObject.SetActive(true);
         grenadeCount.gameObject.SetActive(true);
+        crossHair.SetActive(true);
         //killCount.gameObject.SetActive(true);
         //health.gameObject.SetActive(true);
     }
