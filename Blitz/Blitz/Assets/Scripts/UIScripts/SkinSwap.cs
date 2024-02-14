@@ -31,6 +31,12 @@ public class SkinSwap : MonoBehaviour
     [SerializeField]
     private PlayerBodyFSM player;
 
+    [SerializeField]
+    private PlayerUIHandler playerUIHandler;
+
+    [SerializeField]
+    private Sprite[] animalSprites;
+
     private bool isMoving = false;
 
     void Start()
@@ -66,6 +72,13 @@ public class SkinSwap : MonoBehaviour
         }
         
     }
+
+    public void SetSprite()
+    {
+        playerUIHandler.SetSprite(animalSprites[SkinNum]);
+    }
+
+
 
     IEnumerator IconSwipe(float direction)
     {

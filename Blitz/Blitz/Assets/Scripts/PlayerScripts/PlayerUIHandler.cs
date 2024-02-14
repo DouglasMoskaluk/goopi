@@ -76,6 +76,8 @@ public class PlayerUIHandler : MonoBehaviour
     [HideInInspector]
     public int playerID;
 
+    public Sprite animalHeadSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,6 +148,11 @@ public class PlayerUIHandler : MonoBehaviour
         //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
 
         characterChoice.SetActive(false);
+    }
+
+    public void SetSprite(Sprite newSprite)
+    {
+        animalHeadSprite = newSprite;
     }
 
     //depreciated

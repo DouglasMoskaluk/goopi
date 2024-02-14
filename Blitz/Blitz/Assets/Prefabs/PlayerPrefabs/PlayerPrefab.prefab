@@ -1108,6 +1108,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7744201333578399094}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4004449764951842687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1219,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: b6d2594f67657ff4c9a32b0686d961de, type: 3}
+  - {fileID: 21300000, guid: 765c46ed3ae4bb3409f12f367c252d0e, type: 3}
+  - {fileID: 21300000, guid: 696f23dae912d064c8f297f9afcba7eb, type: 3}
+  - {fileID: 21300000, guid: 0440913277978a84aba656f6a3afb5a0, type: 3}
 --- !u!1 &954215428165067130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +4285,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8312641968983668118}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4890694286850457535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4366,6 +4396,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: 4c20593f7e99b284b967ac4d0240db1d, type: 3}
+  - {fileID: 21300000, guid: 71f45f291127d4d4a928673f756adb44, type: 3}
+  - {fileID: 21300000, guid: 3cfe774102d413c4085f639b03dc383d, type: 3}
+  - {fileID: 21300000, guid: a1d3e10df2a53c0429ef694c5328d833, type: 3}
 --- !u!1 &3295926714700731044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5556,6 +5592,7 @@ MonoBehaviour:
   - {fileID: 3288983348719943086}
   victoryText: {fileID: 8179239279538154394}
   playerID: 0
+  animalHeadSprite: {fileID: 0}
 --- !u!1 &4241567632935052090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5622,7 +5659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005223789, y: -0.072690435, z: 0.00038073194, w: 0.9973408}
+  m_LocalRotation: {x: 0.0052237874, y: -0.072690435, z: 0.00038073186, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6541,6 +6578,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6403208716417454207}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2205659722787215501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6640,6 +6689,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: 31d8f17d23a214f4aa3b1bd1185eb2df, type: 3}
+  - {fileID: 21300000, guid: 0355a2e11ce8b4b4fb5945bfc3dc8df1, type: 3}
+  - {fileID: 21300000, guid: cabbbfb8f67313243a02ac80c2255875, type: 3}
+  - {fileID: 21300000, guid: 46bba17bc48b3624aa1b44f88201de8a, type: 3}
 --- !u!1 &5169709675477116778
 GameObject:
   m_ObjectHideFlags: 0
@@ -7522,7 +7577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316149, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
   m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8893,7 +8948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9934,6 +9989,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 216884523104764436}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1734872230375484923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10033,6 +10100,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: a6dddb6a1bd4edf43a11b930b41539b3, type: 3}
+  - {fileID: 21300000, guid: 775bba9db350cc044be7f161f2144c0b, type: 3}
+  - {fileID: 21300000, guid: d43773f4395868540a4448a612dfd99b, type: 3}
+  - {fileID: 21300000, guid: 036b40a178236d44a90e5a492b5d3d2f, type: 3}
 --- !u!1 &8204058620237738314
 GameObject:
   m_ObjectHideFlags: 0
@@ -10362,6 +10435,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3164637848242168328}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &765636087046146677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10461,6 +10546,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: ff9917bdfb3c8fb448ae9bc0057315e8, type: 3}
+  - {fileID: 21300000, guid: 3b674e99d5409c54b9c08db35ca364f1, type: 3}
+  - {fileID: 21300000, guid: cb95e8f10da6b1a4595b91ea2839d6d6, type: 3}
+  - {fileID: 21300000, guid: 4cb5008eff71ae0418b0cc90c765a050, type: 3}
 --- !u!1 &8332434068890722751
 GameObject:
   m_ObjectHideFlags: 0
@@ -10884,6 +10975,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 689715034481875329}
+        m_TargetAssemblyTypeName: SkinSwap, Assembly-CSharp
+        m_MethodName: SetSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2704116307648100153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10983,6 +11086,12 @@ MonoBehaviour:
   SkinNum: 0
   modelHandler: {fileID: 8407183801998086149}
   player: {fileID: 8715874472033099178}
+  playerUIHandler: {fileID: 2787196210716927257}
+  animalSprites:
+  - {fileID: 21300000, guid: 019bca551214f9c4a9a5a0688e94a81d, type: 3}
+  - {fileID: 21300000, guid: 7c44a066610bd9e4484174b2219450b2, type: 3}
+  - {fileID: 21300000, guid: f42d1f54f93bbf448bc3784f5f4decc6, type: 3}
+  - {fileID: 21300000, guid: 3f42cca4d843bdf49949db7075f08631, type: 3}
 --- !u!1 &8824682060386831000
 GameObject:
   m_ObjectHideFlags: 0
