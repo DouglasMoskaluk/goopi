@@ -11,7 +11,7 @@ public class CrownRagdoll : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = transform.GetChild(0).GetComponent<Rigidbody>();
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
     }

@@ -11,6 +11,8 @@ public class Spinner : MonoBehaviour
 
     private IEnumerator fastSpinCoro;
 
+    private float flingForce = 10.0f;
+
     private bool fast = false;
 
     [SerializeField]
@@ -32,7 +34,7 @@ public class Spinner : MonoBehaviour
             Debug.Log("PLayer hit");
             Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
             PlayerBodyFSM fsm = other.GetComponent<PlayerBodyFSM>();
-            fsm.addKnockBack(dir * 30f);
+            fsm.addKnockBack(dir * flingForce);
             fsm.transitionState(PlayerMotionStates.KnockBack);
         }
     }
@@ -56,10 +58,8 @@ public class Spinner : MonoBehaviour
 
     IEnumerator FastRotation()
     {
-        for(int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].isTrigger = true;
-        }
+
+        flingForce = 20.0f;
 
         float timer = 0f;
 
@@ -70,10 +70,7 @@ public class Spinner : MonoBehaviour
             yield return null;
         }
 
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].isTrigger = false;
-        }
+        flingForce = 10.0f;
 
     }
 
