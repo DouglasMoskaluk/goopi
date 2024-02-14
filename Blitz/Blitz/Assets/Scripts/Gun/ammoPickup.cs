@@ -33,6 +33,7 @@ public class ammoPickup : SpawnableObject
             Gun gun = other.GetComponent<PlayerBodyFSM>().playerGun;
             if (gun.gunVars.type == Gun.GunType.NERF && gun.gunVars.ammo[0] < gun.gunVars.ammo[1])
             {
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_RELOAD);
                 gun.gunVars.ammo[0]++;
                 Destroy(gameObject);
             }

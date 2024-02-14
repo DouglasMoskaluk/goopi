@@ -34,6 +34,7 @@ public class Plunger : SpawnableObject
     private IEnumerator pullPlayer(PlayerBodyFSM hit)
     {
         yield return new WaitForSeconds(pullDelay);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
         hit.newAttacker(Owner);
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
         Vector3 pullDirection = plr.transform.position - hit.transform.position;
@@ -46,6 +47,7 @@ public class Plunger : SpawnableObject
     private IEnumerator pullCrate()
     {
         yield return new WaitForSeconds(pullDelay);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
         Vector3 pullDirection = plr.transform.position - transform.parent.position;
         pullDirection.y += 5;
