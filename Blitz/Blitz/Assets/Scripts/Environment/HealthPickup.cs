@@ -10,6 +10,9 @@ public class HealthPickup : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
 
+    [SerializeField]
+    private int ammoPickedUp;
+
     private void Start()
     {
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
@@ -30,7 +33,11 @@ public class HealthPickup : MonoBehaviour
             player.refillHealth();
             if (player.playerGun.gunVars.type == Gun.GunType.NERF)
             {
-                player.playerGun.instantReload();
+                player.playerGun.gunVars.ammo[0] += ammoPickedUp;
+                if (player.playerGun.gunVars.ammo[0] > player.playerGun.gunVars.ammo[1])
+                {
+                    player.playerGun.gunVars.ammo[0] = player.playerGun.gunVars.ammo[1];
+                }
             }
             Destroy(gameObject);
         }
