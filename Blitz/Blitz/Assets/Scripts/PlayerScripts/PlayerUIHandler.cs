@@ -245,7 +245,7 @@ public class PlayerUIHandler : MonoBehaviour
         ammoCount.gameObject.SetActive(true);
         grenadeCount.gameObject.SetActive(true);
         crossHair.SetActive(true);
-        //killCount.gameObject.SetActive(true);
+        killCount.gameObject.SetActive(true);
         //health.gameObject.SetActive(true);
     }
     IEnumerator ShowKillMarker()
