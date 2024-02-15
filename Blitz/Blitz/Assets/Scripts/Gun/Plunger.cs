@@ -8,6 +8,8 @@ public class Plunger : SpawnableObject
     float pullDelay;
     [SerializeField]
     float pullPower;
+    [SerializeField]
+    float heightPull = 5;
 
     internal override void init(int owner)
     {
@@ -38,7 +40,7 @@ public class Plunger : SpawnableObject
         hit.newAttacker(Owner);
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
         Vector3 pullDirection = plr.transform.position - hit.transform.position;
-        pullDirection.y += 5;
+        pullDirection.y += heightPull;
         hit.addKnockBack(pullDirection * pullPower);
         hit.transitionState(PlayerMotionStates.KnockBack);
         Destroy(gameObject);
