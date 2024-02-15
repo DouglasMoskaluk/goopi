@@ -6,7 +6,7 @@ public class Crate : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField]
-    internal int damage;
+    internal int damage = 50;
     [SerializeField]
     internal float velocityThreshold = 3;
     internal int lastImpulse = -1;

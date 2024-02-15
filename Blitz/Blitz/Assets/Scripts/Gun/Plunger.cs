@@ -10,6 +10,8 @@ public class Plunger : SpawnableObject
     float pullPower;
     [SerializeField]
     float heightPull = 5;
+    [SerializeField]
+    float CratePullPower = 350;
 
     internal override void init(int owner)
     {
@@ -53,7 +55,7 @@ public class Plunger : SpawnableObject
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
         Vector3 pullDirection = plr.transform.position - transform.parent.position;
         pullDirection.y += 5;
-        transform.parent.GetComponent<Rigidbody>().AddForce(pullDirection.normalized * 100);
+        transform.parent.GetComponent<Rigidbody>().AddForce(pullDirection.normalized * CratePullPower);
         Destroy(gameObject);
     }
 
