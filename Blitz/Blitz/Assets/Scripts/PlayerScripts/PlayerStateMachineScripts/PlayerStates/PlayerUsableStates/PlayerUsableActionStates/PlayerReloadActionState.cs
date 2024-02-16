@@ -15,7 +15,7 @@ public class PlayerReloadActionState : PlayerActionState
         FSM.logMessage("inside reload state");
     }
 
-    public void onStateUpdate()
+    public override void stateUpdate()
     {
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= reloadTime) 
