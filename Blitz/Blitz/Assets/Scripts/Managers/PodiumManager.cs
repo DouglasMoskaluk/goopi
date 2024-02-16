@@ -97,6 +97,8 @@ public class PodiumManager : MonoBehaviour
 
         gameData = FindPlayerRanks(gameData);
 
+        gameData.ForEach(x => Debug.Log(x.ToString()));
+
         PlacePlayersOnPodium(gameData);
 
         isTieBreaker = CheckTieBreaker(gameData);
@@ -167,7 +169,7 @@ public class PodiumManager : MonoBehaviour
             instance.position = instance.position + Vector3.right * xPlacement;
             tieIndicators[i] = instance.GetComponent<PlayerTieKillsIndicator>();
             tieIndicators[i].SetKillsMax(tieMaxKills);
-            tieIndicators[i].SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(i).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+            tieIndicators[i].SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[i].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         }
 
         /*WORKS BUT WE DONT NEED FUNCTIONALITY FOR MORE THAN 2 PLAYERS TO TIE
