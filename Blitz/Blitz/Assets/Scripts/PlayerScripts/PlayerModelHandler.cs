@@ -62,6 +62,11 @@ public class PlayerModelHandler : MonoBehaviour
 
     }
 
+    public void DelayedModelChange(int featureNum)
+    {
+        StartCoroutine(WaitForPiston(featureNum));
+    }
+
     public void SetModel(int featureNum)
     {
 
@@ -120,4 +125,11 @@ public class PlayerModelHandler : MonoBehaviour
         //}
 
     }
+
+    IEnumerator WaitForPiston(int featureNum)
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        SetModel(featureNum);
+    }
+
 }
