@@ -185,7 +185,8 @@ public class Gun : MonoBehaviour
 
     internal void instantReload()
     {
-        gunVars.ammo[0] = gunVars.ammo[1];
+        if (gunVars.ammo.Length > 2) gunVars.ammo[0] = gunVars.ammo[2];
+        else gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
         gunVars.canShoot = true;
     }
