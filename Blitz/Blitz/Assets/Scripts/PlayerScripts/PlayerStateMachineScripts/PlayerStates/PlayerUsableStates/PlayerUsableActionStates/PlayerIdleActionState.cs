@@ -38,9 +38,8 @@ public class PlayerIdleActionState : PlayerActionState
         {
             FSM.transitionState(PlayerActionStates.ThrowGrenade);
         }
-        //else if (playerGun != null && input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo &&
-        //    ((playerGun.gunVars.type == Gun.GunType.NERF || playerGun.gunVars.type == Gun.GunType.BOOMSTICK)))
-        else if (input.reloadPressed)
+        else if (playerGun != null && input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo &&
+            ((playerGun.gunVars.type != Gun.GunType.NERF && playerGun.gunVars.type != Gun.GunType.BOOMSTICK)))
         {
             FSM.transitionState(PlayerActionStates.Reload);
         }
