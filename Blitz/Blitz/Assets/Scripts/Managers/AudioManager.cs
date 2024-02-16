@@ -123,6 +123,7 @@ public class AudioManager : MonoBehaviour
         MusicSource.clip = music[0].clip;
         MusicSource.pitch = music[0].pitch;
         MusicSource.volume = music[0].volume * musicVolume * masterVolume;
+        MusicSource.outputAudioMixerGroup = music[0].mixer;
         MusicSource.Play();
         audioCooldownTimer = new float[(int)AudioQueue.LENGTH];
     }
@@ -173,6 +174,7 @@ public class AudioManager : MonoBehaviour
             {
                 newSource.clip = music[i].clip;
                 newSource.pitch = music[i].pitch;
+                newSource.outputAudioMixerGroup = music[i].mixer;
                 newSource.Play();
                 trackNum = i;
                 break;
@@ -341,4 +343,6 @@ internal struct Track
     [SerializeField]
     [Range(0.1f, 3)]
     internal float pitch;
+    [SerializeField]
+    internal AudioMixerGroup mixer;
 }
