@@ -40,8 +40,14 @@ public class ModifierVariables : MonoBehaviour
     {
         if (enabled)
         {
-            Instantiate(ModifierManager.instance.MegaGunPickupPrefab, centralLocation.position, centralLocation.rotation, GunManager.instance.transform);
+            StartCoroutine(spawnMegaGun());
         }
+    }
+
+    IEnumerator spawnMegaGun()
+    {
+        yield return new WaitForSeconds(5);
+        Instantiate(ModifierManager.instance.MegaGunPickupPrefab, centralLocation.position, centralLocation.rotation, GunManager.instance.transform);
     }
 }
 
