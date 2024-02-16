@@ -28,7 +28,6 @@ public class Hammer : MonoBehaviour
 
     public void PlayHammer(int playerID)
     {
-        Debug.Log("PLAYER ID" + playerID);
         if(!anim.isPlaying)
         {
             killerID = playerID;

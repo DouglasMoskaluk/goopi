@@ -17,7 +17,9 @@ public class Target : MonoBehaviour
 
     public void BulletHit(int killerID)
     {
-        Debug.Log("hit target");
+        //Debug.Log("TARGET PLAYER " + killerID);
+
+        //Debug.Log("hit target");
         newEvent.Invoke(killerID);
 
     }

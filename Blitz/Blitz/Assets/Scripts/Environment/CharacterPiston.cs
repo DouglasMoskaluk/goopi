@@ -115,7 +115,6 @@ public class CharacterPiston : MonoBehaviour
             if(didFall)
             {
                 playerCamShake.ShakeCamera(shakeStrength, shakeLength);
-
             }
 
             yield return new WaitForSecondsRealtime(waitTime);
