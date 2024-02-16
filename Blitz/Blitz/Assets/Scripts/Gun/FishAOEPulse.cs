@@ -8,6 +8,8 @@ public class FishAOEPulse : MonoBehaviour
     float pulseLength = 0.7f;
     [SerializeField]
     GameObject pulsewaveExplosion;
+    [SerializeField]
+    float sizeScaler = 0.4f;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -27,7 +29,10 @@ public class FishAOEPulse : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(pulseLength);
-            Instantiate(pulsewaveExplosion, transform.position, transform.rotation, transform.parent.parent).GetComponent<Explosion>().init(owner);
+            GameObject go = Instantiate(pulsewaveExplosion, transform.position, transform.rotation, transform.parent.parent);
+            go.transform.localScale = transform.parent.localScale * sizeScaler;
+            go.GetComponent<Explosion>().init(owner);
+
         }
     }
 }

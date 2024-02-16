@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5361992575909112653}
   - component: {fileID: 8208970932137745009}
+  - component: {fileID: 4171916750466228103}
   m_Layer: 16
   m_Name: Pulses
   m_TagString: Untagged
@@ -166,9 +167,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2f466fbaf92ef4296849ae44045b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pulseLength: 0.2
+  pulseLength: 0.7
   pulsewaveExplosion: {fileID: 4256358020650378377, guid: 8729caf14eed75744b929d1d81d5d114,
     type: 3}
+  sizeScaler: 0.06
+--- !u!135 &4171916750466228103
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006075115422764195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6551949199387729789
 GameObject:
   m_ObjectHideFlags: 0

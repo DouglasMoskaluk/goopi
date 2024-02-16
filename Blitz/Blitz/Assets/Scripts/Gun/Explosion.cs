@@ -34,7 +34,7 @@ public class Explosion : SpawnableObject
 
         yield return new WaitForSeconds(delay);
 
-        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
+        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent).transform.localScale = transform.localScale * radius;
         switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
         {
             case Gun.GunType.GOOP:
