@@ -47,10 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facbd5e8de7d73440bb240c6a5dc5c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: -1
   delay: 2
   radius: 2
   explosionTime: 0.2
   damage: 35
+  onExplosionSpawn: {fileID: 4932056999929749714, guid: 646e890211028bb40afb5b635f961f53,
+    type: 3}
 --- !u!135 &3851416769174279275
 SphereCollider:
   m_ObjectHideFlags: 0

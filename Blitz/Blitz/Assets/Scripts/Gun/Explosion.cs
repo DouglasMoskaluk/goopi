@@ -13,6 +13,8 @@ public class Explosion : SpawnableObject
     internal float time = 0;
     [SerializeField]
     internal int damage = 35;
+    [SerializeField]
+    GameObject onExplosionSpawn;
 
     IEnumerator explosionCoroutine;
 
@@ -32,6 +34,7 @@ public class Explosion : SpawnableObject
 
         yield return new WaitForSeconds(delay);
 
+        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
         switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
         {
             case Gun.GunType.GOOP:
