@@ -10,14 +10,11 @@ public class Target : MonoBehaviour
     [SerializeField]
     UnityEvent<int> newEvent;
 
-    void Start()
-    {
-        
-    }
-
     public void BulletHit(int killerID)
     {
-        Debug.Log("hit target");
+        //Debug.Log("TARGET PLAYER " + killerID);
+
+        //Debug.Log("hit target");
         newEvent.Invoke(killerID);
 
     }

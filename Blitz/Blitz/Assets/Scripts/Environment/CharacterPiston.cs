@@ -79,11 +79,17 @@ public class CharacterPiston : MonoBehaviour
         if(!inFall)
         {
             inFall = true;
+            bool didFall = true;
             //Debug.Log("FALL");
             StopCoroutine(raiseCoRo);
 
             float fallTracker = 0;
             float ratio = fallPercentage;
+
+            if(ratio >= 1)
+            {
+                didFall = false;
+            }
 
             while (ratio < 1.0f)
             {
@@ -106,7 +112,14 @@ public class CharacterPiston : MonoBehaviour
             //wait fraction of second
             fallPercentage = 1;
 
-            playerCamShake.ShakeCamera(shakeStrength, shakeLength);
+            if(didFall)
+            {
+                playerCamShake.ShakeCamera(shakeStrength, shakeLength);
+            }
+
+            yield return new WaitForSecondsRealtime(waitTime);
+
+            //playerCamShake.ShakeCamera(shakeStrength, shakeLength);
 
             //yield return new WaitForSeconds(waitTime);
             inFall = false;
