@@ -19,10 +19,10 @@ public class PlayerIdleActionState : PlayerActionState
                 FSM.logMessage("Tried to shoot");
                 playerGun.shoot(cam);
             }
-            else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
-            {
-                playerGun.reload();
-            }
+            //else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
+            //{
+            //    playerGun.reload();
+            //}
         }
         
     }
@@ -38,9 +38,12 @@ public class PlayerIdleActionState : PlayerActionState
         {
             FSM.transitionState(PlayerActionStates.ThrowGrenade);
         }
-        else if (input.dropGrenadePressed && grenadeThrower.hasGrenade())//and has grenade
+        //else if (playerGun != null && input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo &&
+        //    ((playerGun.gunVars.type == Gun.GunType.NERF || playerGun.gunVars.type == Gun.GunType.BOOMSTICK)))
+        else if (input.reloadPressed)
         {
-            FSM.transitionState(PlayerActionStates.DropGrenade);
+            FSM.transitionState(PlayerActionStates.Reload);
         }
+
     }
 }
