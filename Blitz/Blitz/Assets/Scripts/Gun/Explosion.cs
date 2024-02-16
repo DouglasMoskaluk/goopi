@@ -34,6 +34,7 @@ public class Explosion : SpawnableObject
 
         yield return new WaitForSeconds(delay);
 
+        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
         switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
         {
             case Gun.GunType.GOOP:
@@ -61,7 +62,6 @@ public class Explosion : SpawnableObject
         }
         EventManager.instance.removeListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
-        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
         Destroy(gameObject);
     }
 
