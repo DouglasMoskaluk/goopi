@@ -114,6 +114,8 @@ public class RespawnManager : MonoBehaviour
         {
             Debug.Log("RESPAWN MANAGER: " + elibibleLocations.Count + " eligible respawn locations were found.");
             Debug.Log("RESPAWN MANAGER: respawn at position " + elibibleLocations[selected].position + " was selected for respawn");
+            Debug.Log("RESPAWN MANAGER: Eligible locations ");
+            elibibleLocations.ForEach(x => Debug.Log(x.name));
         }
 
         return elibibleLocations[selected];//return selected respawn
@@ -169,6 +171,8 @@ public class RespawnManager : MonoBehaviour
         {
             Debug.Log("RESPAWN MANAGER: " + elibibleLocations.Count + " eligible respawn locations were found.");
             Debug.Log("RESPAWN MANAGER: respawn at position " + elibibleLocations[selected].position + " was selected for respawn");
+            Debug.Log("RESPAWN MANAGER: Eligible locations ");
+            elibibleLocations.ForEach(x => Debug.Log(x.name));
         }
 
         return elibibleLocations[selected];//return selected respawn
