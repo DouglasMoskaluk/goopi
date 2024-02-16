@@ -42,9 +42,9 @@ public class Plunger : SpawnableObject
         hit.newAttacker(Owner);
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
         Vector3 pullDirection = plr.transform.position - hit.transform.position;
-        pullDirection = pullDirection * pullPower * (100 - plr.Health) * (100 - plr.Health);
+        pullDirection = pullDirection * (100 - plr.Health) * (100 - plr.Health);
         pullDirection.y += heightPull;
-        hit.addKnockBack(pullDirection);
+        hit.addKnockBack(pullDirection * pullPower);
         hit.transitionState(PlayerMotionStates.KnockBack);
         Destroy(gameObject);
     }
