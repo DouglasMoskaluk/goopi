@@ -118,7 +118,7 @@ public class CharacterPiston : MonoBehaviour
 
             }
 
-            yield return new WaitForSecondsRealtime(0.25f);
+            yield return new WaitForSecondsRealtime(waitTime);
 
             //playerCamShake.ShakeCamera(shakeStrength, shakeLength);
 
