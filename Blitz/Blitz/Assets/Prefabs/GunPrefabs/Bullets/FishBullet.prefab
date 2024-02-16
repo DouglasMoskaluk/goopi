@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2022904676919281069
 Transform:
   m_ObjectHideFlags: 0
@@ -122,6 +122,53 @@ MonoBehaviour:
   timeBetweenTriggers: 0.2
   damage: 10
   lifeTime: 900000
+--- !u!1 &2006075115422764195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5361992575909112653}
+  - component: {fileID: 8208970932137745009}
+  m_Layer: 16
+  m_Name: Pulses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5361992575909112653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006075115422764195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3769276438156702818}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8208970932137745009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006075115422764195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2f466fbaf92ef4296849ae44045b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseLength: 0.2
+  pulsewaveExplosion: {fileID: 4256358020650378377, guid: 8729caf14eed75744b929d1d81d5d114,
+    type: 3}
 --- !u!1 &6551949199387729789
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +206,7 @@ Transform:
   - {fileID: 8768027748877131521}
   - {fileID: 277922196134575754}
   - {fileID: 2022904676919281069}
+  - {fileID: 5361992575909112653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &835420672527296293
@@ -190,6 +238,10 @@ MonoBehaviour:
     attachPlayer: 0
     snap: 0
     destroyPlayerHit: 1
+  viewRadius: 10
+  viewDistance: 30
+  coneAngle: 10
+  rotationAngle: 55
 --- !u!135 &8280519173941270583
 SphereCollider:
   m_ObjectHideFlags: 0
