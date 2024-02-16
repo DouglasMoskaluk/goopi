@@ -390,30 +390,32 @@ public class PlayerBodyFSM : MonoBehaviour
     public void damagePlayer(int value, int attackerId)
     {
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
-
-        playerUI.playerGotDamaged();
-        newAttacker(attackerId);
-        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_HURT);
-
-        if (attackerId != -1 && attackerId != playerID)
+        if (health > 0)
         {
-            PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
-            Attacker.playerUI.playerGotHit();
-        }
-        //else Debug.LogError("Player damaged by non-existing player!");
-        if ((health -= value) <= 0)
-        {
-            //player gets kill marker
-            //update kill count
-            if (mostRecentAttacker != -1 && !deathCheck)
+            playerUI.playerGotDamaged();
+            newAttacker(attackerId);
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_HURT);
+
+            if (attackerId != -1 && attackerId != playerID)
             {
-                RoundManager.instance.updateKillCount(mostRecentAttacker);
+                PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
+                Attacker.playerUI.playerGotHit();
             }
-            death();
-        }
-        if(health <= 30)
-        {
-            playerUI.ShowLowHealth();
+            //else Debug.LogError("Player damaged by non-existing player!");
+            if ((health -= value) <= 0)
+            {
+                //player gets kill marker
+                //update kill count
+                if (mostRecentAttacker != -1 && !deathCheck)
+                {
+                    RoundManager.instance.updateKillCount(mostRecentAttacker);
+                }
+                death();
+            }
+            if (health <= 30)
+            {
+                playerUI.ShowLowHealth();
+            }
         }
     }
 
