@@ -33,7 +33,8 @@ public class ammoPickup : SpawnableObject
                     x = Random.Range(-radius, radius);
                     y = Random.Range(-radius, radius);
                 } while (Mathf.Abs(x)+Mathf.Abs(y) < radius);
-                transform.position = ModifierManager.instance.vars.centralLocation.position + new Vector3(x, 0, y);//RespawnManager.instance.getRespawnLocation().position;
+                if (ModifierManager.instance.vars != null) transform.position = ModifierManager.instance.vars.centralLocation.position + new Vector3(x, 0, y);//RespawnManager.instance.getRespawnLocation().position;
+                else { transform.position = RespawnManager.instance.getLockerRoomRespawnLocation(Owner).position; }
             }
         }
         Destroy(gameObject);
