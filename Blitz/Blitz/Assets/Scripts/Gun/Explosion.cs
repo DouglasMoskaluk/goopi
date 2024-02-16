@@ -13,6 +13,8 @@ public class Explosion : SpawnableObject
     internal float time = 0;
     [SerializeField]
     internal int damage = 35;
+    [SerializeField]
+    GameObject onExplosionSpawn;
 
     IEnumerator explosionCoroutine;
 
@@ -59,6 +61,7 @@ public class Explosion : SpawnableObject
         }
         EventManager.instance.removeListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
+        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
         Destroy(gameObject);
     }
 
