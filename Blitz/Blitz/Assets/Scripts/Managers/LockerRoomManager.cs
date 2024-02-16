@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class LockerRoomManager : MonoBehaviour
 {
     public static LockerRoomManager instance;
+
+    //[HideInInspector]
+    public Vector2[] buttonTracker;
 
     [SerializeField] private GameObject[] joinTexts;
 
