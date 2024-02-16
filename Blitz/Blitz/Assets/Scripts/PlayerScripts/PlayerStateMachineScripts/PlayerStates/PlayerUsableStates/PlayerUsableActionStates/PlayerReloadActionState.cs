@@ -12,7 +12,6 @@ public class PlayerReloadActionState : PlayerActionState
     {
         anim.Play("Reload", 1, 0f);
         reloadTime = playerGun.gunVars.reloadTime;
-        FSM.logMessage("inside reload state");
     }
 
     public override void stateUpdate()
