@@ -1615,6 +1615,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de5ccd18b50de4d488ce6c4e278084a8, type: 2}
     - target: {fileID: 4508337558636870243, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
         type: 3}
       propertyPath: m_Mass
@@ -4230,50 +4235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 318633901}
     m_Modifications:
-    - target: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173082833427986627, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8bc0ed7e37bc95a4cb65aa03959f8c59, type: 2}
     - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
       propertyPath: m_Name
       value: GrenadeSpawner (25)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530497631996573254, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.30000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.061972685
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.30000004
       objectReference: {fileID: 0}
     - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
@@ -4328,11 +4293,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1158493516}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7, type: 3}
 --- !u!1 &314615475
 GameObject:
@@ -6711,28 +6672,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 452397561}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &465061010 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 470247961}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &465061016
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465061010}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &465265241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7053,50 +6992,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 318633901}
     m_Modifications:
-    - target: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173082833427986627, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8bc0ed7e37bc95a4cb65aa03959f8c59, type: 2}
     - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
       propertyPath: m_Name
       value: GrenadeSpawner (27)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530497631996573254, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.30000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.061972685
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.30000004
       objectReference: {fileID: 0}
     - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
@@ -7151,11 +7050,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 465061016}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7, type: 3}
 --- !u!1001 &476941998
 PrefabInstance:
@@ -10602,6 +10497,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de5ccd18b50de4d488ce6c4e278084a8, type: 2}
     m_RemovedComponents:
     - {fileID: 4508337558636870243, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
     - {fileID: 5327341444227491385, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
@@ -11533,6 +11433,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de5ccd18b50de4d488ce6c4e278084a8, type: 2}
     m_RemovedComponents:
     - {fileID: 4508337558636870243, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
     - {fileID: 5327341444227491385, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
@@ -15218,28 +15123,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1122991209}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1130566673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1419042269}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &1130566675
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130566673}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &1132189977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15533,28 +15416,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1146962736}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1158493510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 312646509}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &1158493516
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158493510}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6d3fe786b22e9364483fbd55afa3ee1f, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &1163663473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16310,6 +16171,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de5ccd18b50de4d488ce6c4e278084a8, type: 2}
     - target: {fileID: 4508337558636870243, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
         type: 3}
       propertyPath: m_Mass
@@ -18140,50 +18006,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 318633901}
     m_Modifications:
-    - target: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173082833427986627, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8bc0ed7e37bc95a4cb65aa03959f8c59, type: 2}
     - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
       propertyPath: m_Name
       value: GrenadeSpawner (26)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177247947472947255, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530497631996573254, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.30000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.061972685
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.30000004
       objectReference: {fileID: 0}
     - target: {fileID: 6937376105277845922, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
         type: 3}
@@ -18238,11 +18064,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3428732696914879809, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1130566675}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8eb3c7ad53bc384ebe8e573f4ac63f7, type: 3}
 --- !u!4 &1434115688 stripped
 Transform:
@@ -23233,6 +23055,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3985806812805751246, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de5ccd18b50de4d488ce6c4e278084a8, type: 2}
     m_RemovedComponents:
     - {fileID: 4508337558636870243, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
     - {fileID: 5327341444227491385, guid: 79e1bf02fe5eac24cbb7fb6d72bb5e5f, type: 3}
