@@ -74,6 +74,7 @@ public class SplitScreenManager : MonoBehaviour
         cController.enabled = true;
 
         player.transform.GetComponent<PlayerBodyFSM>().playerID = players.Count - 1;
+        player.transform.GetComponent<PlayerBodyFSM>().SetGrenadeArcRendererLayer(layerToAdd);
 
         player.transform.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         player.transform.gameObject.layer = layerToAdd;

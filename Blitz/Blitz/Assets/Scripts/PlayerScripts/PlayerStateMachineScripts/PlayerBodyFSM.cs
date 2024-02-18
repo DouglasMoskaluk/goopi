@@ -109,6 +109,11 @@ public class PlayerBodyFSM : MonoBehaviour
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
     }
 
+    public void SetGrenadeArcRendererLayer(int layer)
+    {
+        grenadeArcRenderer.gameObject.layer = layer;
+    }
+
     public PlayerUIHandler GetUIHandler()
     {
         return uiHandler;
