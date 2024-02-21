@@ -16,8 +16,14 @@ public class PlayerIdleActionState : PlayerActionState
         {
             if (input.shootPressed)
             {
-                FSM.logMessage("Tried to shoot");
-                playerGun.shoot(cam);
+                if (playerGun.Ammo >= 1) playerGun.shoot(cam);
+                else { 
+                    if ((playerGun.gunVars.type != Gun.GunType.NERF && playerGun.gunVars.type != Gun.GunType.BOOMSTICK))
+                    {
+                        if (playerGun) FSM.transitionState(PlayerActionStates.Reload);
+                        return;
+                    }
+                }
             }
             //else if (input.reloadPressed && playerGun.Ammo < playerGun.MaxAmmo)
             //{
