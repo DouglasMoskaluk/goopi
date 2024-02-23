@@ -30,6 +30,9 @@ public class Hammer : MonoBehaviour
     {
         if(!anim.isPlaying)
         {
+
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.HAMMER_SWING);
+
             killerID = playerID;
             anim.Play("Hammer");
             StartCoroutine(getVelocity());
@@ -52,6 +55,7 @@ public class Hammer : MonoBehaviour
             if (plrFSM != null)
             {
                 plrFSM.damagePlayer(100, killerID);
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.HAMMER_KILL);
             }
 
         }

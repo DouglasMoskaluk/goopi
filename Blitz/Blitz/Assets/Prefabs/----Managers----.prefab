@@ -4253,7 +4253,7 @@ MonoBehaviour:
     pitch: 1
     mixer: {fileID: 8164700600104673315, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 31
-    clip: {fileID: 8300000, guid: 76235d8834402c34b9fa575d6c8216b8, type: 3}
+    clip: {fileID: 8300000, guid: f38249c2274f5874aaa6768c4a92e353, type: 3}
     volume: 0.5
     pitch: 1
     mixer: {fileID: 225872213564629478, guid: 39052e53f537e864991812c685fbabb0, type: 2}
@@ -4327,6 +4327,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     mixer: {fileID: 315156412975194697, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+  - queue: 62
+    clip: {fileID: 8300000, guid: 57bfa8df0a343fc4dabbc006f9c3ea10, type: 3}
+    volume: 0.24
+    pitch: 1
+    mixer: {fileID: -3388760029653104800, guid: 39052e53f537e864991812c685fbabb0,
+      type: 2}
+  - queue: 63
+    clip: {fileID: 8300000, guid: 29efdc762c492614da106dc249ae6731, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: -3388760029653104800, guid: 39052e53f537e864991812c685fbabb0,
+      type: 2}
   music:
   - trackName: MainMenu
     clip: {fileID: 8300000, guid: dca6a37b29525fd459a22b86db1c5dc0, type: 3}
@@ -4340,6 +4352,8 @@ MonoBehaviour:
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   AudioCooldown:
   - queue: 34
+    cooldown: 0.5
+  - queue: 63
     cooldown: 0.5
   masterVolume: 0.25
   musicVolume: 1
