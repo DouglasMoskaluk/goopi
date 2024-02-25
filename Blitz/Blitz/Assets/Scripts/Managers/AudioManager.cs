@@ -53,6 +53,7 @@ public class AudioManager : MonoBehaviour
         PRESS_SLAM, PRESS_HISS,
 
         // AFTERTHOUGHTS GO HERE
+        MEGA_OBLITERATED,
 
         LENGTH
     }
