@@ -30,7 +30,7 @@ public class PlayerAttachedDeletion : MonoBehaviour
         int layerToAdd = (int)Mathf.Log(renderLayers[plr].value, 2);
         transform.gameObject.layer = layerToAdd;
         EventManager.instance.addListener(Events.onPlayerDeath, deathCheck);
-        EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
+        EventManager.instance.addListener(Events.onEventEnd, roundEnd);
         //int bitmask = (1 << (11 + plr));
         //gameObject.layer = bitmask;
 

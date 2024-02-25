@@ -36,7 +36,7 @@ public class PlayerBomb : MonoBehaviour
     private void Start()
     {
 
-        EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
+        EventManager.instance.addListener(Events.onEventEnd, roundEnd);
     }
 
     private void Update()

@@ -60,9 +60,9 @@ public class Gun : MonoBehaviour
     }
 
 
-    internal void RicochetEvent()
+    internal void RicochetEvent(bool modifierActive)
     {
-        bulletVars.bounces = true;
+        bulletVars.bounces = modifierActive;
     }
 
 

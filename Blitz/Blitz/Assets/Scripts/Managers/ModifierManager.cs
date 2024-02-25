@@ -89,15 +89,15 @@ public class ModifierManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            initEvents();
+            changeModifier(new EventParams(1));
         }
     }
 
 
-    void initEvents(EventParams param = new EventParams())
+    void changeModifier(EventParams param = new EventParams())
     {
         //Resetting events
-        if (RoundManager.instance.getRoundNum() == 1)
+        if (RoundManager.instance.getRoundNum() == 1 && !ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
         }
@@ -117,30 +117,46 @@ public class ModifierManager : MonoBehaviour
         {
             move.Reset();
         }
+        EventManager.instance.invokeEvent(Events.onEventEnd);
 
-        //Selects an event
-        int round = RoundManager.instance.getRoundNum() - 1;
-        if (modifiers[round] != -1)
+
+        if (param.killed == 0) // the default attacker
         {
-            for (int i = 0; i < modifiers[round]; i++)
+            int round = RoundManager.instance.getRoundNum() - 1;
+            if (modifiers[round] != -1)
             {
-                int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH -1);
-                if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
+                for (int i = 0; i < modifiers[round]; i++)
                 {
-                    ActiveEvents[chosenEvent] = true;
+                    int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH - 1);
+                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
+                    {
+                        ActiveEvents[chosenEvent] = true;
+                    }
+                    else if (ActiveEvents[chosenEvent])
+                    {
+                        i--;
+                    }
                 }
-                else if (ActiveEvents[chosenEvent])
-                {
-                    i--;
-                }
+            }
+            else
+            {
+                ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
             }
         } else
         {
-            ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
+            ActiveEvents[Random.Range(0, (int)RoundModifierList.LENGTH - 1)] = true;
         }
+        //Selects an event
+        
 
         Debug.Log("Events have been changed: Ricochet:" + ActiveEvents[0] + ", Low Grave:" + ActiveEvents[1] + ", bomb:" + ActiveEvents[2] + ", lava:" + ActiveEvents[3] + ", mega:" + ActiveEvents[4]);
 
+        EventManager.instance.invokeEvent(Events.onEventStart);
+    }
+
+
+    void ActivateModifier(EventParams param = new EventParams())
+    {
         //Low gravity event
         if (ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
@@ -148,9 +164,10 @@ public class ModifierManager : MonoBehaviour
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = GravityEventGravity;
             }
-        } else
+        }
+        else
         {
-            for (int i=0; i< SplitScreenManager.instance.GetPlayers().Count; i++)
+            for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = startGravity;
             }
@@ -171,7 +188,7 @@ public class ModifierManager : MonoBehaviour
 
         if (ActiveEvents[(int)RoundModifierList.BOMB])
         {
-            for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
+            for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
             {
                 PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(i);
                 Instantiate(BombPrefab, plr.transform.position, plr.transform.rotation, plr.transform);
@@ -179,7 +196,7 @@ public class ModifierManager : MonoBehaviour
         }
 
         //Event Movables
-        for (int i=0; i< vars.eventMovables.Length; i++)
+        for (int i = 0; i < vars.eventMovables.Length; i++)
         {
             if (ActiveEvents[(int)vars.eventMovables[i].eventThisMovesIn])
             {
@@ -195,6 +212,11 @@ public class ModifierManager : MonoBehaviour
             yield return null;
             move.currentTime += Time.deltaTime;
             move.objectMoving.position = move.startPos + Vector3.up * Mathf.Lerp(0, move.height, (float)move.currentTime / move.timeTaken);
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                move.objectMoving.position = move.startPos;
+                break;
+            }
         }
     }
 
@@ -234,7 +256,8 @@ public class ModifierManager : MonoBehaviour
                 temp[i] = modifiers[i];
             }
         }
-        EventManager.instance.addListener(Events.onRoundEnd, initEvents, 0);
+        EventManager.instance.addListener(Events.onRoundEnd, changeModifier, 0);
+        EventManager.instance.addListener(Events.onEventStart, ActivateModifier);
     }
 
 }

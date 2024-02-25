@@ -26,6 +26,7 @@ public class GunManager : MonoBehaviour
 
         EventManager.instance.addListener(Events.onRoundStart, destroyParentedWorldObjects);
         EventManager.instance.addListener(Events.onRoundStart, changeGuns);
+        EventManager.instance.addListener(Events.onEventStart, initModifier);
     }
 
     private void Update()
@@ -85,7 +86,7 @@ public class GunManager : MonoBehaviour
 
     internal void assignGun(int Player, int gunNumber)
     {
-        Transform plr = SplitScreenManager.instance.GetPlayers()[Player].transform;
+        Transform plr = SplitScreenManager.instance.GetPlayers(Player).transform;
         PlayerBodyFSM FSM = plr.GetComponent<PlayerBodyFSM>();
 
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
@@ -98,14 +99,15 @@ public class GunManager : MonoBehaviour
         gun.transform.localPosition = new Vector3(0f, 0f, 0f);
         gun.transform.forward = FSM.playerBody.forward;
 
-
-        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
-        {
-            gun.GetComponent<Gun>().RicochetEvent();
-        }
-
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
         FSM.assignGun(gun);
+    }
+
+
+    internal void initModifier(EventParams param = new EventParams())
+    {
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++) 
+            SplitScreenManager.instance.GetPlayers(i).GetComponent<PlayerBodyFSM>().playerGun.RicochetEvent(ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET]);
     }
 
     internal void nextGun()

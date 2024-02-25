@@ -33,6 +33,14 @@ public class EventManager : MonoBehaviour
     private UnityEvent<EventParams> onGameEnd;
     private UnityEvent<EventParams> onGameEndLate;
 
+    private UnityEvent<EventParams> onEventStartEarly;
+    private UnityEvent<EventParams> onEventStart;
+    private UnityEvent<EventParams> onEventStartLate;
+
+    private UnityEvent<EventParams> onEventEndEarly;
+    private UnityEvent<EventParams> onEventEnd;
+    private UnityEvent<EventParams> onEventEndLate;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -56,6 +64,14 @@ public class EventManager : MonoBehaviour
         onGameEndEarly = new UnityEvent<EventParams>();
         onGameEnd = new UnityEvent<EventParams>();
         onGameEndLate = new UnityEvent<EventParams>();
+
+        onEventStartEarly = new UnityEvent<EventParams>();
+        onEventStart = new UnityEvent<EventParams>();
+        onEventStartLate = new UnityEvent<EventParams>();
+
+        onEventEndEarly = new UnityEvent<EventParams>();
+        onEventEnd = new UnityEvent<EventParams>();
+        onEventEndLate = new UnityEvent<EventParams>();
     }
 
     /// <summary>
@@ -135,6 +151,34 @@ public class EventManager : MonoBehaviour
                         break;
                     case 2:
                         onGameEndLate.AddListener(action);
+                        break;
+                }
+                break;
+            case Events.onEventStart:
+                switch (eventPriority)
+                {
+                    case 0:
+                        onEventStartEarly.AddListener(action);
+                        break;
+                    case 1:
+                        onEventStart.AddListener(action);
+                        break;
+                    case 2:
+                        onEventStartLate.AddListener(action);
+                        break;
+                }
+                break;
+            case Events.onEventEnd:
+                switch (eventPriority)
+                {
+                    case 0:
+                        onEventEndEarly.AddListener(action);
+                        break;
+                    case 1:
+                        onEventEnd.AddListener(action);
+                        break;
+                    case 2:
+                        onEventEndLate.AddListener(action);
                         break;
                 }
                 break;
@@ -221,6 +265,34 @@ public class EventManager : MonoBehaviour
                         break;
                 }
                 break;
+            case Events.onEventStart:
+                switch (eventPriority)
+                {
+                    case 0:
+                        onEventStartEarly.RemoveListener(action);
+                        break;
+                    case 1:
+                        onEventStart.RemoveListener(action);
+                        break;
+                    case 2:
+                        onEventStartLate.RemoveListener(action);
+                        break;
+                }
+                break;
+            case Events.onEventEnd:
+                switch (eventPriority)
+                {
+                    case 0:
+                        onEventEndEarly.RemoveListener(action);
+                        break;
+                    case 1:
+                        onEventEnd.RemoveListener(action);
+                        break;
+                    case 2:
+                        onEventEndLate.RemoveListener(action);
+                        break;
+                }
+                break;
         }
     }
 
@@ -258,6 +330,16 @@ public class EventManager : MonoBehaviour
                 onGameEnd.Invoke(param);
                 onGameEndLate.Invoke(param);
                 break;
+            case Events.onEventStart:
+                onEventStartEarly.Invoke(param);
+                onEventStart.Invoke(param);
+                onEventStartLate.Invoke(param);
+                break;
+            case Events.onEventEnd:
+                onEventEndEarly.Invoke(param);
+                onEventEnd.Invoke(param);
+                onEventEndLate.Invoke(param);
+                break;
         }
     }
 
@@ -268,7 +350,7 @@ public class EventManager : MonoBehaviour
 /// </summary>
 public enum Events
 {
-    onRoundStart, onRoundEnd, onPlayerDeath, onPlayerRespawn, onGameEnd
+    onRoundStart, onRoundEnd, onPlayerDeath, onPlayerRespawn, onGameEnd, onEventStart, onEventEnd
 }
 
 public struct EventParams

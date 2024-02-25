@@ -32,7 +32,7 @@ public class RoundManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKey(KeyCode.N))
         {
             roundNum = 4;
         }
