@@ -6,6 +6,7 @@ public class GrenadePickUp : MonoBehaviour
 {
     [SerializeField] private GameObject grenadeVisual;
     [SerializeField] private float respawnTime;
+    [SerializeField] private PingPong pingPong;
     private bool canPickUp = true;
 
 
@@ -46,5 +47,6 @@ public class GrenadePickUp : MonoBehaviour
     {
         canPickUp = true;
         grenadeVisual.SetActive(true);
+        pingPong.resetCoroutine();
     }
 }
