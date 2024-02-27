@@ -446,6 +446,8 @@ public class PlayerBodyFSM : MonoBehaviour
             gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform.GetChild(4).GetChild(0).GetChild(0).GetChild(0).GetChild(1);
             GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.transform.rotation);
 
+            //tranfer bullets on body to ragdoll
+
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
 
             RagDollHandler newRagDollHandler = newRagdollBody.transform.GetComponent<RagDollHandler>();
