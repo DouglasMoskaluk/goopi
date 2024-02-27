@@ -185,7 +185,6 @@ public class SplitScreenManager : MonoBehaviour
 
     public void SetCrowns()//again ik this is not the correct spot to do it but i dont have time to rework the events enough to do it with them rn
     {
-        Debug.Log("Set Crowns called");
 
         if (RoundManager.instance.getHighestKillsNumber() == 0) return;
 
