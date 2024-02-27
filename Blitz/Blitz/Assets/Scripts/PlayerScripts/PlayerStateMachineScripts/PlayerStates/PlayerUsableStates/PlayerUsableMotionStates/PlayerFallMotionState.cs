@@ -24,6 +24,8 @@ public class PlayerFallMotionState : PlayerBasicMotionState
 
         if (groRay.rayHit)
         {
+            GameObject smoke = VFXSpawner.instance.spawnObject(VFXSpawnerObjects.smoke);
+            smoke.transform.position = playerTransform.position + Vector3.up * 0.02f;
             FSM.transitionState(PlayerMotionStates.Walk);
         }
     }
