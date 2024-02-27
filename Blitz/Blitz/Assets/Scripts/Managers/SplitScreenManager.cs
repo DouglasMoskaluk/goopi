@@ -187,6 +187,8 @@ public class SplitScreenManager : MonoBehaviour
     {
         Debug.Log("Set Crowns called");
 
+        if (RoundManager.instance.getHighestKillsNumber() == 0) return;
+
         List<int> highestRoundKills = RoundManager.instance.GetHighestRoundKills();
 
         foreach (int i in highestRoundKills)

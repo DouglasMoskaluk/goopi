@@ -259,4 +259,14 @@ public class RoundManager : MonoBehaviour
         }
         return result;
     }
+
+    public int getHighestKillsNumber()
+    {
+        int highest = 0;
+        for (int i = 0; i < playerKillCounts.Length; i++)
+        {
+            if (playerKillCounts[i] > highest) highest = playerKillCounts[i]; 
+        }
+        return highest;
+    }
 }
