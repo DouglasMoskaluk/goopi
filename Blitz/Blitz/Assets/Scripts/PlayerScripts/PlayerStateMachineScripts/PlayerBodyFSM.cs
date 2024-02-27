@@ -443,7 +443,8 @@ public class PlayerBodyFSM : MonoBehaviour
             transitionState(PlayerMotionStates.Death);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
-            GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.rotation);
+            gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform.GetChild(4).GetChild(0).GetChild(0).GetChild(0).GetChild(1);
+            GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.transform.rotation);
 
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
 

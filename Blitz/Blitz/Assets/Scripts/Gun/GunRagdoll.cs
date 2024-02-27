@@ -25,6 +25,12 @@ public class GunRagdoll : MonoBehaviour
 
     public void InitializeGunRagdoll(int playerGun, Vector3 gunVelocity)
     {
+
+        if(playerGun == 5)
+        {
+            Destroy(gameObject);
+        }
+
         for(int i = 0; i < gunModels.Length; i++)
         {
             if(i == playerGun)

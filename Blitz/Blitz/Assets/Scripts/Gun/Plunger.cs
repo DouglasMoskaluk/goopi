@@ -28,6 +28,10 @@ public class Plunger : SpawnableObject
         {
             StartCoroutine(pullCrate());
         }
+        else if (transform.parent.tag == "Ragdoll")
+        {
+
+        }
         else
         {
             StartCoroutine(destruction(5f));
