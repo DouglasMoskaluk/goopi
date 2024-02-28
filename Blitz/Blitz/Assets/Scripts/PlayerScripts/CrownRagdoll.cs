@@ -18,7 +18,12 @@ public class CrownRagdoll : MonoBehaviour
 
     public void InitializeRagdoll(Vector3 playerVelocity)
     {
-        rb.velocity = playerVelocity;
+        rb.velocity += playerVelocity;
+    }
+
+    public void DeathForce(Vector3 direction)
+    {
+        rb.velocity += direction * 20;
     }
 
     public void RemoveSelf(EventParams param = new EventParams())

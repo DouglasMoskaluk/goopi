@@ -214,7 +214,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             logMessage("Killing players");
-            death();
+            death(Vector3.up, Vector3.zero);
         }
 
         currentMotionState.transitionCheck();
@@ -222,7 +222,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         if (transform.position.y < -10)
         {
-            damagePlayer(100, -1);
+            damagePlayer(100, -1, Vector3.zero, Vector3.zero);
         }
     }
 
@@ -381,7 +381,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         health = Mathf.Min(health += value, MAX_HEALTH);
         //health = Mathf.Max(health, 0);
-        if (health < 0) death();
+        if (health < 0) death(Vector3.zero, Vector3.zero);
     }
 
 
@@ -398,7 +398,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     /// <param name="value"></param>
     /// <param name="Attacker"></param>
-    public void damagePlayer(int value, int attackerId)
+    public void damagePlayer(int value, int attackerId, Vector3 deathVelocity, Vector3 deathSource)
     {
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
         if (health > 0)
@@ -425,7 +425,7 @@ public class PlayerBodyFSM : MonoBehaviour
                 {
                     RoundManager.instance.updateKillCount(mostRecentAttacker);
                 }
-                death();
+                death(deathVelocity, Vector3.zero);
             }
             if (health <= 30)
             {
@@ -437,7 +437,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <summary>
     /// Player dies
     /// </summary>
-    private void death()
+    private void death(Vector3 deathDirection, Vector3 deathPosition)
     {
         //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();
@@ -466,6 +466,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
             RagDollHandler newRagDollHandler = newRagdollBody.transform.GetComponent<RagDollHandler>();
             newGunRagdoll.transform.GetComponent<GunRagdoll>().InitializeGunRagdoll((int)playerGun.gunVars.type -1, playerVelocity);
+            newGunRagdoll.transform.GetComponent<GunRagdoll>().deathForce(deathDirection);
+
 
             freelookCam.m_LookAt = newRagDollHandler.camRotatePoint;
             freelookCam.m_Follow = newRagDollHandler.camRotatePoint;
@@ -474,11 +476,13 @@ public class PlayerBodyFSM : MonoBehaviour
             {
                 GameObject crownRagdoll = Instantiate(crownRagdollBody, playerCrown.transform.position, playerCrown.transform.rotation);
                 crownRagdoll.transform.GetComponent<CrownRagdoll>().InitializeRagdoll(playerVelocity);
+                crownRagdoll.transform.GetComponent<CrownRagdoll>().DeathForce(deathDirection);
             }
 
             Transform[] boneList = transform.GetChild(1).GetComponent<BoneRenderer>().transforms;
             //Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
             newRagDollHandler.InitializeRagdoll(modelID, skinID, boneList, playerVelocity);
+            newRagDollHandler.DeathForce(deathDirection, deathPosition);
             StartCoroutine(deathCoro());
         }
 

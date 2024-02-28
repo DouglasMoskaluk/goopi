@@ -13,9 +13,12 @@ public class RagDollHandler : MonoBehaviour
     [SerializeField]
     public Transform camRotatePoint;
 
+    private Transform[] boneList;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        boneList = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
     }
@@ -25,22 +28,36 @@ public class RagDollHandler : MonoBehaviour
 
     }
 
+    public void DeathForce(Vector3 deathDirection, Vector3 deathPosition)
+    {
+        deathDirection.Normalize();
+
+        for (int i = 0; i < boneList.Length; i++)
+        {
+            if (boneList[i].GetComponent<Rigidbody>())
+            {
+                boneList[i].GetComponent<Rigidbody>().velocity += deathDirection * 15;
+            }
+
+        }
+    }
+
     public void InitializeRagdoll(int modelId, int skinNum, Transform[]  bones, Vector3 playerVelocity)
     {
         transform.GetComponent<PlayerModelHandler>().SetRagdollSkin(skinNum);
         transform.GetComponent<PlayerModelHandler>().SetModel(modelId);
-        Transform[] bonelist = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+        //Transform[] bonelist = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
 
-        for(int i = 0;i< bonelist.Length; i++)
+        for(int i = 0;i< boneList.Length; i++)
         {
-            if (bonelist[i].GetComponent<Rigidbody>())
+            if (boneList[i].GetComponent<Rigidbody>())
             {
-                bonelist[i].GetComponent<Rigidbody>().velocity = playerVelocity;
+                boneList[i].GetComponent<Rigidbody>().velocity += playerVelocity;
             }
 
-            bonelist[i].localPosition = bones[i].localPosition;
-            bonelist[i].localRotation = bones[i].localRotation;
-            bonelist[i].localScale = bones[i].localScale;
+            boneList[i].localPosition = bones[i].localPosition;
+            boneList[i].localRotation = bones[i].localRotation;
+            boneList[i].localScale = bones[i].localScale;
 
         }
 

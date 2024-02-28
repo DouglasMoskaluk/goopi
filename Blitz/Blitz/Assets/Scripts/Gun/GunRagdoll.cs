@@ -40,8 +40,13 @@ public class GunRagdoll : MonoBehaviour
             }
         }
 
-        rb.velocity = gunVelocity;
+        rb.velocity += gunVelocity;
 
+    }
+
+    public void deathForce(Vector3 direction)
+    {
+        rb.velocity += direction * 20;
     }
 
     public void RemoveSelf(EventParams param = new EventParams())

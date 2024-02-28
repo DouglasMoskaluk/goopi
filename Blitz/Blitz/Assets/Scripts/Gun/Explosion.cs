@@ -69,7 +69,8 @@ public class Explosion : SpawnableObject
     {
         if (other.tag == "Player" && other.GetComponent<PlayerBodyFSM>().playerID != Owner)
         {
-            other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner);
+            Vector3 explosionDirection = other.transform.position - transform.position;
+            other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, explosionDirection, transform.position);
         }
     }
 

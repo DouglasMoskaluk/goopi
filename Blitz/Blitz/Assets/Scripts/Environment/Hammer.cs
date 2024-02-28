@@ -54,7 +54,7 @@ public class Hammer : MonoBehaviour
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
             if (plrFSM != null)
             {
-                plrFSM.damagePlayer(100, killerID);
+                plrFSM.damagePlayer(100, killerID, direction, transform.position);
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.HAMMER_KILL);
             }
 
@@ -62,7 +62,7 @@ public class Hammer : MonoBehaviour
         else if(other.CompareTag("Ragdoll"))
         {
             Debug.Log(direction);
-            other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 35, ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 25, ForceMode.Impulse);
             //other.gameObject.GetComponent<RagDollHandler>().MoveRagdoll(direction);
         }
 
