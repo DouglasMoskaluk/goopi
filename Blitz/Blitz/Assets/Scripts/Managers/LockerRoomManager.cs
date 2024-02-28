@@ -27,6 +27,12 @@ public class LockerRoomManager : MonoBehaviour
     [SerializeField]
     private float shakeLength;
 
+    [SerializeField]
+    private float rumbleStrength = 300;
+
+    [SerializeField]
+    private float rumbleLength = 0.5f;
+
     private GameObject[] players;
 
     [SerializeField]
@@ -61,6 +67,8 @@ public class LockerRoomManager : MonoBehaviour
             roomPistons[i].shakeStrength = shakeStrength;
             roomPistons[i].shakeLength = shakeLength;
 
+            roomPistons[i].rumbleStrength = rumbleStrength;
+            roomPistons[i].rumbleLength = rumbleLength;
 
         }
 

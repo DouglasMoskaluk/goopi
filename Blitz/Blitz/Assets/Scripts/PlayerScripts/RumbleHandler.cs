@@ -114,4 +114,26 @@ public class RumbleHandler : MonoBehaviour
         playerGamepad.SetMotorSpeeds(0f, 0f);
     }
 
+    public void startDualRumble(float value, float length)
+    {
+        if(playerGamepad != null)
+        {
+            StartCoroutine(DualEngineRumble(value, length));
+        }
+    }
+
+    public IEnumerator DualEngineRumble(float value, float length)
+    {
+            playerGamepad.SetMotorSpeeds(value, value/4);
+
+        float timerlength = 0;
+
+        while (timerlength <= length)
+        {
+            timerlength += Time.deltaTime;
+            yield return null;
+        }
+            playerGamepad.SetMotorSpeeds(0, 0);
+    }
+
 }

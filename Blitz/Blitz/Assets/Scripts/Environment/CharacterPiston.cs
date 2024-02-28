@@ -28,6 +28,10 @@ public class CharacterPiston : MonoBehaviour
     [SerializeField]
     private float waitTime = 0.25f;
 
+    public float rumbleStrength;
+
+    public float rumbleLength;
+
     //private float ratio = 0f;
 
     private float fallPercentage = 0f;
@@ -47,6 +51,8 @@ public class CharacterPiston : MonoBehaviour
     [HideInInspector]
     public CameraShake playerCamShake;
 
+    private RumbleHandler rumble;
+
     private bool firstEntry = true;
 
     // Start is called before the first frame update
@@ -62,6 +68,7 @@ public class CharacterPiston : MonoBehaviour
         player = newPlayer;
         playerCamShake = player.GetComponent<CameraShake>();
         playerFSM = player.GetComponent<PlayerBodyFSM>();
+        rumble = player.GetComponent<RumbleHandler>();
     }
 
     public void LowerPiston()
@@ -115,6 +122,7 @@ public class CharacterPiston : MonoBehaviour
             if(didFall)
             {
                 playerCamShake.ShakeCamera(shakeStrength, shakeLength);
+                rumble.startDualRumble(shakeStrength, shakeLength);
             }
 
             yield return new WaitForSecondsRealtime(waitTime);
