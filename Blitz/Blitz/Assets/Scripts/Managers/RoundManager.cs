@@ -126,6 +126,8 @@ public class RoundManager : MonoBehaviour
 
         SplitScreenManager.instance.EnablePlayerControls();
 
+        EventManager.instance.invokeEvent(Events.onPlayStart);
+
         Debug.Log("start Round co ends");
     }
 
