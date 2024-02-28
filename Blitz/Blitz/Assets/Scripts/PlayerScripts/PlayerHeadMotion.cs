@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerHeadMotion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PlayerInputHandler inputHandler;
+    [SerializeField] private Transform rotationDirections;
+    [SerializeField] private float rotationAmount = 35;
+    private Vector3 ogRotation;
+
+    private void Awake()
     {
-        
+        ogRotation = transform.localEulerAngles;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Vector3 input = inputHandler.motionInput;
+
+        transform.localEulerAngles = ogRotation + (rotationDirections.forward * rotationAmount * input.y) + (rotationDirections.up * rotationAmount * input.x);
     }
 }
