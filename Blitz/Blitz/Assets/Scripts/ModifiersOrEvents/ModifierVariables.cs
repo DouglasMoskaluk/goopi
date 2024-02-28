@@ -17,17 +17,6 @@ public class ModifierVariables : MonoBehaviour
     private void Start()
     {
         ModifierManager.instance.vars = this;
-        if (RoundManager.instance.shouldCountDown)
-        {
-            foreach (moveOnEvent move in eventMovables)
-            {
-                move.Start();
-            }
-        }
-    }
-
-    internal void onPlayStart(EventParams param = new EventParams())
-    {
         foreach (moveOnEvent move in eventMovables)
         {
             move.Start();
