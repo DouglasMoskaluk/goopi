@@ -50,6 +50,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private PlayerUIHandler uiHandler;
     [SerializeField] private GameObject playerCrown;
     [SerializeField] private PlayerGrenadeArcRenderer grenadeArcRenderer;
+    [SerializeField] private PlayerHeadMotion headMotion;
     private Transform gunPositionRef;
    
 
@@ -141,6 +142,11 @@ public class PlayerBodyFSM : MonoBehaviour
     public void DisablePlayerUI()
     {
         uiHandler.gameObject.SetActive(false);
+    }
+
+    public void enableHeadMotion()
+    {
+        headMotion.enabled = true;
     }
 
     public void DisableGun()

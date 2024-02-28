@@ -12,14 +12,14 @@ public class PlayerHeadMotion : MonoBehaviour
     private void Awake()
     {
         ogRotation = transform.localRotation;
-        Debug.Log(ogRotation);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Vector3 input = inputHandler.motionInput;
+ 
 
-        transform.rotation = ogRotation * Quaternion.AngleAxis(rotationAmount * input.y, rotationDirections.right)
-            * Quaternion.AngleAxis(rotationAmount * input.x, rotationDirections.forward);
+        transform.rotation = ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, rotationDirections.right) //y
+            * Quaternion.AngleAxis(rotationAmount * input.x, rotationDirections.forward); //x
     }
 }
