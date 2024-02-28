@@ -447,6 +447,14 @@ public class PlayerBodyFSM : MonoBehaviour
             GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.transform.rotation);
 
             //tranfer bullets on body to ragdoll
+            if(transform.childCount > 5) //there are bullets on player
+            {
+                for(int i = 5;i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).transform.parent = newRagdollBody.transform;
+                }
+            }
+
 
             Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
 
