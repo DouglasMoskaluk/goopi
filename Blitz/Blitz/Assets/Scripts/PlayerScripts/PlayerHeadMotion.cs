@@ -17,7 +17,6 @@ public class PlayerHeadMotion : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 input = inputHandler.motionInput;
- 
 
         transform.localRotation = ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, rotationDirections.right) //y
             * Quaternion.AngleAxis(rotationAmount * input.x, rotationDirections.forward); //x
