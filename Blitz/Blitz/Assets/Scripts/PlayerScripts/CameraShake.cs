@@ -133,7 +133,7 @@ public class CameraShake : MonoBehaviour
 
         senseChanger.enabled = true;
 
-        yield return null;
+        player.enableHeadMotion();
 
     }
 
