@@ -28,65 +28,64 @@ public class RumbleHandler : MonoBehaviour
     /// </summary>
     public void ShootRumble(int gunType)
     {
-
         StopAllCoroutines();
 
         switch(gunType)
         {
-            case 0:
-                if(playerGamepad is XInputController)
-                {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
-                }
-                else if(playerGamepad is DualShockGamepad)
-                {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
-                }
-                break;
-            case 1:
+            case 1: //nerf
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
+                    StartCoroutine(gunRumble(0.6f, 0.05f));
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
                     StartCoroutine(gunRumble(0.005f, 0.02f));
                 }
                 break;
-            case 2:
+            case 2://goop
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
+                    StartCoroutine(gunRumble(0.6f, 0.1f));
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
                     StartCoroutine(gunRumble(0.005f, 0.02f));
                 }
                 break;
-            case 3:
+            case 3://ice
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
+                    StartCoroutine(gunRumble(0.4f, 0.075f));
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
                     StartCoroutine(gunRumble(0.005f, 0.02f));
                 }
                 break;
-            case 4:
+            case 4://plunger
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
+                    StartCoroutine(gunRumble(0.8f, 0.05f));
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
                     StartCoroutine(gunRumble(0.005f, 0.02f));
                 }
                 break;
-            case 5:
+            case 5://fish
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.3f, 0.1f));
+                    StartCoroutine(gunRumble(0.35f, 0.3f));
+                }
+                else if (playerGamepad is DualShockGamepad)
+                {
+                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                }
+                break;
+            case 6://mega
+                if (playerGamepad is XInputController)
+                {
+                    StartCoroutine(DualEngineRumble(8, 0.15f));
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
@@ -114,6 +113,11 @@ public class RumbleHandler : MonoBehaviour
         playerGamepad.SetMotorSpeeds(0f, 0f);
     }
 
+    public void deathRumble()
+    {
+        
+    }
+
     public void startDualRumble(float value, float length)
     {
         if(playerGamepad != null)
@@ -122,9 +126,9 @@ public class RumbleHandler : MonoBehaviour
         }
     }
 
-    public IEnumerator DualEngineRumble(float value, float length)
+    public IEnumerator DualEngineRumble(float divisor, float length)
     {
-            playerGamepad.SetMotorSpeeds(value, value/4);
+            playerGamepad.SetMotorSpeeds(1.0f, 1.0f/divisor);
 
         float timerlength = 0;
 
