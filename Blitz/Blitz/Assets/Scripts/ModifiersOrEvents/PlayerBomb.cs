@@ -19,6 +19,8 @@ public class PlayerBomb : MonoBehaviour
     [SerializeField]
     GameObject explodeVFX;
 
+    internal bool countdown = false;
+
     int plrID;
 
     private void Awake()
@@ -31,6 +33,11 @@ public class PlayerBomb : MonoBehaviour
         plrID = transform.parent.GetComponent<PlayerBodyFSM>().playerID;
         EventManager.instance.addListener(Events.onPlayerRespawn, ownerDied);
         EventManager.instance.addListener(Events.onPlayerDeath, playerDied);
+        EventManager.instance.addListener(Events.onPlayStart, StartCounting);
+        if (RoundManager.instance.shouldCountDown)
+        {
+            countdown = true;
+        }
     }
 
     private void Start()
@@ -39,10 +46,15 @@ public class PlayerBomb : MonoBehaviour
         EventManager.instance.addListener(Events.onEventEnd, roundEnd);
     }
 
+    internal void StartCounting(EventParams param = new EventParams())
+    {
+        countdown = true;
+    }
+
     private void Update()
     {
         if (timer >= -1) countdownTimer.text = "" + (int)Mathf.Floor(timer+1);
-        timer -= Time.deltaTime;
+        if (countdown) timer -= Time.deltaTime;
         if (timer < 4)
         {
             countdownTimer.color = Color.red;
