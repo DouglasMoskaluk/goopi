@@ -45,9 +45,10 @@ public class Plunger : SpawnableObject
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
         hit.newAttacker(Owner);
         PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
-        Vector3 pullDirection = plr.transform.position - hit.transform.position;
-        pullDirection = pullDirection * (100 - plr.Health) * (100 - plr.Health);
+        Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
+        pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
         pullDirection.y += heightPull;
+        pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
         hit.addKnockBack(pullDirection * pullPower);
         hit.transitionState(PlayerMotionStates.KnockBack);
         Destroy(gameObject);

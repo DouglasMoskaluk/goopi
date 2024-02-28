@@ -28,7 +28,7 @@ public class Crate : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold)
         {
-            collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(damage, lastImpulse);
+            collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(damage, lastImpulse, GetComponent<Rigidbody>().velocity, transform.position);
         }
     }
 }
