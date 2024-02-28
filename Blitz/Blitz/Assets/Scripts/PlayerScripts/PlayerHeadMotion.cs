@@ -7,17 +7,19 @@ public class PlayerHeadMotion : MonoBehaviour
     [SerializeField] private PlayerInputHandler inputHandler;
     [SerializeField] private Transform rotationDirections;
     [SerializeField] private float rotationAmount = 35;
-    private Vector3 ogRotation;
+    private Quaternion ogRotation;
 
     private void Awake()
     {
-        ogRotation = transform.localEulerAngles;
+        ogRotation = transform.localRotation;
+        Debug.Log(ogRotation);
     }
 
     private void Update()
     {
         Vector3 input = inputHandler.motionInput;
 
-        transform.localEulerAngles = ogRotation + (rotationDirections.forward * rotationAmount * input.y) + (rotationDirections.up * rotationAmount * input.x);
+        transform.rotation = ogRotation * Quaternion.AngleAxis(rotationAmount * input.y, rotationDirections.right)
+            * Quaternion.AngleAxis(rotationAmount * input.x, rotationDirections.forward);
     }
 }
