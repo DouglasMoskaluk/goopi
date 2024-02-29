@@ -414,6 +414,7 @@ public class PlayerBodyFSM : MonoBehaviour
                 if (health - value <= 0 && Attacker.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
                 {
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED, 0.7f);
+                    uiHandler.Obliterated();
                 }
             }
             //else Debug.LogError("Player damaged by non-existing player!");

@@ -36,6 +36,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject hitMarker;
 
     [SerializeField]
+    private GameObject obliteratedUI;
+
+    [SerializeField]
     private GameObject killMarker;
 
     [SerializeField]
@@ -97,6 +100,7 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         crossHair.SetActive(false);
+        obliteratedUI.SetActive(false);
         victoryText.SetActive(false);
 
         StartCoroutine(setCharButton());
@@ -111,6 +115,7 @@ public class PlayerUIHandler : MonoBehaviour
         lowHealthUI.SetActive(false);
         damagedUI.SetActive(false);
         victoryText.SetActive(false);
+        obliteratedUI.SetActive(false);
     }
 
     public void ReEnablePlayerUI()
@@ -194,6 +199,13 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ShowHealEffect");
     }
 
+
+    public void Obliterated()
+    {
+        StopCoroutine("ObliteratedCR");
+        StartCoroutine("ObliteratedCR");
+    }
+
     internal void StopDamagedCoroutine()
     {
         StopAllCoroutines();
@@ -246,6 +258,7 @@ public class PlayerUIHandler : MonoBehaviour
         grenadeCount.gameObject.SetActive(true);
         crossHair.SetActive(true);
         killCount.gameObject.SetActive(true);
+        obliteratedUI.SetActive(false);
         //health.gameObject.SetActive(true);
     }
     IEnumerator ShowKillMarker()
@@ -261,6 +274,14 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ObliteratedCR()
+    {
+        obliteratedUI.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        obliteratedUI.SetActive(false);
         yield return null;
     }
 
