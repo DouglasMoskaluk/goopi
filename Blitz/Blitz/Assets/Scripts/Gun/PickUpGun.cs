@@ -32,7 +32,7 @@ public class PickUpGun : MonoBehaviour
         if (startPos == Vector3.zero)
         {
             startPos = transform.parent.position;
-        } else if (transform.parent.position.y < returnHeight)
+        } else if (transform.parent.position.y < returnHeight || !DomeSlayer.instance.inDome(transform))
         {
             transform.parent.position = startPos;
         }

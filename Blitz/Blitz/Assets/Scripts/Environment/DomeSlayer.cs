@@ -6,9 +6,13 @@ public class DomeSlayer : MonoBehaviour
 {
     List<PlayerBodyFSM> players;
     private float deathDistance = 40;
-    // Start is called before the first frame update
+    internal static DomeSlayer instance;
+
+
+
     void Start()
     {
+        instance = this;
         players = new List<PlayerBodyFSM>();
         for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
         {
@@ -22,6 +26,11 @@ public class DomeSlayer : MonoBehaviour
         StartCoroutine(deathCheck());
     }
 
+
+    internal bool inDome(Transform t)
+    {
+        return Vector3.Distance(t.position, transform.position) > deathDistance;
+    }
     
     IEnumerator deathCheck()
     {
@@ -30,8 +39,8 @@ public class DomeSlayer : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             for (int i = 0; i < players.Count; i++)
             {
-                Debug.Log(players[i].transform.position + " + " + transform.position + " = " + Vector3.Distance(players[i].transform.position, transform.position));
-                if (Vector3.Distance(players[i].transform.position, transform.position) > deathDistance)
+                //Debug.Log(players[i].transform.position + " + " + transform.position + " = " + Vector3.Distance(players[i].transform.position, transform.position));
+                if (inDome(players[i].transform))
                 {
                     Debug.Log("DIE!!!!");
                     players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);
