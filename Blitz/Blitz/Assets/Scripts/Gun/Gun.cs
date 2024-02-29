@@ -90,6 +90,7 @@ public class Gun : MonoBehaviour
                 gunVars.canShoot = false;
                 StartCoroutine(shotCooldown());
                 rumble.ShootRumble((int)gunVars.type);
+                shake.GunShake((int)gunVars.type);
                 //shake.ShakeCamera(0.25f, 0.1f);
                 GameObject bul;
                 if (gunVars.bulletParent != null)

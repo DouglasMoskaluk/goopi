@@ -10,6 +10,8 @@ public class RumbleHandler : MonoBehaviour
 
     private Gamepad playerGamepad;
 
+    private IEnumerator shooting;
+
     private void Awake()
     {
         if (GetComponent<PlayerInput>().devices[0] is XInputController or DualShockGamepad)
@@ -21,6 +23,9 @@ public class RumbleHandler : MonoBehaviour
             //Debug.Log("KEYBOARD OR MOUSE");
             playerGamepad = null;
         }
+
+        shooting = gunRumble(0, 0);
+
     }
 
     /// <summary>
@@ -28,68 +33,81 @@ public class RumbleHandler : MonoBehaviour
     /// </summary>
     public void ShootRumble(int gunType)
     {
-        StopAllCoroutines();
+        StopCoroutine(shooting);
+        //StopAllCoroutines();
 
         switch(gunType)
         {
             case 1: //nerf
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.6f, 0.05f));
+                    shooting = gunRumble(0.8f, 0.075f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = gunRumble(0.8f, 0.075f);
+                    StartCoroutine(shooting);
                 }
                 break;
             case 2://goop
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.6f, 0.1f));
+                    shooting = gunRumble(0.8f, 0.125f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = gunRumble(0.8f, 0.125f);
+                    StartCoroutine(shooting);
                 }
                 break;
             case 3://ice
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.4f, 0.075f));
+                    shooting = gunRumble(0.6f, 0.1f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = gunRumble(0.6f, 0.1f);
+                    StartCoroutine(shooting);
                 }
                 break;
             case 4://plunger
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.8f, 0.05f));
+                    shooting = gunRumble(0.8f, 0.1f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = gunRumble(0.8f, 0.1f);
+                    StartCoroutine(shooting);
                 }
                 break;
             case 5://fish
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(gunRumble(0.35f, 0.3f));
+                    shooting = gunRumble(0.55f, 0.3f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = gunRumble(0.55f, 0.3f);
+                    StartCoroutine(shooting);
                 }
                 break;
             case 6://mega
                 if (playerGamepad is XInputController)
                 {
-                    StartCoroutine(DualEngineRumble(8, 0.15f));
+                    shooting = DualEngineRumble(10, 0.25f);
+                    StartCoroutine(shooting);
                 }
                 else if (playerGamepad is DualShockGamepad)
                 {
-                    StartCoroutine(gunRumble(0.005f, 0.02f));
+                    shooting = DualEngineRumble(10, 0.25f);
+                    StartCoroutine(shooting);
                 }
                 break;
         }

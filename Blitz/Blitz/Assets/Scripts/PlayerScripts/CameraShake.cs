@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.UIElements;
 
 public class CameraShake : MonoBehaviour
 {
@@ -53,6 +56,55 @@ public class CameraShake : MonoBehaviour
             perlins[i] = cams[i].GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
+    }
+
+    public void GunShake(int gunType)
+    {
+        switch (gunType)
+        {
+            case 1: //nerf
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(0.5f, 0.1f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+            case 2://goop
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(1f, 0.1f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+            case 3://ice
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(0.2f, 0.1f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+            case 4://plunger
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(0.5f, 0.15f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+            case 5://fish
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(0.3f, 0.3f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+            case 6://mega
+                StopCoroutine(shakeCoRo);
+
+                shakeCoRo = cameraShake(4.5f, 0.2f);
+
+                StartCoroutine(shakeCoRo);
+                break;
+        }
     }
 
     public void ShakeCamera(float strength, float length)
