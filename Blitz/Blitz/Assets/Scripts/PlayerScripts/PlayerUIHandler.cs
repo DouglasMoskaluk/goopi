@@ -36,6 +36,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject hitMarker;
 
     [SerializeField]
+    private GameObject hitDirection;
+
+    [SerializeField]
     private GameObject obliteratedUI;
 
     [SerializeField]
@@ -258,7 +261,13 @@ public class PlayerUIHandler : MonoBehaviour
 
     }
 
-
+    internal void bulletCollision(Transform bul)
+    {
+        hitDirection.SetActive(true);
+        Vector3 pos = transform.position - bul.position;
+        Vector2 directionShot = new Vector2(pos.x, pos.z).normalized ;
+        hitDirection.transform.position = directionShot;
+    }
 
     internal void Alive()
     {
