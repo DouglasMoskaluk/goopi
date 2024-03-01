@@ -226,7 +226,7 @@ public class Bullet : MonoBehaviour
                 } 
                 go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
-            plr.playerUI.bulletCollision(transform);
+            plr.playerUI.bulletCollision(SplitScreenManager.instance.GetPlayers(bulletVars.owner).transform);
         }
     }
 

@@ -264,9 +264,10 @@ public class PlayerUIHandler : MonoBehaviour
     internal void bulletCollision(Transform bul)
     {
         hitDirection.SetActive(true);
-        Vector3 pos = transform.position - bul.position;
-        Vector2 directionShot = new Vector2(pos.x, pos.z).normalized ;
-        hitDirection.transform.position = directionShot;
+        Vector3 pos = bul.position - player.transform.position;
+        Vector2 directionShot = new Vector2(pos.x, pos.z).normalized * 100;
+        Debug.Log(directionShot + ", " + pos + " " + bul.position + " "+ player.transform.position);
+        hitDirection.GetComponent<RectTransform>().localPosition = directionShot;
     }
 
     internal void Alive()
