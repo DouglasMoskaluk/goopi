@@ -97,6 +97,7 @@ public class Bullet : MonoBehaviour
                 {
                     collideThisFrame = true;
                     Debug.Log("Late Update hit ");//May need debug.logs...
+                    transform.position = hit[i].point;
                     collide(hit[i]);
                     break;
                 }
