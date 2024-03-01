@@ -28,10 +28,10 @@ public class Plunger : SpawnableObject
         {
             StartCoroutine(pullCrate());
         }
-        //else if (transform.root.tag == "Ragdoll")
-        //{
-        //    StartCoroutine(pullCrate());
-        //}
+        else if (transform.root.tag == "Ragdoll")
+        {
+            StartCoroutine(pullCrate());
+        }
         else
         {
             StartCoroutine(destruction(5f));
@@ -62,6 +62,16 @@ public class Plunger : SpawnableObject
         Vector3 pullDirection = plr.transform.position - transform.parent.position;
         pullDirection.y += 5;
         transform.parent.GetComponent<Rigidbody>().AddForce(pullDirection.normalized * CratePullPower);
+        Destroy(gameObject);
+    }
+    //here's where I make my MOVE
+    private IEnumerator pullRagdoll()
+    {
+        yield return new WaitForSeconds(pullDelay / 2);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
+        Vector3 pullDirection = transform.position - transform.parent.position;
+        pullDirection.y += 5;
+        transform.root.GetComponent<RagDollHandler>().pullRagdoll(transform.position);
         Destroy(gameObject);
     }
 

@@ -62,7 +62,7 @@ public class PlayerBomb : MonoBehaviour
         else countdownTimer.color = Color.white;
         if (timer < 0 && transform.parent.GetComponent<CharacterController>().enabled == true)
         {
-            transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1, Vector3.up, null);
+            transform.parent.GetComponent<PlayerBodyFSM>().damagePlayer(damage, -1, Vector3.up, Vector3.zero, -1);
             Instantiate(explodeVFX, transform.position, transform.rotation);
         }
         //transform.GetChild(0).transform.rotation = transform.parent.GetComponentInChildren<Camera>().transform.rotation;
