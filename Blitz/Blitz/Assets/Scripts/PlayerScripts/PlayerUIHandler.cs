@@ -265,9 +265,9 @@ public class PlayerUIHandler : MonoBehaviour
     {
         hitDirection.SetActive(true);
         Vector3 pos = bul.position - player.transform.position;
-        Vector2 directionShot = new Vector2(pos.x, pos.z).normalized * 100;
-        Debug.Log(directionShot + ", " + pos + " " + bul.position + " "+ player.transform.position);
-        hitDirection.GetComponent<RectTransform>().localPosition = directionShot;
+        Vector2 directionShot = new Vector2(pos.x, pos.z);
+        //Debug.Log(directionShot + ", " + pos + " " + bul.position + " "+ player.transform.position);
+        hitDirection.GetComponent<RectTransform>().localPosition = (Quaternion.Euler(0, 0, player.playerBody.rotation.y) * directionShot).normalized * 100;
         hitDirection.GetComponent<RectTransform>().rotation = Quaternion.FromToRotation(Vector2.up, directionShot);
     }
 
