@@ -19,11 +19,9 @@ public class PlayerHeadMotion : MonoBehaviour
     {
         Vector3 input = inputHandler.motionInput;
 
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, Vector3.forward) //y
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, Vector3.forward) 
             * Quaternion.AngleAxis(-rotationAmount * input.x, Vector3.right), Time.deltaTime * lerpModifier);
 
-        //transform.localRotation = ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, Vector3.forward) //y
-        //    * Quaternion.AngleAxis(rotationAmount * input.x, Vector3.right); //x
     }
 
     private float easeOutBack(float num)
