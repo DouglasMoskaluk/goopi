@@ -91,10 +91,10 @@ public class GunManager : MonoBehaviour
 
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
 
-        FSM.SetPlayerSpineValue(0.5f);
+        //FSM.SetPlayerSpineValue(0.5f);
 
-        GameObject gun = Instantiate(guns[gunNumber], plr.GetChild(1));
-        gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11"), true);
+        GameObject gun = Instantiate(guns[gunNumber], plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11"));
+        //gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11"), true);
 
         gun.transform.localPosition = new Vector3(0f, 0f, 0f);
         gun.transform.forward = FSM.playerBody.forward;
