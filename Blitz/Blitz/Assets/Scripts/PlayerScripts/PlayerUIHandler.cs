@@ -268,6 +268,7 @@ public class PlayerUIHandler : MonoBehaviour
         Vector2 directionShot = new Vector2(pos.x, pos.z).normalized * 100;
         Debug.Log(directionShot + ", " + pos + " " + bul.position + " "+ player.transform.position);
         hitDirection.GetComponent<RectTransform>().localPosition = directionShot;
+        hitDirection.GetComponent<RectTransform>().rotation = Quaternion.FromToRotation(Vector2.up, directionShot);
     }
 
     internal void Alive()
