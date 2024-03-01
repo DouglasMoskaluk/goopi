@@ -27,38 +27,58 @@ public class RagDollHandler : MonoBehaviour
         StartCoroutine("Countdown");
     }
 
-    public void AddBulletToRagdoll(GameObject bullet)
+    public void pullRagdoll(Vector3 plungerPos)
     {
-
-        int closestBone = 0;
-
-        bullet.transform.localScale = new Vector3(1,1,1);
+        Vector3 direction = plungerPos - transform.position;
+        direction.Normalize();
 
         for (int i = 0; i < boneList.Length; i++)
         {
             if (boneList[i].GetComponent<Rigidbody>())
             {
-                if (Vector3.Distance(bullet.transform.position, boneList[i].position) <= Vector3.Distance(bullet.transform.position, boneList[closestBone].position))
-                {
-                    closestBone = i;
-                }
-
+                boneList[i].GetComponent<Rigidbody>().velocity += direction * 30;
             }
 
         }
 
-        GameObject newBullet = Instantiate(bullet, bullet.transform.position, bullet.transform.rotation, boneList[closestBone]);
-        newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+    }
 
-        if(newBullet.GetComponent<GrowGameObject>())
+    public void AddBulletToRagdoll(GameObject bullet)
+    {
+        if (!bullet.name.Equals("Bomb(clone)"))
         {
-            float newLife = bullet.GetComponent<GrowGameObject>().lifeTime;
-            newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+            int closestBone = 0;
+
+            bullet.transform.localScale = new Vector3(1, 1, 1);
+
+            for (int i = 0; i < boneList.Length; i++)
+            {
+                if (boneList[i].GetComponent<Rigidbody>())
+                {
+                    if (Vector3.Distance(bullet.transform.position, boneList[i].position) <= Vector3.Distance(bullet.transform.position, boneList[closestBone].position))
+                    {
+                        closestBone = i;
+                    }
+
+                }
+
+            }
+
+            GameObject newBullet = Instantiate(bullet, bullet.transform.position, bullet.transform.rotation, boneList[closestBone]);
+            newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+
+            if (newBullet.GetComponent<GrowGameObject>())
+            {
+                float newLife = bullet.GetComponent<GrowGameObject>().lifeTime;
+                newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+            }
+            else if (newBullet.GetComponent<Plunger>())
+            {
+                newBullet.transform.GetChild(2).transform.gameObject.SetActive(false);
+            }
+
+            Destroy(bullet);
         }
-
-        Destroy(bullet);
-
-
 
     }
 
@@ -75,10 +95,8 @@ public class RagDollHandler : MonoBehaviour
     }
 
     //deathforce should add last bullet to player too
-    public void DeathForce(Vector3 deathDirection, GameObject deathObject)
+    public void DeathForce(Vector3 deathDirection, Vector3 killThingPos)
     {
-        if(deathObject)
-        {
             deathDirection.Normalize();
 
             int closestBone = 0;
@@ -88,7 +106,7 @@ public class RagDollHandler : MonoBehaviour
             {
                 if (boneList[i].GetComponent<Rigidbody>())
                 {
-                    if (Vector3.Distance(deathObject.transform.position, boneList[i].position) <= Vector3.Distance(deathObject.transform.position, boneList[closestBone].position))
+                    if (Vector3.Distance(killThingPos, boneList[i].position) <= Vector3.Distance(killThingPos, boneList[closestBone].position))
                     {
                         closestBone = i;
                     }
@@ -96,24 +114,40 @@ public class RagDollHandler : MonoBehaviour
                 }
 
             }
-            //if (deathObject.name.Equals("Ice Bullet(Clone)"))
-            //{
-            //    Debug.Log("NEW BULLET ON RAGDOLL");
-            //    GameObject newBullet = Instantiate(stuckBullets[0], deathObject.transform.position, deathObject.transform.rotation, boneList[closestBone]);
-            //    newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
 
-            //    if (newBullet.GetComponent<GrowGameObject>())
-            //    {
-            //        float newLife = deathObject.GetComponent<GrowGameObject>().lifeTime;
-            //        newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
-            //    }
-
-            //    //Destroy(deathObject);
-            //}
+        boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
 
 
-            boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
-        }
+        //if(bulletType.Equals("Ice Bullet(clone)"))
+        //{
+        //    Debug.Log("NEW BULLET ON RAGDOLL");
+        //    GameObject newBullet = Instantiate(stuckBullets[0], killThingPos, Quaternion.identity, boneList[closestBone]);
+        //    newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+
+        //    if (newBullet.GetComponent<GrowGameObject>())
+        //    {
+        //        newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, 0.0f);
+        //    }
+
+        //    //Destroy(deathObject);
+        //}
+        //if (deathObject.name.Equals("Ice Bullet(Clone)"))
+        //{
+        //    Debug.Log("NEW BULLET ON RAGDOLL");
+        //    GameObject newBullet = Instantiate(stuckBullets[0], deathObject.transform.position, deathObject.transform.rotation, boneList[closestBone]);
+        //    newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+
+        //    if (newBullet.GetComponent<GrowGameObject>())
+        //    {
+        //        float newLife = deathObject.GetComponent<GrowGameObject>().lifeTime;
+        //        newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+        //    }
+
+        //    //Destroy(deathObject);
+        //}
+
+
+
 
 
     }
