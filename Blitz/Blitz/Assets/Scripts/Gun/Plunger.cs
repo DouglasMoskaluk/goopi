@@ -28,9 +28,9 @@ public class Plunger : SpawnableObject
         {
             StartCoroutine(pullCrate());
         }
-        else if (transform.root.tag == "Ragdoll")
+        else if (transform.parent.tag == "Ragdoll")
         {
-            StartCoroutine(pullCrate());
+            StartCoroutine(pullPlayer(null));
         }
         else
         {
@@ -43,15 +43,32 @@ public class Plunger : SpawnableObject
     {
         yield return new WaitForSeconds(pullDelay);
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
-        hit.newAttacker(Owner);
-        PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
-        Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
-        pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
-        pullDirection.y += heightPull;
-        pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
-        hit.addKnockBack(pullDirection * pullPower);
-        hit.transitionState(PlayerMotionStates.KnockBack);
+        if (transform.parent.tag == "Player")
+        {
+            hit.newAttacker(Owner);
+            PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
+            Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
+            pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
+            pullDirection.y += heightPull;
+            pullDirection = pullDirection * Vector3.Distance(plr.transform.position, transform.position);
+            hit.addKnockBack(pullDirection * pullPower);
+            hit.transitionState(PlayerMotionStates.KnockBack);
+        }
+        else
+        {
+            Debug.Log("RAGDOLL PULL");
+            PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
+            Vector3 pullDirection = (plr.transform.position - transform.position).normalized;
+            pullDirection.y += heightPull;
+            transform.root.GetComponent<RagDollHandler>().pullRagdoll(pullDirection);
+        }
+
         Destroy(gameObject);
+    }
+
+    public void startRagdollPull()
+    {
+        StartCoroutine(pullPlayer(null));
     }
 
     private IEnumerator pullCrate()
@@ -65,15 +82,6 @@ public class Plunger : SpawnableObject
         Destroy(gameObject);
     }
     //here's where I make my MOVE
-    private IEnumerator pullRagdoll()
-    {
-        yield return new WaitForSeconds(pullDelay / 2);
-        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLUNGER_PULL);
-        Vector3 pullDirection = transform.position - transform.parent.position;
-        pullDirection.y += 5;
-        transform.root.GetComponent<RagDollHandler>().pullRagdoll(transform.position);
-        Destroy(gameObject);
-    }
 
     private IEnumerator destruction(float timer)
     {

@@ -27,10 +27,8 @@ public class RagDollHandler : MonoBehaviour
         StartCoroutine("Countdown");
     }
 
-    public void pullRagdoll(Vector3 plungerPos)
+    public void pullRagdoll(Vector3 direction)
     {
-        Vector3 direction = plungerPos - transform.position;
-        direction.Normalize();
 
         for (int i = 0; i < boneList.Length; i++)
         {
@@ -43,7 +41,7 @@ public class RagDollHandler : MonoBehaviour
 
     }
 
-    public void AddBulletToRagdoll(GameObject bullet)
+    public void AddBulletToRagdoll(GameObject bullet, int killer)
     {
         if (!bullet.name.Equals("Bomb(clone)"))
         {
@@ -71,10 +69,15 @@ public class RagDollHandler : MonoBehaviour
             {
                 float newLife = bullet.GetComponent<GrowGameObject>().lifeTime;
                 newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+                newBullet.GetComponent<Explosion>().Owner = killer;
             }
             else if (newBullet.GetComponent<Plunger>())
             {
                 newBullet.transform.GetChild(2).transform.gameObject.SetActive(false);
+                newBullet.GetComponent<Plunger>().Owner = killer;
+
+                newBullet.GetComponent<Plunger>().startRagdollPull();
+
             }
 
             Destroy(bullet);
@@ -82,19 +85,17 @@ public class RagDollHandler : MonoBehaviour
 
     }
 
-    public void SetBulletArrayList(List<GameObject> bullets)
+    public void SetBulletArrayList(List<GameObject> bullets, List<int> killers)
     {
-        bodyBullets = bullets;
-        Debug.Log(bodyBullets.Count + " bullet count");
+        //bodyBullets = bullets;
 
-        foreach (GameObject bullet in bodyBullets)
+        for(int i = 0; i < bullets.Count;i++)
         {
-            AddBulletToRagdoll (bullet);
+            AddBulletToRagdoll(bullets[i], killers[i]);
         }
 
     }
 
-    //deathforce should add last bullet to player too
     public void DeathForce(Vector3 deathDirection, Vector3 killThingPos)
     {
             deathDirection.Normalize();

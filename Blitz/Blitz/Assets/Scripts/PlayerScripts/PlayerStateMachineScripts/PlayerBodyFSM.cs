@@ -487,12 +487,26 @@ public class PlayerBodyFSM : MonoBehaviour
             if (transform.childCount > 5) //there are bullets on player
             {
                 List<GameObject> newBullets = new List<GameObject>();
+                List<int> killerID = new List<int>();
+
                 for (int i = 5; i < transform.childCount; i++)
                 {
-                    newBullets.Add(transform.GetChild(i).gameObject);
+                    if (!transform.GetChild(i).gameObject.name.Equals("Bomb(clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
+                    {
+                        newBullets.Add(transform.GetChild(i).gameObject);
+                        if (transform.GetChild(i).GetComponent<Plunger>())
+                        {
+                            killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
+                        }
+                        else
+                        {
+                            killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
+                        }
+                        //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
+                    }
                     //transform.GetChild(i).transform.parent = newRagdollBody.transform;
                 }
-                newRagDollHandler.SetBulletArrayList(newBullets);
+                newRagDollHandler.SetBulletArrayList(newBullets, killerID);
             }
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
@@ -533,12 +547,24 @@ public class PlayerBodyFSM : MonoBehaviour
         if (transform.childCount > 5) //there are bullets on player
         {
             List<GameObject> newBullets = new List<GameObject>();
+            List<int> killerID = new List<int>();
             for (int i = 5; i < transform.childCount; i++)
             {
-                newBullets.Add(transform.GetChild(i).gameObject);
-                //transform.GetChild(i).transform.parent = newRagdollBody.transform;
+                if(!transform.GetChild(i).gameObject.name.Equals("Bomb(clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
+                {
+                    newBullets.Add(transform.GetChild(i).gameObject);
+                    if (transform.GetChild(i).GetComponent<Plunger>())
+                    {
+                        killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
+                    }
+                    else
+                    {
+                        killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
+                    }
+                    //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
+                }
             }
-            ragdoll.SetBulletArrayList(newBullets);
+            ragdoll.SetBulletArrayList(newBullets, killerID);
         }
 
         Instantiate(healthPack, transform.position, Quaternion.identity);
