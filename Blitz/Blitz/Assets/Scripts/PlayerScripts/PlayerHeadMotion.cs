@@ -7,6 +7,7 @@ public class PlayerHeadMotion : MonoBehaviour
     [SerializeField] private PlayerInputHandler inputHandler;
     [SerializeField] private Transform rotationDirections;
     [SerializeField] private float rotationAmount = 35;
+    [SerializeField] private float lerpModifier = 5f;
     private Quaternion ogRotation;
 
     private void Awake()
@@ -18,8 +19,11 @@ public class PlayerHeadMotion : MonoBehaviour
     {
         Vector3 input = inputHandler.motionInput;
 
-        transform.localRotation = ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, rotationDirections.right) //y
-            * Quaternion.AngleAxis(rotationAmount * input.x, rotationDirections.forward); //x
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, Vector3.forward) //y
+            * Quaternion.AngleAxis(-rotationAmount * input.x, Vector3.right), Time.deltaTime * lerpModifier);
+
+        //transform.localRotation = ogRotation * Quaternion.AngleAxis(-rotationAmount * input.y, Vector3.forward) //y
+        //    * Quaternion.AngleAxis(rotationAmount * input.x, Vector3.right); //x
     }
 
     private float easeOutBack(float num)
