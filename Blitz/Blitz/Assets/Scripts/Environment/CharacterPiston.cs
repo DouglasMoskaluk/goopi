@@ -121,6 +121,8 @@ public class CharacterPiston : MonoBehaviour
 
             if(didFall)
             {
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
+
                 playerCamShake.ShakeCamera(shakeStrength, shakeLength);
                 rumble.startDualRumble(shakeStrength, shakeLength);
             }
@@ -154,7 +156,8 @@ public class CharacterPiston : MonoBehaviour
         float raiseTracker = raiseTime;
         fallPercentage = raiseTracker / raiseTime;
         //Debug.Log(fallPercentage);
-        while(fallPercentage >= 0)
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_HISS);
+        while (fallPercentage >= 0)
         {
             raiseTracker -= Time.deltaTime;
             //Debug.Log(raiseTracker);
@@ -168,6 +171,7 @@ public class CharacterPiston : MonoBehaviour
 
 
         yield return null;
+
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -188,6 +192,8 @@ public class CharacterPiston : MonoBehaviour
 
     IEnumerator CharReEntry()
     {
+        //maybe UI click sound when entering
+
         //turn off HUD
         
         //turn off playerFSM
