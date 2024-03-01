@@ -214,7 +214,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             logMessage("Killing players");
-            death(Vector3.up, Vector3.zero, -1);
+            death(Vector3.up, Vector3.zero);
         }
 
         currentMotionState.transitionCheck();
@@ -222,7 +222,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         if (transform.position.y < -10)
         {
-            damagePlayer(100, -1, Vector3.zero, Vector3.zero, -1);
+            damagePlayer(100, -1, Vector3.zero, Vector3.zero);
         }
     }
 
@@ -381,7 +381,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         health = Mathf.Min(health += value, MAX_HEALTH);
         //health = Mathf.Max(health, 0);
-        if (health < 0) death(Vector3.zero, Vector3.zero, -1);
+        if (health < 0) death(Vector3.zero, Vector3.zero);
     }
 
 
@@ -398,7 +398,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     /// <param name="value"></param>
     /// <param name="Attacker"></param>
-    public void damagePlayer(int value, int attackerId, Vector3 deathVelocity, Vector3 deathSource, int bulletType)
+    public void damagePlayer(int value, int attackerId, Vector3 deathVelocity, Vector3 deathSource)
     {
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
         if (health > 0)
@@ -426,7 +426,7 @@ public class PlayerBodyFSM : MonoBehaviour
                 {
                     RoundManager.instance.updateKillCount(mostRecentAttacker);
                 }
-                death(deathVelocity, deathSource, -1);
+                death(deathVelocity, deathSource);
             }
             if (health <= 30)
             {
@@ -438,7 +438,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <summary>
     /// Player dies
     /// </summary>
-    private void death(Vector3 deathDirection, Vector3 deathPos, int bulletType)
+    private void death(Vector3 deathDirection, Vector3 deathPos)
     {
         //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();
@@ -495,8 +495,8 @@ public class PlayerBodyFSM : MonoBehaviour
                 newRagDollHandler.SetBulletArrayList(newBullets);
             }
 
-            newRagDollHandler.DeathForce(deathDirection, deathPos, bulletType);
-            StartCoroutine(deathCoro());
+            newRagDollHandler.DeathForce(deathDirection, deathPos);
+            StartCoroutine(deathCoro(newRagDollHandler));
         }
 
         //charController.enabled = false;
@@ -512,7 +512,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     }
 
-    IEnumerator deathCoro()
+    IEnumerator deathCoro(RagDollHandler ragdoll)
     {
         for(int i = 0;i < transform.GetChild(1).childCount; i++)
         {
@@ -529,6 +529,18 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));
         mostRecentAttacker = -1;
         yield return new WaitForEndOfFrame();
+
+        if (transform.childCount > 5) //there are bullets on player
+        {
+            List<GameObject> newBullets = new List<GameObject>();
+            for (int i = 5; i < transform.childCount; i++)
+            {
+                newBullets.Add(transform.GetChild(i).gameObject);
+                //transform.GetChild(i).transform.parent = newRagdollBody.transform;
+            }
+            ragdoll.SetBulletArrayList(newBullets);
+        }
+
         Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
         yield return new WaitForSeconds(2.0f);

@@ -32,7 +32,7 @@ public class FishGunBullet : Bullet
                 time += Time.deltaTime;
                 if (time > timeBetweenTriggers)
                 {
-                    other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position, -1);
+                    other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position);
                 }
             }
         }
