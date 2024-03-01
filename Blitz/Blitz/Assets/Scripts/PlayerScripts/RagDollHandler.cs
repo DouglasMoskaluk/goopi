@@ -17,6 +17,8 @@ public class RagDollHandler : MonoBehaviour
 
     private List<GameObject> bodyBullets;
 
+    private GameObject[] stuckBullets;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -94,6 +96,21 @@ public class RagDollHandler : MonoBehaviour
                 }
 
             }
+            //if (deathObject.name.Equals("Ice Bullet(Clone)"))
+            //{
+            //    Debug.Log("NEW BULLET ON RAGDOLL");
+            //    GameObject newBullet = Instantiate(stuckBullets[0], deathObject.transform.position, deathObject.transform.rotation, boneList[closestBone]);
+            //    newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+
+            //    if (newBullet.GetComponent<GrowGameObject>())
+            //    {
+            //        float newLife = deathObject.GetComponent<GrowGameObject>().lifeTime;
+            //        newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+            //    }
+
+            //    //Destroy(deathObject);
+            //}
+
 
             boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
         }

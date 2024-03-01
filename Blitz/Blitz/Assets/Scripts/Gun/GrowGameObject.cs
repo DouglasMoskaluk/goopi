@@ -26,6 +26,12 @@ public class GrowGameObject : MonoBehaviour
         startSize = newStart;
         endSize = newEnd;
         lifeTime = newTime;
+
+        if(lifeTime >= growTime)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
 }
