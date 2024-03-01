@@ -50,7 +50,7 @@ public class Plunger : SpawnableObject
             Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
             pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
             pullDirection.y += heightPull;
-            pullDirection = pullDirection * Vector3.Distance(plr.transform.position, transform.position);
+            pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
             hit.addKnockBack(pullDirection * pullPower);
             hit.transitionState(PlayerMotionStates.KnockBack);
         }
