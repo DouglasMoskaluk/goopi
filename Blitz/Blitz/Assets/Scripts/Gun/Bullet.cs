@@ -140,7 +140,7 @@ public class Bullet : MonoBehaviour
             if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
             if (plrFSM != null) {
-                plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position);
+                plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.gameObject);
                 onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
             }
             Bounce(hit);

@@ -43,7 +43,7 @@ public class DomeSlayer : MonoBehaviour
                 if (inDome(players[i].transform))
                 {
                     Debug.Log("DIE!!!!");
-                    players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);
+                    players[i].damagePlayer(200, -1, Vector3.zero, null);
                     yield return new WaitForSeconds(1.5f);
                 }
             }

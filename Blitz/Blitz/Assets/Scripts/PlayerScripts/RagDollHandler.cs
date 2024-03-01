@@ -15,6 +15,8 @@ public class RagDollHandler : MonoBehaviour
 
     private Transform[] boneList;
 
+    private List<GameObject> bodyBullets;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,20 +28,15 @@ public class RagDollHandler : MonoBehaviour
     public void AddBulletToRagdoll(GameObject bullet)
     {
 
-    }
-
-    public void DeathForce(Vector3 deathDirection, Vector3 deathPosition)
-    {
-        deathDirection.Normalize();
-
         int closestBone = 0;
-        //float closestDistance = 0.0f;
+
+        bullet.transform.localScale = new Vector3(1,1,1);
 
         for (int i = 0; i < boneList.Length; i++)
         {
             if (boneList[i].GetComponent<Rigidbody>())
             {
-                if(Vector3.Distance(deathPosition, boneList[i].position) <= Vector3.Distance(deathPosition, boneList[closestBone].position))
+                if (Vector3.Distance(bullet.transform.position, boneList[i].position) <= Vector3.Distance(bullet.transform.position, boneList[closestBone].position))
                 {
                     closestBone = i;
                 }
@@ -48,7 +45,59 @@ public class RagDollHandler : MonoBehaviour
 
         }
 
-        boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
+        GameObject newBullet = Instantiate(bullet, bullet.transform.position, bullet.transform.rotation, boneList[closestBone]);
+        newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
+
+        if(newBullet.GetComponent<GrowGameObject>())
+        {
+            float newLife = bullet.GetComponent<GrowGameObject>().lifeTime;
+            newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+        }
+
+        Destroy(bullet);
+
+
+
+    }
+
+    public void SetBulletArrayList(List<GameObject> bullets)
+    {
+        bodyBullets = bullets;
+        Debug.Log(bodyBullets.Count + " bullet count");
+
+        foreach (GameObject bullet in bodyBullets)
+        {
+            AddBulletToRagdoll (bullet);
+        }
+
+    }
+
+    //deathforce should add last bullet to player too
+    public void DeathForce(Vector3 deathDirection, GameObject deathObject)
+    {
+        if(deathObject)
+        {
+            deathDirection.Normalize();
+
+            int closestBone = 0;
+            //float closestDistance = 0.0f;
+
+            for (int i = 0; i < boneList.Length; i++)
+            {
+                if (boneList[i].GetComponent<Rigidbody>())
+                {
+                    if (Vector3.Distance(deathObject.transform.position, boneList[i].position) <= Vector3.Distance(deathObject.transform.position, boneList[closestBone].position))
+                    {
+                        closestBone = i;
+                    }
+
+                }
+
+            }
+
+            boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
+        }
+
 
     }
 
