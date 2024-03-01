@@ -56,6 +56,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject healingUI;
 
+    [SerializeField]
+    private GameObject hammerUI;
+
     private GameObject scaleObject;
 
     [SerializeField]
@@ -206,6 +209,12 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ObliteratedCR");
     }
 
+    public void Hammered()
+    {
+        StopCoroutine("Hammer");
+        StartCoroutine("Hammer");
+    }
+
     internal void StopDamagedCoroutine()
     {
         StopAllCoroutines();
@@ -282,6 +291,15 @@ public class PlayerUIHandler : MonoBehaviour
         obliteratedUI.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         obliteratedUI.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator Hammer()
+    {
+        yield return new WaitForSeconds(0.25f);
+        hammerUI.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        hammerUI.SetActive(false);
         yield return null;
     }
 

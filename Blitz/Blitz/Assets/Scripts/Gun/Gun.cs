@@ -99,6 +99,14 @@ public class Gun : MonoBehaviour
                 else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation);
                 if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
                 else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
+                if (gunVars.ammo[0] <=0 )
+                {
+                    for (int j = 0; j < gunVars.hideObjectWithNoAmmo.Length; j++)
+                    {
+                        gunVars.hideObjectWithNoAmmo[j].SetActive(false);
+                    }
+                    reload();
+                }
             }
 
             switch (gunVars.type)
@@ -179,6 +187,11 @@ public class Gun : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_RELOAD);
                 break;
         }
+        yield return new WaitForSeconds(0.3f);
+        for (int j = 0; j < gunVars.hideObjectWithNoAmmo.Length; j++)
+        {
+            gunVars.hideObjectWithNoAmmo[j].SetActive(true);
+        }
         yield return new WaitForSeconds(gunVars.reloadTime);
         instantReload();
     }
@@ -190,6 +203,10 @@ public class Gun : MonoBehaviour
         else gunVars.ammo[0] = gunVars.ammo[1];
         canReload = true;
         gunVars.canShoot = true;
+        for (int j = 0; j < gunVars.hideObjectWithNoAmmo.Length; j++)
+        {
+            gunVars.hideObjectWithNoAmmo[j].SetActive(true);
+        }
     }
 
 }
@@ -227,6 +244,8 @@ internal class GunVars
     internal Recoil gunRecoil;
     [SerializeField]
     internal Sprite crosshair;
+    [SerializeField]
+    internal GameObject[] hideObjectWithNoAmmo;
 
     //private vars
     internal bool canShoot = true;
