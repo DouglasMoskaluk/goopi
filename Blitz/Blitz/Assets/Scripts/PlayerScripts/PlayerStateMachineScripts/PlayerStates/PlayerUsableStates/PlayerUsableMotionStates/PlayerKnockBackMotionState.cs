@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerKnockBackMotionState : PlayerBasicMotionState
 {
 
+    float timeForMaxSmokeEffect = 1.2f;
+
     float lateralRightSpeed = 6f;
     float lateralLeftSpeed = 6f;
 
@@ -98,6 +100,10 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         base.transitionCheck();
         if ((controller.collisionFlags & CollisionFlags.Below) != 0)//if colliding on ground
         {
+            float timePercent = Mathf.Clamp(elapsedTime / timeForMaxSmokeEffect, 0.4f, 1);
+            GameObject smoke = VFXSpawner.instance.spawnObject(VFXSpawnerObjects.smoke);
+            smoke.transform.position = playerTransform.position + Vector3.up * 0.02f;
+            smoke.GetComponent<SmokeEffectSetUp>().setSmokeAmountAndSize(Mathf.CeilToInt(32 * timePercent), timePercent);
             FSM.transitionState(PlayerMotionStates.Walk);
         }
         else if ((controller.collisionFlags & CollisionFlags.Sides) != 0)
@@ -105,12 +111,4 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
             FSM.transitionState(PlayerMotionStates.Walk);
         }
     }
-
-#if UNITY_EDITOR
-    public void OnDrawGizmos()
-    {
-        //UnityEditor.Handles.color = Color.white;
-        UnityEditor.Handles.DrawWireDisc(playerTransform.position, Vector3.up, 1);
-    }
-#endif
 }
