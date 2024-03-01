@@ -32,14 +32,24 @@ public class RagDollHandler : MonoBehaviour
     {
         deathDirection.Normalize();
 
+        int closestBone = 0;
+        //float closestDistance = 0.0f;
+
         for (int i = 0; i < boneList.Length; i++)
         {
             if (boneList[i].GetComponent<Rigidbody>())
             {
-                boneList[i].GetComponent<Rigidbody>().velocity += deathDirection * 15;
+                if(Vector3.Distance(deathPosition, boneList[i].position) <= Vector3.Distance(deathPosition, boneList[closestBone].position))
+                {
+                    closestBone = i;
+                }
+
             }
 
         }
+
+        boneList[closestBone].GetComponent<Rigidbody>().velocity += deathDirection * 100;
+
     }
 
     public void InitializeRagdoll(int modelId, int skinNum, Transform[]  bones, Vector3 playerVelocity)

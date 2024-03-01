@@ -11,7 +11,7 @@ public class Spinner : MonoBehaviour
 
     private IEnumerator fastSpinCoro;
 
-    private float flingForce = 10.0f;
+    public float flingForce = 10.0f;
 
     private bool fast = false;
 
@@ -27,17 +27,17 @@ public class Spinner : MonoBehaviour
         //StartCoroutine(slowSpinCoro);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            Debug.Log("PLayer hit");
-            Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
-            PlayerBodyFSM fsm = other.GetComponent<PlayerBodyFSM>();
-            fsm.addKnockBack(dir * flingForce);
-            fsm.transitionState(PlayerMotionStates.KnockBack);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Player"))
+    //    {
+
+    //        Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
+    //        PlayerBodyFSM fsm = other.GetComponent<PlayerBodyFSM>();
+    //        fsm.addKnockBack(dir * flingForce);
+    //        fsm.transitionState(PlayerMotionStates.KnockBack);
+    //    }
+    //}
 
     public void FastSpin()
     {
@@ -59,7 +59,7 @@ public class Spinner : MonoBehaviour
     IEnumerator FastRotation()
     {
 
-        flingForce = 20.0f;
+        flingForce = 40.0f;
 
         float timer = 0f;
 
@@ -70,7 +70,7 @@ public class Spinner : MonoBehaviour
             yield return null;
         }
 
-        flingForce = 10.0f;
+        flingForce = 20.0f;
 
     }
 
