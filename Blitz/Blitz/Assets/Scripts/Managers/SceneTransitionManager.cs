@@ -179,6 +179,6 @@ public class SceneTransitionManager : MonoBehaviour
 }
 
 public enum Scenes { 
-    MainMenu, LockerRoom, Arena, Podium
+    MainMenu, LockerRoom, Arena, Podium, Credits
 }
 

@@ -23,7 +23,12 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.ReadyLockerRoom();
     }
 
-    
+    public void onMMCreditsClicked()
+    {
+        SceneTransitionManager.instance.switchScene(Scenes.Credits);
+    }
+
+
 
     public void onMMQuitClicked()
     {
