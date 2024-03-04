@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,7 +82,23 @@ public class RespawnManager : MonoBehaviour
     /// <returns> the respan location </returns>
     public Transform getRespawnLocation()
     {
-        float[] scores = new float[respawnLocations.Count];//list of scores
+        List<Transform> eligibileSpawns = new List<Transform>(4);
+        eligibileSpawns.AddRange(respawnLocations);
+        for (int i = eligibileSpawns.Count -1; i >= 0; i--)
+        {
+            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+            {
+                if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) >= respawnThreshold)
+                {
+                    eligibileSpawns.RemoveAt(i);
+                }
+            }
+        }
+        if (eligibileSpawns.Count <= 0) return respawnLocations[Random.Range(0, respawnLocations.Count - 1)];
+
+        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count-1)];
+
+        /*float[] scores = new float[respawnLocations.Count];//list of scores
 
         int index = 0;
         foreach (Transform location in respawnLocations)// go through each respawn, and sum the distances to each player
@@ -118,7 +135,7 @@ public class RespawnManager : MonoBehaviour
             elibibleLocations.ForEach(x => Debug.Log(x.name));
         }
 
-        return elibibleLocations[selected];//return selected respawn
+        return elibibleLocations[selected];//return selected respawn*/
     }
 
     public Transform getInitialSpawnLocation(int spawnIndex)
