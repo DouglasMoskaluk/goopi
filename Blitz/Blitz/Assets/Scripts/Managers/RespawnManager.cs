@@ -88,15 +88,15 @@ public class RespawnManager : MonoBehaviour
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
-                if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) >= respawnThreshold)
+                if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
                 {
                     eligibileSpawns.RemoveAt(i);
                 }
             }
         }
-        if (eligibileSpawns.Count <= 0) return respawnLocations[Random.Range(0, respawnLocations.Count - 1)];
+        if (eligibileSpawns.Count <= 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
-        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count-1)];
+        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count)];
 
         /*float[] scores = new float[respawnLocations.Count];//list of scores
 
@@ -155,7 +155,25 @@ public class RespawnManager : MonoBehaviour
 
     public Transform getLavaSpawnLocation()
     {
-        float[] scores = new float[lavaEventRespawnLocations.Count];//list of scores
+
+        List<Transform> eligibileSpawns = new List<Transform>(4);
+        eligibileSpawns.AddRange(lavaEventRespawnLocations);
+        for (int i = eligibileSpawns.Count - 1; i >= 0; i--)
+        {
+            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+            {
+                if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
+                {
+                    eligibileSpawns.RemoveAt(i);
+                }
+            }
+        }
+        if (eligibileSpawns.Count <= 0) return lavaEventRespawnLocations[Random.Range(0, respawnLocations.Count)];
+
+        return eligibileSpawns[Random.Range(0, eligibileSpawns.Count)];
+
+
+        /*float[] scores = new float[lavaEventRespawnLocations.Count];//list of scores
 
         int index = 0;
         foreach (Transform location in lavaEventRespawnLocations)// go through each respawn, and sum the distances to each player
@@ -192,6 +210,6 @@ public class RespawnManager : MonoBehaviour
             elibibleLocations.ForEach(x => Debug.Log(x.name));
         }
 
-        return elibibleLocations[selected];//return selected respawn
+        return elibibleLocations[selected];//return selected respawn*/
     }
 }
