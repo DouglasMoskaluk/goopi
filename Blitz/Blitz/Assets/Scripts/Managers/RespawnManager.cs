@@ -83,7 +83,7 @@ public class RespawnManager : MonoBehaviour
     public Transform getRespawnLocation()
     {
         List<Transform> eligibleRespawns = new List<Transform>();
-        
+
         for (int i = 0; i < respawnLocations.Count; i++)
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
@@ -98,6 +98,23 @@ public class RespawnManager : MonoBehaviour
         if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
         return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+
+        //List<Transform> eligibleRespawns = new List<Transform>();
+
+        //for (int i = 0; i < respawnLocations.Count; i++)
+        //{
+        //    foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        //    {
+        //        if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
+        //        {
+        //            eligibleRespawns.Add(respawnLocations[i]);
+        //        }
+        //    }
+        //}
+
+        //if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
+
+        //return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
 
 
         /*List<Transform> eligibileSpawns = new List<Transform>(4);
@@ -190,6 +207,25 @@ public class RespawnManager : MonoBehaviour
         if (eligibleRespawns.Count < 0) return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
 
         return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+
+
+
+        //List<Transform> eligibleRespawns = new List<Transform>();
+
+        //for (int i = 0; i < lavaEventRespawnLocations.Count; i++)
+        //{
+        //    foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        //    {
+        //        if (Vector3.Distance(player.transform.position, lavaEventRespawnLocations[i].position) >= respawnThreshold)
+        //        {
+        //            eligibleRespawns.Add(lavaEventRespawnLocations[i]);
+        //        }
+        //    }
+        //}
+
+        //if (eligibleRespawns.Count < 0) return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
+
+        //return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
 
         //List<Transform> eligibileSpawns = new List<Transform>(4);
         //eligibileSpawns.AddRange(lavaEventRespawnLocations);
