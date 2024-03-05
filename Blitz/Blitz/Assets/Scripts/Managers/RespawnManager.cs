@@ -91,6 +91,7 @@ public class RespawnManager : MonoBehaviour
                 if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
                 {
                     eligibleRespawns.Add(respawnLocations[i]);
+                    break;
                 }
             }
         }
@@ -98,6 +99,8 @@ public class RespawnManager : MonoBehaviour
         if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
         return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+
+
 
         //List<Transform> eligibleRespawns = new List<Transform>();
 
