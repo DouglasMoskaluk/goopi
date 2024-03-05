@@ -10,6 +10,7 @@ public class ImpulseGrenade : SpawnableObject
     [SerializeField] private float radius = 3f;// the radius of the blast zone
     [SerializeField] private float blastDelay = 0.5f;// the amount of time it takes for the blast to happen once the conditions for it are met
     [SerializeField] private float blastForce = 15f;// the amount of force the player 
+    [SerializeField] private bool mapInteractible = false;
 
     [SerializeField]
     GameObject explodeVFX;
@@ -68,6 +69,12 @@ public class ImpulseGrenade : SpawnableObject
     {
         rb.constraints = RigidbodyConstraints.FreezePosition;
         active = true;
+        if (!mapInteractible) explode();
+    }
+
+    public void instantExplode(int plr)
+    {
+        Owner = plr;
         explode();
     }
 
