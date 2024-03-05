@@ -16,6 +16,9 @@ public class Explosion : SpawnableObject
     [SerializeField]
     GameObject onExplosionSpawn;
 
+    [SerializeField]
+    bool explodable = false;
+
     IEnumerator explosionCoroutine;
 
     new SphereCollider collider;
@@ -24,9 +27,18 @@ public class Explosion : SpawnableObject
     {
         collider = GetComponent<SphereCollider>();
         explosionCoroutine = Explode();
-        StartCoroutine(explosionCoroutine);
+        if (!explodable)StartCoroutine(explosionCoroutine);
         //EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
+    }
+
+    public void explodeNow(int player)
+    {
+        Owner = player;
+        if (explodable)
+        {
+            StartCoroutine(Explode());
+        }
     }
 
     private IEnumerator Explode()
@@ -35,20 +47,25 @@ public class Explosion : SpawnableObject
         yield return new WaitForSeconds(delay);
 
         if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent).transform.localScale = transform.localScale * radius;
-        switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
+        if (!explodable) {
+            switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
+            {
+                case Gun.GunType.GOOP:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_EXPLOSION);
+                    break;
+                case Gun.GunType.ICE_XBOW:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_EXPLOSION);
+                    break;
+                case Gun.GunType.FISH:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_EXPLOSION);
+                    break;
+                case Gun.GunType.BOOMSTICK:
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_EXPLOSION);
+                    break;
+            }
+        } else
         {
-            case Gun.GunType.GOOP:
-                AudioManager.instance.PlaySound(AudioManager.AudioQueue.GOOP_EXPLOSION);
-                break;
-            case Gun.GunType.ICE_XBOW:
-                AudioManager.instance.PlaySound(AudioManager.AudioQueue.ICE_EXPLOSION);
-                break;
-            case Gun.GunType.FISH:
-                AudioManager.instance.PlaySound(AudioManager.AudioQueue.FISH_EXPLOSION);
-                break;
-            case Gun.GunType.BOOMSTICK:
-                AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_EXPLOSION);
-                break;
+            explodable = false;
         }
 
         //AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
