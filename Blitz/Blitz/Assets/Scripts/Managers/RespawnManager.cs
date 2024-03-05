@@ -82,27 +82,27 @@ public class RespawnManager : MonoBehaviour
     /// <returns> the respan location </returns>
     public Transform getRespawnLocation()
     {
-        List<Transform> eligibleRespawns = new List<Transform>();
+        //List<Transform> eligibleRespawns = new List<Transform>();
 
-        for (int i = 0; i < respawnLocations.Count; i++)
-        {
-            bool eligible = true;
-            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
-            {
-                if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
-                {
-                    eligible = false;   
-                }
-            }
-            if (eligible) eligibleRespawns.Add(respawnLocations[i]);
-        }
+        //for (int i = 0; i < respawnLocations.Count; i++)
+        //{
+        //    bool eligible = true;
+        //    foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        //    {
+        //        if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
+        //        {
+        //            eligible = false;   
+        //        }
+        //    }
+        //    if (eligible) eligibleRespawns.Add(respawnLocations[i]);
+        //}
 
-        Debug.Log(eligibleRespawns.Count);
-        eligibleRespawns.ForEach(t => Debug.Log(t.name));
+        //Debug.Log(eligibleRespawns.Count);
+        //eligibleRespawns.ForEach(t => Debug.Log(t.name));
 
-        if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
+        //if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
-        return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+        //return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
 
 
 
@@ -124,21 +124,22 @@ public class RespawnManager : MonoBehaviour
         //return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
 
 
-        /*List<Transform> eligibileSpawns = new List<Transform>(4);
+        List<Transform> eligibileSpawns = new List<Transform>(4);
         eligibileSpawns.AddRange(respawnLocations);
-        for (int i = eligibileSpawns.Count -1; i >= 0; i--)
+        for (int i = eligibileSpawns.Count - 1; i >= 0; i--)
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
                 if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
                 {
                     eligibileSpawns.RemoveAt(i);
+                    break;
                 }
             }
         }
         if (eligibileSpawns.Count <= 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
-        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count)];*/
+        return eligibileSpawns[Random.Range(0, eligibileSpawns.Count)];
 
         /*float[] scores = new float[respawnLocations.Count];//list of scores
 
