@@ -66,4 +66,15 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Stored Settings!");
         settingsApplyButton.interactable = false;
     }
+
+    public void onButtonHover()
+    {
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
+    }
+
+    public void onButtonClick()
+    {
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CLICK);
+    }
+
 }
