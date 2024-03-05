@@ -15,6 +15,11 @@ public class BulletDecal : MonoBehaviour
         StartCoroutine("Countdown");
     }
 
+    public void Initialize()
+    {
+
+    }
+
     public void RemoveSelf(EventParams param = new EventParams())
     {
         Destroy(gameObject);

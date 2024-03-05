@@ -491,7 +491,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
                 for (int i = 5; i < transform.childCount; i++)
                 {
-                    if (!transform.GetChild(i).gameObject.name.Equals("Bomb(clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
+                    if (!transform.GetChild(i).gameObject.name.Equals("Bomb(Clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
                     {
                         newBullets.Add(transform.GetChild(i).gameObject);
                         if (transform.GetChild(i).GetComponent<Plunger>())

@@ -169,23 +169,34 @@ public class Bullet : MonoBehaviour
         {
             for (int i=0; i< bulletVars.spawnOnContact.Length; i++)
             {
-                transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
-                Debug.Log(go.name);
-                if (hit.transform.CompareTag("Crate") && bulletVars.snap)
+                if (!bulletVars.spawnOnContact[i].GetComponent<BulletDecal>())
                 {
-                    go.transform.parent = hit.transform;
+                    transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
+                    Debug.Log(go.name);
+                    if (hit.transform.CompareTag("Crate") && bulletVars.snap)
+                    {
+                        go.transform.parent = hit.transform;
+                    }
+                    go.GetComponent<SpawnableObject>().init(bulletVars.owner);
+                    if (bulletVars.snap)
+                    {
+                        //Snapping
+                        go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        go.transform.position = hit.point;
+                    }
+                    if (bulletVars.attachPlayer)
+                    {
+                        go.transform.position = hit.point;
+                    }
                 }
-                go.GetComponent<SpawnableObject>().init(bulletVars.owner);
-                if (bulletVars.snap)
+                else
                 {
-                    //Snapping
+                    transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, hit.transform);
                     go.transform.rotation = Quaternion.LookRotation(-hit.normal);
                     go.transform.position = hit.point;
-                } 
-                if (bulletVars.attachPlayer)
-                {
-                    go.transform.position = hit.point;
+                    //go.transform.parent = hit.transform;
                 }
             }
         }
