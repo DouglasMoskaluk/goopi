@@ -82,7 +82,25 @@ public class RespawnManager : MonoBehaviour
     /// <returns> the respan location </returns>
     public Transform getRespawnLocation()
     {
-        List<Transform> eligibileSpawns = new List<Transform>(4);
+        List<Transform> eligibleRespawns = new List<Transform>();
+        
+        for (int i = 0; i < respawnLocations.Count; i++)
+        {
+            foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+            {
+                if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
+                {
+                    eligibleRespawns.Add(respawnLocations[i]);
+                }
+            }
+        }
+
+        if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
+
+        return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+
+
+        /*List<Transform> eligibileSpawns = new List<Transform>(4);
         eligibileSpawns.AddRange(respawnLocations);
         for (int i = eligibileSpawns.Count -1; i >= 0; i--)
         {
@@ -96,7 +114,7 @@ public class RespawnManager : MonoBehaviour
         }
         if (eligibileSpawns.Count <= 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
-        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count)];
+        return eligibileSpawns[Random.Range(0,eligibileSpawns.Count)];*/
 
         /*float[] scores = new float[respawnLocations.Count];//list of scores
 
@@ -156,21 +174,38 @@ public class RespawnManager : MonoBehaviour
     public Transform getLavaSpawnLocation()
     {
 
-        List<Transform> eligibileSpawns = new List<Transform>(4);
-        eligibileSpawns.AddRange(lavaEventRespawnLocations);
-        for (int i = eligibileSpawns.Count - 1; i >= 0; i--)
+        List<Transform> eligibleRespawns = new List<Transform>();
+
+        for (int i = 0; i < lavaEventRespawnLocations.Count; i++)
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
-                if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
+                if (Vector3.Distance(player.transform.position, lavaEventRespawnLocations[i].position) >= respawnThreshold)
                 {
-                    eligibileSpawns.RemoveAt(i);
+                    eligibleRespawns.Add(lavaEventRespawnLocations[i]);
                 }
             }
         }
-        if (eligibileSpawns.Count <= 0) return lavaEventRespawnLocations[Random.Range(0, respawnLocations.Count)];
 
-        return eligibileSpawns[Random.Range(0, eligibileSpawns.Count)];
+        if (eligibleRespawns.Count < 0) return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
+
+        return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
+
+        //List<Transform> eligibileSpawns = new List<Transform>(4);
+        //eligibileSpawns.AddRange(lavaEventRespawnLocations);
+        //for (int i = eligibileSpawns.Count - 1; i >= 0; i--)
+        //{
+        //    foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        //    {
+        //        if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
+        //        {
+        //            eligibileSpawns.RemoveAt(i);
+        //        }
+        //    }
+        //}
+        //if (eligibileSpawns.Count <= 0) return lavaEventRespawnLocations[Random.Range(0, respawnLocations.Count)];
+
+        //return eligibileSpawns[Random.Range(0, eligibileSpawns.Count)];
 
 
         /*float[] scores = new float[lavaEventRespawnLocations.Count];//list of scores
