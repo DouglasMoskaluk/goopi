@@ -36,7 +36,7 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject hitMarker;
 
     [SerializeField]
-    private GameObject hitDirection;
+    private GameObject[] hitDirection;
 
     [SerializeField]
     private GameObject obliteratedUI;
@@ -79,6 +79,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject victoryText;
 
+    private IEnumerator[] hitDirectionIndicators;
+
     int kills = 0;
 
     [HideInInspector]
@@ -108,6 +110,10 @@ public class PlayerUIHandler : MonoBehaviour
         crossHair.SetActive(false);
         obliteratedUI.SetActive(false);
         victoryText.SetActive(false);
+        for (int i = 0; i < 4; i++)
+        {
+            hitDirection[i].SetActive(false);
+        }
 
         StartCoroutine(setCharButton());
     }
@@ -122,6 +128,10 @@ public class PlayerUIHandler : MonoBehaviour
         damagedUI.SetActive(false);
         victoryText.SetActive(false);
         obliteratedUI.SetActive(false);
+        for (int i = 0; i < 4; i++)
+        {
+            hitDirection[i].SetActive(false);
+        }
     }
 
     public void ReEnablePlayerUI()
@@ -258,17 +268,43 @@ public class PlayerUIHandler : MonoBehaviour
         killCount.gameObject.SetActive(false);
         health.gameObject.SetActive(false);
         crossHair.SetActive(false);
+        for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            hitDirection[i].SetActive(false);
+        }
 
     }
 
-    internal void bulletCollision(Transform bul)
+    internal void bulletCollision(Transform bul, int hitID)
     {
-        hitDirection.SetActive(true);
-        Vector3 pos = bul.position - player.transform.position;
-        Vector2 directionShot = new Vector2(pos.x, pos.z);
+        hitDirection[hitID].SetActive(true);
+        if (hitDirectionIndicators == null) hitDirectionIndicators = new IEnumerator[4];
+        Vector3 pos = bul.position - player.transform.position; //get the difference in position
+        Vector2 directionShot = new Vector2(pos.x, pos.z); // get the topdown view on a vector 2
         //Debug.Log(directionShot + ", " + pos + " " + bul.position + " "+ player.transform.position);
-        hitDirection.GetComponent<RectTransform>().localPosition = (Quaternion.Euler(0, 0, player.playerBody.rotation.y) * directionShot).normalized * 100;
-        hitDirection.GetComponent<RectTransform>().rotation = Quaternion.FromToRotation(Vector2.up, directionShot);
+        if (hitDirectionIndicators[hitID] != null) StopCoroutine(hitDirectionIndicators[hitID]);
+        hitDirectionIndicators[hitID] = pointToHitDirection(directionShot, hitID);
+        StartCoroutine(hitDirectionIndicators[hitID]);
+
+        
+    }
+
+    internal IEnumerator pointToHitDirection(Vector2 pos, int hitID)
+    {
+        RectTransform rectTrans = hitDirection[hitID].GetComponent<RectTransform>();
+        Image img = hitDirection[hitID].GetComponent<Image>();
+        for (float i=0; i<2; i+= Time.deltaTime)
+        {
+            //Get the position, rotate it based on what direction the player is looking, then apply a distance to it 
+            rectTrans.localPosition = (Quaternion.Euler(0, 0, Mathf.Rad2Deg * player.playerBody.rotation.ToEulerAngles().y) * pos).normalized * 350;
+            //Rotate based on the angle of where it is
+            rectTrans.rotation = Quaternion.FromToRotation(Vector2.up, rectTrans.localPosition);
+            float alpha = Mathf.Min((2 - (i * 1))/2, 1);
+            Color c = img.color;
+            img.color = new Color(c.r, c.g, c.b, alpha);
+            yield return null;
+        }
+        hitDirection[hitID].SetActive(false);
     }
 
     internal void Alive()
