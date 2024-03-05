@@ -86,14 +86,15 @@ public class RespawnManager : MonoBehaviour
 
         for (int i = 0; i < respawnLocations.Count; i++)
         {
+            bool eligible = true;
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
                 if (Vector3.Distance(player.transform.position, respawnLocations[i].position) >= respawnThreshold)
                 {
-                    eligibleRespawns.Add(respawnLocations[i]);
-                    break;
+                    eligible = false;   
                 }
             }
+            if (eligible) eligibleRespawns.Add(respawnLocations[i]);
         }
 
         if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
