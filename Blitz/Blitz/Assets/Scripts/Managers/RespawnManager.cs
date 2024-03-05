@@ -97,6 +97,9 @@ public class RespawnManager : MonoBehaviour
             if (eligible) eligibleRespawns.Add(respawnLocations[i]);
         }
 
+        Debug.Log(eligibleRespawns.Count);
+        eligibleRespawns.ForEach(t => Debug.Log(t.name));
+
         if (eligibleRespawns.Count < 0) return respawnLocations[Random.Range(0, respawnLocations.Count)];
 
         return eligibleRespawns[Random.Range(0, eligibleRespawns.Count)];
