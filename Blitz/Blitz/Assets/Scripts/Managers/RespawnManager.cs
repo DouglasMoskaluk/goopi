@@ -157,14 +157,23 @@ public class RespawnManager : MonoBehaviour
     {
 
         List<Transform> eligibileSpawns = new List<Transform>(4);
+
+        //Debug.Log(eligibileSpawns.Count);
+
         eligibileSpawns.AddRange(lavaEventRespawnLocations);
+
+        Debug.Log(eligibileSpawns.Count);
+
+
         for (int i = eligibileSpawns.Count - 1; i >= 0; i--)
         {
+            Debug.Log(i + "spawn num");
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
                 if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
                 {
                     eligibileSpawns.RemoveAt(i);
+                    Debug.Log("removed" + i);
                 }
             }
         }
