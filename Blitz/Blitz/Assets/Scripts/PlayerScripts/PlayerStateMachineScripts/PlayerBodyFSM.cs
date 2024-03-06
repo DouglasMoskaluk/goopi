@@ -484,34 +484,36 @@ public class PlayerBodyFSM : MonoBehaviour
             //Vector3 playerVelocity = transform.GetComponent<CharacterController>().velocity;
             newRagDollHandler.InitializeRagdoll(modelID, skinID, boneList, playerVelocity);
 
-            if (transform.childCount > 5) //there are bullets on player
-            {
-                List<GameObject> newBullets = new List<GameObject>();
-                List<int> killerID = new List<int>();
+            //if (transform.childCount > 5) //there are bullets on player
+            //{
+            //    List<GameObject> newBullets = new List<GameObject>();
+            //    List<int> killerID = new List<int>();
 
-                for (int i = 5; i < transform.childCount; i++)
-                {
-                    if (!transform.GetChild(i).gameObject.name.Equals("Bomb(Clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
-                    {
-                        newBullets.Add(transform.GetChild(i).gameObject);
-                        if (transform.GetChild(i).GetComponent<Plunger>())
-                        {
-                            killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
-                        }
-                        else if (transform.GetChild(i).GetComponent<Explosion>())
-                        {
-                            killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
-                        }
-                        else
-                        {
-                            killerID.Add(-1);
-                        }
-                        //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
-                    }
-                    //transform.GetChild(i).transform.parent = newRagdollBody.transform;
-                }
-                newRagDollHandler.SetBulletArrayList(newBullets, killerID);
-            }
+            //    for (int i = 5; i < transform.childCount; i++)
+            //    {
+            //        if (transform.GetChild(i).gameObject.name.Contains("Bomb") != true && transform.GetChild(i).gameObject.name.Contains("VFX_BasicExplosion_ICICLE") != true)
+            //        {
+            //            Debug.Log("ISNT A BOMD" + transform.GetChild(i).gameObject.name);
+            //            Debug.Log("ISNT A BOMD");
+            //            newBullets.Add(transform.GetChild(i).gameObject);
+            //            if (transform.GetChild(i).GetComponent<Plunger>())
+            //            {
+            //                killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
+            //            }
+            //            else if (transform.GetChild(i).GetComponent<Explosion>())
+            //            {
+            //                killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
+            //            }
+            //            else
+            //            {
+            //                killerID.Add(-1);
+            //            }
+            //            //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
+            //        }
+            //        //transform.GetChild(i).transform.parent = newRagdollBody.transform;
+            //    }
+            //    newRagDollHandler.SetBulletArrayList(newBullets, killerID);
+            //}
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
             StartCoroutine(deathCoro(newRagDollHandler));
@@ -554,7 +556,7 @@ public class PlayerBodyFSM : MonoBehaviour
             List<int> killerID = new List<int>();
             for (int i = 5; i < transform.childCount; i++)
             {
-                if(!transform.GetChild(i).gameObject.name.Equals("Bomb(clone)") && !transform.GetChild(i).gameObject.name.Equals("VFX_BasicExplosion_ICICLE(Clone)"))
+                if(transform.GetChild(i).gameObject.name.Contains("Bomb") != true && transform.GetChild(i).gameObject.name.Contains("VFX_BasicExplosion_ICICLE") != true)
                 {
                     newBullets.Add(transform.GetChild(i).gameObject);
                     if (transform.GetChild(i).GetComponent<Plunger>())
