@@ -7,6 +7,7 @@ public class PlayerDeathMotionState : PlayerBasicMotionState
     public override void onStateEnter()
     {
         base.onStateEnter();
+        dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
     }
 
     public override void onStateExit()

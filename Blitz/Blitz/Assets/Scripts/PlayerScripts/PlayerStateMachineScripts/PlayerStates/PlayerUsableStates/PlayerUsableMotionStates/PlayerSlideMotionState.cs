@@ -17,6 +17,8 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         anim.CrossFadeInFixedTime("Slide", 0.1f, 0);
         anim.CrossFadeInFixedTime("SpineRotateSlide", 0.1f, 2);
         anim.SetLayerWeight(1, 0);
+        dustParticles.SetParticleStatus(DustParticleStatus.Slide);
+
     }
 
     public override void onStateExit()
@@ -44,6 +46,8 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         slideMovement(forwardMotion, startSlideDireciton, previousVertMotion, stateVariableHolder.SLIDE_SPEED * speedModifier, stateVariableHolder.GRAVITY);
         elapsedTime += Time.deltaTime;
         speedModifier = Mathf.MoveTowards(speedModifier, 0, stateVariableHolder.slideMoveTowardsValue * Time.deltaTime);
+
+        cine.m_Lens.FieldOfView = Mathf.Lerp(cine.m_Lens.FieldOfView, stateVariableHolder.slideFOV, Time.deltaTime * stateVariableHolder.FOVLerpSpeed);
     }
 
     public override void transitionCheck()

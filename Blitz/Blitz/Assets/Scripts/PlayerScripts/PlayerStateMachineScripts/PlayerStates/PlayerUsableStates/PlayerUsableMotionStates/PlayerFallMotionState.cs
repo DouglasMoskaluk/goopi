@@ -12,6 +12,7 @@ public class PlayerFallMotionState : PlayerBasicMotionState
     {
         base.onStateEnter();
         anim.CrossFadeInFixedTime("Fall", 0.2f, 0);
+        dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
     }
 
     public override void stateUpdate()
@@ -20,6 +21,7 @@ public class PlayerFallMotionState : PlayerBasicMotionState
         elapsedTime += Time.deltaTime;
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.IN_AIR_SPEED * Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f), stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
+        cine.m_Lens.FieldOfView = Mathf.Lerp(cine.m_Lens.FieldOfView, stateVariableHolder.othersFOV, Time.deltaTime * stateVariableHolder.FOVLerpSpeed);
     }
 
     public override void transitionCheck()

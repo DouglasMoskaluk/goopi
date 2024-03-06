@@ -16,11 +16,13 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
     {
         base.onStateEnter();
         anim.CrossFadeInFixedTime("Walk", 0.1f, 0);
-        
+
     }
 
     public override void stateUpdate()
     {
+        cine.m_Lens.FieldOfView = Mathf.Lerp(cine.m_Lens.FieldOfView, stateVariableHolder.othersFOV, Time.deltaTime * stateVariableHolder.FOVLerpSpeed);
+
         controller.height = Mathf.MoveTowards(controller.height, 2, 0.05f);
         Vector2 center = controller.center;
         center.y = Mathf.MoveTowards(center.y, 0.95f, 0.025f);
@@ -47,6 +49,16 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         anim.SetFloat("MotionY", animYValue);
 
         anim.SetFloat("WalkAnimSpeedMultiplier", Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f));
+
+        //dust particles
+        if (input.motionInput.sqrMagnitude == 0)
+        {
+            dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
+        }
+        else
+        {
+            dustParticles.SetParticleStatus(DustParticleStatus.Walk);
+        }
     }
 
     public override void onStateExit()

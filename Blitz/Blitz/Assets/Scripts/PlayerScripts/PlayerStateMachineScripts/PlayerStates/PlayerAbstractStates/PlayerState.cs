@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 /// <summary>
 /// Abstract class representing the highest level of a player state
@@ -17,6 +18,8 @@ public abstract class PlayerState
     protected Gun playerGun;
     protected Transform playerBody;
     protected PlayerGrenadeArcRenderer arcRenderer;
+    protected PlayerMotionDustParticles dustParticles;
+    protected CinemachineFreeLook cine;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -86,6 +89,8 @@ public abstract class PlayerState
         playerBody = stateParams.playerBody;
         stateVariableHolder = stateParams.variableHolder;
         arcRenderer = stateParams.arcRender;
+        dustParticles = stateParams.dust;
+        cine = stateParams.cine;
     }
 }
 

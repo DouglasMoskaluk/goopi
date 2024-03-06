@@ -26,6 +26,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     {
         base.onStateEnter();
         anim.CrossFadeInFixedTime("Fall", 0.1f, 0);
+        dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
     }
 
     public override void onStateExit()
@@ -65,6 +66,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
 
         RotateBodyToCamera();
         updateKnockBack();
+        cine.m_Lens.FieldOfView = Mathf.Lerp(cine.m_Lens.FieldOfView, stateVariableHolder.othersFOV, Time.deltaTime * stateVariableHolder.FOVLerpSpeed);
         //Debug.Break();
     }
 

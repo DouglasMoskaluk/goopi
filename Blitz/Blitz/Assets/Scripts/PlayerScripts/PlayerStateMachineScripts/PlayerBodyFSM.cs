@@ -51,6 +51,8 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private GameObject playerCrown;
     [SerializeField] private PlayerGrenadeArcRenderer grenadeArcRenderer;
     [SerializeField] private PlayerHeadMotion headMotion;
+    [SerializeField] private PlayerMotionDustParticles dustParticles;
+    [SerializeField] private CinemachineFreeLook cine;
     private Transform gunPositionRef;
    
 
@@ -361,7 +363,8 @@ public class PlayerBodyFSM : MonoBehaviour
     private stateParams getFSMInfo()
     {
 
-        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, throwFrom, playerGun, playerBody, variableHolder, rigHolder, grenadeArcRenderer);
+        return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, 
+            throwFrom, playerGun, playerBody, variableHolder, rigHolder, grenadeArcRenderer, dustParticles, cine);
     }
 
     /// <summary>
@@ -717,7 +720,8 @@ public struct stateParams
 
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
         Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun,
-        Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder, PlayerGrenadeArcRenderer arc)
+        Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder, PlayerGrenadeArcRenderer arc, PlayerMotionDustParticles dustPart,
+        CinemachineFreeLook cineFreeLook)
     {
         FSM = fsm;
         anim = an;
@@ -732,6 +736,8 @@ public struct stateParams
         variableHolder = vHolder;
         rigHolder = rHolder;
         arcRender = arc;
+        dust = dustPart;
+        cine = cineFreeLook;
     }
 
     public PlayerBodyFSM FSM;
@@ -747,6 +753,8 @@ public struct stateParams
     public FSMVariableHolder variableHolder;
     public PlayerRigHolder rigHolder;
     public PlayerGrenadeArcRenderer arcRender;
+    public PlayerMotionDustParticles dust;
+    public CinemachineFreeLook cine;
 }
 
 public struct GroundRayCast
