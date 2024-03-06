@@ -498,9 +498,13 @@ public class PlayerBodyFSM : MonoBehaviour
                         {
                             killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
                         }
-                        else
+                        else if (transform.GetChild(i).GetComponent<Explosion>())
                         {
                             killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
+                        }
+                        else
+                        {
+                            killerID.Add(-1);
                         }
                         //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
                     }
@@ -557,9 +561,12 @@ public class PlayerBodyFSM : MonoBehaviour
                     {
                         killerID.Add(transform.GetChild(i).GetComponent<Plunger>().Owner);
                     }
-                    else
+                    else if (transform.GetChild(i).GetComponent<Explosion>())
                     {
                         killerID.Add(transform.GetChild(i).GetComponent<Explosion>().Owner);
+                    } else
+                    {
+                        killerID.Add(-1);
                     }
                     //killerID.Add(transform.GetChild(i).GetComponent<Bullet>().bulletVars.owner);
                 }
