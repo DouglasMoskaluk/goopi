@@ -208,34 +208,39 @@ public class Bullet : MonoBehaviour
         {
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
-                GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                if (bulletVars.attachPlayer)
+                if(!bulletVars.spawnOnContact[i].GetComponent<BulletDecal>())
                 {
-                    go.transform.parent = plr.transform;
-                    go.transform.position = hit.point;
-                    go.transform.rotation = transform.rotation;
-                    if (bulletVars.snap)
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                    if (bulletVars.attachPlayer)
                     {
-                        go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        go.transform.parent = plr.transform;
                         go.transform.position = hit.point;
+                        go.transform.rotation = transform.rotation;
+                        if (bulletVars.snap)
+                        {
+                            go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                            go.transform.position = hit.point;
+                        }
                     }
-                } else if (bulletVars.snap)
-                {
-                    RaycastHit floor;
-                    if (Physics.Raycast(transform.position, Vector3.down, out floor, 5f))
+                    else if (bulletVars.snap)
                     {
-                        //Snapping
-                        go.transform.rotation = Quaternion.LookRotation(-floor.normal);
-                        go.transform.position = floor.point;
-                    } else
-                    {
-                        //Snapping
-                        go.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                        go.transform.position = hit.point;
+                        RaycastHit floor;
+                        if (Physics.Raycast(transform.position, Vector3.down, out floor, 5f))
+                        {
+                            //Snapping
+                            go.transform.rotation = Quaternion.LookRotation(-floor.normal);
+                            go.transform.position = floor.point;
+                        }
+                        else
+                        {
+                            //Snapping
+                            go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                            go.transform.position = hit.point;
+                        }
+
                     }
-                    
-                } 
-                if (go.GetComponent<SpawnableObject>() != null) go.GetComponent<SpawnableObject>().init(bulletVars.owner);
+                    if (go.GetComponent<SpawnableObject>() != null) go.GetComponent<SpawnableObject>().init(bulletVars.owner);
+                }
             }
             plr.playerUI.bulletCollision(SplitScreenManager.instance.GetPlayers(bulletVars.owner).transform, bulletVars.owner);
         }

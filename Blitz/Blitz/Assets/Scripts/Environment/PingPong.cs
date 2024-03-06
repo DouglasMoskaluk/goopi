@@ -8,15 +8,17 @@ public class PingPong : MonoBehaviour
     [SerializeField]
     private Transform startPoint;
 
-    [SerializeField] 
+    [SerializeField]
     private Transform endPoint;
 
     [SerializeField]
     private float timeInSeconds = 6;
 
+    [SerializeField]
+    private AnimationCurve curve;
+
     void Start()
     {
-        
         StartCoroutine("PointToPoint");
     }
 
@@ -30,16 +32,17 @@ public class PingPong : MonoBehaviour
         Transform newStartPoint = startPoint;
         Transform newEndPoint = endPoint;
 
-        int elapsedTime = 0;
-        
-        while(true)
+        float elapsedTime = 0;
+        float curveSpot = 0;
+
+        while (true)
         {
 
             if (elapsedTime >= Time)
             {
                 elapsedTime = 0;
 
-                if(newStartPoint == startPoint)
+                if (newStartPoint == startPoint)
                 {
                     newStartPoint = endPoint;
                     newEndPoint = startPoint;
@@ -54,12 +57,15 @@ public class PingPong : MonoBehaviour
 
             }
 
+            //float ratio = (float)elapsedTime / Time;
+
             float ratio = (float)elapsedTime / Time;
 
-            transform.position = Vector3.Lerp(newStartPoint.position, newEndPoint.position, ratio);
+            curveSpot = curve.Evaluate(ratio);
+            transform.position = Vector3.Lerp(newStartPoint.position, newEndPoint.position, curveSpot);
 
             elapsedTime++;
-            
+
             yield return new WaitForSeconds(0.01f);
 
         }
