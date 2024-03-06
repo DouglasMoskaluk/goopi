@@ -695,6 +695,11 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         knockBackVector = newKnockBack;
     }
+
+    public void SetWalkParticles(bool onOff)
+    {
+        dustParticles.SetParticlesEnabled(onOff);
+    }
 }
 
 /// <summary>

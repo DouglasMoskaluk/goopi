@@ -12,23 +12,18 @@ public class PlayerMotionDustParticles : MonoBehaviour
     private void Awake()
     {
 
-        SetParticleStatus(DustParticleStatus.Walk);
+        SetParticleStatus(DustParticleStatus.Stopped);
+        EventManager.instance.addListener(Events.onPlayStart, ActivateParticlesEvent);
+    }
+
+
+    public void ActivateParticlesEvent(EventParams param = new EventParams())
+    {
+        SetParticlesEnabled(false);
     }
 
     public void SetParticleStatus(DustParticleStatus status)
     {
-        switch (status) 
-        {
-            case DustParticleStatus.Stopped:
-                break;
-            case DustParticleStatus.Walk:
-
-                break;
-            case DustParticleStatus.Slide:
-
-                break;
-        }
-
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].SetInt("AmountOfParticles", particleStatusList[(int)status].amountOfParticles);
@@ -44,6 +39,13 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     }
 
+    public void SetParticlesEnabled(bool onOff)
+    {
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].enabled = onOff;
+        }
+    }
 
 }
 

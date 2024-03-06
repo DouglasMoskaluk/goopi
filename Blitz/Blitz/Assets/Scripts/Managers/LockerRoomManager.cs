@@ -128,8 +128,9 @@ public class LockerRoomManager : MonoBehaviour
     IEnumerator PlayerReady(int playerID)
     {
         //Debug.Log("Player " + playerID + " has readied up.");
+        PlayerBodyFSM FSM = players[playerID - 1].GetComponent<PlayerBodyFSM>();
 
-        players[playerID - 1].GetComponent<PlayerBodyFSM>().enabled = false;
+        FSM.enabled = false;
         CameraShake cam = players[playerID - 1].GetComponent<CameraShake>();
         cam.camInput.charSelect = 0f;
         cam.camCollider.enabled = false;
@@ -176,7 +177,8 @@ public class LockerRoomManager : MonoBehaviour
             SendReadySignal();
             //SceneTransitionManager.instance.loadScene(Scenes.Arena);
         }
-        yield return null;
+        FSM.SetWalkParticles(false);
+        
     }
 
     IEnumerator LobbyReady()
