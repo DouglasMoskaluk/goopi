@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerFallMotionState : PlayerBasicMotionState
 {
-
+     
     float timeForMaxSmokeEffect = 1.2f;
     float elapsedTime = 0;
     public override void onStateEnter()

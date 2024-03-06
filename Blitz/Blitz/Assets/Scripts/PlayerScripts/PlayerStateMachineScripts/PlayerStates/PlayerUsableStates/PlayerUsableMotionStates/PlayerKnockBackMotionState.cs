@@ -34,7 +34,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
         base.onStateExit();
         FSM.setKnockBack(Vector3.zero);
     }
-
+     
     public override void stateUpdate()
     {
         base.stateUpdate();

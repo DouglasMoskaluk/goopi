@@ -3,7 +3,7 @@ using UnityEngine;
 /// 
 /// </summary>
 public class PlayerJumpMotionState : PlayerBasicMotionState
-{
+{ 
     private const float JUMP_FORCE = 10f;//for applied upwards when entering jump state
 
     public override void onStateEnter()

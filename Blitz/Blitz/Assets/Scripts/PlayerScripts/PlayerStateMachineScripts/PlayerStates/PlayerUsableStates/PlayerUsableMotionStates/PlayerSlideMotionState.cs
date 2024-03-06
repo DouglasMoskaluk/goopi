@@ -29,7 +29,7 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         anim.SetLayerWeight(1, 1);
         anim.CrossFadeInFixedTime("SpineRotate", 0.1f, 2);
     }
-
+     
     public override void stateUpdate()
     {
         base.stateUpdate();

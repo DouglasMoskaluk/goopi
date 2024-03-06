@@ -18,7 +18,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         anim.CrossFadeInFixedTime("Walk", 0.1f, 0);
 
     }
-
+     
     public override void stateUpdate()
     {
         cine.m_Lens.FieldOfView = Mathf.Lerp(cine.m_Lens.FieldOfView, stateVariableHolder.othersFOV, Time.deltaTime * stateVariableHolder.FOVLerpSpeed);
@@ -49,7 +49,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         anim.SetFloat("MotionY", animYValue);
 
         anim.SetFloat("WalkAnimSpeedMultiplier", Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f));
-
+         
         //dust particles
         if (input.motionInput.sqrMagnitude == 0)
         {

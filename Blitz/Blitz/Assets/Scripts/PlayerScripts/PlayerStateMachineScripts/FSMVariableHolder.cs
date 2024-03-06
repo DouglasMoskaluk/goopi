@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FSMVariableHolder : MonoBehaviour
-{
+{ 
     [Header("Motion Settings")]
     [Tooltip("The speed at which the player walks at.")] public float WALK_SPEED = 12f;
 
