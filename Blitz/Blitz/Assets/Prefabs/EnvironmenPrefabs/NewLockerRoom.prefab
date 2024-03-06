@@ -6429,7 +6429,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7986973277734330948}
   - component: {fileID: 6252973530751536137}
-  - component: {fileID: 4317207491047243063}
   m_Layer: 0
   m_Name: NewLockerRoom
   m_TagString: Untagged
@@ -6486,27 +6485,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerFSM: {fileID: 0}
   playerCamShake: {fileID: 0}
---- !u!65 &4317207491047243063
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775359688590543284}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.962784, y: 3.8324032, z: 4.188716}
-  m_Center: {x: 8.135491, y: 3.053862, z: -0.07285607}
 --- !u!1 &5863504643622779210
 GameObject:
   m_ObjectHideFlags: 0
@@ -10878,6 +10856,12 @@ MonoBehaviour:
   startPoint: {fileID: 3535150029566951961}
   endPoint: {fileID: 3173827159493269332}
   timeInSeconds: 1
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6296402106780261066
 MonoBehaviour:
   m_ObjectHideFlags: 0
