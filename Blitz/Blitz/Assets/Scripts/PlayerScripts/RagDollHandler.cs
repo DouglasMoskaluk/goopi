@@ -34,7 +34,7 @@ public class RagDollHandler : MonoBehaviour
         {
             if (boneList[i].GetComponent<Rigidbody>())
             {
-                boneList[i].GetComponent<Rigidbody>().velocity += direction;
+                boneList[i].GetComponent<Rigidbody>().velocity += direction * 15;
             }
 
         }

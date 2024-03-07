@@ -59,7 +59,7 @@ public class Plunger : SpawnableObject
             Debug.Log("RAGDOLL PULL");
             PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
             Vector3 pullDirection = (plr.transform.position - transform.position).normalized;
-            pullDirection.y += heightPull;
+            //pullDirection.y += heightPull;
             transform.root.GetComponent<RagDollHandler>().pullRagdoll(pullDirection);
         }
 
