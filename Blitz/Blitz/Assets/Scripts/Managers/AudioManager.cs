@@ -147,6 +147,10 @@ public class AudioManager : MonoBehaviour
         return true;
     }
 
+    public void restartMusic(float volume)
+    {
+
+    }
 
     internal void TransitionTrack(string name)
     {
