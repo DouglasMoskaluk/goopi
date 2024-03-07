@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 58588d36f37843140a841d27cb29029b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -285,6 +285,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2252396143289066300, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: vidPlayer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252396143289066300, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: rouletteAnimator
+      value: 
+      objectReference: {fileID: 235537109}
     - target: {fileID: 2980386916859792424, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
@@ -293,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3767074682711002976, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
@@ -303,12 +313,12 @@ PrefabInstance:
     - target: {fileID: 5035097125185446722, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.5385132
+      value: -2.5385742
       objectReference: {fileID: 0}
     - target: {fileID: 5641282524038134214, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6157972636049062938, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
@@ -326,11 +336,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7587749056415170583, guid: 6829adfba33a97f4abf18ac8b107588e, type: 3}
+    - {fileID: 8170275525967752818, guid: 6829adfba33a97f4abf18ac8b107588e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5936658497485661299, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 235537108}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6829adfba33a97f4abf18ac8b107588e, type: 3}

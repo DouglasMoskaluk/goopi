@@ -13,13 +13,14 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private Transform bottomPoint;
 
     [SerializeField] private float spinDuration = 10f;
+    [SerializeField] private float gunVisibleDuration = 1.5f;
 
     [SerializeField] private float speed = 1f;
 
     [SerializeField] private float slowedDownFinalSpeed = 750f;
     [SerializeField] private float slowDownSpeedAmount = 150f;
 
-    [SerializeField] private VideoPlayer vidPlayer;
+    //[SerializeField] private VideoPlayer vidPlayer;
     [SerializeField] private float fadeTime = 1f;
     [SerializeField] private float fadeOutTime = 1.5f;
 
@@ -40,6 +41,8 @@ public class WeaponSlotMachine : MonoBehaviour
     private float stampInitScale;
     [SerializeField] private float finalStampSize;
     [SerializeField] private float stampDuration = 1;
+
+    [SerializeField] private Animator rouletteAnimator;
 
     private void Awake()
     {
@@ -67,7 +70,7 @@ public class WeaponSlotMachine : MonoBehaviour
         wheel.GetChild(0).localPosition = resetChild0;
         wheel.GetChild(1).localPosition = resetChild1;
         stampImage.gameObject.SetActive(false);
-        vidPlayer.frame = 0;
+        //vidPlayer.frame = 0;**
         stampImage.transform.localScale = Vector3.one * stampInitScale;
     }
 
@@ -75,10 +78,11 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         //second 3.59, frame 14 | seconds 6.84, frame 20, 
 
-        vidPlayer.frame = 0;
-        vidPlayer.Play();
-        //yield return null;
-        //vidPlayer.Pause();
+        //vidPlayer.frame = 0; **
+        //vidPlayer.Play(); **
+        rouletteAnimator.speed = 1;
+        rouletteAnimator.Play("Spin", 0, 0);
+
 
         //fade slot machine in
         float timeElapsedFade = 0;
@@ -92,12 +96,11 @@ public class WeaponSlotMachine : MonoBehaviour
 
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
-        //vidPlayer.Play();
 
-        yield return new WaitForSecondsRealtime(3.73f - fadeTime);
+        yield return new WaitForSecondsRealtime(4.33f - fadeTime);
 
-        //vidPlayer.frame = 18;
-        vidPlayer.Pause();
+        //vidPlayer.Pause(); **
+        rouletteAnimator.speed = 0;
         
 
         // spin until the end of the specified spinning duration
@@ -155,8 +158,10 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
-        vidPlayer.Pause();
-        yield return new WaitForSecondsRealtime(1.5f);
+        //vidPlayer.Pause(); **
+
+
+        yield return new WaitForSecondsRealtime(gunVisibleDuration);
 
         if (selectedGun < 5)
         {
@@ -173,7 +178,9 @@ public class WeaponSlotMachine : MonoBehaviour
             }
         }
 
-        vidPlayer.Play();
+        //vidPlayer.Play();**
+        rouletteAnimator.speed = 1;
+
         yield return new WaitForSecondsRealtime(2.0f);
 
         float timeElapsedFadeOut = 0;
@@ -187,5 +194,6 @@ public class WeaponSlotMachine : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
 
         isSpinning = false;
+        rouletteAnimator.speed = 0;
     }
 }
