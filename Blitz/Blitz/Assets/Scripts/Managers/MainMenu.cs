@@ -17,6 +17,69 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private Button settingsApplyButton;
 
+    [SerializeField]
+    private RawImage flashbang;
+
+    [SerializeField]
+    private GameObject backGround;
+
+    [SerializeField]
+    private GameObject playButt;
+
+
+    [SerializeField]
+    private GameObject settingButt;
+
+    [SerializeField]
+    private GameObject quitButt;
+
+    [SerializeField]
+    private GameObject creditsButt;
+
+    [SerializeField]
+    private GameObject interactText;
+
+    [SerializeField]
+    private GameObject crosshair;
+
+    [SerializeField]
+    private GameObject MenuObject;
+
+    [SerializeField]
+    private GameObject foxHolder;
+
+    private bool canInteract = false;
+
+    private void Update()
+    {
+        if(Input.anyKeyDown && canInteract)
+        {
+            canInteract = false;
+            MenuObject.transform.GetComponent<Animation>().Play("SplashToStartAnimation");
+            interactText.SetActive(false);
+        }
+    }
+
+    public void AfterSplashAnim()
+    {
+
+        canInteract = true;
+
+        backGround.SetActive(false);
+
+        interactText.SetActive(true);
+
+        crosshair.transform.GetComponent<Animation>().Play();
+
+        foxHolder.SetActive(true);
+
+        flashbang.CrossFadeAlpha(0f, 0.5f, false);
+
+
+
+
+    }
+
     public void onMMPlayClicked()
     {
         mmPlayButton.GetComponent<Button>().interactable = false;
@@ -76,5 +139,17 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CLICK);
     }
+
+    //IEnumerator MainMenuStuff()
+    //{
+    //    float timeElapsed = 0f;
+
+    //    while (timeElapsed <= 0)
+    //    {
+    //        timeElapsed += Time.deltaTime;
+    //        flashbang.color
+    //    }
+
+    //}
 
 }
