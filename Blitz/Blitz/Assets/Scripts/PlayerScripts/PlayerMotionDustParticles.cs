@@ -13,13 +13,13 @@ public class PlayerMotionDustParticles : MonoBehaviour
     {
 
         SetParticleStatus(DustParticleStatus.Stopped);
-        EventManager.instance.addListener(Events.onPlayStart, ActivateParticlesEvent);
+        EventManager.instance.addListener(Events.onRoundStart, ActivateParticlesEvent);
     }
 
 
     public void ActivateParticlesEvent(EventParams param = new EventParams())
     {
-        SetParticlesEnabled(false);
+        SetParticlesEnabled(true);
     }
 
     public void SetParticleStatus(DustParticleStatus status)
