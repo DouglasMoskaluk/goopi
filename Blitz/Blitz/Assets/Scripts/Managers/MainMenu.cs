@@ -208,14 +208,36 @@ public class MainMenu : MonoBehaviour
         PlayerModelHandler modelThree = ragDollThree.transform.GetComponent<PlayerModelHandler>();
 
 
-        modelOne.SetRagdollSkin(Random.Range(0, 4));
-        modelOne.SetModel(Random.Range(0, 6));
+        int numOne;
 
-        modelTwo.SetRagdollSkin(Random.Range(0, 4));
-        modelTwo.SetModel(Random.Range(0, 6));
+        int numTwo;
 
-        modelThree.SetRagdollSkin(Random.Range(0, 4));
-        modelThree.SetModel(Random.Range(0, 6));
+        int numThree;
+
+        numOne = Random.Range(0, 6);
+
+        numTwo = Random.Range(0, 6);
+
+        while(numOne == numTwo)
+        {
+            numTwo = Random.Range(0, 6);
+        }
+
+        numThree = Random.Range(0, 6);
+
+        while(numThree == numOne || numThree == numTwo)
+        {
+            numThree = Random.Range(0, 6);
+        }
+
+        modelOne.SetRagdollSkin(0);
+        modelOne.SetModel(numOne);
+
+        modelTwo.SetRagdollSkin(0);
+        modelTwo.SetModel(numTwo);
+
+        modelThree.SetRagdollSkin(0);
+        modelThree.SetModel(numThree);
 
         Instantiate(grenade, GrenadeSpawnOne.position, Quaternion.identity);
 
@@ -223,10 +245,37 @@ public class MainMenu : MonoBehaviour
 
         Instantiate(grenade, GrenadeSpawnThree.position, Quaternion.identity);
 
+        float timeTracker = 0.0f;
 
+        while(timeTracker < 1.15f)
+        {
+            timeTracker += Time.deltaTime;
+            yield return null;
+        }
+
+        timeTracker = 0.0f;
+
+        Rigidbody modelRB1 = ragDollOne.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+        Rigidbody modelRB2 = ragDollTwo.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+        Rigidbody modelRB3 = ragDollThree.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+
+        while (timeTracker < 0.85)
+        {
+            timeTracker += Time.deltaTime;
+            ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+            ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+            ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+
+            yield return null;
+        }
+
+        ragDollOne.GetComponent<MainMenuDragAdd>().VelocityOff();
+        ragDollTwo.GetComponent<MainMenuDragAdd>().VelocityOff();
+        ragDollThree.GetComponent<MainMenuDragAdd>().VelocityOff();
 
         yield return null;
     }
+
 
     //IEnumerator MainMenuStuff()
     //{
