@@ -31,10 +31,15 @@ public class MainMenuDragAdd : MonoBehaviour
         {
             if (bones[i].GetComponent<Rigidbody>())
             {
-                bones[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //bones[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
                 bones[i].GetComponent<Rigidbody>().useGravity = false;
             }
         }
+    }
+
+    public void FreezePosition()
+    {
+        bones[0].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
     }
 
 }

@@ -77,6 +77,9 @@ public class MainMenu : MonoBehaviour
 
     private bool fullyInteract = false;
 
+    [SerializeField]
+    private GameObject floorPlane;
+
     private void Update()
     {
         if(Input.anyKeyDown && canInteract)
@@ -259,6 +262,8 @@ public class MainMenu : MonoBehaviour
         Rigidbody modelRB2 = ragDollTwo.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
         Rigidbody modelRB3 = ragDollThree.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
 
+        floorPlane.SetActive(false);
+
         while (timeTracker < 0.85)
         {
             timeTracker += Time.deltaTime;
@@ -272,6 +277,14 @@ public class MainMenu : MonoBehaviour
         ragDollOne.GetComponent<MainMenuDragAdd>().VelocityOff();
         ragDollTwo.GetComponent<MainMenuDragAdd>().VelocityOff();
         ragDollThree.GetComponent<MainMenuDragAdd>().VelocityOff();
+
+        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+
+        ragDollOne.GetComponent<MainMenuDragAdd>().FreezePosition();
+        ragDollTwo.GetComponent<MainMenuDragAdd>().FreezePosition();
+        ragDollThree.GetComponent<MainMenuDragAdd>().FreezePosition();
 
         yield return null;
 
