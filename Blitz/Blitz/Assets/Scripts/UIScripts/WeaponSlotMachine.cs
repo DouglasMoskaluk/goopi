@@ -77,7 +77,6 @@ public class WeaponSlotMachine : MonoBehaviour
     private IEnumerator SpinWheel(int selectedGun)
     {
         //second 3.59, frame 14 | seconds 6.84, frame 20, 
-
         //vidPlayer.frame = 0; **
         //vidPlayer.Play(); **
         rouletteAnimator.speed = 1;
