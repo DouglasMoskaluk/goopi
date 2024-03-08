@@ -145,7 +145,8 @@ public class PlayerUIHandler : MonoBehaviour
     {
         grenadeCount.text = grenade.HeldGrenadeCount.ToString();
         health.text = player.Health.ToString();
-        if (gun != null) ammoCount.text = gun.Ammo.ToString();
+        if (gun != null && gun.Ammo < 100) ammoCount.text = gun.Ammo.ToString();
+        else if (gun != null) ammoCount.text = "\u221E";
         killCount.text = RoundManager.instance.getKillCount(playerID).ToString();
     }
 
