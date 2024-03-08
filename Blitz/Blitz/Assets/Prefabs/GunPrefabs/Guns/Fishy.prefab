@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletVars:
     shotDamage: 0
-    speed: 60
+    speed: 40
     minSpeed: 5
     lifeTime: 5
     accuracy: {x: 0, y: 0}
@@ -76,6 +76,7 @@ MonoBehaviour:
     gunRecoil: {fileID: 3024702770011869617}
     crosshair: {fileID: 21300000, guid: b0345f48c505ea34281fc2b686458d39, type: 3}
     hideObjectWithNoAmmo: []
+    muzzleFlash: {fileID: 0}
 --- !u!114 &3877965180559298240
 MonoBehaviour:
   m_ObjectHideFlags: 0
