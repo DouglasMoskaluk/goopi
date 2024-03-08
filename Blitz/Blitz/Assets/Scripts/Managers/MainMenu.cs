@@ -52,7 +52,26 @@ public class MainMenu : MonoBehaviour
     private GameObject ragdoll;
 
     [SerializeField]
-    private Transform spawnPoints;
+    private GameObject grenade;
+
+
+    [SerializeField]
+    private Transform GrenadeSpawnOne;
+
+    [SerializeField]
+    private Transform GrenadeSpawnTwo;
+
+    [SerializeField]
+    private Transform GrenadeSpawnThree;
+
+    [SerializeField]
+    private GameObject ragDollOne;
+
+    [SerializeField]
+    private GameObject ragDollTwo;
+
+    [SerializeField]
+    private GameObject ragDollThree;
 
     private bool canInteract = false;
 
@@ -73,7 +92,6 @@ public class MainMenu : MonoBehaviour
         {
             fullyInteract = false;
             StartCoroutine(ragDollStuff());
-            Debug.Log("WACKSTER");
         }
 
         if(eventSys.currentSelectedGameObject == null)
@@ -81,6 +99,11 @@ public class MainMenu : MonoBehaviour
             eventSys.SetSelectedGameObject(playButt);
         }
 
+    }
+
+    private void Start()
+    {
+        //gameObjects = new List<GameObject>();
     }
 
     public void FullInteractibility()
@@ -168,15 +191,39 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CLICK);
     }
 
+    public void RemoveObjects()
+    {
+        //for(int i = 0; i< gameObjects.Count; i++)
+        //{
+        //    Destroy(gameObjects[i]);
+        //}
+    }
+
     IEnumerator ragDollStuff()
     {
-        float timeTracker = 0.0f;
+        PlayerModelHandler modelOne = ragDollOne.transform.GetComponent<PlayerModelHandler>();
 
-        while(true)
-        {
+        PlayerModelHandler modelTwo = ragDollTwo.transform.GetComponent<PlayerModelHandler>();
 
-            yield return null;
-        }
+        PlayerModelHandler modelThree = ragDollThree.transform.GetComponent<PlayerModelHandler>();
+
+
+        modelOne.SetRagdollSkin(Random.Range(0, 4));
+        modelOne.SetModel(Random.Range(0, 6));
+
+        modelTwo.SetRagdollSkin(Random.Range(0, 4));
+        modelTwo.SetModel(Random.Range(0, 6));
+
+        modelThree.SetRagdollSkin(Random.Range(0, 4));
+        modelThree.SetModel(Random.Range(0, 6));
+
+        Instantiate(grenade, GrenadeSpawnOne.position, Quaternion.identity);
+
+        Instantiate(grenade, GrenadeSpawnTwo.position, Quaternion.identity);
+
+        Instantiate(grenade, GrenadeSpawnThree.position, Quaternion.identity);
+
+
 
         yield return null;
     }
