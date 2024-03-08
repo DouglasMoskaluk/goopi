@@ -183,15 +183,16 @@ public class WeaponSlotMachine : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(2.0f);
 
-        float timeElapsedFadeOut = 0;
-        while (timeElapsedFadeOut < fadeOutTime)
-        {
-            timeElapsedFadeOut += Time.unscaledDeltaTime;
+        //fade out
+        //float timeElapsedFadeOut = 0;
+        //while (timeElapsedFadeOut < fadeOutTime)
+        //{
+        //    timeElapsedFadeOut += Time.unscaledDeltaTime;
 
-            cGroup.alpha = 1 - (timeElapsedFadeOut / fadeOutTime);
-            yield return null;
-        }
-        yield return new WaitForSecondsRealtime(0.2f);
+        //    cGroup.alpha = 1 - (timeElapsedFadeOut / fadeOutTime);
+        //    yield return null;
+        //}
+        //yield return new WaitForSecondsRealtime(0.2f);
 
         isSpinning = false;
         rouletteAnimator.speed = 0;

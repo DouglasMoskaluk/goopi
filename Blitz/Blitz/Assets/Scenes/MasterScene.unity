@@ -300,6 +300,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: gunTut
+      value: 
+      objectReference: {fileID: 854693989}
+    - target: {fileID: 3060797611196595150, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: roundTransMotion
+      value: 
+      objectReference: {fileID: 1214438239}
     - target: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive
@@ -352,8 +362,22 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 235537108}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214438240}
+    - targetCorrespondingSourceObject: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214438239}
   m_SourcePrefab: {fileID: 100100000, guid: 6829adfba33a97f4abf18ac8b107588e, type: 3}
+--- !u!1 &821046552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3627841490547437052, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &854693984
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +390,7 @@ GameObject:
   - component: {fileID: 854693988}
   - component: {fileID: 854693987}
   - component: {fileID: 854693986}
+  - component: {fileID: 854693989}
   m_Layer: 5
   m_Name: GunTutorialAnimation
   m_TagString: Untagged
@@ -390,7 +415,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1538, y: 90}
-  m_SizeDelta: {x: 1080, y: 720}
+  m_SizeDelta: {x: 756, y: 504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &854693986
 Animator:
@@ -451,6 +476,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854693984}
   m_CullTransparentMesh: 1
+--- !u!114 &854693989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854693984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c590d0cde08ca464e845d59812f6dd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  howManyAnimLoops: 3
 --- !u!1 &911134476
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +570,39 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 644969827}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1214438239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821046552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9205a5470d9fb4247bfb48d8f8823a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1214438240
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821046552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49142ec3787676040b295b62d6c62d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1697229847
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,14 @@ public class RoundManager : MonoBehaviour
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
 
+        float transitionMotionAnimTime = GameUIManager.instance.playGunTutorialMotion();
+
+        yield return new WaitForSecondsRealtime(transitionMotionAnimTime);
+
+        float gunTutAnimTime = GameUIManager.instance.playGunTutorial();
+
+        yield return new WaitForSecondsRealtime(gunTutAnimTime);
+
         //yield return new WaitForSecondsRealtime(1.5f);
 
 
@@ -109,6 +117,8 @@ public class RoundManager : MonoBehaviour
         ModifierManager.instance.showModifierUI();
 
         yield return GameUIManager.instance.FadeOut(0.75f);
+        GameUIManager.instance.ResetRoundTransitionUI();
+
         Time.timeScale = 1.0f;
 
         //Turn camera here @Patrick
@@ -133,6 +143,7 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator endRoundCoro()
     {
+
         Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s

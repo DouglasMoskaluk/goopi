@@ -14,7 +14,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Image fadePanel;
     [SerializeField] private GameObject roundTransObjs;
     [SerializeField] private WeaponSlotMachine slotSelectionUI;
+    [SerializeField] private GunTutorialAnimation gunTut;
     [SerializeField] private PlayerScore[] roundTransScores;
+    [SerializeField] private RoundTransitionMotionManager roundTransMotion;
 
     private float timerTickDelay = 0;
 
@@ -172,6 +174,16 @@ public class GameUIManager : MonoBehaviour
         return slotSelectionUI.StartSelection(gunSelected);
     }
 
+    public float playGunTutorial()
+    {
+        return gunTut.playGunTutorialSequence();
+    }
+
+    public float playGunTutorialMotion()
+    {
+        return roundTransMotion.playRoundTransitionMotion();
+    }
+
     public void UpdateRoundTransScores()
     {
         int[]  roundsWon = GameManager.instance.GetRoundsWon();
@@ -185,4 +197,11 @@ public class GameUIManager : MonoBehaviour
             roundTransScores[i].SetWins(roundsWon[i]);
         }
     }
+
+    public void ResetRoundTransitionUI()
+    {
+        gunTut.ResetTutorial();
+        roundTransMotion.ResetMotion();
+    }
+
 }
