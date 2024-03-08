@@ -26,6 +26,9 @@ public class Credits : MonoBehaviour
         ragdolls = new GameObject[devSkinLook.Length];
     }
 
+    [SerializeField]
+    UnityEngine.Video.VideoPlayer video;
+
 
 
     public void GoToMainMenu()
@@ -70,6 +73,16 @@ public class Credits : MonoBehaviour
 
         //Time.timeScale = 0.05f;
         StartCoroutine(frozen(frozenTime));
+    }
+
+    private void playVideo()
+    {
+        video.Play();
+    }
+
+    private void pauseVideo()
+    {
+        video.Pause();
     }
 
     private IEnumerator frozen(float frozenTime)
