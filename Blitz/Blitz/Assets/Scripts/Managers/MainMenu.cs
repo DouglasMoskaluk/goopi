@@ -274,6 +274,12 @@ public class MainMenu : MonoBehaviour
         ragDollThree.GetComponent<MainMenuDragAdd>().VelocityOff();
 
         yield return null;
+
+        //ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0);
+        //ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(0);
+        //ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(0);
+
+        yield return null;
     }
 
 
