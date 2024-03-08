@@ -48,7 +48,15 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject foxHolder;
 
+    [SerializeField]
+    private GameObject ragdoll;
+
+    [SerializeField]
+    private Transform spawnPoints;
+
     private bool canInteract = false;
+
+    private bool fullyInteract = false;
 
     private void Update()
     {
@@ -58,6 +66,26 @@ public class MainMenu : MonoBehaviour
             MenuObject.transform.GetComponent<Animation>().Play("SplashToStartAnimation");
             interactText.SetActive(false);
         }
+
+
+
+        if(fullyInteract) //now we do some wacky shit
+        {
+            fullyInteract = false;
+            StartCoroutine(ragDollStuff());
+            Debug.Log("WACKSTER");
+        }
+
+        if(eventSys.currentSelectedGameObject == null)
+        {
+            eventSys.SetSelectedGameObject(playButt);
+        }
+
+    }
+
+    public void FullInteractibility()
+    {
+        fullyInteract = true;
     }
 
     public void AfterSplashAnim()
@@ -138,6 +166,19 @@ public class MainMenu : MonoBehaviour
     public void onButtonClick()
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CLICK);
+    }
+
+    IEnumerator ragDollStuff()
+    {
+        float timeTracker = 0.0f;
+
+        while(true)
+        {
+
+            yield return null;
+        }
+
+        yield return null;
     }
 
     //IEnumerator MainMenuStuff()

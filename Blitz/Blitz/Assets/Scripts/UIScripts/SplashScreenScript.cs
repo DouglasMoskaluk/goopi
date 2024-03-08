@@ -18,4 +18,9 @@ public class SplashScreenScript : MonoBehaviour
         mainMenu.AfterSplashAnim();
     }
 
+    public void afterInteract()
+    {
+        mainMenu.FullInteractibility();
+    }
+
 }
