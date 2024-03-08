@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 /// <summary>
 /// The gun class. All guns expand on this base class.
@@ -88,7 +89,6 @@ public class Gun : MonoBehaviour
                 if (gunVars.ammo[0] <= 0) break;
                 gunVars.ammo[0]--;
                 gunVars.canShoot = false;
-                StartCoroutine(shotCooldown());
                 rumble.ShootRumble((int)gunVars.type);
                 shake.GunShake((int)gunVars.type);
                 //shake.ShakeCamera(0.25f, 0.1f);
@@ -97,6 +97,7 @@ public class Gun : MonoBehaviour
                     //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
                     bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation, gunVars.bulletParent);
                 else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation);
+                if (gunVars.muzzleFlash != null) gunVars.muzzleFlash.Play();
                 if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
                 else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
                 if (gunVars.ammo[0] <=0 )
@@ -106,6 +107,9 @@ public class Gun : MonoBehaviour
                         gunVars.hideObjectWithNoAmmo[j].SetActive(false);
                     }
                     reload();
+                } else
+                {
+                    StartCoroutine(shotCooldown());
                 }
             }
 
@@ -246,7 +250,8 @@ internal class GunVars
     internal Sprite crosshair;
     [SerializeField]
     internal GameObject[] hideObjectWithNoAmmo;
-
+    [SerializeField]
+    internal VisualEffect muzzleFlash;
     //private vars
     internal bool canShoot = true;
 }
