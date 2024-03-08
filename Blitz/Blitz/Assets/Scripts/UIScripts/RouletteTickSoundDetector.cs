@@ -9,7 +9,6 @@ public class RouletteTickSoundDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("UIRouletteSpinner"))
         {
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROULETTE_SPIN);
-            Debug.Log("PLAYED THE SOUND OH MY GOD ITS SOUNDS SO GOOD. ICE CREAM SO GOOD");
         }
     }
 }
