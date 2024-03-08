@@ -31,6 +31,8 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     Transform modifierUI;
 
+    RoundModifierList[] modifierOrder;
+
 
     internal int getNumEvents(int r)
     {
@@ -128,9 +130,11 @@ public class ModifierManager : MonoBehaviour
                 for (int i = 0; i < modifiers[round]; i++)
                 {
                     int chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH - 1);
-                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent])
+                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round-1] != chosenEvent))
                     {
                         ActiveEvents[chosenEvent] = true;
+
+                        modifierOrder[round] = (RoundModifierList)chosenEvent;
                     }
                     else if (ActiveEvents[chosenEvent])
                     {
@@ -242,6 +246,7 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[i] = false;
         }
+        modifierOrder = new RoundModifierList[4];
     }
 
 
