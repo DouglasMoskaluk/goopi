@@ -33,6 +33,7 @@ public class Credits : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Debug.Log("Switching");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
     }
 
@@ -48,12 +49,12 @@ public class Credits : MonoBehaviour
 
     private void RewordRoleText(string newText)
     {
-        Debug.Log(newText);
+        //Debug.Log(newText);
         textboxes[0].text = newText;
     }
     private void RewordNameText(string newText)
     {
-        Debug.Log(newText);
+        //Debug.Log(newText);
         textboxes[1].text = newText;
     }
 
