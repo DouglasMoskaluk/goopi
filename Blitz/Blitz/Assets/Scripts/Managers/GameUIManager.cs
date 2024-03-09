@@ -162,12 +162,14 @@ public class GameUIManager : MonoBehaviour
 
     public void showRoundTransition() 
     {
-        roundTransObjs.SetActive(true); 
+        roundTransObjs.SetActive(true);
+        AudioManager.instance.TransitionTrack("Roulette Spin");
     }
 
     public void hideRoundTransition()
     {
         roundTransObjs.SetActive(false);
+        AudioManager.instance.TransitionTrack("InGame");
     }
 
     public Coroutine spinGunSelection(int gunSelected)
