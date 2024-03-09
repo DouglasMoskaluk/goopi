@@ -144,9 +144,6 @@ public class WeaponSlotMachine : MonoBehaviour
             yield return null;
         }
 
-
-        //vidPlayer.Pause(); **
-
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROULETTE_SELECT);
 
         yield return new WaitForSecondsRealtime(gunVisibleDuration);
@@ -157,6 +154,7 @@ public class WeaponSlotMachine : MonoBehaviour
             stampImage.sprite = stamps[selectedGun];
             stampImage.gameObject.SetActive(true);
             float stampElapsedTime = 0;
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
             while (stampElapsedTime < stampDuration)
             {
                 stampElapsedTime += Time.unscaledDeltaTime;
@@ -170,7 +168,7 @@ public class WeaponSlotMachine : MonoBehaviour
         //vidPlayer.Play();**
         rouletteAnimator.speed = 1;
 
-        AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
+
 
         yield return new WaitForSecondsRealtime(2.0f);
 
