@@ -100,6 +100,12 @@ public class GunManager : MonoBehaviour
         gun.transform.forward = FSM.playerBody.forward;
 
         gun.GetComponent<Gun>().gunVars.bulletParent = transform;
+
+        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
+        {
+            gun.GetComponent<Gun>().bulletVars.bounces = true;
+        }
+
         FSM.assignGun(gun);
     }
 
