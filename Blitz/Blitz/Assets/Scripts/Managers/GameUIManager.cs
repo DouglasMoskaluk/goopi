@@ -17,6 +17,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GunTutorialAnimation gunTut;
     [SerializeField] private PlayerScore[] roundTransScores;
     [SerializeField] private RoundTransitionMotionManager roundTransMotion;
+    [SerializeField] private CutoutFade cutoutFade;
 
     private float timerTickDelay = 0;
 
@@ -202,6 +203,21 @@ public class GameUIManager : MonoBehaviour
     {
         gunTut.ResetTutorial();
         roundTransMotion.ResetMotion();
+    }
+
+    public float cutoutFadeToBlack()
+    {
+        return cutoutFade.FadeToBlack();
+    }
+
+    public float cutoutFadeToVisible()
+    {
+        return cutoutFade.FadeToVisible();
+    }
+
+    public void changeVisibilityoFCutoutFade(bool onOff)
+    {
+        cutoutFade.SetVisibility(onOff);
     }
 
 }

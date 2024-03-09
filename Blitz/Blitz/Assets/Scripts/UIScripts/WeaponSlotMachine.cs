@@ -84,15 +84,15 @@ public class WeaponSlotMachine : MonoBehaviour
         //AudioManager.instance.PlaySound(AudioManager.AudioQueue.R);
 
 
-        //fade slot machine in
-        float timeElapsedFade = 0;
-        while (timeElapsedFade < fadeTime)
-        {
-            timeElapsedFade += Time.unscaledDeltaTime;
+        ////fade slot machine in
+        //float timeElapsedFade = 0;
+        //while (timeElapsedFade < fadeTime)
+        //{
+        //    timeElapsedFade += Time.unscaledDeltaTime;
 
-            cGroup.alpha = (timeElapsedFade / fadeTime);
-            yield return null;
-        }
+        //    cGroup.alpha = (timeElapsedFade / fadeTime);
+        //    yield return null;
+        //}
 
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
