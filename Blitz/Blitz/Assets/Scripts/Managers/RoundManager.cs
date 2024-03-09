@@ -61,27 +61,34 @@ public class RoundManager : MonoBehaviour
             PlayerBodyFSM FSM = player.GetComponent<PlayerBodyFSM>();
             FSM.SetPlayerSpineValue(0.5f);
             FSM.ForceAnimatorUpdate();
-            
         }
 
         EventManager.instance.invokeEvent(Events.onRoundStart);
 
         yield return new WaitForSecondsRealtime(0.5f);
 
+
+
         //round ui stuff
         GameUIManager.instance.showRoundTransition();
+
+        float cutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
+        yield return new WaitForSecondsRealtime(cutoutFadeVisible);
+
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
 
         float transitionMotionAnimTime = GameUIManager.instance.playGunTutorialMotion();
-
         yield return new WaitForSecondsRealtime(transitionMotionAnimTime);
 
-        float gunTutAnimTime = GameUIManager.instance.playGunTutorial();
 
+        float gunTutAnimTime = GameUIManager.instance.playGunTutorial();
         yield return new WaitForSecondsRealtime(gunTutAnimTime);
 
-        //yield return new WaitForSecondsRealtime(1.5f);
+        float cutOutFadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
+        yield return new WaitForSecondsRealtime(cutOutFadeToBlack);
+
+        yield return new WaitForSecondsRealtime(1.5f);//stay on black screen for 1.5s
 
 
         GameUIManager.instance.hideRoundTransition();
@@ -116,9 +123,8 @@ public class RoundManager : MonoBehaviour
         }
         ModifierManager.instance.showModifierUI();
 
-        yield return GameUIManager.instance.FadeOut(0.75f);
-        GameUIManager.instance.ResetRoundTransitionUI();
 
+        GameUIManager.instance.ResetRoundTransitionUI();
         Time.timeScale = 1.0f;
 
         //Turn camera here @Patrick
@@ -137,6 +143,9 @@ public class RoundManager : MonoBehaviour
         SplitScreenManager.instance.EnablePlayerControls();
 
         EventManager.instance.invokeEvent(Events.onPlayStart);
+
+        float secondCutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
+        yield return new WaitForSecondsRealtime(secondCutoutFadeVisible);
 
         Debug.Log("start Round co ends");
     }
@@ -166,8 +175,10 @@ public class RoundManager : MonoBehaviour
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
         yield return new WaitForSecondsRealtime(0.75f);
 
-        yield return GameUIManager.instance.FadeIn(0.5f);
-        yield return new WaitForSecondsRealtime(0.5f);
+        float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
+        yield return new WaitForSecondsRealtime(cutoutFadeBlack);
+
+        yield return new WaitForSecondsRealtime(0.5f);// to stay on black screen for a second
 
         SplitScreenManager.instance.DisablePlayerControls();
         Time.timeScale = 1f;
