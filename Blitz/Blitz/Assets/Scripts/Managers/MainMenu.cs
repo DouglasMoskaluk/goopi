@@ -154,6 +154,7 @@ public class MainMenu : MonoBehaviour
 
     public void onMMSettingsClicked()
     {
+        //mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
@@ -173,6 +174,7 @@ public class MainMenu : MonoBehaviour
 
     public void onSMReturnClicked()
     {
+        //mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
     }
 
@@ -192,6 +194,11 @@ public class MainMenu : MonoBehaviour
     public void onButtonClick()
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CLICK);
+    }
+
+    public void onButtonCancel()
+    {
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CANCEL);
     }
 
     public void RemoveObjects()
