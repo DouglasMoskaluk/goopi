@@ -55,7 +55,6 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startRoundCoro()
     {
-        
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {
             PlayerBodyFSM FSM = player.GetComponent<PlayerBodyFSM>();
@@ -144,6 +143,7 @@ public class RoundManager : MonoBehaviour
 
         EventManager.instance.invokeEvent(Events.onPlayStart);
 
+        GameUIManager.instance.SetFadePanelAlpha(0);
         float secondCutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
         yield return new WaitForSecondsRealtime(secondCutoutFadeVisible);
 
@@ -171,16 +171,17 @@ public class RoundManager : MonoBehaviour
         Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
 
         Time.timeScale = 0.25f;
-        //GameUIManager.instance.SetFadePanelAlpha(0.5f); //<- might want to have it fade to like 0.25 or 0.3 tp indicate the slowmo more
+        
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
         yield return new WaitForSecondsRealtime(0.75f);
 
         float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutoutFadeBlack);
 
+        SplitScreenManager.instance.DisablePlayerControls();
+
         yield return new WaitForSecondsRealtime(0.5f);// to stay on black screen for a second
 
-        SplitScreenManager.instance.DisablePlayerControls();
         Time.timeScale = 1f;
 
         EventManager.instance.invokeEvent(Events.onRoundEnd);

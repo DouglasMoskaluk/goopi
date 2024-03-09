@@ -221,8 +221,6 @@ public class GameManager : MonoBehaviour
         GunManager.instance.SetLockerroomGuns();
 
         SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
-
-        yield return GameUIManager.instance.FadeOut(0.5f);
     }
 
     private IEnumerator LockerRoomToArenaTransition()
@@ -242,6 +240,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("after load ");
 
         StartGame();
+
+        //yield return GameUIManager.instance.FadeOut(0.5f);
     }
 
     public int[] GetRoundsWon()
