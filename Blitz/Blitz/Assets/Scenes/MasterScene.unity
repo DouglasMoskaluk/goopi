@@ -246,6 +246,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b2971d6a2105943ba130e17bf634a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &159204495 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3345097283681617715, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &159204496 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8541469162130704548, guid: 6829adfba33a97f4abf18ac8b107588e,
+    type: 3}
+  m_PrefabInstance: {fileID: 644969827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &636910316 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5936658497485661299, guid: 6829adfba33a97f4abf18ac8b107588e,
@@ -382,9 +400,54 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 764a24ed03479fc48b7c26443b1ada86, type: 3}
     - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
+      propertyPath: img
+      value: 
+      objectReference: {fileID: 159204496}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 159204495}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
       propertyPath: howManyAnimLoops
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d3e9455cb6294f46aa08d92e656c50d,
+        type: 3}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: bd290539d94a6384b8691667e9f8a8f5,
+        type: 3}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 42fdd53c9ebab844996441c59d86cdd2,
+        type: 3}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: c9e4d7670e0a9f848878468168d7757d,
+        type: 3}
+    - target: {fileID: 1829809086324831755, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: firstFrames.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: e3dffe76b0cf0b84aa8d19421a8a78c7,
+        type: 3}
     - target: {fileID: 2028730685615278023, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_Enabled
@@ -587,6 +650,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8541469162130704548, guid: 6829adfba33a97f4abf18ac8b107588e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d3e9455cb6294f46aa08d92e656c50d,
+        type: 3}
     - target: {fileID: 8623869952652841746, guid: 6829adfba33a97f4abf18ac8b107588e,
         type: 3}
       propertyPath: m_IsActive

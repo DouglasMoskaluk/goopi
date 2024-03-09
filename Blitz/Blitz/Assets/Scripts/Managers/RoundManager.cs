@@ -66,7 +66,7 @@ public class RoundManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-
+        GameUIManager.instance.setTutAnimInitFrame();
 
         //round ui stuff
         GameUIManager.instance.showRoundTransition();
@@ -77,12 +77,16 @@ public class RoundManager : MonoBehaviour
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
 
-        float transitionMotionAnimTime = GameUIManager.instance.playGunTutorialMotion();
-        yield return new WaitForSecondsRealtime(transitionMotionAnimTime);
+        if (roundNum != 4)//round 5
+        {
+            float transitionMotionAnimTime = GameUIManager.instance.playGunTutorialMotion();
+            yield return new WaitForSecondsRealtime(transitionMotionAnimTime);
 
 
-        float gunTutAnimTime = GameUIManager.instance.playGunTutorial();
-        yield return new WaitForSecondsRealtime(gunTutAnimTime);
+            float gunTutAnimTime = GameUIManager.instance.playGunTutorial();
+            yield return new WaitForSecondsRealtime(gunTutAnimTime);
+        }
+
 
         float cutOutFadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutOutFadeToBlack);

@@ -76,28 +76,14 @@ public class WeaponSlotMachine : MonoBehaviour
 
     private IEnumerator SpinWheel(int selectedGun)
     {
-        //second 3.59, frame 14 | seconds 6.84, frame 20, 
-        //vidPlayer.frame = 0; **
-        //vidPlayer.Play(); **
         rouletteAnimator.speed = 1;
         rouletteAnimator.Play("Spin", 0, 0);
         //AudioManager.instance.PlaySound(AudioManager.AudioQueue.R);
 
-
-        ////fade slot machine in
-        //float timeElapsedFade = 0;
-        //while (timeElapsedFade < fadeTime)
-        //{
-        //    timeElapsedFade += Time.unscaledDeltaTime;
-
-        //    cGroup.alpha = (timeElapsedFade / fadeTime);
-        //    yield return null;
-        //}
-
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
 
-        yield return new WaitForSecondsRealtime(4.33f - fadeTime);//time it takes for otter to pull lever
+        yield return new WaitForSecondsRealtime(4.33f);//time it takes for otter to pull lever
 
         //vidPlayer.Pause(); **
         rouletteAnimator.speed = 0;
@@ -187,17 +173,6 @@ public class WeaponSlotMachine : MonoBehaviour
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
 
         yield return new WaitForSecondsRealtime(2.0f);
-
-        //fade out
-        //float timeElapsedFadeOut = 0;
-        //while (timeElapsedFadeOut < fadeOutTime)
-        //{
-        //    timeElapsedFadeOut += Time.unscaledDeltaTime;
-
-        //    cGroup.alpha = 1 - (timeElapsedFadeOut / fadeOutTime);
-        //    yield return null;
-        //}
-        //yield return new WaitForSecondsRealtime(0.2f);
 
         isSpinning = false;
         rouletteAnimator.speed = 0;

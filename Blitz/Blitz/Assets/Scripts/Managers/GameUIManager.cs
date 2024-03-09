@@ -201,7 +201,7 @@ public class GameUIManager : MonoBehaviour
 
     public void ResetRoundTransitionUI()
     {
-        gunTut.ResetTutorial();
+        gunTut.resetTutorial();
         roundTransMotion.ResetMotion();
     }
 
@@ -218,6 +218,11 @@ public class GameUIManager : MonoBehaviour
     public void changeVisibilityoFCutoutFade(bool onOff)
     {
         cutoutFade.SetVisibility(onOff);
+    }
+
+    public void setTutAnimInitFrame()
+    {
+        gunTut.setInitialFrame();
     }
 
 }
