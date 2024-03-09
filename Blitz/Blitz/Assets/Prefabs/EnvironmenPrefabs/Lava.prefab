@@ -187,7 +187,7 @@ MonoBehaviour:
   Owner: -1
   timeBetweenTriggers: 0.05
   damage: 5
-  lifeTime: 10000000
+  lifeTime: -1
 --- !u!114 &3322629400462815150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +203,12 @@ MonoBehaviour:
   startPoint: {fileID: 2633537228995954824}
   endPoint: {fileID: 3371229258395551807}
   timeInSeconds: 60
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6993511066048268830
 GameObject:
   m_ObjectHideFlags: 0

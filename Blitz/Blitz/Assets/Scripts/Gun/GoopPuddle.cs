@@ -15,13 +15,21 @@ public class GoopPuddle : SpawnableObject
     private void Start()
     {
         lifetimeDmgTracker = new float[4];
-        StartCoroutine(selfDestruct());
+        if (lifeTime > 0) StartCoroutine(selfDestruct());
     }
 
     IEnumerator selfDestruct()
     {
         yield return new WaitForSeconds(lifeTime);
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && lifeTime <= 0)
+        {
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.LAVA_SPLASH);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,6 +41,7 @@ public class GoopPuddle : SpawnableObject
             {
                 other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, Vector3.up, Vector3.zero);
                 lifetimeDmgTracker[id] = 0;
+                if (lifeTime <= 0) AudioManager.instance.PlaySound(AudioManager.AudioQueue.LAVA_DAMAGE);
             }
         }
     }
