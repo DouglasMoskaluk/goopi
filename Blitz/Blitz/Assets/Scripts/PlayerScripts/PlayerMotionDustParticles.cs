@@ -33,7 +33,6 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     public void SetParticleStatus(DustParticleStatus status)
     {
-        Debug.Log("Particles changing status to " + status );
         this.status = status;
         for (int i = 0; i < particles.Length; i++)
         {

@@ -7,6 +7,9 @@ public class Target : MonoBehaviour
 {
     // Start is called before the first frame update
 
+
+
+
     [SerializeField]
     UnityEvent<int> newEvent;
 
@@ -22,7 +25,7 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //private void OnCollisionEnter(Collision other)

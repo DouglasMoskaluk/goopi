@@ -69,6 +69,11 @@ public class Hammer : MonoBehaviour
 
     }
 
+    public bool HammerPlaying()
+    {
+        return anim.isPlaying;
+    }
+
     IEnumerator getVelocity()
     {
 
