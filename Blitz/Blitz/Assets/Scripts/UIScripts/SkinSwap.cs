@@ -65,6 +65,9 @@ public class SkinSwap : MonoBehaviour
     {
         if (!isMoving && Mathf.Abs(direction) > 0.5)
         {
+
+            //PUT SKIN SWAP AUDIO HERE
+
             isMoving = true;
             Debug.Log("UI MOVE");
 
