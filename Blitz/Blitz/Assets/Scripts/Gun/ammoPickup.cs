@@ -49,6 +49,7 @@ public class ammoPickup : SpawnableObject
             if (gun.gunVars.type == Gun.GunType.NERF && gun.gunVars.ammo[0] < gun.gunVars.ammo[1])
             {
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.NERF_RELOAD);
+                gun.gunVars.canShoot = true;
                 gun.gunVars.ammo[0]++;
                 Destroy(gameObject);
             }

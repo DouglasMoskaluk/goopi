@@ -25,7 +25,6 @@ public class Gun : MonoBehaviour
     public int Ammo { get { return gunVars.ammo[0]; } }
     public int MaxAmmo { get { return gunVars.ammo[1]; } }
 
-
     /// <summary>
     /// Start Function. Anything All guns need to do to be set up will be done here.
     /// </summary>
