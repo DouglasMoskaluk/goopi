@@ -130,6 +130,11 @@ public class LockerRoomManager : MonoBehaviour
         //Debug.Log("Player " + playerID + " has readied up.");
         PlayerBodyFSM FSM = players[playerID - 1].GetComponent<PlayerBodyFSM>();
 
+        FSM.transitionState(PlayerMotionStates.Walk);
+        FSM.transitionState(PlayerActionStates.Idle);
+
+        yield return null;
+
         FSM.enabled = false;
         CameraShake cam = players[playerID - 1].GetComponent<CameraShake>();
         cam.camInput.charSelect = 0f;
@@ -257,7 +262,6 @@ public class LockerRoomManager : MonoBehaviour
                 cams[i].camCollider.enabled = true;
                 cams[i].ResetOffset();
 
-                //disable player mesh
                 players[i].transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
                 players[i].transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
 
@@ -271,6 +275,8 @@ public class LockerRoomManager : MonoBehaviour
         //reset playerOffset - done
         //reenable cam collider - done
         //reneable player UI
+
+        yield return new WaitForEndOfFrame();
 
         GameManager.instance.ReadyArena();
 
