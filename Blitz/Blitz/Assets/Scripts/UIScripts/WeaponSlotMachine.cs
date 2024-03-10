@@ -78,12 +78,13 @@ public class WeaponSlotMachine : MonoBehaviour
     {
         rouletteAnimator.speed = 1;
         rouletteAnimator.Play("Spin", 0, 0);
-        //AudioManager.instance.PlaySound(AudioManager.AudioQueue.R);
 
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
 
-        yield return new WaitForSecondsRealtime(4.33f);//time it takes for otter to pull lever
+        yield return new WaitForSecondsRealtime(4.2f);//time it takes for otter to pull lever
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROULETTE_START);
+
 
         //vidPlayer.Pause(); **
         rouletteAnimator.speed = 0;
