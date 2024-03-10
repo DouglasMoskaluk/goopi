@@ -131,9 +131,6 @@ public class RoundManager : MonoBehaviour
         GameUIManager.instance.ResetRoundTransitionUI();
         Time.timeScale = 1.0f;
 
-        //Turn camera here @Patrick
-        if (ModifierManager.instance.getNumEvents(RoundManager.instance.roundNum - 1) > 0) yield return new WaitForSeconds(5f);
-
         ModifierManager.instance.hideModifierUI();
 
         for (int i = 0; i < playerKillCounts.Length; i++)
