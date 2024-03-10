@@ -67,6 +67,7 @@ public class SkinSwap : MonoBehaviour
         {
 
             //PUT SKIN SWAP AUDIO HERE
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
 
             isMoving = true;
             Debug.Log("UI MOVE");
