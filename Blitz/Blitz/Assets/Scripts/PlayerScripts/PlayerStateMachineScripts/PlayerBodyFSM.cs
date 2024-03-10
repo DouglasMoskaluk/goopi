@@ -190,6 +190,7 @@ public class PlayerBodyFSM : MonoBehaviour
     public void resetFSM(EventParams param = new EventParams())
     {
         resetHealth();
+        dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
         knockBackVector = Vector3.zero;

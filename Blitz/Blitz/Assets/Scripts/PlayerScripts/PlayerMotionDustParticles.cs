@@ -9,13 +9,22 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     [SerializeField] private List<ParticleStats> particleStatusList;
 
+    public DustParticleStatus status;
+
     private void Awake()
     {
 
-        SetParticleStatus(DustParticleStatus.Stopped);
+        SetParticleStatus(status);
         EventManager.instance.addListener(Events.onRoundStart, ActivateParticlesEvent);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SetParticleStatus(DustParticleStatus.Stopped);
+        }
+    }
 
     public void ActivateParticlesEvent(EventParams param = new EventParams())
     {
@@ -24,6 +33,8 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     public void SetParticleStatus(DustParticleStatus status)
     {
+        Debug.Log("Particles changing status to " + status );
+        this.status = status;
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].SetInt("AmountOfParticles", particleStatusList[(int)status].amountOfParticles);
