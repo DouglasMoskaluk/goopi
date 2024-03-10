@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
         SplitScreenManager.instance.DisablePlayerControls();
         SplitScreenManager.instance.DisableJoining();
 
-        AudioManager.instance.TransitionTrack("InGame");
+        AudioManager.instance.TransitionTrack("Roulette Spin");
 
         yield return GameUIManager.instance.FadeIn(0.5f);
         //Debug.Log("after fade");
