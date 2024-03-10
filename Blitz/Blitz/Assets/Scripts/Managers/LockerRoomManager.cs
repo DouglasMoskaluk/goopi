@@ -236,7 +236,7 @@ public class LockerRoomManager : MonoBehaviour
             {
                 if (cams[i] != null)
                 {
-                    cams[i].offset.m_Offset = Vector3.Lerp(new Vector3(0.0f, -0.65f, -0.4f), new Vector3(0.0f, -0.65f, 2.16f), LerpEaseIn(ratio, 3));
+                    cams[i].offset.m_Offset = Vector3.Lerp(new Vector3(0.0f, -0.65f, -0.4f), new Vector3(0.0f, -0.65f, 2.25f), LerpEaseIn(ratio, 3));
 
                 }
             }
