@@ -280,9 +280,15 @@ public class PodiumManager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CANCEL);
         GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.RemoveAllPlayers();
         AudioManager.instance.TransitionTrack("MainMenu");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
+    }
+
+    public void OnButtonSelect()
+    {
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
     }
 }
