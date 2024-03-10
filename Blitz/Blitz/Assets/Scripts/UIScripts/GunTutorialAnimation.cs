@@ -11,18 +11,9 @@ public class GunTutorialAnimation : MonoBehaviour
     [SerializeField] private float howManyAnimLoops = 3f;
     [SerializeField] private Sprite[] firstFrames;
 
-
-    public void setInitialFrameEvent(EventParams param = new EventParams())
-    {
-        Debug.Log("inside set frame event");
-        //anim.enabled = false;
-        img.sprite = firstFrames[GunManager.instance.GunUsed];
-        //anim.enabled = true;
-    }
-
     public void setInitialFrame()
     {
-        Debug.Log(img == null);
+        if (GunManager.instance.GunUsed == 5) return;
         img.sprite = firstFrames[GunManager.instance.GunUsed];
     }
 

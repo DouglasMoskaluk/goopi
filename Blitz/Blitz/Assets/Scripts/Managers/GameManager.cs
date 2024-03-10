@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.DisplayGameEndUI(displayEndTextLength, winnersString));
         //yield return SceneTransitionManager.instance.switchScene(Scenes.Podium);
 
-        yield return GameUIManager.instance.FadeIn(0.5f);
+        //yield return GameUIManager.instance.FadeIn(0.5f);
 
         yield return SceneTransitionManager.instance.loadScene(Scenes.Podium);
 
@@ -119,7 +119,9 @@ public class GameManager : MonoBehaviour
         PodiumManager.instance.SetWinnerText(winnersString);
         ResetManager();
 
-        yield return GameUIManager.instance.FadeOut(0.25f);
+        //yield return GameUIManager.instance.FadeOut(0.25f);
+        float cutoutVisibleFadeTime = GameUIManager.instance.cutoutFadeToVisible();
+        yield return new WaitForSecondsRealtime(cutoutVisibleFadeTime);
 
         PodiumManager.instance.StartPodiumSequence();
     }
