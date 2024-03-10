@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator MMToLockerRoom()
     {
-        AudioManager.instance.TransitionTrack("InGame");
+        AudioManager.instance.TransitionTrack("Locker Room");
 
         yield return GameUIManager.instance.FadeIn(0.5f);
         yield return new WaitForSecondsRealtime(0.5f);
@@ -228,6 +228,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("inside ready singal");
         SplitScreenManager.instance.DisablePlayerControls();
         SplitScreenManager.instance.DisableJoining();
+
+        AudioManager.instance.TransitionTrack("InGame");
 
         yield return GameUIManager.instance.FadeIn(0.5f);
         //Debug.Log("after fade");
