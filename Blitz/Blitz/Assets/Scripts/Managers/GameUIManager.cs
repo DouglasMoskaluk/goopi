@@ -227,4 +227,9 @@ public class GameUIManager : MonoBehaviour
         gunTut.setInitialFrame();
     }
 
+    public void ResetSpinner()
+    {
+        slotSelectionUI.ResetSpinner();
+    }
+
 }

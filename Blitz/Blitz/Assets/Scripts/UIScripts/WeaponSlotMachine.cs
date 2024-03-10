@@ -27,16 +27,14 @@ public class WeaponSlotMachine : MonoBehaviour
     [SerializeField] private Sprite[] stamps;
     [SerializeField] private Image stampImage;
 
-    private CanvasGroup cGroup;
-
     public float usedSpeed;
 
     private Vector3 Image1BottomVisible;
 
     private bool isSpinning = false;
 
-    private Vector3 resetChild0;
-    private Vector3 resetChild1;
+    [SerializeField] private Transform resetChild0;
+    [SerializeField] private Transform resetChild1;
 
     private float stampInitScale;
     [SerializeField] private float finalStampSize;
@@ -44,15 +42,11 @@ public class WeaponSlotMachine : MonoBehaviour
 
     [SerializeField] private Animator rouletteAnimator;
 
-    private void Awake()
+    private void Start()
     {
         usedSpeed = speed;
         Image1BottomVisible = wheel.GetChild(0).localPosition;
-        resetChild0 = wheel.GetChild(0).localPosition;
-        resetChild1 = wheel.GetChild(1).localPosition;
-        cGroup = GetComponent<CanvasGroup>();
         stampInitScale = stampImage.transform.localScale.x;
-
     }
 
     public Coroutine StartSelection(int selectedGun)
@@ -67,8 +61,8 @@ public class WeaponSlotMachine : MonoBehaviour
     public void ResetSpinner()
     {
         usedSpeed = speed;
-        wheel.GetChild(0).localPosition = resetChild0;
-        wheel.GetChild(1).localPosition = resetChild1;
+        wheel.GetChild(0).position = resetChild0.position;
+        wheel.GetChild(1).position = resetChild1.position;
         stampImage.gameObject.SetActive(false);
         //vidPlayer.frame = 0;**
         stampImage.transform.localScale = Vector3.one * stampInitScale;

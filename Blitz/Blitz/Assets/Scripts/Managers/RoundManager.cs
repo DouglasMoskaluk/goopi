@@ -67,6 +67,7 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         GameUIManager.instance.setTutAnimInitFrame();
+        GameUIManager.instance.ResetSpinner();
 
         //round ui stuff
         GameUIManager.instance.showRoundTransition();
