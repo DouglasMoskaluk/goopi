@@ -172,6 +172,7 @@ public class AudioManager : MonoBehaviour
         newSource.loop = true;
         newSource.volume = 0;
         int trackNum = 0;
+        float oldVolume = MusicSource.volume;
 
         for (int i=0; i<music.Length; i++)
         {
@@ -180,6 +181,7 @@ public class AudioManager : MonoBehaviour
                 newSource.clip = music[i].clip;
                 newSource.pitch = music[i].pitch;
                 newSource.outputAudioMixerGroup = music[i].mixer;
+                newSource.volume = 0;
                 newSource.Play();
                 trackNum = i;
                 break;
@@ -193,13 +195,17 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Something went wrong. Aidan thought that the music transition couldn't get here.");
         }
 
-        while (MusicSource.volume > 0)
+        while (newSource.volume < music[trackNum].volume * musicVolume * masterVolume)
         {
             yield return null;
-            float transitionTime = 2;
-            MusicSource.volume -= Time.deltaTime / transitionTime;
-            if (MusicSource.volume < 0) MusicSource.volume = 0;
-            newSource.volume += Time.deltaTime / transitionTime;
+            float transitionTime = music[trackNum].transitionTimeIn;
+            if (transitionTime == 0) transitionTime = 2f;
+            MusicSource.volume -= Time.deltaTime * oldVolume / transitionTime;
+            if (MusicSource.volume < 0)
+            {
+                MusicSource.volume = 0;
+            }
+            newSource.volume += Time.deltaTime * music[trackNum].volume * musicVolume * masterVolume / transitionTime;
             if (newSource.volume > music[trackNum].volume * musicVolume * masterVolume)
             {
                 newSource.volume = music[trackNum].volume * musicVolume * masterVolume;
@@ -350,4 +356,6 @@ internal struct Track
     internal float pitch;
     [SerializeField]
     internal AudioMixerGroup mixer;
+    [SerializeField]
+    internal float transitionTimeIn;
 }

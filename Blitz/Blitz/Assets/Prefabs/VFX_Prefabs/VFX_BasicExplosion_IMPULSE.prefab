@@ -43,7 +43,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4932056999929749714}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 8b0d3d37e2d98884a89f6ced857c7331, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 8d6797681104f204e80080d091d782f1, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -58,6 +58,9 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 6
         m_Name: Scale
+        m_Overridden: 1
+      - m_Value: 0.1
+        m_Name: ParticleSphere_radius
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -77,7 +80,39 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 11.984313, g: 11.984313, b: 11.984313, a: 0.15686275}
+          key1: {r: 1.1701663, g: 2.4626658, b: 2.9960783, a: 0.078431375}
+          key2: {r: 0.7744579, g: 2.34266, b: 2.9960785, a: 0.078431375}
+          key3: {r: 0.6048686, g: 2.291692, b: 2.9960783, a: 0}
+          key4: {r: 0, g: 2.1019597, b: 2.996078, a: 0}
+          key5: {r: 0, g: 8.407842, b: 11.984316, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 11372
+          ctime2: 23130
+          ctime3: 40863
+          ctime4: 65342
+          ctime5: 65342
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65535
+          atime3: 65535
+          atime4: 65535
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: 1
+          m_NumColorKeys: 5
+          m_NumAlphaKeys: 2
+        m_Name: DefaultColor
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:
