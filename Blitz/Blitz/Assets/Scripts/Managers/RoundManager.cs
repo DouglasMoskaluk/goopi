@@ -92,7 +92,7 @@ public class RoundManager : MonoBehaviour
         float cutOutFadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutOutFadeToBlack);
 
-        yield return new WaitForSecondsRealtime(1.5f);//stay on black screen for 1.5s
+        yield return new WaitForSecondsRealtime(0.5f);//stay on black screen for 1.5s
 
 
         GameUIManager.instance.hideRoundTransition();
