@@ -22,7 +22,10 @@ public class GrowGameObject : MonoBehaviour
         lifeTime += Time.deltaTime;
         float scale = Mathf.Lerp(startSize, endSize, lifeTime / growTime);
         transform.localScale = new Vector3(scale, scale, scale);
-        fishparticles.localScale = new Vector3(scale, scale, scale);
+        if (this.gameObject.name.Equals("FishBullet(Clone)"))
+        {
+            fishparticles.localScale = new Vector3(scale, scale, scale);
+        }
     }
 
     public void SetValues(float newStart, float newEnd, float newTime)
