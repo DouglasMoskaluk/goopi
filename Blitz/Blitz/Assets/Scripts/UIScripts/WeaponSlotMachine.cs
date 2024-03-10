@@ -149,7 +149,7 @@ public class WeaponSlotMachine : MonoBehaviour
             stampImage.sprite = stamps[selectedGun];
             stampImage.gameObject.SetActive(true);
             float stampElapsedTime = 0;
-            AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
             while (stampElapsedTime < stampDuration)
             {
                 stampElapsedTime += Time.unscaledDeltaTime;
