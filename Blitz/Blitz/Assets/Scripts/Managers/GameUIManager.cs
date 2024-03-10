@@ -230,6 +230,7 @@ public class GameUIManager : MonoBehaviour
     public void ResetSpinner()
     {
         slotSelectionUI.ResetSpinner();
+
     }
 
 }
