@@ -5,8 +5,8 @@ using UnityEngine;
 public class Hammer : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static Hammer instance;
 
-    
     private Animation anim;
 
     [SerializeField]
@@ -22,6 +22,7 @@ public class Hammer : MonoBehaviour
 
     void Start()
     {
+        if (instance == null) instance = this;
         anim = transform.GetChild(0).GetComponent<Animation>();    
     }
 
@@ -69,7 +70,7 @@ public class Hammer : MonoBehaviour
 
     }
 
-    public bool HammerPlaying()
+    public bool GetHammerPlaying()
     {
         return anim.isPlaying;
     }

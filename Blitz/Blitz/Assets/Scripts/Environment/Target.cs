@@ -8,10 +8,11 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
 
 
-
-
     [SerializeField]
     UnityEvent<int> newEvent;
+
+    [SerializeField]
+    private GameObject[] targetStates;
 
     public void BulletHit(int killerID)
     {
@@ -25,7 +26,16 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Hammer.instance.GetHammerPlaying())
+        {
+            targetStates[1].SetActive(true);
+            targetStates[0].SetActive(false);
+        }
+        else
+        {
+            targetStates[0].SetActive(true);
+            targetStates[1].SetActive(false);
+        }
     }
 
     //private void OnCollisionEnter(Collision other)
