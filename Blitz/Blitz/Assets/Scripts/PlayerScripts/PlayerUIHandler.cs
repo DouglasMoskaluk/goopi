@@ -128,6 +128,7 @@ public class PlayerUIHandler : MonoBehaviour
         damagedUI.SetActive(false);
         victoryText.SetActive(false);
         obliteratedUI.SetActive(false);
+        hammerUI.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
