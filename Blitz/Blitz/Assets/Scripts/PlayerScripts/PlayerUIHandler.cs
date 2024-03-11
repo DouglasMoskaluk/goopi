@@ -167,7 +167,7 @@ public class PlayerUIHandler : MonoBehaviour
     public void PickCharacter()
     {
         //player.enabled = true;
-        Debug.Log("pressedbutton");
+        Debug.Log("CHARACTER SELECTED");
         crossHair.SetActive(true);
 
         Alive();
