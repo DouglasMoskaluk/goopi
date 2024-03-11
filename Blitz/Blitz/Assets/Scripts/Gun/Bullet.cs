@@ -88,6 +88,7 @@ public class Bullet : MonoBehaviour
                 GetComponent<SphereCollider>().radius,
                 rb.velocity.normalized,
                 rb.velocity.magnitude * Time.fixedDeltaTime);
+        Debug.DrawRay(transform.position, rb.velocity * Time.deltaTime, Color.magenta, 1);
         for (int i=0; i<hit.Length; i++)
         {
             if (!collideThisFrame && hit[i].collider.gameObject != gameObject/*(hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player"))*/)
@@ -270,7 +271,7 @@ public class Bullet : MonoBehaviour
             for (int i = 0; i < bulletVars.spawnOnContact.Length; i++)
             {
                 GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
-                go.GetComponent<SpawnableObject>().init(bulletVars.owner);
+                if (go.GetComponent<SpawnableObject>() != null) go.GetComponent<SpawnableObject>().init(bulletVars.owner);
             }
         }
         Destroy(gameObject);
