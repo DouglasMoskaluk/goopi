@@ -92,6 +92,10 @@ public class RoundManager : MonoBehaviour
         float cutOutFadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutOutFadeToBlack);
 
+        ModifierManager.instance.showModifierUI();
+        yield return new WaitForSecondsRealtime(5.5f);
+        ModifierManager.instance.hideModifierUI();
+
         yield return new WaitForSecondsRealtime(0.5f);//stay on black screen for 1.5s
 
 
@@ -125,13 +129,12 @@ public class RoundManager : MonoBehaviour
                 playedEventAudio++;
             }
         }
-        ModifierManager.instance.showModifierUI();
+        
 
 
         GameUIManager.instance.ResetRoundTransitionUI();
         Time.timeScale = 1.0f;
 
-        ModifierManager.instance.hideModifierUI();
 
         for (int i = 0; i < playerKillCounts.Length; i++)
         {
