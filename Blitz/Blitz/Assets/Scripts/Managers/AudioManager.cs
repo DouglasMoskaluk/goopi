@@ -257,7 +257,7 @@ public class AudioManager : MonoBehaviour
 
             sources[usedSource].clip = s.clip;
             sources[usedSource].volume = s.volume * sfxVolume * masterVolume;
-            sources[usedSource].pitch = s.pitch;
+            sources[usedSource].pitch = s.pitch + Random.Range(s.pitchMinMax.x, s.pitchMinMax.y);
             sources[usedSource].outputAudioMixerGroup = s.mixer;
 
             sources[usedSource].Play();
@@ -328,6 +328,8 @@ internal struct Sound
     [SerializeField]
     [Range(0.1f, 3)]
     internal float pitch;
+    [SerializeField]
+    internal Vector2 pitchMinMax;
     [SerializeField]
     internal AudioMixerGroup mixer;
 }
