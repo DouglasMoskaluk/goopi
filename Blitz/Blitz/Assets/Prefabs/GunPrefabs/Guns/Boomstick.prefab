@@ -871,17 +871,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0011105388
+      value: 0.0010504735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0011105388
+      value: 0.0010504735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0037498944
+      value: 0.003547075
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
@@ -891,12 +891,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.173
+      value: 0.174
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.364
+      value: 0.346
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
@@ -933,15 +933,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3234a4e715a33dc4dbe84c9319b56a85,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b93d536fd4b421e41af59f7aa42a11e4, type: 2}
     - target: {fileID: 919132149155446097, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_Name
-      value: boomstick2 (1)
+      value: new boomstick
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3234a4e715a33dc4dbe84c9319b56a85,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1035,7 +1040,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8b31e6a8c8d507b49a514fe117158c66,
         type: 3}
       propertyPath: m_Name
-      value: boomstick2
+      value: old boomstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b31e6a8c8d507b49a514fe117158c66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
