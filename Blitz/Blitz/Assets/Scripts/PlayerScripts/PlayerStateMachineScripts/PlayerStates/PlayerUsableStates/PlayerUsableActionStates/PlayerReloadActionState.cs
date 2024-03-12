@@ -12,11 +12,14 @@ public class PlayerReloadActionState : PlayerActionState
     {
         anim.Play("Reload", 1, 0f);
         reloadTime = playerGun.gunVars.reloadTime;
+        uiHandler.setReloadIndicatorVisible(true);
+        uiHandler.setReloadIndicatorPercent(0);
     }
 
     public override void stateUpdate()
     {
         elapsedTime += Time.deltaTime;
+        uiHandler.setReloadIndicatorPercent((elapsedTime) / (reloadTime - 0.2f));
         if (elapsedTime >= reloadTime) 
         {
             playerGun.instantReload();
@@ -27,6 +30,7 @@ public class PlayerReloadActionState : PlayerActionState
     public override void onStateExit()
     {
         anim.Play("Idle", 1, 0);
+        uiHandler.setReloadIndicatorVisible(false);
     }
 
     public override void transitionCheck()
