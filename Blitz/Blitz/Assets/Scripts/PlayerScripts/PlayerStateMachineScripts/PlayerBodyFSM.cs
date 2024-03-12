@@ -365,7 +365,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
 
         return new stateParams(this, anim, charController, input, cam, transform, grenadeThrower, 
-            throwFrom, playerGun, playerBody, variableHolder, rigHolder, grenadeArcRenderer, dustParticles, cine);
+            throwFrom, playerGun, playerBody, variableHolder, rigHolder, grenadeArcRenderer, dustParticles, cine, uiHandler);
     }
 
     /// <summary>
@@ -729,7 +729,7 @@ public struct stateParams
     public stateParams(PlayerBodyFSM fsm, Animator an, CharacterController contr, PlayerInputHandler inputH, 
         Transform camera, Transform playerTrans, PlayerGrenadeThrower thrower, Transform throwFrom, Gun pGun,
         Transform pBody, FSMVariableHolder vHolder, PlayerRigHolder rHolder, PlayerGrenadeArcRenderer arc, PlayerMotionDustParticles dustPart,
-        CinemachineFreeLook cineFreeLook)
+        CinemachineFreeLook cineFreeLook, PlayerUIHandler playerUIHandler)
     {
         FSM = fsm;
         anim = an;
@@ -746,6 +746,7 @@ public struct stateParams
         arcRender = arc;
         dust = dustPart;
         cine = cineFreeLook;
+        uiHandler = playerUIHandler;
     }
 
     public PlayerBodyFSM FSM;
@@ -763,6 +764,7 @@ public struct stateParams
     public PlayerGrenadeArcRenderer arcRender;
     public PlayerMotionDustParticles dust;
     public CinemachineFreeLook cine;
+    public PlayerUIHandler uiHandler;
 }
 
 public struct GroundRayCast

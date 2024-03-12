@@ -20,6 +20,7 @@ public abstract class PlayerState
     protected PlayerGrenadeArcRenderer arcRenderer;
     protected PlayerMotionDustParticles dustParticles;
     protected CinemachineFreeLook cine;
+    protected PlayerUIHandler uiHandler;
 
     /// <summary>
     /// is called by FSM when the state is transitioned to
@@ -91,6 +92,7 @@ public abstract class PlayerState
         arcRenderer = stateParams.arcRender;
         dustParticles = stateParams.dust;
         cine = stateParams.cine;
+        uiHandler = stateParams.uiHandler;
     }
 }
 

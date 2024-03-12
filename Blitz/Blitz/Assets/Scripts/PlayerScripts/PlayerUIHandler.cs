@@ -88,6 +88,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     public Sprite animalHeadSprite;
 
+    [SerializeField] private Image reloadingIcon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -289,6 +291,16 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine(hitDirectionIndicators[hitID]);
 
         
+    }
+
+    public void setReloadIndicatorPercent(float percent)
+    {
+        reloadingIcon.fillAmount = Mathf.Clamp01(percent);
+    }
+
+    public void setReloadIndicatorVisible(bool onOff)
+    {
+        reloadingIcon.gameObject.SetActive(onOff);
     }
 
     internal IEnumerator pointToHitDirection(Vector2 pos, int hitID)
