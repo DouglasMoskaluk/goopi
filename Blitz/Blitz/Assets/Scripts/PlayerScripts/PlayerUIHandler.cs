@@ -90,6 +90,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField] private Image reloadingIcon;
 
+    private Coroutine reloadFading;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -301,6 +303,36 @@ public class PlayerUIHandler : MonoBehaviour
     public void setReloadIndicatorVisible(bool onOff)
     {
         reloadingIcon.gameObject.SetActive(onOff);
+    }
+
+    public void fadeOutReloadIcon()
+    {
+        if (reloadFading != null) resetReloadIndicator();
+        reloadFading = StartCoroutine(fadeReloadIcon());
+        
+    }
+
+    private void resetReloadIndicator()
+    {
+        StopCoroutine(reloadFading);
+        reloadingIcon.color = new Color(1,1,1,0.65f);
+    }
+
+    private IEnumerator fadeReloadIcon()
+    {
+        float elapsedTime = 0;
+        Color baseColor = new Color(1,1,1,0.65f);
+        const float fadeTime = 0.25f;
+        while (elapsedTime <= fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            Color newCol = baseColor;
+            newCol.a = Mathf.Lerp(baseColor.a, 0, Mathf.Clamp01(elapsedTime / fadeTime));
+            reloadingIcon.color = newCol;
+            yield return null;
+        }
+        reloadingIcon.color = baseColor;
+        setReloadIndicatorVisible(false);
     }
 
     internal IEnumerator pointToHitDirection(Vector2 pos, int hitID)
