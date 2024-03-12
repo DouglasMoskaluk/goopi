@@ -361,6 +361,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TNT_Crate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -368,7 +373,23 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1628176291207730865}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8349492367310118344}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2868005731169708501}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5322412163795997310}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8690161029011796139}
   m_SourcePrefab: {fileID: 100100000, guid: b67c4789ce0626a4fa88c5e2208037d8, type: 3}
 --- !u!4 &3778322849778610328 stripped
 Transform:
@@ -376,3 +397,100 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3739665409993267059}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4549933260259191330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b67c4789ce0626a4fa88c5e2208037d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3739665409993267059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8349492367310118344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549933260259191330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1937a788f795a164eab0bbf7f21baf57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8690161029011796139}
+        m_TargetAssemblyTypeName: Explosion, Assembly-CSharp
+        m_MethodName: explodeNow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  targetStates: []
+  isHammer: 0
+--- !u!65 &2868005731169708501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549933260259191330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.031163, y: 2.9012961, z: 8.4426985}
+  m_Center: {x: 1.5942997, y: 0.03317684, z: -2.3667324}
+--- !u!135 &5322412163795997310
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549933260259191330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.9704863
+  m_Center: {x: 1.69, y: 0, z: -2.68}
+--- !u!114 &8690161029011796139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549933260259191330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: facbd5e8de7d73440bb240c6a5dc5c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: -1
+  delay: 0
+  radius: 5
+  explosionTime: 0.2
+  damage: 80
+  onExplosionSpawn: {fileID: 4932056999929749714, guid: 525de9d3200c6634a92012adc2c4d226,
+    type: 3}
+  explodable: 1

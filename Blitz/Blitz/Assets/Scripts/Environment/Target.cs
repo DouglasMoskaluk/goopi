@@ -14,6 +14,9 @@ public class Target : MonoBehaviour
     [SerializeField]
     private GameObject[] targetStates;
 
+    [SerializeField]
+    private bool isHammer = true;
+
     public void BulletHit(int killerID)
     {
         //Debug.Log("TARGET PLAYER " + killerID);
@@ -26,12 +29,12 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Hammer.instance.GetHammerPlaying())
+        if(Hammer.instance.GetHammerPlaying() && isHammer)
         {
             targetStates[1].SetActive(true);
             targetStates[0].SetActive(false);
         }
-        else
+        else if (isHammer)
         {
             targetStates[0].SetActive(true);
             targetStates[1].SetActive(false);
