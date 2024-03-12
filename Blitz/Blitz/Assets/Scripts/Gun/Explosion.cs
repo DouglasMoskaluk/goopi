@@ -15,6 +15,10 @@ public class Explosion : SpawnableObject
     internal int damage = 35;
     [SerializeField]
     GameObject onExplosionSpawn;
+    [SerializeField]
+    float knockbackForce = 0;
+    [SerializeField]
+    bool scaleVFX = true;
 
     [SerializeField]
     bool explodable = false;
@@ -27,9 +31,12 @@ public class Explosion : SpawnableObject
     {
         collider = GetComponent<SphereCollider>();
         explosionCoroutine = Explode();
-        if (!explodable)StartCoroutine(explosionCoroutine);
+        if (!explodable)
+        {
+            StartCoroutine(explosionCoroutine);
+            EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
+        }
         //EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
-        EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
     }
 
     public void explodeNow(int player)
@@ -46,7 +53,13 @@ public class Explosion : SpawnableObject
 
         yield return new WaitForSeconds(delay);
 
-        if (onExplosionSpawn != null) Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent).transform.localScale = transform.localScale * radius;
+        
+        if (onExplosionSpawn != null)
+        {
+            GameObject VFX = Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
+            if (scaleVFX) VFX.transform.localScale = transform.localScale * radius;
+            else VFX.transform.localScale = VFX.transform.localScale * radius;
+        }
         if (!explodable) {
             switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
             {
@@ -87,7 +100,17 @@ public class Explosion : SpawnableObject
         if (other.tag == "Player" && other.GetComponent<PlayerBodyFSM>().playerID != Owner)
         {
             Vector3 explosionDirection = other.transform.position - transform.position;
+            Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
+            PlayerBodyFSM fsm = other.GetComponent<PlayerBodyFSM>();
+            fsm.addKnockBack(dir * knockbackForce);
+            fsm.transitionState(PlayerMotionStates.KnockBack);
+            fsm.newAttacker(Owner);
             other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, explosionDirection, transform.position);
+        } else if (other.transform.CompareTag("Crate"))
+        {
+            Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized * 100;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
+            other.GetComponent<Rigidbody>().AddForce(dir);
+            if (other.transform.GetComponent<Crate>() != null) other.transform.GetComponent<Crate>().lastImpulse = Owner;
         }
     }
 

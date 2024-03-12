@@ -103,6 +103,7 @@ public class Plunger : SpawnableObject
         Vector3 pullDirection = plr.transform.position - transform.parent.position;
         pullDirection.y += 5;
         transform.parent.GetComponent<Rigidbody>().AddForce(pullDirection.normalized * CratePullPower);
+        if (transform.parent.GetComponent<Crate>() != null) transform.parent.GetComponent<Crate>().lastImpulse = Owner;
         Destroy(gameObject);
     }
     //here's where I make my MOVE
