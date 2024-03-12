@@ -104,20 +104,10 @@ public class Explosion : SpawnableObject
     //TODO: This needs to subscribe to the "OnPlayerDeath" event when we make it
     internal void onPlayerDeath(EventParams param = new EventParams())
     {
-        if(transform.parent)
+        if (transform.parent.GetComponent<PlayerBodyFSM>() != null && param.killed == transform.parent.GetComponent<PlayerBodyFSM>().playerID)
         {
-            if(transform.parent.GetComponent<PlayerBodyFSM>())
-            {
-                if (param.killed == transform.parent.GetComponent<PlayerBodyFSM>().playerID)
-                {
-                    roundEnd();
-                }
-            }
+            roundEnd();
         }
-        //if (transform.parent.GetComponent<PlayerBodyFSM>() != null && param.killed == transform.parent.GetComponent<PlayerBodyFSM>().playerID)
-        //{
-        //    roundEnd();
-        //}
     }
 
 

@@ -52,17 +52,8 @@ public class LockerRoomManager : MonoBehaviour
     [SerializeField]
     private GameObject[] joinCameras;
 
-    [HideInInspector]
-    public Vector2[] playerModelSkinNumber;
-
     private void Awake()
     {
-        playerModelSkinNumber = new Vector2[4];
-        for(int i = 0;  i < playerModelSkinNumber.Length;i++)
-        {
-            playerModelSkinNumber[i] = new Vector2(-1,-1);
-        }
-
         if (instance == null) instance = this;
         readyFlags = new bool[4];
         SplitScreenManager.instance.AllowJoining();
@@ -83,11 +74,6 @@ public class LockerRoomManager : MonoBehaviour
 
         newPipeOffset = new Vector3(0f, -0.65f, 0f);
 
-    }
-
-    public void SetPlayerModelSkinNumber(int playerNum, int modelNum, int skinNum)
-    {
-        playerModelSkinNumber[playerNum] = new Vector2(modelNum, skinNum);
     }
 
     private void Update()
