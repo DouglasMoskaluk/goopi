@@ -30,7 +30,8 @@ public class PlayerReloadActionState : PlayerActionState
     public override void onStateExit()
     {
         anim.Play("Idle", 1, 0);
-        uiHandler.setReloadIndicatorVisible(false);
+        //uiHandler.setReloadIndicatorVisible(false);
+        uiHandler.fadeOutReloadIcon();
     }
 
     public override void transitionCheck()
