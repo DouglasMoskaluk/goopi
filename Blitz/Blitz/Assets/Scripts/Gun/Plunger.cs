@@ -13,6 +13,9 @@ public class Plunger : SpawnableObject
     [SerializeField]
     float CratePullPower = 350;
 
+    [SerializeField]
+    AnimationCurve curve;
+
     internal override void init(int owner)
     {
         //Debug.Log("I'm in the plunger!!!");
@@ -47,13 +50,15 @@ public class Plunger : SpawnableObject
         {
             hit.newAttacker(Owner);
             PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
-            Vector3 pullDirection = ((plr.transform.position + Vector3.up) - (hit.transform.position + Vector3.up)).normalized;
+            Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
 
             Debug.Log(pullDirection);
             //pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
             
-            pullDirection = pullDirection * 25;
-            
+            pullDirection = pullDirection * curve.Evaluate(1-(plr.Health/100.0f));
+
+            pullDirection *= pullPower;
+
             pullDirection.y += heightPull;
 
             //pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
@@ -70,7 +75,7 @@ public class Plunger : SpawnableObject
             //remove later
 
             hit.transitionState(PlayerMotionStates.KnockBack);
-            hit.addKnockBack(pullDirection * pullPower);
+            hit.addKnockBack(pullDirection);
             
         }
         else
