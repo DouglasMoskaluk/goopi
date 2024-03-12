@@ -49,9 +49,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: 0
   pullDelay: 0.75
-  pullPower: 1
-  heightPull: 10
+  pullPower: 120
+  heightPull: 2
   CratePullPower: 350
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0000017806888
+      value: 0.061234593
+      inSlope: 0.0023914198
+      outSlope: 0.0023914198
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.39583334
+    - serializedVersion: 3
+      time: 0.47150314
+      value: 0.2471657
+      inSlope: 1.3051885
+      outSlope: 1.3051885
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0079645235
+      outSlope: -0.0079645235
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.77089703
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8901603191549469230
 GameObject:
   m_ObjectHideFlags: 0
