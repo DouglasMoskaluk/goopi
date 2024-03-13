@@ -13,6 +13,8 @@ public class ModifierVariables : MonoBehaviour
 
     [SerializeField]
     internal moveOnEvent[] eventMovables;
+    [SerializeField]
+    internal enableOnEvent[] eventActivateables;
 
     private void Start()
     {
@@ -49,6 +51,15 @@ public class ModifierVariables : MonoBehaviour
         yield return new WaitForSeconds(5);
         Instantiate(ModifierManager.instance.MegaGunPickupPrefab, centralLocation.position, centralLocation.rotation, GunManager.instance.transform);
     }
+}
+
+[System.Serializable]
+struct enableOnEvent
+{
+    [SerializeField]
+    internal GameObject enable;
+    [SerializeField]
+    internal ModifierManager.RoundModifierList eventThisIsActiveIn;
 }
 
 

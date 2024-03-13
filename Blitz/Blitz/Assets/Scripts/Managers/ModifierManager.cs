@@ -119,6 +119,10 @@ public class ModifierManager : MonoBehaviour
         {
             move.Reset();
         }
+        for (int i=0; i<vars.eventActivateables.Length; i++)
+        {
+            vars.eventActivateables[i].enable.SetActive(false);
+        }
         EventManager.instance.invokeEvent(Events.onEventEnd);
 
 
@@ -210,6 +214,13 @@ public class ModifierManager : MonoBehaviour
             {
                 StartCoroutine(moveEvents(vars.eventMovables[i]));
             }
+        }
+
+        //Event Activateables
+        for (int i = 0; i < vars.eventActivateables.Length; i++)
+        {
+            if (ActiveEvents[(int)vars.eventActivateables[i].eventThisIsActiveIn])
+                vars.eventActivateables[i].enable.SetActive(true);
         }
     }
 

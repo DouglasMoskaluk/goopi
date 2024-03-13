@@ -3387,6 +3387,13 @@ MonoBehaviour:
     height: 5
     timeTaken: 10
     objectMoving: {fileID: 1893121482}
+  eventActivateables:
+  - enable: {fileID: 429930658}
+    eventThisIsActiveIn: 1
+  - enable: {fileID: 323945155}
+    eventThisIsActiveIn: 1
+  - enable: {fileID: 2035987040}
+    eventThisIsActiveIn: 1
 --- !u!4 &314615477
 Transform:
   m_ObjectHideFlags: 0
@@ -3750,6 +3757,12 @@ PrefabInstance:
 --- !u!4 &323945154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c030493dad24d8c4a855dfbef5a82826,
+    type: 3}
+  m_PrefabInstance: {fileID: 323945153}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &323945155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c030493dad24d8c4a855dfbef5a82826,
     type: 3}
   m_PrefabInstance: {fileID: 323945153}
   m_PrefabAsset: {fileID: 0}
@@ -4902,6 +4915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: updatedHoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec1a253d0138d814d8a14d7657d3f320,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7071182760956848314, guid: ec1a253d0138d814d8a14d7657d3f320,
         type: 3}
@@ -22967,6 +22985,12 @@ PrefabInstance:
 --- !u!4 &2035987039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c030493dad24d8c4a855dfbef5a82826,
+    type: 3}
+  m_PrefabInstance: {fileID: 2035987038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2035987040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c030493dad24d8c4a855dfbef5a82826,
     type: 3}
   m_PrefabInstance: {fileID: 2035987038}
   m_PrefabAsset: {fileID: 0}
