@@ -100,7 +100,7 @@ public class Bullet : MonoBehaviour
                 {
                     collideThisFrame = true;
                     //Debug.Log("Late Update hit ");//May need debug.logs...
-                    transform.position = transform.position - GetComponent<Rigidbody>().velocity * Time.fixedDeltaTime;
+                    transform.position -= (hit[i].normal).normalized * GetComponent<SphereCollider>().radius * 0.51f;
                     collide(hit[i]);
                     break;
                 }
@@ -177,7 +177,7 @@ public class Bullet : MonoBehaviour
                     transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
                     Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
                     GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, transform.rotation, transform.parent);
-                    Debug.Log(hit.point);
+                    //Debug.Log(hit.collider.name + ": " + hit.point);
                     if (hit.transform.CompareTag("Crate") && bulletVars.snap)
                     {
                         go.transform.parent = hit.transform;
