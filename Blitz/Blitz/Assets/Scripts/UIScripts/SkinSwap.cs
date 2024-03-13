@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
@@ -38,6 +37,9 @@ public class SkinSwap : MonoBehaviour
     [SerializeField]
     private Sprite[] animalSprites;
 
+    [SerializeField]
+    private GameObject[] outlineBG;
+
     private Button modelButton;
 
     private bool isMoving = false;
@@ -59,6 +61,15 @@ public class SkinSwap : MonoBehaviour
         }
 
         modelButton.interactable = LockerRoomManager.instance.SkinIsAvailable(player.playerID);
+
+        if(gameObject == playerUIEvents.currentSelectedGameObject)
+        {
+            //set sticker bg to active
+        }
+        else
+        {
+
+        }
 
     }
 
@@ -96,7 +107,7 @@ public class SkinSwap : MonoBehaviour
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
 
             isMoving = true;
-            Debug.Log("UI MOVE");
+            //Debug.Log("UI MOVE");
 
             StartCoroutine(IconSwipe(direction));
         }
