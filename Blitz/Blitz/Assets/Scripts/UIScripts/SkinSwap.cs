@@ -38,7 +38,7 @@ public class SkinSwap : MonoBehaviour
     private Sprite[] animalSprites;
 
     [SerializeField]
-    private GameObject[] outlineBG;
+    private Image[] outlineBG;
 
     private Button modelButton;
 
@@ -65,10 +65,17 @@ public class SkinSwap : MonoBehaviour
         if(gameObject == playerUIEvents.currentSelectedGameObject)
         {
             //set sticker bg to active
+            for(int i = 0; i < outlineBG.Length; i++)
+            {
+                outlineBG[i].enabled = true;
+            }
         }
         else
         {
-
+            for(int i = 0; i < outlineBG.Length; i++)
+            {
+                outlineBG[i].enabled = false;
+            }
         }
 
     }
