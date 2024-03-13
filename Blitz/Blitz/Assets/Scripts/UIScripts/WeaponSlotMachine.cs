@@ -76,7 +76,7 @@ public class WeaponSlotMachine : MonoBehaviour
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
 
-        yield return new WaitForSecondsRealtime(4.2f);//time it takes for otter to pull lever
+        yield return new WaitForSecondsRealtime(2.8f);//time it takes for otter to pull lever
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROULETTE_START);
 
 
