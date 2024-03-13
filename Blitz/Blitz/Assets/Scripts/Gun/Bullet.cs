@@ -60,7 +60,8 @@ public class Bullet : MonoBehaviour
             {
                 if ((hit.collider.CompareTag("Map") || hit.collider.CompareTag("Target") || hit.collider.CompareTag("Crate") || hit.collider.CompareTag("Player") || hit.collider.CompareTag("Dome")))
                 {
-                    Debug.Log("Staying trigger");//May need debug.logs...
+                    //Debug.Log("Staying trigger");//May need debug.logs...
+                    Debug.Log("Trigger"); 
                     collide(hit);
                     collideThisFrame = true;
                 }
@@ -72,6 +73,7 @@ public class Bullet : MonoBehaviour
     //
     private void FixedUpdate()
     {
+        //Debug.Log("The velocity is: "+rb.velocity.magnitude);
         rb.AddForce(bulletVars.forceApplied);
         rb.velocity = rb.velocity * (bulletVars.speedModifier);
         if (rb.velocity.magnitude < bulletVars.minSpeed)
@@ -93,12 +95,12 @@ public class Bullet : MonoBehaviour
         {
             if (!collideThisFrame && hit[i].collider.gameObject != gameObject/*(hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player"))*/)
             {
-                Debug.Log("Genral late update collision");
+                //Debug.Log("Genral late update collision");
                 if ((hit[i].collider.CompareTag("Map") || hit[i].collider.CompareTag("Target") || hit[i].collider.CompareTag("Crate") || hit[i].collider.CompareTag("Player") || hit[i].collider.CompareTag("Dome")))
                 {
                     collideThisFrame = true;
-                    Debug.Log("Late Update hit ");//May need debug.logs...
-                    transform.position = hit[i].point;
+                    //Debug.Log("Late Update hit ");//May need debug.logs...
+                    transform.position = transform.position - GetComponent<Rigidbody>().velocity * Time.fixedDeltaTime;
                     collide(hit[i]);
                     break;
                 }
@@ -148,7 +150,7 @@ public class Bullet : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Map") || hit.collider.CompareTag("Crate"))
         {
-            Debug.Log("I hit a map object!");//May need debug.logs...
+            //Debug.Log("I hit a map object!");//May need debug.logs...
             onMapHitEffect(hit);
             Bounce(hit);
         } else if (hit.collider.CompareTag("Dome"))
@@ -173,8 +175,9 @@ public class Bullet : MonoBehaviour
                 if (!bulletVars.spawnOnContact[i].GetComponent<BulletDecal>())
                 {
                     transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, transform.parent);
-                    Debug.Log(go.name);
+                    Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, transform.rotation, transform.parent);
+                    Debug.Log(hit.point);
                     if (hit.transform.CompareTag("Crate") && bulletVars.snap)
                     {
                         go.transform.parent = hit.transform;
@@ -211,7 +214,9 @@ public class Bullet : MonoBehaviour
             {
                 if(!bulletVars.spawnOnContact[i].GetComponent<BulletDecal>())
                 {
-                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, transform.parent);
+                    Debug.Log(hit.point);
+                    Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, Quaternion.identity, transform.parent);
                     if (bulletVars.attachPlayer)
                     {
                         go.transform.parent = plr.transform;
@@ -252,8 +257,10 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.bounces)
         {
+            //Debug.Log("Bullet just bounced! "+ rb.velocity.magnitude);
 
             rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
+            //Debug.Log("Bullet just bounced! " + rb.velocity.magnitude);
 
             transform.position += (rb.velocity).normalized * GetComponent<SphereCollider>().radius * 0.51f;
             bounced = true;
