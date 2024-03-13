@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
         }
     }*/
 
-    protected void OnTriggerStay(Collider other)
+    /*protected void OnTriggerStay(Collider other)
     {
         if (Vector3.Distance(transform.position, other.ClosestPointOnBounds(transform.position)) < GetComponent<SphereCollider>().radius)
         {
@@ -67,7 +67,7 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
 
     //
@@ -100,7 +100,7 @@ public class Bullet : MonoBehaviour
                 {
                     collideThisFrame = true;
                     //Debug.Log("Late Update hit ");//May need debug.logs...
-                    transform.position -= (hit[i].normal).normalized * GetComponent<SphereCollider>().radius * 0.51f;
+                    transform.position += (hit[i].normal).normalized * GetComponent<SphereCollider>().radius * 0.7f;
                     collide(hit[i]);
                     break;
                 }
