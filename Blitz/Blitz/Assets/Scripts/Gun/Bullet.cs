@@ -252,7 +252,10 @@ public class Bullet : MonoBehaviour
     {
         if (bulletVars.bounces)
         {
+
             rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
+
+            transform.position += (rb.velocity).normalized * GetComponent<SphereCollider>().radius * 0.51f;
             bounced = true;
         }
         if (!bulletVars.bounces && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player"))
