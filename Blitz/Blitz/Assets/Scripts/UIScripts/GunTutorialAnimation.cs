@@ -7,8 +7,7 @@ public class GunTutorialAnimation : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private Image img;
-    [SerializeField] private float tutPlayTime = 1.5f;
-    [SerializeField] private float howManyAnimLoops = 3f;
+    //[SerializeField] private float amountOfTimeToSeeTutAnim = 
     [SerializeField] private Sprite[] firstFrames;
 
     public void setInitialFrame()
@@ -20,11 +19,7 @@ public class GunTutorialAnimation : MonoBehaviour
     public float playGunTutorialSequence()
     {
         anim.SetInteger("GunSelected", GunManager.instance.GunUsed);
-        if (GunManager.instance.GunUsed == 3)//plunger gun, has a different animation play time
-        {
-            return tutPlayTime * howManyAnimLoops / 2 * anim.speed;
-        }
-        return tutPlayTime * howManyAnimLoops / anim.speed;
+        return 3;
     }
 
     public void resetTutorial()
