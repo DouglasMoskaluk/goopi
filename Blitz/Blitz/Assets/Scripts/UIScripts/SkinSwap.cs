@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 
 public class SkinSwap : MonoBehaviour
 {
@@ -37,11 +38,14 @@ public class SkinSwap : MonoBehaviour
     [SerializeField]
     private Sprite[] animalSprites;
 
+    private Button modelButton;
+
     private bool isMoving = false;
 
     void Start()
     {
         //inputValues = 
+        modelButton = GetComponent<Button>();
         icons = transform.GetChild(0).GetComponent<RectTransform>();
     }
 
@@ -53,12 +57,34 @@ public class SkinSwap : MonoBehaviour
             //Debug.Log(inputValues.UIMoveInput.x);
             IconMove(-inputValues.UIMoveInput.x);
         }
+
+        modelButton.interactable = LockerRoomManager.instance.SkinIsAvailable(player.playerID);
+
     }
 
     public void SetSkinNum()
     {
         modelHandler.skinNum = SkinNum;
         modelHandler.SetSkinNum(SkinNum);
+        LockerRoomManager.instance.playerModelSkinNumber[player.playerID].z = 0f;
+
+        //LockerRoomManager.instance.SetPlayerModelSkinNumber(player.playerID, player.modelID, SkinNum);
+
+        float orderNum = 0;
+
+        for (int i = 0; i < LockerRoomManager.instance.playerModelSkinNumber.Length; i++)
+        {
+            if (i == player.playerID)
+            {
+                continue;
+            }
+            if (player.modelID == LockerRoomManager.instance.playerModelSkinNumber[i].x && SkinNum == LockerRoomManager.instance.playerModelSkinNumber[i].y)
+            {
+                orderNum = LockerRoomManager.instance.playerModelSkinNumber[i].z + 1;
+            }
+        }
+
+        LockerRoomManager.instance.SetPlayerModelSkinNumber(player.playerID, player.modelID, SkinNum, (int)orderNum);
     }
 
     public void IconMove(float direction)
@@ -82,7 +108,10 @@ public class SkinSwap : MonoBehaviour
         playerUIHandler.SetSprite(animalSprites[SkinNum]);
     }
 
+    public void setOrder()
+    {
 
+    }
 
     IEnumerator IconSwipe(float direction)
     {
@@ -107,6 +136,7 @@ public class SkinSwap : MonoBehaviour
             direction = -1;
         }
 
+
         if(SkinNum < 0)
         {
             SkinNum = 3;
@@ -115,6 +145,31 @@ public class SkinSwap : MonoBehaviour
         {
             SkinNum = 0;
         }
+
+        //for (int i = 0; i < LockerRoomManager.instance.playerModelSkinNumber.Length; i++)
+        //{
+
+        //}
+
+        LockerRoomManager.instance.playerModelSkinNumber[player.playerID].z = 0f;
+
+        //LockerRoomManager.instance.SetPlayerModelSkinNumber(player.playerID, player.modelID, SkinNum);
+
+        float orderNum = 0;
+
+        for (int i = 0;i < LockerRoomManager.instance.playerModelSkinNumber.Length;i++)
+        {
+            if(i == player.playerID)
+            {
+                continue;
+            }
+            if(player.modelID == LockerRoomManager.instance.playerModelSkinNumber[i].x && SkinNum == LockerRoomManager.instance.playerModelSkinNumber[i].y)
+            {
+                orderNum = LockerRoomManager.instance.playerModelSkinNumber[i].z + 1;
+            }
+        }
+
+        LockerRoomManager.instance.SetPlayerModelSkinNumber(player.playerID, player.modelID, SkinNum, (int)orderNum);
 
         modelHandler.skinNum = SkinNum;
 

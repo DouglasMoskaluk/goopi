@@ -53,11 +53,11 @@ public class LockerRoomManager : MonoBehaviour
     private GameObject[] joinCameras;
 
     [HideInInspector]
-    public Vector2[] playerModelSkinNumber;
+    public Vector3[] playerModelSkinNumber;
 
     private void Awake()
     {
-        playerModelSkinNumber = new Vector2[4];
+        playerModelSkinNumber = new Vector3[4];
         for(int i = 0;  i < playerModelSkinNumber.Length;i++)
         {
             playerModelSkinNumber[i] = new Vector2(-1,-1);
@@ -85,9 +85,9 @@ public class LockerRoomManager : MonoBehaviour
 
     }
 
-    public void SetPlayerModelSkinNumber(int playerNum, int modelNum, int skinNum)
+    public void SetPlayerModelSkinNumber(int playerNum, int modelNum, int skinNum, int order)
     {
-        playerModelSkinNumber[playerNum] = new Vector2(modelNum, skinNum);
+        playerModelSkinNumber[playerNum] = new Vector3(modelNum, skinNum, order);
     }
 
     private void Update()
@@ -294,6 +294,22 @@ public class LockerRoomManager : MonoBehaviour
 
         GameManager.instance.ReadyArena();
 
+    }
+
+    public bool SkinIsAvailable(int playerID)
+    {
+        for(int i = 0;i<players.Length;i++)
+        {
+            if(i == playerID)
+            {
+                continue;
+            }
+            if (playerModelSkinNumber[i].x == playerModelSkinNumber[playerID].x && playerModelSkinNumber[i].y == playerModelSkinNumber[playerID].y && playerModelSkinNumber[i].z < playerModelSkinNumber[playerID].z)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void SendReadySignal()//call when all players are ready
