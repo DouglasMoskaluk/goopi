@@ -29,19 +29,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("Player kills");
-            for (int i = 0; i < playersTotalKillCount.Length; i++)
-            {
-                Debug.Log(playersTotalKillCount[i]);
-            }
-            Debug.Log("");
-        }
-    }
-
     public void ResetManager(EventParams par = new EventParams())
     {
         for (int i = 0; i < playersRoundsWonCount.Length; i++)
