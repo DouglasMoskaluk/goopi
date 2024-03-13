@@ -130,10 +130,10 @@ public class ModifierManager : MonoBehaviour
                 for (int i = 0; i < modifiers[round]; i++)
                 {
                     int chosenEvent;
-                    do
-                    {
+                    //do
+                    //{
                         chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH - 1);
-                    } while (chosenEvent == (int)RoundModifierList.RICOCHET);
+                    //} while (chosenEvent == (int)RoundModifierList.RICOCHET);
                     if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round-1] != chosenEvent))
                     {
                         ActiveEvents[chosenEvent] = true;
