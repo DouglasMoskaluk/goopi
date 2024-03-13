@@ -14,6 +14,7 @@ public class PlayerReloadActionState : PlayerActionState
         reloadTime = playerGun.gunVars.reloadTime;
         uiHandler.setReloadIndicatorVisible(true);
         uiHandler.setReloadIndicatorPercent(0);
+        uiHandler.StopReloadFade();
     }
 
     public override void stateUpdate()
@@ -30,7 +31,6 @@ public class PlayerReloadActionState : PlayerActionState
     public override void onStateExit()
     {
         anim.Play("Idle", 1, 0);
-        //uiHandler.setReloadIndicatorVisible(false);
         uiHandler.fadeOutReloadIcon();
     }
 
