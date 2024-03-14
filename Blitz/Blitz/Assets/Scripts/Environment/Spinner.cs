@@ -11,7 +11,7 @@ public class Spinner : MonoBehaviour
 
     private IEnumerator fastSpinCoro;
 
-    public float flingForce = 10.0f;
+    public float flingForce = 20.0f;
 
     private bool fast = false;
 
@@ -51,7 +51,7 @@ public class Spinner : MonoBehaviour
     {
         while (true)
         {
-            spinPoint.Rotate(0.0f, 120 * Time.deltaTime, 0.0f);
+            spinPoint.Rotate(0.0f, 180 * Time.deltaTime, 0.0f);
             yield return null;
         }
     }
