@@ -309,7 +309,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void StopReloadFade()
     {
-        if (reloadingIcon != null) StopCoroutine(reloadFading);
+        if (reloadFading != null) StopCoroutine(reloadFading);
     }
 
     public void fadeOutReloadIcon()
