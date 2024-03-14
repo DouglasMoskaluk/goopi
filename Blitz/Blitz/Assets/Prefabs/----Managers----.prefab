@@ -2082,8 +2082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   img: {fileID: 0}
-  tutPlayTime: 1.5
-  howManyAnimLoops: 5
   firstFrames: []
 --- !u!1 &3627841490547437052
 GameObject:
@@ -3232,7 +3230,10 @@ MonoBehaviour:
     type: 3}
   BombPrefab: {fileID: 7810103714597020081, guid: c90e1a138c402b940b8b8ee359cc0d78,
     type: 3}
+  defaultPPVolume: {fileID: 11400000, guid: bd464bed470fe934fa19c979c8f3fcf6, type: 2}
+  lowGravPPVolume: {fileID: 11400000, guid: 400375805ab67ce4bb00127c92314261, type: 2}
   modifierUI: {fileID: 5382014835740937767}
+  playerCamVolumes: []
 --- !u!1 &4845950920763721667
 GameObject:
   m_ObjectHideFlags: 0

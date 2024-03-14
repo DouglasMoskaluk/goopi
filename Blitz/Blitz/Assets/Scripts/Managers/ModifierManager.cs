@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class ModifierManager : MonoBehaviour
 {
@@ -27,9 +30,19 @@ public class ModifierManager : MonoBehaviour
     internal GameObject MegaGunPickupPrefab;
     [SerializeField]
     GameObject BombPrefab;
+    [SerializeField]
+    VolumeProfile defaultPPVolume;
+    [SerializeField]
+    VolumeProfile lowGravPPVolume;
+
     internal ModifierVariables vars;
     [SerializeField]
     Transform modifierUI;
+
+    [HideInInspector]
+    public Volume[] playerCamVolumes;
+
+
 
     RoundModifierList[] modifierOrder;
 
@@ -39,7 +52,6 @@ public class ModifierManager : MonoBehaviour
         if (r < 0) return 0;
         return modifiers[r];
     }
-
 
     internal void showModifierUI()
     {
@@ -93,8 +105,41 @@ public class ModifierManager : MonoBehaviour
         {
             changeModifier(new EventParams(1));
         }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("doin it");
+            SetLowGravPostProcess(true);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("doin it");
+            SetLowGravPostProcess(false);
+        }
     }
 
+    void SetLowGravPostProcess(bool active)
+    {
+        if(active)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                if (playerCamVolumes[i] != null)
+                {
+                    playerCamVolumes[i].profile = lowGravPPVolume;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (playerCamVolumes[i] != null)
+                {
+                    playerCamVolumes[i].profile = defaultPPVolume;
+                }
+            }
+        }
+    }
 
     void changeModifier(EventParams param = new EventParams())
     {
@@ -278,6 +323,9 @@ public class ModifierManager : MonoBehaviour
         }
         EventManager.instance.addListener(Events.onRoundEnd, changeModifier, 0);
         EventManager.instance.addListener(Events.onEventStart, ActivateModifier);
+
+        playerCamVolumes = new Volume[4];
+
     }
 
 }
