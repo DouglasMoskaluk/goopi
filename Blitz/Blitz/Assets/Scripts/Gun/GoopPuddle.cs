@@ -29,6 +29,9 @@ public class GoopPuddle : SpawnableObject
         if (other.tag == "Player" && lifeTime <= 0)
         {
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.LAVA_SPLASH);
+        } else if (other.tag == "Target" && lifeTime <= 0 && other.GetComponent<Target>() != null)
+        {
+            other.GetComponent<Target>().BulletHit(Owner);
         }
     }
 
