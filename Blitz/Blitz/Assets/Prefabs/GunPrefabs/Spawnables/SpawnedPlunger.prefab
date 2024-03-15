@@ -49,30 +49,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: 0
   pullDelay: 0.75
-  pullPower: 120
-  heightPull: 2
+  pullPower: 40
+  heightPull: 10
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0031940937
+      value: 0.00083065033
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99522454
+      value: 1.496865
+      inSlope: 2.5507097
+      outSlope: 2.5507097
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.112472475
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   CratePullPower: 350
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: -0.0000017806888
-      value: 0.061234593
-      inSlope: 0.0023914198
-      outSlope: 0.0023914198
+      value: 0.0018473864
+      inSlope: 0.007239312
+      outSlope: 0.007239312
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.39583334
+      outWeight: 0.5949231
     - serializedVersion: 3
-      time: 0.47150314
-      value: 0.2471657
-      inSlope: 1.3051885
-      outSlope: 1.3051885
+      time: 0.5089679
+      value: 0.8000236
+      inSlope: 0.9696033
+      outSlope: 0.9696033
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.30387133
+      outWeight: 0.45826098
     - serializedVersion: 3
       time: 1
       value: 1
