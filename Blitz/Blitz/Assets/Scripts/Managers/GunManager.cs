@@ -11,6 +11,8 @@ public class GunManager : MonoBehaviour
     int gunUsed;
     internal int GunUsed { get { return gunUsed; } }
 
+    private int[] gunOrder;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -23,6 +25,8 @@ public class GunManager : MonoBehaviour
     {
         //RoundManager.instance.onRoundReset.AddListener(destroyParentedWorldObjects);
         //RoundManager.instance.onRoundReset.AddListener(changeGuns);
+
+        gunOrder = new int[GameManager.instance.maxRoundsPlayed];
 
         EventManager.instance.addListener(Events.onRoundStart, destroyParentedWorldObjects);
         EventManager.instance.addListener(Events.onRoundStart, changeGuns);
@@ -59,12 +63,14 @@ public class GunManager : MonoBehaviour
     {
         if (!ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
         {
+            int roundNum = RoundManager.instance.getRoundNum();
             int thisRoundGun;
             do
             {
                 thisRoundGun = pickGun();
-            } while (thisRoundGun == gunUsed);
+            } while (repeatGun(thisRoundGun));
             gunUsed = thisRoundGun;
+            gunOrder[roundNum] = gunUsed;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 assignGun(i);
@@ -77,6 +83,15 @@ public class GunManager : MonoBehaviour
                 assignGun(i, pickGun());
             }
         }
+    }
+
+    bool repeatGun(int chosenGun)
+    {
+        for (int i = 0; i < RoundManager.instance.getRoundNum(); i++)
+        {
+            if ((int)gunOrder[i] == chosenGun) return true;
+        }
+        return false;
     }
 
     internal void assignGun(int Player)

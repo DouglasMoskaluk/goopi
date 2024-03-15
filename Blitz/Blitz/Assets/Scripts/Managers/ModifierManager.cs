@@ -105,16 +105,6 @@ public class ModifierManager : MonoBehaviour
         {
             changeModifier(new EventParams(1));
         }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("doin it");
-            SetLowGravPostProcess(true);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("doin it");
-            SetLowGravPostProcess(false);
-        }
     }
 
     void SetLowGravPostProcess(bool active)
@@ -147,6 +137,7 @@ public class ModifierManager : MonoBehaviour
         if (RoundManager.instance.getRoundNum() == 1 && !ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
+            SetLowGravPostProcess(false);
         }
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
@@ -179,11 +170,11 @@ public class ModifierManager : MonoBehaviour
                 for (int i = 0; i < modifiers[round]; i++)
                 {
                     int chosenEvent;
-                    //do
-                    //{
+                    do
+                    {
                         chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH - 1);
-                    //} while (chosenEvent == (int)RoundModifierList.RICOCHET);
-                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round-1] != chosenEvent))
+                    } while (repeatEvent(chosenEvent));
+                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round - 1] != chosenEvent))
                     {
                         ActiveEvents[chosenEvent] = true;
 
@@ -199,12 +190,13 @@ public class ModifierManager : MonoBehaviour
             {
                 ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
             }
-        } else
+        }
+        else
         {
             ActiveEvents[Random.Range(0, (int)RoundModifierList.LENGTH - 1)] = true;
         }
         //Selects an event
-        
+
 
         Debug.Log("Events have been changed: Ricochet:" + ActiveEvents[0] + ", Low Grave:" + ActiveEvents[1] + ", bomb:" + ActiveEvents[2] + ", lava:" + ActiveEvents[3] + ", mega:" + ActiveEvents[4]);
 
@@ -212,6 +204,14 @@ public class ModifierManager : MonoBehaviour
     }
 
 
+    bool repeatEvent(int chosenEvent)
+    {
+        for (int i = 0; i < RoundManager.instance.getRoundNum(); i++)
+        {
+            if ((int)modifierOrder[i] == chosenEvent) return true;
+        }
+        return false;
+    }
     void ActivateModifier(EventParams param = new EventParams())
     {
         //Low gravity event
@@ -220,6 +220,7 @@ public class ModifierManager : MonoBehaviour
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = GravityEventGravity;
+                SetLowGravPostProcess(true);
             }
         }
         else
@@ -227,6 +228,7 @@ public class ModifierManager : MonoBehaviour
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = startGravity;
+                SetLowGravPostProcess(false);
             }
         }
 
@@ -306,13 +308,14 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[i] = false;
         }
-        modifierOrder = new RoundModifierList[4];
     }
 
 
 
     private void Start()
     {
+        modifierOrder = new RoundModifierList[GameManager.instance.maxRoundsPlayed];
+
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
             int[] temp = new int[GameManager.instance.maxRoundsPlayed];
