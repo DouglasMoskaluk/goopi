@@ -108,6 +108,7 @@ public class PlayerBodyFSM : MonoBehaviour
         //RoundManager.instance.onRoundReset.AddListener(resetFSM);
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
         EventManager.instance.addListener(Events.onGameEnd, resetFSM);
+        EventManager.instance.addListener(Events.onPlayerDeath, resetFSMOnDeath);
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
@@ -190,6 +191,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void resetFSM(EventParams param = new EventParams())
     {
+        Debug.Log("resetfsm");
         resetHealth();
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -202,9 +204,32 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void resetReloadAnim()
     {
-        anim.SetInteger("HeldGun", -1);
-        anim.Play("Idle", 1, 0);
         rigHolder.enableRig();
+        uiHandler.setReloadIndicatorVisible(false);
+        switch (anim.GetInteger("HeldGun")) {
+            case 1:
+                anim.Play("GoopReloadReset", 1, 0);
+                break;
+            case 2:
+                anim.Play("CrossbowReloadReset", 1, 0);
+                break;
+            case 3:
+                anim.Play("PlungerReloadReset", 1, 0);
+                break;
+            case 4:
+                anim.Play("FishReloadReset", 1, 0);
+                break;
+             
+        }
+        
+    }
+
+    public void resetFSMOnDeath(EventParams param)
+    {
+        if (param.killed == playerID)
+        {
+            resetFSM();
+        }
     }
 
     public void SetCrownVisibility(bool isVisible)
