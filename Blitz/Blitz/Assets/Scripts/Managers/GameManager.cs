@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.Playables;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -93,7 +92,6 @@ public class GameManager : MonoBehaviour
         EventManager.instance.invokeEvent(Events.onGameEnd);
 
         yield return SceneTransitionManager.instance.unloadScene(Scenes.Arena);
-        
 
         PodiumManager.instance.SetUpPodium(GetFinalGameData());
 

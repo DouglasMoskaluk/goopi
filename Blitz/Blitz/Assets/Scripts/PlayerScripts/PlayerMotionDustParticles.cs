@@ -11,7 +11,7 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     public DustParticleStatus status;
 
-    private void Awake()
+    private void Start()
     {
 
         SetParticleStatus(status);
@@ -55,6 +55,11 @@ public class PlayerMotionDustParticles : MonoBehaviour
         {
             particles[i].enabled = onOff;
         }
+    }
+
+    public void hide(EventParams param = new EventParams())
+    {
+        SetParticleStatus(DustParticleStatus.Stopped);
     }
 
 }

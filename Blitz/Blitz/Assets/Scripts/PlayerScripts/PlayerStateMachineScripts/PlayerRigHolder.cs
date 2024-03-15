@@ -19,4 +19,16 @@ public class PlayerRigHolder : MonoBehaviour
     {
         playerRig = GetComponent<Rig>();
     }
+
+    public void disableRig()
+    {
+        leftArmConstraint.weight = 0f;
+        rightArmConstraint.weight = 0f;
+    }
+
+    public void enableRig()
+    {
+        leftArmConstraint.weight = 1f;
+        rightArmConstraint.weight = 1f;
+    }
 }

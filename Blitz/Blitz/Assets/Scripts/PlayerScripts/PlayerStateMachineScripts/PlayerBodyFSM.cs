@@ -107,6 +107,7 @@ public class PlayerBodyFSM : MonoBehaviour
     {
         //RoundManager.instance.onRoundReset.AddListener(resetFSM);
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
+        EventManager.instance.addListener(Events.onGameEnd, resetFSM);
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
@@ -190,11 +191,20 @@ public class PlayerBodyFSM : MonoBehaviour
     public void resetFSM(EventParams param = new EventParams())
     {
         resetHealth();
-        dustParticles.SetParticleStatus(DustParticleStatus.Stopped);
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
         knockBackVector = Vector3.zero;
+        dustParticles.hide();
+        grenadeArcRenderer.DisableRendering();
+        resetReloadAnim();
         if (playerGun != null) playerGun.instantReload();
+    }
+
+    public void resetReloadAnim()
+    {
+        anim.SetInteger("HeldGun", -1);
+        anim.Play("Idle", 1, 0);
+        rigHolder.enableRig();
     }
 
     public void SetCrownVisibility(bool isVisible)
@@ -619,6 +629,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
         yield return null;
     }
+
 
     /// <summary>
     /// refills player health when they hit a health pack
