@@ -12,7 +12,7 @@ public class RumbleHandler : MonoBehaviour
 
     private IEnumerator shooting;
 
-    private IEnumerator sliding;
+    private IEnumerator dualEngine;
 
     private void Awake()
     {
@@ -26,7 +26,10 @@ public class RumbleHandler : MonoBehaviour
             playerGamepad = null;
         }
 
+        EventManager.instance.addListener(Events.onRoundEnd, StopRumble);
+
         shooting = gunRumble(0, 0);
+        dualEngine = DualEngineRumble(0, 0);
 
     }
 
@@ -133,32 +136,55 @@ public class RumbleHandler : MonoBehaviour
         playerGamepad.SetMotorSpeeds(0f, 0f);
     }
 
-    public void deathRumble()
+    public void DeathRumble()
     {
-        
+        //StopAllCoroutines();
+        StopCoroutine(shooting);
+        StopCoroutine(dualEngine);
+        //start death rumble
+        dualEngine = DualEngineRumble(6, 2);
+        StartCoroutine(dualEngine);
     }
 
     public void startDualRumble(float value, float length)
     {
+        StopCoroutine(dualEngine);
+
         if(playerGamepad != null)
         {
-            StartCoroutine(DualEngineRumble(value, length));
+            dualEngine = DualEngineRumble(value, length);
+            StartCoroutine(dualEngine);
         }
     }
 
     public void slideRumble(bool isActive)
     {
-        if(playerGamepad != null)
+        StopCoroutine(dualEngine);
+
+        if (playerGamepad != null)
         {
-            StartCoroutine(slideRumble());
+            dualEngine = slideRumble();
+            StartCoroutine(dualEngine);
         }
     }
 
-    public void RumbleTick()
+    public void RumbleTick()//only in roulette
     {
         if (playerGamepad != null)
         {
             StartCoroutine(RouletteTick());
+        }
+    }
+
+    public void StopRumble(EventParams param = new EventParams())
+    {
+        //StopAllCoroutines();
+        StopCoroutine(shooting);
+        StopCoroutine(dualEngine);
+
+        if (playerGamepad != null)
+        {
+            playerGamepad.SetMotorSpeeds(0, 0);
         }
     }
 

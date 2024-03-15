@@ -512,6 +512,8 @@ public class PlayerBodyFSM : MonoBehaviour
             GameObject newRagdollBody = Instantiate(ragdollBody, transform.position, Quaternion.identity);
             gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09").transform.GetChild(1);
             GameObject newGunRagdoll = Instantiate(gunRagdollBody, gunPositionRef.position, gunPositionRef.transform.rotation);
+            RumbleHandler newRumble = transform.GetComponent<RumbleHandler>();
+            newRumble.DeathRumble();
 
             //tranfer bullets on body to ragdoll
             //if(transform.childCount > 5) //there are bullets on player
