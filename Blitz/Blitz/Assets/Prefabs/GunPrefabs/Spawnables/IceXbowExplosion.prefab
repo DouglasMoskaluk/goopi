@@ -54,6 +54,9 @@ MonoBehaviour:
   damage: 35
   onExplosionSpawn: {fileID: 4932056999929749714, guid: 646e890211028bb40afb5b635f961f53,
     type: 3}
+  knockbackForce: 1
+  scaleVFX: 1
+  explodable: 0
 --- !u!135 &3851416769174279275
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -90,6 +93,8 @@ MonoBehaviour:
   startSize: 1
   growTime: 2.2
   endSize: 1.5
+  fishparticles: {fileID: 0}
+  lifeTime: 0
 --- !u!1001 &1570457782308813228
 PrefabInstance:
   m_ObjectHideFlags: 0
