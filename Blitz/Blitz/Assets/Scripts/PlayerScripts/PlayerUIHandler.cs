@@ -21,6 +21,9 @@ public class PlayerUIHandler : MonoBehaviour
     private TextMeshProUGUI killCount;
 
     [SerializeField]
+    private Image killIcon;
+
+    [SerializeField]
     private TextMeshProUGUI grenadeCount;
 
     [SerializeField]
@@ -94,6 +97,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     private bool isReloadFadeRunning = false;
 
+    private IEnumerator killCounterCoRo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -120,6 +125,8 @@ public class PlayerUIHandler : MonoBehaviour
         {
             hitDirection[i].SetActive(false);
         }
+
+        killCounterCoRo = showKillCount();
 
         StartCoroutine(setCharButton());
     }
@@ -202,6 +209,9 @@ public class PlayerUIHandler : MonoBehaviour
     internal void playerGotKill()
     {
         kills++;
+        StopCoroutine(killCounterCoRo);
+        killCounterCoRo = showKillCount();
+        StartCoroutine(killCounterCoRo);
         StartCoroutine("ShowKillMarker");
     }
 
@@ -273,7 +283,7 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(false);
         ammoCount.gameObject.SetActive(false);
         grenadeCount.gameObject.SetActive(false);
-        killCount.gameObject.SetActive(false);
+        //killCount.gameObject.SetActive(false);
         health.gameObject.SetActive(false);
         crossHair.SetActive(false);
         for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
@@ -374,10 +384,12 @@ public class PlayerUIHandler : MonoBehaviour
         ammoCount.gameObject.SetActive(true);
         grenadeCount.gameObject.SetActive(true);
         crossHair.SetActive(true);
-        killCount.gameObject.SetActive(true);
+        //killCount.gameObject.SetActive(true);
         obliteratedUI.SetActive(false);
         //health.gameObject.SetActive(true);
     }
+
+    //Update with new HD2 inspired killfeed
     IEnumerator ShowKillMarker()
     {
         killMarker.SetActive(true);
@@ -430,6 +442,32 @@ public class PlayerUIHandler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         healingUI.SetActive(false);
         yield return null;
+    }
+
+    IEnumerator showKillCount()
+    {
+        killIcon.color = new Color(killIcon.color.r, killIcon.color.g, killIcon.color.b, 1f);        
+        killIcon.transform.gameObject.SetActive(true);
+        killCount.faceColor = new Color32(killCount.faceColor.r, killCount.faceColor.g, killCount.faceColor.b, 255);
+        killCount.transform.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        float timer = 0.0f;
+
+        while(timer < 0.5f)
+        {
+            timer += Time.deltaTime;
+            float ratio = timer / 0.5f;
+            float lerpFloat = Mathf.Lerp(1f, 0f, ratio);
+            killIcon.color = new Color(killIcon.color.r, killIcon.color.g, killIcon.color.b, lerpFloat);
+            killCount.faceColor = new Color32(killCount.faceColor.r, killCount.faceColor.g, killCount.faceColor.b, (byte)(lerpFloat * 255));
+
+            yield return null;
+        }
+        killCount.transform.gameObject.SetActive(false);
+        killIcon.transform.gameObject.SetActive(false);
+
     }
 
     IEnumerator setCharButton()
