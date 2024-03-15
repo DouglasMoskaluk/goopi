@@ -105,16 +105,6 @@ public class ModifierManager : MonoBehaviour
         {
             changeModifier(new EventParams(1));
         }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("doin it");
-            SetLowGravPostProcess(true);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("doin it");
-            SetLowGravPostProcess(false);
-        }
     }
 
     void SetLowGravPostProcess(bool active)
@@ -147,6 +137,7 @@ public class ModifierManager : MonoBehaviour
         if (RoundManager.instance.getRoundNum() == 1 && !ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
+            SetLowGravPostProcess(false);
         }
         if (ActiveEvents[(int)RoundModifierList.RANDOM_GUNS])
         {
@@ -220,6 +211,7 @@ public class ModifierManager : MonoBehaviour
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = GravityEventGravity;
+                SetLowGravPostProcess(true);
             }
         }
         else
@@ -227,6 +219,7 @@ public class ModifierManager : MonoBehaviour
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 SplitScreenManager.instance.GetPlayers()[i].GetComponent<FSMVariableHolder>().GRAVITY = startGravity;
+                SetLowGravPostProcess(false);
             }
         }
 
