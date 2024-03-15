@@ -41,13 +41,13 @@ public class Target : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision other)
-    //{
-    //    if (other.gameObject.tag == "Bullet")
-    //    {
-    //        Debug.Log("TEST");
-    //        //newEvent.Invoke();
-    //    }
-    //}
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("PLAYER HIT TARGET");
+            //newEvent.Invoke();
+        }
+    }
 
 }

@@ -11,6 +11,7 @@ public class Spinner : MonoBehaviour
 
     private IEnumerator fastSpinCoro;
 
+    [SerializeField]
     public float flingForce = 20.0f;
 
     private bool fast = false;

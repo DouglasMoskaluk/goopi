@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpinCollide : MonoBehaviour
 {
 
-    [SerializeField]
-    private float flingForce;
+    //[SerializeField]
+    //private float flingForce;
 
     private Vector3 direction = Vector3.zero;
 
@@ -19,7 +19,7 @@ public class SpinCollide : MonoBehaviour
     private void Awake()
     {
        newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        spinner = transform.parent.parent.GetComponent<Spinner>();
+       spinner = transform.parent.parent.GetComponent<Spinner>();
     }
 
     private void FixedUpdate()

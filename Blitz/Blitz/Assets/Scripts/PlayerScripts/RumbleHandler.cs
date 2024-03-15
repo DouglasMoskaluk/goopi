@@ -143,7 +143,10 @@ public class RumbleHandler : MonoBehaviour
         StopCoroutine(dualEngine);
         //start death rumble
         dualEngine = DualEngineRumble(6, 2);
-        StartCoroutine(dualEngine);
+        if (playerGamepad != null)
+        {
+            StartCoroutine(dualEngine);
+        }
     }
 
     public void startDualRumble(float value, float length)
@@ -204,7 +207,7 @@ public class RumbleHandler : MonoBehaviour
 
     public IEnumerator DualEngineRumble(float divisor, float length)
     {
-            playerGamepad.SetMotorSpeeds(1.0f, 1.0f/divisor);
+        playerGamepad.SetMotorSpeeds(1.0f, 1.0f/divisor);
 
         float timerlength = 0;
 

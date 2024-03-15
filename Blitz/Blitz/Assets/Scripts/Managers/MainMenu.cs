@@ -80,6 +80,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject floorPlane;
 
+    [SerializeField]
+    private GameObject settingReturnButt;
+
+    private bool isSettings = false;
+
     private void Update()
     {
         if(Input.anyKeyDown && canInteract)
@@ -97,9 +102,13 @@ public class MainMenu : MonoBehaviour
             StartCoroutine(ragDollStuff());
         }
 
-        if(eventSys.currentSelectedGameObject == null)
+        if(eventSys.currentSelectedGameObject == null && isSettings == false)
         {
             eventSys.SetSelectedGameObject(playButt);
+        }
+        else if(eventSys.currentSelectedGameObject == null && isSettings)
+        {
+            eventSys.SetSelectedGameObject(settingReturnButt);
         }
 
     }
@@ -160,7 +169,12 @@ public class MainMenu : MonoBehaviour
     public void onMMSettingsClicked()
     {
         //mainMenu.SetActive(false);
+
+        //set setting bool here
+
         settingsMenu.SetActive(true);
+        isSettings = true;
+        eventSys.SetSelectedGameObject(settingReturnButt);
     }
 
     public void onOMPlayClicked()
@@ -181,6 +195,7 @@ public class MainMenu : MonoBehaviour
     {
         //mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
+        isSettings = false;
     }
 
     public void onSMApplyChangesClicked()
