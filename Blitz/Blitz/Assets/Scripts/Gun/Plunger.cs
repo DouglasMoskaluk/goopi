@@ -61,19 +61,6 @@ public class Plunger : SpawnableObject
 
             pullDirection.y += heightPull;
 
-            //pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
-
-            //pullDirection = Vector3.up * 20;
-            //old heightpull = 125
-            //old pullpower = 0.002
-
-            //Debug.Log(pullDirection);
-            //Debug.DrawRay(hit.transform.position, pullDirection, Color.red, 1.5f);
-
-
-
-            //remove later
-
             hit.transitionState(PlayerMotionStates.KnockBack);
             hit.addKnockBack(pullDirection);
             
