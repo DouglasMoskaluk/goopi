@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PodiumManager : MonoBehaviour
@@ -25,11 +27,15 @@ public class PodiumManager : MonoBehaviour
     private PlayerTieKillsIndicator[] tieIndicators = new PlayerTieKillsIndicator[4];
     [SerializeField] private Animator anim;
 
+    [SerializeField] EventSystem eventSys;
+
     [SerializeField] private float durationOfTimeBreakerCount = 1.5f;
 
     public bool isTieBreaker = false;
     private int tieLowerKills = 0;
     private int tieMaxKills = 0;
+
+    List<PlayerWinsData> winData;
 
     private void Awake()
     {
@@ -39,7 +45,7 @@ public class PodiumManager : MonoBehaviour
         {
             podiumPositions.Add(child); 
         }
-        StartCoroutine(EnableExitButton());
+        //StartCoroutine(EnableExitButton());
     }
 
     private IEnumerator EnableExitButton()
@@ -55,7 +61,8 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator PodiumSequence()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+
+            yield return new WaitForSecondsRealtime(0.5f);
 
         anim.Play("openCurtains");
 
@@ -68,9 +75,20 @@ public class PodiumManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1.0f);
         }
 
-        yield return new WaitForSecondsRealtime(1.0f);
+        List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
-        anim.Play("podiumCamPan");
+        for (int i = 0; i < winData.Count; i++)
+        {
+
+            CharacterController chara = players[winData[i].id].transform.GetComponent<CharacterController>();
+            players[winData[i].id].transform.position = podiumPositions[i].position;
+            players[winData[i].id].transform.rotation = podiumPositions[i].rotation;
+        }
+
+
+            //yield return new WaitForSecondsRealtime(1.0f);
+
+            anim.Play("podiumCamPan");
         
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {
@@ -81,8 +99,20 @@ public class PodiumManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
 
-        ShowWinnerText();
+        //ShowWinnerText();
 
+        yield return new WaitForSecondsRealtime(1f);
+
+        exitButton.interactable = true;
+        eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
+
+        //enable exit button
+
+    }
+
+    private void Update()
+    {
+        eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
@@ -104,6 +134,9 @@ public class PodiumManager : MonoBehaviour
         isTieBreaker = CheckTieBreaker(gameData);
 
         if (isTieBreaker) SetUpTieBreaker(gameData);
+
+        winData = gameData;
+
     }
 
     private bool CheckTieBreaker(List<PlayerWinsData> gameData)
@@ -140,13 +173,14 @@ public class PodiumManager : MonoBehaviour
         }
 
         //final
-        yield return new WaitForSecondsRealtime(0.5f);
+        //yield return new WaitForSecondsRealtime(0.5f);
 
-        ShowWinnerText();
+       // ShowWinnerText();
 
         yield return new WaitForSecondsRealtime(1.0f);
 
-
+        //exitButton.enabled = true;
+        //eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
     }
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
@@ -253,6 +287,8 @@ public class PodiumManager : MonoBehaviour
             //FSM.SetCameraLookAt(playerLookAtPositions[i]);
             //FSM.SetBodyRotToCamera();
 
+            FSM.SetAlive();
+
             FSM.DisablePlayerCamera(true);
             FSM.RotateBody(Quaternion.LookRotation(-Vector3.forward));
             FSM.transitionState(PlayerMotionStates.Walk);
@@ -262,6 +298,15 @@ public class PodiumManager : MonoBehaviour
             //FSM.AllowWinAnimation();
             FSM.SetWinAnimNumber(i);
             FSM.enabled = false;
+
+            //disable grenade arc and particles
+            FSM.transform.GetChild(1).GetChild(5).gameObject.SetActive(false);
+            FSM.transform.GetChild(1).GetChild(6).gameObject.SetActive(false);
+            //disable crown
+            FSM.SetCrownVisibility(false);
+
+            players[gameData[i].id].transform.position = podiumPositions[i].position;
+            players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
 
             chara.enabled = true;
 
@@ -282,7 +327,7 @@ public class PodiumManager : MonoBehaviour
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CANCEL);
         GunManager.instance.destroyParentedWorldObjects();
-        SplitScreenManager.instance.RemoveAllPlayers();
+        //SplitScreenManager.instance.RemoveAllPlayers();
         AudioManager.instance.TransitionTrack("MainMenu");
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
     }

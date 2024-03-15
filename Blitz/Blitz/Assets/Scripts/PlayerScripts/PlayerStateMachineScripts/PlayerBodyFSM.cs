@@ -77,6 +77,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private int winDanceNum = -1;
 
+    private IEnumerator deathCoroutine;
+
     //private 
     #endregion
 
@@ -112,6 +114,7 @@ public class PlayerBodyFSM : MonoBehaviour
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
+        deathCoroutine = deathCoro(null);
     }
 
     public void SetGrenadeArcRendererLayer(int layer)
@@ -229,6 +232,23 @@ public class PlayerBodyFSM : MonoBehaviour
         if (param.killed == playerID)
         {
             resetFSM();
+        }
+    }
+
+    public void SetAlive()
+    {
+        StopCoroutine(deathCoroutine);
+        resetHealth();
+        playerUI.Alive();
+        charController.enabled = true;
+        grenadeThrower.setGrenades(grenadeThrower.MaxHeldGrenades);
+        playerGun.instantReload();
+        deathCheck = false;
+        //EventManager.instance.invokeEvent(Events.onPlayerRespawn, new EventParams(playerID));
+
+        for (int i = 0; i < transform.GetChild(1).childCount; i++)
+        {
+            transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
         }
     }
 
@@ -479,6 +499,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void death(Vector3 deathDirection, Vector3 deathPos)
     {
+        StopCoroutine(deathCoroutine);
         //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();
         if (!deathCheck)
@@ -555,7 +576,8 @@ public class PlayerBodyFSM : MonoBehaviour
             //}
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
-            StartCoroutine(deathCoro(newRagDollHandler));
+            deathCoroutine = deathCoro(newRagDollHandler);
+            StartCoroutine(deathCoroutine);
         }
 
         //charController.enabled = false;

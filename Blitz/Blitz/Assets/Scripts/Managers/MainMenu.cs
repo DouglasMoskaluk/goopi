@@ -104,6 +104,11 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        SplitScreenManager.instance.RemoveAllPlayers();
+    }
+
     private void Start()
     {
         //gameObjects = new List<GameObject>();
