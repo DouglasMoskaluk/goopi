@@ -41,7 +41,7 @@ public class Explosion : SpawnableObject
 
     public void explodeNow(int player)
     {
-        Owner = player;
+        //Owner = player;
         if (explodable)
         {
             StartCoroutine(Explode());
