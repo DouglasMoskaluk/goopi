@@ -154,6 +154,23 @@ public class RumbleHandler : MonoBehaviour
         }
     }
 
+    public void RumbleTick()
+    {
+        if (playerGamepad != null)
+        {
+            StartCoroutine(RouletteTick());
+        }
+    }
+
+   private IEnumerator RouletteTick()
+    {
+        playerGamepad.SetMotorSpeeds(0.0f, 0.3f);
+
+        yield return new WaitForSecondsRealtime(0.005f);
+
+        playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
+    }
+
     public IEnumerator slideRumble()
     {
         yield return null;
