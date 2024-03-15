@@ -170,11 +170,11 @@ public class ModifierManager : MonoBehaviour
                 for (int i = 0; i < modifiers[round]; i++)
                 {
                     int chosenEvent;
-                    //do
-                    //{
+                    do
+                    {
                         chosenEvent = Random.Range(0, (int)RoundModifierList.LENGTH - 1);
-                    //} while (chosenEvent == (int)RoundModifierList.RICOCHET);
-                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round-1] != chosenEvent))
+                    } while (repeatEvent(chosenEvent));
+                    if (chosenEvent <= (int)RoundModifierList.LENGTH && !ActiveEvents[chosenEvent] && (round == 0 || (int)modifierOrder[round - 1] != chosenEvent))
                     {
                         ActiveEvents[chosenEvent] = true;
 
@@ -190,12 +190,13 @@ public class ModifierManager : MonoBehaviour
             {
                 ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
             }
-        } else
+        }
+        else
         {
             ActiveEvents[Random.Range(0, (int)RoundModifierList.LENGTH - 1)] = true;
         }
         //Selects an event
-        
+
 
         Debug.Log("Events have been changed: Ricochet:" + ActiveEvents[0] + ", Low Grave:" + ActiveEvents[1] + ", bomb:" + ActiveEvents[2] + ", lava:" + ActiveEvents[3] + ", mega:" + ActiveEvents[4]);
 
@@ -203,6 +204,14 @@ public class ModifierManager : MonoBehaviour
     }
 
 
+    bool repeatEvent(int chosenEvent)
+    {
+        for (int i = 0; i < RoundManager.instance.getRoundNum(); i++)
+        {
+            if ((int)modifierOrder[i] == chosenEvent) return true;
+        }
+        return false;
+    }
     void ActivateModifier(EventParams param = new EventParams())
     {
         //Low gravity event
@@ -299,13 +308,14 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[i] = false;
         }
-        modifierOrder = new RoundModifierList[4];
     }
 
 
 
     private void Start()
     {
+        modifierOrder = new RoundModifierList[RoundManager.instance.getRoundNum()];
+
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
             int[] temp = new int[GameManager.instance.maxRoundsPlayed];
