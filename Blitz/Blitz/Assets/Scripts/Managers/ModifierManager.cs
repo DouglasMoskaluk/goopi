@@ -314,7 +314,7 @@ public class ModifierManager : MonoBehaviour
 
     private void Start()
     {
-        modifierOrder = new RoundModifierList[RoundManager.instance.getRoundNum()];
+        modifierOrder = new RoundModifierList[GameManager.instance.maxRoundsPlayed];
 
         if (modifiers.Length < GameManager.instance.maxRoundsPlayed)
         {
