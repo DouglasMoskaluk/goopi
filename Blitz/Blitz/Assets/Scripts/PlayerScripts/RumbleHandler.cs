@@ -12,6 +12,8 @@ public class RumbleHandler : MonoBehaviour
 
     private IEnumerator shooting;
 
+    private IEnumerator sliding;
+
     private void Awake()
     {
         if (GetComponent<PlayerInput>().devices[0] is XInputController or DualShockGamepad)
@@ -142,6 +144,36 @@ public class RumbleHandler : MonoBehaviour
         {
             StartCoroutine(DualEngineRumble(value, length));
         }
+    }
+
+    public void slideRumble(bool isActive)
+    {
+        if(playerGamepad != null)
+        {
+            StartCoroutine(slideRumble());
+        }
+    }
+
+    public void RumbleTick()
+    {
+        if (playerGamepad != null)
+        {
+            StartCoroutine(RouletteTick());
+        }
+    }
+
+   private IEnumerator RouletteTick()
+    {
+        playerGamepad.SetMotorSpeeds(0.0f, 0.3f);
+
+        yield return new WaitForSecondsRealtime(0.005f);
+
+        playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
+    }
+
+    public IEnumerator slideRumble()
+    {
+        yield return null;
     }
 
     public IEnumerator DualEngineRumble(float divisor, float length)

@@ -109,8 +109,11 @@ public class Explosion : SpawnableObject
         } else if (other.transform.CompareTag("Crate"))
         {
             Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized * 100;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
-            other.GetComponent<Rigidbody>().AddForce(dir);
+            other.GetComponent<Rigidbody>().AddForce(dir * knockbackForce);
             if (other.transform.GetComponent<Crate>() != null) other.transform.GetComponent<Crate>().lastImpulse = Owner;
+        } else if (other.transform.CompareTag("Target"))
+        {
+            if (other.GetComponent<Target>() != null) other.GetComponent<Target>().BulletHit(Owner);
         }
     }
 

@@ -11,6 +11,8 @@ public class Plunger : SpawnableObject
     [SerializeField]
     float heightPull = 5;
     [SerializeField]
+    AnimationCurve heightCurve;
+    [SerializeField]
     float CratePullPower = 350;
 
     [SerializeField]
@@ -52,30 +54,24 @@ public class Plunger : SpawnableObject
             PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
             Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
 
-            Debug.Log(pullDirection);
+            Debug.Log("Before: "+pullDirection.magnitude);
             //pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
-            
-            pullDirection = pullDirection * curve.Evaluate(1-(plr.Health/100.0f));
 
             pullDirection *= pullPower;
 
-            pullDirection.y += heightPull;
+            Debug.Log("Pull Power added: "+pullDirection.magnitude);
 
-            //pullDirection = pullDirection * Vector3.Distance(plr.transform.position, hit.transform.position);
+            pullDirection = pullDirection * curve.Evaluate(1-(hit.Health/100.0f));
 
-            //pullDirection = Vector3.up * 20;
-            //old heightpull = 125
-            //old pullpower = 0.002
+            Debug.Log("Evaluated curve: " +pullDirection.magnitude);
 
-            //Debug.Log(pullDirection);
-            //Debug.DrawRay(hit.transform.position, pullDirection, Color.red, 1.5f);
+            pullDirection.y += heightPull * heightCurve.Evaluate(1-(hit.Health/100.0f));
 
+            Debug.Log("Height: " + pullDirection.magnitude);
 
 
-            //remove later
-
-            hit.transitionState(PlayerMotionStates.KnockBack);
             hit.addKnockBack(pullDirection);
+            hit.transitionState(PlayerMotionStates.KnockBack);
             
         }
         else

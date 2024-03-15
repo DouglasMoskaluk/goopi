@@ -187,11 +187,13 @@ public class Bullet : MonoBehaviour
                     {
                         //Snapping
                         go.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                        go.transform.position = hit.point;
+                        if (hit.point != Vector3.zero) go.transform.position = hit.point;
+                        else go.transform.position = transform.position;
                     }
                     if (bulletVars.attachPlayer)
                     {
-                        go.transform.position = hit.point;
+                        if (hit.point != Vector3.zero) go.transform.position = hit.point;
+                        else go.transform.position = transform.position;
                     }
                 }
                 else
@@ -220,12 +222,12 @@ public class Bullet : MonoBehaviour
                     if (bulletVars.attachPlayer)
                     {
                         go.transform.parent = plr.transform;
-                        go.transform.position = hit.point;
+                        if (hit.point != Vector3.zero) go.transform.position = hit.point;
+                        else go.transform.position = transform.position;
                         go.transform.rotation = transform.rotation;
                         if (bulletVars.snap)
                         {
                             go.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                            go.transform.position = hit.point;
                         }
                     }
                     else if (bulletVars.snap)
@@ -241,7 +243,8 @@ public class Bullet : MonoBehaviour
                         {
                             //Snapping
                             go.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                            go.transform.position = hit.point;
+                            if (hit.point != Vector3.zero) go.transform.position = hit.point;
+                            else go.transform.position = transform.position;
                         }
 
                     }

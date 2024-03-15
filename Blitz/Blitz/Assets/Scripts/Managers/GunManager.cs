@@ -56,7 +56,8 @@ public class GunManager : MonoBehaviour
 
     internal int pickGun()
     {
-        return Random.Range(0, guns.Length-1); 
+        if (gunUsed != 5) return Random.Range(0, guns.Length-1); 
+        return gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)]; 
     }
 
     internal void changeGuns(EventParams param = new EventParams())
@@ -80,7 +81,8 @@ public class GunManager : MonoBehaviour
             gunUsed = 5;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
-                assignGun(i, pickGun());
+                int gunToUse = gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)];
+                assignGun(i, gunToUse);
             }
         }
     }
