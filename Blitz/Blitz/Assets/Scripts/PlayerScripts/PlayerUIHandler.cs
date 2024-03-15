@@ -397,6 +397,11 @@ public class PlayerUIHandler : MonoBehaviour
     IEnumerator ObliteratedCR()
     {
         obliteratedUI.SetActive(true);
+        for (int i=0; i<obliteratedUI.transform.childCount; i++)
+        {
+            Animation anim = obliteratedUI.transform.GetChild(i).GetComponent<Animation>();
+            if (anim != null) anim.Play();
+        }
         yield return new WaitForSeconds(0.25f);
         obliteratedUI.SetActive(false);
         yield return null;
