@@ -106,6 +106,8 @@ public class PlayerUIHandler : MonoBehaviour
 
         //RoundManager.instance.onRoundReset.AddListener(resetPlayerUI);
         EventManager.instance.addListener(Events.onRoundStart, resetPlayerUI);
+        EventManager.instance.addListener(Events.onGameEnd, resetPlayerUI);
+        EventManager.instance.addListener(Events.onPlayerRespawn, resetPlayerUIOnDeath);
 
         //lowHealthUI = transform.GetChild(1).gameObject;
         //damagedUI = transform.GetChild(2).gameObject;
@@ -142,6 +144,7 @@ public class PlayerUIHandler : MonoBehaviour
         victoryText.SetActive(false);
         obliteratedUI.SetActive(false);
         hammerUI.SetActive(false);
+        healingUI.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -153,6 +156,13 @@ public class PlayerUIHandler : MonoBehaviour
 
     }
 
+    private void resetPlayerUIOnDeath(EventParams param)
+    {
+        if (param.killed == playerID)
+        {
+            resetPlayerUI();
+        }
+    }
 
     // Update is called once per frame
     void LateUpdate()
