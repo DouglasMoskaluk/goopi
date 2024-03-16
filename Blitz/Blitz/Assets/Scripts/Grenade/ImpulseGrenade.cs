@@ -21,6 +21,8 @@ public class ImpulseGrenade : SpawnableObject
 
     private bool active = false;// if the blast has been triggered, ie has collided with something
 
+    private Transform whoThrew;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,21 +38,26 @@ public class ImpulseGrenade : SpawnableObject
     /// decides whether the explode now or later
     /// </summary>
     /// <param name="collision"></param>
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (active) { return; }
+
+    //    if (type == GrenadeType.Dropped && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+    //    {
+    //        armGrenade();
+    //    }
+    //    else if (type == GrenadeType.Thrown)
+    //    {
+    //        armGrenade();
+    //    }
+    //    //Debug.Break();
+
+    //}
+    public void setThrowOwner(Transform thrower)
     {
-        if (active) { return; }
-
-        if (type == GrenadeType.Dropped && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            armGrenade();
-        }
-        else if (type == GrenadeType.Thrown)
-        {
-            armGrenade();
-        }
-        //Debug.Break();
-
+        whoThrew = thrower;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (active) { return; }
@@ -90,6 +97,8 @@ public class ImpulseGrenade : SpawnableObject
         {
             if (hitColliders[i].CompareTag("Player"))
             {
+                if (hitColliders[i].transform == whoThrew) continue;
+
                 Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
                 PlayerBodyFSM fsm = hitColliders[i].GetComponent<PlayerBodyFSM>();
                 fsm.addKnockBack(dir * blastForce);

@@ -51,6 +51,7 @@ public class PlayerGrenadeThrower : MonoBehaviour
         if (heldGrenadeCount < 1 && !onCoolDown) { return; }
 
         ImpulseGrenade grenade = Instantiate(grenadePrefab, throwFromPoint.position, Quaternion.identity, GunManager.instance.transform).GetComponent<ImpulseGrenade>();
+        grenade.setThrowOwner(transform);
         grenade.setGrenadeType(GrenadeType.Thrown);
         grenade.setDirectionAndSpeed(dir, throwSpeed);
 
