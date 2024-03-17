@@ -214,6 +214,9 @@ public class GameManager : MonoBehaviour
         GameUIManager.instance.cutoutFadeToVisibleInstant();
         yield return SceneTransitionManager.instance.loadScene(Scenes.LockerRoom);
 
+        float fadeVisibleTime = GameUIManager.instance.cutoutFadeToVisible();
+        yield return new WaitForSecondsRealtime(fadeVisibleTime);
+
     }
 
     private IEnumerator LockerRoomToArenaTransition()

@@ -28,11 +28,6 @@ public class ImpulseGrenade : SpawnableObject
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        //Debug.DrawRay(transform.position, rb.velocity.normalized * 50, Color.green, 1);
-    }
-
     /// <summary>
     /// callback for when the grenade collides with something
     /// decides whether the explode now or later
