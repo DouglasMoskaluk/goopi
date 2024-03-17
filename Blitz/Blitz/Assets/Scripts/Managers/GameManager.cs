@@ -202,12 +202,18 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.TransitionTrack("Locker Room");
 
-        yield return GameUIManager.instance.FadeIn(0.5f);
+        //yield return GameUIManager.instance.FadeIn(0.5f);
+        float fadeBlackTime = GameUIManager.instance.cutoutFadeToBlack();
+        yield return new WaitForSecondsRealtime(fadeBlackTime);
+
         yield return new WaitForSecondsRealtime(0.5f);
 
         GunManager.instance.SetLockerroomGuns();
 
-        SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
+        yield return SceneTransitionManager.instance.unloadScene(Scenes.MainMenu);
+        GameUIManager.instance.cutoutFadeToVisibleInstant();
+        yield return SceneTransitionManager.instance.loadScene(Scenes.LockerRoom);
+
     }
 
     private IEnumerator LockerRoomToArenaTransition()
@@ -218,7 +224,8 @@ public class GameManager : MonoBehaviour
 
         AudioManager.instance.TransitionTrack("Roulette Spin");
 
-        yield return GameUIManager.instance.FadeIn(0.5f);
+        //yield return GameUIManager.instance.FadeIn(0.5f);
+        yield return GameUIManager.instance.cutoutFadeToBlack();
         //Debug.Log("after fade");
 
         // ## why does this not execute after the other has finished ##

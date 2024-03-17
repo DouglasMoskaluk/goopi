@@ -28,4 +28,14 @@ public class CutoutFade : MonoBehaviour
     {
         gameObject.SetActive(onOff);
     }
+
+    public void FadeToVisibleInstant()
+    {
+        anim.Play("CutoutFadeToVisibleInstant", 0, 0);
+    }
+
+    public void FadeToBlackInstant()
+    {
+        anim.Play("CutoutFadeToBlackInstant", 0, 0);
+    }
 }

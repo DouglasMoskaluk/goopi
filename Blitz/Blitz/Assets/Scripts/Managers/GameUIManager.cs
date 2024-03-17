@@ -217,6 +217,16 @@ public class GameUIManager : MonoBehaviour
         return cutoutFade.FadeToVisible();
     }
 
+    public void cutoutFadeToBlackInstant()
+    {
+        cutoutFade.FadeToBlackInstant();
+    }
+
+    public void cutoutFadeToVisibleInstant()
+    {
+        cutoutFade.FadeToVisibleInstant();
+    }
+
     public void changeVisibilityoFCutoutFade(bool onOff)
     {
         cutoutFade.SetVisibility(onOff);
