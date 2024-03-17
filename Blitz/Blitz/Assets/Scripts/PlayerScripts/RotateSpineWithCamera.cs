@@ -20,7 +20,7 @@ public class RotateSpineWithCamera : MonoBehaviour
 
     private void Start()
     {
-        EventManager.instance.addListener(Events.onPlayerRespawn, ResetSpine);
+        //EventManager.instance.addListener(Events.onPlayerRespawn, ResetSpine);
     }
 
     public void LateUpdate() {
