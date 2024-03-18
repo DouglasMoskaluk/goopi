@@ -21,7 +21,12 @@ public class PickUpGun : MonoBehaviour
             if (gunPickup == Gun.GunType.BOOMSTICK)
             {
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_PICKUP);
-                Instantiate(megaGunSkybeam, other.transform.position, other.transform.rotation, other.transform).GetComponent<PlayerAttachedDeletion>().init(id);
+                PlayerAttachedDeletion[] effects = Instantiate(megaGunSkybeam, other.transform.position, other.transform.rotation, other.transform).GetComponentsInChildren<PlayerAttachedDeletion>();
+
+                foreach(PlayerAttachedDeletion effect in effects)
+                {
+                    effect.init(id);
+                }
             }
             Destroy(transform.parent.gameObject);
         }
