@@ -20,6 +20,8 @@ public class RumbleHandler : MonoBehaviour
 
     private PlayerBodyFSM player;
 
+    private bool endOfSlide = false;
+
     private void Awake()
     {
         if (GetComponent<PlayerInput>().devices[0] is XInputController or DualShockGamepad)
@@ -185,15 +187,28 @@ public class RumbleHandler : MonoBehaviour
                 if (playerGamepad != null)
                 {
                     playerGamepad.SetMotorSpeeds(0.3f, 0.1f);
+                    endOfSlide = true;
+                    //yield return null;
+                    //playerGamepad.SetMotorSpeeds(0,0);
                 }
             }
-            else
+            else if(endOfSlide)
             {
                 if (playerGamepad != null)
                 {
-                    playerGamepad.SetMotorSpeeds(0,0);
+                    playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
+                    endOfSlide = false;
+                    //yield return null;
+                    //playerGamepad.SetMotorSpeeds(0,0);
                 }
             }
+            //else
+            //{
+            //    if (playerGamepad != null)
+            //    {
+            //        playerGamepad.SetMotorSpeeds(0,0);
+            //    }
+            //}
             yield return null;
         }
     }
