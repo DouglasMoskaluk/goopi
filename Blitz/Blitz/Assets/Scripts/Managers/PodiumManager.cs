@@ -30,6 +30,8 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] EventSystem eventSys;
 
     [SerializeField] private float durationOfTimeBreakerCount = 1.5f;
+    [SerializeField] private GameObject tieBreakerImg;
+    [SerializeField] private GameObject gameoverImg;
 
     public bool isTieBreaker = false;
     private int tieLowerKills = 0;
@@ -62,13 +64,17 @@ public class PodiumManager : MonoBehaviour
     private IEnumerator PodiumSequence()
     {
 
-            yield return new WaitForSecondsRealtime(0.5f);
+        if (isTieBreaker)
+        {
 
-        anim.Play("openCurtains");
+        }
+        else
+        {
 
-        yield return new WaitForSecondsRealtime(0.1f);
+        }
+        anim.Play("ScreenRaise", 0, 0);
+        yield return new WaitForSecondsRealtime(0.62f);
 
-        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
 
         if (isTieBreaker) { 
             yield return StartCoroutine(TieBreakerSequence());
@@ -84,11 +90,6 @@ public class PodiumManager : MonoBehaviour
             players[winData[i].id].transform.position = podiumPositions[i].position;
             players[winData[i].id].transform.rotation = podiumPositions[i].rotation;
         }
-
-
-            //yield return new WaitForSecondsRealtime(1.0f);
-
-            anim.Play("podiumCamPan");
         
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {
