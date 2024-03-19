@@ -152,6 +152,7 @@ public class Bullet : MonoBehaviour
         {
             //Debug.Log("I hit a map object!");//May need debug.logs...
             onMapHitEffect(hit);
+            if (hit.rigidbody != null) hit.rigidbody.AddForce(rb.velocity * bulletVars.crateForceMultiplier);
             Bounce(hit);
         } else if (hit.collider.CompareTag("Dome"))
         {

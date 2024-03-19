@@ -295,7 +295,8 @@ internal class BulletVars
     internal bool snap = false;
     [SerializeField]
     internal bool destroyPlayerHit = true;
-
+    [SerializeField]
+    internal float crateForceMultiplier = 0.25f;
 
     internal int owner;
 }
