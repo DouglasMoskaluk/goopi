@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     private bool canReload = true;
     private RumbleHandler rumble;
     private CameraShake shake;
+    private IEnumerator gunState;
 
     internal enum GunType { NONE, NERF, GOOP, ICE_XBOW, PLUNGER, FISH, BOOMSTICK };
 
@@ -76,7 +77,7 @@ public class Gun : MonoBehaviour
         {
             return 1;
         }
-        else if (gunVars.ammo[0] <= 0)
+        else if (gunVars.ammo[0] <= 0 && gunState == null)
         {
             reload();
             return 1;
@@ -106,8 +107,9 @@ public class Gun : MonoBehaviour
                         gunVars.hideObjectWithNoAmmo[j].SetActive(false);
                     }
                     reload();
-                } else
+                } else if (gunState == null)
                 {
+                    
                     StartCoroutine(shotCooldown());
                 }
             }
@@ -158,8 +160,8 @@ public class Gun : MonoBehaviour
         if (canReload && gunVars.reloadTime >= 0)
         {
             canReload = false;
-            StartCoroutine(reloading());
-
+            gunState = reloading();
+            StartCoroutine(gunState);
         }
     }
 
@@ -209,6 +211,11 @@ public class Gun : MonoBehaviour
         for (int j = 0; j < gunVars.hideObjectWithNoAmmo.Length; j++)
         {
             gunVars.hideObjectWithNoAmmo[j].SetActive(true);
+        }
+        if (gunState != null)
+        {
+            StopCoroutine(gunState);
+            gunState = null;
         }
     }
 
