@@ -39,8 +39,8 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     Transform modifierUI;
 
-    [HideInInspector]
-    public Volume[] playerCamVolumes;
+    [SerializeField]
+    internal Volume globalVolume;
 
 
 
@@ -111,23 +111,11 @@ public class ModifierManager : MonoBehaviour
     {
         if(active)
         {
-            for(int i = 0; i < 4; i++)
-            {
-                if (playerCamVolumes[i] != null)
-                {
-                    playerCamVolumes[i].profile = lowGravPPVolume;
-                }
-            }
+            globalVolume.profile = lowGravPPVolume;
         }
         else
         {
-            for (int i = 0; i < 4; i++)
-            {
-                if (playerCamVolumes[i] != null)
-                {
-                    playerCamVolumes[i].profile = defaultPPVolume;
-                }
-            }
+            globalVolume.profile = defaultPPVolume;
         }
     }
 
@@ -326,8 +314,6 @@ public class ModifierManager : MonoBehaviour
         }
         EventManager.instance.addListener(Events.onRoundEnd, changeModifier, 0);
         EventManager.instance.addListener(Events.onEventStart, ActivateModifier);
-
-        playerCamVolumes = new Volume[4];
 
     }
 
