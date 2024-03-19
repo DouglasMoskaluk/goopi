@@ -472,7 +472,7 @@ public class PlayerBodyFSM : MonoBehaviour
                 Attacker.playerUI.playerGotHit();
                 if (health - value <= 0 && Attacker.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
                 {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED, 0.7f);
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
                     uiHandler.Obliterated();
                 }
             }

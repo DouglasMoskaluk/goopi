@@ -284,15 +284,10 @@ public class LockerRoomManager : MonoBehaviour
 
             }
         }
-        //reenable cameracontrol - done
-        //reactivate player mesh - done
-        //reset playerOffset - done
-        //reenable cam collider - done
-        //reneable player UI
 
         yield return new WaitForEndOfFrame();
 
-        GameManager.instance.ReadyArena();
+        yield return GameManager.instance.ReadyArena();
 
     }
 

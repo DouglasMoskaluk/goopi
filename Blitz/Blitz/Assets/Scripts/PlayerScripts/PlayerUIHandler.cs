@@ -145,6 +145,7 @@ public class PlayerUIHandler : MonoBehaviour
         obliteratedUI.SetActive(false);
         hammerUI.SetActive(false);
         healingUI.SetActive(false);
+        killMarker.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
