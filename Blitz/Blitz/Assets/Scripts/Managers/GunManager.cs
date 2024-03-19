@@ -89,6 +89,7 @@ public class GunManager : MonoBehaviour
 
     bool repeatGun(int chosenGun)
     {
+        if (chosenGun == 5) return false;
         for (int i = 0; i < RoundManager.instance.getRoundNum(); i++)
         {
             if ((int)gunOrder[i] == chosenGun) return true;
