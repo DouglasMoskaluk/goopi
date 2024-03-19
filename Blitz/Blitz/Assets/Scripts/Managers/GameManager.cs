@@ -231,7 +231,6 @@ public class GameManager : MonoBehaviour
 
         yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
 
-        // ## why does this not execute after the other has finished ##
         yield return SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
 
         StartGame();
