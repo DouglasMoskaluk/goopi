@@ -20,6 +20,7 @@ public class Credits : MonoBehaviour
     int devsSummoed = 0;
 
     GameObject[] ragdolls;
+    IEnumerator freezeCR;
 
     private void Awake()
     {
@@ -34,6 +35,14 @@ public class Credits : MonoBehaviour
     public void GoToMainMenu()
     {
         Debug.Log("Switching");
+        for (int i=0; i<ragdolls.Length; i++)
+        {
+            if (ragdolls[i] != null)
+            {
+                Destroy(ragdolls[i], 2);
+            }
+        }
+        if (freezeCR != null) StopCoroutine(freezeCR);
         SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
     }
 
@@ -73,7 +82,8 @@ public class Credits : MonoBehaviour
         Debug.Log("STOP! Wait a second.");
 
         //Time.timeScale = 0.05f;
-        StartCoroutine(frozen(frozenTime));
+        freezeCR = frozen(frozenTime);
+        StartCoroutine(freezeCR);
     }
 
     private void playVideo()
@@ -101,6 +111,7 @@ public class Credits : MonoBehaviour
         }
         yield return new WaitForSecondsRealtime(frozenTime);
         GetComponent<Animator>().speed = 1;
+        
         for (int j = 0; j < devsSummoed; j++)
         {
             bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
@@ -111,6 +122,7 @@ public class Credits : MonoBehaviour
             }
         }
         //Time.timeScale = 1;
+        freezeCR = null;
         Debug.Log("This game needs some animal 4 in it.");
     }
 }
