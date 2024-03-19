@@ -188,9 +188,9 @@ public class GameManager : MonoBehaviour
         return resultData;
     }
 
-    public void ReadyArena()
+    public Coroutine ReadyArena()
     {
-        StartCoroutine(LockerRoomToArenaTransition());
+        return StartCoroutine(LockerRoomToArenaTransition());
     }
 
     public void ReadyLockerRoom()
@@ -227,20 +227,15 @@ public class GameManager : MonoBehaviour
 
         AudioManager.instance.TransitionTrack("Roulette Spin");
 
-        //yield return GameUIManager.instance.FadeIn(0.5f);
-        yield return GameUIManager.instance.cutoutFadeToBlack();
-        //Debug.Log("after fade");
+        GameUIManager.instance.cutoutFadeToBlackInstant();
+
+        yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
 
         // ## why does this not execute after the other has finished ##
         yield return SceneTransitionManager.instance.unloadScene(Scenes.LockerRoom);
-        //Debug.Log("after unload");
-
-        yield return SceneTransitionManager.instance.loadScene(Scenes.Arena);
-        //Debug.Log("after load ");
 
         StartGame();
 
-        //yield return GameUIManager.instance.FadeOut(0.5f);
     }
 
     public int[] GetRoundsWon()

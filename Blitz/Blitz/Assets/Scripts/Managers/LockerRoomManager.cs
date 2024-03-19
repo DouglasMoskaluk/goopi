@@ -292,7 +292,9 @@ public class LockerRoomManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        GameManager.instance.ReadyArena();
+        Debug.Break();
+
+        yield return GameManager.instance.ReadyArena();
 
     }
 
