@@ -41,12 +41,16 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("PLAYER HIT TARGET");
-            //newEvent.Invoke();
+            int playerNum = other.transform.GetComponent<PlayerBodyFSM>().playerID;
+            newEvent.Invoke(playerNum);
+        }
+        else if(other.gameObject.CompareTag("Ragdoll"))
+        {
+            newEvent.Invoke(-1);
         }
     }
 

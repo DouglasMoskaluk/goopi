@@ -418,6 +418,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2d98b170-28d2-4d45-94f5-357a5a885cc6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""21b8efec-49d9-4945-8a4c-d8e408128922"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",

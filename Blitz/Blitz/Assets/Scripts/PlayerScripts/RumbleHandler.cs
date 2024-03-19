@@ -14,6 +14,14 @@ public class RumbleHandler : MonoBehaviour
 
     private IEnumerator dualEngine;
 
+    private IEnumerator slideCoro;
+
+    private PlayerMotionStates rumbleState;
+
+    private PlayerBodyFSM player;
+
+    private bool endOfSlide = false;
+
     private void Awake()
     {
         if (GetComponent<PlayerInput>().devices[0] is XInputController or DualShockGamepad)
@@ -26,11 +34,17 @@ public class RumbleHandler : MonoBehaviour
             playerGamepad = null;
         }
 
+
+
+        player = transform.GetComponent<PlayerBodyFSM>();
+
         EventManager.instance.addListener(Events.onRoundEnd, StopRumble);
 
         shooting = gunRumble(0, 0);
         dualEngine = DualEngineRumble(0, 0);
-
+        slideCoro = slideRumble();
+        rumbleState = PlayerMotionStates.Slide;
+        StartCoroutine(slideCoro);
     }
 
     /// <summary>
@@ -136,6 +150,8 @@ public class RumbleHandler : MonoBehaviour
         playerGamepad.SetMotorSpeeds(0f, 0f);
     }
 
+
+
     public void DeathRumble()
     {
         //StopAllCoroutines();
@@ -160,14 +176,40 @@ public class RumbleHandler : MonoBehaviour
         }
     }
 
-    public void slideRumble(bool isActive)
+    private IEnumerator slideRumble()
     {
-        StopCoroutine(dualEngine);
+        //StopCoroutine(dualEngine);
 
-        if (playerGamepad != null)
+        while(true)
         {
-            dualEngine = slideRumble();
-            StartCoroutine(dualEngine);
+            if(player.currentMotionStateFlag == rumbleState)
+            {
+                if (playerGamepad != null)
+                {
+                    playerGamepad.SetMotorSpeeds(0.3f, 0.1f);
+                    endOfSlide = true;
+                    //yield return null;
+                    //playerGamepad.SetMotorSpeeds(0,0);
+                }
+            }
+            else if(endOfSlide)
+            {
+                if (playerGamepad != null)
+                {
+                    playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
+                    endOfSlide = false;
+                    //yield return null;
+                    //playerGamepad.SetMotorSpeeds(0,0);
+                }
+            }
+            //else
+            //{
+            //    if (playerGamepad != null)
+            //    {
+            //        playerGamepad.SetMotorSpeeds(0,0);
+            //    }
+            //}
+            yield return null;
         }
     }
 
@@ -181,7 +223,7 @@ public class RumbleHandler : MonoBehaviour
 
     public void StopRumble(EventParams param = new EventParams())
     {
-        //StopAllCoroutines();
+        StopAllCoroutines();
         StopCoroutine(shooting);
         StopCoroutine(dualEngine);
 
@@ -198,11 +240,6 @@ public class RumbleHandler : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.005f);
 
         playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
-    }
-
-    public IEnumerator slideRumble()
-    {
-        yield return null;
     }
 
     public IEnumerator DualEngineRumble(float divisor, float length)
