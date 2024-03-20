@@ -51,23 +51,24 @@ MonoBehaviour:
     speed: 40
     minSpeed: 5
     lifeTime: 5
-    accuracy: {x: 0, y: 0}
+    accuracy: {x: 3, y: 3}
     offset: {x: 0, y: 0}
     bounces: 0
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
     spawnOnContact:
     - {fileID: 942629128801794341, guid: b3df25db858b0924b8376fe2dce961b2, type: 3}
     forceApplied: {x: 0, y: 0, z: 0}
-    speedModifier: 1
+    speedModifier: 85
     spawnEveryContact: 0
     spawnOnDeath: 0
     attachPlayer: 0
     snap: 0
     destroyPlayerHit: 0
+    crateForceMultiplier: 0.25
   gunVars:
-    ammo: 1000000010000000
+    ammo: 2000000020000000
     reloadTime: 1.6
-    shotCooldown: 0.35
+    shotCooldown: 0.25
     type: 5
     bullet: {fileID: 6551949199387729789, guid: 2dfd0a746ffba0a49beac2216e5a4755,
       type: 3}

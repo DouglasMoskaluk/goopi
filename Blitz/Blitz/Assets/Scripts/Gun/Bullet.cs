@@ -75,11 +75,13 @@ public class Bullet : MonoBehaviour
     {
         //Debug.Log("The velocity is: "+rb.velocity.magnitude);
         rb.AddForce(bulletVars.forceApplied);
-        rb.velocity = rb.velocity * (bulletVars.speedModifier);
+        //Debug.Log(rb.velocity.magnitude);
+        rb.velocity -= rb.velocity / (bulletVars.speedModifier * (1-Time.fixedDeltaTime));
         if (rb.velocity.magnitude < bulletVars.minSpeed)
         {
             rb.velocity = rb.velocity.normalized * bulletVars.minSpeed;
         }
+        //Debug.Log(rb.velocity.magnitude);
     }
 
 

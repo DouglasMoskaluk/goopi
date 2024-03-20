@@ -5,7 +5,8 @@ using UnityEngine;
 public class FishAOEPulse : MonoBehaviour
 {
     [SerializeField]
-    float pulseLength = 0.7f;
+    [Tooltip("Length of time between pulses")]
+    float pulseLength = 0.3f;
     [SerializeField]
     GameObject pulsewaveExplosion;
     [SerializeField]
