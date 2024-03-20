@@ -305,6 +305,10 @@ public class PlayerUIHandler : MonoBehaviour
         //killCount.gameObject.SetActive(false);
         health.gameObject.SetActive(false);
         crossHair.SetActive(false);
+        healingUI.SetActive(false);
+        killCount.transform.gameObject.SetActive(false);
+        killIcon.transform.gameObject.SetActive(false);
+
         for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             hitDirection[i].SetActive(false);
