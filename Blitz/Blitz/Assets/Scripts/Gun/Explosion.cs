@@ -60,7 +60,7 @@ public class Explosion : SpawnableObject
             if (scaleVFX) VFX.transform.localScale = transform.localScale * radius;
             else VFX.transform.localScale = VFX.transform.localScale * radius;
         }
-        if (!explodable) {
+        if (!explodable && transform.GetComponent<Target>() == null) {
             switch (SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type)
             {
                 case Gun.GunType.GOOP:

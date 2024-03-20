@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 6905485987580498871}
   - {fileID: 47491910497976033}
   isHammer: 1
+  canTouch: 1
 --- !u!65 &3783621315805223704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -190,7 +191,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -238,7 +239,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_ImplicitCom: 0
   m_ImplicitTensor: 0
   m_UseGravity: 0

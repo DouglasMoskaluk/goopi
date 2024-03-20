@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ModifierVariables : MonoBehaviour
@@ -10,11 +11,26 @@ public class ModifierVariables : MonoBehaviour
     [SerializeField]
     internal Transform centralLocation;
 
+    [SerializeField]
+    internal GameObject tntObject;
 
     [SerializeField]
     internal moveOnEvent[] eventMovables;
     [SerializeField]
     internal enableOnEvent[] eventActivateables;
+
+    [SerializeField]
+    private Transform rainPoint;
+
+    [SerializeField]
+    private GameObject tntCrate;
+
+    [SerializeField]
+    private float rainTimer = 2f;
+
+    private IEnumerator rainCoro;
+
+    private bool isRaining = false;
 
     private void Start()
     {
@@ -23,6 +39,7 @@ public class ModifierVariables : MonoBehaviour
         {
             move.Start();
         }
+        rainCoro = rainEvent();
     }
 
     internal void toggleLava(bool enabled)
@@ -38,6 +55,24 @@ public class ModifierVariables : MonoBehaviour
         }
     }
 
+    internal void toggleRain(bool enabled)
+    {
+        StopCoroutine(rainCoro);
+        if(enabled)
+        {
+            rainCoro = rainEvent();
+            StartCoroutine(rainCoro);
+        }
+        else
+        {
+            foreach (Transform child in rainPoint.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //remove all crates spawned in
+        }
+    }
+
     internal void toggleMegaGun(bool enabled)
     {
         if (enabled)
@@ -50,6 +85,25 @@ public class ModifierVariables : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         Instantiate(ModifierManager.instance.MegaGunPickupPrefab, centralLocation.position, centralLocation.rotation, GunManager.instance.transform);
+    }
+
+    IEnumerator rainEvent()
+    {
+        float timer = 0f;
+
+        while(true)
+        {
+            timer += Time.deltaTime;
+            if(timer >= rainTimer)
+            {
+                timer = 0;
+                //instantiate new crate
+                float xpos = Random.Range(-30, 30);
+                float zPos = Random.Range(-30, 30);
+                Instantiate(tntCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+            }
+            yield return null;
+        }
     }
 }
 

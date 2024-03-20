@@ -126,7 +126,7 @@ public class SplitScreenManager : MonoBehaviour
 
     public PlayerBodyFSM GetPlayers(int i)
     {
-        return players[i].GetComponent<PlayerBodyFSM>();
+         return players[i].GetComponent<PlayerBodyFSM>();
     }
 
     public void DisablePlayers()
