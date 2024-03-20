@@ -107,7 +107,6 @@ public class PodiumManager : MonoBehaviour
         }
 
         anim.Play("openCurtains");
-        Debug.Break();
 
         yield return new WaitForSecondsRealtime(1.5f);
 
