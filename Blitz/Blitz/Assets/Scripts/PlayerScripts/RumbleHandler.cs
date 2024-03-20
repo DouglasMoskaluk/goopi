@@ -235,9 +235,21 @@ public class RumbleHandler : MonoBehaviour
 
    private IEnumerator RouletteTick()
     {
-        playerGamepad.SetMotorSpeeds(0.0f, 0.3f);
+        //float timer = 0f;
 
-        yield return new WaitForSecondsRealtime(0.005f);
+
+        //while(timer < 2f)
+        //{
+        //    timer += Time.deltaTime;
+        //    playerGamepad.SetMotorSpeeds(0.0f, 0.1f);
+        //    yield return null;
+        //    timer += Time.deltaTime;
+        //    playerGamepad.SetMotorSpeeds(0f, 0f);
+        //}
+
+        playerGamepad.SetMotorSpeeds(0.0f, 0.25f);
+
+        yield return null;
 
         playerGamepad.SetMotorSpeeds(0.0f, 0.0f);
     }
