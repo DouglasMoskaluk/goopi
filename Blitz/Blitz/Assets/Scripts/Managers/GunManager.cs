@@ -69,7 +69,7 @@ public class GunManager : MonoBehaviour
             do
             {
                 thisRoundGun = pickGun();
-            } while (repeatGun(thisRoundGun));
+            } while (repeatGun(thisRoundGun) || thisRoundGun == (int)Gun.GunType.FISH);
             gunUsed = thisRoundGun;
             gunOrder[roundNum] = gunUsed;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
