@@ -203,6 +203,8 @@ public class LockerRoomManager : MonoBehaviour
     IEnumerator LobbyReady()
     {
 
+        SplitScreenManager.instance.DisableJoining();
+
         Debug.Log("EXIT LOBBY");
 
         float ratio = 0f;
