@@ -3374,6 +3374,7 @@ MonoBehaviour:
   - {fileID: 1716944823}
   - {fileID: 1614787050}
   centralLocation: {fileID: 368964534}
+  tntObject: {fileID: 0}
   eventMovables:
   - eventThisMovesIn: 1
     height: 3
@@ -3394,6 +3395,10 @@ MonoBehaviour:
     eventThisIsActiveIn: 1
   - enable: {fileID: 2035987040}
     eventThisIsActiveIn: 1
+  rainPoint: {fileID: 1922309730}
+  tntCrate: {fileID: 4549933260259191330, guid: 3a6054ce6b24be14782da412df3384d7,
+    type: 3}
+  rainTimer: 2
 --- !u!4 &314615477
 Transform:
   m_ObjectHideFlags: 0
@@ -22068,6 +22073,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5376425, y: 2.6109755, z: 10.752425}
   m_Center: {x: 8.301116, y: 0.80548835, z: 12.624037}
+--- !u!1 &1922309729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922309730}
+  m_Layer: 0
+  m_Name: RainStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922309730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922309729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 57.9, y: 34.9, z: 758.3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1927120832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25192,8 +25228,9 @@ SceneRoots:
   - {fileID: 522505166}
   - {fileID: 1384647946}
   - {fileID: 2111150291}
-  - {fileID: 159854274}
   - {fileID: 314615477}
+  - {fileID: 1922309730}
+  - {fileID: 159854274}
   - {fileID: 318633901}
   - {fileID: 1798633159}
   - {fileID: 779595635}

@@ -135,6 +135,10 @@ public class ModifierManager : MonoBehaviour
         {
             if (vars != null) vars.toggleLava(false);
         }
+        if (ActiveEvents[(int)RoundModifierList.BOMB])
+        {
+            if (vars != null) vars.toggleRain(false);
+        }
         for (int i=0; i<ActiveEvents.Length; i++)
         {
             ActiveEvents[i] = false;
@@ -235,11 +239,12 @@ public class ModifierManager : MonoBehaviour
 
         if (ActiveEvents[(int)RoundModifierList.BOMB])
         {
-            for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
-            {
-                PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(i);
-                Instantiate(BombPrefab, plr.transform.position, plr.transform.rotation, plr.transform);
-            }
+            if (vars != null) vars.toggleRain(true);
+            //for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+            //{
+            //    PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(i);
+            //    Instantiate(BombPrefab, plr.transform.position, plr.transform.rotation, plr.transform);
+            //}
         }
 
         //Event Movables

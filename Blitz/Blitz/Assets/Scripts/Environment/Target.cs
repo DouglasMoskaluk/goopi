@@ -17,6 +17,9 @@ public class Target : MonoBehaviour
     [SerializeField]
     private bool isHammer = true;
 
+    [SerializeField]
+    private bool canTouch = false;
+
     public void BulletHit(int killerID)
     {
         //Debug.Log("TARGET PLAYER " + killerID);
@@ -43,14 +46,17 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(canTouch)
         {
-            int playerNum = other.transform.GetComponent<PlayerBodyFSM>().playerID;
-            newEvent.Invoke(playerNum);
-        }
-        else if(other.gameObject.CompareTag("Ragdoll"))
-        {
-            newEvent.Invoke(-1);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                int playerNum = other.transform.GetComponent<PlayerBodyFSM>().playerID;
+                newEvent.Invoke(playerNum);
+            }
+            else if (other.gameObject.CompareTag("Ragdoll"))
+            {
+                newEvent.Invoke(-1);
+            }
         }
     }
 
