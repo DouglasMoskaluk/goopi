@@ -59,7 +59,7 @@ public class PodiumManager : MonoBehaviour
         //winData.Add(new PlayerWinsData(3, 2, 4, 0));
         //winData.Add(new PlayerWinsData(2, 0, 7, 1));
         //SetUpPodium(winData);
-        StartPodiumSequence();
+        //StartPodiumSequence();
     }
 
     private IEnumerator EnableExitButton()
@@ -70,26 +70,41 @@ public class PodiumManager : MonoBehaviour
 
     public void StartPodiumSequence()
     {
+
         StartCoroutine(PodiumSequence());
+        
     }
 
     private IEnumerator PodiumSequence()
     {
 
+        
+
         if (isTieBreaker)
         {
             tieBreakerImg.SetActive(true);
-            yield return TieBreakerSequence();
+            yield return TieBreakerSequence();// add particle to end
             yield return new WaitForSecondsRealtime(1f);
         }
         else
         {
+            //particle effects
             gameoverImg.SetActive(true);
-            yield return new WaitForSecondsRealtime(2.5f);
+            yield return new WaitForSecondsRealtime(3.5f);
         }
 
+        
+
         anim.Play("ScreenRaise", 0, 0);
-        yield return new WaitForSecondsRealtime(0.62f);
+        //Debug.Log("playing screen raise anim");
+        //Debug.Break();
+
+        yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
+
+        yield return new WaitForSecondsRealtime(1.5f);//looking at curtians
+        
+        //spotlights
+
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
@@ -100,13 +115,15 @@ public class PodiumManager : MonoBehaviour
             players[winData[i].id].transform.position = podiumPositions[i].position;
             players[winData[i].id].transform.rotation = podiumPositions[i].rotation;
         }
-        
+
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {
             player.GetComponent<PlayerBodyFSM>().AllowWinAnimation();
         }
 
         anim.Play("openCurtains");
+        //particles
+
 
         yield return new WaitForSecondsRealtime(1.5f);
 
