@@ -10,7 +10,6 @@ public class GunManager : MonoBehaviour
     private GameObject[] guns;
     int gunUsed;
     internal int GunUsed { get { return gunUsed; } }
-
     private int[] gunOrder;
 
 
@@ -52,11 +51,24 @@ public class GunManager : MonoBehaviour
     internal void SetLockerroomGuns()
     {
         gunUsed = (int)Gun.GunType.NERF - 1;
+
+        for (int i = 0; i < gunOrder.Length; i++)
+        {
+            gunOrder[i] = Random.Range(0, (int)Gun.GunType.BOOMSTICK-2);
+            for (int j = 0; j < i; j++)
+            {
+                if (gunOrder[j] == gunOrder[i])
+                {
+                    i--;
+                    continue;
+                }
+            }
+        }
     }
 
     internal int pickGun()
     {
-        if (gunUsed != 5) return Random.Range(0, guns.Length-1); 
+        if (gunUsed != 5) return gunOrder[RoundManager.instance.getRoundNum()]; 
         return gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)]; 
     }
 
@@ -65,13 +77,7 @@ public class GunManager : MonoBehaviour
         if (!ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS])
         {
             int roundNum = RoundManager.instance.getRoundNum();
-            int thisRoundGun;
-            do
-            {
-                thisRoundGun = pickGun();
-            } while (repeatGun(thisRoundGun) || thisRoundGun == (int)Gun.GunType.FISH);
-            gunUsed = thisRoundGun;
-            gunOrder[roundNum] = gunUsed;
+            gunUsed = gunOrder[roundNum];
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
                 assignGun(i);
