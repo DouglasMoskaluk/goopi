@@ -63,7 +63,7 @@ public class Gun : MonoBehaviour
 
     internal void RicochetEvent(bool modifierActive)
     {
-        bulletVars.bounces = modifierActive;
+        bulletVars.shouldBounce = modifierActive;
     }
 
 
@@ -283,7 +283,9 @@ internal class BulletVars
     [SerializeField]
     internal Vector2 offset;
     [SerializeField]
-    internal bool bounces;
+    internal bool shouldBounce;
+    [SerializeField]
+    internal int bounces = 2;
     [SerializeField]
     internal Color tailColor;
     [SerializeField]
