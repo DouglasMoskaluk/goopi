@@ -42,12 +42,24 @@ public class PodiumManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        //winData = new List<PlayerWinsData>();
         podiumPositions = new List<Transform>(4);
         foreach (Transform child in podiumLocations)
         {
             podiumPositions.Add(child); 
         }
         //StartCoroutine(EnableExitButton());
+    }
+
+    private void Start()
+    {
+        //winData.Clear();
+        //winData.Add(new PlayerWinsData(0, 4, 16, 0));
+        //winData.Add(new PlayerWinsData(1, 4, 13, 0));
+        //winData.Add(new PlayerWinsData(3, 2, 4, 0));
+        //winData.Add(new PlayerWinsData(2, 0, 7, 1));
+        //SetUpPodium(winData);
+        StartPodiumSequence();
     }
 
     private IEnumerator EnableExitButton()
@@ -66,20 +78,18 @@ public class PodiumManager : MonoBehaviour
 
         if (isTieBreaker)
         {
-
+            tieBreakerImg.SetActive(true);
+            yield return TieBreakerSequence();
+            yield return new WaitForSecondsRealtime(1f);
         }
         else
         {
-
+            gameoverImg.SetActive(true);
+            yield return new WaitForSecondsRealtime(2.5f);
         }
+
         anim.Play("ScreenRaise", 0, 0);
         yield return new WaitForSecondsRealtime(0.62f);
-
-
-        if (isTieBreaker) { 
-            yield return StartCoroutine(TieBreakerSequence());
-            yield return new WaitForSecondsRealtime(1.0f);
-        }
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
@@ -96,24 +106,20 @@ public class PodiumManager : MonoBehaviour
             player.GetComponent<PlayerBodyFSM>().AllowWinAnimation();
         }
 
-        yield return new WaitForSecondsRealtime(0.1f);
+        anim.Play("openCurtains");
+        Debug.Break();
 
-        yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 0.1f);
-
-        //ShowWinnerText();
-
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         exitButton.interactable = true;
         eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
 
-        //enable exit button
 
     }
 
     private void Update()
     {
-        eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
+        eventSys.SetSelectedGameObject(exitButton.gameObject);
     }
 
     public void SetUpPodium(List<PlayerWinsData> gameData)
