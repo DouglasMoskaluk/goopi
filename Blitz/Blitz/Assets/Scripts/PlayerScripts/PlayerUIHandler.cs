@@ -82,6 +82,9 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject victoryText;
 
+    [SerializeField]
+    private Animation MegaGunDroppedUI;
+
     private IEnumerator[] hitDirectionIndicators;
 
     int kills = 0;
@@ -216,6 +219,11 @@ public class PlayerUIHandler : MonoBehaviour
         if (seconds.Length < 2) seconds = "0" + seconds;
         roundTimerText.text = minutes + ":" + seconds;
     }*/
+
+    internal void megaGunDropped()
+    {
+        MegaGunDroppedUI.Play();
+    }
 
     internal void playerGotKill()
     {

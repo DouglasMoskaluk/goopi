@@ -287,6 +287,10 @@ public class ModifierManager : MonoBehaviour
         {
             Instantiate(MegaGunPickupPrefab, died.transform.position, Quaternion.identity, GunManager.instance.transform);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_DROP);
+            for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
+            {
+                SplitScreenManager.instance.GetPlayers(i).playerUI.megaGunDropped();
+            }
             // play guitar riff sound
         }
         GunManager.instance.assignGun(param.killed, GunManager.instance.pickGun());
