@@ -75,8 +75,7 @@ public class Bullet : MonoBehaviour
     {
         //Debug.Log("The velocity is: "+rb.velocity.magnitude);
         rb.AddForce(bulletVars.forceApplied);
-        //Debug.Log(rb.velocity.magnitude);
-        rb.velocity -= rb.velocity / (bulletVars.speedModifier * (1-Time.fixedDeltaTime));
+        rb.velocity = rb.velocity * (bulletVars.speedModifier);
         if (rb.velocity.magnitude < bulletVars.minSpeed)
         {
             rb.velocity = rb.velocity.normalized * bulletVars.minSpeed;
@@ -261,7 +260,7 @@ public class Bullet : MonoBehaviour
 
     private void Bounce(RaycastHit hit)
     {
-        if (bulletVars.bounces)
+        if (bulletVars.shouldBounce && bulletVars.bounces > 0)
         {
             //Debug.Log("Bullet just bounced! "+ rb.velocity.magnitude);
 
@@ -270,8 +269,13 @@ public class Bullet : MonoBehaviour
 
             transform.position += (rb.velocity).normalized * GetComponent<SphereCollider>().radius * 0.51f;
             bounced = true;
+            bulletVars.bounces--;
+            if (bulletVars.bounces <= 0)
+            {
+                bulletVars.shouldBounce = false;
+            }
         }
-        if (!bulletVars.bounces && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player"))
+        if (!bulletVars.shouldBounce && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player"))
         {
             //StartCoroutine(removeBullet(0));
             Destroy(gameObject);

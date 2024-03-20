@@ -119,7 +119,7 @@ public class GunManager : MonoBehaviour
 
         if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
         {
-            gun.GetComponent<Gun>().bulletVars.bounces = true;
+            gun.GetComponent<Gun>().bulletVars.shouldBounce = true;
         }
 
         FSM.assignGun(gun);
