@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     protected Rigidbody rb;
     protected bool collideThisFrame = false;
     bool bounced = false;
+    int timesBounced = 0;
     float bulletStraightShotDistance = 3;
 
     [Header("Bullet Curving Variables")]
@@ -269,13 +270,9 @@ public class Bullet : MonoBehaviour
 
             transform.position += (rb.velocity).normalized * GetComponent<SphereCollider>().radius * 0.51f;
             bounced = true;
-            bulletVars.bounces--;
-            if (bulletVars.bounces <= 0)
-            {
-                bulletVars.shouldBounce = false;
-            }
+            timesBounced++;
         }
-        if (!bulletVars.shouldBounce && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player"))
+        if (bulletVars.bounces - timesBounced <= 0 || (!bulletVars.shouldBounce && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player")))
         {
             //StartCoroutine(removeBullet(0));
             Destroy(gameObject);

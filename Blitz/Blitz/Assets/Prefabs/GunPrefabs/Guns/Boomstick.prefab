@@ -177,7 +177,8 @@ MonoBehaviour:
     lifeTime: 5
     accuracy: {x: 4, y: 4}
     offset: {x: 0, y: 0}
-    bounces: 0
+    shouldBounce: 0
+    bounces: 3
     tailColor: {r: 0, g: 0.9595616, b: 1, a: 1}
     spawnOnContact:
     - {fileID: 4256358020650378377, guid: af23b51de7d53354f9702fed964d3bbe, type: 3}
@@ -189,6 +190,7 @@ MonoBehaviour:
     attachPlayer: 0
     snap: 0
     destroyPlayerHit: 1
+    crateForceMultiplier: 0.25
   gunVars:
     ammo: 1027000010270000
     reloadTime: 1
