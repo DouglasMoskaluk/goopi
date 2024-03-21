@@ -102,9 +102,11 @@ public class PodiumManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
 
         yield return new WaitForSecondsRealtime(1.5f);//looking at curtians
-        
-        //spotlights
 
+        //spotlights
+        anim.Play("spotlight", 0, 0);
+
+        yield return new WaitForSecondsRealtime(3f);
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
