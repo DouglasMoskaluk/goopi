@@ -59,7 +59,7 @@ public class PodiumManager : MonoBehaviour
         //winData.Add(new PlayerWinsData(3, 2, 4, 0));
         //winData.Add(new PlayerWinsData(2, 0, 7, 1));
         //SetUpPodium(winData);
-        //StartPodiumSequence();
+        StartPodiumSequence();
     }
 
     private IEnumerator EnableExitButton()
@@ -359,6 +359,6 @@ public class PodiumManager : MonoBehaviour
 
     public void OnButtonSelect()
     {
-        AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
+        //AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
     }
 }
