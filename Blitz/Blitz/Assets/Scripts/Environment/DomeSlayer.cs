@@ -40,7 +40,7 @@ public class DomeSlayer : MonoBehaviour
             for (int i = 0; i < players.Count; i++)
             {
                 //Debug.Log(players[i].transform.position + " + " + transform.position + " = " + Vector3.Distance(players[i].transform.position, transform.position));
-                if (inDome(players[i].transform))
+                if (inDome(players[i].transform) || players[i].transform.position.y < -10)
                 {
                     Debug.Log("DIE!!!!");
                     players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);
