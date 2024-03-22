@@ -97,7 +97,7 @@ public class Gun : MonoBehaviour
                     //           Bullet Prefab       Bullet spawnpoint position       camera rotation     holder for bullets
                     bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation, gunVars.bulletParent);
                 else bul = Instantiate(gunVars.bullet, gunVars.bulletSpawnPoint[i].position, cam.rotation);
-                if (gunVars.muzzleFlash != null) gunVars.muzzleFlash.Play();
+                for (int j=0; j<gunVars.muzzleFlash.Length; j++) gunVars.muzzleFlash[j].Play();
                 if (bul.GetComponent<Bullet>() == null) Debug.LogError("Bullet from gun " + gameObject.name + " doesn't have the Bullet class.");
                 else { bul.GetComponent<Bullet>().Initialize(bulletVars, cam); }
                 if (gunVars.ammo[0] <=0 )
@@ -257,7 +257,7 @@ internal class GunVars
     [SerializeField]
     internal GameObject[] hideObjectWithNoAmmo;
     [SerializeField]
-    internal VisualEffect muzzleFlash;
+    internal VisualEffect[] muzzleFlash;
     //private vars
     internal bool canShoot = true;
 }
