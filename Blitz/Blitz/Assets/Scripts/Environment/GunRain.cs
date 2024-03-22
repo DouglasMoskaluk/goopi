@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunRain : MonoBehaviour
@@ -9,14 +10,17 @@ public class GunRain : MonoBehaviour
     [SerializeField]
     private Transform startPoint;
 
-    private Rigidbody rb;
+    [SerializeField]
+    private Transform endPoint;
+
+    //private Rigidbody rb;
 
     [SerializeField]
     private GameObject[] gunModels;
 
     void Awake()
     {
-        rb = transform.GetComponent<Rigidbody>();
+        //rb = transform.GetComponent<Rigidbody>();
         //rb.velocity = new Vector3(0, -13.5f, 0);
     }
 
@@ -34,7 +38,13 @@ public class GunRain : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(0f, -0.01f, 0f);
+        transform.Translate(0f, -0.005f, 0f);
+
+        if(this.transform.position.y <= endPoint.position.y)
+        {
+            ResetHeight();
+            ChangeGun();
+        }
     }
 
     private void ChangeGun()
@@ -61,13 +71,13 @@ public class GunRain : MonoBehaviour
         transform.position = new Vector3(transform.position.x, startPoint.position.y, transform.position.z);
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if(collision.CompareTag("Finish"))
-        {
-            ResetHeight();
-            ChangeGun();
-        }
-    }
+    //private void OnTriggerEnter(Collider collision)
+    //{
+    //    if(collision.CompareTag("Finish"))
+    //    {
+    //        ResetHeight();
+    //        ChangeGun();
+    //    }
+    //}
 
 }
