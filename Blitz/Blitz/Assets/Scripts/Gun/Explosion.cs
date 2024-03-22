@@ -8,6 +8,7 @@ public class Explosion : SpawnableObject
     internal float delay = 0;
     [SerializeField]
     internal float radius = 5f;
+    internal float startRadius;
     [SerializeField]
     internal float explosionTime = 0.2f;
     internal float time = 0;
@@ -23,6 +24,11 @@ public class Explosion : SpawnableObject
     [SerializeField]
     bool explodable = false;
 
+    [SerializeField]
+    bool tntCrate = false;
+
+    Vector3 startPos;
+
     IEnumerator explosionCoroutine;
 
     new SphereCollider collider;
@@ -31,12 +37,26 @@ public class Explosion : SpawnableObject
     {
         collider = GetComponent<SphereCollider>();
         explosionCoroutine = Explode();
+        startRadius = collider.radius;
+        startPos = transform.position;
         if (!explodable)
         {
             StartCoroutine(explosionCoroutine);
             EventManager.instance.addListener(Events.onPlayerRespawn, onPlayerDeath);
         }
-        //EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
+        ResetTnt();
+        EventManager.instance.addListener(Events.onRoundEnd, roundEnd);
+    }
+
+
+
+    internal void ResetTnt()
+    {
+        collider.radius = startRadius;
+        time = 0;
+        collider.enabled = false;
+        transform.position = startPos;
+        if (tntCrate = explodable) explodable = true;
     }
 
     public void explodeNow(int player)
@@ -83,16 +103,22 @@ public class Explosion : SpawnableObject
 
         //AudioManager.instance.PlaySound(AudioManager.AudioQueue.IMPULSE_DETONATE);
         collider.enabled = true;
-        float startRad = collider.radius;
         while (time < explosionTime)
         {
             time += Time.deltaTime;
-            collider.radius = Mathf.Lerp(startRad, radius, time/explosionTime);
+            collider.radius = Mathf.Lerp(startRadius, radius, time/explosionTime);
             yield return null;
         }
         EventManager.instance.removeListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
-        Destroy(gameObject);
+        if (!tntCrate)
+        {
+            Destroy(gameObject);
+        } else
+        {
+            ResetTnt();
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -121,9 +147,15 @@ public class Explosion : SpawnableObject
     internal override void roundEnd(EventParams param = new EventParams())
     {
         //EventManager.instance.removeListener(Events.onRoundEnd, newRound);
-        EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
-        StopCoroutine(explosionCoroutine);
-        base.roundEnd();
+        if (!tntCrate)
+        {
+            EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
+            StopCoroutine(explosionCoroutine);
+            base.roundEnd();
+        } else
+        {
+            ResetTnt();
+        }
     }
 
 

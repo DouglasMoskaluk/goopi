@@ -23,7 +23,10 @@ public class ModifierVariables : MonoBehaviour
     private Transform rainPoint;
 
     [SerializeField]
-    private GameObject tntCrate;
+    private GameObject rainTnTCrate;
+
+    [SerializeField]
+    private GameObject[] TNTCrates;
 
     [SerializeField]
     private float rainTimer = 2f;
@@ -40,6 +43,15 @@ public class ModifierVariables : MonoBehaviour
             move.Start();
         }
         rainCoro = rainEvent();
+        EventManager.instance.addListener(Events.onRoundStart, onRoundStart);
+    }
+
+    internal void onRoundStart(EventParams param = new EventParams())
+    {
+        for (int i=0; i<TNTCrates.Length; i++)
+        {
+            TNTCrates[i].SetActive(true);//.GetComponent<Explosion>().ResetTnt();
+        }
     }
 
     internal void toggleLava(bool enabled)
@@ -100,7 +112,7 @@ public class ModifierVariables : MonoBehaviour
                 //instantiate new crate
                 float xpos = Random.Range(-30, 30);
                 float zPos = Random.Range(-30, 30);
-                Instantiate(tntCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+                Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
             }
             yield return null;
         }
