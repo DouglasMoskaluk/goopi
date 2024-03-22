@@ -67,7 +67,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private Vector3 knockBackVector = Vector3.zero;
 
-    private bool deathCheck = false;
+    internal bool deathCheck = false;
 
     private int mostRecentAttacker = -1;
 
@@ -236,6 +236,8 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void SetAlive()
     {
+
+        Debug.Log("Setting player alive");
         StopCoroutine(deathCoroutine);
         resetHealth();
         playerUI.Alive();
@@ -493,6 +495,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void death(Vector3 deathDirection, Vector3 deathPos)
     {
+        Debug.Log("Death Function called.");
         StopCoroutine(deathCoroutine);
         //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();
@@ -635,7 +638,9 @@ public class PlayerBodyFSM : MonoBehaviour
 
         Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
+        Debug.Log("Before yield stopping death");
         yield return new WaitForSeconds(2.0f);
+        Debug.Log("After yeild");
 
         freelookCam.m_LookAt = camRotatePoint;
         freelookCam.m_Follow = camRotatePoint;

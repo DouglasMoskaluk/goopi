@@ -36,15 +36,14 @@ public class DomeSlayer : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
             for (int i = 0; i < players.Count; i++)
             {
                 //Debug.Log(players[i].transform.position + " + " + transform.position + " = " + Vector3.Distance(players[i].transform.position, transform.position));
-                if (inDome(players[i].transform) || players[i].transform.position.y < -10)
+                if ((inDome(players[i].transform) || players[i].transform.position.y < -10) && !players[i].deathCheck)
                 {
                     Debug.Log("DIE!!!!");
                     players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);
-                    yield return new WaitForSeconds(3f);
                 }
             }
         }
