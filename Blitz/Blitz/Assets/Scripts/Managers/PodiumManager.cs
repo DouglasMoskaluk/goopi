@@ -32,6 +32,7 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private float durationOfTimeBreakerCount = 1.5f;
     [SerializeField] private GameObject tieBreakerImg;
     [SerializeField] private GameObject gameoverImg;
+    [SerializeField] private Transform spotLightsHolder;
 
     public bool isTieBreaker = false;
     private int tieLowerKills = 0;
@@ -103,10 +104,14 @@ public class PodiumManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1.5f);//looking at curtians
 
+        setLights(true);
+
         //spotlights
         anim.Play("spotlight", 0, 0);
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(3.2f);//wait for spotlight anim to finish
+
+        yield return new WaitForSecondsRealtime(2f);//hold on spotlight
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
@@ -360,5 +365,13 @@ public class PodiumManager : MonoBehaviour
     public void OnButtonSelect()
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_HOVER);
+    }
+
+    private void setLights(bool onOff)
+    {
+        foreach (Transform light in spotLightsHolder)
+        {
+            light.gameObject.SetActive(onOff);
+        }
     }
 }
