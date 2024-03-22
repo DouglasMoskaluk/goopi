@@ -28,6 +28,9 @@ public class CharacterPiston : MonoBehaviour
     [SerializeField]
     private float waitTime = 0.25f;
 
+    [SerializeField]
+    private GameObject smokeFX;
+
     public float rumbleStrength;
 
     public float rumbleLength;
@@ -122,6 +125,8 @@ public class CharacterPiston : MonoBehaviour
             if(didFall)
             {
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_SLAM);
+
+                Instantiate(smokeFX, new Vector3(EndPoint.position.x, EndPoint.position.y - 2, EndPoint.position.z), Quaternion.identity);
 
                 playerCamShake.ShakeCamera(shakeStrength, shakeLength);
                 rumble.startDualRumble(shakeStrength, shakeLength);
