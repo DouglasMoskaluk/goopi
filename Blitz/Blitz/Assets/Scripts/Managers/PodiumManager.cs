@@ -106,7 +106,7 @@ public class PodiumManager : MonoBehaviour
 
         setLights(true);
 
-        //spotlights
+        //spotlights and cam zoom
         anim.Play("spotlight", 0, 0);
 
         yield return new WaitForSecondsRealtime(3.2f);//wait for spotlight anim to finish
@@ -132,7 +132,9 @@ public class PodiumManager : MonoBehaviour
         //particles
 
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(1f);//wait for open curtains
+
+        yield return new WaitForSecondsRealtime(1f);//wait for 1 second to turn exit button on
 
         exitButton.interactable = true;
         eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
