@@ -65,8 +65,10 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator EnableExitButton()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(2f);
+        exitButton.gameObject.SetActive(true);
         exitButton.interactable = true;
+        eventSys.SetSelectedGameObject(exitButton.gameObject);
     }
 
     public void StartPodiumSequence()
@@ -83,35 +85,28 @@ public class PodiumManager : MonoBehaviour
 
         if (isTieBreaker)
         {
-            tieBreakerImg.SetActive(true);
+            
             yield return TieBreakerSequence();// add particle to end
             yield return new WaitForSecondsRealtime(1f);
         }
         else
         {
             //particle effects
-            gameoverImg.SetActive(true);
             yield return new WaitForSecondsRealtime(3.5f);
         }
 
         
 
         anim.Play("ScreenRaise", 0, 0);
-        //Debug.Log("playing screen raise anim");
-        //Debug.Break();
-
         yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
-
-        yield return new WaitForSecondsRealtime(1.5f);//looking at curtians
+        yield return new WaitForSecondsRealtime(0.5f);//looking at curtians
 
         setLights(true);
 
         //spotlights and cam zoom
         anim.Play("spotlight", 0, 0);
-
         yield return new WaitForSecondsRealtime(3.2f);//wait for spotlight anim to finish
-
-        yield return new WaitForSecondsRealtime(2f);//hold on spotlight
+        yield return new WaitForSecondsRealtime(0.75f);//hold on spotlight
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
@@ -136,9 +131,7 @@ public class PodiumManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1f);//wait for 1 second to turn exit button on
 
-        exitButton.interactable = true;
-        eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
-
+        StartCoroutine(EnableExitButton());
 
     }
 
@@ -165,7 +158,15 @@ public class PodiumManager : MonoBehaviour
 
         isTieBreaker = CheckTieBreaker(gameData);
 
-        if (isTieBreaker) SetUpTieBreaker(gameData);
+        if (isTieBreaker)
+        {
+            SetUpTieBreaker(gameData);
+            tieBreakerImg.SetActive(true);
+        }
+        else
+        {
+            gameoverImg.SetActive(true);
+        }
 
         winData = gameData;
 
