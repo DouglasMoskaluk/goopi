@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Rendering;
@@ -15,7 +14,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
     private Transform[] bones;
 
     [SerializeField]
-    private AnimatorController playModeController;
+    private RuntimeAnimatorController playModeController;
 
     [SerializeField]
     private Animator anim;
