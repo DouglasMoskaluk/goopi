@@ -25,4 +25,19 @@ public class PlayerTieKillsIndicator : MonoBehaviour
     {
         animalHead.sprite = s;
     }
+
+    public int GetKillsNum()
+    {
+        return Mathf.FloorToInt(slider.value);
+    }
+
+    public void IncrementSlider()
+    {
+        slider.value++;
+    }
+
+    public bool AtMaxValue()
+    {
+        return slider.value >= slider.maxValue;
+    }
 }

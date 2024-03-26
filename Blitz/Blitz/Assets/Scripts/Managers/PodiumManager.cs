@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
@@ -40,6 +41,9 @@ public class PodiumManager : MonoBehaviour
 
     List<PlayerWinsData> winData;
 
+    [SerializeField] private PlayerTieKillsIndicator tie1;
+    [SerializeField] private PlayerTieKillsIndicator tie2;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -54,12 +58,6 @@ public class PodiumManager : MonoBehaviour
 
     private void Start()
     {
-        //winData.Clear();
-        //winData.Add(new PlayerWinsData(0, 4, 16, 0));
-        //winData.Add(new PlayerWinsData(1, 4, 13, 0));
-        //winData.Add(new PlayerWinsData(3, 2, 4, 0));
-        //winData.Add(new PlayerWinsData(2, 0, 7, 1));
-        //SetUpPodium(winData);
         //StartPodiumSequence();// not supposed to be here
     }
 
@@ -85,8 +83,7 @@ public class PodiumManager : MonoBehaviour
 
         if (isTieBreaker)
         {
-            
-            yield return TieBreakerSequence();// add particle to end
+            yield return StartCoroutine(TieBreakerSequence());// add particle to end
             yield return new WaitForSecondsRealtime(1f);
         }
         else
@@ -154,6 +151,8 @@ public class PodiumManager : MonoBehaviour
 
         gameData.ForEach(x => Debug.Log(x.ToString()));
 
+        winData = gameData;
+
         PlacePlayersOnPodium(gameData);
 
         isTieBreaker = CheckTieBreaker(gameData);
@@ -168,7 +167,7 @@ public class PodiumManager : MonoBehaviour
             gameoverImg.SetActive(true);
         }
 
-        winData = gameData;
+        
 
     }
 
@@ -179,8 +178,46 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator TieBreakerSequence()
     {
-        //0 - min kills
-        float firstPlaceDisplayedScore = 0;
+
+        anim.Play("TieBreakerTitleRaise");
+        yield return new WaitForSecondsRealtime(1.33f);
+
+        PlayerInputHandler p1InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerInputHandler>();
+        PlayerInputHandler p2InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerInputHandler>();
+        int winner = -1;
+
+        Debug.Log("before while");
+        while (winner == -1)
+        {
+            Debug.Log("inside while");
+            yield return null;
+
+            if (p1InputHandler.jumpPressed)
+            {
+                Debug.Log("increment left");
+                tie1.IncrementSlider();
+            }
+
+            if (p2InputHandler.jumpPressed)
+            {
+                Debug.Log("increment right");
+                tie2.IncrementSlider();
+            }
+
+            if (tie1.AtMaxValue())
+            {
+                winner = 0;
+            }
+
+            if (tie2.AtMaxValue())
+            {
+                winner = 1;
+            }
+        }
+
+        //old tie breaker system
+        /*
+         * float firstPlaceDisplayedScore = 0;
         float secondPlaceDisplayedScore = 0;
         while (secondPlaceDisplayedScore < tieLowerKills)
         {
@@ -205,19 +242,23 @@ public class PodiumManager : MonoBehaviour
             yield return null;
         }
 
-        //final
-        //yield return new WaitForSecondsRealtime(0.5f);
-
-       // ShowWinnerText();
-
         yield return new WaitForSecondsRealtime(1.0f);
+        */
 
-        //exitButton.enabled = true;
-        //eventSys.SetSelectedGameObject(exitButton.transform.gameObject);
+    }
+
+    private void Input1_onActionTriggered(InputAction.CallbackContext obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
     {
+        tie1.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+        tie1.SetKillsMax(40);
+        tie2.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+        tie2.SetKillsMax(40);
+
         //testing
         //gameData.Clear();
         //gameData.Add(new PlayerWinsData(0, 4, 16, 0));
@@ -225,6 +266,8 @@ public class PodiumManager : MonoBehaviour
         //gameData.Add(new PlayerWinsData(3, 2, 4, 0));
         //gameData.Add(new PlayerWinsData(2, 0, 7, 1));
 
+        //old way of setting up tiebreaker
+        /*
         tieLowerKills = gameData[1].totalKills;
         tieMaxKills = Mathf.Max(gameData[0].totalKills, gameData[1].totalKills);
         float xAreaToPlace = 10;
@@ -238,6 +281,7 @@ public class PodiumManager : MonoBehaviour
             tieIndicators[i].SetKillsMax(tieMaxKills);
             tieIndicators[i].SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[i].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         }
+        */
 
         /*WORKS BUT WE DONT NEED FUNCTIONALITY FOR MORE THAN 2 PLAYERS TO TIE
         int numPlayerTies = 0;
@@ -304,7 +348,7 @@ public class PodiumManager : MonoBehaviour
     {
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
 
-        for (int i = 0; i < gameData.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             
             CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
