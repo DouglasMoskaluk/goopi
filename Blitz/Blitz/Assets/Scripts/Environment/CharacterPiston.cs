@@ -54,6 +54,8 @@ public class CharacterPiston : MonoBehaviour
     [HideInInspector]
     public CameraShake playerCamShake;
 
+    private PlayerCharSelectAnims playerAnim;
+
     private RumbleHandler rumble;
 
     private bool firstEntry = true;
@@ -72,6 +74,7 @@ public class CharacterPiston : MonoBehaviour
         playerCamShake = player.GetComponent<CameraShake>();
         playerFSM = player.GetComponent<PlayerBodyFSM>();
         rumble = player.GetComponent<RumbleHandler>();
+        playerAnim = player.transform.GetChild(1).GetComponent<PlayerCharSelectAnims>();
     }
 
     public void LowerPiston()
@@ -161,6 +164,7 @@ public class CharacterPiston : MonoBehaviour
         float raiseTracker = raiseTime;
         fallPercentage = raiseTracker / raiseTime;
         //Debug.Log(fallPercentage);
+        playerAnim.UnSquash();
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_HISS);
         while (fallPercentage >= 0)
         {
