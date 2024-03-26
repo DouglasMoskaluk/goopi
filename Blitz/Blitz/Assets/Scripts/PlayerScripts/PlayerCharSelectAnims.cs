@@ -22,6 +22,12 @@ public class PlayerCharSelectAnims : MonoBehaviour
     [SerializeField]
     private Transform headBone;
 
+    private Rig rigOne;
+
+    private Rig rigTwo;
+
+    private Rig rigThree;
+
     private CameraShake cam;
 
     private bool isEnding = false;
@@ -44,6 +50,10 @@ public class PlayerCharSelectAnims : MonoBehaviour
     void Start()
     {
         cam = transform.root.GetComponent<CameraShake>();
+        rigOne = transform.GetChild(2).GetComponent<Rig>();
+        rigTwo = transform.GetChild(3).GetComponent<Rig>();
+        rigThree = transform.GetChild(4).GetComponent<Rig>();
+
     }
 
     public void ResetScale()
@@ -70,7 +80,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
         }
     }
 
-    public void StartPlayMode()
+    IEnumerator StartPlayModeCoro()
     {
         for (int i = 0; i < bones.Length; i++)
         {
@@ -82,16 +92,32 @@ public class PlayerCharSelectAnims : MonoBehaviour
         headBone.localPosition = new Vector3(4.01941223e-11f, 0.00105899118f, -2.79396766e-11f);
         headBone.localRotation = Quaternion.Euler(27.042635f, 356.426666f, 359.632568f);
 
+        Debug.Log("swap anim");
+
         anim.runtimeAnimatorController = playModeController;
 
+        yield return null;
+
+        rigOne.weight = 1.0f;
+        rigTwo.weight = 1.0f;
+        rigThree.weight = 0.0f;
+
         cam.CharSelectRotateCamera(300);
+
+    }
+
+    public void StartPlayMode()
+    {
+
+        StartCoroutine(StartPlayModeCoro());
+
 
     }
 
     public void SetBones()
     {
         isEnding = true;
-        anim.Play("Base Layer.Ready", 0, 1);
+        anim.Play("Ready", 0, 1);
 
     }
 
