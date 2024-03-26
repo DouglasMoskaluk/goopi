@@ -154,6 +154,16 @@ public class SplitScreenManager : MonoBehaviour
         }
     }
 
+    public void EnablePlayerControlsByID(int ID)
+    {
+        players[ID].ActivateInput();
+    }
+
+    public void DisablePlayerControlsByID(int ID)
+    {
+        players[ID].currentActionMap.Disable();
+    }
+
     public void DisablePlayerControls()
     {
         for (int i = 0; i < players.Count; i++)

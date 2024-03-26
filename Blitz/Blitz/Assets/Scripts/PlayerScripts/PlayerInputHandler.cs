@@ -35,6 +35,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool dropGrenadePressed { get; private set;} = false;
     public bool throwGrenadePressed { get; private set; } = false;
     public bool optionsPressed { get; private set; } = false;
+
+    public bool UIMashPressed { get; private set; } = false;
     #endregion
 
 
@@ -124,6 +126,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void getUIMashInput(InputAction.CallbackContext ctx)
+    {
+        
+        if (ctx.started)
+        {
+            UIMashPressed = true;
+            Debug.Log("MASH PRESSED");
+        }
+        else
+        {
+            UIMashPressed = false;
+        }
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -200,7 +216,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
         else
         {
-            if (ctx.started && motionInput.y > 0)
+            if (ctx.started && motionInput.y >= 0)
             {
                 toggleSlide = !toggleSlide;
             }

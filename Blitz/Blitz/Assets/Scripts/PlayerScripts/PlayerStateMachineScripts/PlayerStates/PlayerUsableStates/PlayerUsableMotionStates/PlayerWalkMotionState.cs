@@ -70,7 +70,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (input.toggleSlide && groRay.rayHit && input.motionInput.y == 0)
+        else if (input.toggleSlide && groRay.rayHit && input.motionInput.y >= 0)
         {
             FSM.transitionState(PlayerMotionStates.Slide);
         }

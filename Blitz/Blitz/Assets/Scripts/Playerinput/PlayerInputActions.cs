@@ -116,6 +116,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIMashClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f93d778-5a40-4c2a-93c4-7e19754c2199"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -525,6 +534,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7035e32d-205e-42e1-ad36-22a34d836330"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIMashClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d5b0499-752c-49ce-94ea-1f5d21f920e8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIMashClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -699,6 +730,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
         m_Character_ChangeSensitivity = m_Character.FindAction("ChangeSensitivity", throwIfNotFound: true);
         m_Character_Slide = m_Character.FindAction("Slide", throwIfNotFound: true);
+        m_Character_UIMashClick = m_Character.FindAction("UIMashClick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
@@ -775,6 +807,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Shoot;
     private readonly InputAction m_Character_ChangeSensitivity;
     private readonly InputAction m_Character_Slide;
+    private readonly InputAction m_Character_UIMashClick;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -789,6 +822,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputAction @ChangeSensitivity => m_Wrapper.m_Character_ChangeSensitivity;
         public InputAction @Slide => m_Wrapper.m_Character_Slide;
+        public InputAction @UIMashClick => m_Wrapper.m_Character_UIMashClick;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -828,6 +862,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started += instance.OnSlide;
             @Slide.performed += instance.OnSlide;
             @Slide.canceled += instance.OnSlide;
+            @UIMashClick.started += instance.OnUIMashClick;
+            @UIMashClick.performed += instance.OnUIMashClick;
+            @UIMashClick.canceled += instance.OnUIMashClick;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -862,6 +899,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started -= instance.OnSlide;
             @Slide.performed -= instance.OnSlide;
             @Slide.canceled -= instance.OnSlide;
+            @UIMashClick.started -= instance.OnUIMashClick;
+            @UIMashClick.performed -= instance.OnUIMashClick;
+            @UIMashClick.canceled -= instance.OnUIMashClick;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -953,6 +993,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnChangeSensitivity(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
+        void OnUIMashClick(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

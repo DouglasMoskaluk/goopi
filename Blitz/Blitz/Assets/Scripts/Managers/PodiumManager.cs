@@ -184,24 +184,29 @@ public class PodiumManager : MonoBehaviour
 
         PlayerInputHandler p1InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerInputHandler>();
         PlayerInputHandler p2InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerInputHandler>();
+        SplitScreenManager.instance.EnablePlayerControlsByID(winData[0].id);
+        SplitScreenManager.instance.EnablePlayerControlsByID(winData[1].id);
+
         int winner = -1;
 
         Debug.Log("before while");
         while (winner == -1)
         {
             Debug.Log("inside while");
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.08f);
 
-            if (p1InputHandler.jumpPressed)
+            if (p1InputHandler.UIMashPressed)
             {
                 Debug.Log("increment left");
-                tie1.IncrementSlider();
+                //tie1.IncrementSlider();
+                tie1.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
             }
 
-            if (p2InputHandler.jumpPressed)
+            if (p2InputHandler.UIMashPressed)
             {
                 Debug.Log("increment right");
                 tie2.IncrementSlider();
+                tie2.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
             }
 
             if (tie1.AtMaxValue())
@@ -214,6 +219,9 @@ public class PodiumManager : MonoBehaviour
                 winner = 1;
             }
         }
+
+        SplitScreenManager.instance.DisablePlayerControlsByID(winData[0].id);
+        SplitScreenManager.instance.DisablePlayerControlsByID(winData[1].id);
 
         //old tie breaker system
         /*
@@ -245,11 +253,6 @@ public class PodiumManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         */
 
-    }
-
-    private void Input1_onActionTriggered(InputAction.CallbackContext obj)
-    {
-        throw new System.NotImplementedException();
     }
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
