@@ -133,8 +133,6 @@ public class RoundManager : MonoBehaviour
                 playedEventAudio++;
             }
         }
-        
-
 
         GameUIManager.instance.ResetRoundTransitionUI();
         Time.timeScale = 1.0f;
@@ -182,7 +180,7 @@ public class RoundManager : MonoBehaviour
         Time.timeScale = 0.25f;
         
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
-        yield return new WaitForSecondsRealtime(0.75f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutoutFadeBlack);
