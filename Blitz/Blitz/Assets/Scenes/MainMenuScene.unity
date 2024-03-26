@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6418e2bed374e784bb405c105fb93cdf, type: 3}
+  m_Texture: {fileID: 2800000, guid: ac08a3503c8aba54a976929e4d0aa0dd, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4562,6 +4562,11 @@ MonoBehaviour:
   ragDollThree: {fileID: 429434167}
   floorPlane: {fileID: 1282227203}
   settingReturnButt: {fileID: 1915194680}
+  MMObjects:
+  - {fileID: 1707308496}
+  - {fileID: 2048064162}
+  - {fileID: 2063991208}
+  - {fileID: 1410871844}
 --- !u!1 &1410871844
 GameObject:
   m_ObjectHideFlags: 0
@@ -6710,12 +6715,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
+    m_Mode: 4
     m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 579438495}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6901,11 +6906,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
-    m_WrapAround: 1
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_Mode: 4
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 1815232571}
+    m_SelectOnDown: {fileID: 579438495}
+    m_SelectOnLeft: {fileID: 579438495}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
