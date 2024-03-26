@@ -31,11 +31,6 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         basicMovement(input.motionInput, previousVertMotion, stateVariableHolder.WALK_SPEED * Mathf.Clamp(input.motionInput.magnitude, 0.4f, 1f), stateVariableHolder.GRAVITY);
         RotateBodyToCamera();
 
-        Vector3 motionInput = input.motionInput.normalized;
-
-        //anim.SetFloat("MotionX", Mathf.Lerp(input.motionInput.x, anim.GetFloat("MotionX"), 0.0001f));
-        //anim.SetFloat("MotionY", Mathf.Lerp(input.motionInput.y, anim.GetFloat("MotionY"), 0.0001f));
-
         float lerpAmountX = (input.motionInput.x == 0) ? animLerpRestingAmount : animLerpAmount;
         float lerpToX = (input.motionInput.x > 0) ? 1 : -1;
         if (input.motionInput.x == 0) lerpToX = 0;
@@ -75,7 +70,7 @@ public class PlayerWalkMotionState : PlayerBasicMotionState
         {
             FSM.transitionState(PlayerMotionStates.Jump);
         }
-        else if (input.toggleSlide && groRay.rayHit && input.motionInput.y > 0)
+        else if (input.toggleSlide && groRay.rayHit && input.motionInput.y == 0)
         {
             FSM.transitionState(PlayerMotionStates.Slide);
         }
