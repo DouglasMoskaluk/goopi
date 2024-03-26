@@ -83,6 +83,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject settingReturnButt;
 
+    [SerializeField]
+    private GameObject[] MMObjects;
+
     private bool isSettings = false;
 
     private void Update()
@@ -171,8 +174,11 @@ public class MainMenu : MonoBehaviour
         //mainMenu.SetActive(false);
 
         //set setting bool here
-
         settingsMenu.SetActive(true);
+        for(int i = 0; MMObjects.Length > i; i++)
+        {
+            MMObjects[i].SetActive(false);
+        }
         isSettings = true;
         eventSys.SetSelectedGameObject(settingReturnButt);
     }
@@ -184,7 +190,10 @@ public class MainMenu : MonoBehaviour
 
     public void onOPCancelClicked()
     {
-        mainMenu.SetActive(true);
+        for (int i = 0; MMObjects.Length > i; i++)
+        {
+            MMObjects[i].SetActive(true);
+        }
         optionsMenu.SetActive(false);
         eventSys.SetSelectedGameObject(mmPlayButton);
     }
@@ -194,7 +203,13 @@ public class MainMenu : MonoBehaviour
     public void onSMReturnClicked()
     {
         //mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+                settingsMenu.SetActive(false);
+        for(int i = 0; MMObjects.Length > i; i++)
+        {
+            MMObjects[i].SetActive(true);
+        }
+        isSettings = true;
+        eventSys.SetSelectedGameObject(playButt);
         isSettings = false;
     }
 
