@@ -65,10 +65,12 @@ public class RagDollHandler : MonoBehaviour
             GameObject newBullet = Instantiate(bullet, bullet.transform.position, bullet.transform.rotation, boneList[closestBone]);
             newBullet.transform.localScale = new Vector3(0.007474666f, 0.007474666f, 0.007474666f);
 
-            if (newBullet.GetComponent<GrowGameObject>())
+            GrowGameObject growth = newBullet.GetComponent<GrowGameObject>();
+            if (growth != null)
             {
-                float newLife = bullet.GetComponent<GrowGameObject>().lifeTime;
-                newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * 2, newLife);
+                float newLife = growth.lifeTime;
+                float newBulEndSize = growth.getScale();
+                newBullet.GetComponent<GrowGameObject>().SetValues(0.007474666f, 0.007474666f * newBulEndSize, newLife);
                 newBullet.GetComponent<Explosion>().Owner = killer;
             }
             else if (newBullet.GetComponent<Plunger>())

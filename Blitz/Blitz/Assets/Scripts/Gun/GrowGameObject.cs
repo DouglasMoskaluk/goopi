@@ -17,6 +17,11 @@ public class GrowGameObject : MonoBehaviour
     [HideInInspector]
     public float lifeTime = 0;
 
+    public float getScale()
+    {
+        return endSize / startSize;
+    }
+
     private void Update()
     {
         lifeTime += Time.deltaTime;
