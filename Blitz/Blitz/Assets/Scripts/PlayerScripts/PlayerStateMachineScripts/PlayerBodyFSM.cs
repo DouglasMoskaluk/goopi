@@ -648,14 +648,14 @@ public class PlayerBodyFSM : MonoBehaviour
         //ragdoll.DisableRagdoll();
         //transform.position = RespawnManager.instance.getRespawnLocation().position;
         Transform newPos;
-        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.FLOOR_IS_LAVA] && RespawnManager.instance.getLavaSpawnLocation() != null)
+        if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.FLOOR_IS_LAVA])// && RespawnManager.instance.getLavaSpawnLocation() != null
         {
             newPos = RespawnManager.instance.getLavaSpawnLocation();
         } else
         {
             newPos = RespawnManager.instance.getRespawnLocation();
         }
-        float dist = Vector3.Distance(transform.position, newPos.position);
+        //float dist = Vector3.Distance(transform.position, newPos.position);
         transform.position = newPos.position;
         Physics.SyncTransforms();
 

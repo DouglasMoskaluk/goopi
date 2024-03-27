@@ -43,6 +43,8 @@ public class PodiumManager : MonoBehaviour
 
     [SerializeField] private PlayerTieKillsIndicator tie1;
     [SerializeField] private PlayerTieKillsIndicator tie2;
+    [SerializeField] private Image characterFace1;
+    [SerializeField] private Image characterFace2;
 
     private void Awake()
     {
@@ -182,6 +184,9 @@ public class PodiumManager : MonoBehaviour
         anim.Play("TieBreakerTitleRaise");
         yield return new WaitForSecondsRealtime(1.33f);
 
+        characterFace1.sprite = (SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+        characterFace2.sprite = (SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+
         PlayerInputHandler p1InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerInputHandler>();
         PlayerInputHandler p2InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerInputHandler>();
         SplitScreenManager.instance.EnablePlayerControlsByID(winData[0].id);
@@ -192,21 +197,16 @@ public class PodiumManager : MonoBehaviour
         Debug.Log("before while");
         while (winner == -1)
         {
-            Debug.Log("inside while");
-            yield return new WaitForSecondsRealtime(0.08f);
-
+            yield return null;
             if (p1InputHandler.UIMashPressed)
             {
                 Debug.Log("increment left");
-                //tie1.IncrementSlider();
                 tie1.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
             }
 
             if (p2InputHandler.UIMashPressed)
             {
-                Debug.Log("increment right");
-                tie2.IncrementSlider();
-                tie2.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
+                tie2.ChangeKillsDisplay(tie2.GetKillsNum() + 1);
             }
 
             if (tie1.AtMaxValue())
@@ -257,9 +257,9 @@ public class PodiumManager : MonoBehaviour
 
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
     {
-        tie1.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+        //tie1.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         tie1.SetKillsMax(40);
-        tie2.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+        //tie2.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         tie2.SetKillsMax(40);
 
         //testing

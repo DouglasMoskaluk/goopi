@@ -48,6 +48,11 @@ public class PlayerInputHandler : MonoBehaviour
         input = new PlayerInputActions();
     }
 
+    private void FixedUpdate()
+    {
+        UIMashPressed = false;
+    }
+
     /// <summary>
     /// 
     /// </summary>

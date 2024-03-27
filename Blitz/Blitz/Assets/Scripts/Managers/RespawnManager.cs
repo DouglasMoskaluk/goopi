@@ -20,9 +20,6 @@ public class RespawnManager : MonoBehaviour
     [Tooltip("Locations to spawn players in the locker room")] private List<Transform> lockerRespawnLocations;
 
     [Tooltip("locations to respawn playes in the lava event")] private List<Transform> lavaEventRespawnLocations;
-
-
-
     private void Awake()
     {
         if (instance == null) { instance = this; }
