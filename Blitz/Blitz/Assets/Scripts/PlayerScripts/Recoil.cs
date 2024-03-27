@@ -11,6 +11,13 @@ public class Recoil : MonoBehaviour
     [SerializeField]
     float returnSpeed = 0.05f;
 
+    [SerializeField]
+    float maxAngle = 45;
+    [SerializeField]
+    float angledRecoil = 15;
+    [SerializeField]
+    float returnAngleSpeed = 20;
+
 
     internal void applyRecoil()
     {
@@ -18,6 +25,12 @@ public class Recoil : MonoBehaviour
         if (transform.localPosition.z < maxRecoil)
         {
             transform.localPosition = new Vector3(0, 0, -maxRecoil);
+        }
+
+        transform.localRotation = new Quaternion(transform.localRotation.x - Mathf.Deg2Rad * angledRecoil, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+        if (transform.localRotation.x < -Mathf.Deg2Rad * maxAngle)
+        {
+            transform.localRotation = new Quaternion(-Mathf.Deg2Rad * maxAngle, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
         }
     }
 
@@ -29,6 +42,14 @@ public class Recoil : MonoBehaviour
             if (transform.localPosition.z > 0)
             {
                 transform.localPosition = new Vector3(0, 0, 0);
+            }
+        }
+        if (transform.localRotation.x < 0)
+        {
+            transform.localRotation = new Quaternion(transform.localRotation.x + Mathf.Deg2Rad * returnAngleSpeed * Time.deltaTime, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+            if (transform.localRotation.x > 0)
+            {
+                transform.localRotation = Quaternion.identity;
             }
         }
     }
