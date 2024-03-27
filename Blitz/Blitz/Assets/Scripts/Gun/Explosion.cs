@@ -65,6 +65,7 @@ public class Explosion : SpawnableObject
         if (explodable)
         {
             StartCoroutine(Explode());
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.BOMB_EXPLOSION);
         }
     }
 
