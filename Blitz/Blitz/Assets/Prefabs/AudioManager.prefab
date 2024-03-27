@@ -51,27 +51,27 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2915e11433e736a41a7a1b05119f1259, type: 3}
     volume: 0.65
     pitch: 1
-    pitchMinMax: {x: 0, y: 0}
+    pitchMinMax: {x: -0.05, y: 0.05}
     mixer: {fileID: -5653343012454266240, guid: 39052e53f537e864991812c685fbabb0,
       type: 2}
   - queue: 1
     clip: {fileID: 8300000, guid: 4f90e9a135a657e4ebaeebaf8a5c956a, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: -1082361359825632492, guid: 39052e53f537e864991812c685fbabb0,
       type: 2}
   - queue: 3
     clip: {fileID: 8300000, guid: 081e037eded9c4f439e93983c92391da, type: 3}
-    volume: 0.65
+    volume: 0.25
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: 225872213564629478, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 5
     clip: {fileID: 8300000, guid: 200d8e64fce8ca9428ee12e7ae4275f0, type: 3}
-    volume: 0.25
+    volume: 0.2
     pitch: 1
-    pitchMinMax: {x: -0.07, y: 0.08}
+    pitchMinMax: {x: -0.03, y: 0.03}
     mixer: {fileID: -5653343012454266240, guid: 39052e53f537e864991812c685fbabb0,
       type: 2}
   - queue: 6
@@ -83,7 +83,7 @@ MonoBehaviour:
       type: 2}
   - queue: 7
     clip: {fileID: 8300000, guid: 30ee06315c4703945bea61306cf4bdfb, type: 3}
-    volume: 0.35
+    volume: 0.2
     pitch: 1
     pitchMinMax: {x: -0.07, y: 0.08}
     mixer: {fileID: 8646852544038743335, guid: 39052e53f537e864991812c685fbabb0, type: 2}
@@ -179,6 +179,13 @@ MonoBehaviour:
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: 8164700600104673315, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+  - queue: 24
+    clip: {fileID: 8300000, guid: 1fad1a0fe9f08a84183f2ed471c0a562, type: 3}
+    volume: 1
+    pitch: 1
+    pitchMinMax: {x: 0, y: 0}
+    mixer: {fileID: -8587018187699950470, guid: 39052e53f537e864991812c685fbabb0,
+      type: 2}
   - queue: 28
     clip: {fileID: 8300000, guid: 6995117821807124a9c0b3cbc83b0bbd, type: 3}
     volume: 0.5
@@ -218,12 +225,6 @@ MonoBehaviour:
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
-  - queue: 53
-    clip: {fileID: 8300000, guid: 82fe611220027194988a8730cdf2f3cc, type: 3}
-    volume: 0.5
-    pitch: 1
-    pitchMinMax: {x: 0, y: 0}
-    mixer: {fileID: 315156412975194697, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 36
     clip: {fileID: 8300000, guid: 9e3bd02fa38041745bcc91c01da39d3f, type: 3}
     volume: 0.5
@@ -324,9 +325,9 @@ MonoBehaviour:
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 61
     clip: {fileID: 8300000, guid: 20629b122d4faa34f8c2800397e5b011, type: 3}
-    volume: 0.6
+    volume: 0.5
     pitch: 1
-    pitchMinMax: {x: 0, y: 0}
+    pitchMinMax: {x: -0.05, y: 0.05}
     mixer: {fileID: 225872213564629478, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 34
     clip: {fileID: 8300000, guid: 57be9366951a3d545825575ec16f8c60, type: 3}
