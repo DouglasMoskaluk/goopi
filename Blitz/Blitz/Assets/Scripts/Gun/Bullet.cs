@@ -202,7 +202,7 @@ public class Bullet : MonoBehaviour
                 else
                 {
                     transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], transform.position + new Vector3(0, 0.5f, 0), transform.rotation, hit.transform);
+                    GameObject go = Instantiate(bulletVars.spawnOnContact[i], hit.point, transform.rotation, hit.transform);
                     go.transform.rotation = Quaternion.LookRotation(-hit.normal);
                     //go.transform.position = hit.point;
                     //go.transform.parent = hit.transform;

@@ -22,6 +22,9 @@ public class PlayerIdleActionState : PlayerActionState
                     {
                         if (playerGun) FSM.transitionState(PlayerActionStates.Reload);
                         return;
+                    } else if (playerGun.gunVars.type == Gun.GunType.NERF)
+                    {
+                        playerTransform.GetComponent<PlayerBodyFSM>().playerUI.NerfAmmo();
                     }
                 }
             }
