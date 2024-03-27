@@ -10,7 +10,7 @@ public class Recoil : MonoBehaviour
     float maxRecoil = 0.5f;
     [SerializeField]
     float returnSpeed = 0.05f;
-
+    [Header("Rotational Recoil")]
     [SerializeField]
     float maxAngle = 45;
     [SerializeField]
