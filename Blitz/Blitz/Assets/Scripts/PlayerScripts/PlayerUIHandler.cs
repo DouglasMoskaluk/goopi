@@ -83,6 +83,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject victoryText;
 
     [SerializeField]
+    private GameObject noAmmoNerf;
+
+    [SerializeField]
     private Animation MegaGunDroppedUI;
 
     private IEnumerator[] hitDirectionIndicators;
@@ -126,6 +129,7 @@ public class PlayerUIHandler : MonoBehaviour
         crossHair.SetActive(false);
         obliteratedUI.SetActive(false);
         victoryText.SetActive(false);
+        noAmmoNerf.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -149,6 +153,7 @@ public class PlayerUIHandler : MonoBehaviour
         hammerUI.SetActive(false);
         healingUI.SetActive(false);
         killMarker.SetActive(false);
+        noAmmoNerf.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -263,6 +268,12 @@ public class PlayerUIHandler : MonoBehaviour
     {
         StopCoroutine("Hammer");
         StartCoroutine("Hammer");
+    }
+
+    public void NerfAmmo()
+    {
+        StopCoroutine("NerfOutOfAmmo");
+        StartCoroutine("NerfOutOfAmmo");
     }
 
     internal void StopDamagedCoroutine()
@@ -458,6 +469,15 @@ public class PlayerUIHandler : MonoBehaviour
         damagedUI.SetActive(false);
         yield return null;
     }
+
+    IEnumerator NerfOutOfAmmo()
+    {
+        noAmmoNerf.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        noAmmoNerf.SetActive(false);
+        yield return null;
+    }
+
 
     IEnumerator ShowHealEffect()
     {

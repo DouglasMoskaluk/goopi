@@ -73,8 +73,10 @@ public class Gun : MonoBehaviour
     /// <returns> 0 if the gun shoots, 1 if it doesn't & must reload. </returns>
     internal int shoot(Transform cam)
     {
+        
         if (gunVars.canShoot == false)
         {
+            
             return 1;
         }
         else if (gunVars.ammo[0] <= 0 && gunState == null)
@@ -162,7 +164,7 @@ public class Gun : MonoBehaviour
             canReload = false;
             gunState = reloading();
             StartCoroutine(gunState);
-        }
+        } 
     }
 
 
