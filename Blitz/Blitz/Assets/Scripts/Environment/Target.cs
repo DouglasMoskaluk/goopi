@@ -20,6 +20,8 @@ public class Target : MonoBehaviour
     [SerializeField]
     private bool canTouch = false;
 
+    internal bool CanTouch() { return canTouch; }
+
     public void BulletHit(int killerID)
     {
         //Debug.Log("TARGET PLAYER " + killerID);

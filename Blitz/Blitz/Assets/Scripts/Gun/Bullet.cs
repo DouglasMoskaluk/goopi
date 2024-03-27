@@ -162,7 +162,9 @@ public class Bullet : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Target"))
         {
-            hit.transform.gameObject.GetComponent<Target>().BulletHit(bulletVars.owner);
+            //    if it's a button                                or it triggers TNT
+            if (hit.collider.GetComponent<Target>().CanTouch() || bulletVars.triggersTNT)
+                hit.transform.gameObject.GetComponent<Target>().BulletHit(bulletVars.owner);
             onMapHitEffect(hit);
             Bounce(hit);
         }
@@ -181,7 +183,7 @@ public class Bullet : MonoBehaviour
                     Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
                     GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, transform.rotation, transform.parent);
                     //Debug.Log(hit.collider.name + ": " + hit.point);
-                    if (hit.transform.CompareTag("Crate") && bulletVars.snap)
+                    if (hit.transform.CompareTag("Crate") && bulletVars.snap || hit.transform.CompareTag("Target") && !(hit.collider.GetComponent<Target>().CanTouch() || bulletVars.triggersTNT))
                     {
                         go.transform.parent = hit.transform;
                     }
