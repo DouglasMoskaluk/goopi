@@ -48,7 +48,7 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(canTouch)
+        if (canTouch)
         {
             if (other.gameObject.CompareTag("Player"))
             {
@@ -56,6 +56,23 @@ public class Target : MonoBehaviour
                 newEvent.Invoke(playerNum);
             }
             else if (other.gameObject.CompareTag("Ragdoll"))
+            {
+                newEvent.Invoke(-1);
+            }
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((!canTouch && GetComponent<Rigidbody>().velocity.sqrMagnitude > 25))
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                int playerNum = collision.transform.GetComponent<PlayerBodyFSM>().playerID;
+                newEvent.Invoke(playerNum);
+            }
+            else if (collision.gameObject.CompareTag("Ragdoll"))
             {
                 newEvent.Invoke(-1);
             }
