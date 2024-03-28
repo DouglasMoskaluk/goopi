@@ -76,12 +76,12 @@ public class WeaponSlotMachine : MonoBehaviour
         float elapsedTime = 0;
         Vector3 finalImagePos = Image1BottomVisible - (Vector3.up * 348.5f * (5 - selectedGun));//347
 
-        yield return new WaitForSecondsRealtime(2.8f);//time it takes for otter to pull lever
+        yield return new WaitForSecondsRealtime(2.5f);//time it takes for otter to pull lever
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROULETTE_START);
 
 
         //vidPlayer.Pause(); **
-        rouletteAnimator.speed = 0;
+        //rouletteAnimator.speed = 0;
         
 
         // spin until the end of the specified spinning duration
@@ -161,13 +161,13 @@ public class WeaponSlotMachine : MonoBehaviour
         }
 
         //vidPlayer.Play();**
-        rouletteAnimator.speed = 1;
+        //rouletteAnimator.speed = 1;
 
 
 
         yield return new WaitForSecondsRealtime(2.0f);
 
         isSpinning = false;
-        rouletteAnimator.speed = 0;
+        //rouletteAnimator.speed = 0;
     }
 }
