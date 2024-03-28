@@ -45,6 +45,7 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private PlayerTieKillsIndicator tie2;
     [SerializeField] private Image characterFace1;
     [SerializeField] private Image characterFace2;
+    [SerializeField] private float tieBreakerWinAmount = 40f;
 
     private void Awake()
     {
@@ -191,11 +192,14 @@ public class PodiumManager : MonoBehaviour
         SplitScreenManager.instance.EnablePlayerControlsByID(winData[0].id);
         SplitScreenManager.instance.EnablePlayerControlsByID(winData[1].id);
 
+        StartCoroutine(ReduceSlider(0.3f, 0.2f, tie1, tie2));
+        StartCoroutine(ReduceSlider(0.3f, 0.2f, tie2, tie1));
         int winner = -1;
 
         while (winner == -1)
         {
             yield return null;
+
             if (p1InputHandler.UIMashPressed)
             {
                 tie1.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
@@ -210,8 +214,7 @@ public class PodiumManager : MonoBehaviour
             {
                 winner = 0;
             }
-
-            if (tie2.AtMaxValue())
+            else if (tie2.AtMaxValue())
             {
                 winner = 1;
             }
@@ -260,12 +263,23 @@ public class PodiumManager : MonoBehaviour
 
     }
 
+    private IEnumerator ReduceSlider(float value, float timeInterval, PlayerTieKillsIndicator tie1, PlayerTieKillsIndicator tie2)
+    {
+        while (tie1.GetKillsNum() < tieBreakerWinAmount && tie2.GetKillsNum() < tieBreakerWinAmount)
+        {
+            yield return new WaitForSecondsRealtime(timeInterval);
+
+            tie1.ChangeKillsDisplay(tie1.GetKillsNum() - value);
+            Debug.Log("tie score is now " + tie1.GetKillsNum());
+        }
+    }
+
     private void SetUpTieBreaker(List<PlayerWinsData> gameData)
     {
         //tie1.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
-        tie1.SetKillsMax(40);
+        tie1.SetKillsMax(tieBreakerWinAmount);
         //tie2.SetAnimalSprite(SplitScreenManager.instance.GetPlayerByID(gameData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
-        tie2.SetKillsMax(40);
+        tie2.SetKillsMax(tieBreakerWinAmount);
 
         //testing
         //gameData.Clear();

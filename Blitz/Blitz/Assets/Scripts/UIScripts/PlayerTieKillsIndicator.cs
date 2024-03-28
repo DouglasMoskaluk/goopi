@@ -10,13 +10,13 @@ public class PlayerTieKillsIndicator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI killText;
     [SerializeField] private Image animalHead;
 
-    public void ChangeKillsDisplay(int kills)
+    public void ChangeKillsDisplay(float kills)
     {
-        slider.value = kills;
-        killText.text = kills.ToString();
+        slider.value = Mathf.Clamp(kills, 0, slider.maxValue);
+        killText.text = Mathf.Clamp(kills, 0, slider.maxValue).ToString();
     }
 
-    public void SetKillsMax(int to)
+    public void SetKillsMax(float to)
     {
         slider.maxValue = to;
     }
@@ -26,9 +26,9 @@ public class PlayerTieKillsIndicator : MonoBehaviour
         animalHead.sprite = s;
     }
 
-    public int GetKillsNum()
+    public float GetKillsNum()
     {
-        return Mathf.FloorToInt(slider.value);
+        return slider.value;
     }
 
     public void IncrementSlider()
