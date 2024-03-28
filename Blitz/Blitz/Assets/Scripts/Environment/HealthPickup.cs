@@ -38,6 +38,7 @@ public class HealthPickup : MonoBehaviour
                 {
                     player.playerGun.gunVars.ammo[0] = player.playerGun.gunVars.ammo[1];
                 }
+                player.playerGun.gunVars.canShoot = true;
             } else 
             {
                 player.playerGun.instantReload();
