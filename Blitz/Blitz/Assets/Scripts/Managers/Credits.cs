@@ -111,7 +111,7 @@ public class Credits : MonoBehaviour
     private void ram(float frozenTime)
     {
         freezeCR = frozen(frozenTime);
-        GetComponent<Animator>().speed = 0.1f;
+        //GetComponent<Animator>().speed = 0.1f;
         for (int j = 0; j < devsSummoed; j++)
         {
             Transform[] bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
@@ -127,7 +127,7 @@ public class Credits : MonoBehaviour
                 for (int i = 0; i < bones.Length; i++)
                 {
                     Rigidbody rb = bones[i].GetComponent<Rigidbody>();
-                    if (rb != null) rb.drag = 30;
+                    if (rb != null) rb.drag = 20;
                 }
             }
         }
