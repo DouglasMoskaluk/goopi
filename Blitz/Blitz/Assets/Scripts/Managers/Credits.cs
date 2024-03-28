@@ -52,6 +52,18 @@ public class Credits : MonoBehaviour
         ragdolls[devsSummoed] = Instantiate(Ragdoll, AnimalDropLocation.position, AnimalDropLocation.rotation);
         ragdolls[devsSummoed].GetComponent<PlayerModelHandler>().SetRagdollSkin(devSkinLook[devsSummoed].x);
         ragdolls[devsSummoed].GetComponent<PlayerModelHandler>().SetModel(devSkinLook[devsSummoed].y);
+
+        Transform[] bones = ragdolls[devsSummoed].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+        for (int i = 0; i < bones.Length; i++)
+        {
+            Rigidbody rb = bones[i].GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = new Vector3(Random.Range(-2f, 2f) * 2 / (i + 2), Random.Range(-2f, 2f) * 2 / (i + 2), Random.Range(-2f, 2f) * 2 / (i + 2));
+                rb.velocity *= 5;
+            }
+        }
+
         devsSummoed++;
     }
 
