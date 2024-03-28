@@ -53,7 +53,7 @@ public class Credits : MonoBehaviour
         ragdolls[devsSummoed].GetComponent<PlayerModelHandler>().SetRagdollSkin(devSkinLook[devsSummoed].x);
         ragdolls[devsSummoed].GetComponent<PlayerModelHandler>().SetModel(devSkinLook[devsSummoed].y);
 
-        Transform[] bones = ragdolls[devsSummoed].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+        /*Transform[] bones = ragdolls[devsSummoed].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
         for (int i = 0; i < bones.Length; i++)
         {
             Rigidbody rb = bones[i].GetComponent<Rigidbody>();
@@ -62,7 +62,7 @@ public class Credits : MonoBehaviour
                 rb.velocity = new Vector3(Random.Range(-2f, 2f) * 2 / (i + 2), Random.Range(-2f, 2f) * 2 / (i + 2), Random.Range(-2f, 2f) * 2 / (i + 2));
                 rb.velocity *= 5;
             }
-        }
+        }*/
 
         devsSummoed++;
     }
@@ -91,10 +91,46 @@ public class Credits : MonoBehaviour
 
     private void freezeFrame(float frozenTime)
     {
-        Debug.Log("STOP! Wait a second.");
+        //Debug.Log("STOP! Wait a second.");
 
         //Time.timeScale = 0.05f;
         freezeCR = frozen(frozenTime);
+        GetComponent<Animator>().speed = 0.1f;
+        for (int j = 0; j < devsSummoed; j++)
+        {
+            Transform[] bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+            for (int i = 0; i < bones.Length; i++)
+            {
+                Rigidbody rb = bones[i].GetComponent<Rigidbody>();
+                if (rb != null) rb.drag = 30;
+            }
+        }
+        StartCoroutine(freezeCR);
+    }
+
+    private void ram(float frozenTime)
+    {
+        freezeCR = frozen(frozenTime);
+        GetComponent<Animator>().speed = 0.1f;
+        for (int j = 0; j < devsSummoed; j++)
+        {
+            Transform[] bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+            if (j != devsSummoed - 1)
+            {
+                for (int i = 0; i < bones.Length; i++)
+                {
+                    Rigidbody rb = bones[i].GetComponent<Rigidbody>();
+                    if (rb != null) rb.drag = 0;
+                }
+            } else
+            {
+                for (int i = 0; i < bones.Length; i++)
+                {
+                    Rigidbody rb = bones[i].GetComponent<Rigidbody>();
+                    if (rb != null) rb.drag = 30;
+                }
+            }
+        }
         StartCoroutine(freezeCR);
     }
 
@@ -110,23 +146,13 @@ public class Credits : MonoBehaviour
 
     private IEnumerator frozen(float frozenTime)
     {
-        GetComponent<Animator>().speed = 0.1f;
-        Transform[] bones;
-        for (int j=0; j< devsSummoed; j++)
-        {
-            bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
-            for (int i = 0; i < bones.Length; i++)
-            {
-                Rigidbody rb = bones[i].GetComponent<Rigidbody>();
-                if (rb != null) rb.drag = 30;
-            }
-        }
+           
         yield return new WaitForSecondsRealtime(frozenTime);
         GetComponent<Animator>().speed = 1;
         
         for (int j = 0; j < devsSummoed; j++)
         {
-            bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
+            Transform[] bones = ragdolls[j].transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
             for (int i = 0; i < bones.Length; i++)
             {
                 Rigidbody rb = bones[i].GetComponent<Rigidbody>();
