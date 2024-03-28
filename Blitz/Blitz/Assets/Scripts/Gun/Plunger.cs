@@ -29,7 +29,7 @@ public class Plunger : SpawnableObject
             //Debug.Log("I've been hit!!! " + hit.name);
             StartCoroutine(pullPlayer(hit));
         }
-        else if (transform.parent.tag == "Crate")
+        else if (transform.parent.tag == "Crate" || transform.parent.tag == "Target")
         {
             StartCoroutine(pullCrate());
         }

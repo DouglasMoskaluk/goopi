@@ -376,6 +376,9 @@ MonoBehaviour:
   recoil: 0.05
   maxRecoil: 0.15
   returnSpeed: 0.25
+  maxAngle: 6
+  angledRecoil: 3
+  returnAngleSpeed: 70
 --- !u!114 &6737105310924831486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +676,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: iceX_muzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 4204310444789617287, guid: 864014f8ab4d112439084b2785422140,
+        type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: 16397c23f0d79104e9fb04797bd5e7e3,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

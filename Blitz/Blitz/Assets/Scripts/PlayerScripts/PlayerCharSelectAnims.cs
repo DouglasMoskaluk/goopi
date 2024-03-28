@@ -68,7 +68,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
     {
         if(!isEnding)
         {
-            anim.Play("Base Layer.PlayerSquash", 0, 1);
+            anim.Play("Base Layer.PlayerSquash", 0, 0);
         }
     }
 
@@ -76,7 +76,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
     {
         if(!isEnding)
         {
-            anim.Play("Base Layer.playerUnSquash", 0, 1);
+            anim.SetTrigger("UnSquash");
         }
     }
 
@@ -108,7 +108,6 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
     public void StartPlayMode()
     {
-
         StartCoroutine(StartPlayModeCoro());
 
 

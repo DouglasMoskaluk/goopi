@@ -180,12 +180,11 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator TieBreakerSequence()
     {
-
-        anim.Play("TieBreakerTitleRaise");
-        yield return new WaitForSecondsRealtime(1.33f);
-
         characterFace1.sprite = (SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
         characterFace2.sprite = (SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerBodyFSM>().GetUIHandler().animalHeadSprite);
+
+        anim.Play("TieBreakerTitleRaise");
+        yield return new WaitForSecondsRealtime(5.16f);
 
         PlayerInputHandler p1InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[0].id).GetComponent<PlayerInputHandler>();
         PlayerInputHandler p2InputHandler = SplitScreenManager.instance.GetPlayerByID(winData[1].id).GetComponent<PlayerInputHandler>();
@@ -194,13 +193,11 @@ public class PodiumManager : MonoBehaviour
 
         int winner = -1;
 
-        Debug.Log("before while");
         while (winner == -1)
         {
             yield return null;
             if (p1InputHandler.UIMashPressed)
             {
-                Debug.Log("increment left");
                 tie1.ChangeKillsDisplay(tie1.GetKillsNum() + 1);
             }
 
