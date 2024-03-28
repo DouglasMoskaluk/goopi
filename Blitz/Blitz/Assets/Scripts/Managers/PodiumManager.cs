@@ -91,7 +91,7 @@ public class PodiumManager : MonoBehaviour
         else
         {
             //particle effects
-            yield return new WaitForSecondsRealtime(3.5f);
+            yield return new WaitForSecondsRealtime(2.5f);
         }
 
         
@@ -215,6 +215,14 @@ public class PodiumManager : MonoBehaviour
             {
                 winner = 1;
             }
+        }
+
+        if (winner == 1)
+        {
+            PlayerWinsData temp = winData[0];
+            winData[0] = winData[1];
+            winData[1] = temp;
+            PlacePlayersOnPodium(winData);
         }
 
         SplitScreenManager.instance.DisablePlayerControlsByID(winData[0].id);
