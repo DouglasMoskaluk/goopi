@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
-using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PodiumManager : MonoBehaviour
@@ -269,8 +266,11 @@ public class PodiumManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(timeInterval);
 
-            tie1.ChangeKillsDisplay(tie1.GetKillsNum() - value);
-            Debug.Log("tie score is now " + tie1.GetKillsNum());
+            if (tie1.GetKillsNum() < tieBreakerWinAmount && tie2.GetKillsNum() < tieBreakerWinAmount)
+            {
+                tie1.ChangeKillsDisplay(tie1.GetKillsNum() - value);
+            }
+            
         }
     }
 
