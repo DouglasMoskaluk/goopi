@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
+using UnityEngine.VFX;
 /// <summary>
 /// 
 /// </summary>
@@ -53,6 +54,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private PlayerHeadMotion headMotion;
     [SerializeField] private PlayerMotionDustParticles dustParticles;
     [SerializeField] private CinemachineFreeLook cine;
+    [SerializeField] private VisualEffect speedLines;
     private Transform gunPositionRef;
    
 
@@ -120,6 +122,7 @@ public class PlayerBodyFSM : MonoBehaviour
     public void SetGrenadeArcRendererLayer(int layer)
     {
         grenadeArcRenderer.gameObject.layer = layer;
+        speedLines.gameObject.layer = layer;
     }
 
     public PlayerUIHandler GetUIHandler()

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class PlayerUIHandler : MonoBehaviour
 {
@@ -104,6 +105,8 @@ public class PlayerUIHandler : MonoBehaviour
     private bool isReloadFadeRunning = false;
 
     private IEnumerator killCounterCoRo;
+
+    [SerializeField] private VisualEffect speedLines;
 
     // Start is called before the first frame update
     void Start()
@@ -522,6 +525,16 @@ public class PlayerUIHandler : MonoBehaviour
 
         yield return null;
 
+    }
+
+    public void HideSpeedLines()
+    {
+        speedLines.Stop();
+    }
+
+    public void ShowSpeedLines()
+    {
+        speedLines.Play();
     }
 
 }
