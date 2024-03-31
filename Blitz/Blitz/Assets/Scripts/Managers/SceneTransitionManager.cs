@@ -163,14 +163,18 @@ public class SceneTransitionManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator switchSceneCoro(Scenes scene)
     {
-        yield return GameUIManager.instance.FadeIn(FadeInDuration);
+        //yield return GameUIManager.instance.FadeIn(FadeInDuration);
+        float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
+        yield return new WaitForSecondsRealtime(cutoutFadeBlack);
         //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.FadeInCoroutine(FadeInDuration));
 
         yield return StartCoroutine(UnloadScene(currentScene));
 
         yield return StartCoroutine(LoadScene(scene));
 
-        yield return GameUIManager.instance.FadeOut(FadeOutDuration);
+        float cutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
+        yield return new WaitForSecondsRealtime(cutoutFadeVisible);
+        //yield return GameUIManager.instance.FadeOut(FadeOutDuration);
         //yield return GameUIManager.instance.StartCoroutine(GameUIManager.instance.FadeOutCoroutine(FadeOutDuration));
 
         isLoading = false;
