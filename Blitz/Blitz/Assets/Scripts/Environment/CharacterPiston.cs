@@ -172,6 +172,7 @@ public class CharacterPiston : MonoBehaviour
             //Debug.Log(raiseTracker);
             fallPercentage = raiseTracker / raiseTime;
             PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, fallPercentage);
+            playerFSM.playerUI.Stars();
             yield return null;
         }
 

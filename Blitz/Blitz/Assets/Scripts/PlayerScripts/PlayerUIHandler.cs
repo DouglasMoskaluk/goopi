@@ -284,8 +284,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void Stars()
     {
-        StopCoroutine("StartStars");
-        StartCoroutine("StartStars");
+        StopCoroutine("ShowStars");
+        StartCoroutine("ShowStars");
     }
 
     internal void StopDamagedCoroutine()
@@ -455,7 +455,7 @@ public class PlayerUIHandler : MonoBehaviour
     IEnumerator ShowStars()
     {
         stars.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(5f);
         stars.SetActive(false);
         yield return null;
     }
