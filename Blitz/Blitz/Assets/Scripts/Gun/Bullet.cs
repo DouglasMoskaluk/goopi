@@ -149,6 +149,11 @@ public class Bullet : MonoBehaviour
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
             if (plrFSM != null) {
                 plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position);
+                if (plrFSM.Health <= 0 && SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
+                {
+                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
+                    plrFSM.playerUI.Obliterated();
+                }
                 onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
             }
             Bounce(hit);

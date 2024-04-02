@@ -13,9 +13,30 @@ public class OptionsMenu : MonoBehaviour
     internal Slider[] volumeSliders;
     [SerializeField]
     internal AudioMixer mainMixer;
+    [SerializeField]
+    internal Toggle fullscreenToggle;
 
     public void setVolume(int group)
     {
         mainMixer.SetFloat(mixerNames[group], Mathf.Log(volumeSliders[group].value) * 20);
+    }
+
+    public void windowed()
+    {
+        Screen.fullScreen = fullscreenToggle.isOn;
+        if (fullscreenToggle.isOn)
+        {
+            FullScreenMode fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            Screen.fullScreenMode = fullScreenMode;
+
+            Resolution currentResolution = Screen.currentResolution;
+            Screen.SetResolution(currentResolution.width, currentResolution.height, fullScreenMode);
+        }
+        else if (!fullscreenToggle.isOn)
+        {
+            Screen.SetResolution(192 * 4, 108 * 4, false);
+
+        }
+
     }
 }
