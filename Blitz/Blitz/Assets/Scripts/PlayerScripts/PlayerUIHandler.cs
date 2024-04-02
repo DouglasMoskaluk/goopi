@@ -92,6 +92,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private Animation MegaGunDroppedUI;
 
+    public GameObject charTaken;
+
     private IEnumerator[] hitDirectionIndicators;
 
     int kills = 0;
