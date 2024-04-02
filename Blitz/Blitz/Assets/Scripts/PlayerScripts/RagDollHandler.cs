@@ -19,12 +19,20 @@ public class RagDollHandler : MonoBehaviour
 
     private GameObject[] stuckBullets;
 
+    [SerializeField]
+    private GameObject stars;
+
     // Start is called before the first frame update
     void Awake()
     {
         boneList = transform.GetChild(0).GetComponent<BoneRenderer>().transforms;
         EventManager.instance.addListener(Events.onRoundStart, RemoveSelf);
         StartCoroutine("Countdown");
+    }
+
+    public void Stars()
+    {
+        stars.SetActive(true);
     }
 
     public void pullRagdoll(Vector3 direction)

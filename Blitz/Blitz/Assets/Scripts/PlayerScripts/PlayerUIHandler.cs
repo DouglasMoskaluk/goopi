@@ -90,6 +90,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject stars;
 
     [SerializeField]
+    internal IEnumerator hammerCR;
+
+    [SerializeField]
     private Animation MegaGunDroppedUI;
 
     public GameObject charTaken;
@@ -162,6 +165,7 @@ public class PlayerUIHandler : MonoBehaviour
         healingUI.SetActive(false);
         killMarker.SetActive(false);
         noAmmoNerf.SetActive(false);
+        stars.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -274,8 +278,9 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void Hammered()
     {
-        StopCoroutine("Hammer");
-        StartCoroutine("Hammer");
+        if (hammerCR != null) StopCoroutine(hammerCR);
+        hammerCR = Hammer();
+        StartCoroutine(hammerCR);
     }
 
     public void NerfAmmo()
