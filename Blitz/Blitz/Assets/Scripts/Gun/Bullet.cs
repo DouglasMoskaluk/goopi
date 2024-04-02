@@ -27,6 +27,9 @@ public class Bullet : MonoBehaviour
 
     float RaycastCamDistance = 6;
 
+    [SerializeField]
+    Transform[] unchildOnCollision; 
+
     /// <summary>
     /// Checks for errors
     /// </summary>
@@ -277,6 +280,12 @@ public class Bullet : MonoBehaviour
         if (bulletVars.bounces - timesBounced <= 0 || (!bulletVars.shouldBounce && !(!bulletVars.destroyPlayerHit && hit.collider.tag == "Player")))
         {
             //StartCoroutine(removeBullet(0));
+            for (int i=0; i<unchildOnCollision.Length; i++)
+            {
+                unchildOnCollision[i].parent = null;
+                unchildOnCollision[i].gameObject.AddComponent<DestroyAfter>().setDelay(3f);
+
+            }
             Destroy(gameObject);
         }
     }
