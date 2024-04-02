@@ -471,11 +471,6 @@ public class PlayerBodyFSM : MonoBehaviour
             {
                 PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
                 Attacker.playerUI.playerGotHit();
-                if (health - value <= 0 && Attacker.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
-                    uiHandler.Obliterated();
-                }
             }
             //else Debug.LogError("Player damaged by non-existing player!");
             if ((health -= value) <= 0)
