@@ -34,7 +34,9 @@ public class OptionsMenu : MonoBehaviour
         }
         else if (!fullscreenToggle.isOn)
         {
-            Screen.SetResolution(192*4, 108*4, false);        }
+            Screen.SetResolution(192 * 4, 108 * 4, false);
+
+        }
 
     }
 }
