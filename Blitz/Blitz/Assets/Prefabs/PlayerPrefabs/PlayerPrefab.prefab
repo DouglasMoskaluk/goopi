@@ -1356,6 +1356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6026508365588911267}
+  - component: {fileID: 8070454415341920852}
   m_Layer: 0
   m_Name: BadgerFeatures
   m_TagString: Untagged
@@ -1383,6 +1384,22 @@ Transform:
   - {fileID: 5177754582137596520}
   m_Father: {fileID: 1811892420597579721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8070454415341920852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634436837887368950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 3342958023321205193}
+  happyEyes: {fileID: 3641067598657191667}
+  winceEyes: {fileID: 5910120399533070962}
+  blinkEyes: {fileID: 8893394824350344840}
 --- !u!1 &635809689329890657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,6 +2889,7 @@ GameObject:
   - component: {fileID: 1964268020928844530}
   - component: {fileID: 5974116725848942820}
   - component: {fileID: 171702222068488446}
+  - component: {fileID: 5270342801542044962}
   m_Layer: 0
   m_Name: OtterFeatures
   m_TagString: Untagged
@@ -2973,6 +2991,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7249436223984402989, guid: 9ba36479e4d3d4e41b1224caa548469b, type: 3}
+--- !u!114 &5270342801542044962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348744521245858742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 7981814675872974613}
+  happyEyes: {fileID: 8008405718301568035}
+  winceEyes: {fileID: 675604583185343391}
+  blinkEyes: {fileID: 9213617505582805322}
 --- !u!1 &1490772708185334672
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,6 +3593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5247379137357586601}
+  - component: {fileID: 5133239983250796042}
   m_Layer: 0
   m_Name: AxoFeaturs
   m_TagString: Untagged
@@ -3586,6 +3621,22 @@ Transform:
   - {fileID: 8004666244001719502}
   m_Father: {fileID: 1811892420597579721}
   m_LocalEulerAnglesHint: {x: -23.056887, y: -6.3582053, z: 2.3334305}
+--- !u!114 &5133239983250796042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575045046980595463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 3510642038698155518}
+  happyEyes: {fileID: 6434701933594262606}
+  winceEyes: {fileID: 218470522397389601}
+  blinkEyes: {fileID: 2164858286496264626}
 --- !u!1 &1584209807001713814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5557,6 +5608,7 @@ GameObject:
   - component: {fileID: 5974148538316643733}
   - component: {fileID: 7065070039031792612}
   - component: {fileID: 933961860246621819}
+  - component: {fileID: 932090445341665890}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -6060,6 +6112,19 @@ MonoBehaviour:
   camCollider: {fileID: 0}
   offset: {fileID: 0}
   willShake: 1
+--- !u!114 &932090445341665890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403129680760932734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142538cda0be96149abad7e69a092ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  features: []
 --- !u!1 &2406355316288884597
 GameObject:
   m_ObjectHideFlags: 0
@@ -10693,7 +10758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0052237874, y: -0.072690435, z: 0.00038073186, w: 0.9973408}
+  m_LocalRotation: {x: 0.0052237883, y: -0.072690435, z: 0.00038073192, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14549,7 +14614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316149, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
   m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15873,6 +15938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8918055789967214193}
+  - component: {fileID: 4121846099473427833}
   m_Layer: 0
   m_Name: LizardFeatures
   m_TagString: Untagged
@@ -15900,6 +15966,22 @@ Transform:
   - {fileID: 2847307732811688985}
   m_Father: {fileID: 1811892420597579721}
   m_LocalEulerAnglesHint: {x: -23.056887, y: -6.3582053, z: 2.3334305}
+--- !u!114 &4121846099473427833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163283849540983694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 5612274416452458289}
+  happyEyes: {fileID: 5818243373041522620}
+  winceEyes: {fileID: 6700532390544005635}
+  blinkEyes: {fileID: 5520644018490307319}
 --- !u!1 &6176076619078780854
 GameObject:
   m_ObjectHideFlags: 0
@@ -18778,6 +18860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2817742440705919212}
+  - component: {fileID: 5858889214100795685}
   m_Layer: 0
   m_Name: FoxFeatures
   m_TagString: Untagged
@@ -18807,6 +18890,22 @@ Transform:
   - {fileID: 476830858126268733}
   m_Father: {fileID: 1811892420597579721}
   m_LocalEulerAnglesHint: {x: -23.056887, y: -6.3582053, z: 2.3334305}
+--- !u!114 &5858889214100795685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471866757494713668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 8854852681934184058}
+  happyEyes: {fileID: 8720735185165135596}
+  winceEyes: {fileID: 1532058605843033002}
+  blinkEyes: {fileID: 6656583060469613604}
 --- !u!1 &7555223477886225781
 GameObject:
   m_ObjectHideFlags: 0
@@ -22945,6 +23044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2529029905236757724}
+  - component: {fileID: 4222142161664452618}
   m_Layer: 0
   m_Name: WhaleFeatures
   m_TagString: Untagged
@@ -22968,6 +23068,22 @@ Transform:
   - {fileID: 2971870096166787434}
   m_Father: {fileID: 1811892420597579721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4222142161664452618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680519851586881161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e09dbc90c352f43980dbb3716c13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEyes: {fileID: 6147437457737340448}
+  happyEyes: {fileID: 8559984465898989185}
+  winceEyes: {fileID: 2713937976488166925}
+  blinkEyes: {fileID: 8563418891724980370}
 --- !u!1 &8704451271529852378
 GameObject:
   m_ObjectHideFlags: 0
