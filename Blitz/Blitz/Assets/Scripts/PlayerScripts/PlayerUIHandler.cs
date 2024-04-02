@@ -87,6 +87,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject noAmmoNerf;
 
     [SerializeField]
+    private GameObject stars;
+
+    [SerializeField]
     private Animation MegaGunDroppedUI;
 
     private IEnumerator[] hitDirectionIndicators;
@@ -279,6 +282,12 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("NerfOutOfAmmo");
     }
 
+    public void Stars()
+    {
+        StopCoroutine("StartStars");
+        StartCoroutine("StartStars");
+    }
+
     internal void StopDamagedCoroutine()
     {
         StopAllCoroutines();
@@ -440,6 +449,14 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowStars()
+    {
+        stars.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        stars.SetActive(false);
         yield return null;
     }
 
