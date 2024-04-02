@@ -117,6 +117,8 @@ public class PlayerBodyFSM : MonoBehaviour
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
         deathCoroutine = deathCoro(null);
+        playerGun.gunVars.ammo[0] = int.MaxValue;
+        playerGun.gunVars.ammo[1] = int.MaxValue;
     }
 
     public void SetGrenadeArcRendererLayer(int layer)
