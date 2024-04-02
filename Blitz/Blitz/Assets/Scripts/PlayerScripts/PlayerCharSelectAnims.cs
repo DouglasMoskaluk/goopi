@@ -91,6 +91,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
     {
         if(!isEnding)
         {
+            playerEyeBehaviour.SetEyeFeatures();
             anim.Play("Base Layer.PlayerSquash", 0, 0);
         }
     }
