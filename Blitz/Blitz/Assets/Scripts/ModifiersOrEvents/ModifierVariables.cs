@@ -29,7 +29,10 @@ public class ModifierVariables : MonoBehaviour
     private GameObject[] TNTCrates;
 
     [SerializeField]
-    private float rainTimer = 2f;
+    private float rainTimer = 8f;
+
+    [SerializeField]
+    private int tntAmountPerWave = 10;
 
     private IEnumerator rainCoro;
 
@@ -110,9 +113,12 @@ public class ModifierVariables : MonoBehaviour
             {
                 timer = 0;
                 //instantiate new crate
-                float xpos = Random.Range(-30, 30);
-                float zPos = Random.Range(-30, 30);
-                Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+                for(int i = 0; i < tntAmountPerWave;i++)
+                {
+                    float xpos = Random.Range(-30, 30);
+                    float zPos = Random.Range(-30, 30);
+                    Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+                }
             }
             yield return null;
         }
