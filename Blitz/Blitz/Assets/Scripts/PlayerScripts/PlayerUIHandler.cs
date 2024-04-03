@@ -504,9 +504,11 @@ public class PlayerUIHandler : MonoBehaviour
     IEnumerator NerfOutOfAmmo()
     {
         noAmmoNerf.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        noAmmoNerf.GetComponent<Animator>().StopPlayback();
+        //noAmmoNerf.GetComponent<Animator>().playbackTime = 0;
+        noAmmoNerf.GetComponent<Animator>().Play("Pick Up Ammo", 0, 0);
+        yield return new WaitForSeconds(1);
         noAmmoNerf.SetActive(false);
-        yield return null;
     }
 
 
