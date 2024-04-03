@@ -217,6 +217,8 @@ public class PlayerUIHandler : MonoBehaviour
 
         Alive();
 
+        disableStars();
+
         //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
 
         characterChoice.SetActive(false);
@@ -296,7 +298,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void disableStars()
     {
-        Destroy(stars.gameObject);
+        Destroy(stars);
     }
 
     internal void StopDamagedCoroutine()
