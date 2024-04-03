@@ -113,7 +113,7 @@ public class PodiumManager : MonoBehaviour
         for (int i = 0; i < winData.Count; i++)
         {
 
-            CharacterController chara = players[winData[i].id].transform.GetComponent<CharacterController>();
+            //CharacterController chara = players[winData[i].id].transform.GetComponent<CharacterController>();
             players[winData[i].id].transform.position = podiumPositions[i].position;
             players[winData[i].id].transform.rotation = podiumPositions[i].rotation;
         }
