@@ -119,6 +119,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         SplitScreenManager.instance.RemoveAllPlayers();
+        GameUIManager.instance.HideTimerObject();
     }
 
     private void Start()
