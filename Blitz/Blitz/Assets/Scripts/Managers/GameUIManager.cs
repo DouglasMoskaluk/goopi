@@ -18,6 +18,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private PlayerScore[] roundTransScores;
     [SerializeField] private RoundTransitionMotionManager roundTransMotion;
     [SerializeField] private CutoutFade cutoutFade;
+    [SerializeField] private TextMeshProUGUI roundDisplayText;
 
     private float timerTickDelay = 0;
 
