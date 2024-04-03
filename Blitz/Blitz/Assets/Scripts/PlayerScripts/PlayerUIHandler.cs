@@ -46,6 +46,9 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject obliteratedUI;
 
     [SerializeField]
+    private Animation lavaWarning;
+
+    [SerializeField]
     private GameObject killMarker;
 
     [SerializeField]
@@ -240,6 +243,11 @@ public class PlayerUIHandler : MonoBehaviour
     internal void megaGunDropped()
     {
         MegaGunDroppedUI.Play();
+    }
+
+    internal void lavaRising()
+    {
+        lavaWarning.Play();
     }
 
     internal void playerGotKill()
