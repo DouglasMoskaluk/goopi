@@ -125,6 +125,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fc5af80-4c01-4fc4-aa2b-7a9bc5aea6b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -556,6 +565,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""UIMashClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6771c185-55b3-43d9-ac47-95dfd6ad4397"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e952a4c-5bc4-4919-a0fd-ddca20c2dc7e"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -731,6 +762,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Character_ChangeSensitivity = m_Character.FindAction("ChangeSensitivity", throwIfNotFound: true);
         m_Character_Slide = m_Character.FindAction("Slide", throwIfNotFound: true);
         m_Character_UIMashClick = m_Character.FindAction("UIMashClick", throwIfNotFound: true);
+        m_Character_Menu = m_Character.FindAction("Menu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
@@ -808,6 +840,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ChangeSensitivity;
     private readonly InputAction m_Character_Slide;
     private readonly InputAction m_Character_UIMashClick;
+    private readonly InputAction m_Character_Menu;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -823,6 +856,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ChangeSensitivity => m_Wrapper.m_Character_ChangeSensitivity;
         public InputAction @Slide => m_Wrapper.m_Character_Slide;
         public InputAction @UIMashClick => m_Wrapper.m_Character_UIMashClick;
+        public InputAction @Menu => m_Wrapper.m_Character_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -865,6 +899,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @UIMashClick.started += instance.OnUIMashClick;
             @UIMashClick.performed += instance.OnUIMashClick;
             @UIMashClick.canceled += instance.OnUIMashClick;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -902,6 +939,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @UIMashClick.started -= instance.OnUIMashClick;
             @UIMashClick.performed -= instance.OnUIMashClick;
             @UIMashClick.canceled -= instance.OnUIMashClick;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -994,6 +1034,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChangeSensitivity(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnUIMashClick(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

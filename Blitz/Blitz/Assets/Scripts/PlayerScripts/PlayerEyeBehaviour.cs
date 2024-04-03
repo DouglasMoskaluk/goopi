@@ -20,40 +20,40 @@ public class PlayerEyeBehaviour : MonoBehaviour
 
     internal void SetEyeFeatures()
     {
-        actualEyes = features[player.modelID];
+        //actualEyes = features[player.modelID];
     }
 
     internal void SetHappy()
     {
-        actualEyes.happyEyes.SetActive(true);
-        actualEyes.winceEyes.SetActive(false);
-        actualEyes.defaultEyes.SetActive(false);
-        actualEyes.blinkEyes.SetActive(false);
+        features[player.modelID].happyEyes.SetActive(true);
+        features[player.modelID].winceEyes.SetActive(false);
+        features[player.modelID].defaultEyes.SetActive(false);
+        features[player.modelID].blinkEyes.SetActive(false);
 
     }
 
     internal void SetWince()
     {
-        actualEyes.happyEyes.SetActive(false);
-        actualEyes.winceEyes.SetActive(true);
-        actualEyes.defaultEyes.SetActive(false);
-        actualEyes.blinkEyes.SetActive(false);
+        features[player.modelID].happyEyes.SetActive(false);
+        features[player.modelID].winceEyes.SetActive(true);
+        features[player.modelID].defaultEyes.SetActive(false);
+        features[player.modelID].blinkEyes.SetActive(false);
     }
 
     internal void SetDefault()
     {
-        actualEyes.happyEyes.SetActive(false);
-        actualEyes.winceEyes.SetActive(false);
-        actualEyes.defaultEyes.SetActive(true);
-        actualEyes.blinkEyes.SetActive(false);
+        features[player.modelID].happyEyes.SetActive(false);
+        features[player.modelID].winceEyes.SetActive(false);
+        features[player.modelID].defaultEyes.SetActive(true);
+        features[player.modelID].blinkEyes.SetActive(false);
     }
 
     internal void SetBlink()
     {
-        actualEyes.happyEyes.SetActive(false);
-        actualEyes.winceEyes.SetActive(false);
-        actualEyes.defaultEyes.SetActive(false);
-        actualEyes.blinkEyes.SetActive(true);
+        features[player.modelID].happyEyes.SetActive(false);
+        features[player.modelID].winceEyes.SetActive(false);
+        features[player.modelID].defaultEyes.SetActive(false);
+        features[player.modelID].blinkEyes.SetActive(true);
     }
 
 }
