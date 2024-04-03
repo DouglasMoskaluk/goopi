@@ -575,6 +575,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
             deathCoroutine = deathCoro(newRagDollHandler);
+            if (playerUI.hammerCR != null) newRagDollHandler.Stars();
             StartCoroutine(deathCoroutine);
         }
 
