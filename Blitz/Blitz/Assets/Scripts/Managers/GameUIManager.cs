@@ -57,7 +57,7 @@ public class GameUIManager : MonoBehaviour
 
     public void SetRoundDisplayString()
     {
-        roundDisplayText.text = "Round: " + RoundManager.instance.getRoundNum() + " / " + GameManager.instance.maxRoundsPlayed;
+        roundDisplayText.text = "Round: " + (RoundManager.instance.getRoundNum() + 1) + " / " + GameManager.instance.maxRoundsPlayed;
     }
 
     private void UpdateRoundTimer()
