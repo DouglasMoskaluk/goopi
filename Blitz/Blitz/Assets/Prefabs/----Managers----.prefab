@@ -3129,6 +3129,7 @@ MonoBehaviour:
   - {fileID: 0}
   roundTransMotion: {fileID: 292193588330647627}
   cutoutFade: {fileID: 0}
+  roundDisplayText: {fileID: 0}
 --- !u!1 &4700095415580850778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3233,7 +3234,7 @@ MonoBehaviour:
   defaultPPVolume: {fileID: 11400000, guid: bd464bed470fe934fa19c979c8f3fcf6, type: 2}
   lowGravPPVolume: {fileID: 11400000, guid: 400375805ab67ce4bb00127c92314261, type: 2}
   modifierUI: {fileID: 5382014835740937767}
-  playerCamVolumes: []
+  globalVolume: {fileID: 0}
 --- !u!1 &4845950920763721667
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,7 +3868,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: -3}
-  m_SizeDelta: {x: 202.99841, y: 84.78552}
+  m_SizeDelta: {x: 215, y: 215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3650765010532801117
 CanvasRenderer:
@@ -3890,15 +3891,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+  m_Color: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4a0045e542b1a584e9484057fb3793b8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
