@@ -89,15 +89,16 @@ public class RoundManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(gunTutAnimTime);
         }
 
-
-        float cutOutFadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
-        yield return new WaitForSecondsRealtime(cutOutFadeToBlack);
-
         if (roundNum != 0)
         {
             ModifierManager.instance.showModifierUI();
             yield return new WaitForSecondsRealtime(5.5f);
+            GameUIManager.instance.cutoutFadeToBlackInstant();
             ModifierManager.instance.hideModifierUI();
+        } else
+        {
+            float fadeToBlack = GameUIManager.instance.cutoutFadeToBlack();
+            yield return new WaitForSecondsRealtime(fadeToBlack);
         }
 
 

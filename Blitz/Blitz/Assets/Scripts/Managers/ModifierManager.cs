@@ -180,7 +180,7 @@ public class ModifierManager : MonoBehaviour
             }
             else
             {
-                ActiveEvents[(int)RoundModifierList.RICOCHET] = true;
+                ActiveEvents[(int)RoundModifierList.BOMB] = true;
             }
         }
         else
