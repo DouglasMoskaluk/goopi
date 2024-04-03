@@ -165,7 +165,7 @@ public class PlayerUIHandler : MonoBehaviour
         healingUI.SetActive(false);
         killMarker.SetActive(false);
         noAmmoNerf.SetActive(false);
-        stars.SetActive(false);
+        if (stars != null) stars.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -289,10 +289,14 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("NerfOutOfAmmo");
     }
 
-    public void Stars()
+    public void enableStars()
     {
-        StopCoroutine("ShowStars");
-        StartCoroutine("ShowStars");
+        stars.SetActive(true);
+    }
+
+    public void disableStars()
+    {
+        Destroy(stars.gameObject);
     }
 
     internal void StopDamagedCoroutine()
@@ -456,14 +460,6 @@ public class PlayerUIHandler : MonoBehaviour
         hitMarker.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         hitMarker.SetActive(false);
-        yield return null;
-    }
-
-    IEnumerator ShowStars()
-    {
-        stars.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        stars.SetActive(false);
         yield return null;
     }
 
