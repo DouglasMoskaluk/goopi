@@ -32,6 +32,8 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
     private bool isEnding = false;
 
+    private PlayerEyeBehaviour playerEyeBehaviour;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -53,7 +55,28 @@ public class PlayerCharSelectAnims : MonoBehaviour
         rigOne = transform.GetChild(2).GetComponent<Rig>();
         rigTwo = transform.GetChild(3).GetComponent<Rig>();
         rigThree = transform.GetChild(4).GetComponent<Rig>();
+        playerEyeBehaviour = transform.root.GetComponent<PlayerEyeBehaviour>();
 
+    }
+
+    public void SetEyes(int eyeType)
+    {
+        if(eyeType == 0)
+        {
+            playerEyeBehaviour.SetDefault();
+        }
+        else if(eyeType == 1)
+        {
+            playerEyeBehaviour.SetWince();
+        }
+        else if (eyeType == 2)
+        {
+            playerEyeBehaviour.SetHappy();
+        }
+        else if (eyeType == 3)
+        {
+            playerEyeBehaviour.SetBlink();
+        }
     }
 
     public void ResetScale()
@@ -68,6 +91,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
     {
         if(!isEnding)
         {
+            playerEyeBehaviour.SetEyeFeatures();
             anim.Play("Base Layer.PlayerSquash", 0, 0);
         }
     }

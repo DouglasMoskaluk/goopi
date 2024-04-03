@@ -55,9 +55,9 @@ public class Hammer : MonoBehaviour
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
             if (plrFSM != null)
             {
+                plrFSM.playerUI.Hammered();
                 plrFSM.damagePlayer(100, killerID, direction, transform.position);
                 AudioManager.instance.PlaySound(AudioManager.AudioQueue.HAMMER_KILL);
-                plrFSM.playerUI.Hammered();
             }
 
         }

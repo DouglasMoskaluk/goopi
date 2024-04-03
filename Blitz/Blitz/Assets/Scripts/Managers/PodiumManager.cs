@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
-using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PodiumManager : MonoBehaviour
@@ -88,17 +85,20 @@ public class PodiumManager : MonoBehaviour
         {
             yield return StartCoroutine(TieBreakerSequence());// add particle to end
             yield return new WaitForSecondsRealtime(1f);
+            anim.Play("ScreenRaiseTie", 0, 0);
+            yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
         }
         else
         {
             //particle effects
             yield return new WaitForSecondsRealtime(2.5f);
+            anim.Play("ScreenRaise", 0, 0);
+            yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
         }
 
         
 
-        anim.Play("ScreenRaise", 0, 0);
-        yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
+
         yield return new WaitForSecondsRealtime(0.5f);//looking at curtians
 
         setLights(true);
@@ -113,7 +113,7 @@ public class PodiumManager : MonoBehaviour
         for (int i = 0; i < winData.Count; i++)
         {
 
-            CharacterController chara = players[winData[i].id].transform.GetComponent<CharacterController>();
+            //CharacterController chara = players[winData[i].id].transform.GetComponent<CharacterController>();
             players[winData[i].id].transform.position = podiumPositions[i].position;
             players[winData[i].id].transform.rotation = podiumPositions[i].rotation;
         }
@@ -269,8 +269,11 @@ public class PodiumManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(timeInterval);
 
-            tie1.ChangeKillsDisplay(tie1.GetKillsNum() - value);
-            Debug.Log("tie score is now " + tie1.GetKillsNum());
+            if (tie1.GetKillsNum() < tieBreakerWinAmount && tie2.GetKillsNum() < tieBreakerWinAmount)
+            {
+                tie1.ChangeKillsDisplay(tie1.GetKillsNum() - value);
+            }
+            
         }
     }
 

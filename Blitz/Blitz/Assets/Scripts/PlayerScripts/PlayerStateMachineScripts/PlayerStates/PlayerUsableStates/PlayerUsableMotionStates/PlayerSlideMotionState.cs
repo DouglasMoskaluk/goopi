@@ -18,7 +18,6 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         anim.CrossFadeInFixedTime("SpineRotateSlide", 0.1f, 2);
         anim.SetLayerWeight(1, 0);
         dustParticles.SetParticleStatus(DustParticleStatus.Slide);
-
     }
 
     public override void onStateExit()

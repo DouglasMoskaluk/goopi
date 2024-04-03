@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
+using UnityEngine.VFX;
 /// <summary>
 /// 
 /// </summary>
@@ -53,6 +54,7 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private PlayerHeadMotion headMotion;
     [SerializeField] private PlayerMotionDustParticles dustParticles;
     [SerializeField] private CinemachineFreeLook cine;
+    [SerializeField] private VisualEffect speedLines;
     private Transform gunPositionRef;
    
 
@@ -61,6 +63,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
+    public bool canTakeDamage = true;
 
     private PlayerMotionState currentMotionState;// the players current motion state
     private PlayerActionState currentActionState;// the players current action state
@@ -111,10 +114,13 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.addListener(Events.onRoundStart, resetFSM);
         EventManager.instance.addListener(Events.onGameEnd, resetFSM);
         EventManager.instance.addListener(Events.onPlayerDeath, resetFSMOnDeath);
+        EventManager.instance.addListener(Events.onPlayerRespawn, StartIFramesEvent);
         rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
         deathCoroutine = deathCoro(null);
+        playerGun.gunVars.ammo[0] = int.MaxValue;
+        playerGun.gunVars.ammo[1] = int.MaxValue;
     }
 
     public void SetGrenadeArcRendererLayer(int layer)
@@ -455,6 +461,8 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="Attacker"></param>
     public void damagePlayer(int value, int attackerId, Vector3 deathVelocity, Vector3 deathSource)
     {
+        if (!canTakeDamage) { return; }
+
         //Debug.Log("Player says: Damage Player " + name + " by " + Attacker.name+ " for " + value + " damage");
         if (health > 0)
         {
@@ -466,11 +474,6 @@ public class PlayerBodyFSM : MonoBehaviour
             {
                 PlayerBodyFSM Attacker = SplitScreenManager.instance.GetPlayers(attackerId);
                 Attacker.playerUI.playerGotHit();
-                if (health - value <= 0 && Attacker.playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
-                    uiHandler.Obliterated();
-                }
             }
             //else Debug.LogError("Player damaged by non-existing player!");
             if ((health -= value) <= 0)
@@ -576,6 +579,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
             deathCoroutine = deathCoro(newRagDollHandler);
+            if (playerUI.hammerCR != null) newRagDollHandler.Stars();
             StartCoroutine(deathCoroutine);
         }
 
@@ -759,6 +763,29 @@ public class PlayerBodyFSM : MonoBehaviour
     public void SetWalkParticles(bool onOff)
     {
         dustParticles.SetParticlesEnabled(onOff);
+    }
+
+    public void StartIFramesEvent(EventParams param)
+    {
+
+        if (playerID != param.killed) {   
+            return; 
+        }
+
+        StartCoroutine(AddIFrames(0.5f));
+    }
+
+    public void StartIFrames()
+    {
+        StartCoroutine(AddIFrames(0.5f));
+    }
+
+    private IEnumerator AddIFrames(float duration)
+    {
+        Debug.Log("Adding I Frames to player " + playerID);
+        canTakeDamage = false;
+        yield return new WaitForSecondsRealtime(duration);
+        canTakeDamage = true;
     }
 }
 

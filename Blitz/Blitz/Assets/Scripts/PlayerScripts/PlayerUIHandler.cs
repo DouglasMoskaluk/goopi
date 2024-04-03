@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class PlayerUIHandler : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField]
     private GameObject obliteratedUI;
+
+    [SerializeField]
+    private Animation lavaWarning;
 
     [SerializeField]
     private GameObject killMarker;
@@ -86,7 +90,15 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject noAmmoNerf;
 
     [SerializeField]
+    private GameObject stars;
+
+    [SerializeField]
+    internal IEnumerator hammerCR;
+
+    [SerializeField]
     private Animation MegaGunDroppedUI;
+
+    public GameObject charTaken;
 
     private IEnumerator[] hitDirectionIndicators;
 
@@ -154,6 +166,7 @@ public class PlayerUIHandler : MonoBehaviour
         healingUI.SetActive(false);
         killMarker.SetActive(false);
         noAmmoNerf.SetActive(false);
+        if (stars != null) stars.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
             hitDirection[i].SetActive(false);
@@ -205,6 +218,8 @@ public class PlayerUIHandler : MonoBehaviour
 
         Alive();
 
+        disableStars();
+
         //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
 
         characterChoice.SetActive(false);
@@ -228,6 +243,11 @@ public class PlayerUIHandler : MonoBehaviour
     internal void megaGunDropped()
     {
         MegaGunDroppedUI.Play();
+    }
+
+    internal void lavaRising()
+    {
+        lavaWarning.Play();
     }
 
     internal void playerGotKill()
@@ -266,14 +286,25 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void Hammered()
     {
-        StopCoroutine("Hammer");
-        StartCoroutine("Hammer");
+        if (hammerCR != null) StopCoroutine(hammerCR);
+        hammerCR = Hammer();
+        StartCoroutine(hammerCR);
     }
 
     public void NerfAmmo()
     {
         StopCoroutine("NerfOutOfAmmo");
         StartCoroutine("NerfOutOfAmmo");
+    }
+
+    public void enableStars()
+    {
+        if (stars != null) stars.SetActive(true);
+    }
+
+    public void disableStars()
+    {
+        Destroy(stars);
     }
 
     internal void StopDamagedCoroutine()
@@ -473,9 +504,11 @@ public class PlayerUIHandler : MonoBehaviour
     IEnumerator NerfOutOfAmmo()
     {
         noAmmoNerf.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        noAmmoNerf.GetComponent<Animator>().StopPlayback();
+        //noAmmoNerf.GetComponent<Animator>().playbackTime = 0;
+        noAmmoNerf.GetComponent<Animator>().Play("Pick Up Ammo", 0, 0);
+        yield return new WaitForSeconds(1);
         noAmmoNerf.SetActive(false);
-        yield return null;
     }
 
 

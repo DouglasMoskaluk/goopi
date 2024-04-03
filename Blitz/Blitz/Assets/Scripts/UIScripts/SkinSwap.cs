@@ -61,8 +61,9 @@ public class SkinSwap : MonoBehaviour
         }
 
         modelButton.interactable = LockerRoomManager.instance.SkinIsAvailable(player.playerID);
+        playerUIHandler.charTaken.SetActive(!LockerRoomManager.instance.SkinIsAvailable(player.playerID));
 
-        if(gameObject == playerUIEvents.currentSelectedGameObject)
+        if (gameObject == playerUIEvents.currentSelectedGameObject)
         {
             //set sticker bg to active
             for(int i = 0; i < outlineBG.Length; i++)

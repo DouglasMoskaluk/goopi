@@ -25,15 +25,21 @@ Material:
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHAPREMULTIPLY_ON
+  - _RECEIVE_SHADOWS_OFF
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
+  - SHADOWCASTER
+  m_LockedProperties: _SimpleNoiseAmount
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -59,22 +65,43 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
     - _BottomPower: 3.5
-    - _FresnelPower: 6
+    - _CastShadows: 0
+    - _Cull: 2
+    - _DstBlend: 10
+    - _FoamAmount: 1
+    - _FoamCutOff: 1
+    - _FoamScale: 100
+    - _FoamSpeed: 1
+    - _FresnelPower: 15
     - _Metallic: 0
+    - _OutlineOffset: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 0
     - _SimpleNoiseAmount: 0.7
     - _SimpleNoisePower: 1.5
     - _SimpleNoiseScale: 20
     - _Smoothness: 0.5
+    - _SrcBlend: 1
+    - _Surface: 1
     - _VoronoiAmount: 0.01
     - _VoronoiAngleOffset: 1
     - _VoronoiScale: 1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
-    - _BottomRemap: {r: 3, g: 3, b: 0, a: 0}
-    - _FresnelColour: {r: 1, g: 0.2098399, b: 0, a: 1}
-    - _LavaColour: {r: 1.1486983, g: 0.1266145, b: 0, a: 1}
+    - _BottomRemap: {r: 2.5, g: 3, b: 0, a: 0}
+    - _FoamColour: {r: 1, g: 1, b: 1, a: 0}
+    - _FresnelColour: {r: 0.5188679, g: 0.10987792, b: 0, a: 1}
+    - _IntersectionColour: {r: 1, g: 0.39831328, b: 0, a: 1}
+    - _LavaColour: {r: 0.9354975, g: 0.23538938, b: 0, a: 1}
     - _LavaNormalsSpeed: {r: 0, g: 0.01, b: 0, a: 0}
     - _LavaRemap: {r: 0.13, g: 4.32, b: 0, a: 0}
     - _LavaScale: {r: 50, g: 50, b: 0, a: 0}

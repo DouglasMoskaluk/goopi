@@ -18,6 +18,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private PlayerScore[] roundTransScores;
     [SerializeField] private RoundTransitionMotionManager roundTransMotion;
     [SerializeField] private CutoutFade cutoutFade;
+    [SerializeField] private TextMeshProUGUI roundDisplayText;
 
     private float timerTickDelay = 0;
 
@@ -44,9 +45,19 @@ public class GameUIManager : MonoBehaviour
         roundTimerGO.SetActive(true);
     }
 
+    public void HideTimerObject()
+    {
+        roundTimerGO.SetActive(false);
+    }
+
     public void HideRoundTimer(EventParams param = new EventParams())
     {
         roundTimerGO.SetActive(false);
+    }
+
+    public void SetRoundDisplayString()
+    {
+        roundDisplayText.text = "Round: " + (RoundManager.instance.getRoundNum() + 1) + " / " + GameManager.instance.maxRoundsPlayed;
     }
 
     private void UpdateRoundTimer()

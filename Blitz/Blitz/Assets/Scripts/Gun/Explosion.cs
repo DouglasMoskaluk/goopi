@@ -132,7 +132,12 @@ public class Explosion : SpawnableObject
             fsm.addKnockBack(dir * knockbackForce);
             fsm.transitionState(PlayerMotionStates.KnockBack);
             fsm.newAttacker(Owner);
-            other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, explosionDirection, transform.position);
+            fsm.damagePlayer(damage, Owner, explosionDirection, transform.position);
+            if (fsm.Health <= 0 && SplitScreenManager.instance.GetPlayers(Owner).playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
+            {
+                AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
+                fsm.playerUI.Obliterated();
+            }
         } else if (other.transform.CompareTag("Crate"))
         {
             Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized * 100;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
