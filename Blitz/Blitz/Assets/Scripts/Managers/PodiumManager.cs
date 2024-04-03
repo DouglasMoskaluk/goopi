@@ -85,17 +85,20 @@ public class PodiumManager : MonoBehaviour
         {
             yield return StartCoroutine(TieBreakerSequence());// add particle to end
             yield return new WaitForSecondsRealtime(1f);
+            anim.Play("ScreenRaiseTie", 0, 0);
+            yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
         }
         else
         {
             //particle effects
             yield return new WaitForSecondsRealtime(2.5f);
+            anim.Play("ScreenRaise", 0, 0);
+            yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
         }
 
         
 
-        anim.Play("ScreenRaise", 0, 0);
-        yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
+
         yield return new WaitForSecondsRealtime(0.5f);//looking at curtians
 
         setLights(true);

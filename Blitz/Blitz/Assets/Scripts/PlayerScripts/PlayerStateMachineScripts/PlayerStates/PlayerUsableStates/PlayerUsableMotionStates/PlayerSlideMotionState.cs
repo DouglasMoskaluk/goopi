@@ -18,8 +18,6 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         anim.CrossFadeInFixedTime("SpineRotateSlide", 0.1f, 2);
         anim.SetLayerWeight(1, 0);
         dustParticles.SetParticleStatus(DustParticleStatus.Slide);
-        uiHandler.ShowSpeedLines();
-        cine.m_XAxis.m_MaxSpeed = 0;
     }
 
     public override void onStateExit()
@@ -29,8 +27,6 @@ public class PlayerSlideMotionState : PlayerBasicMotionState
         input.resetSlide();
         anim.SetLayerWeight(1, 1);
         anim.CrossFadeInFixedTime("SpineRotate", 0.1f, 2);
-        uiHandler.HideSpeedLines();
-        cine.m_XAxis.m_MaxSpeed = 300;
     }
      
     public override void stateUpdate()
