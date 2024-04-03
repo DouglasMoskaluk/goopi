@@ -180,7 +180,7 @@ public class ModifierManager : MonoBehaviour
             }
             else
             {
-                ActiveEvents[(int)RoundModifierList.BOMB] = true;
+                ActiveEvents[(int)RoundModifierList.RANDOM_GUNS] = true;
             }
         }
         else
