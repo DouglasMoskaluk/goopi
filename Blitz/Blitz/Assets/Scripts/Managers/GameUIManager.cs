@@ -45,6 +45,11 @@ public class GameUIManager : MonoBehaviour
         roundTimerGO.SetActive(true);
     }
 
+    public void HideTimerObject()
+    {
+        roundTimerGO.SetActive(false);
+    }
+
     public void HideRoundTimer(EventParams param = new EventParams())
     {
         roundTimerGO.SetActive(false);
