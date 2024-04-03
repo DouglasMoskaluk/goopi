@@ -291,7 +291,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void enableStars()
     {
-        stars.SetActive(true);
+        if (stars != null) stars.SetActive(true);
     }
 
     public void disableStars()
