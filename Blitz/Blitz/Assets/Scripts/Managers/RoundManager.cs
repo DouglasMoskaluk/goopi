@@ -55,6 +55,7 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startRoundCoro()
     {
+        GameUIManager.instance.SetRoundDisplayString();
         foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
         {
             PlayerBodyFSM FSM = player.GetComponent<PlayerBodyFSM>();

@@ -50,6 +50,11 @@ public class GameUIManager : MonoBehaviour
         roundTimerGO.SetActive(false);
     }
 
+    public void SetRoundDisplayString()
+    {
+        roundDisplayText.text = "Round: " + RoundManager.instance.getRoundNum() + " / " + GameManager.instance.maxRoundsPlayed;
+    }
+
     private void UpdateRoundTimer()
     {
         float time = RoundManager.instance.getRoundTime();
