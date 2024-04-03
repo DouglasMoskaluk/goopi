@@ -125,7 +125,7 @@ public class ModifierManager : MonoBehaviour
 
     IEnumerator lavaWarning()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(26);
         for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
@@ -136,6 +136,11 @@ public class ModifierManager : MonoBehaviour
             SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
         }
         yield return new WaitForSeconds(15);
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
+        }
+        yield return new WaitForSeconds(18);
         for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
