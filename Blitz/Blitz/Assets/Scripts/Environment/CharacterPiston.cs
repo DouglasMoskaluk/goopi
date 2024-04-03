@@ -165,6 +165,7 @@ public class CharacterPiston : MonoBehaviour
         fallPercentage = raiseTracker / raiseTime;
         //Debug.Log(fallPercentage);
         playerAnim.UnSquash();
+        playerFSM.playerUI.enableStars();
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.PRESS_HISS);
         while (fallPercentage >= 0)
         {
@@ -172,7 +173,6 @@ public class CharacterPiston : MonoBehaviour
             //Debug.Log(raiseTracker);
             fallPercentage = raiseTracker / raiseTime;
             PistonObject.transform.position = Vector3.Lerp(StartPoint.position, EndPoint.position, fallPercentage);
-            playerFSM.playerUI.Stars();
             yield return null;
         }
 
