@@ -3407,6 +3407,8 @@ MonoBehaviour:
     eventThisIsActiveIn: 1
   - enable: {fileID: 2035987040}
     eventThisIsActiveIn: 1
+  - enable: {fileID: 1860259507}
+    eventThisIsActiveIn: 1
   rainPoint: {fileID: 1922309730}
   rainTnTCrate: {fileID: 4549933260259191330, guid: a2e62684a9859aa4bae8b9251286b731,
     type: 3}
@@ -21974,7 +21976,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.740566, b: 0.9916041, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -22621,7 +22623,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 80
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -23051,7 +23053,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -23059,8 +23061,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.6273585, b: 0.9706404, a: 1}
-        key1: {r: 0.80031437, g: 0.4009434, b: 1, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
