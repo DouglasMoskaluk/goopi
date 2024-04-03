@@ -42,6 +42,9 @@ public class ModifierManager : MonoBehaviour
     [SerializeField]
     internal Volume globalVolume;
 
+    [SerializeField]
+    private RoundModifierList predeterminedEvent = RoundModifierList.RANDOM_GUNS;
+
 
 
     RoundModifierList[] modifierOrder;
@@ -119,6 +122,26 @@ public class ModifierManager : MonoBehaviour
         }
     }
 
+
+    IEnumerator lavaWarning()
+    {
+        yield return new WaitForSeconds(15);
+        for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
+        }
+        yield return new WaitForSeconds(15);
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
+        }
+        yield return new WaitForSeconds(15);
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+        {
+            SplitScreenManager.instance.GetPlayers(i).playerUI.lavaRising();
+        }
+    }
+
     void changeModifier(EventParams param = new EventParams())
     {
         //Resetting events
@@ -134,6 +157,7 @@ public class ModifierManager : MonoBehaviour
         if (ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA])
         {
             if (vars != null) vars.toggleLava(false);
+            StopCoroutine("lavaWarning");
         }
         if (ActiveEvents[(int)RoundModifierList.BOMB])
         {
@@ -180,7 +204,7 @@ public class ModifierManager : MonoBehaviour
             }
             else
             {
-                ActiveEvents[(int)RoundModifierList.RICOCHET] = true;
+                ActiveEvents[(int)predeterminedEvent] = true;
             }
         }
         else
@@ -235,6 +259,7 @@ public class ModifierManager : MonoBehaviour
         if (ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA])
         {
             if (vars != null) vars.toggleLava(true);
+            StartCoroutine("lavaWarning");
         }
 
         if (ActiveEvents[(int)RoundModifierList.BOMB])
