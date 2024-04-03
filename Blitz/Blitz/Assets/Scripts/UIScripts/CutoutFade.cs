@@ -31,13 +31,7 @@ public class CutoutFade : MonoBehaviour
                 anim.Play("CutoutFadeToBlackBadger", 0, 0);
                 break;
             case 3:
-                anim.Play("CutoutFadeToBlackLizard", 0, 0);
-                break;
-            case 4:
                 anim.Play("CutoutFadeToBlackOtter", 0, 0);
-                break;
-            case 5:
-                anim.Play("CutoutFadeToBlackWhale", 0, 0);
                 break;
         }
         return 1 / anim.speed;

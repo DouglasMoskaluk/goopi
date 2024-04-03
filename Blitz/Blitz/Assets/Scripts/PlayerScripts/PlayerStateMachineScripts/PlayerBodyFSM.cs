@@ -63,6 +63,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private int health = 100;// the players health
     private const int MAX_HEALTH = 100;//the max health a player can have
+    private bool canTakeDamage = true;
 
     private PlayerMotionState currentMotionState;// the players current motion state
     private PlayerActionState currentActionState;// the players current action state
@@ -438,6 +439,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="value"> the value health is altered by</param>
     public void alterHealth(int value)
     {
+        if (!canTakeDamage) { return; }
         health = Mathf.Min(health += value, MAX_HEALTH);
         //health = Mathf.Max(health, 0);
         if (health < 0) death(Vector3.zero, Vector3.zero);
@@ -758,6 +760,25 @@ public class PlayerBodyFSM : MonoBehaviour
     public void SetWalkParticles(bool onOff)
     {
         dustParticles.SetParticlesEnabled(onOff);
+    }
+
+    public void StartIFramesEvent(EventParams param)
+    {
+
+        if (playerID != param.killed) return;
+
+        StartCoroutine(AddIFrames(0.5f));
+    }
+
+    public void StartIFrames()
+    {
+        StartCoroutine(AddIFrames(0.5f));
+    }
+
+    private IEnumerator AddIFrames(float duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        canTakeDamage = true;
     }
 }
 
