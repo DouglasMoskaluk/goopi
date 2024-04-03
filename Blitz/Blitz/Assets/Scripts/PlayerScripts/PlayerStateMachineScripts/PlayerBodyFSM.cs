@@ -124,7 +124,6 @@ public class PlayerBodyFSM : MonoBehaviour
     public void SetGrenadeArcRendererLayer(int layer)
     {
         grenadeArcRenderer.gameObject.layer = layer;
-        speedLines.gameObject.layer = layer;
     }
 
     public PlayerUIHandler GetUIHandler()
