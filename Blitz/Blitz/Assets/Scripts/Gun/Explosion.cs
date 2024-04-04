@@ -56,7 +56,7 @@ public class Explosion : SpawnableObject
         time = 0;
         collider.enabled = false;
         transform.position = startPos;
-        if (tntCrate = explodable) explodable = true;
+        if (tntCrate && !explodable) explodable = true;
     }
 
     public void explodeNow(int player)
