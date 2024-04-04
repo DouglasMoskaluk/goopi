@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    
+
     [SerializeField]
     internal string[] mixerNames;
     [SerializeField]
@@ -38,5 +38,18 @@ public class OptionsMenu : MonoBehaviour
 
         }
 
+    }
+
+    internal void loadSettings()
+    {
+        for (int i = 0; i < volumeSliders.Length; i++)
+        {
+            float val;
+            mainMixer.GetFloat(mixerNames[i], out val);
+            volumeSliders[i].SetValueWithoutNotify(Mathf.Pow(10, val / 20f));
+        }
+
+        if (Screen.fullScreen) fullscreenToggle.isOn = true;
+        else fullscreenToggle.isOn = false;
     }
 }

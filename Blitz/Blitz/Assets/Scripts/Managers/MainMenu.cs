@@ -181,6 +181,7 @@ public class MainMenu : MonoBehaviour
             MMObjects[i].SetActive(false);
         }
         isSettings = true;
+        settingsMenu.GetComponent<OptionsMenu>().loadSettings();
         eventSys.SetSelectedGameObject(settingReturnButt);
     }
 
