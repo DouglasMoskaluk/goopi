@@ -5428,7 +5428,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4548060503782734758}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 0.4
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -5673,8 +5673,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 1.5
+      scalar: 300
+      minScalar: 150
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5726,8 +5726,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 1.5
+      scalar: 300
+      minScalar: 150
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5779,8 +5779,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
-      minScalar: 1
+      scalar: 150
+      minScalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10205,7 +10205,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 000103040522
-  m_Mesh: {fileID: -2124705421725058983, guid: 747e26ef7d0beb848a841f321b5a166f, type: 3}
+  m_Mesh: {fileID: -2124705421725058983, guid: 737ca3b11fc2e7c459c50e67ae66f886, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -15557,8 +15557,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.8
+      scalar: 125
+      minScalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15610,8 +15610,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.8
+      scalar: 120
+      minScalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15663,8 +15663,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.3
-      minScalar: 1
+      scalar: 162.5
+      minScalar: 125
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -20098,7 +20098,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 000103040522
-  m_Mesh: {fileID: 4711208715938537054, guid: 747e26ef7d0beb848a841f321b5a166f, type: 3}
+  m_Mesh: {fileID: 4711208715938537054, guid: 737ca3b11fc2e7c459c50e67ae66f886, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
