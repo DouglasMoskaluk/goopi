@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpinCollide : MonoBehaviour
 {
 
+    bool canBounce = true;
+
     //[SerializeField]
     //private float flingForce;
 
@@ -32,8 +34,10 @@ public class SpinCollide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && canBounce)
         {
+            canBounce = false;
+            StartCoroutine(bounceWait());
             direction.Normalize();
             direction.y = 0.4f;
             //Vector3 dir = ((other.transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
@@ -42,4 +46,12 @@ public class SpinCollide : MonoBehaviour
             fsm.transitionState(PlayerMotionStates.KnockBack);
         }
     }
+
+    IEnumerator bounceWait()
+    {
+        yield return null;
+        yield return null;
+        canBounce = true;
+    }
+
 }

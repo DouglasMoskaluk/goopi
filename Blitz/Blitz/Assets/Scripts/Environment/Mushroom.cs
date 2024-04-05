@@ -23,10 +23,11 @@ public class Mushroom : MonoBehaviour
 
         Transform newPoint = transform.GetChild(0);
 
-        Vector3 direction = transform.position - newPoint.position;
-        direction.Normalize();
+        Vector3 direction = newPoint.position - transform.position;
+        Debug.Log(direction);
+        //direction.Normalize();
 
-        player.addKnockBack(direction * 50f); ;
+        player.addKnockBack(direction * 20f); ;
         player.transitionState(PlayerMotionStates.KnockBack);
 
         yield return new WaitForSeconds(1.0f);

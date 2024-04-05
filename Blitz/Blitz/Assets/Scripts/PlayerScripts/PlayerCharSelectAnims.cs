@@ -34,9 +34,14 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
     private PlayerEyeBehaviour playerEyeBehaviour;
 
+    private RotateSpineWithCamera rotateScript;
+
     // Start is called before the first frame update
     void Awake()
     {
+        rotateScript = transform.root.GetComponent<RotateSpineWithCamera>();
+        rotateScript.enabled = false;
+
         bones = GetComponent<BoneRenderer>().transforms;
 
         bonePos = new Vector3[bones.Length];
@@ -126,6 +131,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
         rigTwo.weight = 1.0f;
         rigThree.weight = 0.0f;
 
+        rotateScript.enabled = true;
         cam.CharSelectRotateCamera(300);
 
     }
