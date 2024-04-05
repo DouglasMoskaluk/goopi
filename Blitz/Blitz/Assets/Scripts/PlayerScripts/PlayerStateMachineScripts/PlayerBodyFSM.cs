@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System.Linq;
-using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using UnityEngine.VFX;

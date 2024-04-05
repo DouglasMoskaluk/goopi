@@ -122,6 +122,12 @@ public class RespawnManager : MonoBehaviour
         {
             foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
             {
+                
+                if (player.GetComponent<PlayerBodyFSM>().deathCheck)
+                {
+                    continue;
+                }
+
                 if (Vector3.Distance(eligibileSpawns[i].position, player.transform.position) <= respawnThreshold)
                 {
                     eligibileSpawns.RemoveAt(i);
