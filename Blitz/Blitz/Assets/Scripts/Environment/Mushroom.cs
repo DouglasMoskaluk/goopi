@@ -13,6 +13,7 @@ public class Mushroom : MonoBehaviour
 
     private Animation anim;
 
+    [SerializeField] private GameObject poofVFX;
     private void Awake()
     {
         anim = animObject.transform.GetComponent<Animation>();
@@ -24,6 +25,7 @@ public class Mushroom : MonoBehaviour
         {
             canBounce = false;
             anim.Play("MushroomBounce");
+            Instantiate(poofVFX, transform.GetChild(0).position, transform.rotation);
             StartCoroutine(bounceCoRo(other));
         }
     }
