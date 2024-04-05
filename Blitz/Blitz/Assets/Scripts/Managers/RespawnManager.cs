@@ -67,7 +67,7 @@ public class RespawnManager : MonoBehaviour
         {
             CharacterController cc = player.transform.GetComponent<CharacterController>();
             cc.enabled = false;
-            player.transform.SetPositionAndRotation(respawnLocations[index].position, respawnLocations[index].rotation);
+            player.transform.SetPositionAndRotation(initialRespawnLocations[index].position, initialRespawnLocations[index].rotation);
             cc.enabled = true;
             index++;
         }
