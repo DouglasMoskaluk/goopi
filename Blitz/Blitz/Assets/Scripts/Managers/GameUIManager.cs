@@ -20,6 +20,10 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private CutoutFade cutoutFade;
     [SerializeField] private TextMeshProUGUI roundDisplayText;
 
+    [SerializeField] private GameObject VictoryObject;
+
+    [SerializeField] private GameObject PlayerVictoryIcon;
+
     private float timerTickDelay = 0;
 
     public bool fading { get; private set; } = false;
@@ -42,12 +46,30 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowRoundTimer(EventParams param = new EventParams())
     {
+        VictoryObject.SetActive(false);
         roundTimerGO.SetActive(true);
+    }
+
+    public void RoundVictorySetPlayerIcons(List<int> winners)
+    {
+        foreach(int playerID in winners)
+        {
+            GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
+            //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
+            newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(playerID).playerUI.animalHeadSprite;
+        }
+
+        VictoryObject.SetActive(true);
+
     }
 
     public void HideTimerObject()
     {
         roundTimerGO.SetActive(false);
+        foreach (Transform child in VictoryObject.transform.GetChild(0))
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void HideRoundTimer(EventParams param = new EventParams())

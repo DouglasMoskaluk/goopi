@@ -325,7 +325,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     internal void showVictoryText()
     {
-        victoryText.SetActive(true);
+        //victoryText.SetActive(true);
     }
 
     internal void setCrosshair(Sprite crosshair)
