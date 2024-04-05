@@ -193,7 +193,9 @@ public class Bullet : MonoBehaviour
                     //Debug.Log(hit.collider.name + ": " + hit.point);
                     if (hit.transform.CompareTag("Crate") && bulletVars.snap || hit.transform.CompareTag("Target") && !(hit.collider.GetComponent<Target>().CanTouch() || bulletVars.triggersTNT))
                     {
+                    //Vector3 scale = go.transform.localScale;
                         go.transform.parent = hit.transform;
+                    //go.transform.localScale = new Vector3(scale.x/go.transform.parent.lossyScale.x, scale.y / go.transform.parent.lossyScale.y, scale.z / go.transform.parent.lossyScale.z);
                     }
                     go.GetComponent<SpawnableObject>().init(bulletVars.owner);
                     if (bulletVars.snap)
