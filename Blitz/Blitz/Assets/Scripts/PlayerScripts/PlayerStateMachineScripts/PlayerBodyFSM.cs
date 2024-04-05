@@ -112,7 +112,6 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.addListener(Events.onGameEnd, resetFSM);
         EventManager.instance.addListener(Events.onPlayerDeath, resetFSMOnDeath);
         EventManager.instance.addListener(Events.onPlayerRespawn, StartIFramesEvent);
-        rigHolder.gameObject.GetComponent<Rig>().weight = 1.0f;
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
         deathCoroutine = deathCoro(null);
@@ -717,20 +716,25 @@ public class PlayerBodyFSM : MonoBehaviour
     /// <param name="gunPrefab"></param>
     private void setUpGunRig(GameObject gunPrefab)
     {
-        
-        //rigBuilder.enabled = false;
+        anim.enabled = false;
+        rigBuilder.layers[0].active = false;
         rigHolder.leftArmIKTarget = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/LeftTarget");
         rigHolder.leftArmIKHint = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/LeftHint");
         rigHolder.leftArmConstraint.data.target = rigHolder.leftArmIKTarget;
         rigHolder.leftArmConstraint.data.hint = rigHolder.leftArmIKHint;
-        
-        
+        rigBuilder.layers[0].active = true;
+
+
+        rigBuilder.layers[1].active = false;
         rigHolder.rightArmIKTarget = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/RightTarget");
         rigHolder.rightArmIKHint = gunPrefab.transform.Find("GunStancePlacement/WeaponSway/Recoil/RightHint");
         rigHolder.rightArmConstraint.data.target = rigHolder.rightArmIKTarget;
         rigHolder.rightArmConstraint.data.hint = rigHolder.rightArmIKHint;
-        //rigBuilder.enabled = true;
-        
+        rigBuilder.layers[1].active = true;
+        rigBuilder.enabled = true;
+        rigBuilder.SyncLayers();
+        anim.enabled = true;
+
     }
 
     /// <summary>

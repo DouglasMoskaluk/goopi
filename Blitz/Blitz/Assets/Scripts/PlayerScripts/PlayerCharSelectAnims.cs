@@ -22,11 +22,11 @@ public class PlayerCharSelectAnims : MonoBehaviour
     [SerializeField]
     private Transform headBone;
 
-    private Rig rigOne;
+    [SerializeField] private Rig rigOne;
 
-    private Rig rigTwo;
+    [SerializeField] private Rig rigTwo;
 
-    private Rig rigThree;
+    [SerializeField] private Rig rigThree;
 
     private CameraShake cam;
 
@@ -57,9 +57,9 @@ public class PlayerCharSelectAnims : MonoBehaviour
     void Start()
     {
         cam = transform.root.GetComponent<CameraShake>();
-        rigOne = transform.GetChild(2).GetComponent<Rig>();
-        rigTwo = transform.GetChild(3).GetComponent<Rig>();
-        rigThree = transform.GetChild(4).GetComponent<Rig>();
+        //rigOne = transform.GetChild(2).GetComponent<Rig>();
+        //rigTwo = transform.GetChild(3).GetComponent<Rig>();
+        //rigThree = transform.GetChild(4).GetComponent<Rig>();
         playerEyeBehaviour = transform.root.GetComponent<PlayerEyeBehaviour>();
 
     }
