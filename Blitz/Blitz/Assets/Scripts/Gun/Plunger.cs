@@ -31,6 +31,7 @@ public class Plunger : SpawnableObject
         }
         else if (transform.parent.tag == "Crate" || transform.parent.tag == "Target")
         {
+            if (transform.parent.tag == "Target") transform.parent.GetComponent<Target>().owner = Owner;
             StartCoroutine(pullCrate());
         }
         else if (transform.parent.tag == "Ragdoll")

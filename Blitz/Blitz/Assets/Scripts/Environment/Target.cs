@@ -20,6 +20,9 @@ public class Target : MonoBehaviour
     [SerializeField]
     private bool canTouch = false;
 
+    [SerializeField]
+    internal int owner;
+
     internal bool CanTouch() { return canTouch; }
 
     public void BulletHit(int killerID)
@@ -76,6 +79,7 @@ public class Target : MonoBehaviour
             {
                 newEvent.Invoke(-1);
             }
+            else if (owner != -1) newEvent.Invoke(owner);
         }
     }
 
