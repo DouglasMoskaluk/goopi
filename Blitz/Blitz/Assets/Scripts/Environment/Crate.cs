@@ -11,6 +11,10 @@ public class Crate : MonoBehaviour
     internal float velocityThreshold = 3;
     internal int lastImpulse = -1;
     Vector3 startingPos;
+    [SerializeField]
+    private bool dmg = true;
+    [SerializeField]
+    private bool metal = false;
 
     private void Start()
     {
@@ -26,7 +30,9 @@ public class Crate : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold)
+        if (metal) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_METAL);
+        else AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_WOOD);
+        if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold && dmg)
         {
             collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(damage, lastImpulse, GetComponent<Rigidbody>().velocity, transform.position);
         }
