@@ -15,7 +15,7 @@ public class Crate : MonoBehaviour
     private bool dmg = true;
     [SerializeField]
     private bool metal = false;
-    private float chanceNoPlaySound = 0.5f;
+    private float chanceNoPlaySound = 0.4f;
     private bool playSounds = false;
 
     private void Start()
@@ -40,8 +40,10 @@ public class Crate : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (metal && playSounds && Random.Range(0,1.0f) < chanceNoPlaySound) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_METAL);
-        else if (!metal && playSounds && Random.Range(0, 1.0f) < chanceNoPlaySound) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_WOOD);
+        if (rb.velocity.magnitude > velocityThreshold && playSounds && Random.Range(0, 1.0f) < chanceNoPlaySound) { 
+            if (metal ) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_METAL);
+            else if (!metal) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_WOOD);
+        }
         if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold && dmg)
         {
             collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(damage, lastImpulse, GetComponent<Rigidbody>().velocity, transform.position);
