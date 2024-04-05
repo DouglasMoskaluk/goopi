@@ -59,9 +59,15 @@ public class Explosion : SpawnableObject
         if (tntCrate && !explodable) explodable = true;
     }
 
+    public void ExplodeAnimation(int player)
+    {
+        if (GetComponent<Animation>() != null) GetComponent<Animation>().Play();
+    }
+
+
     public void explodeNow(int player)
     {
-        Owner = player;
+        if (player != -1) Owner = player;
         if (explodable)
         {
             StartCoroutine(Explode());

@@ -15,7 +15,14 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private float maxThrowVelocity;
     private GameObject lastTeleported;
 
-    [SerializeField] GameObject animObject;
+    [SerializeField] private GameObject poofVFX;
+
+    [SerializeField] private Vector3 poofOffset;
+
+    [SerializeField] private Vector3 poofRotOffset;
+
+
+    [SerializeField] private GameObject animObject;
     private Animation anim;
     //math for varying arc angles
     //Vector3 vec = Vector3.Cross(-Vector3.Cross(transform.up, direction.normalized), direction.normalized);
@@ -50,6 +57,8 @@ public class Teleporter : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && other.gameObject != lastTeleported)
         {
             //GetTeleportTo().TeleportTarget(other.gameObject);
+            Instantiate(poofVFX, animObject.transform.position + poofOffset, Quaternion.Euler(transform.rotation.eulerAngles + poofRotOffset));
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.SHROOM_BOUNCE);
             anim.Play("MushroomBounce");
             TeleportTarget(other.gameObject);
             //ad animation
