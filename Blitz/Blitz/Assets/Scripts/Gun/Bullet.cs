@@ -191,12 +191,13 @@ public class Bullet : MonoBehaviour
                     Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
                     GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, transform.rotation, transform.parent);
                     //Debug.Log(hit.collider.name + ": " + hit.point);
-                    if (hit.transform.CompareTag("Crate") && bulletVars.snap || hit.transform.CompareTag("Target") && !(hit.collider.GetComponent<Target>().CanTouch() || bulletVars.triggersTNT))
-                    {
-                    //Vector3 scale = go.transform.localScale;
+                    //if (hit.transform.CompareTag("Crate") && bulletVars.snap || hit.transform.CompareTag("Target") && !(hit.collider.GetComponent<Target>().CanTouch() || bulletVars.triggersTNT))
+                    //{
+                    Vector3 scale = go.transform.lossyScale;
                         go.transform.parent = hit.transform;
-                    //go.transform.localScale = new Vector3(scale.x/go.transform.parent.lossyScale.x, scale.y / go.transform.parent.lossyScale.y, scale.z / go.transform.parent.lossyScale.z);
-                    }
+                    go.transform.localScale = new Vector3(scale.x/go.transform.parent.lossyScale.x, scale.y / go.transform.parent.lossyScale.y, scale.z / go.transform.parent.lossyScale.z);
+                    if (go.GetComponent<GrowGameObject>() != null) go.GetComponent<GrowGameObject>().SetValues(go.transform.localScale.x, go.transform.localScale.x * go.GetComponent<GrowGameObject>().getScale(), 0);
+                    //}
                     go.GetComponent<SpawnableObject>().init(bulletVars.owner);
                     if (bulletVars.snap)
                     {

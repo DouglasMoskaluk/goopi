@@ -22,6 +22,12 @@ public class GrowGameObject : MonoBehaviour
         return endSize / startSize;
     }
 
+    public void ScaleGO(float scaleFactor)
+    {
+        startSize = scaleFactor * startSize;
+        endSize = scaleFactor * startSize;
+    }
+
     private void Update()
     {
         lifeTime += Time.deltaTime;
