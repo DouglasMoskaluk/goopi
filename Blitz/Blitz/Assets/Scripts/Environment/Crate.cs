@@ -15,6 +15,7 @@ public class Crate : MonoBehaviour
     private bool dmg = true;
     [SerializeField]
     private bool metal = false;
+    private float chanceNoPlaySound = 0.5f;
 
     private void Start()
     {
@@ -30,7 +31,7 @@ public class Crate : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (metal) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_METAL);
+        if (metal && Random.Range(0,1.0f) < chanceNoPlaySound) AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_METAL);
         else AudioManager.instance.PlaySound(AudioManager.AudioQueue.COLLISION_WOOD);
         if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold && dmg)
         {
