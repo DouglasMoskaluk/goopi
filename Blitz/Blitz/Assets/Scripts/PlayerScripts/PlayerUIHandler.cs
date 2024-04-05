@@ -111,6 +111,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     [SerializeField] private Image reloadingIcon;
 
+    [SerializeField] private Animation TNTRainAnim;
+
     private Coroutine reloadFading;
 
     private bool isReloadFadeRunning = false;
@@ -166,6 +168,8 @@ public class PlayerUIHandler : MonoBehaviour
         healingUI.SetActive(false);
         killMarker.SetActive(false);
         noAmmoNerf.SetActive(false);
+        killCount.transform.gameObject.SetActive(false);
+        killIcon.transform.gameObject.SetActive(false);
         if (stars != null) stars.SetActive(false);
         for (int i = 0; i < 4; i++)
         {
@@ -248,6 +252,12 @@ public class PlayerUIHandler : MonoBehaviour
     internal void lavaRising()
     {
         lavaWarning.Play();
+    }
+
+    internal void tntRainUI()
+    {
+        TNTRainAnim.Play();
+
     }
 
     internal void playerGotKill()

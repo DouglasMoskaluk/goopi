@@ -111,6 +111,12 @@ public class ModifierVariables : MonoBehaviour
             timer += Time.deltaTime;
             if(timer >= rainTimer)
             {
+
+                for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+                {
+                    SplitScreenManager.instance.GetPlayers(i).playerUI.tntRainUI();
+                }
+
                 timer = 0;
                 //instantiate new crate
                 for(int i = 0; i < tntAmountPerWave;i++)
@@ -119,6 +125,8 @@ public class ModifierVariables : MonoBehaviour
                     float zPos = Random.Range(-30, 30);
                     Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
                 }
+
+
             }
             yield return null;
         }
