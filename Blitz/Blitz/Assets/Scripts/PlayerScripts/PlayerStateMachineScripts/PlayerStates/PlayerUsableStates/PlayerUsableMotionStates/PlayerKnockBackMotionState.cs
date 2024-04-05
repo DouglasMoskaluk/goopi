@@ -74,7 +74,7 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
     private void AlterKnockbackBasedOnInput(Vector3 plrInput)
     {
         //if (plrInput.magnitude == 0) { Debug.Log("no player input"); return; }
-        Debug.Log(plrInput);
+        //Debug.Log(plrInput);
         //Debug.DrawRay(playerTransform.position + Vector3.up, plrInput, Color.red, 0.1f);
 
         Vector3 newKnockBack = FSM.getKnockBackVector();

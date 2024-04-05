@@ -219,7 +219,7 @@ public class MainMenu : MonoBehaviour
     {
         // Needs some way to store settings, probably dont actually need apply changes button
         // If we do use an apply changes button it should not be interactable by default, only clickable when any change is made
-        Debug.Log("Stored Settings!");
+        //Debug.Log("Stored Settings!");
         settingsApplyButton.interactable = false;
     }
 

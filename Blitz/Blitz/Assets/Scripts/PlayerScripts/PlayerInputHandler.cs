@@ -137,7 +137,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.started)
         {
             UIMashPressed = true;
-            Debug.Log("MASH PRESSED");
+            //Debug.Log("MASH PRESSED");
         }
         else
         {

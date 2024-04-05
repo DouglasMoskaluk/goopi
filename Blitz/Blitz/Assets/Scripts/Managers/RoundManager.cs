@@ -156,13 +156,13 @@ public class RoundManager : MonoBehaviour
         float secondCutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
         yield return new WaitForSecondsRealtime(secondCutoutFadeVisible);
 
-        Debug.Log("start Round co ends");
+        //Debug.Log("start Round co ends");
     }
 
     private IEnumerator endRoundCoro()
     {
 
-        Debug.Log("end round co starts");
+        //Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
 
@@ -177,7 +177,7 @@ public class RoundManager : MonoBehaviour
         }
         averageKills /= 4;
 
-        Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
+        //Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
 
         Time.timeScale = 0.25f;
         

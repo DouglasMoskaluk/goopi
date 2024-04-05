@@ -243,7 +243,7 @@ public class PlayerBodyFSM : MonoBehaviour
     public void SetAlive()
     {
 
-        Debug.Log("Setting player alive");
+        //Debug.Log("Setting player alive");
         StopCoroutine(deathCoroutine);
         resetHealth();
         playerUI.Alive();
@@ -642,9 +642,9 @@ public class PlayerBodyFSM : MonoBehaviour
 
         Instantiate(healthPack, transform.position, Quaternion.identity);
         //ragdoll.EnableRagdoll();
-        Debug.Log("Before yield stopping death");
+        //Debug.Log("Before yield stopping death");
         yield return new WaitForSeconds(2.0f);
-        Debug.Log("After yeild");
+        //Debug.Log("After yeild");
 
         freelookCam.m_LookAt = camRotatePoint;
         freelookCam.m_Follow = camRotatePoint;
@@ -782,7 +782,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     private IEnumerator AddIFrames(float duration)
     {
-        Debug.Log("Adding I Frames to player " + playerID);
+        //Debug.Log("Adding I Frames to player " + playerID);
         canTakeDamage = false;
         yield return new WaitForSecondsRealtime(duration);
         canTakeDamage = true;

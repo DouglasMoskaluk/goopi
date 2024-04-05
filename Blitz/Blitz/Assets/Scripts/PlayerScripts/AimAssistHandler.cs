@@ -160,10 +160,10 @@ public class AimAssistHandler : MonoBehaviour
 
                                     Vector2 old2D = new Vector2(lastframePos.x, lastframePos.z); //- new Vector2(castPoint.position.x, castPoint.position.z);//   lastframePos - castPoint.position;
                                     Vector2 new2D = new Vector2(newDirection.x, newDirection.z);
-                                    Debug.Log("OLD POINT: " + old2D + " NEW POINT: " + new2D);
+                                    //Debug.Log("OLD POINT: " + old2D + " NEW POINT: " + new2D);
                                     float angle2D = Vector2.Angle(old2D, new2D);
 
-                                    Debug.Log(angle2D);
+                                    //Debug.Log(angle2D);
 
                                     if (new2D.x < old2D.x)
                                     {

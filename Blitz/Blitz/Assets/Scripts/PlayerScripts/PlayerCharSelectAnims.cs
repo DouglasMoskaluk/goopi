@@ -116,7 +116,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
         headBone.localPosition = new Vector3(4.01941223e-11f, 0.00105899118f, -2.79396766e-11f);
         headBone.localRotation = Quaternion.Euler(27.042635f, 356.426666f, 359.632568f);
 
-        Debug.Log("swap anim");
+        //Debug.Log("swap anim");
 
         anim.runtimeAnimatorController = playModeController;
 

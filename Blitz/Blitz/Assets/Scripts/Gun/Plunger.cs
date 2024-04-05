@@ -54,20 +54,20 @@ public class Plunger : SpawnableObject
             PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
             Vector3 pullDirection = (plr.transform.position - hit.transform.position).normalized;
 
-            Debug.Log("Before: "+pullDirection.magnitude);
+            //Debug.Log("Before: "+pullDirection.magnitude);
             //pullDirection = pullDirection * ((115 - plr.Health) * (115 - plr.Health));
 
             pullDirection *= pullPower;
 
-            Debug.Log("Pull Power added: "+pullDirection.magnitude);
+            //Debug.Log("Pull Power added: "+pullDirection.magnitude);
 
             pullDirection = pullDirection * curve.Evaluate(1-(hit.Health/100.0f));
 
-            Debug.Log("Evaluated curve: " +pullDirection.magnitude);
+            //Debug.Log("Evaluated curve: " +pullDirection.magnitude);
 
             pullDirection.y += heightPull * heightCurve.Evaluate(1-(hit.Health/100.0f));
 
-            Debug.Log("Height: " + pullDirection.magnitude);
+            //Debug.Log("Height: " + pullDirection.magnitude);
 
 
             hit.addKnockBack(pullDirection);
@@ -76,7 +76,7 @@ public class Plunger : SpawnableObject
         }
         else
         {
-            Debug.Log("RAGDOLL PULL");
+            //Debug.Log("RAGDOLL PULL");
             PlayerBodyFSM plr = SplitScreenManager.instance.GetPlayers(Owner);
             Vector3 pullDirection = (plr.transform.position - transform.position).normalized;
             //pullDirection.y += heightPull;

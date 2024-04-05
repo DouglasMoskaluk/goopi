@@ -129,6 +129,9 @@ public class RespawnManager : MonoBehaviour
                 }
             }
         }
+
+        eligibileSpawns.ForEach(spawn => Debug.Log(spawn.name));
+
         if (eligibileSpawns.Count <= 0) return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
 
         return eligibileSpawns[Random.Range(0, eligibileSpawns.Count)];

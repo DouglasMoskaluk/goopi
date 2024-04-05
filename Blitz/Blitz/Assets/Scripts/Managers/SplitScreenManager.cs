@@ -200,11 +200,6 @@ public class SplitScreenManager : MonoBehaviour
 
         List<int> highestRoundKills = RoundManager.instance.GetHighestRoundKills();
 
-        foreach (int i in highestRoundKills)
-        {
-            Debug.Log(i);
-        }
-
         for (int i = 0; i < players.Count; i++)
         {
             PlayerBodyFSM FSM = players[i].GetComponent<PlayerBodyFSM>();

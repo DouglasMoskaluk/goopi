@@ -143,14 +143,14 @@ public class ImpulseGrenade : SpawnableObject
     /// <summary>
     /// displays the blast radius if DEBUG DISPLAY is toggled on
     /// </summary>
-    private void OnDrawGizmos()
-    {
-        if (DISPLAY_DEBUG_RADIUS)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, radius);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (DISPLAY_DEBUG_RADIUS)
+    //    {
+    //        Gizmos.color = Color.green;
+    //        Gizmos.DrawWireSphere(transform.position, radius);
+    //    }
+    //}
 }
 
 public enum GrenadeType

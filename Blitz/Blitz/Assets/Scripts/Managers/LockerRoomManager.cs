@@ -205,7 +205,7 @@ public class LockerRoomManager : MonoBehaviour
 
         SplitScreenManager.instance.DisableJoining();
 
-        Debug.Log("EXIT LOBBY");
+        //Debug.Log("EXIT LOBBY");
 
         float ratio = 0f;
         float timeTracker = 0;

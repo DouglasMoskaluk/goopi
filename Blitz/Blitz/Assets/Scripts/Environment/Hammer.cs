@@ -40,7 +40,7 @@ public class Hammer : MonoBehaviour
         }
         else
         {
-            Debug.Log("ALREADY PLAYING HAMMER");
+            //Debug.Log("ALREADY PLAYING HAMMER");
         }
     }
 
@@ -49,7 +49,7 @@ public class Hammer : MonoBehaviour
 
         if(other.CompareTag("Player"))
         {
-            Debug.Log("hit player");
+            //Debug.Log("hit player");
             GameObject plr = other.gameObject;
             if (other.attachedRigidbody != null) plr = other.attachedRigidbody.gameObject;
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
@@ -63,7 +63,7 @@ public class Hammer : MonoBehaviour
         }
         else if(other.CompareTag("Ragdoll"))
         {
-            Debug.Log(direction);
+            //Debug.Log(direction);
             other.gameObject.GetComponent<Rigidbody>().AddForce(direction * 25, ForceMode.Impulse);
             //other.gameObject.GetComponent<RagDollHandler>().MoveRagdoll(direction);
         }
