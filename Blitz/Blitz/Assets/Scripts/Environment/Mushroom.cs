@@ -8,11 +8,22 @@ public class Mushroom : MonoBehaviour
 
     bool canBounce = true;
 
+    [SerializeField]
+    private GameObject animObject;
+
+    private Animation anim;
+
+    private void Awake()
+    {
+        anim = animObject.transform.GetComponent<Animation>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player") && canBounce == true)
         {
             canBounce = false;
+            anim.Play("MushroomBounce");
             StartCoroutine(bounceCoRo(other));
         }
     }
