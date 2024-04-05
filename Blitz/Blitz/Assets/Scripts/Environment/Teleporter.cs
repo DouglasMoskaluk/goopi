@@ -58,6 +58,7 @@ public class Teleporter : MonoBehaviour
         {
             //GetTeleportTo().TeleportTarget(other.gameObject);
             Instantiate(poofVFX, animObject.transform.position + poofOffset, Quaternion.Euler(transform.rotation.eulerAngles + poofRotOffset));
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.SHROOM_BOUNCE);
             anim.Play("MushroomBounce");
             TeleportTarget(other.gameObject);
             //ad animation

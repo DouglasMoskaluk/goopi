@@ -25,10 +25,13 @@ public class Mushroom : MonoBehaviour
         {
             canBounce = false;
             anim.Play("MushroomBounce");
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.SHROOM_BOUNCE);
             Instantiate(poofVFX, transform.GetChild(0).position, transform.rotation);
             StartCoroutine(bounceCoRo(other));
         }
     }
+
+
 
     IEnumerator bounceCoRo(Collider other)
     {
