@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5876647330887903084}
   - component: {fileID: 3705439755548909470}
   - component: {fileID: 7905898153507056533}
+  - component: {fileID: 932531565813089637}
   m_Layer: 3
   m_Name: Crate (4)
   m_TagString: Crate
@@ -133,6 +134,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &932531565813089637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10574105007840596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &93638689700508591
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +351,7 @@ GameObject:
   - component: {fileID: 8173426464604275514}
   - component: {fileID: 5419287978579509745}
   - component: {fileID: 1030978904447261603}
+  - component: {fileID: 4331724618013363247}
   m_Layer: 3
   m_Name: Locker (2)
   m_TagString: Crate
@@ -454,6 +472,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4331724618013363247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288490172724104301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &343920669212419536
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +501,7 @@ GameObject:
   - component: {fileID: 8721960490161041990}
   - component: {fileID: 9001430074148659152}
   - component: {fileID: 5438035489066094521}
+  - component: {fileID: 6950181173237041633}
   m_Layer: 3
   m_Name: Locker (4)
   m_TagString: Crate
@@ -587,6 +622,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6950181173237041633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343920669212419536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &356797832178022284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1175,7 @@ GameObject:
   - component: {fileID: 5897174524601140102}
   - component: {fileID: 1805634891707727245}
   - component: {fileID: 4653545979959225206}
+  - component: {fileID: 2096007648858548057}
   m_Layer: 3
   m_Name: Locker (5)
   m_TagString: Crate
@@ -1244,6 +1296,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2096007648858548057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764788239642841481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &813961221224060624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1408,7 @@ GameObject:
   - component: {fileID: 2265740589363639773}
   - component: {fileID: 7136703577347765709}
   - component: {fileID: 580192391880170220}
+  - component: {fileID: 6558883927027796385}
   m_Layer: 3
   m_Name: Crate (1)
   m_TagString: Crate
@@ -1460,6 +1529,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6558883927027796385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990599842010656888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &1042363516896025580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,6 +3271,7 @@ GameObject:
   - component: {fileID: 8838895539983113972}
   - component: {fileID: 1782586566026173490}
   - component: {fileID: 8573097812886685096}
+  - component: {fileID: 5594934164382659341}
   m_Layer: 3
   m_Name: Locker (9)
   m_TagString: Crate
@@ -3306,6 +3392,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5594934164382659341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574542613255360656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &2766993672834585483
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,6 +3884,7 @@ GameObject:
   - component: {fileID: 6076111872897467082}
   - component: {fileID: 1952073731746782427}
   - component: {fileID: 5487739094987512730}
+  - component: {fileID: 4070178962528298839}
   m_Layer: 3
   m_Name: Locker (13)
   m_TagString: Crate
@@ -3902,6 +4005,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4070178962528298839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110730151350847167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &3150688414282310952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4269,6 +4388,7 @@ GameObject:
   - component: {fileID: 2253074026980255947}
   - component: {fileID: 275917787633899102}
   - component: {fileID: 3324495499089497155}
+  - component: {fileID: 3506409139907670059}
   m_Layer: 3
   m_Name: Locker (7)
   m_TagString: Crate
@@ -4389,6 +4509,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3506409139907670059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228072211857439419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &3268490862412138098
 GameObject:
   m_ObjectHideFlags: 0
@@ -5054,6 +5190,7 @@ GameObject:
   - component: {fileID: 4487543757212874633}
   - component: {fileID: 8576948885274601846}
   - component: {fileID: 495394967764511510}
+  - component: {fileID: 829244135340066668}
   m_Layer: 3
   m_Name: Bench (3)
   m_TagString: Crate
@@ -5174,6 +5311,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &829244135340066668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187243996055447762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &4192220753221310968
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,6 +5446,7 @@ GameObject:
   - component: {fileID: 5575661052278298854}
   - component: {fileID: 4478099368593689054}
   - component: {fileID: 3114373450669820233}
+  - component: {fileID: 7895382443636450257}
   m_Layer: 3
   m_Name: Locker
   m_TagString: Crate
@@ -5413,6 +5567,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7895382443636450257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273864857587700022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &4425328681409635250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,6 +5972,7 @@ GameObject:
   - component: {fileID: 5294310731012972584}
   - component: {fileID: 8063491356984595205}
   - component: {fileID: 8724602456878949972}
+  - component: {fileID: 3342326900029957237}
   m_Layer: 3
   m_Name: Crate
   m_TagString: Crate
@@ -5922,6 +6093,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3342326900029957237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623562216346169972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &4641040823159885926
 GameObject:
   m_ObjectHideFlags: 0
@@ -6541,6 +6728,7 @@ GameObject:
   - component: {fileID: 5102787355437881676}
   - component: {fileID: 3661618702281075146}
   - component: {fileID: 7469112950855451650}
+  - component: {fileID: 2551511647291506614}
   m_Layer: 3
   m_Name: Locker (15)
   m_TagString: Crate
@@ -6661,6 +6849,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2551511647291506614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249317391967740497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &5273297459300778735
 GameObject:
   m_ObjectHideFlags: 0
@@ -6674,6 +6878,7 @@ GameObject:
   - component: {fileID: 877397401315565928}
   - component: {fileID: 5011193977547059282}
   - component: {fileID: 4544322435829919466}
+  - component: {fileID: 7679557673923324287}
   m_Layer: 3
   m_Name: Locker (12)
   m_TagString: Crate
@@ -6794,6 +6999,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7679557673923324287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273297459300778735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &5417022776328074434
 GameObject:
   m_ObjectHideFlags: 0
@@ -7607,6 +7828,7 @@ GameObject:
   - component: {fileID: 2636682444068532463}
   - component: {fileID: 6775231949746756535}
   - component: {fileID: 650695083077800332}
+  - component: {fileID: 7936122302118407564}
   m_Layer: 3
   m_Name: Locker (8)
   m_TagString: Crate
@@ -7727,6 +7949,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7936122302118407564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883379631850104740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &5902066679406437836
 GameObject:
   m_ObjectHideFlags: 0
@@ -7740,6 +7978,7 @@ GameObject:
   - component: {fileID: 6914089866837336696}
   - component: {fileID: 6403594186809694455}
   - component: {fileID: 3539859593287698169}
+  - component: {fileID: 7121386362907667728}
   m_Layer: 3
   m_Name: Crate (3)
   m_TagString: Crate
@@ -7860,6 +8099,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7121386362907667728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902066679406437836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &6028064231527565054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7957,6 +8212,7 @@ GameObject:
   - component: {fileID: 874889949318032421}
   - component: {fileID: 7212561652297535564}
   - component: {fileID: 6135204828966139152}
+  - component: {fileID: 5317083926288038352}
   m_Layer: 3
   m_Name: Locker (10)
   m_TagString: Crate
@@ -8077,6 +8333,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5317083926288038352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6057981863137452109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &6059167324400984675
 GameObject:
   m_ObjectHideFlags: 0
@@ -8928,6 +9200,7 @@ GameObject:
   - component: {fileID: 915917246315148950}
   - component: {fileID: 6048148333101179118}
   - component: {fileID: 7710953457751971973}
+  - component: {fileID: 3396698499750311927}
   m_Layer: 3
   m_Name: Table
   m_TagString: Crate
@@ -9048,6 +9321,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3396698499750311927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912519113348975418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &7032362357535986648
 GameObject:
   m_ObjectHideFlags: 0
@@ -9061,6 +9350,7 @@ GameObject:
   - component: {fileID: 5193972638952876094}
   - component: {fileID: 8324277939308887788}
   - component: {fileID: 757362760100877166}
+  - component: {fileID: 5877106318581198481}
   m_Layer: 3
   m_Name: Locker (14)
   m_TagString: Crate
@@ -9181,6 +9471,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5877106318581198481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032362357535986648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &7094339431804671577
 GameObject:
   m_ObjectHideFlags: 0
@@ -9194,6 +9500,7 @@ GameObject:
   - component: {fileID: 1528508190197943224}
   - component: {fileID: 7077050443767807638}
   - component: {fileID: 3840624786857856538}
+  - component: {fileID: 103538706640548162}
   m_Layer: 3
   m_Name: Crate (6)
   m_TagString: Crate
@@ -9314,6 +9621,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &103538706640548162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094339431804671577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &7110931572217713910
 GameObject:
   m_ObjectHideFlags: 0
@@ -9410,6 +9733,7 @@ GameObject:
   - component: {fileID: 1117078752178265682}
   - component: {fileID: 3320698924329760559}
   - component: {fileID: 5924056082908447242}
+  - component: {fileID: 6771319847974682432}
   m_Layer: 3
   m_Name: Crate (2)
   m_TagString: Crate
@@ -9530,6 +9854,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6771319847974682432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414720687249088678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &7470243320012548240
 GameObject:
   m_ObjectHideFlags: 0
@@ -9839,6 +10179,7 @@ GameObject:
   - component: {fileID: 6416119207728209452}
   - component: {fileID: 3994007218742477253}
   - component: {fileID: 1575156336524852242}
+  - component: {fileID: 4360869392729773099}
   m_Layer: 3
   m_Name: Locker (6)
   m_TagString: Crate
@@ -9959,6 +10300,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4360869392729773099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713469140474132396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &7809241720796338609
 GameObject:
   m_ObjectHideFlags: 0
@@ -9972,6 +10329,7 @@ GameObject:
   - component: {fileID: 8842083140582905534}
   - component: {fileID: 6633243364116450387}
   - component: {fileID: 3824089181861521122}
+  - component: {fileID: 438951021186143070}
   m_Layer: 3
   m_Name: Bench (1)
   m_TagString: Crate
@@ -10092,6 +10450,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &438951021186143070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809241720796338609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &7811293436670695980
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,6 +10563,7 @@ GameObject:
   - component: {fileID: 5108206896925500401}
   - component: {fileID: 5513752824232084075}
   - component: {fileID: 8476373697136978067}
+  - component: {fileID: 3963370924505845191}
   m_Layer: 3
   m_Name: Bench
   m_TagString: Crate
@@ -10309,6 +10684,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3963370924505845191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7827699376567630540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &7900326864443754815
 GameObject:
   m_ObjectHideFlags: 0
@@ -10679,6 +11070,7 @@ GameObject:
   - component: {fileID: 1017283875354818377}
   - component: {fileID: 7492403610738096779}
   - component: {fileID: 1115137457047639875}
+  - component: {fileID: 8164623033248392944}
   m_Layer: 3
   m_Name: Crate (5)
   m_TagString: Crate
@@ -10799,6 +11191,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8164623033248392944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153753535468077088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &8211922599580856537
 GameObject:
   m_ObjectHideFlags: 0
@@ -10917,6 +11325,7 @@ GameObject:
   - component: {fileID: 5298893584449748904}
   - component: {fileID: 1560871866663625786}
   - component: {fileID: 9120025963886176884}
+  - component: {fileID: 1081062522529603476}
   m_Layer: 3
   m_Name: Locker (11)
   m_TagString: Crate
@@ -11037,6 +11446,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1081062522529603476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308291796643710907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &8329880199750764891
 GameObject:
   m_ObjectHideFlags: 0
@@ -11156,6 +11581,7 @@ GameObject:
   - component: {fileID: 8979555051991632644}
   - component: {fileID: 1209498955708687052}
   - component: {fileID: 9080392391899407206}
+  - component: {fileID: 8749628308811718665}
   m_Layer: 3
   m_Name: Bench (2)
   m_TagString: Crate
@@ -11276,6 +11702,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8749628308811718665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454954627064814216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 0
 --- !u!1 &8495886674925677692
 GameObject:
   m_ObjectHideFlags: 0
@@ -12243,6 +12685,7 @@ GameObject:
   - component: {fileID: 5561642615119475572}
   - component: {fileID: 2831506704935503382}
   - component: {fileID: 144587523680609246}
+  - component: {fileID: 4884618763526922069}
   m_Layer: 3
   m_Name: Locker (3)
   m_TagString: Crate
@@ -12363,6 +12806,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4884618763526922069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937167406151302473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &8965438847614833558
 GameObject:
   m_ObjectHideFlags: 0
@@ -12459,6 +12918,7 @@ GameObject:
   - component: {fileID: 9185940780474672574}
   - component: {fileID: 4421211975127518981}
   - component: {fileID: 1324980069341078080}
+  - component: {fileID: 3638943076652066344}
   m_Layer: 3
   m_Name: Locker (1)
   m_TagString: Crate
@@ -12579,6 +13039,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3638943076652066344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021657855222587664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc1b6e44910d4281593795894b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  velocityThreshold: 3
+  dmg: 0
+  metal: 1
 --- !u!1 &9022085665265854620
 GameObject:
   m_ObjectHideFlags: 0
