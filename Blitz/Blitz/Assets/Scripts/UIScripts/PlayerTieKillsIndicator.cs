@@ -13,7 +13,7 @@ public class PlayerTieKillsIndicator : MonoBehaviour
     public void ChangeKillsDisplay(float kills)
     {
         slider.value = Mathf.Clamp(kills, 0, slider.maxValue);
-        killText.text = Mathf.Clamp(kills, 0, slider.maxValue).ToString();
+        //killText.text = Mathf.Clamp(kills, 0, slider.maxValue).ToString();
     }
 
     public void SetKillsMax(float to)

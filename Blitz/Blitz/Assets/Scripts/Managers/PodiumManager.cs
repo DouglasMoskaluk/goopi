@@ -33,8 +33,6 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private Transform spotLightsHolder;
 
     public bool isTieBreaker = false;
-    private int tieLowerKills = 0;
-    private int tieMaxKills = 0;
 
     List<PlayerWinsData> winData;
 
@@ -43,6 +41,8 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private Image characterFace1;
     [SerializeField] private Image characterFace2;
     [SerializeField] private float tieBreakerWinAmount = 40f;
+
+    [SerializeField] private Confetti confetti;
 
     private void Awake()
     {
@@ -91,6 +91,7 @@ public class PodiumManager : MonoBehaviour
         else
         {
             //particle effects
+            confetti.SpawnConfettiBoth();
             yield return new WaitForSecondsRealtime(2.5f);
             anim.Play("ScreenRaise", 0, 0);
             yield return new WaitForSecondsRealtime(0.62f);//wait for screen up anim
@@ -226,6 +227,11 @@ public class PodiumManager : MonoBehaviour
             winData[0] = winData[1];
             winData[1] = temp;
             PlacePlayersOnPodium(winData);
+            confetti.SpawnConfettiOnRight();
+        }
+        else
+        {
+            confetti.SpawnConfettiOnLeft();
         }
 
         SplitScreenManager.instance.DisablePlayerControlsByID(winData[0].id);
