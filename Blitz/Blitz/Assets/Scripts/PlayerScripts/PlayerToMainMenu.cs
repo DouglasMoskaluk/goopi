@@ -61,7 +61,9 @@ public class PlayerToMainMenu : MonoBehaviour
 
             if (timer > 3f)
             {
+                SplitScreenManager.instance.DisableJoining();
                 SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
+                AudioManager.instance.TransitionTrack("MainMenu");
                 yield break;
             }
 
