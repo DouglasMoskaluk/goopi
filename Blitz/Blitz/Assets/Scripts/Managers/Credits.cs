@@ -29,6 +29,13 @@ public class Credits : MonoBehaviour
 
     [SerializeField]
     UnityEngine.Video.VideoPlayer video;
+    [SerializeField]
+    GameObject MMText;
+
+    public void EnableText()
+    {
+        MMText.SetActive(true);
+    }
 
 
 
@@ -65,6 +72,14 @@ public class Credits : MonoBehaviour
         }*/
 
         devsSummoed++;
+    }
+
+    private void Update()
+    {
+        if (Input.anyKey)
+        {
+            GoToMainMenu();
+        }
     }
 
 

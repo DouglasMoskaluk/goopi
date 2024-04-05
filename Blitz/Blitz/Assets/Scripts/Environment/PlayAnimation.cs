@@ -8,7 +8,9 @@ public class PlayAnimation : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GetComponent<Animation>().Play();
+            
         }
     }
+
+
 }

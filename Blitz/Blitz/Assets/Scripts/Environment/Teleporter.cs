@@ -15,6 +15,8 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private float maxThrowVelocity;
     private GameObject lastTeleported;
 
+    [SerializeField] GameObject animObject;
+    private Animation anim;
     //math for varying arc angles
     //Vector3 vec = Vector3.Cross(-Vector3.Cross(transform.up, direction.normalized), direction.normalized);
     //Vector3 dir = Quaternion.Euler(vec * arc / 2) * direction.normalized;
@@ -38,12 +40,19 @@ public class Teleporter : MonoBehaviour
 
     //}
 
+    private void Start()
+    {
+        anim = animObject.transform.GetComponent<Animation>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && other.gameObject != lastTeleported)
         {
             //GetTeleportTo().TeleportTarget(other.gameObject);
+            anim.Play("MushroomBounce");
             TeleportTarget(other.gameObject);
+            //ad animation
         }
     }
 
