@@ -151,7 +151,7 @@ public class Explosion : SpawnableObject
             if (other.transform.GetComponent<Crate>() != null) other.transform.GetComponent<Crate>().lastImpulse = Owner;
         } else if (other.transform.CompareTag("Target"))
         {
-            if (other.GetComponent<Target>() != null && other.GetComponent<Explosion>() != null) other.GetComponent<Target>().BulletHit(Owner);
+            if (other.GetComponent<Target>() != null && other.GetComponent<Explosion>() != null) other.GetComponent<Explosion>().explodeNow(Owner);
         }
     }
 

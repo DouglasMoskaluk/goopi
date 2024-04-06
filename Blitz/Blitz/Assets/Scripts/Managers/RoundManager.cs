@@ -107,34 +107,7 @@ public class RoundManager : MonoBehaviour
 
         GameUIManager.instance.hideRoundTransition();
 
-        int playedEventAudio = 0;
-        for (int i = 0; i < ModifierManager.instance.ActiveEvents.Length; i++)
-        {
-            if (ModifierManager.instance.ActiveEvents[i])
-            {
-                if (i == (int)ModifierManager.RoundModifierList.RICOCHET)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_RICOCHET, playedEventAudio * 2);
-                }
-                else if (i == (int)ModifierManager.RoundModifierList.LOW_GRAVITY)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LOWGRAV, playedEventAudio * 2);
-                }
-                else if (i == (int)ModifierManager.RoundModifierList.RANDOM_GUNS)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_MEGA, playedEventAudio * 2);
-                }
-                else if (i == (int)ModifierManager.RoundModifierList.FLOOR_IS_LAVA)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_LAVA, playedEventAudio * 2);
-                }
-                else if (i == (int)ModifierManager.RoundModifierList.BOMB)
-                {
-                    AudioManager.instance.PlaySound(AudioManager.AudioQueue.ANNOUNCE_BOMB, playedEventAudio * 2);
-                }
-                playedEventAudio++;
-            }
-        }
+        
 
         GameUIManager.instance.ResetRoundTransitionUI();
         Time.timeScale = 1.0f;
