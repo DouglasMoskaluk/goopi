@@ -47,16 +47,32 @@ public class GameUIManager : MonoBehaviour
     public void ShowRoundTimer(EventParams param = new EventParams())
     {
         VictoryObject.SetActive(false);
+        foreach (Transform child in VictoryObject.transform.GetChild(0))
+        {
+            Destroy(child.gameObject);
+        }
         roundTimerGO.SetActive(true);
     }
 
     public void RoundVictorySetPlayerIcons(List<int> winners)
     {
-        for (int playerID = 0; playerID < SplitScreenManager.instance.GetPlayerCount(); playerID++)
+        if(winners == null || winners.Count == 4 || winners.Contains(-1))
         {
-            GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
-            //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-            newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(playerID).playerUI.animalHeadSprite;
+            for(int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
+            {
+                GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
+                //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
+                newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(i).playerUI.animalHeadSprite;
+            }
+        }
+        else
+        {
+            foreach (int playerID in winners)
+            {
+                GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
+                //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
+                newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(playerID).playerUI.animalHeadSprite;
+            }
         }
 
         VictoryObject.SetActive(true);
@@ -66,10 +82,6 @@ public class GameUIManager : MonoBehaviour
     public void HideTimerObject()
     {
         roundTimerGO.SetActive(false);
-        foreach (Transform child in VictoryObject.transform.GetChild(0))
-        {
-            Destroy(child.gameObject);
-        }
     }
 
     public void HideRoundTimer(EventParams param = new EventParams())
