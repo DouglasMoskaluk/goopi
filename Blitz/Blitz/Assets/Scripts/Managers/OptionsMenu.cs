@@ -40,6 +40,18 @@ public class OptionsMenu : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().SetBool("SM", true);
+    }
+
+
+    public void DisableSettings()
+    {
+        gameObject.SetActive(false);
+    }
+
+
     internal void loadSettings()
     {
         for (int i = 0; i < volumeSliders.Length; i++)

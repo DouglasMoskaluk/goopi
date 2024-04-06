@@ -205,7 +205,7 @@ public class MainMenu : MonoBehaviour
     public void onSMReturnClicked()
     {
         //mainMenu.SetActive(true);
-                settingsMenu.SetActive(false);
+        settingsMenu.GetComponent<Animator>().SetBool("SM", false);
         for(int i = 0; MMObjects.Length > i; i++)
         {
             MMObjects[i].SetActive(true);
