@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayAnimation : MonoBehaviour
 {
-    GameObject setActive;
+    [SerializeField]
+    ParticleSystem particles;
+    [SerializeField]
     private float timer;
 
 
@@ -12,16 +14,8 @@ public class PlayAnimation : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            setActive.SetActive(true);
-            StartCoroutine(disable());
+            particles.Play();
         }
     }
-
-    private IEnumerator disable()
-    {
-        yield return new WaitForSeconds(timer);
-        setActive.SetActive(false);
-    }
-
 
 }
