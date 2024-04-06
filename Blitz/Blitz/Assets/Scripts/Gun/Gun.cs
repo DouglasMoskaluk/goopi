@@ -78,7 +78,6 @@ public class Gun : MonoBehaviour
         
         if (gunVars.canShoot == false)
         {
-            
             return 1;
         }
         else if (gunVars.ammo[0] <= 0 && gunState == null)
@@ -111,10 +110,11 @@ public class Gun : MonoBehaviour
                         gunVars.hideObjectWithNoAmmo[j].SetActive(false);
                     }
                     reload();
-                } else if (gunState == null)
+                } else
                 {
-                    
-                    StartCoroutine(shotCooldown());
+                    if (gunState != null) StopCoroutine(gunState);
+                    gunState = shotCooldown();
+                    StartCoroutine(gunState);
                 }
             }
 
