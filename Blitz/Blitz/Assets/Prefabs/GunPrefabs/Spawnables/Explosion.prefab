@@ -50,11 +50,12 @@ MonoBehaviour:
   radius: 5
   explosionTime: 0.2
   damage: 35
-  onExplosionSpawn: {fileID: 4932056999929749714, guid: 525de9d3200c6634a92012adc2c4d226,
-    type: 3}
+  onExplosionSpawn:
+  - {fileID: 4932056999929749714, guid: 80090041fc5255747961b4f79ce4801a, type: 3}
   knockbackForce: 1
   scaleVFX: 1
   explodable: 0
+  tntCrate: 0
 --- !u!135 &3851416769174279275
 SphereCollider:
   m_ObjectHideFlags: 0
