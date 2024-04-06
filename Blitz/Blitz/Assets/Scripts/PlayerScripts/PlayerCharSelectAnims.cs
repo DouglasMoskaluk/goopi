@@ -129,7 +129,7 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
         rigOne.weight = 1.0f;
         rigTwo.weight = 1.0f;
-        rigThree.weight = 0.0f;
+        rigThree.weight = 1.0f;
 
         rotateScript.enabled = true;
         cam.CharSelectRotateCamera(300);
