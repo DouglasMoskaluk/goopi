@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     internal BulletVars bulletVars;
     [SerializeField]
     internal GunVars gunVars;
+    [SerializeField] private Vector3 weaponPosition;
+    [SerializeField] private Vector3 weaponRotation;
     private bool canReload = true;
     private RumbleHandler rumble;
     private CameraShake shake;
@@ -219,6 +221,16 @@ public class Gun : MonoBehaviour
             StopCoroutine(gunState);
             gunState = null;
         }
+    }
+
+    public Vector3 getInitPosition()
+    {
+        return weaponPosition;
+    }
+
+    public Vector3 getInitRotation()
+    {
+        return weaponRotation;
     }
 
 }

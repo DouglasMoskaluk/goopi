@@ -17,7 +17,6 @@ public class GunManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-        
     }
 
     private void Start()
@@ -115,14 +114,18 @@ public class GunManager : MonoBehaviour
 
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
 
-        GameObject gun = Instantiate(guns[gunNumber], plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11"));
-        gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"), true);
+        GameObject gun = Instantiate(guns[gunNumber], plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"));
+        //gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"), true);
 
-        gun.transform.localPosition = new Vector3(0f, 0.001044071f, 0f);
-        gun.transform.forward = FSM.playerBody.forward;
+        Gun gunScript = gun.GetComponent<Gun>();
+        gun.transform.localPosition = gunScript.getInitPosition();
+        gun.transform.localEulerAngles = gunScript.getInitRotation();
 
-        gun.GetComponent<Gun>().gunVars.bulletParent = transform;
-        
+        gunScript.gunVars.bulletParent = transform;
+
+        //gun.transform.localPosition = new Vector3(0f, 0.001044071f, 0f);
+        //gun.transform.forward = FSM.playerBody.forward;
+
         if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RICOCHET])
         {
             gun.GetComponent<Gun>().bulletVars.shouldBounce = true;
