@@ -15,7 +15,7 @@ public class Explosion : SpawnableObject
     [SerializeField]
     internal int damage = 35;
     [SerializeField]
-    GameObject onExplosionSpawn;
+    GameObject[] onExplosionSpawn;
     [SerializeField]
     float knockbackForce = 0;
     [SerializeField]
@@ -81,9 +81,9 @@ public class Explosion : SpawnableObject
         yield return new WaitForSeconds(delay);
 
         
-        if (onExplosionSpawn != null)
+        for (int i=0; i< onExplosionSpawn.Length; i++)
         {
-            GameObject VFX = Instantiate(onExplosionSpawn, transform.position, transform.rotation, transform.parent);
+            GameObject VFX = Instantiate(onExplosionSpawn[i], transform.position, transform.rotation, transform.parent);
             if (scaleVFX) VFX.transform.localScale = transform.localScale * radius;
             else VFX.transform.localScale = VFX.transform.localScale * radius;
         }
