@@ -52,7 +52,7 @@ public class GameUIManager : MonoBehaviour
 
     public void RoundVictorySetPlayerIcons(List<int> winners)
     {
-        foreach(int playerID in winners)
+        for (int playerID = 0; playerID < SplitScreenManager.instance.GetPlayerCount(); playerID++)
         {
             GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
             //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
