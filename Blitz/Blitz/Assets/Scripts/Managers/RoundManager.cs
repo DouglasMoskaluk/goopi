@@ -184,7 +184,7 @@ public class RoundManager : MonoBehaviour
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
 
         GameUIManager.instance.RoundVictorySetPlayerIcons(winners);
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(2.5f);
 
         float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutoutFadeBlack);
