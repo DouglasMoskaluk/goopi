@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -60,7 +61,7 @@ public class PlayerTailMotion : MonoBehaviour
             {
                 compare.SetDotWith(input.motionInput);
                 dirMap.Sort(compare);
-                placeTailAt = dirMap[0].value;
+                placeTailAt = Mathf.MoveTowards(placeTailAt, dirMap[0].value, tailMoveSpeed / 2 * Time.deltaTime);
             }
         }
         
