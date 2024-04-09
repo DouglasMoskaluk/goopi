@@ -410,8 +410,8 @@ public class PodiumManager : MonoBehaviour
             FSM.enabled = false;
 
             //disable grenade arc and particles
-            FSM.transform.GetChild(1).GetChild(5).gameObject.SetActive(false);
-            FSM.transform.GetChild(1).GetChild(6).gameObject.SetActive(false);
+            FSM.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+            FSM.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
             //disable crown
             FSM.SetCrownVisibility(false);
 
