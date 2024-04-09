@@ -68,7 +68,7 @@ public class PlayerThrowGrenadeActionState : PlayerActionState
 
     public override void transitionCheck()
     {
-        if (leaveState && elapsedTime >= 1.66f)
+        if (leaveState && elapsedTime >= 0.35f)
         {
             FSM.transitionState(PlayerActionStates.Idle);
         }
