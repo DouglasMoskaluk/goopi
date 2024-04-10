@@ -37,6 +37,8 @@ public class GameUIManager : MonoBehaviour
     {
         EventManager.instance.addListener(Events.onRoundStart, ShowRoundTimer);
         EventManager.instance.addListener(Events.onRoundEnd, HideRoundTimer);
+
+
     }
 
     private void Update()

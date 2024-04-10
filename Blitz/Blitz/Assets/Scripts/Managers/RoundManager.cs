@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class RoundManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private float roundLength = 90f;
     [SerializeField] private int[] playerKillCounts = new int[4];
     [SerializeField] private float endRoundTextShownLength = 4f;
+    [SerializeField] private Volume globalVolume;
+    [SerializeField] private VolumeProfile postProfile;
+
+    private DepthOfField dof;
+
+    private float blurEndPoint = 30f;
 
     public bool shouldCountDown = false;
 
@@ -28,6 +35,9 @@ public class RoundManager : MonoBehaviour
     public void Start()
     {
         EventManager.instance.addListener(Events.onGameEnd, ResetManager);
+        if (!postProfile.TryGet(out dof)) throw new System.NullReferenceException(nameof(dof));
+        //dof = postProfile.GetComponent<DepthOfField>();
+        dof.focalLength.Override(1f);
     }
 
     public void Update()
@@ -132,14 +142,47 @@ public class RoundManager : MonoBehaviour
         //Debug.Log("start Round co ends");
     }
 
+    private IEnumerator blurEffectCoro()
+    {
+        float timer = 0;
+        float blurPoint = 1f;
+        while (timer < 1f)
+        {
+            timer += Time.fixedDeltaTime;
+
+            float ratio = timer / 1f;
+
+            blurPoint = Mathf.Lerp(1f, blurEndPoint, ratio);
+
+            dof.focalLength.Override(blurPoint);
+
+            yield return null;
+        }
+    }
+
+
     private IEnumerator endRoundCoro()
     {
+
 
         //Debug.Log("end round co starts");
 
         //const slow speed, start ts = 0.5, slow for 2s then fade over 0.5s
 
         List<int> winners = selectRoundWinner();//create list of round winners
+
+        //remove player UI
+        for(int i = 0; i < SplitScreenManager.instance.GetPlayerCount();i++)
+        {
+            PlayerBodyFSM newPlayer = SplitScreenManager.instance.GetPlayers(i);
+            newPlayer.playerUI.scaleObject.SetActive(false);
+        }
+
+        GameUIManager.instance.HideTimerObject();
+
+
+        GameUIManager.instance.RoundVictorySetPlayerIcons(winners);
+        StartCoroutine(blurEffectCoro());
 
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_VICTORY);
 
@@ -156,13 +199,14 @@ public class RoundManager : MonoBehaviour
         
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
 
-        GameUIManager.instance.RoundVictorySetPlayerIcons(winners);
         yield return new WaitForSecondsRealtime(2.5f);
 
         float cutoutFadeBlack = GameUIManager.instance.cutoutFadeToBlack();
         yield return new WaitForSecondsRealtime(cutoutFadeBlack);
 
         SplitScreenManager.instance.DisablePlayerControls();
+
+        dof.focalLength.Override(1f);
 
         yield return new WaitForSecondsRealtime(0.5f);// to stay on black screen for a second
 

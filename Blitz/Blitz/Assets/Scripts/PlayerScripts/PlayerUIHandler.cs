@@ -69,7 +69,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject hammerUI;
 
-    private GameObject scaleObject;
+    [HideInInspector]
+    public GameObject scaleObject;
 
     [SerializeField]
     private Vector3[] UILocations;
@@ -207,6 +208,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void resetPlayerUI(EventParams param = new EventParams())
     {
+        scaleObject.SetActive(true);
         StopAllCoroutines();
         Initialize();
     }
