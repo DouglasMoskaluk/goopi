@@ -16,7 +16,7 @@ public class LogoToMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(PlaySound());
     }
 
     // Update is called once per frame
@@ -30,5 +30,11 @@ public class LogoToMaster : MonoBehaviour
             SceneManager.LoadScene("MasterScene", LoadSceneMode.Single);
         }
 
+    }
+
+    IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.INTRO_LOGO);
     }
 }
