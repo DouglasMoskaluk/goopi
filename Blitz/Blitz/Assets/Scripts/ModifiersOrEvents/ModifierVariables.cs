@@ -104,7 +104,7 @@ public class ModifierVariables : MonoBehaviour
 
     IEnumerator rainEvent()
     {
-        float timer = 0f;
+        float timer = -25f;
 
         while(true)
         {
