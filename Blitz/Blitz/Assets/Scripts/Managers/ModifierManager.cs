@@ -257,7 +257,7 @@ public class ModifierManager : MonoBehaviour
 
     bool repeatEvent(int chosenEvent)
     {
-        for (int i = 0; i < RoundManager.instance.getRoundNum(); i++)
+        for (int i = 0; i < RoundManager.instance.getRoundNum()-1; i++)
         {
             if ((int)modifierOrder[i] == chosenEvent) return true;
         }
