@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
             //Debug.Log(transform.root.name);
             Debug.LogError("Gun " + gameObject.name + " not a child of a child of a player");
         }
-        bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
+        //bulletVars.tailColor = new Color(Random.value, Random.value, Random.value);
 
         rumble = transform.root.GetComponent<RumbleHandler>();
         shake = transform.root.GetComponent<CameraShake>();

@@ -154,6 +154,11 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine(setCharButton());
     }
 
+    public void SetReloadIndicatorColour(Color c)
+    {
+        reloadingIcon.color = c;
+    }
+
     private void Initialize()
     {
         scaleObject.transform.localPosition = UILocations[playerID];
@@ -419,7 +424,7 @@ public class PlayerUIHandler : MonoBehaviour
     private IEnumerator fadeReloadIcon()
     {
         float elapsedTime = 0;
-        Color baseColor = new Color(1,1,1,0.65f);
+        Color baseColor = reloadingIcon.color;
         const float fadeTime = 0.25f;
         while (elapsedTime <= fadeTime)
         {
