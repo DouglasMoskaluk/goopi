@@ -575,7 +575,6 @@ public class PlayerBodyFSM : MonoBehaviour
 
             newRagDollHandler.DeathForce(deathDirection, deathPos);
             deathCoroutine = deathCoro(newRagDollHandler);
-            if (playerUI.hammerCR != null) newRagDollHandler.Stars();
             StartCoroutine(deathCoroutine);
         }
 
@@ -603,7 +602,13 @@ public class PlayerBodyFSM : MonoBehaviour
         //Debug.Log("Player Died!");
         //Heal attackers
         resetHealth();
-        playerUI.StopDamagedCoroutine();
+        
+        if (playerUI.hammerCR != null)
+        {
+            playerUI.StopDamagedCoroutine();
+            ragdoll.Stars();
+            playerUI.Hammered();
+        } else playerUI.StopDamagedCoroutine();
         playerUI.HideLowHealth();
         playerUI.Dead();
         EventManager.instance.invokeEvent(Events.onPlayerDeath, new EventParams(playerID, mostRecentAttacker));

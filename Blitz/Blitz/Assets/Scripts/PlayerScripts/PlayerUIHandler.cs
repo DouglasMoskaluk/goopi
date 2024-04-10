@@ -505,6 +505,7 @@ public class PlayerUIHandler : MonoBehaviour
         hammerUI.SetActive(true);
         yield return new WaitForSeconds(2f);
         hammerUI.SetActive(false);
+        hammerCR = null;
         yield return null;
     }
 
