@@ -147,12 +147,12 @@ public class Bullet : MonoBehaviour
             if (hit.collider.attachedRigidbody != null) plr = hit.collider.attachedRigidbody.gameObject;
             PlayerBodyFSM plrFSM = plr.GetComponent<PlayerBodyFSM>();
             if (plrFSM != null) {
-                plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position);
-                if (plrFSM.Health <= 0 && SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
+                if (plrFSM.Health - bulletVars.shotDamage <= 0 && SplitScreenManager.instance.GetPlayers(bulletVars.owner).playerGun.gunVars.type == Gun.GunType.BOOMSTICK)
                 {
                     AudioManager.instance.PlaySound(AudioManager.AudioQueue.MEGA_OBLITERATED);
                     plrFSM.playerUI.Obliterated();
                 }
+                plrFSM.damagePlayer(bulletVars.shotDamage, bulletVars.owner, GetComponent<Rigidbody>().velocity, transform.position);
                 onHitPlayerEffect(plr.GetComponent<PlayerBodyFSM>(), hit);
             }
             Bounce(hit);
