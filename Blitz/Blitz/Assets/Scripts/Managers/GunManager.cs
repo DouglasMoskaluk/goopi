@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class GunManager : MonoBehaviour
 {
@@ -115,6 +116,12 @@ public class GunManager : MonoBehaviour
         if (FSM.playerGun.gameObject != null) Destroy(FSM.playerGun.gameObject);
 
         GameObject gun = Instantiate(guns[gunNumber], plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"));
+        ParentConstraint constraint = gun.GetComponent<ParentConstraint>();
+        ConstraintSource source = new ConstraintSource();
+        //source.weight = 0.34f;
+        //source.sourceTransform = plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11");
+        //constraint.AddSource(source);
+        //constraint.constraintActive = true;
         //gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"), true);
 
         Gun gunScript = gun.GetComponent<Gun>();
