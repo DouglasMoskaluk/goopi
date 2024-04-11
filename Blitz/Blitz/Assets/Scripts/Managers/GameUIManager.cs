@@ -27,9 +27,11 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject MovingCrownUI;
     [SerializeField] private GameObject crownObject;
 
-    [SerializeField] private Animation crownAnim;
+    [SerializeField] private Animator crownAnim;
 
     [SerializeField] private RectTransform[] crownSpots;
+
+    private List<GameObject> spawnedCrownObjects;
 
     private float timerTickDelay = 0;
 
@@ -45,6 +47,7 @@ public class GameUIManager : MonoBehaviour
         EventManager.instance.addListener(Events.onRoundStart, ShowRoundTimer);
         EventManager.instance.addListener(Events.onRoundEnd, HideRoundTimer);
 
+        spawnedCrownObjects = new List<GameObject>();
 
     }
 
@@ -55,30 +58,35 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowRoundTimer(EventParams param = new EventParams())
     {
-        VictoryObject.SetActive(false);
-        foreach (Transform child in VictoryObject.transform.GetChild(0))
-        {
-            Destroy(child.gameObject);
-        }
+        //VictoryObject.SetActive(false);
+        //foreach (Transform child in VictoryObject.transform.GetChild(0))
+        //{
+        //    Destroy(child.gameObject);
+        //}
         roundTimerGO.SetActive(true);
     }
 
     public void StartCrownSequence()
     {
-        StartCoroutine(CrownSpawn());
-        VictoryObject.SetActive(true);
+        crownObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        crownObject.SetActive(true);
+        crownAnim.Play("CrownScale");
     }
 
     public void RoundVictoryCrownFly(List<int> winners)
     {
+
+        int[] pastWinners = GameManager.instance.GetRoundsWon();
+
         crownObject.SetActive(false);
         if(winners == null || winners.Count == 4 || winners.Contains(-1))
         {
             for(int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
             {
                 GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
+                spawnedCrownObjects.Add(newCrown);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[i]);
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[i], pastWinners[i]);
             }
         }
         else
@@ -86,8 +94,9 @@ public class GameUIManager : MonoBehaviour
             foreach (int playerID in winners)
             {
                 GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
+                spawnedCrownObjects.Add(newCrown);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[playerID]);
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[playerID], pastWinners[playerID]);
             }
         }
 
@@ -101,7 +110,6 @@ public class GameUIManager : MonoBehaviour
     public void HideRoundTimer(EventParams param = new EventParams())
     {
         roundTimerGO.SetActive(false);
-        VictoryObject.gameObject.SetActive(false);
     }
 
     public void SetRoundDisplayString()
@@ -322,6 +330,15 @@ public class GameUIManager : MonoBehaviour
     public void ResetSpinner()
     {
         slotSelectionUI.ResetSpinner();
+    }
+
+    //called on game end and when returned to 
+    public void RemoveAllCrownUI()
+    {
+        foreach(GameObject crown in spawnedCrownObjects)
+        {
+            Destroy(crown);
+        }
     }
 
     private float easeOutBack(float x)

@@ -62,6 +62,10 @@ public class PlayerToMainMenu : MonoBehaviour
             if (timer > 3f)
             {
                 SplitScreenManager.instance.DisableJoining();
+                GameManager.instance.ResetManager();
+                RoundManager.instance.ResetManager();
+                GameUIManager.instance.RemoveAllCrownUI();
+                RoundManager.instance.ResetPostProcess();
                 SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
                 AudioManager.instance.TransitionTrack("MainMenu");
                 yield break;

@@ -22,6 +22,14 @@ public class RoundManager : MonoBehaviour
 
     private DepthOfField dof;
 
+    [SerializeField]
+    private Color baseFilter;
+
+    [SerializeField]
+    private Color endOfRoundFilter;
+
+    private ColorAdjustments colorAdj;
+
     private float blurEndPoint = 30f;
 
     public bool shouldCountDown = false;
@@ -35,9 +43,7 @@ public class RoundManager : MonoBehaviour
     public void Start()
     {
         EventManager.instance.addListener(Events.onGameEnd, ResetManager);
-        if (!postProfile.TryGet(out dof)) throw new System.NullReferenceException(nameof(dof));
-        //dof = postProfile.GetComponent<DepthOfField>();
-        dof.focalLength.Override(1f);
+        ResetPostProcess();
     }
 
     public void Update()
@@ -55,6 +61,7 @@ public class RoundManager : MonoBehaviour
         {
             playerKillCounts[i] = 0;
         }
+        elapsedTime = 0;
         shouldCountDown = false;
     }
 
@@ -150,18 +157,39 @@ public class RoundManager : MonoBehaviour
     {
         float timer = 0;
         float blurPoint = 1f;
-        while (timer < 1f)
+
+        Color lerpColor;
+
+        Color startColor;
+
+        if(ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.LOW_GRAVITY])
+        {
+            startColor = new Color(141,179,236);
+        }
+        else
+        {
+            startColor = baseFilter;
+        }
+
+
+        //dof.focalLength.Override(blurEndPoint);
+
+        while (timer < 0.5f)
         {
             timer += Time.fixedDeltaTime;
 
             float ratio = timer / 1f;
 
             blurPoint = Mathf.Lerp(1f, blurEndPoint, ratio);
+            lerpColor = Color.Lerp(startColor, endOfRoundFilter, ratio);
 
+            colorAdj.colorFilter.Override(lerpColor);
             dof.focalLength.Override(blurPoint);
 
             yield return null;
         }
+
+
     }
 
 
@@ -183,8 +211,8 @@ public class RoundManager : MonoBehaviour
         }
 
         GameUIManager.instance.HideTimerObject();
-
         GameUIManager.instance.StartCrownSequence();
+
         StartCoroutine(blurEffectCoro());
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_VICTORY);
 
@@ -201,7 +229,7 @@ public class RoundManager : MonoBehaviour
 
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(0.8f);
 
         GameUIManager.instance.RoundVictoryCrownFly(winners);
 
@@ -213,9 +241,9 @@ public class RoundManager : MonoBehaviour
 
         SplitScreenManager.instance.DisablePlayerControls();
 
-        dof.focalLength.Override(1f);
-
         yield return new WaitForSecondsRealtime(0.5f);// to stay on black screen for a second
+
+        ResetPostProcess();
 
         Time.timeScale = 1f;
 
@@ -277,6 +305,15 @@ public class RoundManager : MonoBehaviour
     public int getKillCount(int playerNum)
     {
         return playerKillCounts[playerNum];
+    }
+
+    public void ResetPostProcess()
+    {
+        if (!postProfile.TryGet(out colorAdj)) throw new System.NullReferenceException(nameof(colorAdj));
+        colorAdj.colorFilter.Override(baseFilter);
+
+        if (!postProfile.TryGet(out dof)) throw new System.NullReferenceException(nameof(dof));
+        dof.focalLength.Override(1f);
     }
 
     private List<int> selectRoundWinner()

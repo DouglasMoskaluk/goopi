@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator EndGame()
     {
         
+        GameUIManager.instance.RemoveAllCrownUI();
+
         List<int> playerGameWinID = SelectGameWinners();
         string winnersString = "Player(s) ";
         foreach (int i in playerGameWinID)

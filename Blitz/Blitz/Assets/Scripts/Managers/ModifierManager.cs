@@ -32,8 +32,16 @@ public class ModifierManager : MonoBehaviour
     GameObject BombPrefab;
     [SerializeField]
     VolumeProfile defaultPPVolume;
+    //[SerializeField]
+    //VolumeProfile lowGravPPVolume;
+
+    private ColorAdjustments colorAdj;
+
     [SerializeField]
-    VolumeProfile lowGravPPVolume;
+    private Color baseFilter;
+
+    [SerializeField]
+    private Color lowGravFilter;
 
     internal ModifierVariables vars;
     [SerializeField]
@@ -144,11 +152,15 @@ public class ModifierManager : MonoBehaviour
     {
         if(active)
         {
-            globalVolume.profile = lowGravPPVolume;
+            //globalVolume.profile = lowGravPPVolume;
+            if (!defaultPPVolume.TryGet(out colorAdj)) throw new System.NullReferenceException(nameof(colorAdj));
+            colorAdj.colorFilter.Override(lowGravFilter);
         }
         else
         {
-            globalVolume.profile = defaultPPVolume;
+            if (!defaultPPVolume.TryGet(out colorAdj)) throw new System.NullReferenceException(nameof(colorAdj));
+            colorAdj.colorFilter.Override(baseFilter);
+            //globalVolume.profile = defaultPPVolume;
         }
     }
 

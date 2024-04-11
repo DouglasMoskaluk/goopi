@@ -7,25 +7,25 @@ public class CrownMoverUI : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private RectTransform endPoint;
+    private Vector3 endPoint;
 
     private Vector3 startPoint;
 
     private RectTransform rect;
 
-    private Vector3 endScale = new Vector3(0.14f,0.14f,0.14f);
+    private Vector3 endScale = new Vector3(0.065f,0.065f,0.065f);
 
     void Start()
     {
         rect = GetComponent<RectTransform>();
-        startPoint = GetComponent<RectTransform>().anchoredPosition;
+        startPoint = GetComponent<RectTransform>().position;
         StartCoroutine(flyToPoint());
-        StartCoroutine(destoySelf());
+        //StartCoroutine(destoySelf());
     }
 
-    public void InitializeEndPoint(RectTransform setPoint)
+    public void InitializeEndPoint(RectTransform setPoint, int wins)
     {
-        endPoint = setPoint;
+        endPoint = new Vector3(setPoint.position.x, (setPoint.position.y - (wins * 100)), setPoint.position.z);
     }
 
     IEnumerator flyToPoint()
@@ -38,20 +38,24 @@ public class CrownMoverUI : MonoBehaviour
 
             float ratio = timer / 0.5f;
 
-            Vector3 newPoint = Vector3.Lerp(startPoint, endPoint.anchoredPosition, ratio);
-            Vector3 newScale = Vector3.Lerp(Vector3.one, endScale, ratio);
+            Vector3 newPoint = Vector3.Lerp(startPoint, endPoint, ratio);
+            Vector3 newScale = Vector3.Lerp(new Vector3(0.6f,0.6f,0.6f), endScale, ratio);
             //new Vector3(0.503999949f, 0.503999949f, 0.503999949f)
 
-            rect.anchoredPosition = newPoint;
+            rect.position = newPoint;
             rect.localScale = newScale;
 
             yield return null;
         }
+
+        rect.position = endPoint;
+        rect.localScale = endScale;
+
     }
 
-    IEnumerator destoySelf()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-        Destroy(this.gameObject);
-    }
+    //IEnumerator destoySelf()
+    //{
+    //    yield return new WaitForSecondsRealtime(2f);
+    //    Destroy(this.gameObject);
+    //}
 }
