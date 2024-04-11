@@ -118,15 +118,21 @@ public class GunManager : MonoBehaviour
         GameObject gun = Instantiate(guns[gunNumber], plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"));
         ParentConstraint constraint = gun.GetComponent<ParentConstraint>();
         ConstraintSource source = new ConstraintSource();
-        //source.weight = 0.34f;
-        //source.sourceTransform = plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11");
-        //constraint.AddSource(source);
-        //constraint.constraintActive = true;
-        //gun.transform.SetParent(plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09"), true);
 
         Gun gunScript = gun.GetComponent<Gun>();
         gun.transform.localPosition = gunScript.getInitPosition();
         gun.transform.localEulerAngles = gunScript.getInitRotation();
+
+        source.weight = 1f;
+        source.sourceTransform = plr.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11");
+        constraint.AddSource(source);
+
+        constraint.rotationAtRest = gunScript.getInitRotation();
+        constraint.translationAtRest = gunScript.getInitPosition();
+        constraint.SetRotationOffset(0, new Vector3(-7.49069262f, -72.0172043f, -11.1502447f));
+        constraint.constraintActive = true;
+
+
 
         gunScript.gunVars.bulletParent = transform;
 
