@@ -13,7 +13,7 @@ public class CrownMoverUI : MonoBehaviour
 
     private RectTransform rect;
 
-    private Vector3 endScale = new Vector3(0.065f,0.065f,0.065f);
+    private Vector3 endScale = new Vector3(0.045f,0.045f,0.045f);
 
     void Start()
     {
@@ -23,9 +23,16 @@ public class CrownMoverUI : MonoBehaviour
         //StartCoroutine(destoySelf());
     }
 
-    public void InitializeEndPoint(RectTransform setPoint, int wins)
+    public void InitializeEndPoint(RectTransform setPoint, int wins, int player)
     {
-        endPoint = new Vector3(setPoint.position.x, (setPoint.position.y - (wins * 100)), setPoint.position.z);
+        if(player == 0 || player == 2)
+        {
+            endPoint = new Vector3((setPoint.position.x + (wins * 55)), (setPoint.position.y), setPoint.position.z);
+        }
+        else
+        {
+            endPoint = new Vector3((setPoint.position.x - (wins * 55)), (setPoint.position.y), setPoint.position.z);
+        }
     }
 
     IEnumerator flyToPoint()

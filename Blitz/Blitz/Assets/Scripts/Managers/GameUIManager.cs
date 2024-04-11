@@ -86,7 +86,7 @@ public class GameUIManager : MonoBehaviour
                 GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
                 spawnedCrownObjects.Add(newCrown);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[i], pastWinners[i]);
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[i], pastWinners[i], i);
             }
         }
         else
@@ -96,7 +96,7 @@ public class GameUIManager : MonoBehaviour
                 GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
                 spawnedCrownObjects.Add(newCrown);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[playerID], pastWinners[playerID]);
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[playerID], pastWinners[playerID], playerID);
             }
         }
 
