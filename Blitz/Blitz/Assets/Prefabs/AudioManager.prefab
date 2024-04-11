@@ -334,7 +334,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 20629b122d4faa34f8c2800397e5b011, type: 3}
     volume: 0.5
     pitch: 1
-    pitchMinMax: {x: -0.05, y: 0.05}
+    pitchMinMax: {x: -0.2, y: 0.2}
     mixer: {fileID: 225872213564629478, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 34
     clip: {fileID: 8300000, guid: 57be9366951a3d545825575ec16f8c60, type: 3}
@@ -453,11 +453,23 @@ MonoBehaviour:
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+  - queue: 52
+    clip: {fileID: 8300000, guid: 23497b9aa20b1444f9bd56d813f7d74b, type: 3}
+    volume: 1
+    pitch: 1
+    pitchMinMax: {x: -0.05, y: 0.05}
+    mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+  - queue: 53
+    clip: {fileID: 8300000, guid: db505b7cb583ca24b8d59e66f9b15acd, type: 3}
+    volume: 1
+    pitch: 1
+    pitchMinMax: {x: -0.05, y: 0.05}
+    mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 90
     clip: {fileID: 8300000, guid: bb597baec00ce43488a9540714804cfc, type: 3}
-    volume: 0.75
+    volume: 0.5
     pitch: 1
-    pitchMinMax: {x: -0.1, y: 0.1}
+    pitchMinMax: {x: -0.05, y: 0.05}
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   music:
   - trackName: MainMenu
