@@ -184,10 +184,8 @@ public class RoundManager : MonoBehaviour
 
         GameUIManager.instance.HideTimerObject();
 
-
-        GameUIManager.instance.RoundVictorySetPlayerIcons(winners);
+        GameUIManager.instance.StartCrownSequence();
         StartCoroutine(blurEffectCoro());
-
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_VICTORY);
 
         float averageKills = 0;
@@ -200,8 +198,13 @@ public class RoundManager : MonoBehaviour
         //Debug.Log("Average kills for round " + roundNum + ": " + averageKills);
 
         Time.timeScale = 0.25f;
-        
+
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        GameUIManager.instance.RoundVictoryCrownFly(winners);
+
 
         yield return new WaitForSecondsRealtime(2.5f);
 

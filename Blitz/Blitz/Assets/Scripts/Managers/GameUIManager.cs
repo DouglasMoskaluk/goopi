@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Net;
+using Unity.VisualScripting;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -22,7 +24,12 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private GameObject VictoryObject;
 
-    [SerializeField] private GameObject PlayerVictoryIcon;
+    [SerializeField] private GameObject MovingCrownUI;
+    [SerializeField] private GameObject crownObject;
+
+    [SerializeField] private Animation crownAnim;
+
+    [SerializeField] private RectTransform[] crownSpots;
 
     private float timerTickDelay = 0;
 
@@ -56,28 +63,33 @@ public class GameUIManager : MonoBehaviour
         roundTimerGO.SetActive(true);
     }
 
-    public void RoundVictorySetPlayerIcons(List<int> winners)
+    public void StartCrownSequence()
     {
+        StartCoroutine(CrownSpawn());
+        VictoryObject.SetActive(true);
+    }
+
+    public void RoundVictoryCrownFly(List<int> winners)
+    {
+        crownObject.SetActive(false);
         if(winners == null || winners.Count == 4 || winners.Contains(-1))
         {
             for(int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
             {
-                GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
+                GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(i).playerUI.animalHeadSprite;
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[i]);
             }
         }
         else
         {
             foreach (int playerID in winners)
             {
-                GameObject newIcon = Instantiate(PlayerVictoryIcon, VictoryObject.transform.GetChild(0));
+                GameObject newCrown = Instantiate(MovingCrownUI, VictoryObject.transform);
                 //PlayerBodyFSM newPLayer = SplitScreenManager.instance.GetPlayers(playerID);
-                newIcon.GetComponent<Image>().sprite = SplitScreenManager.instance.GetPlayers(playerID).playerUI.animalHeadSprite;
+                newCrown.GetComponent<CrownMoverUI>().InitializeEndPoint(crownSpots[playerID]);
             }
         }
-
-        VictoryObject.SetActive(true);
 
     }
 
@@ -181,6 +193,28 @@ public class GameUIManager : MonoBehaviour
         }
 
         fading = false;
+    }
+
+    private IEnumerator CrownSpawn()
+    {
+        crownObject.SetActive(true);
+
+        float timer = 0f;
+
+        while (timer < 0.25f)
+        {
+            timer += Time.unscaledDeltaTime;
+
+            float ratio = timer / 0.5f;
+
+            float newScale = Mathf.Lerp(0, 0.503999949f, ratio);
+
+            newScale = easeOutBack(newScale);
+
+            crownObject.GetComponent<RectTransform>().localScale = new Vector3(newScale, newScale, newScale);
+
+            yield return null;
+        }
     }
 
     private IEnumerator FadeOutCoroutine(float duration)
@@ -288,7 +322,14 @@ public class GameUIManager : MonoBehaviour
     public void ResetSpinner()
     {
         slotSelectionUI.ResetSpinner();
+    }
 
+    private float easeOutBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1;
+
+        return 1 + c3* Mathf.Pow(x - 1, 3) + c1* Mathf.Pow(x - 1, 2);
     }
 
 }
