@@ -66,7 +66,7 @@ public class ModifierManager : MonoBehaviour
 
     internal void showModifierUI()
     {
-        int playedEventAudio = 0;
+        /*int playedEventAudio = 0;
         for (int i = 0; i < ModifierManager.instance.ActiveEvents.Length; i++)
         {
             if (ModifierManager.instance.ActiveEvents[i])
@@ -93,7 +93,7 @@ public class ModifierManager : MonoBehaviour
                 }
                 playedEventAudio++;
             }
-        }
+        }*/
 
 
         //if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) && RoundManager.instance.getRoundNum() - 1 >= 0) Debug.Log((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) + " && " + (RoundManager.instance.getRoundNum() - 1 >= 0) + " && (" + (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1) + " || " + (modifiers[RoundManager.instance.getRoundNum() - 1] == -1) + ")");
