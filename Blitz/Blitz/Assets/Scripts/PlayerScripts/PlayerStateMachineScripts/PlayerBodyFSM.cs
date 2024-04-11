@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using UnityEngine.VFX;
+using UnityEngine.Animations;
 /// <summary>
 /// 
 /// </summary>
