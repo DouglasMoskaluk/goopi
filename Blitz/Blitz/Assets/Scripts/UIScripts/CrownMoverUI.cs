@@ -51,7 +51,7 @@ public class CrownMoverUI : MonoBehaviour
 
     IEnumerator destoySelf()
     {
-        yield return new WaitForSecondsRealtime(6f);
+        yield return new WaitForSecondsRealtime(2f);
         Destroy(this.gameObject);
     }
 }
