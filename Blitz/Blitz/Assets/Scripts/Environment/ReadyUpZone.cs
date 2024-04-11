@@ -10,6 +10,7 @@ public class ReadyUpZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.READY_UP);
             LockerRoomManager.instance.ReadyUpPlayer(zoneID);
         }
     }

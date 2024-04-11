@@ -299,9 +299,16 @@ MonoBehaviour:
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 58
     clip: {fileID: 8300000, guid: e164999c541aa854393d520409a0fde1, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
-    pitchMinMax: {x: 0, y: 0}
+    pitchMinMax: {x: -0.02, y: 0.02}
+    mixer: {fileID: -8587018187699950470, guid: 39052e53f537e864991812c685fbabb0,
+      type: 2}
+  - queue: 58
+    clip: {fileID: 8300000, guid: 7198408bb21fa1146a2fd5af65ea5501, type: 3}
+    volume: 0.75
+    pitch: 1
+    pitchMinMax: {x: -0.02, y: 0.02}
     mixer: {fileID: -8587018187699950470, guid: 39052e53f537e864991812c685fbabb0,
       type: 2}
   - queue: 57
@@ -446,6 +453,12 @@ MonoBehaviour:
     pitch: 1
     pitchMinMax: {x: 0, y: 0}
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+  - queue: 90
+    clip: {fileID: 8300000, guid: bb597baec00ce43488a9540714804cfc, type: 3}
+    volume: 0.75
+    pitch: 1
+    pitchMinMax: {x: -0.1, y: 0.1}
+    mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   music:
   - trackName: MainMenu
     clip: {fileID: 8300000, guid: bbe55b1fae52f87448d70c06ba393d67, type: 3}
@@ -455,13 +468,13 @@ MonoBehaviour:
     transitionTimeIn: 0
   - trackName: InGame
     clip: {fileID: 8300000, guid: a0f30081a8eee7a4a89c74659fba6c43, type: 3}
-    volume: 0.183
+    volume: 0.2
     pitch: 1
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
-    transitionTimeIn: 5
+    transitionTimeIn: 3
   - trackName: Roulette Spin
-    clip: {fileID: 8300000, guid: 6877812dba1ea2e459b37a63c654df81, type: 3}
-    volume: 0.276
+    clip: {fileID: 8300000, guid: 453721b0b47ae5a4dad2a6ab80d750ac, type: 3}
+    volume: 0.25
     pitch: 1
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
     transitionTimeIn: 0
@@ -492,6 +505,8 @@ MonoBehaviour:
     cooldown: 0.25
   - queue: 87
     cooldown: 0.05
+  - queue: 61
+    cooldown: 0.2
   masterVolume: 1
   musicVolume: 1
   sfxVolume: 1
