@@ -135,7 +135,11 @@ public class RoundManager : MonoBehaviour
 
         EventManager.instance.invokeEvent(Events.onPlayStart);
 
-        GameUIManager.instance.SetFadePanelAlpha(0);
+        foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        {
+            player.GetComponent<PlayerBodyFSM>().EnablePlayerCamera();
+        }
+
         float secondCutoutFadeVisible = GameUIManager.instance.cutoutFadeToVisible();
         yield return new WaitForSecondsRealtime(secondCutoutFadeVisible);
 
@@ -221,6 +225,11 @@ public class RoundManager : MonoBehaviour
         foreach (int w in winners)
         {
             winnerString += w.ToString() + ", ";
+        }
+
+        foreach (PlayerInput player in SplitScreenManager.instance.GetPlayers())
+        {
+            player.GetComponent<PlayerBodyFSM>().DisablePlayerCamera();
         }
 
         //cascade round information up to the game manager and let it decide what should be done next
