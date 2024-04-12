@@ -31,6 +31,8 @@ public class GrenadePickUp : MonoBehaviour
         canPickUp = false;
         grenadeVisual.SetActive(false);
 
+        other.GetComponentInChildren<PlayerUIHandler>().ImpulsePickedup();
+
         StartCoroutine(Respawn());
 
 

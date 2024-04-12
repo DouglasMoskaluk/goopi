@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using System.Runtime.CompilerServices;
 
 public class PlayerUIHandler : MonoBehaviour
 {
@@ -67,6 +68,12 @@ public class PlayerUIHandler : MonoBehaviour
     private GameObject healingUI;
 
     [SerializeField]
+    private GameObject nerfPickupUI;
+
+    [SerializeField]
+    private GameObject impulsePickupUI;
+
+    [SerializeField]
     private GameObject hammerUI;
 
     [HideInInspector]
@@ -120,6 +127,13 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator killCounterCoRo;
 
+    private Material healed;
+    private Material nerf;
+    private Material impulse;
+    [Header("Vignette Shaders")]
+    [SerializeField] private float vignetteRadiusStartValue = 1;
+    [SerializeField] private float vignetteTime = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -172,6 +186,8 @@ public class PlayerUIHandler : MonoBehaviour
         obliteratedUI.SetActive(false);
         hammerUI.SetActive(false);
         healingUI.SetActive(false);
+        nerfPickupUI.SetActive(false);
+        impulsePickupUI.SetActive(false);
         killMarker.SetActive(false);
         noAmmoNerf.SetActive(false);
         killCount.transform.gameObject.SetActive(false);
@@ -294,6 +310,18 @@ public class PlayerUIHandler : MonoBehaviour
         StartCoroutine("ShowHealEffect");
     }
 
+    public void NerfAmmoPickedup()
+    {
+        StopCoroutine("ShowNerfEffect");
+        StartCoroutine("ShowNerfEffect");
+    }
+
+    public void ImpulsePickedup()
+    {
+        StopCoroutine("ShowImpulseEffect");
+        StartCoroutine("ShowImpulseEffect");
+    }
+
 
     public void Obliterated()
     {
@@ -365,6 +393,8 @@ public class PlayerUIHandler : MonoBehaviour
         health.gameObject.SetActive(false);
         crossHair.SetActive(false);
         healingUI.SetActive(false);
+        nerfPickupUI.SetActive(false);
+        impulsePickupUI.SetActive(false);
         killCount.transform.gameObject.SetActive(false);
         killIcon.transform.gameObject.SetActive(false);
 
@@ -529,12 +559,105 @@ public class PlayerUIHandler : MonoBehaviour
         noAmmoNerf.SetActive(false);
     }
 
-
     IEnumerator ShowHealEffect()
     {
+
+        if(healed == null)
+        {
+            Image vignetteImage = healingUI.GetComponent<Image>();
+            healed = Instantiate(vignetteImage.material);
+            vignetteImage.material = healed;
+        }
+
         healingUI.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
+
+
+        healed.SetFloat("_VignetteRadiusPower", vignetteRadiusStartValue);
+
+        yield return new WaitForSeconds(0.1f);
+
+        float elapsedTime = 0;
+
+        while(elapsedTime < vignetteTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float healingRadius = Mathf.Lerp(vignetteRadiusStartValue, 0f, (elapsedTime / vignetteTime));
+
+            healed.SetFloat("_VignetteRadiusPower", healingRadius);
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.25f);
         healingUI.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowNerfEffect()
+    {
+
+        if (nerf == null)
+        {
+            Image vignetteImage = nerfPickupUI.GetComponent<Image>();
+            nerf = Instantiate(vignetteImage.material);
+            vignetteImage.material = nerf;
+        }
+
+        nerfPickupUI.SetActive(true);
+
+
+        nerf.SetFloat("_VignetteRadiusPower", vignetteRadiusStartValue);
+
+        yield return new WaitForSeconds(0.1f);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < vignetteTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float nerfRadius = Mathf.Lerp(vignetteRadiusStartValue, 0f, (elapsedTime / vignetteTime));
+
+            nerf.SetFloat("_VignetteRadiusPower", nerfRadius);
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.25f);
+        nerfPickupUI.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator ShowImpulseEffect()
+    {
+
+        if (impulse == null)
+        {
+            Image vignetteImage = impulsePickupUI.GetComponent<Image>();
+            impulse = Instantiate(vignetteImage.material);
+            vignetteImage.material = impulse;
+        }
+
+        impulsePickupUI.SetActive(true);
+
+
+        impulse.SetFloat("_VignetteRadiusPower", vignetteRadiusStartValue);
+
+        yield return new WaitForSeconds(0.1f);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < vignetteTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float ImpulseRadius = Mathf.Lerp(vignetteRadiusStartValue, 0f, (elapsedTime / vignetteTime));
+
+            impulse.SetFloat("_VignetteRadiusPower", ImpulseRadius);
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.25f);
+        impulsePickupUI.SetActive(false);
         yield return null;
     }
 
