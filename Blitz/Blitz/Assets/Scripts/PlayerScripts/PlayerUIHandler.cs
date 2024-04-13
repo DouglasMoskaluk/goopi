@@ -132,7 +132,8 @@ public class PlayerUIHandler : MonoBehaviour
     private Material impulse;
     [Header("Vignette Shaders")]
     [SerializeField] private float vignetteRadiusMaxValue = 1;
-    [SerializeField] private float vignetteTotalTime = 0.25f;
+    [SerializeField] private float vignetteFadeInTime = 0.1f;
+    [SerializeField] private float vignetteFadeOutTime = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -168,7 +169,7 @@ public class PlayerUIHandler : MonoBehaviour
 
         StartCoroutine(setCharButton());
 
-        vignetteTotalTime /= 2;
+        //vignetteTotalTime /= 2;
     }
 
     public void SetReloadIndicatorColour(Color c)
@@ -571,31 +572,32 @@ public class PlayerUIHandler : MonoBehaviour
             vignetteImage.material = healed;
         }
 
+
+        healed.SetFloat("_VignetteRadiusPower", 0);
+
         healingUI.SetActive(true);
-
-
-        healed.SetFloat("_VignetteRadiusPower", 0f);
-
 
         float elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeInTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float healingRadius = Mathf.Lerp(0f, vignetteRadiusMaxValue, (elapsedTime / vignetteTotalTime));
+            float healingRadius = Mathf.Lerp(0, vignetteRadiusMaxValue, (elapsedTime / vignetteFadeInTime));
 
             healed.SetFloat("_VignetteRadiusPower", healingRadius);
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeOutTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float healingRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteTotalTime));
+            float healingRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteFadeOutTime));
 
             healed.SetFloat("_VignetteRadiusPower", healingRadius);
             yield return null;
@@ -616,32 +618,34 @@ public class PlayerUIHandler : MonoBehaviour
             vignetteImage.material = nerf;
         }
 
+
+        nerf.SetFloat("_VignetteRadiusPower", 0f);
+
         nerfPickupUI.SetActive(true);
 
 
-        nerf.SetFloat("_VignetteRadiusPower", 0);
-
-        yield return new WaitForSeconds(0.1f);
-
         float elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeInTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float nerfRadius = Mathf.Lerp(0f, vignetteRadiusMaxValue, (elapsedTime / vignetteTotalTime));
+            float nerfRadius = Mathf.Lerp(0f, vignetteRadiusMaxValue, (elapsedTime / vignetteFadeInTime));
 
             nerf.SetFloat("_VignetteRadiusPower", nerfRadius);
+
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeOutTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float nerfRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteTotalTime));
+            float nerfRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteFadeOutTime));
 
             nerf.SetFloat("_VignetteRadiusPower", nerfRadius);
             yield return null;
@@ -662,31 +666,34 @@ public class PlayerUIHandler : MonoBehaviour
             vignetteImage.material = impulse;
         }
 
-        impulsePickupUI.SetActive(true);
-
 
         impulse.SetFloat("_VignetteRadiusPower", 0f);
 
 
+        impulsePickupUI.SetActive(true);
+
+
         float elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeInTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float ImpulseRadius = Mathf.Lerp(0f, vignetteRadiusMaxValue, (elapsedTime / vignetteTotalTime));
+            float ImpulseRadius = Mathf.Lerp(0f, vignetteRadiusMaxValue, (elapsedTime / vignetteFadeInTime));
 
             impulse.SetFloat("_VignetteRadiusPower", ImpulseRadius);
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         elapsedTime = 0;
 
-        while (elapsedTime < vignetteTotalTime)
+        while (elapsedTime < vignetteFadeOutTime)
         {
             elapsedTime += Time.deltaTime;
 
-            float ImpulseRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteTotalTime));
+            float ImpulseRadius = Mathf.Lerp(vignetteRadiusMaxValue, 0f, (elapsedTime / vignetteFadeOutTime));
 
             impulse.SetFloat("_VignetteRadiusPower", ImpulseRadius);
             yield return null;
