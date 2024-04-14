@@ -323,9 +323,6 @@ public class PlayerBodyFSM : MonoBehaviour
             case PlayerMotionStates.Walk:
                 currentMotionState = new PlayerWalkMotionState();
                 break;
-            case PlayerMotionStates.Run:
-                currentMotionState = new PlayerRunMotionState();
-                break;
             case PlayerMotionStates.Slide:
                 currentMotionState = new PlayerSlideMotionState();
                 break;
@@ -334,9 +331,6 @@ public class PlayerBodyFSM : MonoBehaviour
                 break;
             case PlayerMotionStates.Jump:
                 currentMotionState = new PlayerJumpMotionState();
-                break;
-            case PlayerMotionStates.Mantle:
-                currentMotionState = new PlayerMantleMotionState();
                 break;
             case PlayerMotionStates.KnockBack:
                 currentMotionState = new PlayerKnockBackMotionState();
@@ -378,15 +372,6 @@ public class PlayerBodyFSM : MonoBehaviour
                 break;
             case PlayerActionStates.Shoot:
                 currentActionState = new PlayerShootActionState();
-                break;
-            case PlayerActionStates.Run:
-                currentActionState = new PlayerRunActionState();
-                break;
-            case PlayerActionStates.Mantle:
-                currentActionState = new PlayerMantleActionState();
-                break;
-            case PlayerActionStates.DropGrenade:
-                currentActionState = new PlayerDropGrenadeActionState();
                 break;
             case PlayerActionStates.ThrowGrenade:
                 currentActionState = new PlayerThrowGrenadeActionState();
@@ -807,7 +792,7 @@ public class PlayerBodyFSM : MonoBehaviour
 /// </summary>
 public enum PlayerMotionStates
 {
-    None, Walk, Run, Jump, Fall, Slide, Mantle, KnockBack, Death
+    None, Walk, Jump, Fall, Slide, KnockBack, Death
 }
 
 /// <summary>
@@ -815,7 +800,7 @@ public enum PlayerMotionStates
 /// </summary>
 public enum PlayerActionStates
 {
-    None, Idle, Reload, Mantle, Shoot, Run, DropGrenade, ThrowGrenade, Death
+    None, Idle, Reload, Shoot, ThrowGrenade, Death
 }
 
 /// <summary>
