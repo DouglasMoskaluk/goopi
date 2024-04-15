@@ -178,6 +178,7 @@ MonoBehaviour:
   - {fileID: 47491910497976033}
   isHammer: 1
   canTouch: 1
+  owner: 0
 --- !u!65 &3783621315805223704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,6 +256,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6720824631488292356}
     m_Modifications:
+    - target: {fileID: 3289872143174671346, guid: ae2331e190efe684e9a46f661f7c80c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3783621315805223704, guid: ae2331e190efe684e9a46f661f7c80c9,
         type: 3}
       propertyPath: m_Enabled
@@ -413,6 +419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
