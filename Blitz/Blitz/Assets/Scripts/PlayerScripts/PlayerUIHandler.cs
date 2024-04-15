@@ -536,12 +536,11 @@ public class PlayerUIHandler : MonoBehaviour
 
     IEnumerator Hammer()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         hammerUI.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         hammerUI.SetActive(false);
         hammerCR = null;
-        yield return null;
     }
 
     IEnumerator ShowDamageEffect()
