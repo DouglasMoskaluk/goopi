@@ -28,6 +28,9 @@ public class RoundManager : MonoBehaviour
     [SerializeField]
     private Color endOfRoundFilter;
 
+    [SerializeField]
+    private Color lowGravFilter;
+
     private ColorAdjustments colorAdj;
 
     private float blurEndPoint = 30f;
@@ -164,7 +167,7 @@ public class RoundManager : MonoBehaviour
 
         if(ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.LOW_GRAVITY])
         {
-            startColor = new Color(141,179,236);
+            startColor = lowGravFilter;
         }
         else
         {
@@ -229,7 +232,7 @@ public class RoundManager : MonoBehaviour
 
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.ROUND_END);
 
-        yield return new WaitForSecondsRealtime(0.8f);
+        yield return new WaitForSecondsRealtime(0.85f);
 
         GameUIManager.instance.RoundVictoryCrownFly(winners);
 

@@ -39,11 +39,11 @@ public class CrownMoverUI : MonoBehaviour
     {
         float timer = 0f;
 
-        while(timer < 0.5f)
+        while(timer < 0.35f)
         {
             timer += Time.unscaledDeltaTime;
 
-            float ratio = timer / 0.5f;
+            float ratio = timer / 0.35f;
 
             Vector3 newPoint = Vector3.Lerp(startPoint, endPoint, ratio);
             Vector3 newScale = Vector3.Lerp(new Vector3(0.6f,0.6f,0.6f), endScale, ratio);
