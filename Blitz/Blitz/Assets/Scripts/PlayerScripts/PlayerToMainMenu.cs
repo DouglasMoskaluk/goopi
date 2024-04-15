@@ -48,15 +48,15 @@ public class PlayerToMainMenu : MonoBehaviour
 
             if(timer < 1f)
             {
-                text.text = "3";
+                text.text = "Returning to Main Menu in 3";
             }
             else if(timer < 2)
             {
-                text.text = "3 2";
+                text.text = "Returning to Main Menu in 3 2";
             }
             else if(timer < 3)
             {
-                text.text = "3 2 1";
+                text.text = "Returning to Main Menu in 3 2 1";
             }
 
             if (timer > 3f)
