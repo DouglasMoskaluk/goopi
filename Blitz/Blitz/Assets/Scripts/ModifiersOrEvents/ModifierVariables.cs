@@ -80,10 +80,11 @@ public class ModifierVariables : MonoBehaviour
         }
         else
         {
-            foreach (Transform child in rainPoint.transform)
+            ObjectPoolManager.Instance.DisablePool(ObjectPoolManager.PoolTypes.TNTRain);
+            /*foreach (Transform child in rainPoint.transform)
             {
-                Destroy(child.gameObject);
-            }
+                child.gameObject.SetActive(false);//Destroy(child.gameObject);
+            }*/
             //remove all crates spawned in
         }
     }
@@ -123,7 +124,13 @@ public class ModifierVariables : MonoBehaviour
                 {
                     float xpos = Random.Range(-30, 30);
                     float zPos = Random.Range(-30, 30);
-                    Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+                    //Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
+
+                    GameObject rainCrate = ObjectPoolManager.Instance.GetPooledObject(ObjectPoolManager.PoolTypes.TNTRain);
+                    //rainCrate.GetComponent<Explosion>().ResetTnt();
+                    rainCrate.transform.position = new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos);
+                    rainCrate.transform.rotation = Quaternion.identity;
+                    rainCrate.SetActive(true);
                 }
 
 

@@ -54,4 +54,12 @@ public class ObjectPool : MonoBehaviour
         Debug.LogWarning("Object pool for "+poolableObject.name+" doesn't have enough objects!!");
         return null;
     }
+
+    public void disableAll()
+    {
+        for (int i=0; i<transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 }

@@ -34,6 +34,11 @@ public class Target : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        owner = -1;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -27,13 +27,18 @@ public class Explosion : SpawnableObject
     [SerializeField]
     bool tntCrate = false;
 
+    [SerializeField]
+    bool objectPooled = false;
+    [SerializeField]
+    ObjectPoolManager.PoolTypes poolType;
+
     Vector3 startPos;
 
     IEnumerator explosionCoroutine;
 
     new SphereCollider collider;
 
-    private void Start()
+    private void OnEnable()
     {
         collider = GetComponent<SphereCollider>();
         explosionCoroutine = Explode();
@@ -54,6 +59,7 @@ public class Explosion : SpawnableObject
     {
         collider.radius = startRadius;
         time = 0;
+        Owner = -1;
         collider.enabled = false;
         transform.position = startPos;
         if (tntCrate && !explodable) explodable = true;
@@ -118,9 +124,13 @@ public class Explosion : SpawnableObject
         }
         EventManager.instance.removeListener(Events.onRoundEnd, roundEnd);
         EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
-        if (!tntCrate)
+        if (!tntCrate && ! objectPooled)
         {
             Destroy(gameObject);
+        } else if (tntCrate)
+        {
+            ResetTnt();
+            gameObject.SetActive(false);
         } else
         {
             ResetTnt();
@@ -151,7 +161,10 @@ public class Explosion : SpawnableObject
             if (other.transform.GetComponent<Crate>() != null) other.transform.GetComponent<Crate>().lastImpulse = Owner;
         } else if (other.transform.CompareTag("Target"))
         {
-            if (other.GetComponent<Target>() != null && other.GetComponent<Explosion>() != null) other.GetComponent<Explosion>().explodeNow(Owner);
+            if (other.GetComponent<Target>() != null && other.GetComponent<Explosion>() != null)
+            {
+                other.GetComponent<Explosion>().explodeNow(Owner);
+            }
         }
     }
 
@@ -159,14 +172,18 @@ public class Explosion : SpawnableObject
     internal override void roundEnd(EventParams param = new EventParams())
     {
         //EventManager.instance.removeListener(Events.onRoundEnd, newRound);
-        if (!tntCrate)
+        if (!tntCrate && !objectPooled)
         {
             EventManager.instance.removeListener(Events.onPlayerDeath, onPlayerDeath);
             StopCoroutine(explosionCoroutine);
             base.roundEnd();
+        } else if (tntCrate)
+        {
+            ResetTnt();
         } else
         {
             ResetTnt();
+            gameObject.SetActive(false);
         }
     }
 

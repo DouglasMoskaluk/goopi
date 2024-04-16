@@ -17,6 +17,11 @@ public class ObjectPoolManager : MonoBehaviour
         return pools[(int)type].GetPooledObject();
     }
 
+    public void DisablePool(PoolTypes type)
+    {
+        pools[(int)type].disableAll();
+    }
+
     private void Awake()
     {
         instance = this;

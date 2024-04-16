@@ -536,7 +536,7 @@ MonoBehaviour:
   targetStates: []
   isHammer: 0
   canTouch: 0
-  owner: 0
+  owner: -1
 --- !u!65 &2868005731169708501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -601,7 +601,9 @@ MonoBehaviour:
   knockbackForce: 22
   scaleVFX: 0
   explodable: 1
-  tntCrate: 0
+  tntCrate: 1
+  objectPooled: 1
+  poolType: 0
 --- !u!54 &1148320763228348715
 Rigidbody:
   m_ObjectHideFlags: 0
