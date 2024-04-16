@@ -68,6 +68,7 @@ public class RespawnManager : MonoBehaviour
             CharacterController cc = player.transform.GetComponent<CharacterController>();
             cc.enabled = false;
             player.transform.SetPositionAndRotation(initialRespawnLocations[index].position, initialRespawnLocations[index].rotation);
+            player.GetComponent<PlayerBodyFSM>().RotateCameraTo(initialRespawnLocations[index].GetComponent<RespawnPointPlayerRotationValueHolder>());
             cc.enabled = true;
             index++;
         }
@@ -136,7 +137,7 @@ public class RespawnManager : MonoBehaviour
             }
         }
 
-        eligibileSpawns.ForEach(spawn => Debug.Log(spawn.name));
+        //eligibileSpawns.ForEach(spawn => Debug.Log(spawn.name));
 
         if (eligibileSpawns.Count <= 0) return lavaEventRespawnLocations[Random.Range(0, lavaEventRespawnLocations.Count)];
 

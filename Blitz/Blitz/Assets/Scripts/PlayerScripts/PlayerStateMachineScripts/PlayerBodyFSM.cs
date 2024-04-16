@@ -648,6 +648,9 @@ public class PlayerBodyFSM : MonoBehaviour
         }
         //float dist = Vector3.Distance(transform.position, newPos.position);
         transform.position = newPos.position;
+        RotateCameraTo(newPos.GetComponent<RespawnPointPlayerRotationValueHolder>());
+        //transform.rotation = newPos.rotation;
+        
         Physics.SyncTransforms();
 
         resetHealth();
@@ -776,6 +779,16 @@ public class PlayerBodyFSM : MonoBehaviour
     public void StartIFrames()
     {
         StartCoroutine(AddIFrames(0.5f));
+    }
+
+    public void RotateCameraTo(RespawnPointPlayerRotationValueHolder respawn)
+    {
+
+        if (respawn == null) return;
+
+        freelookCam.m_YAxis.Value = 0.46f;
+        freelookCam.m_XAxis.Value = respawn.rotationValue;
+        
     }
 
     private IEnumerator AddIFrames(float duration)
