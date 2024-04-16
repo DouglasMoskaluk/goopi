@@ -109,6 +109,7 @@ public class PodiumManager : MonoBehaviour
         //spotlights and cam zoom
         anim.Play("spotlight", 0, 0);
         yield return new WaitForSecondsRealtime(3.2f);//wait for spotlight anim to finish
+        fireworks.Play();
         yield return new WaitForSecondsRealtime(0.75f);//hold on spotlight
 
         List<PlayerInput> players = SplitScreenManager.instance.GetPlayers();
@@ -129,7 +130,7 @@ public class PodiumManager : MonoBehaviour
         anim.Play("openCurtains");
         //particles
 
-        fireworks.Play();
+
 
         yield return new WaitForSecondsRealtime(1f);//wait for open curtains
 
