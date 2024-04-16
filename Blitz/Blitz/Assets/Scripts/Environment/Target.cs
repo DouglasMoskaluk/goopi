@@ -51,6 +51,9 @@ public class Target : MonoBehaviour
         {
             targetStates[0].SetActive(true);
             targetStates[1].SetActive(false);
+        } else if (transform.position.y < -4)
+        {
+            newEvent.Invoke(-1);
         }
     }
 
