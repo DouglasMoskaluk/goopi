@@ -177,7 +177,7 @@ public class PodiumManager : MonoBehaviour
 
     private bool CheckTieBreaker(List<PlayerWinsData> gameData)
     {
-        if (SplitScreenManager.instance.GetPlayers().Count > 1) return false;
+        if (SplitScreenManager.instance.GetPlayers().Count <= 1) return false;
 
         return gameData[1].rank == 0;
     }
