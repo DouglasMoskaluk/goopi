@@ -43,6 +43,7 @@ public class ObjectPool : MonoBehaviour
 
         if (willGrow)
         {
+            Debug.Log("New object added to the pool for " + poolableObject.name + ", for a total count of "+pooledObjects.Count);
             GameObject obj = Instantiate(poolableObject);
             obj.SetActive(false);
             obj.transform.SetParent(transform);
@@ -52,11 +53,5 @@ public class ObjectPool : MonoBehaviour
 
         Debug.LogWarning("Object pool for "+poolableObject.name+" doesn't have enough objects!!");
         return null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
