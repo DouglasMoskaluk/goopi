@@ -94,6 +94,7 @@ public class MainMenu : MonoBehaviour
         {
             canInteract = false;
             MenuObject.transform.GetComponent<Animation>().Play("SplashToStartAnimation");
+            AudioManager.instance.TransitionTrack("MenuLoop");
             interactText.SetActive(false);
         }
 

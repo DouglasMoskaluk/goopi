@@ -467,23 +467,29 @@ MonoBehaviour:
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   - queue: 90
     clip: {fileID: 8300000, guid: bb597baec00ce43488a9540714804cfc, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     pitchMinMax: {x: -0.05, y: 0.05}
     mixer: {fileID: 8407673913628368566, guid: 39052e53f537e864991812c685fbabb0, type: 2}
   music:
   - trackName: MainMenu
-    clip: {fileID: 8300000, guid: bbe55b1fae52f87448d70c06ba393d67, type: 3}
+    clip: {fileID: 8300000, guid: 4e11f7c61bb883b4992cc8ac6208087a, type: 3}
+    volume: 0.25
+    pitch: 1
+    mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
+    transitionTimeIn: 0
+  - trackName: MenuLoop
+    clip: {fileID: 8300000, guid: bfa0ee18c675ce74a822645462909002, type: 3}
     volume: 0.25
     pitch: 1
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
     transitionTimeIn: 0
   - trackName: InGame
-    clip: {fileID: 8300000, guid: a0f30081a8eee7a4a89c74659fba6c43, type: 3}
+    clip: {fileID: 8300000, guid: 072f6f3bc8cbe7747875b6d3f23c4354, type: 3}
     volume: 0.2
     pitch: 1
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
-    transitionTimeIn: 3
+    transitionTimeIn: 0.5
   - trackName: Roulette Spin
     clip: {fileID: 8300000, guid: 453721b0b47ae5a4dad2a6ab80d750ac, type: 3}
     volume: 0.25
@@ -491,11 +497,11 @@ MonoBehaviour:
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
     transitionTimeIn: 0
   - trackName: Locker Room
-    clip: {fileID: 8300000, guid: 2b52bec30ae63764ab326911eef99404, type: 3}
-    volume: 0.25
+    clip: {fileID: 8300000, guid: 34e51a723eea5804bb1a51d24601d80d, type: 3}
+    volume: 0.15
     pitch: 1
     mixer: {fileID: 4737590913195429109, guid: 39052e53f537e864991812c685fbabb0, type: 2}
-    transitionTimeIn: 0
+    transitionTimeIn: 4
   AudioCooldown:
   - queue: 34
     cooldown: 0.5
