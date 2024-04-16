@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
 
-public class FireworkAudioPlayer : MonoBehaviour
+[RequireComponent(typeof(VisualEffect))]
+public class FireworkAudioPlayer : VFXOutputEventAbstractHandler
 {
-    public void OnVFXOutputEvent(VFXEventAttribute eventAttribute)
+    public override bool canExecuteInEditor => true;
+
+    public override void OnVFXOutputEvent(VFXEventAttribute eventAttribute)
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.FIREWORK_BOOM);
-
+        Debug.Log("bouttta");
     }
 }
