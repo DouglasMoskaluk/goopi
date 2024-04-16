@@ -157,6 +157,7 @@ public class GunManager : MonoBehaviour
     internal void nextGun()
     {
         gunUsed = (gunUsed+1) % guns.Length;
+        if (gunUsed == (int)Gun.GunType.PLUNGER) gunUsed++;
         for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
         {
             assignGun(i);
