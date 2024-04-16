@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class PodiumManager : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private float tieBreakerWinAmount = 40f;
 
     [SerializeField] private Confetti confetti;
+    [SerializeField] private VisualEffect fireworks;
 
     private void Awake()
     {
@@ -127,6 +129,7 @@ public class PodiumManager : MonoBehaviour
         anim.Play("openCurtains");
         //particles
 
+        fireworks.Play();
 
         yield return new WaitForSecondsRealtime(1f);//wait for open curtains
 

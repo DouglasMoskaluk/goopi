@@ -9017,6 +9017,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 328817378832784070, guid: 45a0829ad86c86149bc2fe192446adad,
+        type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 328817378832784070, guid: 45a0829ad86c86149bc2fe192446adad,
+        type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3009348831704837864, guid: 45a0829ad86c86149bc2fe192446adad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9077,6 +9087,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45a0829ad86c86149bc2fe192446adad, type: 3}
+--- !u!2083052967 &1379271462 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 328817378832784070, guid: 45a0829ad86c86149bc2fe192446adad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1379271461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1380714047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12877,6 +12893,7 @@ MonoBehaviour:
   characterFace2: {fileID: 456302919}
   tieBreakerWinAmount: 40
   confetti: {fileID: 2107391474}
+  fireworks: {fileID: 1379271462}
 --- !u!1001 &1931062750
 PrefabInstance:
   m_ObjectHideFlags: 0
