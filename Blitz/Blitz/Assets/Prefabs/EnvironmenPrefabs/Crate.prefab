@@ -147,6 +147,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 120
-  velocityThreshold: 5
+  velocityThreshold: 8
+  velocityMaxDmgd: 20
   dmg: 1
   metal: 0
+  damageScaler:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0033569336
+      value: 0.0044555664
+      inSlope: 2.9881155
+      outSlope: 2.9881155
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05782296
+    - serializedVersion: 3
+      time: 0.99676514
+      value: 1.5196686
+      inSlope: 0.02305228
+      outSlope: 0.02305228
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15082702
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

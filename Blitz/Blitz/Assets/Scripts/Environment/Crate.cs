@@ -9,6 +9,8 @@ public class Crate : MonoBehaviour
     internal int damage = 50;
     [SerializeField]
     internal float velocityThreshold = 3;
+    [SerializeField]
+    internal float velocityMaxDmgd = 10;
     internal int lastImpulse = -1;
     Vector3 startingPos;
     [SerializeField]
@@ -17,6 +19,9 @@ public class Crate : MonoBehaviour
     private bool metal = false;
     private float chanceNoPlaySound = 0.4f;
     private bool playSounds = false;
+
+    [SerializeField]
+    private AnimationCurve damageScaler;
 
     private void Start()
     {
@@ -54,7 +59,9 @@ public class Crate : MonoBehaviour
         }
         if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold && dmg)
         {
-            collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(damage, lastImpulse, GetComponent<Rigidbody>().velocity, transform.position);
+            int dmg = (int)Mathf.Floor(damage * damageScaler.Evaluate((rb.velocity.sqrMagnitude - velocityThreshold * velocityThreshold) / (float)(velocityMaxDmgd * velocityMaxDmgd - velocityThreshold * velocityThreshold)));
+            Debug.Log(dmg+ " damage, speed: " + rb.velocity.magnitude);
+            collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(dmg, lastImpulse, rb.velocity, transform.position);
         }
     }
 }
