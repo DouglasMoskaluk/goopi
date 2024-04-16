@@ -127,13 +127,14 @@ public class ModifierVariables : MonoBehaviour
                     //Instantiate(rainTnTCrate, new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos), Quaternion.identity, rainPoint);
 
                     GameObject rainCrate = ObjectPoolManager.Instance.GetPooledObject(ObjectPoolManager.PoolTypes.TNTRain);
+                    if (rainCrate != null)
+                    {
+                        rainCrate.transform.position = new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos);
+                        rainCrate.transform.rotation = Quaternion.identity;
+                        rainCrate.SetActive(true);
+                    }
                     //rainCrate.GetComponent<Explosion>().ResetTnt();
-                    rainCrate.transform.position = new Vector3(rainPoint.position.x + xpos, rainPoint.position.y, rainPoint.position.z + zPos);
-                    rainCrate.transform.rotation = Quaternion.identity;
-                    rainCrate.SetActive(true);
                 }
-
-
             }
             yield return null;
         }

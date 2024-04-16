@@ -30,11 +30,19 @@ public class Crate : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         playSounds = true;
+    }
 
+    private void Update()
+    {
+        if (transform.position.y < -4)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 
     private void resetPos(EventParams param = new EventParams())
     {
+        GetComponent<MeshRenderer>().enabled = true;
         transform.position = startingPos;
     }
 
