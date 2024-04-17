@@ -249,95 +249,97 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator ragDollStuff()
     {
-        PlayerModelHandler modelOne = ragDollOne.transform.GetComponent<PlayerModelHandler>();
-
-        PlayerModelHandler modelTwo = ragDollTwo.transform.GetComponent<PlayerModelHandler>();
-
-        PlayerModelHandler modelThree = ragDollThree.transform.GetComponent<PlayerModelHandler>();
-
-
-        int numOne;
-
-        int numTwo;
-
-        int numThree;
-
-        numOne = Random.Range(0, 6);
-
-        numTwo = Random.Range(0, 6);
-
-        while(numOne == numTwo)
-        {
-            numTwo = Random.Range(0, 6);
-        }
-
-        numThree = Random.Range(0, 6);
-
-        while(numThree == numOne || numThree == numTwo)
-        {
-            numThree = Random.Range(0, 6);
-        }
-
-        modelOne.SetRagdollSkin(0);
-        modelOne.SetModel(numOne);
-
-        modelTwo.SetRagdollSkin(0);
-        modelTwo.SetModel(numTwo);
-
-        modelThree.SetRagdollSkin(0);
-        modelThree.SetModel(numThree);
-
-        Instantiate(grenade, GrenadeSpawnOne.position, Quaternion.identity);
-
-        Instantiate(grenade, GrenadeSpawnTwo.position, Quaternion.identity);
-
-        Instantiate(grenade, GrenadeSpawnThree.position, Quaternion.identity);
-
-        float timeTracker = 0.0f;
-
-        while(timeTracker < 1.15f)
-        {
-            timeTracker += Time.deltaTime;
-            yield return null;
-        }
-
-        timeTracker = 0.0f;
-
-        Rigidbody modelRB1 = ragDollOne.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
-        Rigidbody modelRB2 = ragDollTwo.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
-        Rigidbody modelRB3 = ragDollThree.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
-
-        floorPlane.SetActive(false);
-
-        while (timeTracker < 0.85)
-        {
-            timeTracker += Time.deltaTime;
-            ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
-            ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
-            ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
-
-            yield return null;
-        }
-
-        ragDollOne.GetComponent<MainMenuDragAdd>().VelocityOff();
-        ragDollTwo.GetComponent<MainMenuDragAdd>().VelocityOff();
-        ragDollThree.GetComponent<MainMenuDragAdd>().VelocityOff();
-
-        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
-        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
-        ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
-
-        ragDollOne.GetComponent<MainMenuDragAdd>().FreezePosition();
-        ragDollTwo.GetComponent<MainMenuDragAdd>().FreezePosition();
-        ragDollThree.GetComponent<MainMenuDragAdd>().FreezePosition();
 
         yield return null;
+        //PlayerModelHandler modelOne = ragDollOne.transform.GetComponent<PlayerModelHandler>();
 
-        //ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0);
-        //ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(0);
-        //ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(0);
+        //PlayerModelHandler modelTwo = ragDollTwo.transform.GetComponent<PlayerModelHandler>();
 
-        yield return null;
+        //PlayerModelHandler modelThree = ragDollThree.transform.GetComponent<PlayerModelHandler>();
+
+
+        //int numOne;
+
+        //int numTwo;
+
+        //int numThree;
+
+        //numOne = Random.Range(0, 6);
+
+        //numTwo = Random.Range(0, 6);
+
+        //while(numOne == numTwo)
+        //{
+        //    numTwo = Random.Range(0, 6);
+        //}
+
+        //numThree = Random.Range(0, 6);
+
+        //while(numThree == numOne || numThree == numTwo)
+        //{
+        //    numThree = Random.Range(0, 6);
+        //}
+
+        //modelOne.SetRagdollSkin(0);
+        //modelOne.SetModel(numOne);
+
+        //modelTwo.SetRagdollSkin(0);
+        //modelTwo.SetModel(numTwo);
+
+        //modelThree.SetRagdollSkin(0);
+        //modelThree.SetModel(numThree);
+
+        //Instantiate(grenade, GrenadeSpawnOne.position, Quaternion.identity);
+
+        //Instantiate(grenade, GrenadeSpawnTwo.position, Quaternion.identity);
+
+        //Instantiate(grenade, GrenadeSpawnThree.position, Quaternion.identity);
+
+        //float timeTracker = 0.0f;
+
+        //while(timeTracker < 1.15f)
+        //{
+        //    timeTracker += Time.deltaTime;
+        //    yield return null;
+        //}
+
+        //timeTracker = 0.0f;
+
+        //Rigidbody modelRB1 = ragDollOne.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+        //Rigidbody modelRB2 = ragDollTwo.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+        //Rigidbody modelRB3 = ragDollThree.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Rigidbody>();
+
+        //floorPlane.SetActive(false);
+
+        //while (timeTracker < 0.85)
+        //{
+        //    timeTracker += Time.deltaTime;
+        //    ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+        //    ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+        //    ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(timeTracker * 7.5f);
+
+        //    yield return null;
+        //}
+
+        //ragDollOne.GetComponent<MainMenuDragAdd>().VelocityOff();
+        //ragDollTwo.GetComponent<MainMenuDragAdd>().VelocityOff();
+        //ragDollThree.GetComponent<MainMenuDragAdd>().VelocityOff();
+
+        //ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+        //ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+        //ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0.0f);
+
+        //ragDollOne.GetComponent<MainMenuDragAdd>().FreezePosition();
+        //ragDollTwo.GetComponent<MainMenuDragAdd>().FreezePosition();
+        //ragDollThree.GetComponent<MainMenuDragAdd>().FreezePosition();
+
+        //yield return null;
+
+        ////ragDollOne.GetComponent<MainMenuDragAdd>().SetDrag(0);
+        ////ragDollTwo.GetComponent<MainMenuDragAdd>().SetDrag(0);
+        ////ragDollThree.GetComponent<MainMenuDragAdd>().SetDrag(0);
+
+        //yield return null;
     }
 
 

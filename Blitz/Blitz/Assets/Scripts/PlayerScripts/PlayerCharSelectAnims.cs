@@ -36,6 +36,8 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
     private RotateSpineWithCamera rotateScript;
 
+    private PlayerBodyFSM player;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -61,6 +63,8 @@ public class PlayerCharSelectAnims : MonoBehaviour
         //rigTwo = transform.GetChild(3).GetComponent<Rig>();
         //rigThree = transform.GetChild(4).GetComponent<Rig>();
         playerEyeBehaviour = transform.root.GetComponent<PlayerEyeBehaviour>();
+
+        player = transform.root.GetComponent<PlayerBodyFSM>();
 
     }
 
@@ -145,8 +149,11 @@ public class PlayerCharSelectAnims : MonoBehaviour
 
     public void SetBones()
     {
-        isEnding = true;
-        anim.Play("Ready", 0, 1);
+        if(LockerRoomManager.instance.SkinIsAvailable(player.playerID))
+        {
+            isEnding = true;
+            anim.Play("Ready", 0, 1);
+        }
 
     }
 

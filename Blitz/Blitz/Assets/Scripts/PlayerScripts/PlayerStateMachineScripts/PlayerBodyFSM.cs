@@ -116,7 +116,7 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.addListener(Events.onPlayerRespawn, StartIFramesEvent);
         EventManager.instance.addListener(Events.onGameEnd, hideHandGrenade);
         camRotatePoint = transform.GetChild(3);
-        gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
+        gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09").transform;
         deathCoroutine = deathCoro(null);
         playerGun.gunVars.ammo[0] = int.MaxValue;
         playerGun.gunVars.ammo[1] = int.MaxValue;

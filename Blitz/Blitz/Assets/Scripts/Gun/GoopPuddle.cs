@@ -42,7 +42,7 @@ public class GoopPuddle : SpawnableObject
             lifetimeDmgTracker[id] += Time.deltaTime;
             if (lifetimeDmgTracker[id] > timeBetweenTriggers)
             {
-                other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, Vector3.up, Vector3.zero);
+                other.GetComponent<PlayerBodyFSM>().damagePlayer(damage, Owner, Vector3.zero, Vector3.zero);
                 lifetimeDmgTracker[id] = 0;
                 if (lifeTime <= 0) AudioManager.instance.PlaySound(AudioManager.AudioQueue.LAVA_DAMAGE);
             }
