@@ -242,17 +242,39 @@ public class PlayerUIHandler : MonoBehaviour
     /// </summary>
     public void PickCharacter()
     {
-        //player.enabled = true;
-        //Debug.Log("CHARACTER SELECTED");
-        crossHair.SetActive(true);
+        if(LockerRoomManager.instance.SkinIsAvailable(player.playerID))
+        {
+            //player.enabled = true;
+            //Debug.Log("CHARACTER SELECTED");
+            crossHair.SetActive(true);
 
-        Alive();
+            charTaken.SetActive(false);
 
-        disableStars();
+            Alive();
 
-        //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
+            disableStars();
 
-        characterChoice.SetActive(false);
+            //eventhandler.currentSelectedGameObject.transform.GetComponent<Button>().interactable = false;
+
+            characterChoice.SetActive(false);
+        }
+        else
+        {
+            StartCoroutine(takenTextCoRo());
+            Debug.Log("cant pick it");
+            // do taken text
+        }
+
+    }
+
+    private IEnumerator takenTextCoRo()
+    {
+        charTaken.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        charTaken.SetActive(false);
+
     }
 
     public void SetSprite(Sprite newSprite)

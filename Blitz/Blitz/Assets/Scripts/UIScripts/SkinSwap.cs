@@ -60,8 +60,10 @@ public class SkinSwap : MonoBehaviour
             IconMove(-inputValues.UIMoveInput.x);
         }
 
-        modelButton.interactable = LockerRoomManager.instance.SkinIsAvailable(player.playerID);
-        playerUIHandler.charTaken.SetActive(!LockerRoomManager.instance.SkinIsAvailable(player.playerID));
+
+        //modelButton.interactable = LockerRoomManager.instance.SkinIsAvailable(player.playerID);
+
+        //playerUIHandler.charTaken.SetActive(!LockerRoomManager.instance.SkinIsAvailable(player.playerID));
 
         if (gameObject == playerUIEvents.currentSelectedGameObject)
         {
@@ -124,7 +126,10 @@ public class SkinSwap : MonoBehaviour
 
     public void SetSprite()
     {
-        playerUIHandler.SetSprite(animalSprites[SkinNum]);
+        if(LockerRoomManager.instance.SkinIsAvailable(player.playerID))
+        {
+            playerUIHandler.SetSprite(animalSprites[SkinNum]);
+        }
     }
 
     public void setOrder()
