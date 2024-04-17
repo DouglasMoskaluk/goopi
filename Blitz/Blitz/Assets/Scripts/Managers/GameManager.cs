@@ -21,10 +21,17 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void StartGame()
     {
         //EventManager.instance.addListener(Events.onGameEnd, ResetManager);
         RoundManager.instance.startRound();
+
         
     }
 
