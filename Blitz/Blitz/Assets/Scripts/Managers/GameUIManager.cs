@@ -122,7 +122,15 @@ public class GameUIManager : MonoBehaviour
         float time = RoundManager.instance.getRoundTime();
         if (time <= 15) { roundTimer.color = Color.red; }
         else { roundTimer.color = Color.white; }
-        roundTimer.text = (time > 9) ? Mathf.CeilToInt(time).ToString() : "0" + Mathf.CeilToInt(time).ToString();
+        if (time < 10)
+        {
+            roundTimer.fontSize = 72;
+        }
+        else
+        {
+            roundTimer.fontSize = 52;
+        }
+        roundTimer.text = Mathf.FloorToInt(time).ToString();
         timerTickDelay += Time.deltaTime;
         if (time <=5 && timerTickDelay > 1) { 
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.TIMER_TICK);

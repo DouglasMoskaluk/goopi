@@ -79,6 +79,7 @@ public class PlayerBodyFSM : MonoBehaviour
     private int winDanceNum = -1;
 
     private IEnumerator deathCoroutine;
+    [SerializeField] private GameObject handGrenadeVisual;
 
     //private 
     #endregion
@@ -113,11 +114,17 @@ public class PlayerBodyFSM : MonoBehaviour
         EventManager.instance.addListener(Events.onGameEnd, resetFSM);
         EventManager.instance.addListener(Events.onPlayerDeath, resetFSMOnDeath);
         EventManager.instance.addListener(Events.onPlayerRespawn, StartIFramesEvent);
+        EventManager.instance.addListener(Events.onGameEnd, hideHandGrenade);
         camRotatePoint = transform.GetChild(3);
         gunPositionRef = transform.Find("Otter/OtterCharacter/Bone.26/Bone.10/Bone.09/Bone.11").transform;
         deathCoroutine = deathCoro(null);
         playerGun.gunVars.ammo[0] = int.MaxValue;
         playerGun.gunVars.ammo[1] = int.MaxValue;
+    }
+
+    public void hideHandGrenade(EventParams p = new EventParams())
+    {
+        handGrenadeVisual.SetActive(false);
     }
 
     public void SetGrenadeArcRendererLayer(int layer)

@@ -50,7 +50,7 @@ public class PlayerGrenadeArcRenderer : MonoBehaviour
         
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (render) RenderArc();  
     }
