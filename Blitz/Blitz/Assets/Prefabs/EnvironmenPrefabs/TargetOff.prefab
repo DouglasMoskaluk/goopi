@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6720824631488292356}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5923350123275048105}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Off
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8158178341919111841}
   - component: {fileID: 4794181815430073512}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3783621315805223704}
   - component: {fileID: 5533791813543469410}
   - component: {fileID: 6703822432223044149}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TargetOff
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -258,6 +258,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3289872143174671346, guid: ae2331e190efe684e9a46f661f7c80c9,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289872143174671346, guid: ae2331e190efe684e9a46f661f7c80c9,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
@@ -266,10 +271,20 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7099819598129816046, guid: ae2331e190efe684e9a46f661f7c80c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7320192161286322366, guid: ae2331e190efe684e9a46f661f7c80c9,
         type: 3}
       propertyPath: m_Name
       value: TargetOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320192161286322366, guid: ae2331e190efe684e9a46f661f7c80c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7320192161286322366, guid: ae2331e190efe684e9a46f661f7c80c9,
         type: 3}
@@ -419,6 +434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
         type: 3}
