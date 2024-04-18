@@ -710,7 +710,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (currentActionState != null) currentActionState.initState(getFSMInfo()); 
         if (currentMotionState != null) currentMotionState.initState(getFSMInfo());
         setUpGunRig(myGun);
-        uiHandler.SetReloadIndicatorColour(playerGun.bulletVars.tailColor);
+        //uiHandler.SetReloadIndicatorColour(playerGun.bulletVars.tailColor);
     }
 
     /// <summary>
