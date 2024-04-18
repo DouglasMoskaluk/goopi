@@ -391,11 +391,20 @@ public class PodiumManager : MonoBehaviour
             CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
             PlayerBodyFSM FSM = players[gameData[i].id].transform.GetComponent<PlayerBodyFSM>();
             chara.enabled = false;
+
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
 
             podiumRankNumbers[i].text = (gameData[i].rank + 1).ToString();
 
+            if(i == 0)
+            {
+                FSM.SetCrownVisibility(true);
+            }
+            else
+            {
+                FSM.SetCrownVisibility(false);
+            }
             
             FSM.SetPlayerSpineValue(0.5f);
             //FSM.SetCameraLookAt(playerLookAtPositions[i]);
@@ -417,7 +426,7 @@ public class PodiumManager : MonoBehaviour
             FSM.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
             FSM.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
             //disable crown
-            FSM.SetCrownVisibility(false);
+            //FSM.SetCrownVisibility(false);
 
             players[gameData[i].id].transform.position = podiumPositions[i].position;
             players[gameData[i].id].transform.rotation = podiumPositions[i].rotation;
@@ -425,6 +434,9 @@ public class PodiumManager : MonoBehaviour
             chara.enabled = true;
 
         }
+
+
+
     }
 
     public void SetWinnerText(string text)

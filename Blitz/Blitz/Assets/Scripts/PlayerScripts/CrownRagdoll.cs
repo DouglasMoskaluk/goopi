@@ -23,7 +23,8 @@ public class CrownRagdoll : MonoBehaviour
 
     public void DeathForce(Vector3 direction)
     {
-        rb.velocity += direction * 7.5f;
+        direction.Normalize();
+        rb.velocity += direction * 4f;
     }
 
     public void RemoveSelf(EventParams param = new EventParams())
