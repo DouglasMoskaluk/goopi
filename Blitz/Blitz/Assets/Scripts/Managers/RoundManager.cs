@@ -57,6 +57,11 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    public void activateJudgeMode()
+    {
+        roundNum = 5;
+    }
+
     public void ResetManager(EventParams par = new EventParams())
     {
         roundNum = 0;

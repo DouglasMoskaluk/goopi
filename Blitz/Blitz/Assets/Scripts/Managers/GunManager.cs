@@ -11,7 +11,7 @@ public class GunManager : MonoBehaviour
     private GameObject[] guns;
     int gunUsed;
     internal int GunUsed { get { return gunUsed; } }
-    private int[] gunOrder;
+    [SerializeField] private int[] gunOrder;
 
 
     // Start is called before the first frame update
@@ -25,7 +25,10 @@ public class GunManager : MonoBehaviour
         //RoundManager.instance.onRoundReset.AddListener(destroyParentedWorldObjects);
         //RoundManager.instance.onRoundReset.AddListener(changeGuns);
 
-        gunOrder = new int[GameManager.instance.maxRoundsPlayed];
+        gunOrder = new int[8];
+        gunOrder[7] = 5;
+        gunOrder[6] = (int)Gun.GunType.PLUNGER-1;
+        gunOrder[5] = (int)Gun.GunType.GOOP-1;
 
         EventManager.instance.addListener(Events.onRoundStart, destroyParentedWorldObjects);
         EventManager.instance.addListener(Events.onRoundStart, changeGuns);
@@ -52,7 +55,7 @@ public class GunManager : MonoBehaviour
     {
         gunUsed = (int)Gun.GunType.NERF - 1;
 
-        for (int i = 0; i < gunOrder.Length; i++)
+        for (int i = 0; i < GameManager.instance.maxRoundsPlayed - RoundManager.instance.getRoundNum(); i++)
         {
             gunOrder[i] = Random.Range(0, (int)Gun.GunType.BOOMSTICK-2);
             for (int j = 0; j < i; j++)
@@ -69,6 +72,12 @@ public class GunManager : MonoBehaviour
     internal int pickGun()
     {
         if (gunUsed != 5) return gunOrder[RoundManager.instance.getRoundNum()]; 
+        if (GameManager.instance.judgeMode)
+        {
+            if (Random.Range(0, 3) == 0) return (int)Gun.GunType.GOOP - 1;
+            if (Random.Range(0, 3) == 0) return (int)Gun.GunType.PLUNGER - 1;
+            return (int)Gun.GunType.ICE_XBOW - 1;
+        }
         return gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)]; 
     }
 
@@ -87,7 +96,7 @@ public class GunManager : MonoBehaviour
             gunUsed = 5;
             for (int i = 0; i < SplitScreenManager.instance.GetPlayers().Count; i++)
             {
-                int gunToUse = gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)];
+                int gunToUse = pickGun();//gunOrder[(int)Random.Range(0, RoundManager.instance.getRoundNum()-1)];
                 assignGun(i, gunToUse);
             }
         }

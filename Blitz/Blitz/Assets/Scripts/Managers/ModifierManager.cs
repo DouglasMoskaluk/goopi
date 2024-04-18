@@ -192,7 +192,7 @@ public class ModifierManager : MonoBehaviour
     void changeModifier(EventParams param = new EventParams())
     {
         //Resetting events
-        if (RoundManager.instance.getRoundNum() == 1 && !ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
+        if ((RoundManager.instance.getRoundNum() == 1 || GameManager.instance.judgeMode && RoundManager.instance.getRoundNum() == 6) && !ActiveEvents[(int)RoundModifierList.LOW_GRAVITY])
         {
             startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
             SetLowGravPostProcess(false);
@@ -228,7 +228,7 @@ public class ModifierManager : MonoBehaviour
         if (param.killed == 0) // the default attacker
         {
             int round = RoundManager.instance.getRoundNum() - 1;
-            if (modifiers[round] != -1)
+            if (modifiers[round] != -1 && modifiers[round] != -2)
             {
                 for (int i = 0; i < modifiers[round]; i++)
                 {
@@ -249,9 +249,12 @@ public class ModifierManager : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (modifiers[round] == -1)
             {
                 ActiveEvents[(int)predeterminedEvent] = true;
+            } else
+            {
+                ActiveEvents[(int)RoundModifierList.FLOOR_IS_LAVA] = true;
             }
         }
         else

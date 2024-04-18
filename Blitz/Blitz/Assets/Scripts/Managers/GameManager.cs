@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int maxRoundsPlayed = 4;
     [SerializeField] private float displayEndTextLength = 3f;
 
+    [SerializeField] internal bool judgeMode = false;
 
     private void Awake()
     {
