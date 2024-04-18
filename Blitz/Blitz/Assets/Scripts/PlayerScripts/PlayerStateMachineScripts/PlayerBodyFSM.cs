@@ -283,7 +283,7 @@ public class PlayerBodyFSM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             logMessage("Killing players");
-            death(Vector3.up, Vector3.zero);
+            death(Vector3.zero, Vector3.zero);
         }
 
         currentMotionState.transitionCheck();
