@@ -164,7 +164,11 @@ public class MainMenu : MonoBehaviour
         SceneTransitionManager.instance.switchScene(Scenes.Credits);
     }
 
-
+    public void onMMJudgeModeClicked()
+    {
+        SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
+        Debug.Log("Judge Mode Clicked");
+    }
 
     public void onMMQuitClicked()
     {
