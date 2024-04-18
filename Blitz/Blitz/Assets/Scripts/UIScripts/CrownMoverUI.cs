@@ -57,6 +57,7 @@ public class CrownMoverUI : MonoBehaviour
 
         rect.position = endPoint;
         rect.localScale = endScale;
+        AudioManager.instance.PlaySound(AudioManager.AudioQueue.CROWN_VICTORY_ARRIVAL);
 
     }
 
