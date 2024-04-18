@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press A\n to return to menu"
+  m_text: "Return To \nMain Menu"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41fc96e27d6cfdc43ba3f4b8bde357c7, type: 2}
   m_sharedMaterial: {fileID: 8558907447962112348, guid: 41fc96e27d6cfdc43ba3f4b8bde357c7,
@@ -5872,6 +5872,7 @@ GameObject:
   - component: {fileID: 969278476}
   - component: {fileID: 969278475}
   - component: {fileID: 969278478}
+  - component: {fileID: 969278479}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -5894,10 +5895,10 @@ RectTransform:
   - {fileID: 415666272}
   m_Father: {fileID: 1908939097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -627, y: 1038}
-  m_SizeDelta: {x: 647.9563, y: 142.1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 136, y: -42}
+  m_SizeDelta: {x: 647.9563, y: 142.09998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &969278475
 MonoBehaviour:
@@ -5920,11 +5921,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_NormalColor: {r: 1, g: 0.5882353, b: 0.1254902, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.67088705, g: 1, b: 0.5424528, a: 1}
-    m_SelectedColor: {r: 0.8400296, g: 1, b: 0.7783019, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 1, g: 0.5882353, b: 0.1254902, a: 1}
+    m_DisabledColor: {r: 0.745283, g: 0.43207365, b: 0.080153026, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6022,6 +6023,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!111 &969278479
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969278473}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 286c73bdf3e37a34183d81cb331aa91f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 286c73bdf3e37a34183d81cb331aa91f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &978771110
 PrefabInstance:
   m_ObjectHideFlags: 0
