@@ -104,7 +104,7 @@ public class RoundManager : MonoBehaviour
 
         yield return GameUIManager.instance.spinGunSelection(GunManager.instance.GunUsed);
 
-        if (roundNum != 3)//round 4
+        if (roundNum != 3 && roundNum != 7)//round 4
         {
             float transitionMotionAnimTime = GameUIManager.instance.playGunTutorialMotion();
             yield return new WaitForSecondsRealtime(transitionMotionAnimTime);
