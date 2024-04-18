@@ -46,6 +46,8 @@ public class PodiumManager : MonoBehaviour
     [SerializeField] private Confetti confetti;
     [SerializeField] private VisualEffect fireworks;
 
+    AudioSource cheer;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -130,6 +132,8 @@ public class PodiumManager : MonoBehaviour
         anim.Play("openCurtains");
         //particles
 
+        cheer = AudioManager.instance.PlaySound(AudioManager.AudioQueue.PODIUM_APPLAUSE);
+        cheer.loop = true;
 
 
         yield return new WaitForSecondsRealtime(1f);//wait for open curtains
@@ -451,6 +455,9 @@ public class PodiumManager : MonoBehaviour
 
     public void OnExitButtonPressed()
     {
+        cheer.Stop();
+        cheer.loop = false;
+        cheer = null;
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.BUTTON_CANCEL);
         GunManager.instance.destroyParentedWorldObjects();
         //SplitScreenManager.instance.RemoveAllPlayers();
