@@ -118,6 +118,7 @@ public class RoundManager : MonoBehaviour
         {
             ModifierManager.instance.showModifierUI();
             yield return new WaitForSecondsRealtime(5.5f);
+            if (ModifierManager.instance.ActiveEvents[(int)ModifierManager.RoundModifierList.RANDOM_GUNS]) yield return new WaitForSeconds(2.92f);
             GameUIManager.instance.cutoutFadeToBlackInstant();
             ModifierManager.instance.hideModifierUI();
         } else
