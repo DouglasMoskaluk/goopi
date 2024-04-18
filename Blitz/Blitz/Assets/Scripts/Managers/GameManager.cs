@@ -74,6 +74,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    void disableJudgeMode()
+    {
+        if (judgeMode)
+        {
+            judgeMode = false;
+            GameManager.instance.maxRoundsPlayed = 4;
+        }
+    }
+
     /// <summary>
     /// Procedure for what happens when the game ends
     /// </summary>
@@ -110,8 +120,8 @@ public class GameManager : MonoBehaviour
         GunManager.instance.destroyParentedWorldObjects();
         SplitScreenManager.instance.DisableJoining();
 
-        judgeMode = false;
-        
+        disableJudgeMode();
+
         //PodiumManager.instance.SetScores(playersRoundsWonCount);
         PodiumManager.instance.SetWinnerText(winnersString);
         ResetManager();
