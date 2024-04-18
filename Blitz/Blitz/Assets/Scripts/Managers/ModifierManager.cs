@@ -97,7 +97,7 @@ public class ModifierManager : MonoBehaviour
 
 
         //if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) && RoundManager.instance.getRoundNum() - 1 >= 0) Debug.Log((RoundManager.instance.getRoundNum() - 1 < modifiers.Length) + " && " + (RoundManager.instance.getRoundNum() - 1 >= 0) + " && (" + (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1) + " || " + (modifiers[RoundManager.instance.getRoundNum() - 1] == -1) + ")");
-        if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length && RoundManager.instance.getRoundNum() - 1 >= 0) && (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1 || modifiers[RoundManager.instance.getRoundNum() - 1] == -1))
+        if ((RoundManager.instance.getRoundNum() - 1 < modifiers.Length && RoundManager.instance.getRoundNum() - 1 >= 0) && (modifiers[RoundManager.instance.getRoundNum() - 1] >= 1 || modifiers[RoundManager.instance.getRoundNum() - 1] == -1 || modifiers[RoundManager.instance.getRoundNum() - 1] == -2))
         {
             int shownUI = 0;
             Transform[] uiElements = new Transform[2];
