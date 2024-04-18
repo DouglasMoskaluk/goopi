@@ -15,6 +15,7 @@ public class PlayAnimation : MonoBehaviour
         if (other.tag == "Player")
         {
             particles.Play();
+            AudioManager.instance.PlaySound(AudioManager.AudioQueue.BASKETBALL_GOAL);
         }
     }
 
