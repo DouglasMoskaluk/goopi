@@ -41,7 +41,7 @@ public class Credits : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        Debug.Log("Switching");
+        //Debug.Log("Switching");
         for (int i=0; i<ragdolls.Length; i++)
         {
             if (ragdolls[i] != null)
@@ -176,7 +176,7 @@ public class Credits : MonoBehaviour
         }
         //Time.timeScale = 1;
         freezeCR = null;
-        Debug.Log("This game needs some animal 4 in it.");
+        //Debug.Log("This game needs some animal 4 in it.");
     }
 }
 

@@ -43,7 +43,7 @@ public class ObjectPool : MonoBehaviour
 
         if (willGrow)
         {
-            Debug.Log("New object added to the pool for " + poolableObject.name + ", for a total count of "+pooledObjects.Count);
+            //Debug.Log("New object added to the pool for " + poolableObject.name + ", for a total count of "+pooledObjects.Count);
             GameObject obj = Instantiate(poolableObject);
             obj.SetActive(false);
             obj.transform.SetParent(transform);

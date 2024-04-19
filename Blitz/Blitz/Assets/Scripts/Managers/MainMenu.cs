@@ -176,7 +176,7 @@ public class MainMenu : MonoBehaviour
         RoundManager.instance.activateJudgeMode();
         GameManager.instance.maxRoundsPlayed = 8;
         SceneTransitionManager.instance.switchScene(Scenes.LockerRoom);
-        Debug.Log("Judge Mode Clicked");
+        //Debug.Log("Judge Mode Clicked");
     }
 
     public void onMMQuitClicked()

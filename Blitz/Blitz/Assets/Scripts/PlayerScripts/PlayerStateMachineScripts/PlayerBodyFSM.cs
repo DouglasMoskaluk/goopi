@@ -487,7 +487,7 @@ public class PlayerBodyFSM : MonoBehaviour
     /// </summary>
     private void death(Vector3 deathDirection, Vector3 deathPos)
     {
-        Debug.Log("Death Function called.");
+        //Debug.Log("Death Function called.");
         StopCoroutine(deathCoroutine);
         //Debug.Log("This player is dying. Previously " + deathCheck);
         //ragdollDeathStart();

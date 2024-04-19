@@ -60,7 +60,7 @@ public class Crate : MonoBehaviour
         if (collision.transform.tag == "Player" && rb.velocity.sqrMagnitude > velocityThreshold * velocityThreshold && dmg)
         {
             int dmg = (int)Mathf.Floor(damage * damageScaler.Evaluate((rb.velocity.sqrMagnitude - velocityThreshold * velocityThreshold) / (float)(velocityMaxDmgd * velocityMaxDmgd - velocityThreshold * velocityThreshold)));
-            Debug.Log(dmg+ " damage, speed: " + rb.velocity.magnitude);
+            //Debug.Log(dmg+ " damage, speed: " + rb.velocity.magnitude);
             collision.transform.GetComponent<PlayerBodyFSM>().damagePlayer(dmg, lastImpulse, rb.velocity, transform.position);
         }
     }

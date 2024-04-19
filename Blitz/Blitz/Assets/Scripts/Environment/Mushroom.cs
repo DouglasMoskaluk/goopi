@@ -40,7 +40,7 @@ public class Mushroom : MonoBehaviour
         Transform newPoint = transform.GetChild(0);
 
         Vector3 direction = newPoint.position - transform.position;
-        Debug.Log(direction);
+        //Debug.Log(direction);
         //direction.Normalize();
 
         player.addKnockBack(direction * 20f); ;

@@ -12,6 +12,6 @@ public class FireworkAudioPlayer : VFXOutputEventAbstractHandler
     public override void OnVFXOutputEvent(VFXEventAttribute eventAttribute)
     {
         AudioManager.instance.PlaySound(AudioManager.AudioQueue.FIREWORK_BOOM);
-        Debug.Log("bouttta");
+        //Debug.Log("bouttta");
     }
 }

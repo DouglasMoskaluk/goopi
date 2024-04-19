@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour
                 if ((hit.collider.CompareTag("Map") || hit.collider.CompareTag("Target") || hit.collider.CompareTag("Crate") || hit.collider.CompareTag("Player") || hit.collider.CompareTag("Dome")))
                 {
                     //Debug.Log("Staying trigger");//May need debug.logs...
-                    Debug.Log("Trigger"); 
+                    //Debug.Log("Trigger"); 
                     collide(hit);
                     collideThisFrame = true;
                 }
@@ -231,7 +231,7 @@ public class Bullet : MonoBehaviour
             {
                 if(!bulletVars.spawnOnContact[i].GetComponent<BulletDecal>())
                 {
-                    Debug.Log(hit.point);
+                    //Debug.Log(hit.point);
                     Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0);
                     GameObject go = Instantiate(bulletVars.spawnOnContact[i], spawnPos, Quaternion.identity, transform.parent);
                     if (bulletVars.attachPlayer)

@@ -263,7 +263,7 @@ public class PlayerUIHandler : MonoBehaviour
         else
         {
             StartCoroutine(takenTextCoRo());
-            Debug.Log("cant pick it");
+            //Debug.Log("cant pick it");
             // do taken text
         }
 
