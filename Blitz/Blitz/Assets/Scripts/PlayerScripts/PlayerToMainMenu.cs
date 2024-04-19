@@ -69,6 +69,7 @@ public class PlayerToMainMenu : MonoBehaviour
                 RoundManager.instance.ResetPostProcess();
                 SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
                 AudioManager.instance.TransitionTrack("MainMenu");
+                Time.timeScale = 1f;
                 yield break;
             }
 

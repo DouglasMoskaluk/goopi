@@ -127,6 +127,8 @@ public class PlayerUIHandler : MonoBehaviour
 
     private IEnumerator killCounterCoRo;
 
+    [SerializeField] private VisualEffect healing;
+
     private Material healed;
     private Material nerf;
     private Material impulse;
@@ -422,6 +424,7 @@ public class PlayerUIHandler : MonoBehaviour
         impulsePickupUI.SetActive(false);
         killCount.transform.gameObject.SetActive(false);
         killIcon.transform.gameObject.SetActive(false);
+        healing.Stop();
 
         for (int i=0; i<SplitScreenManager.instance.GetPlayerCount(); i++)
         {
@@ -592,6 +595,9 @@ public class PlayerUIHandler : MonoBehaviour
             healed = Instantiate(vignetteImage.material);
             vignetteImage.material = healed;
         }
+
+        healing.Stop();
+        healing.Play();
 
 
         healed.SetFloat("_VignetteRadiusPower", 0);

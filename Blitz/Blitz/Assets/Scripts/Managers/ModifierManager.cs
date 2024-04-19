@@ -205,14 +205,22 @@ public class ModifierManager : MonoBehaviour
         {
             ActiveEvents[i] = false;
         }
-        foreach (moveOnEvent move in vars.eventMovables)
+
+        if (vars != null)
         {
-            move.Reset();
+            foreach (moveOnEvent move in vars.eventMovables)
+            {
+                move.Reset();
+            }
         }
-        for (int i = 0; i < vars.eventActivateables.Length; i++)
+        if(vars != null)
         {
-            vars.eventActivateables[i].enable.SetActive(false);
+            for (int i = 0; i < vars.eventActivateables.Length; i++)
+            {
+                vars.eventActivateables[i].enable.SetActive(false);
+            }
         }
+
     }
 
     void changeModifier(EventParams param = new EventParams())
