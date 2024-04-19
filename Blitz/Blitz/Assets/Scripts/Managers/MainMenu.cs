@@ -88,6 +88,10 @@ public class MainMenu : MonoBehaviour
 
     private bool isSettings = false;
 
+    [SerializeField]
+    private Animator anim3d;
+
+
     private void Update()
     {
         if(Input.anyKeyDown && canInteract)
@@ -95,16 +99,17 @@ public class MainMenu : MonoBehaviour
             canInteract = false;
             MenuObject.transform.GetComponent<Animation>().Play("SplashToStartAnimation");
             AudioManager.instance.TransitionTrack("MenuLoop");
+            anim3d.Play("Base Layer.startAnimOne");
             interactText.SetActive(false);
         }
 
 
 
-        if(fullyInteract) //now we do some wacky shit
-        {
-            fullyInteract = false;
-            StartCoroutine(ragDollStuff());
-        }
+        //if(fullyInteract) //now we do some wacky shit
+        //{
+        //    fullyInteract = false;
+            
+        //}
 
         if(eventSys.currentSelectedGameObject == null && isSettings == false)
         {
