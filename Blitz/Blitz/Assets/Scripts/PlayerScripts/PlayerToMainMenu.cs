@@ -64,6 +64,7 @@ public class PlayerToMainMenu : MonoBehaviour
                 SplitScreenManager.instance.DisableJoining();
                 GameManager.instance.ResetManager();
                 RoundManager.instance.ResetManager();
+                ModifierManager.instance.ResetModifiers();
                 GameUIManager.instance.RemoveAllCrownUI();
                 RoundManager.instance.ResetPostProcess();
                 SceneTransitionManager.instance.switchScene(Scenes.MainMenu);

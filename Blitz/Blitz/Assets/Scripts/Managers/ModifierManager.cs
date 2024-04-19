@@ -189,6 +189,32 @@ public class ModifierManager : MonoBehaviour
         }
     }
 
+    public void ResetModifiers()
+    {
+            startGravity = SplitScreenManager.instance.GetPlayers()[0].GetComponent<FSMVariableHolder>().GRAVITY;
+            SetLowGravPostProcess(false);
+
+            EventManager.instance.removeListener(Events.onPlayerDeath, RandomGunPlayerDeath);
+
+            if (vars != null) vars.toggleLava(false);
+            StopCoroutine("lavaWarning");
+
+            if (vars != null) vars.toggleRain(false);
+
+        for (int i = 0; i < ActiveEvents.Length; i++)
+        {
+            ActiveEvents[i] = false;
+        }
+        foreach (moveOnEvent move in vars.eventMovables)
+        {
+            move.Reset();
+        }
+        for (int i = 0; i < vars.eventActivateables.Length; i++)
+        {
+            vars.eventActivateables[i].enable.SetActive(false);
+        }
+    }
+
     void changeModifier(EventParams param = new EventParams())
     {
         //Resetting events
