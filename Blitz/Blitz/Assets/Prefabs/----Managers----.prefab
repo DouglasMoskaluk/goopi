@@ -831,6 +831,7 @@ MonoBehaviour:
   - {fileID: 3479398194430589949, guid: 8e17903e55f3f814b818cc233e88a0c1, type: 3}
   - {fileID: 3479398194430589949, guid: 92a825a12de3646499047fbc4bcf02b1, type: 3}
   - {fileID: 3479398194430589949, guid: 572570e57293b07439ea490610f592ab, type: 3}
+  gunOrder: 
 --- !u!1 &1298106336919383219
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,7 +4890,7 @@ MonoBehaviour:
   m_NotificationBehavior: 3
   m_MaxPlayerCount: 4
   m_AllowJoining: 0
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4899,13 +4900,125 @@ MonoBehaviour:
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: c2ce1603-1d50-4502-8a8a-f5b51efcf748
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings: []
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 3ada9318-9a47-4650-a1d5-813f2a0c07fe
+        m_Path: <Gamepad>/buttonSouth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 2fa82b32-0b60-412f-bdf0-2f1ae91e5d23
+        m_Path: <Gamepad>/buttonEast
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: deb13b96-b0ad-4367-af9c-a86a10bc1c9d
+        m_Path: <Gamepad>/buttonNorth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 9afcb544-786b-4575-91a5-7abe60ee5667
+        m_Path: <Gamepad>/buttonWest
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 8e50c3ba-c0ff-49e7-a5ce-1e6c686b7a19
+        m_Path: <Gamepad>/dpad
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 1f81e0b5-ed45-4439-a048-e022e68b0140
+        m_Path: <Gamepad>/leftShoulder
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 6fe68c39-19b5-47ec-a014-aecb8be36c80
+        m_Path: <Gamepad>/leftTrigger
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 8470834e-bd91-460e-ad82-051df9d0ab50
+        m_Path: <Gamepad>/rightShoulder
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: ac6bb292-295f-4e82-8038-eaf371460a04
+        m_Path: <Gamepad>/rightTrigger
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 17ccf019-878b-447f-b1a9-c81ecc4dc6c6
+        m_Path: <Gamepad>/select
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: b75dc47e-28f4-402d-811f-61270cba694a
+        m_Path: <Gamepad>/start
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: fc196e57-6e2f-4469-b0e1-5b216a3df23d
+        m_Path: <Gamepad>/rightStickPress
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 4d822a78-b946-4233-8904-56ea27dec8a9
+        m_Path: <Gamepad>/leftStickPress
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 2b4e3c99-b3a5-4746-a4ed-76f303937daa
+        m_Path: <Keyboard>/#(0)
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_PlayerPrefab: {fileID: 2403129680760932734, guid: 7f806ddd4b13dd646a084a487bec0f32,
@@ -5809,6 +5922,7 @@ MonoBehaviour:
   playersTotalKillCount: 00000000000000000000000000000000
   maxRoundsPlayed: 4
   displayEndTextLength: 3
+  judgeMode: 0
 --- !u!1 &7406826187475039715
 GameObject:
   m_ObjectHideFlags: 0
