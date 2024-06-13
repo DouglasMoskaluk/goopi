@@ -311,13 +311,14 @@ public class LockerRoomManager : MonoBehaviour
 
     private void SendReadySignal()//call when all players are ready
     {
+        GameUIManager.instance.SetCrownSpots();
         StartCoroutine(LobbyReady());
         //GameManager.instance.ReadyArena();
     }
 
     private bool CheckReadyStatus()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < SplitScreenManager.instance.GetPlayerCount(); i++)
         {
             if (readyFlags[i] == false) return false;
         }

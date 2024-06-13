@@ -6725,7 +6725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -480, y: 263}
+  m_AnchoredPosition: {x: 0, y: 270}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2560241744192430292
@@ -10676,12 +10676,7 @@ MonoBehaviour:
   nerfPickupUI: {fileID: 1424693884591171107}
   impulsePickupUI: {fileID: 9052985035338350885}
   hammerUI: {fileID: 669452660683444414}
-  scaleObject: {fileID: 0}
-  UILocations:
-  - {x: -480, y: 270, z: 0}
-  - {x: 480, y: 270, z: 0}
-  - {x: -480, y: -270, z: 0}
-  - {x: 480, y: -270, z: 0}
+  scaleObject: {fileID: 2528489590404040382}
   playerCam: {fileID: 0}
   crossHair: {fileID: 6363553135422697425}
   charButtons:
@@ -10698,7 +10693,6 @@ MonoBehaviour:
   animalHeadSprite: {fileID: 0}
   reloadingIcon: {fileID: 5132483777841456674}
   TNTRainAnim: {fileID: 4767077010258634847}
-  healing: {fileID: 3173188615274242135}
   vignetteRadiusMaxValue: 0.8
   vignetteFadeInTime: 0.15
   vignetteFadeOutTime: 0.3
@@ -10872,7 +10866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288513474485805609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0052237906, y: -0.072690435, z: 0.0003807321, w: 0.9973408}
+  m_LocalRotation: {x: 0.00522379, y: -0.072690435, z: 0.00038073206, w: 0.9973408}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15419,7 +15413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779264858820055448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
   m_LocalPosition: {x: 1.8553548, y: 2.0993443, z: -5.763844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15455,9 +15449,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.5
     width: 1
-    height: 1
+    height: 0.5
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -20049,7 +20043,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627245817535403000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023316147, y: -0.07267154, z: 0.0016993793, w: 0.99708194}
+  m_LocalRotation: {x: 0.023316147, y: -0.07267158, z: 0.0016993801, w: 0.99708194}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

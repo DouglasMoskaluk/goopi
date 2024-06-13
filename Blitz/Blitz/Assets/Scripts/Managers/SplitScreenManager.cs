@@ -9,7 +9,7 @@ using TMPro.EditorUtilities;
 
 public class SplitScreenManager : MonoBehaviour
 {
-    private List<PlayerInput> players = new List<PlayerInput>();
+    List<PlayerInput> players = new List<PlayerInput>();
 
     [SerializeField]
     private List<LayerMask> playerLayers;
@@ -20,6 +20,11 @@ public class SplitScreenManager : MonoBehaviour
     private PlayerInputManager inputManager;
 
     public static SplitScreenManager instance;
+
+    private List<Camera> playerCameras = new List<Camera>();
+
+    [SerializeField]
+    private GameObject ThreePlayerHideObject;
 
     private void Awake()
     {
@@ -102,6 +107,8 @@ public class SplitScreenManager : MonoBehaviour
         //add the layer
         player.transform.GetChild(0).GetChild(0).GetComponent<Camera>().cullingMask |= 1 << layerToAdd;
 
+        SplitscreenChange(player.transform.GetChild(0).GetChild(0).GetComponent<Camera>());
+
         player.transform.GetComponentInChildren<PlayerCamInput>().lookValue = player.actions.FindAction("Look");
 
         LockerRoomManager.instance.DisableJoinText(players.Count - 1);
@@ -119,6 +126,47 @@ public class SplitScreenManager : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void SplitscreenChange(Camera newCam)
+    {
+        playerCameras.Add(newCam);
+
+        if(playerCameras.Count == 2)
+        {
+            playerCameras[0].rect = new Rect(0, 0.5f, 1, 0.5f);
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(0,270));
+            playerCameras[1].rect = new Rect(0, 0, 1, 0.5f);
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(0, -270));
+        }
+        else if(playerCameras.Count == 3)
+        {
+            ThreePlayerHideObject.SetActive(true);
+
+            playerCameras[0].rect = new Rect(0, .5f, 0.5f, 0.5f);
+            playerCameras[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+            playerCameras[2].rect = new Rect(0, 0, 0.5f, 0.5f);
+
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, 270));
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, 270));
+            players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, -270));
+        }
+        else if(playerCameras.Count == 4)
+        {
+            ThreePlayerHideObject.SetActive(false);
+
+            playerCameras[0].rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+            playerCameras[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+            playerCameras[2].rect = new Rect(0, 0, 0.5f, 0.5f);
+            playerCameras[3].rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, 270));
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, 270));
+            players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, -270));
+            players[3].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, -270));
+
+        }
+
     }
 
     public List<PlayerInput> GetPlayers()

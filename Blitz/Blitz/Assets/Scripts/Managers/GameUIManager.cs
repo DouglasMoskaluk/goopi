@@ -31,6 +31,10 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private RectTransform[] crownSpots;
 
+    [SerializeField] private RectTransform[] TwoPlayerCrownSpots;
+
+    [SerializeField] private RectTransform[] FourPlayerCrownSpots;
+
     private List<GameObject> spawnedCrownObjects;
 
     private float timerTickDelay = 0;
@@ -71,6 +75,20 @@ public class GameUIManager : MonoBehaviour
         crownObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         crownObject.SetActive(true);
         crownAnim.Play("CrownScale");
+    }
+
+    public void SetCrownSpots()
+    {
+        if(SplitScreenManager.instance.GetPlayerCount() > 2)
+        {
+            crownSpots[0] = FourPlayerCrownSpots[0];
+            crownSpots[1] = FourPlayerCrownSpots[1];
+        }
+        else
+        {
+            crownSpots[0] = TwoPlayerCrownSpots[0];
+            crownSpots[1] = TwoPlayerCrownSpots[1];
+        }
     }
 
     public void RoundVictoryCrownFly(List<int> winners)

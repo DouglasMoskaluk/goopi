@@ -76,11 +76,7 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField]
     private GameObject hammerUI;
 
-    [HideInInspector]
     public GameObject scaleObject;
-
-    [SerializeField]
-    private Vector3[] UILocations;
 
     [SerializeField]
     private PlayerCamInput playerCam;
@@ -150,9 +146,9 @@ public class PlayerUIHandler : MonoBehaviour
         //lowHealthUI = transform.GetChild(1).gameObject;
         //damagedUI = transform.GetChild(2).gameObject;
 
-        scaleObject = transform.GetChild(0).gameObject;
+        //scaleObject = transform.GetChild(0).gameObject;
 
-        scaleObject.transform.localPosition = UILocations[playerID];
+        //scaleObject.transform.localPosition = UILocations[playerID];
         hitMarkerCoroutine = ShowHitMarker();
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
@@ -174,6 +170,11 @@ public class PlayerUIHandler : MonoBehaviour
         //vignetteTotalTime /= 2;
     }
 
+    public void SetUILocation(Vector2 newPos)
+    {
+        scaleObject.GetComponent<RectTransform>().localPosition = newPos;
+    }
+
     public void SetReloadIndicatorColour(Color c)
     {
         reloadingIcon.color = c;
@@ -181,7 +182,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     private void Initialize()
     {
-        scaleObject.transform.localPosition = UILocations[playerID];
+        //scaleObject.transform.localPosition = UILocations[playerID];
         hitMarkerCoroutine = ShowHitMarker();
         hitMarker.SetActive(false);
         killMarker.SetActive(false);
