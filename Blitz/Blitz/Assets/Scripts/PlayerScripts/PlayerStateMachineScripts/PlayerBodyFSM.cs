@@ -280,7 +280,7 @@ public class PlayerBodyFSM : MonoBehaviour
         currentActionState.stateUpdate();
 
         //test respawning
-        if (Input.GetKeyDown(KeyCode.K))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.K))
         {
             logMessage("Killing players");
             death(Vector3.zero, Vector3.zero);

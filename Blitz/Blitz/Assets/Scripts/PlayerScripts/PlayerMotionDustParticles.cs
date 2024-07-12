@@ -20,7 +20,7 @@ public class PlayerMotionDustParticles : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.H))
         {
             SetParticleStatus(DustParticleStatus.Stopped);
         }

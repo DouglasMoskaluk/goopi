@@ -93,7 +93,7 @@ public class LockerRoomManager : MonoBehaviour
     private void Update()
     {
         //DEBUGGING PURPOSES
-        if (Input.GetKeyDown(KeyCode.U))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.U))
         {
             SendReadySignal();
         }

@@ -142,7 +142,7 @@ public class ModifierManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.M))
         {
             changeModifier(new EventParams(1));
         }
@@ -380,7 +380,7 @@ public class ModifierManager : MonoBehaviour
             yield return null;
             move.currentTime += Time.deltaTime;
             move.objectMoving.position = move.startPos + Vector3.up * Mathf.Lerp(0, move.height, (float)move.currentTime / move.timeTaken);
-            if (Input.GetKeyDown(KeyCode.M))
+            if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.M))
             {
                 move.objectMoving.position = move.startPos;
                 break;

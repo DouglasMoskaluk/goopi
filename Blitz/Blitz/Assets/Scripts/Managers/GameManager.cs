@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public bool ALLOW_KEYBOARD_DEVKEYS = false;
+
     [SerializeField] private int[] playersRoundsWonCount = new int[4];
     [SerializeField] private int[] playersTotalKillCount = new int[4];
     public int maxRoundsPlayed = 4;

@@ -51,7 +51,7 @@ public class RoundManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.N))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKey(KeyCode.N))
         {
             roundNum = 4;
         }

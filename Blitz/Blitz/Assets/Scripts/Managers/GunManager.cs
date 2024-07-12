@@ -37,7 +37,7 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.Y))
         {
             nextGun();
         }
