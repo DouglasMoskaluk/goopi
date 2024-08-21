@@ -68,6 +68,7 @@ public class PlayerToMainMenu : MonoBehaviour
                 GameUIManager.instance.RemoveAllCrownUI();
                 RoundManager.instance.ResetPostProcess();
                 SceneTransitionManager.instance.switchScene(Scenes.MainMenu);
+                SplitScreenManager.instance.Hide3PersonBlackObject();
                 AudioManager.instance.TransitionTrack("MainMenu");
                 Time.timeScale = 1f;
                 yield break;

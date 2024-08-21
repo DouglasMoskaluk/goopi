@@ -533,10 +533,24 @@ public class PlayerUIHandler : MonoBehaviour
     //Update with new HD2 inspired killfeed
     IEnumerator ShowKillMarker()
     {
+        hitMarker.SetActive(false);
         killMarker.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+
+        float timer = 0;
+        float ratio;
+        Image img = killMarker.GetComponent<Image>();
+        while(timer < 0.5f)
+        {
+            timer += Time.deltaTime;
+            ratio = timer / 0.5f;
+
+            img.color = new Color(1, 1, 1, 1 - ratio);
+
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.5f);
         killMarker.SetActive(false);
-        yield return null;
     }
 
     IEnumerator ShowHitMarker()

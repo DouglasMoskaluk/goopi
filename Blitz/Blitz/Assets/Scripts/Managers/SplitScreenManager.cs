@@ -128,6 +128,11 @@ public class SplitScreenManager : MonoBehaviour
         return -1;
     }
 
+    public void Hide3PersonBlackObject()
+    {
+        ThreePlayerHideObject.SetActive(false);
+    }
+
     public void SplitscreenChange(Camera newCam)
     {
         playerCameras.Add(newCam);
