@@ -113,6 +113,10 @@ public class SplitScreenManager : MonoBehaviour
 
         LockerRoomManager.instance.DisableJoinText(players.Count - 1);
         LockerRoomManager.instance.InitializePlayerRoom(players.Count - 1, player.transform.gameObject);
+        if(players.Count > 2)
+        {
+            LockerRoomManager.instance.SetReadyText();
+        }
 
     }
 

@@ -85,6 +85,12 @@ public class LockerRoomManager : MonoBehaviour
 
     }
 
+    public void SetReadyText()
+    {
+        readyTexts[0].transform.localPosition = new Vector3(-480, 270, 0);
+        readyTexts[1].transform.localPosition = new Vector3(480, 270, 0);
+    }
+
     public void SetPlayerModelSkinNumber(int playerNum, int modelNum, int skinNum, int order)
     {
         playerModelSkinNumber[playerNum] = new Vector3(modelNum, skinNum, order);
