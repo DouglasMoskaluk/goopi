@@ -130,6 +130,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        SplitScreenManager.instance.clearPlayerCams();
         //gameObjects = new List<GameObject>();
     }
 

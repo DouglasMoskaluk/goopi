@@ -62,6 +62,7 @@ public class PodiumManager : MonoBehaviour
 
     private void Start()
     {
+        SplitScreenManager.instance.Hide3PersonBlackObject();
         //StartPodiumSequence();// not supposed to be here
     }
 

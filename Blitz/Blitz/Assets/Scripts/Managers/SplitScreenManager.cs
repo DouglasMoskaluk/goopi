@@ -31,7 +31,6 @@ public class SplitScreenManager : MonoBehaviour
         if (instance == null) instance = this; 
         inputManager = FindObjectOfType<PlayerInputManager>();
         inputManager.onPlayerJoined += AddPlayer;
-
     }
 
 
@@ -135,6 +134,11 @@ public class SplitScreenManager : MonoBehaviour
     public void Hide3PersonBlackObject()
     {
         ThreePlayerHideObject.SetActive(false);
+    }
+
+    public void clearPlayerCams()
+    {
+        playerCameras.Clear();
     }
 
     public void SplitscreenChange(Camera newCam)
