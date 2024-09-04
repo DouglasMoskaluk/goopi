@@ -149,8 +149,11 @@ public class SplitScreenManager : MonoBehaviour
         {
             playerCameras[0].rect = new Rect(0, 0.5f, 1, 0.5f);
             players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(0,270));
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(2);
             playerCameras[1].rect = new Rect(0, 0, 1, 0.5f);
             players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(0, -270));
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(2);
+
         }
         else if(playerCameras.Count == 3)
         {
@@ -163,6 +166,11 @@ public class SplitScreenManager : MonoBehaviour
             players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, 270));
             players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, 270));
             players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, -270));
+
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+            players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+
         }
         else if(playerCameras.Count == 4)
         {
@@ -177,6 +185,12 @@ public class SplitScreenManager : MonoBehaviour
             players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, 270));
             players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(-480, -270));
             players[3].transform.GetComponent<PlayerBodyFSM>().playerUI.SetUILocation(new Vector2(480, -270));
+
+            players[0].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+            players[1].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+            players[2].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+            players[3].transform.GetComponent<PlayerBodyFSM>().playerUI.SetScale(1);
+
 
         }
 

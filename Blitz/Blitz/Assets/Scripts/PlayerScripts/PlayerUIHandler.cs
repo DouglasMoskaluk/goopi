@@ -165,6 +165,10 @@ public class PlayerUIHandler : MonoBehaviour
 
         killCounterCoRo = showKillCount();
 
+        //set scale for 2 player here
+        //check p
+
+
         StartCoroutine(setCharButton());
 
         //vignetteTotalTime /= 2;
@@ -173,6 +177,15 @@ public class PlayerUIHandler : MonoBehaviour
     public void SetUILocation(Vector2 newPos)
     {
         scaleObject.GetComponent<RectTransform>().localPosition = newPos;
+    }
+
+    public void SetScale(float scale)
+    {
+        lowHealthUI.transform.localScale = new Vector3(scale, 1, 1);
+        damagedUI.transform.localScale = new Vector3(scale, 1, 1);
+        healingUI.transform.localScale = new Vector3(scale, 1, 1);
+        nerfPickupUI.transform.localScale = new Vector3(scale, 1, 1);
+        impulsePickupUI.transform.localScale = new Vector3(scale, 1, 1);
     }
 
     public void SetReloadIndicatorColour(Color c)
