@@ -106,10 +106,12 @@ public class PlayerKnockBackMotionState : PlayerBasicMotionState
             GameObject smoke = VFXSpawner.instance.spawnObject(VFXSpawnerObjects.smoke);
             smoke.transform.position = playerTransform.position + Vector3.up * 0.02f;
             smoke.GetComponent<SmokeEffectSetUp>().setSmokeAmountAndSize(Mathf.CeilToInt(32 * timePercent), timePercent);
+            FSM.beingImpulseGrenaded = false;
             FSM.transitionState(PlayerMotionStates.Walk);
         }
         else if ((controller.collisionFlags & CollisionFlags.Sides) != 0)
         {
+            FSM.beingImpulseGrenaded = false;
             FSM.transitionState(PlayerMotionStates.Walk);
         }
     }

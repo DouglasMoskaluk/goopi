@@ -97,6 +97,7 @@ public class ImpulseGrenade : SpawnableObject
                 Vector3 dir = ((hitColliders[i].transform.position + Vector3.up * 2) - transform.position).normalized;//the Vector3.up will have to be changed to corrolate with the players height roughly, getting direction to head gives more upwards force which i think feels better ~jordan
                 PlayerBodyFSM fsm = hitColliders[i].GetComponent<PlayerBodyFSM>();
                 fsm.addKnockBack(dir * blastForce);
+                fsm.beingImpulseGrenaded = true;
                 fsm.transitionState(PlayerMotionStates.KnockBack);
                 fsm.newAttacker(Owner);
             }

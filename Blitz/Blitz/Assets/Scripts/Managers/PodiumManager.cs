@@ -131,6 +131,8 @@ public class PodiumManager : MonoBehaviour
         }
 
         anim.Play("openCurtains");
+        NewSteamManager.instance.UnlockAchievement(eAchivement.OneMatch);
+        NewSteamManager.instance.AddMatch();
         //particles
 
         cheer = AudioManager.instance.PlaySound(AudioManager.AudioQueue.PODIUM_APPLAUSE);
@@ -392,7 +394,12 @@ public class PodiumManager : MonoBehaviour
 
         for (int i = 0; i < players.Count; i++)
         {
-            
+
+            if (gameData[i].roundWins >= 4)
+            {
+                NewSteamManager.instance.UnlockAchievement(eAchivement.FourRounds);
+            }
+
             CharacterController chara = players[gameData[i].id].transform.GetComponent<CharacterController>();
             PlayerBodyFSM FSM = players[gameData[i].id].transform.GetComponent<PlayerBodyFSM>();
             chara.enabled = false;
@@ -404,10 +411,12 @@ public class PodiumManager : MonoBehaviour
 
             if(i == 0)
             {
+                FSM.RemoveCrownTimer();
                 FSM.SetCrownVisibility(true);
             }
             else
             {
+                FSM.RemoveCrownTimer();
                 FSM.SetCrownVisibility(false);
             }
             

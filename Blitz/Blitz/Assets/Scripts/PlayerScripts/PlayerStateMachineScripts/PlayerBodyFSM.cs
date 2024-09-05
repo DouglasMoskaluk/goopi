@@ -28,6 +28,9 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public int skinID;
 
+    public bool beingImpulseGrenaded = false;
+
+
     #endregion
 
     #region Private Variables
@@ -54,7 +57,9 @@ public class PlayerBodyFSM : MonoBehaviour
     [SerializeField] private CinemachineFreeLook cine;
     [SerializeField] private VisualEffect speedLines;
     private Transform gunPositionRef;
-   
+
+    [SerializeField] private CrownTimerAchievementCheck crownTimer;
+
 
     private CinemachineFreeLook freelookCam; //freelook brain reference
     private Transform camRotatePoint;
@@ -204,6 +209,7 @@ public class PlayerBodyFSM : MonoBehaviour
 
     public void resetFSM(EventParams param = new EventParams())
     {
+        beingImpulseGrenaded = false;
         resetHealth();
         transitionState(PlayerMotionStates.Walk);
         transitionState(PlayerActionStates.Idle);
@@ -495,6 +501,7 @@ public class PlayerBodyFSM : MonoBehaviour
         {
             SplitScreenManager.instance.SetCrowns();// <- ik this is a weird way to do it and using in on the ondeath event is better ut i think that would require some reworking of the events which we should do but i dont have enough time rn
             deathCheck = true;
+            beingImpulseGrenaded = false;
             transitionState(PlayerActionStates.Death);
             transitionState(PlayerMotionStates.Death);
             AudioManager.instance.PlaySound(AudioManager.AudioQueue.PLAYER_DEATH);
@@ -783,6 +790,13 @@ public class PlayerBodyFSM : MonoBehaviour
         StartCoroutine(AddIFrames(0.5f));
     }
 
+    public void RemoveCrownTimer()
+    {
+        if(crownTimer)
+        {
+            Destroy(crownTimer);
+        }
+    }
     public void StartIFrames()
     {
         StartCoroutine(AddIFrames(0.5f));

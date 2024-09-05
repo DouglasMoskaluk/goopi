@@ -366,12 +366,15 @@ public class PlayerUIHandler : MonoBehaviour
 
     public void Obliterated()
     {
+        NewSteamManager.instance.UnlockAchievement(eAchivement.MegaGun);
         StopCoroutine("ObliteratedCR");
         StartCoroutine("ObliteratedCR");
     }
 
     public void Hammered()
     {
+        NewSteamManager.instance.UnlockAchievement(eAchivement.Hammer);
+
         if (hammerCR != null) StopCoroutine(hammerCR);
         hammerCR = Hammer();
         StartCoroutine(hammerCR);

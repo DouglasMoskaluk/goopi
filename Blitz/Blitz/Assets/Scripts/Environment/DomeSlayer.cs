@@ -43,6 +43,12 @@ public class DomeSlayer : MonoBehaviour
                 if ((inDome(players[i].transform) || players[i].transform.position.y < -10) && !players[i].deathCheck)
                 {
                     //Debug.Log("DIE!!!!");
+
+                    if (players[i].beingImpulseGrenaded)
+                    {
+                        NewSteamManager.instance.UnlockAchievement(eAchivement.Impulse);
+                    }
+
                     players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);
                 }
             }

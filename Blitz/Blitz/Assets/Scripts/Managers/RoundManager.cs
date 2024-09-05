@@ -307,6 +307,7 @@ public class RoundManager : MonoBehaviour
 
     public void updateKillCount(int playerNum)
     {
+        NewSteamManager.instance.AddKill();
         playerKillCounts[playerNum]++;
         SplitScreenManager.instance.GetPlayers(playerNum).playerUI.playerGotKill();
     }
