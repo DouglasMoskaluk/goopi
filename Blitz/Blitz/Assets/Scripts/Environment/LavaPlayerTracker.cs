@@ -13,15 +13,16 @@ public class LavaPlayerTracker : MonoBehaviour
     void OnEnable()
     {
         playerTouchLava = new bool[SplitScreenManager.instance.GetPlayerCount()];
-        EventManager.instance.addListener(Events.onRoundEnd, CheckPlayers);
+        //StartCoroutine(delayChecker());
     }
 
     private void OnDisable()
     {
-        EventManager.instance.removeListener(Events.onRoundEnd, CheckPlayers);
+        CheckPlayers();
+        //EventManager.instance.removeListener(Events.onRoundEnd, CheckPlayers);
     }
 
-    public void CheckPlayers(EventParams param = new EventParams())
+    public void CheckPlayers()
     {
         for(int i = 0; i < playerTouchLava.Length;i++)
         {
@@ -31,6 +32,12 @@ public class LavaPlayerTracker : MonoBehaviour
             }
         }
     }
+
+    //IEnumerator delayChecker()
+    //{
+    //    yield return new WaitForSecondsRealtime(10f);
+    //    EventManager.instance.addListener(Events.onRoundEnd, CheckPlayers);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

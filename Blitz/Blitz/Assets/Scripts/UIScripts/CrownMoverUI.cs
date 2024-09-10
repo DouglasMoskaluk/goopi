@@ -25,7 +25,7 @@ public class CrownMoverUI : MonoBehaviour
 
     public void InitializeEndPoint(RectTransform setPoint, int wins, int player)
     {
-        if(player == 0 || player == 2)
+        if(player == 0 || player == 2 || SplitScreenManager.instance.GetPlayerCount() == 2)
         {
             endPoint = new Vector3((setPoint.position.x + (wins * 55)), (setPoint.position.y), setPoint.position.z);
         }
