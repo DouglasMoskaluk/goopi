@@ -38,16 +38,16 @@ public class NewSteamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            UnlockAchievement(eAchivement.FourRounds);
+        //if(Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    UnlockAchievement(eAchivement.FourRounds);
 
-        }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ResetAllAchievements();
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    ResetAllAchievements();
+        //}
 
         if (connectedToSteam)
         {
@@ -85,6 +85,20 @@ public class NewSteamManager : MonoBehaviour
         Steamworks.SteamUserStats.StoreStats();
     }
 
+    public bool MainMenuPlatCheck()
+    {
+        var ach = new Steamworks.Data.Achievement("New_Achievement_" + 11);
+
+        if (ach.State)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void CheckForPlatinumAchievement()
     {
         int numOfRequired = totalAchievementNum - 1;
@@ -98,8 +112,6 @@ public class NewSteamManager : MonoBehaviour
                 numOfUnlocked++;
             }
         }
-
-        Debug.Log("Unlokced num: " + numOfUnlocked);
 
         if(numOfUnlocked == numOfRequired)
         {

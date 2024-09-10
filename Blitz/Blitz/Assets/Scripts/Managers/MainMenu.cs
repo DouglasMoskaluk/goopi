@@ -54,6 +54,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject grenade;
 
+    [SerializeField]
+    private GameObject PlatCrown;
+
 
     [SerializeField]
     private Transform GrenadeSpawnOne;
@@ -141,6 +144,11 @@ public class MainMenu : MonoBehaviour
 
     public void AfterSplashAnim()
     {
+
+        if (NewSteamManager.instance.MainMenuPlatCheck())
+        {
+            PlatCrown.SetActive(true);
+        }
 
         canInteract = true;
 
