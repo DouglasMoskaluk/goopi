@@ -106,6 +106,10 @@ MonoBehaviour:
   newEvent:
     m_PersistentCalls:
       m_Calls: []
+  targetStates: []
+  isHammer: 1
+  canTouch: 0
+  owner: 0
 --- !u!65 &3783621315805223704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -200,6 +204,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f196493c99803974dba72cca5bc49581, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f196493c99803974dba72cca5bc49581, type: 2}
     - target: {fileID: -5754084199372789682, guid: 9c7a7b40841822e4cb5fca64ab7a4c1c,
         type: 3}
       propertyPath: m_Mesh
