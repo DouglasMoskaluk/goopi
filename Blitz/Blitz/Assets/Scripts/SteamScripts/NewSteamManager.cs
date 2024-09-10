@@ -44,10 +44,11 @@ public class NewSteamManager : MonoBehaviour
 
         //}
 
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    ResetAllAchievements();
-        //}
+        if (GameManager.instance.ALLOW_KEYBOARD_DEVKEYS && Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Clear Achievement");
+            ResetAllAchievements();
+        }
 
         if (connectedToSteam)
         {
