@@ -53,7 +53,7 @@ public class PingPong : MonoBehaviour
                     newEndPoint = endPoint;
                 }
 
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSecondsRealtime(0.01f);
 
             }
 
@@ -66,7 +66,7 @@ public class PingPong : MonoBehaviour
 
             elapsedTime++;
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSecondsRealtime(0.01f);
 
         }
     }
