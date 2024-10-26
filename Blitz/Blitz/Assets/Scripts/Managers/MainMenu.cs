@@ -145,10 +145,10 @@ public class MainMenu : MonoBehaviour
     public void AfterSplashAnim()
     {
 
-        if (NewSteamManager.instance.MainMenuPlatCheck())
-        {
+        //if (NewSteamManager.instance.MainMenuPlatCheck())
+        //{
             PlatCrown.SetActive(true);
-        }
+        //}
 
         canInteract = true;
 

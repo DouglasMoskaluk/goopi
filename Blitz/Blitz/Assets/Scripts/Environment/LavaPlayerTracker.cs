@@ -28,7 +28,7 @@ public class LavaPlayerTracker : MonoBehaviour
         {
             if (!playerTouchLava[i])
             {
-                NewSteamManager.instance.UnlockAchievement(eAchivement.Lava);
+                //NewSteamManager.instance.UnlockAchievement(eAchivement.Lava);
             }
         }
     }

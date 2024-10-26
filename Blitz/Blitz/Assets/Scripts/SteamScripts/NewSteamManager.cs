@@ -12,7 +12,7 @@ public class NewSteamManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -28,7 +28,7 @@ public class NewSteamManager : MonoBehaviour
             connectedToSteam = true;
             CheckForPlatinumAchievement();
         }
-        catch(System.Exception e)
+        catch (System.Exception e)
         {
             connectedToSteam = false;
         }

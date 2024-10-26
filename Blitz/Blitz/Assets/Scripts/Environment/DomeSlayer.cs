@@ -46,7 +46,7 @@ public class DomeSlayer : MonoBehaviour
 
                     if (players[i].beingImpulseGrenaded)
                     {
-                        NewSteamManager.instance.UnlockAchievement(eAchivement.Impulse);
+                        //NewSteamManager.instance.UnlockAchievement(eAchivement.Impulse);
                     }
 
                     players[i].damagePlayer(200, -1, Vector3.zero, Vector3.zero);

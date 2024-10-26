@@ -11,16 +11,16 @@ public class CrownTimerAchievementCheck : MonoBehaviour
         timer = 0;
     }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
+    //private void Update()
+    //{
+    //    timer += Time.deltaTime;
 
-        if (timer >= 30)
-        {
-            NewSteamManager.instance.UnlockAchievement(eAchivement.Crown);
-        }
+    //    if (timer >= 30)
+    //    {
+    //        NewSteamManager.instance.UnlockAchievement(eAchivement.Crown);
+    //    }
 
-    }
+    //}
 
     // Update is called once per frame
     void OnDisable()
